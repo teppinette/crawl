@@ -1,0 +1,18 @@
+[Unit]
+Description=Multilogin X Agent
+After=xvfb.service
+Requires=xvfb.service
+
+[Service]
+Type=simple
+User=copapadmin
+Environment=HOME=/home/copapadmin
+Environment=DISPLAY=:99
+ExecStartPre=-/usr/bin/pkill -9 -f desktop.bin
+ExecStartPre=-/bin/rm -f /home/copapadmin/mlx/agent.lock /home/copapadmin/mlx/profiles.lock /home/copapadmin/mlx/launcher.lock
+ExecStart=/opt/mlxapp/desktop.bin
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

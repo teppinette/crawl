@@ -1,0 +1,20 @@
+{
+  "id": "crawl-gateway",
+  "name": "Crawl Gateway Tools",
+  "description": "Tools for the Crawl OSINT research platform: dark web search, cross-region research, job status, and report lookup",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "gatewayUrl": {
+        "type": "string",
+        "description": "Crawl gateway base URL",
+        "default": "http://20.94.45.219:8400"
+      },
+      "apiKey": {
+        "type": "string",
+        "description": "Gateway API key"
+      }
+    },
+    "additionalProperties": false
+  }
+}

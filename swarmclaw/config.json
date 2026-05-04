@@ -1,0 +1,164 @@
+{
+  "$schema": "SwarmClaw agent runtime configuration for OpenClaw OSINT platform",
+  "server": {
+    "port": 3456,
+    "host": "0.0.0.0"
+  },
+  "agents": [
+    {
+      "id": "americas",
+      "name": "Americas OSINT Agent",
+      "description": "US, Canada, Colombia corporate registries and sanctions screening",
+      "gateway": {
+        "host": "localhost",
+        "port": 18789,
+        "protocol": "http"
+      },
+      "model": {
+        "default": "claude-sonnet-4-6",
+        "provider": "anthropic"
+      },
+      "skills": ["counterparty_research", "region_americas"],
+      "tags": ["americas", "ofac", "sec", "pacer"],
+      "jurisdictions": ["US", "CA", "CO"],
+      "heartbeat": true,
+      "memory": true
+    },
+    {
+      "id": "europe",
+      "name": "Europe OSINT Agent",
+      "description": "Turkey, Russia, Belarus, Serbia, EU, Nigeria registries. DeepSeek for Russian sources.",
+      "gateway": {
+        "host": "${CRAWL_EUROPE_IP}",
+        "port": 18789,
+        "protocol": "http"
+      },
+      "model": {
+        "default": "claude-sonnet-4-6",
+        "provider": "anthropic",
+        "routing": [
+          {
+            "pattern": "russian|cyrillic|egrul|spark-interfax|belarus|egr.gov.by",
+            "model": "deepseek-chat",
+            "provider": "deepseek"
+          }
+        ]
+      },
+      "skills": ["counterparty_research", "region_europe"],
+      "tags": ["europe", "turkey", "russia", "sanctions"],
+      "jurisdictions": ["TR", "RU", "BY", "RS", "NG", "EU"],
+      "heartbeat": true,
+      "memory": true
+    },
+    {
+      "id": "gulf",
+      "name": "Gulf OSINT Agent",
+      "description": "UAE, Egypt, Pakistan, Iraq registries. Focus on free zone opacity and Iran evasion.",
+      "gateway": {
+        "host": "${CRAWL_GULF_IP}",
+        "port": 18789,
+        "protocol": "http"
+      },
+      "model": {
+        "default": "claude-sonnet-4-6",
+        "provider": "anthropic"
+      },
+      "skills": ["counterparty_research", "region_gulf"],
+      "tags": ["gulf", "uae", "pakistan", "freezone"],
+      "jurisdictions": ["AE", "EG", "PK", "IQ"],
+      "heartbeat": true,
+      "memory": true
+    },
+    {
+      "id": "china",
+      "name": "China/APAC OSINT Agent",
+      "description": "China, HK, Vietnam, Myanmar registries. DeepSeek primary for Chinese sources.",
+      "gateway": {
+        "host": "${CRAWL_CHINA_IP}",
+        "port": 18789,
+        "protocol": "http"
+      },
+      "model": {
+        "default": "deepseek-chat",
+        "provider": "deepseek",
+        "routing": [
+          {
+            "pattern": "complex_chinese_legal|long_filing|annual_report",
+            "model": "moonshot-v1-128k",
+            "provider": "moonshot"
+          },
+          {
+            "pattern": "english|apac_general|hong_kong|vietnam",
+            "model": "claude-sonnet-4-6",
+            "provider": "anthropic"
+          }
+        ]
+      },
+      "skills": ["counterparty_research", "region_china"],
+      "tags": ["china", "apac", "deepseek", "uflpa"],
+      "jurisdictions": ["CN", "HK", "VN", "MM"],
+      "heartbeat": true,
+      "memory": true
+    },
+    {
+      "id": "india",
+      "name": "India OSINT Agent",
+      "description": "India MCA21, ROC, GST, courts. Sarvam AI for Hindi records. DIN cross-referencing.",
+      "gateway": {
+        "host": "${CRAWL_INDIA_IP}",
+        "port": 18789,
+        "protocol": "http"
+      },
+      "model": {
+        "default": "claude-sonnet-4-6",
+        "provider": "anthropic",
+        "routing": [
+          {
+            "pattern": "hindi|regional_language|court_records_hindi|devanagari",
+            "model": "sarvam-2b-v0.5",
+            "provider": "sarvam"
+          }
+        ]
+      },
+      "skills": ["counterparty_research", "region_india"],
+      "tags": ["india", "mca21", "din", "gst"],
+      "jurisdictions": ["IN"],
+      "heartbeat": true,
+      "memory": true
+    }
+  ],
+  "orchestration": {
+    "delegation": {
+      "enabled": true,
+      "strategy": "jurisdiction_match",
+      "fallback_agent": "americas"
+    },
+    "task_board": {
+      "enabled": true,
+      "auto_pickup": true,
+      "max_concurrent_per_agent": 3
+    },
+    "sessions": {
+      "durable": true,
+      "restart_safe": true,
+      "transcript_retention_days": 30
+    }
+  },
+  "storage": {
+    "type": "azure_blob",
+    "account": "stcrawlosint",
+    "container": "osint-staging",
+    "region_prefixes": {
+      "americas": "americas/",
+      "europe": "europe/",
+      "gulf": "gulf/",
+      "china": "china/",
+      "india": "india/"
+    }
+  },
+  "monitoring": {
+    "heartbeat_interval_seconds": 300,
+    "dead_agent_threshold_seconds": 900,
+    "log_retention_days": 7
+  }
+}

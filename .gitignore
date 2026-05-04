@@ -1,0 +1,48 @@
+# Environment
+.env
+*.env.local
+
+# Seeds (contain entity names pulled from production)
+seeds/
+
+# Downloaded reports
+reports/
+
+# Node
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.pyc
+
+# Job state files (ephemeral, contain entity data)
+api/jobs/
+
+# Logs
+api/*.log
+logs/
+
+# Output (reports SFTPed from VMs)
+output/
+
+# Config with secrets
+config/blob_sas_token
+config/brd-ca.crt
+
+# Multilogin agent installer
+tools/*.deb
+
+# Test screenshots / PDFs
+tools/*.png
+tools/*.pdf
+
+# Claude internal
+.claude/

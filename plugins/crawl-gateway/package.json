@@ -1,0 +1,17 @@
+{
+  "name": "@crawl/gateway-tools",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "openclaw": {
+    "extensions": ["./index.js"],
+    "compat": {
+      "pluginApi": ">=2026.3.24-beta.2",
+      "minGatewayVersion": "2026.3.24-beta.2"
+    },
+    "build": {
+      "openclawVersion": "2026.4.9",
+      "pluginSdkVersion": "2026.4.9"
+    }
+  }
+}

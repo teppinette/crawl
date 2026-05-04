@@ -1,0 +1,13 @@
+[Unit]
+Description=Xvfb virtual display for Multilogin
+After=network.target
+
+[Service]
+Type=simple
+User=copapadmin
+ExecStart=/usr/bin/Xvfb :99 -screen 0 1920x1080x24
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
