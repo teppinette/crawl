@@ -959,6 +959,32 @@ def build_product_intel_prompt(payload: dict, region: str, region_markets: list[
 # SSH Dispatch
 # ---------------------------------------------------------------------------
 
+def _sanitize_openclaw_json(local_file: Path) -> bool:
+    """Fix malformed JSON from OpenClaw agents before parsing.
+
+    OpenClaw sometimes emits '___' as field separators instead of proper
+    JSON structure.  This strips those artifacts so json.load() succeeds.
+    Returns True if the file was modified.
+    """
+    if not local_file.exists():
+        return False
+    try:
+        raw = local_file.read_text()
+        if "___" not in raw:
+            return False
+        # Remove ___ separators: they appear between JSON key-value pairs
+        # e.g.  "date": "2026-05-04",___"other_field": "value",___
+        cleaned = raw.replace(',___', ',').replace('___,', ',').replace('___', '')
+        # Verify the cleaned version is valid JSON
+        json.loads(cleaned)
+        local_file.write_text(cleaned)
+        log.info("Sanitized ___ separators from %s", local_file.name)
+        return True
+    except (json.JSONDecodeError, OSError) as e:
+        log.warning("JSON sanitize failed for %s: %s", local_file.name, e)
+        return False
+
+
 def _inject_request_id(local_file: Path, request_id: str) -> bool:
     """Inject request_id into a downloaded blob JSON before uploading.
     Returns True if injection succeeded."""
@@ -1126,8 +1152,9 @@ def _run_ssh_research(job_id: str, region: str, prompt: str, scenario: str, atte
                 )
                 local_file.unlink()  # remove so downstream treats as missing
 
-            # Inject request_id into the blob body so it's self-contained
+            # Sanitize OpenClaw output (strips ___ separators) then inject request_id
             if local_file.exists():
+                _sanitize_openclaw_json(local_file)
                 _inject_request_id(local_file, request_id)
 
             # Upload to blob from crawldevvm
