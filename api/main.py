@@ -44,6 +44,7 @@ from pydantic import BaseModel, Field, model_validator
 from keyvault import get_secret, load_vm_tokens
 from event_log import log_job_event, log_api_access
 import multilogin_fbr
+import multilogin_dgft
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger("crawl-gateway")
@@ -502,8 +503,9 @@ app = FastAPI(
     ),
 )
 
-# Initialize Multilogin FBR module (credentials from Key Vault)
+# Initialize Multilogin modules (credentials from Key Vault)
 multilogin_fbr.init(get_secret)
+multilogin_dgft.init(get_secret)
 
 
 # ---------------------------------------------------------------------------
@@ -2431,7 +2433,7 @@ def _india_tofler_lookup(entity_name: str, cin: str = "") -> dict:
 # Which countries are supported and what registries we check
 _VERIFY_SOURCES = {
     "PK": "SECP eServices (direct) + FBR IRIS ATL (Multilogin anti-detect browser)",
-    "IN": "Tofler.in (MCA21 data via Bright Data)",
+    "IN": "Tofler.in (MCA21 data) + DGFT IEC (Multilogin, requires PAN/IEC)",
     "TR": "MERSIS / GIB (via Bright Data TR residential proxy)",
     "AE": "DIFC / JAFZA / MOEC (via Bright Data AE residential proxy)",
     "CN": "SAMR / Tianyancha (via Bright Data CN residential proxy)",
@@ -2467,6 +2469,7 @@ async def verify_entity(
     country_code = body.get("country_code", "").strip().upper()
     ntn = body.get("ntn", "").strip()
     cin = body.get("cin", "").strip().upper()
+    iec = body.get("iec", "").strip().upper()  # IEC = PAN for Indian companies
 
     if not entity_name or not country_code:
         raise HTTPException(status_code=422, detail="entity_name and country_code required")
@@ -2523,7 +2526,12 @@ async def verify_entity(
 
     # --------------- INDIA ---------------
     if country_code == "IN":
-        result = await loop.run_in_executor(_ssh_pool, _india_tofler_lookup, entity_name, cin)
+        tofler_fut = loop.run_in_executor(_ssh_pool, _india_tofler_lookup, entity_name, cin)
+        dgft_fut = loop.run_in_executor(_ssh_pool, multilogin_dgft.dgft_iec_verify, iec, entity_name) if iec else None
+
+        result = await tofler_fut
+        dgft = (await dgft_fut) if dgft_fut else None
+
         verified = result.get("found", False)
         now = datetime.now(timezone.utc).isoformat()
         resp = {
@@ -2535,10 +2543,15 @@ async def verify_entity(
             "directors": result.get("directors"),
             "authorized_capital": result.get("authorized_capital"),
             "paidup_capital": result.get("paidup_capital"),
+            "dgft": dgft,
             "validation_source": {
-                "registry": "Ministry of Corporate Affairs (MCA21) — via Tofler.in",
+                "registry": "Ministry of Corporate Affairs (MCA21), Government of India",
                 "url": result.get("source_url"),
-                "method": "Bright Data residential proxy (IN) → Tofler.in (aggregates MCA21 data)",
+                "record_id": result.get("cin"),
+                "how_to_reproduce": (
+                    f"Visit https://www.mca.gov.in/content/mca/global/en/mca/fo-llp-services/company-llp-name-search.html → "
+                    f"Search for '{entity_name}' or CIN {result.get('cin', 'N/A')}"
+                ),
                 "verified_at": now,
             },
             "timestamp": now,

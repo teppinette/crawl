@@ -299,10 +299,17 @@ def _parse_atl_result(ntn: str, body: str) -> dict:
         result["filing_status"] = filing
         result["checking_date"] = check_date
         result["registration_number"] = reg_no
-        result["method"] = (
-            "Multilogin anti-detect browser + PK residential proxy → "
-            "FBR IRIS 2.0 ATL (Income Tax) with CAPTCHA solve"
-        )
+        result["validation_source"] = {
+            "registry": "Federal Board of Revenue (FBR), Government of Pakistan",
+            "url": "https://iris.fbr.gov.pk/",
+            "record_id": reg_no,
+            "how_to_reproduce": (
+                f"Visit https://iris.fbr.gov.pk/ → Click 'Verifications' → "
+                f"Active Taxpayer List (Income Tax) → Parameter Type: NTN → "
+                f"Enter NTN: {ntn} → Solve CAPTCHA → Click VERIFY"
+            ),
+            "verified_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        }
     elif "Invalid Captcha" in body or "invalid captcha" in body.lower():
         raise RuntimeError("CAPTCHA solve failed — retrying")
     else:
