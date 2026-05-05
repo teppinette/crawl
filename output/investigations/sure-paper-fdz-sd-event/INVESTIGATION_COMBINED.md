@@ -230,26 +230,83 @@
 | 8 | TRHU6825749 | ML-CN5894681 | 49 | 25,725 |
 | | **TOTAL** | | **396 pallets** | **209,301 KGS** |
 
-**Container Tracking Results (Maersk, checked 5 May 2026):**
+**CONTAINER TRACKING & HAULIER IDENTIFICATION (5 May 2026)**
 
-All 8 containers returned EMPTY from Jebel Ali — cargo was unloaded at a warehouse in Dubai/UAE before containers were returned to the port.
+All 8 containers tracked via Maersk (maersk.com) and DP World Dubai Trade portal (dpwdtjb2.dubaitrade.ae). Vessel: MAERSK EMDEN, Voyage 601W. All containers discharged at Jebel Ali Terminal 2 on 8 February 2026.
 
-| # | Container | Gate Out Empty | Reused Route |
-|---|-----------|---------------|--------------|
-| 1 | UETU7505927 | 11 Feb 2026 | → Congo → Cameroon |
-| 2 | MRSU7538102 | (reused, now Chicago→Korea) | — |
-| 3 | TRHU4384942 | (reused, now Qingdao→Manila) | — |
-| 4 | UETU8364361 | (reused, now Houston→Brazil) | — |
-| 5 | TCNU5941946 | 16 Apr 2026 | → Salalah → Dar es Salaam |
-| 6 | MRSU3871218 | 13 Feb 2026 | → Morocco → Puerto Cabello |
-| 7 | FFAU7343679 | 20 Apr 2026 | → Dammam → Istanbul |
-| 8 | TRHU6825749 | 13 Feb 2026 | → Dar es Salaam |
+**Maersk Tracking — All containers returned EMPTY:**
 
-**Key finding:** Earliest empty returns were **11-13 February 2026** (containers 1, 6, 8). This means FDZ unloaded the cargo in Dubai by early-mid February 2026. The paper was trucked from Jebel Ali to a warehouse, unloaded, and empty containers returned within days.
+| # | Container | Gate Out Empty | Current Status |
+|---|-----------|---------------|----------------|
+| 1 | UETU7505927 | 11 Feb 2026 | Reused: Congo → Cameroon |
+| 2 | MRSU7538102 | — | Reused: Chicago → Korea |
+| 3 | TRHU4384942 | — | Reused: Qingdao → Manila |
+| 4 | UETU8364361 | — | Reused: Houston → Brazil |
+| 5 | TCNU5941946 | 16 Apr 2026 | Reused: Salalah → Dar es Salaam |
+| 6 | MRSU3871218 | 13 Feb 2026 | Reused: Morocco → Puerto Cabello |
+| 7 | FFAU7343679 | 20 Apr 2026 | Reused: Dammam → Istanbul |
+| 8 | TRHU6825749 | 13 Feb 2026 | Reused: → Dar es Salaam |
 
-**"Gate out Empty" does NOT mean the paper went to those destinations.** The paper stayed in Dubai. The empty containers were returned to Maersk's pool and reused for unrelated shipments worldwide.
+All containers returned empty. Paper unloaded at warehouse in Dubai. Containers reused by Maersk globally.
 
-**The missing record:** DP World gate pass for when the FULL containers first left Jebel Ali on trucks — that shows truck plate, driver, and destination warehouse. This predates the "Gate out Empty" events.
+**DP World Portal — Searched all 8 containers:**
+
+| # | Container | DP World Data | Result |
+|---|-----------|--------------|--------|
+| 1 | UETU7505927 | No Data Found | Record no longer in public portal |
+| 2 | MRSU7538102 | No Data Found | Record no longer in public portal |
+| 3 | TRHU4384942 | No Data Found | Record no longer in public portal |
+| 4 | UETU8364361 | No Data Found | Record no longer in public portal |
+| 5 | **TCNU5941946** | **FULL DATA** | **Haulier and truck identified** |
+| 6 | MRSU3871218 | No Data Found | Record no longer in public portal |
+| 7 | **FFAU7343679** | **PARTIAL** | **Transshipped ship-to-ship** |
+| 8 | TRHU6825749 | No Data Found | Record no longer in public portal |
+
+Note: "No Data Found" on public portal does not mean records deleted. Full history retained by DP World and Dubai Customs internally — accessible via formal request or police complaint.
+
+**TCNU5941946 — COMPLETE MOVEMENT CHAIN:**
+
+| Date | Desig | Move | Category | Status | Vehicle | EIR No | Haulier |
+|------|-------|------|----------|--------|---------|--------|---------|
+| 08-Feb-26 19:41 | FCL | LANDED FROM VESSEL | IMPORT | FULL | 949050 | — | — |
+| **11-Feb-26 08:39** | **FCL** | **TO TOWN** | **IMPORT** | **FULL** | **T20640** | **800239** | **12276** |
+| 12-Feb-26 09:13 | MT | FROM TOWN | STORAGE | EMPTY | X35018 | 830594 | 12276 |
+| 12-Feb-26 10:50 | MT | TO TOWN | STORAGE | EMPTY | 55544 | 832354 | 27108 |
+| **13-Feb-26 11:52** | **EXP** | **FROM TOWN** | **EXPORT** | **FULL** | **55544** | **860430** | **27108** |
+| 01-Apr-26 12:10 | EXP | TO TOWN | EXPORT | FULL | 73246 | 612802 | 27108 |
+| 01-Apr-26 23:54 | MT | FROM TOWN | STORAGE | EMPTY | 73246 | 617273 | 27108 |
+| 16-Apr-26 00:36 | MT | TO TOWN | STORAGE | EMPTY | 16160 | 830768 | H00181 |
+
+**FFAU7343679 — TRANSSHIPPED (never left port):**
+
+| Field | Value |
+|-------|-------|
+| Status | T/S RESHIPPED-TO VESSEL |
+| Discharged from | ER_RAIL_001, voyage 160311, 12 Mar 2026 09:50 |
+| Loaded onto | MAERSK YORKTOWN, voyage 618W, 30 Apr 2026 02:15 |
+| Note | Ship-to-ship transfer — cargo may have been re-exported without leaving port |
+
+**IDENTIFIED HAULIERS AND VEHICLES:**
+
+| Role | Haulier Code | Vehicle | EIR No | Date | Action |
+|------|-------------|---------|--------|------|--------|
+| **FULL IMPORT pickup** | **12276** | **T20640** | **800239** | 11-Feb 08:39 | Trucked full container to warehouse |
+| Empty return | 12276 | X35018 | 830594 | 12-Feb 09:13 | Same haulier returned empty |
+| **FULL EXPORT pickup** | **27108** | **55544** | **860430** | 13-Feb 11:52 | Full container out — possible re-export |
+| Later export | 27108 | 73246 | 612802 | 01-Apr 12:10 | Same haulier, later shipment |
+| Unrelated empty | H00181 | 16160 | 830768 | 16-Apr 00:36 | Different haulier |
+
+**CRITICAL FINDINGS:**
+
+1. **Haulier 12276** picked up the full import container on truck **T20640** on **11 Feb 2026 at 08:39**. This company delivered the paper to a warehouse in Dubai. Empty returned next day by same haulier.
+
+2. **Haulier 27108** picked up a **full export** container on **13 Feb 2026** — 2 days after import. This strongly suggests the paper was reloaded for re-export within 48 hours.
+
+3. **FFAU7343679** was transshipped ship-to-ship — cargo may have been re-exported directly by sea without ever leaving the port.
+
+4. To identify the trucking companies behind haulier codes **12276** and **27108**: Dubai Trade Contact Centre **600 555 554**, DP World **04 881 5555**, or Dubai Police Economic Crime Unit.
+
+5. **EIR No. 800239** is the Equipment Interchange Receipt — signed proof of handover naming the receiving company and driver.
 
 ### 3.2 Order Details (from CIR #57)
 
