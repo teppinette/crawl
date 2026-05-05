@@ -45,6 +45,7 @@ from keyvault import get_secret, load_vm_tokens
 from event_log import log_job_event, log_api_access
 import multilogin_fbr
 import multilogin_dgft
+import multilogin_bizfile
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger("crawl-gateway")
@@ -506,6 +507,7 @@ app = FastAPI(
 # Initialize Multilogin modules (credentials from Key Vault)
 multilogin_fbr.init(get_secret)
 multilogin_dgft.init(get_secret)
+multilogin_bizfile.init(get_secret)
 
 
 # ---------------------------------------------------------------------------
@@ -2434,6 +2436,7 @@ def _india_tofler_lookup(entity_name: str, cin: str = "") -> dict:
 _VERIFY_SOURCES = {
     "PK": "SECP eServices (direct) + FBR IRIS ATL (Multilogin anti-detect browser)",
     "IN": "Tofler.in (MCA21 data) + DGFT IEC (Multilogin, requires PAN/IEC)",
+    "SG": "ACRA Bizfile (Multilogin) — UEN, status, address (directors require paid profile)",
     "TR": "MERSIS / GIB (via Bright Data TR residential proxy)",
     "AE": "DIFC / JAFZA / MOEC (via Bright Data AE residential proxy)",
     "CN": "SAMR / Tianyancha (via Bright Data CN residential proxy)",
@@ -2563,6 +2566,37 @@ async def verify_entity(
                 f"Inc: {result.get('incorporation_date', 'N/A')}")
         else:
             resp["summary"] = f"No registration found for '{entity_name}'"
+            if result.get("error"):
+                resp["error"] = result["error"]
+        return resp
+
+    # --------------- SINGAPORE ---------------
+    if country_code == "SG":
+        uen = body.get("uen", "").strip()
+        bizfile_fut = loop.run_in_executor(_ssh_pool, multilogin_bizfile.bizfile_verify, entity_name, uen)
+        result = await bizfile_fut
+
+        now = datetime.now(timezone.utc).isoformat()
+        resp = {
+            "entity_name": entity_name, "country_code": "SG",
+            "verified": result.get("found", False),
+            "uen": result.get("uen"),
+            "legal_name": result.get("legal_name"),
+            "status": result.get("status"),
+            "former_name": result.get("former_name"),
+            "industry": result.get("industry"),
+            "address": result.get("address"),
+            "directors_available": result.get("directors_available", False),
+            "directors_note": result.get("directors_note"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+        }
+        if result.get("found"):
+            resp["summary"] = (
+                f"{result.get('legal_name', entity_name)} — UEN {result.get('uen', 'N/A')} — "
+                f"{result.get('status', 'Unknown')} — {result.get('industry', '')}")
+        else:
+            resp["summary"] = f"No ACRA registration found for '{entity_name}'"
             if result.get("error"):
                 resp["error"] = result["error"]
         return resp
