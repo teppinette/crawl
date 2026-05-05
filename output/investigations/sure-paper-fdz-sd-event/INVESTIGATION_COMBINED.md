@@ -585,6 +585,26 @@ Other Room 1002 co-tenants: CX Stable Trading, Hanest, Powerful Industry, Pudu R
 | Website Last Updated | March 9, 2026 | hifongbonpak.com |
 | Staff from Emails | Karry Lin, yuxinw | Email correspondence |
 
+**CHINESE COMPANY IDENTIFIED (Tianyancha, via Multilogin CN proxy, 5 May 2026):**
+
+| Field | Value | Source |
+|-------|-------|--------|
+| **Legal Name** | 厦门班班纸业有限公司 (Xiamen Banban Paper Co., Ltd) | Tianyancha (tianyancha.com) |
+| **Legal Representative** | **王健 (Wang Jian)** | Tianyancha |
+| **USCC** | 91350206761718965U | Tianyancha |
+| **Registered Capital** | 19.66 million RMB | Tianyancha |
+| **Established** | 21 July 2004 | Tianyancha |
+| **Status** | 存续 (Active) | Tianyancha |
+| **Phone** | 1596083**** (partially masked) | Tianyancha |
+| **Email** | 1401387397@qq.com | Tianyancha |
+| **Address** | 中国（福建）自由贸易试验区厦门片区嵩屿北一里42号809室 (Xiamen FTZ, Fujian) | Tianyancha |
+| **Flags** | 小微企业 (small/micro), **司法案件 (court cases)** | Tianyancha |
+| **Worker Union Head** | 王水柱 (Wang Shuizhu) | Tianyancha |
+| **Connection** | "班班" (Banban) = same as "海丰班班" (Hifong Banban) branding | Linguistic match |
+| **Location** | Xiamen, Fujian — matches "Amoy" reference on hifongbonpak.com | Geographic match |
+
+Note: "yuxinw" email (yuxinw@hifongbonpak.com) — "w" may stand for Wang (王), the legal representative's surname. Wang Jian or a Wang family member likely operates the Hifong-Bonpak brand under the Xiamen Banban Paper entity.
+
 ### 9.3 Ningbo Sure Paper Co., Ltd (Mainland)
 
 | Field | Value | Source |
