@@ -308,6 +308,21 @@ Note: "No Data Found" on public portal does not mean records deleted. Full histo
 
 5. **EIR No. 800239** is the Equipment Interchange Receipt — signed proof of handover naming the receiving company and driver.
 
+**ACTION REQUIRED — WHO TO CALL:**
+
+| Action | Contact | Phone | Reference Numbers |
+|--------|---------|-------|-------------------|
+| **Identify haulier 12276 (company name)** | Dubai Trade Contact Centre | **600 555 554** | Haulier code 12276, container TCNU5941946, date 11-Feb-2026 |
+| **Identify truck T20640 (plate number)** | Dubai Trade Contact Centre | **600 555 554** | Vehicle T20640, EIR 800239 |
+| **Identify haulier 27108 (re-export company)** | Dubai Trade Contact Centre | **600 555 554** | Haulier code 27108, container TCNU5941946, date 13-Feb-2026 |
+| **Get EIR 800239 document** (driver name, company, signature) | DP World Customer Service | **04 881 5555** | EIR 800239, Jebel Ali Terminal 2 |
+| **Import declaration / Bill of Entry** | Dubai Customs | **04 417 7777** | TRN 100330886100003, FDZ Logistics LLC |
+| **File commercial fraud complaint** | Dubai Police Economic Crime | **04 609 6999** | Full report as evidence |
+| **Gate pass records (all 8 containers)** | PCFC Security Department | Via **tasreeh.ae** | 8 container numbers, Maersk booking 263545393 |
+| **Identify Robert Bisaka (phone owner)** | UK Police (Action Fraud) | **0300 123 2040** | WhatsApp +44 7542 918198, AOL email |
+| **AOL email account records** | UK Police → AOL/Yahoo legal | Via court order | robert.bisaka@aol.com — login IPs, registration data |
+| **Maersk delivery records** | Maersk UAE | **04 315 5555** | Booking 263545393, 8 container numbers |
+
 **PURCHASE ORDER SIGNATORY — ROBERT BISAKA (identified 5 May 2026)**
 
 | Field | Value | Source |
