@@ -43,9 +43,11 @@ from pydantic import BaseModel, Field, model_validator
 
 from keyvault import get_secret, load_vm_tokens
 from event_log import log_job_event, log_api_access
-import multilogin_fbr
-import multilogin_dgft
-import multilogin_bizfile
+# Multilogin modules now run on crawl-verify VM (180.20.0.4:8460)
+# import multilogin_fbr
+# import multilogin_dgft
+# import multilogin_bizfile
+VERIFY_VM_URL = "http://180.20.0.4:8460"
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger("crawl-gateway")
@@ -504,10 +506,9 @@ app = FastAPI(
     ),
 )
 
-# Initialize Multilogin modules (credentials from Key Vault)
-multilogin_fbr.init(get_secret)
-multilogin_dgft.init(get_secret)
-multilogin_bizfile.init(get_secret)
+# Multilogin modules run on crawl-verify VM (180.20.0.4:8460)
+# No local initialization needed — gateway proxies to verify VM
+log.info("Verify VM configured at %s", VERIFY_VM_URL)
 
 
 # ---------------------------------------------------------------------------
@@ -2432,14 +2433,30 @@ def _india_tofler_lookup(entity_name: str, cin: str = "") -> dict:
 # Verify Endpoint
 # ---------------------------------------------------------------------------
 
+def _verify_vm_call(payload: dict) -> dict:
+    """Proxy verification request to crawl-verify VM (180.20.0.4:8460)."""
+    import requests as _req
+    try:
+        resp = _req.post(
+            f"{VERIFY_VM_URL}/verify",
+            json=payload,
+            headers={"X-API-Key": API_KEY, "Content-Type": "application/json"},
+            timeout=120,
+        )
+        return resp.json()
+    except Exception as e:
+        log.warning("Verify VM call failed: %s", e)
+        return {"found": False, "error": str(e)[:200], "note": "Verify VM unreachable"}
+
+
 # Which countries are supported and what registries we check
 _VERIFY_SOURCES = {
-    "PK": "SECP eServices (direct) + FBR IRIS ATL (Multilogin anti-detect browser)",
-    "IN": "Tofler.in (MCA21 data) + DGFT IEC (Multilogin, requires PAN/IEC)",
-    "SG": "ACRA Bizfile (Multilogin) — UEN, status, address (directors require paid profile)",
-    "TR": "MERSIS / GIB (via Bright Data TR residential proxy)",
-    "AE": "DIFC / JAFZA / MOEC (via Bright Data AE residential proxy)",
-    "CN": "SAMR / Tianyancha (via Bright Data CN residential proxy)",
+    "PK": "SECP eServices (direct) + FBR IRIS ATL (via crawl-verify VM)",
+    "IN": "Tofler.in (MCA21 data) + DGFT IEC (via crawl-verify VM)",
+    "SG": "ACRA Bizfile (via crawl-verify VM) — UEN, status, address",
+    "TR": "GIB VKN tax ID verification (via crawl-verify VM) — company name, tax office",
+    "AE": "FTA TRN verification (via crawl-verify VM) — entity name, status",
+    "CN": "SAMR/GSXT (via crawl-china VM) — company name, USCC, legal rep",
 }
 
 
@@ -2490,7 +2507,9 @@ async def verify_entity(
     # --------------- PAKISTAN ---------------
     if country_code == "PK":
         secp_fut = loop.run_in_executor(_ssh_pool, _secp_query_via_ssh, entity_name)
-        fbr_fut = loop.run_in_executor(_ssh_pool, multilogin_fbr.fbr_atl_verify, ntn) if ntn else None
+        fbr_fut = loop.run_in_executor(
+            _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "PK", "ntn": ntn}
+        ) if ntn else None
 
         secp = await secp_fut
         fbr = (await fbr_fut) if fbr_fut else None
@@ -2530,7 +2549,9 @@ async def verify_entity(
     # --------------- INDIA ---------------
     if country_code == "IN":
         tofler_fut = loop.run_in_executor(_ssh_pool, _india_tofler_lookup, entity_name, cin)
-        dgft_fut = loop.run_in_executor(_ssh_pool, multilogin_dgft.dgft_iec_verify, iec, entity_name) if iec else None
+        dgft_fut = loop.run_in_executor(
+            _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "IN", "iec": iec}
+        ) if iec else None
 
         result = await tofler_fut
         dgft = (await dgft_fut) if dgft_fut else None
@@ -2573,8 +2594,9 @@ async def verify_entity(
     # --------------- SINGAPORE ---------------
     if country_code == "SG":
         uen = body.get("uen", "").strip()
-        bizfile_fut = loop.run_in_executor(_ssh_pool, multilogin_bizfile.bizfile_verify, entity_name, uen)
-        result = await bizfile_fut
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "SG", "uen": uen}
+        )
 
         now = datetime.now(timezone.utc).isoformat()
         resp = {
@@ -2601,33 +2623,66 @@ async def verify_entity(
                 resp["error"] = result["error"]
         return resp
 
-    # --------------- TURKEY / UAE / CHINA ---------------
-    # These registries require browser rendering for search.
-    # No automated requests — return guidance to use CIR.
-    now = datetime.now(timezone.utc).isoformat()
-    registry_info = {
-        "TR": {
-            "available_registries": ["MERSIS (mersis.gtb.gov.tr)", "GIB (gib.gov.tr)", "E-Devlet (turkiye.gov.tr)"],
-            "note": "Turkish registries require browser rendering. Use /api/v1/jobs with scenario=cir for full research.",
-        },
-        "AE": {
-            "available_registries": ["DIFC (difc.ae)", "JAFZA (jafza.ae)", "MOEC (moec.gov.ae)", "ADGM (adgm.com)"],
-            "note": "UAE free zone registries require browser rendering. Use /api/v1/jobs with scenario=cir for full research.",
-        },
-        "CN": {
-            "available_registries": ["SAMR (samr.gov.cn)", "Tianyancha (tianyancha.com)", "Qichacha (qcc.com)"],
-            "note": "Chinese registries require USCC and browser rendering. Use /api/v1/jobs with scenario=cir for full research.",
-        },
-    }
-    info = registry_info[country_code]
-    return {
-        "entity_name": entity_name, "country_code": country_code,
-        "verified": False,
-        "available_registries": info["available_registries"],
-        "note": info["note"],
-        "timestamp": now,
-        "summary": f"Real-time verify not available for {country_code}. Submit CIR job for full research.",
-    }
+    # --------------- TURKEY ---------------
+    if country_code == "TR":
+        vkn = body.get("vkn", "").strip()
+        if not vkn:
+            raise HTTPException(status_code=422, detail="vkn (10-digit tax ID) required for TR verification")
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "TR", "vkn": vkn}
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        return {
+            "entity_name": entity_name, "country_code": "TR",
+            "verified": result.get("found", False),
+            "legal_name": result.get("legal_name"),
+            "vkn": result.get("vkn"),
+            "tax_office": result.get("tax_office"),
+            "status": result.get("status"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+            "summary": result.get("legal_name", f"VKN {vkn}") if result.get("found") else f"VKN {vkn} not verified",
+        }
+
+    # --------------- UAE ---------------
+    if country_code == "AE":
+        trn = body.get("trn", "").strip()
+        if not trn:
+            raise HTTPException(status_code=422, detail="trn (15-digit TRN) required for AE verification")
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "AE", "trn": trn}
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        return {
+            "entity_name": entity_name, "country_code": "AE",
+            "verified": result.get("found", False),
+            "legal_name": result.get("legal_name"),
+            "trn": result.get("trn"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+            "summary": result.get("legal_name", f"TRN {trn}") if result.get("found") else f"TRN {trn} not verified",
+        }
+
+    # --------------- CHINA ---------------
+    if country_code == "CN":
+        uscc = body.get("uscc", "").strip()
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "CN", "uscc": uscc}
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        return {
+            "entity_name": entity_name, "country_code": "CN",
+            "verified": result.get("found", False),
+            "legal_name": result.get("legal_name"),
+            "uscc": result.get("uscc"),
+            "legal_representative": result.get("legal_representative"),
+            "status": result.get("status"),
+            "registered_capital": result.get("registered_capital"),
+            "address": result.get("address"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+            "summary": result.get("legal_name", entity_name) if result.get("found") else f"'{entity_name}' not verified",
+        }
 
 
 # ---------------------------------------------------------------------------
@@ -2642,7 +2697,7 @@ _TAVILY_API_KEY = get_secret("tavily-api-key")
 
 # Verify-job accepts ALL countries — LinkedIn + dark web are global.
 # Registry check only works for PK/IN; others get "not available" for that check.
-_VERIFY_REGISTRY_SUPPORTED = {"PK", "IN"}
+_VERIFY_REGISTRY_SUPPORTED = {"PK", "IN", "SG", "TR", "AE", "CN"}
 
 
 def _brightdata_trigger(dataset_id: str, inputs: list[dict]) -> str | None:

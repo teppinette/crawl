@@ -19,13 +19,20 @@ from datetime import datetime, timezone
 from fastapi import FastAPI, HTTPException, Depends, Request
 from fastapi.security import APIKeyHeader
 
-# Add parent api/ dir for keyvault module
-sys.path.insert(0, "/home/copapadmin/crawl/api")
-from keyvault import get_secret
+import os
+
+
+def get_secret(name: str) -> str:
+    """Get secret from environment variable."""
+    env_name = name.replace("-", "_").upper()
+    return os.environ.get(env_name, "") or os.environ.get(name, "")
 
 import multilogin_fbr
 import multilogin_dgft
 import multilogin_bizfile
+import verify_tr
+import verify_ae
+import verify_cn
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger("verify-gateway")
@@ -45,6 +52,9 @@ SUPPORTED_COUNTRIES = {
     "PK": "FBR IRIS ATL (Active Taxpayer List) — NTN verification",
     "IN": "DGFT IEC (Import-Export Code) — PAN/IEC verification",
     "SG": "ACRA Bizfile — UEN, status, address (directors require paid profile)",
+    "TR": "GIB VKN (Tax ID) verification — company name, tax office, status",
+    "AE": "FTA TRN (Tax Registration Number) verification — entity name, status",
+    "CN": "SAMR/GSXT via crawl-china VM — company name, USCC, legal rep, status",
 }
 
 # ---------------------------------------------------------------------------
@@ -75,6 +85,9 @@ async def startup():
     multilogin_fbr.init(get_secret)
     multilogin_dgft.init(get_secret)
     multilogin_bizfile.init(get_secret)
+    verify_tr.init(get_secret)
+    verify_ae.init(get_secret)
+    verify_cn.init(get_secret)
     log.info("Verify Gateway v%s started — %d countries supported", VERSION, len(SUPPORTED_COUNTRIES))
 
 
@@ -95,10 +108,13 @@ async def verify(request: Request, _key: str = Depends(verify_api_key)):
 
     Body: {
         "entity_name": "Company Name",
-        "country_code": "PK",        // PK, IN, SG
-        "ntn": "1234567-8",           // Pakistan NTN (optional for PK)
-        "iec": "ABCDE1234F",          // India IEC/PAN (optional for IN)
-        "uen": "201733771N"           // Singapore UEN (optional for SG)
+        "country_code": "PK",        // PK, IN, SG, TR, AE, CN
+        "ntn": "1234567-8",           // Pakistan NTN (for PK)
+        "iec": "ABCDE1234F",          // India IEC/PAN (for IN)
+        "uen": "201733771N",          // Singapore UEN (for SG)
+        "vkn": "1234567890",          // Turkey VKN tax ID (for TR)
+        "trn": "100330886100003",     // UAE TRN (for AE)
+        "uscc": "91110..."            // China USCC (for CN, optional)
     }
     """
     body = await request.json()
@@ -140,5 +156,33 @@ async def verify(request: Request, _key: str = Depends(verify_api_key)):
         uen = body.get("uen", "").strip()
         result = await loop.run_in_executor(
             _pool, multilogin_bizfile.bizfile_verify, entity_name, uen
+        )
+        return result
+
+    # --------------- TURKEY ---------------
+    if country_code == "TR":
+        vkn = body.get("vkn", "").strip()
+        if not vkn:
+            raise HTTPException(status_code=422, detail="vkn (10-digit tax ID) required for TR verification")
+        result = await loop.run_in_executor(
+            _pool, verify_tr.gib_vkn_verify, vkn, entity_name
+        )
+        return result
+
+    # --------------- UAE ---------------
+    if country_code == "AE":
+        trn = body.get("trn", "").strip()
+        if not trn:
+            raise HTTPException(status_code=422, detail="trn (15-digit TRN) required for AE verification")
+        result = await loop.run_in_executor(
+            _pool, verify_ae.fta_trn_verify, trn, entity_name
+        )
+        return result
+
+    # --------------- CHINA ---------------
+    if country_code == "CN":
+        uscc = body.get("uscc", "").strip()
+        result = await loop.run_in_executor(
+            _pool, verify_cn.cn_verify, entity_name, uscc
         )
         return result
