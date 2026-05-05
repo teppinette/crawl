@@ -308,6 +308,28 @@ Note: "No Data Found" on public portal does not mean records deleted. Full histo
 
 5. **EIR No. 800239** is the Equipment Interchange Receipt — signed proof of handover naming the receiving company and driver.
 
+**PURCHASE ORDER SIGNATORY — ROBERT BISAKA (identified 5 May 2026)**
+
+| Field | Value | Source |
+|-------|-------|--------|
+| Name on PO | Robert Bisaka | Purchase order document |
+| Email 1 | robert.bisaka@aol.com | Correspondence |
+| Email 2 | robert@sdeventmanagement.co.uk | Correspondence |
+| WhatsApp | +44 7542 918198 | Correspondence |
+| LinkedIn | NOT FOUND | LinkedIn search |
+| Breach records | 0 hits | Dehashed, 37 dark web sources |
+| Companies House | NOT listed as director/secretary/PSC of SD Event Management | UK Companies House |
+
+**Domain sdeventmanagement.co.uk is NOT REGISTERED:**
+
+| Check | Result | Source |
+|-------|--------|--------|
+| WHOIS | "No match — domain not registered" | Nominet UK WHOIS, 5 May 2026 |
+| Archive.org | No snapshots | web.archive.org |
+| DNS | Does not resolve | DNS lookup |
+
+robert@sdeventmanagement.co.uk is a fabricated email. The domain was never registered. Someone created this address to impersonate SD Event Management Limited. The real directors (Simms, Dougan, Farquharson) are not associated with Robert Bisaka in any public record. "Bisaka" is a Central/East African surname (Uganda/DR Congo), consistent with the FDZ trade corridor to Congo, Cameroon, and Tanzania identified in container tracking.
+
 ### 3.2 Order Details (from CIR #57)
 
 | Field | Value | Source |
