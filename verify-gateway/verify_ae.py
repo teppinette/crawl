@@ -194,66 +194,59 @@ def _do_fta_lookup(port: int, trn: str, profile_id: str) -> dict:
 
 
 def _navigate_and_extract(page, trn: str) -> dict:
-    """Navigate FTA TRN verification portal."""
+    """Navigate FTA TRN verification portal.
+
+    The TRN verification form is in a hidden modal on the FTA homepage.
+    Must force-show the modal, fill TRN + CAPTCHA, submit, read result.
+    """
     page.goto("https://tax.gov.ae/en/default.aspx", timeout=60000, wait_until="domcontentloaded")
     time.sleep(10)
 
-    body = page.inner_text("body")
+    # Force-show the hidden TRN verification modal
+    page.evaluate("""() => {
+        const modal = document.getElementById('modal-trn');
+        if (modal) { modal.classList.remove('hidden'); modal.style.display = 'block'; }
+        const panel = document.getElementById('ctrlHeader_ctrlUpdatePanelTRNVerify');
+        if (panel) { panel.style.display = 'block'; }
+        ['ctrlHeader_txtTrnNumberVerify',
+         'ctl00_ctrlHeader_radCaptchaTRN_CaptchaTextBox',
+         'ctrlHeader_btnSubmit',
+         'ctl00_ctrlHeader_radCaptchaTRN_CaptchaImage'
+        ].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) { el.style.display = 'block'; el.style.visibility = 'visible'; }
+        });
+    }""")
+    time.sleep(3)
 
-    # Look for TRN verification input
-    # The FTA homepage has a TRN verification widget in the header
-    trn_input = page.locator("input[id*='TRN' i], input[id*='trn' i], input[placeholder*='TRN']").first
-    if trn_input.is_visible():
-        trn_input.click()
-        time.sleep(0.5)
-        page.keyboard.type(trn, delay=80)
-        time.sleep(1)
-    else:
-        # Try clicking "TRN verification" link first
-        trn_link = page.locator("text=TRN").first
-        if trn_link.is_visible():
-            trn_link.click()
-            time.sleep(3)
-            trn_input = page.locator("input[type='text']").first
-            trn_input.click()
-            time.sleep(0.5)
-            page.keyboard.type(trn, delay=80)
-            time.sleep(1)
+    # Fill TRN
+    page.locator("#ctrlHeader_txtTrnNumberVerify").fill(trn)
+    time.sleep(1)
 
-    # Look for CAPTCHA
-    captcha_img = page.locator("img[id*='aptcha' i], img[alt*='aptcha' i], img[class*='aptcha' i]").first
+    # Screenshot and solve CAPTCHA
+    captcha_img = page.locator("#ctl00_ctrlHeader_radCaptchaTRN_CaptchaImage")
     if captcha_img.is_visible():
         captcha_img.screenshot(path="/tmp/fta_captcha.png")
         with open("/tmp/fta_captcha.png", "rb") as f:
             img_data = base64.b64encode(f.read()).decode()
         captcha_text = _solve_captcha(img_data)
         log.info("FTA CAPTCHA solved: %s (TRN: %s)", captcha_text, trn)
-
-        captcha_input = page.locator("input[id*='aptcha' i], input[id*='Code' i]").first
-        if captcha_input.is_visible():
-            captcha_input.click()
-            time.sleep(0.5)
-            page.keyboard.type(captcha_text, delay=80)
+        page.locator("#ctl00_ctrlHeader_radCaptchaTRN_CaptchaTextBox").fill(captcha_text)
+    else:
+        log.warning("FTA CAPTCHA image not visible")
 
     time.sleep(1)
 
-    # Click verify
-    page.evaluate('''() => {
-        const btns = document.querySelectorAll('button, input[type="submit"], a.btn, span[onclick]');
-        for (const b of btns) {
-            const txt = (b.textContent || b.value || '').toLowerCase();
-            if (b.offsetParent !== null && (txt.includes('verify') || txt.includes('search') || txt.includes('submit'))) {
-                b.click();
-                return true;
-            }
-        }
-        if (typeof doValidationVerifyTRN === 'function') { doValidationVerifyTRN(''); return true; }
-        return false;
-    }''')
-    time.sleep(8)
+    # Submit
+    page.locator("#ctrlHeader_btnSubmit").click(force=True)
+    time.sleep(10)
 
+    # Read result from the result modal
+    result_text = page.evaluate(
+        "() => document.getElementById('trnVerifyResultsModal')?.innerText || ''"
+    )
     body = page.inner_text("body")
-    return _parse_fta_result(trn, body)
+    return _parse_fta_result(trn, result_text or body)
 
 
 def _parse_fta_result(trn: str, body: str) -> dict:
@@ -262,15 +255,25 @@ def _parse_fta_result(trn: str, body: str) -> dict:
         "source": "Federal Tax Authority (FTA), United Arab Emirates",
     }
 
-    # Extract entity name
-    name_match = re.search(r"(?:Name|الاسم)\s*[:\n]\s*(.+?)(?:\n|$)", body, re.IGNORECASE)
-    name = name_match.group(1).strip() if name_match else None
+    # Extract entity name from result modal
+    # Format: "TRN verification result\n\nTRN\tName\n100330886100003\t\nF D Z LOGISTICS L.L.C"
+    name = None
 
+    # Try: line after TRN number
+    trn_name_match = re.search(rf"{trn}\s*\n(.+?)(?:\n|$)", body)
+    if trn_name_match:
+        name = trn_name_match.group(1).strip()
+
+    # Try: "Name" header followed by content
     if not name:
-        trn_name_match = re.search(rf"{trn}\s*\n\s*(.+?)(?:\n|$)", body)
-        name = trn_name_match.group(1).strip() if trn_name_match else None
+        name_match = re.search(r"(?:Name|الاسم)\s*\n(.+?)(?:\n|$)", body, re.IGNORECASE)
+        name = name_match.group(1).strip() if name_match else None
 
-    if name and name != trn:
+    # Clean up — remove "Close modal" or other UI text
+    if name and ("close" in name.lower() or "modal" in name.lower() or len(name) < 2):
+        name = None
+
+    if name:
         result["found"] = True
         result["legal_name"] = name
         result["validation_source"] = {
