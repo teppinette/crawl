@@ -1210,7 +1210,11 @@ def _run_ssh_research(job_id: str, region: str, prompt: str, scenario: str, atte
                     updates["_append_blob_path"] = this_blob
                 # Don't set overall status here — dispatch_fanout handles it
             else:
-                updates["status"] = region_status
+                # For CIR: set "enriching" not "completed" — dark web still needs to run
+                if scenario == "cir" and region_status == "completed":
+                    updates["status"] = "enriching"
+                else:
+                    updates["status"] = region_status
                 updates["blob_path"] = this_blob
 
             update_job_fields(job_id, updates)
@@ -1588,7 +1592,7 @@ async def dispatch_single(job_id: str, region: str, prompt: str, scenario: str):
     # entities/people/affiliates, then search them all on dark web.
     if scenario == "cir":
         job = load_job(job_id)
-        if job.get("status") == "completed" or job.get("blob_path"):
+        if job.get("status") in ("completed", "enriching") or job.get("blob_path"):
             entity_name = job.get("entity_name", "")
             country = job.get("country", "")
 
@@ -1840,6 +1844,7 @@ async def dispatch_single(job_id: str, region: str, prompt: str, scenario: str):
                 new_summary = existing_summary + dw_banner
 
                 update_job_fields(job_id, {
+                    "status": "completed",
                     "dark_web_findings": dw_total,
                     "dark_web_sources": dw_sources,
                     "report_summary": new_summary,
@@ -1849,6 +1854,7 @@ async def dispatch_single(job_id: str, region: str, prompt: str, scenario: str):
             except Exception as e:
                 log.error("Job %s [cir]: dark-web enrichment failed: %s", job_id[:8], e)
                 update_job_fields(job_id, {
+                    "status": "completed",
                     "dark_web_error": str(e)[:300],
                     "updated_at": datetime.now(timezone.utc).isoformat(),
                 })
