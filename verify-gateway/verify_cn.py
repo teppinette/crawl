@@ -170,60 +170,159 @@ def _do_cn_lookup(port: int, entity_name: str, uscc: str, profile_id: str) -> di
 
 
 def _navigate_and_extract(page, entity_name: str, uscc: str) -> dict:
-    """Navigate Qichacha and search for company."""
+    """Search Tianyancha for company. Falls back to Baidu if Tianyancha fails."""
     search_term = uscc if uscc else entity_name
 
-    # Try Qichacha (more accessible than GSXT)
-    page.goto(f"https://www.qcc.com/search?key={search_term}", timeout=60000, wait_until="domcontentloaded")
+    # Tianyancha works with CN proxy, no login needed for search results
+    page.goto(f"https://www.tianyancha.com/search?key={search_term}", timeout=60000, wait_until="domcontentloaded")
     time.sleep(10)
 
     body = page.inner_text("body")
-    return _parse_cn_result(entity_name, uscc, body)
+
+    # Check if redirected to login
+    if "扫码登录" in body or "登录/注册" in body and "法定代表人" not in body:
+        # Tianyancha blocked — try Baidu as fallback
+        log.info("Tianyancha needs login, falling back to Baidu")
+        page.goto(f"https://www.baidu.com/s?wd={search_term}", timeout=60000, wait_until="domcontentloaded")
+        time.sleep(8)
+        body = page.inner_text("body")
+        return _parse_baidu_result(entity_name, uscc, body)
+
+    return _parse_tianyancha_result(entity_name, uscc, body)
 
 
-def _parse_cn_result(entity_name: str, uscc: str, body: str) -> dict:
+def _parse_tianyancha_result(entity_name: str, uscc: str, body: str) -> dict:
+    """Parse Tianyancha search results page."""
     result = {
         "entity_name": entity_name,
-        "source": "Qichacha (qcc.com) via CN residential proxy",
+        "source": "Tianyancha (tianyancha.com) via CN residential proxy",
     }
 
-    # Extract USCC (18-char alphanumeric)
-    uscc_match = re.search(r"\b([0-9A-Z]{18})\b", body)
-    found_uscc = uscc_match.group(1) if uscc_match else uscc
+    # Tianyancha search results format:
+    # 公司名称\n存续\n小微企业\n法定代表人：XXX\n注册资本：XXX万人民币\n成立日期：XXXX-XX-XX\n统一社会信用代码：XXXXXXXXXXXXXXXXXX
 
-    # Extract company name (Chinese)
-    name_match = re.search(r"([\u4e00-\u9fff][\u4e00-\u9fff\w()（）]+(?:有限公司|股份有限公司|集团))", body)
-    legal_name = name_match.group(1) if name_match else None
-
-    # Extract legal representative
-    rep_match = re.search(r"(?:法定代表人|法人)[：:\s]*([^\s<]+)", body)
+    # Find the FIRST search result that matches (skip filter menus)
+    # Look for pattern: 法定代表人：followed by name
+    rep_match = re.search(r"法定代表人[：:]\s*(\S+)", body)
     legal_rep = rep_match.group(1).strip() if rep_match else None
 
-    # Extract status
-    status_match = re.search(r"(?:经营状态|状态|企业状态)[：:\s]*([\u4e00-\u9fff]+)", body)
-    status = status_match.group(1).strip() if status_match else None
+    # USCC
+    uscc_match = re.search(r"统一社会信用代码[：:]\s*([0-9A-Z]{18})", body)
+    found_uscc = uscc_match.group(1) if uscc_match else uscc
 
-    # Extract registered capital
-    capital_match = re.search(r"(?:注册资本)[：:\s]*([^\s<]+万?[元人民币美元]*)", body)
+    # Registered capital
+    capital_match = re.search(r"注册资本[：:]\s*([^\n]+?)(?:\n|$)", body)
     capital = capital_match.group(1).strip() if capital_match else None
 
-    if legal_name or found_uscc or status:
+    # Established date
+    date_match = re.search(r"成立日期[：:]\s*(\d{4}-\d{2}-\d{2})", body)
+    est_date = date_match.group(1) if date_match else None
+
+    # Status — look for 存续 or 注销 near the company name
+    status = None
+    for s in ["存续", "在业", "注销", "吊销", "迁出"]:
+        if s in body:
+            status = s
+            break
+
+    # Company name — find the name before 法定代表人
+    # Search for Chinese company name pattern near the results section
+    name = None
+    if rep_match:
+        # Look backwards from 法定代表人 for a company name
+        before_rep = body[:rep_match.start()]
+        # Find last company name pattern
+        names = re.findall(r"([\u4e00-\u9fff][\u4e00-\u9fff\w()（）]{4,}(?:有限公司|股份有限公司|集团有限公司))", before_rep)
+        if names:
+            # Take the last one (closest to the result data)
+            name = names[-1]
+
+    # Phone
+    phone_match = re.search(r"电话[：:]\s*([\d*]+)", body)
+    phone = phone_match.group(1) if phone_match else None
+
+    # Email
+    email_match = re.search(r"邮箱[：:]\s*(\S+@\S+)", body)
+    email = email_match.group(1) if email_match else None
+
+    # Address
+    addr_match = re.search(r"地址[：:]\s*([^\n]+?)(?:\n|$)", body)
+    address = addr_match.group(1).strip() if addr_match else None
+
+    # Flags
+    flags = []
+    for flag in ["小微企业", "司法案件", "失信被执行人", "被执行人", "经营异常", "行政处罚", "高新技术企业"]:
+        if flag in body:
+            flags.append(flag)
+
+    if name or found_uscc or legal_rep:
         result["found"] = True
-        result["legal_name"] = legal_name
+        result["legal_name"] = name
         result["uscc"] = found_uscc
         result["legal_representative"] = legal_rep
         result["status"] = status
         result["registered_capital"] = capital
+        result["established_date"] = est_date
+        result["phone"] = phone
+        result["email"] = email
+        result["address"] = address
+        result["flags"] = flags if flags else None
         result["validation_source"] = {
             "registry": "State Administration for Market Regulation (SAMR), People's Republic of China",
-            "url": "https://www.qcc.com",
+            "url": "https://www.tianyancha.com",
             "record_id": found_uscc or entity_name,
-            "how_to_reproduce": f"Visit qcc.com → Search for '{entity_name}' or USCC {found_uscc or 'N/A'}",
+            "how_to_reproduce": f"Visit tianyancha.com → Search for '{entity_name}'",
             "verified_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         }
     else:
         result["found"] = False
-        result["note"] = f"'{entity_name}' not found on Qichacha or page did not return structured data"
+        result["note"] = f"'{entity_name}' not found on Tianyancha"
+        result["raw_snippet"] = body[:500]
+
+    return result
+
+
+def _parse_baidu_result(entity_name: str, uscc: str, body: str) -> dict:
+    """Parse Baidu search results for company info (fallback)."""
+    result = {
+        "entity_name": entity_name,
+        "source": "Baidu search (baidu.com) via CN residential proxy",
+    }
+
+    rep_match = re.search(r"法定代表人[：:]\s*(\S+)", body)
+    legal_rep = rep_match.group(1).strip() if rep_match else None
+
+    uscc_match = re.search(r"统一社会信用代码[：:为]\s*([0-9A-Z]{18})", body)
+    found_uscc = uscc_match.group(1) if uscc_match else uscc
+
+    capital_match = re.search(r"注册资本[：:为]\s*([^\s,，]+)", body)
+    capital = capital_match.group(1).strip() if capital_match else None
+
+    name = None
+    names = re.findall(r"([\u4e00-\u9fff][\u4e00-\u9fff\w()（）]{4,}(?:有限公司|股份有限公司))", body)
+    if names:
+        name = names[0]
+
+    scope_match = re.search(r"经营范围[：:为]\s*([^\n]+?)(?:\n|\.\.\.)", body)
+    scope = scope_match.group(1).strip() if scope_match else None
+
+    if name or found_uscc or legal_rep:
+        result["found"] = True
+        result["legal_name"] = name
+        result["uscc"] = found_uscc
+        result["legal_representative"] = legal_rep
+        result["registered_capital"] = capital
+        result["business_scope"] = scope
+        result["validation_source"] = {
+            "registry": "SAMR (via Baidu aggregated data)",
+            "url": "https://www.baidu.com",
+            "record_id": found_uscc or entity_name,
+            "how_to_reproduce": f"Search baidu.com for '{entity_name}'",
+            "verified_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        }
+    else:
+        result["found"] = False
+        result["note"] = f"'{entity_name}' not found via Baidu search"
         result["raw_snippet"] = body[:500]
 
     return result
