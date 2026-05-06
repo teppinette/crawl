@@ -1264,74 +1264,65 @@ def _run_ssh_research(job_id: str, region: str, prompt: str, scenario: str, atte
 def _run_darkweb_enrichment(job_id: str, entity_name: str, country: str,
                             owners: list[str] = None, domain: str = None) -> dict:
     """
-    Synchronous call to the dark-web VM gateway. Returns dark-web findings dict.
+    Direct HTTP call to dark-web VM gateway (20.86.161.6:8450).
+    Submits research request, polls for completion, returns findings.
     Called from thread pool — never blocks event loop.
-    Injects findings into the CIR blob JSON on disk before blob upload.
     """
+    import requests as _req
     vm = DARKWEB_VM
-    ssh = None
+    dw_url = f"http://{vm['ip']}:{vm['port']}/api/v1/research"
+    headers = {
+        "Content-Type": "application/json",
+        "X-API-Key": vm["api_key"],
+    }
+    payload = {
+        "entity_name": entity_name,
+        "country": country,
+        "owners": owners or [],
+        "domain": domain or "",
+        "depth": "heavy",
+    }
+
     try:
-        ssh = paramiko.SSHClient()
-        ssh.load_host_keys(SSH_KNOWN_HOSTS)
-        ssh.set_missing_host_key_policy(paramiko.RejectPolicy())
-        ssh.connect(
-            hostname=vm["ip"],
-            username="copapadmin",
-            key_filename=SSH_KEY_PATH,
-            timeout=15,
-        )
+        # Submit the research request — this blocks until complete (up to 5 min)
+        resp = _req.post(dw_url, json=payload, headers=headers, timeout=300)
+        if resp.status_code != 200:
+            log.warning("Job %s: dark-web returned HTTP %d", job_id[:8], resp.status_code)
+            return {"status": "failed", "findings": [], "error": f"HTTP {resp.status_code}"}
 
-        req_body = json.dumps({
-            "entity_name": entity_name,
-            "country": country,
-            "owners": owners or [],
-            "domain": domain or "",
-            "depth": "heavy",
-        })
-        safe_body = req_body.replace("'", "'\\''")
+        dw_result = resp.json()
+        dw_status = dw_result.get("status", "unknown")
+        findings_count = dw_result.get("findings_count", 0)
+        blob_path = dw_result.get("blob_path", "")
 
-        cmd = (
-            f"curl -s -X POST http://127.0.0.1:{vm['port']}/api/v1/research "
-            f"-H 'Content-Type: application/json' "
-            f"-H 'X-API-Key: {vm['api_key']}' "
-            f"-d '{safe_body}'"
-        )
+        log.info("Job %s: dark-web enrichment %s — %d findings, blob: %s",
+                 job_id[:8], dw_status, findings_count, blob_path)
 
-        _, stdout, stderr = ssh.exec_command(cmd, timeout=120)
-        result_raw = stdout.read().decode()
+        if not blob_path:
+            return {"status": dw_status, "findings": [], "summary": dw_result.get("summary", {})}
 
-        if not result_raw.strip():
-            log.warning("Job %s: dark-web enrichment returned empty", job_id[:8])
-            return {"status": "failed", "findings": [], "error": "empty response"}
+        # Fetch the full result from blob storage
+        sas = _BLOB_SAS_TOKEN
+        blob_url = f"https://{BLOB_ACCOUNT}.blob.core.windows.net/{BLOB_CONTAINER}/{blob_path}?{sas}"
+        blob_resp = _req.get(blob_url, timeout=30)
 
-        dw_result = json.loads(result_raw)
-        dw_job_id = dw_result.get("job_id", "")
-
-        # Fetch the full result file
-        _, stdout2, _ = ssh.exec_command(
-            f"cat /home/copapadmin/crawl/output/{dw_job_id}.json", timeout=30
-        )
-        full_raw = stdout2.read().decode()
-
-        if full_raw.strip():
-            full_result = json.loads(full_raw)
-            log.info("Job %s: dark-web enrichment completed — %d findings from %d sources",
+        if blob_resp.status_code == 200 and blob_resp.text.strip():
+            full_result = blob_resp.json()
+            log.info("Job %s: dark-web full result — %d findings from %d sources",
                      job_id[:8],
                      full_result.get("summary", {}).get("total_findings", 0),
                      full_result.get("summary", {}).get("sources_searched", 0))
             return full_result
 
-        return {"status": "completed", "findings": [], "summary": dw_result.get("summary", {})}
+        # Blob not available — return the summary from the initial response
+        return {"status": dw_status, "findings": [], "summary": dw_result.get("summary", {})}
 
+    except _req.Timeout:
+        log.error("Job %s: dark-web enrichment timed out (300s)", job_id[:8])
+        return {"status": "failed", "findings": [], "error": "dark-web search timed out (300s)"}
     except Exception as e:
         log.error("Job %s: dark-web enrichment failed: %s", job_id[:8], e)
         return {"status": "failed", "findings": [], "error": str(e)[:300]}
-    finally:
-        if ssh is not None:
-            try:
-                ssh.close()
-            except Exception:
-                pass
 
 
 def _inject_darkweb_into_blob(local_file: Path, darkweb_data: dict) -> bool:
