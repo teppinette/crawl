@@ -603,7 +603,18 @@ Other Room 1002 co-tenants: CX Stable Trading, Hanest, Powerful Industry, Pudu R
 | **Connection** | "班班" (Banban) = same as "海丰班班" (Hifong Banban) branding | Linguistic match |
 | **Location** | Xiamen, Fujian — matches "Amoy" reference on hifongbonpak.com | Geographic match |
 
-Note: "yuxinw" email (yuxinw@hifongbonpak.com) — "w" may stand for Wang (王), the legal representative's surname. Wang Jian or a Wang family member likely operates the Hifong-Bonpak brand under the Xiamen Banban Paper entity.
+Note: "yuxinw" email (yuxinw@hifongbonpak.com) — "w" may stand for Wang (王), the legal representative's surname.
+
+**Wang Jian's company network (from Baidu/Aiqicha, 6 May 2026):**
+
+| Company | Role | Notes |
+|---------|------|-------|
+| 厦门班班纸业有限公司 (Xiamen Banban Paper) | Legal rep + Executive Director | Paper production, processing, sales |
+| 厦门万合网络技术有限公司 (Xiamen Wanhe Network Tech) | Legal rep, 7.85% indirect stake | Technology company |
+| 厦门南闽包装有限公司 (Xiamen Nanmin Packaging) | Director | Packaging — directly related to paper/packaging supply chain |
+| 厦门市政小额贷款股份有限公司 (Xiamen Municipal Micro Loan) | Investor (via Banban Paper as shareholder) | Financial services |
+
+Wang Jian operates a network of paper, packaging, and technology companies in Xiamen. Banban Paper's business scope: 生产、加工、销售纸制品 (production, processing, sales of paper products). Xiamen Nanmin Packaging is directly connected to the paper/packaging supply chain and may be involved in the Hifong-Bonpak operations.
 
 ### 9.3 Ningbo Sure Paper Co., Ltd (Mainland)
 
