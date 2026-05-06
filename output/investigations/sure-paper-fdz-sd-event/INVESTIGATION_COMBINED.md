@@ -323,17 +323,27 @@ Note: "No Data Found" on public portal does not mean records deleted. Full histo
 | **AOL email account records** | UK Police → AOL/Yahoo legal | Via court order | robert.bisaka@aol.com — login IPs, registration data |
 | **Maersk delivery records** | Maersk UAE | **04 315 5555** | Booking 263545393, 8 container numbers |
 
-**PURCHASE ORDER SIGNATORY — ROBERT BISAKA (identified 5 May 2026)**
+**PURCHASE ORDER SIGNATORY — ROBERT NEIL BISAKE (identified 5-6 May 2026)**
 
 | Field | Value | Source |
 |-------|-------|--------|
-| Name on PO | Robert Bisaka | Purchase order document |
+| Name on PO | Robert Bisaka / Robert Neil Bisake | Purchase order document |
+| Full name | Robert Neil Bisake | Additional correspondence |
 | Email 1 | robert.bisaka@aol.com | Correspondence |
 | Email 2 | robert@sdeventmanagement.co.uk | Correspondence |
-| WhatsApp | +44 7542 918198 | Correspondence |
+| WhatsApp 1 | +44 7542 918198 | Correspondence |
+| Phone 2 | +44 7788 724041 | Additional correspondence |
+| **VAT claimed** | **GB169429371** | Purchase order |
+| **VAT valid?** | **NO — INVALID (VIES check returns valid:false)** | EU VIES API, 6 May 2026 |
 | LinkedIn | NOT FOUND | LinkedIn search |
+| Web presence | NOT FOUND (both "Bisaka" and "Bisake" spellings) | Web search |
 | Breach records | 0 hits | Dehashed, 37 dark web sources |
 | Companies House | NOT listed as director/secretary/PSC of SD Event Management | UK Companies House |
+
+**Additional red flags from new data:**
+- Uses TWO different spellings of his own surname (Bisaka vs Bisake)
+- TWO different phone numbers (both UK mobile, likely prepaid)
+- **VAT number GB169429371 is INVALID** — does not exist in HMRC/VIES system (verified via EU VIES API). Fabricated VAT registration.
 
 **Domain sdeventmanagement.co.uk is NOT REGISTERED:**
 
