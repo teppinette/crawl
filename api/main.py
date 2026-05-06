@@ -299,6 +299,7 @@ def verify_prompt_clean(prompt: str) -> str:
 class JobStatus(str, Enum):
     queued = "queued"
     running = "running"
+    enriching = "enriching"
     completed = "completed"
     partial_success = "partial_success"
     failed = "failed"
