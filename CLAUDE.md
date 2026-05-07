@@ -276,11 +276,18 @@ The Global Compliance app (172.20.0.11) connects to this API via:
 | Resource | Name | RG | Purpose |
 |----------|------|----|---------|
 | Resource Group | crawldevvm_group | -- | All crawl resources |
-| Storage Account | stcrawlosint | crawldevvm_group | Report staging (East US 2) |
+| Storage Account | stcrawlosint | crawldevvm_group | Report staging (East US 2, RA-GRS) |
 | Blob Container | osint-staging | -- | JSON reports from all regions |
 | VMs (5x regional) | crawl-{americas,europe,gulf,china,india} | crawldevvm_group | Regional OSINT agents |
 | VM (dark web) | crawldarkwebvm | crawldevvm_group | Tor research (West Europe / Netherlands) |
-| Key Vault | crawlkeyvault | crawldevvm_group | All platform secrets (East US 2) |
+| VM (verify) | crawl-verify | crawldevvm_group | Entity verification (East US 2) |
+| Key Vault | crawlkeyvault | crawldevvm_group | All platform secrets (East US 2, purge-protected) |
+| Backup Vault | crawl-backup-vault | crawldevvm_group | VM backups — East US 2 (crawldevvm, americas, verify) |
+| Backup Vault | crawl-backup-westeurope | crawldevvm_group | VM backup — West Europe (darkweb) |
+| Backup Vault | crawl-backup-eastasia | crawldevvm_group | VM backup — East Asia (china) |
+| Backup Vault | crawl-backup-centralindia | crawldevvm_group | VM backup — Central India (india) |
+| Backup Vault | crawl-backup-francecentral | crawldevvm_group | VM backup — France Central (europe) |
+| Backup Vault | crawl-backup-uaenorth | crawldevvm_group | VM backup — UAE North (gulf) |
 
 ## Azure Key Vault
 
@@ -317,6 +324,8 @@ Then use `get_secret("my-new-key")` in Python.
 ## Blob Storage
 
 **Account:** `stcrawlosint` | **Container:** `osint-staging`
+**Redundancy:** Standard_RAGRS (geo-replicated to Central US, read-access secondary)
+**Soft delete:** Blob soft delete 30 days, container soft delete 30 days
 
 **Two SAS tokens (both expire 2027-04-13):**
 1. **Write token (rwl)** — on crawldevvm + all VMs at `~/crawl/config/blob_sas_token`
@@ -486,6 +495,7 @@ ssh -i ~/.ssh/crawldevvm_key.pem copapadmin@<VM_IP> "openclaw gateway restart"
 
 ### Secrets Management
 - ALL secrets in Azure Key Vault (`crawlkeyvault`), accessed via managed identity
+- Soft delete: 90 days | Purge protection: **ON** (secrets cannot be permanently purged)
 - Helper module: `api/keyvault.py` — use `get_secret("name")` everywhere
 - **NEVER hardcode secrets in source files** — vault is the single source of truth
 - Adding a secret: `az keyvault secret set --vault-name crawlkeyvault --name X --value Y`
@@ -529,6 +539,46 @@ ssh -i ~/.ssh/crawldevvm_key.pem copapadmin@<VM_IP> "openclaw gateway restart"
 - API key auth on all gateway endpoints (including /api/v1/regions)
 - Output files restricted to owner-read (mode 640)
 
+## Backup & Disaster Recovery (configured 2026-05-07)
+
+### VM Backups (Azure Backup, DefaultPolicy = daily, 30-day retention)
+
+| Vault | Region | VMs Protected |
+|-------|--------|---------------|
+| crawl-backup-vault | East US 2 | crawldevvm, crawlamericasvm, crawl-verify |
+| crawl-backup-westeurope | West Europe | crawldarkwebvm |
+| crawl-backup-eastasia | East Asia | crawlchinavm |
+| crawl-backup-centralindia | Central India | crawlindiavm |
+| crawl-backup-francecentral | France Central | crawleuropevm |
+| crawl-backup-uaenorth | UAE North | crawl-gulf |
+
+**Managing backups:**
+```bash
+# List backup items in a vault
+az backup item list --resource-group crawldevvm_group --vault-name crawl-backup-vault -o table
+
+# Trigger on-demand backup
+az backup protection backup-now --resource-group crawldevvm_group \
+  --vault-name crawl-backup-vault --container-name <container> --item-name <item> --retain-until <date>
+
+# List recovery points
+az backup recoverypoint list --resource-group crawldevvm_group \
+  --vault-name crawl-backup-vault --container-name <container> --item-name <item> -o table
+```
+
+### Storage Protection
+- **stcrawlosint**: Standard_RAGRS (geo-replicated to Central US)
+- Blob soft delete: 30 days | Container soft delete: 30 days
+- Accidental deletes recoverable for 30 days
+
+### Key Vault Protection
+- Soft delete: 90 days | Purge protection: ON
+- Deleted secrets recoverable for 90 days, cannot be permanently purged
+
+### PostgreSQL (crawl-monitor-db)
+- Auto-backup: 7-day retention, same region (East US 2)
+- Geo-redundancy: disabled (acceptable for monitoring data)
+
 ## Cost Estimate
 
 | Item | Monthly |
@@ -537,9 +587,10 @@ ssh -i ~/.ssh/crawldevvm_key.pem copapadmin@<VM_IP> "openclaw gateway restart"
 | 1x dark-web VM D2s_v3 (auto-shutdown 22:00 UTC) | $40-60 |
 | Dehashed API (breach database) | $15 |
 | Multilogin Business 300 (FBR anti-detect browser) | $80 |
-| Storage account (stcrawlosint) | $5 |
+| Storage account (stcrawlosint, RA-GRS) | $8-10 |
+| Azure Backup (8 VMs, daily, 30-day retention) | $80-120 |
 | Networking/egress | $10-20 |
 | Claude API (4 VMs + FBR CAPTCHA) | $50-100 |
 | DeepSeek API (China) | $15-30 |
 | Sarvam API (India backup) | $5-10 |
-| **Total** | **$370-520/month** |
+| **Total** | **$455-645/month** |
