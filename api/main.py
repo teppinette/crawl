@@ -1052,6 +1052,7 @@ def _run_ssh_research(job_id: str, region: str, prompt: str, scenario: str, atte
         session_id = f"{scenario}-{job_id[:8]}"
 
         cmd = (
+            f"source ~/crawl/config/proxy.env 2>/dev/null; "
             f"source ~/.bashrc 2>/dev/null; "
             f"export OPENCLAW_ALLOW_INSECURE_PRIVATE_WS=1 && "
             f"export OPENCLAW_GATEWAY_TOKEN={full_token} && "
@@ -2180,6 +2181,7 @@ def _secp_query_via_ssh(entity_name: str) -> dict:
 
             # --- NameSearch (gives reg date + form filing) ---
             ns_cmd = (
+                f"source ~/crawl/config/proxy.env 2>/dev/null; "
                 f"curl -s --max-time 25 -X POST '{_SECP_URL}' "
                 f"-d 'request_id=SEARCH_NAME&searchName={safe}"
                 f"&searchOption=Beginning+With&requesterProcess=' "
@@ -2200,6 +2202,7 @@ def _secp_query_via_ssh(entity_name: str) -> dict:
 
             # --- CTC search (gives company type + ACTIVE status + internal ref) ---
             ctc_cmd = (
+                f"source ~/crawl/config/proxy.env 2>/dev/null; "
                 f"curl -s --max-time 25 -X POST '{_SECP_URL}' "
                 f"-d 'request_id=CTC_SEARCH_COMPANY&searchName={safe}"
                 f"&searchOption=Beginning+With&requesterProcess=null' "
@@ -2269,6 +2272,7 @@ def _fbr_ntn_via_ssh(ntn: str) -> dict:
         ssh.connect(hostname=vm["ip"], username=vm["user"],
                     key_filename=SSH_KEY_PATH, timeout=15)
         cmd = (
+            f"source ~/crawl/config/proxy.env 2>/dev/null; "
             f"curl -s --max-time 15 -o /dev/null "
             f"-w '%{{http_code}}' 'https://e.fbr.gov.pk/' 2>&1"
         )

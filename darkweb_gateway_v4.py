@@ -79,6 +79,10 @@ ABUSEIPDB_API_KEY = os.environ.get("ABUSEIPDB_API_KEY", "")
 
 TOR_PROXY = "socks5://127.0.0.1:9050"
 
+# Bright Data residential proxy for clearnet API calls (masks Azure VM IP)
+# Set via systemd env: BRIGHTDATA_PROXY=http://user:pass@brd.superproxy.io:33335
+BRIGHTDATA_PROXY = os.environ.get("BRIGHTDATA_PROXY", "")
+
 # Blob upload config
 BLOB_SAS_TOKEN_FILE = os.path.expanduser("~/crawl/config/blob_sas_token")
 BLOB_ACCOUNT = "stcrawlosint"
@@ -216,14 +220,17 @@ async def _tor_fetch_json(url: str, timeout: float = 30.0, headers: dict = None)
 
 
 async def _direct_fetch_json(url: str, timeout: float = 20.0, headers: dict = None) -> Optional[dict]:
-    """Fetch URL directly (no Tor) for APIs that block Tor exits."""
+    """Fetch URL via Bright Data proxy for APIs that block Tor exits."""
     try:
         hdrs = {**_TOR_HEADERS, **(headers or {})}
-        async with httpx.AsyncClient(
+        client_kwargs = dict(
             timeout=timeout,
             follow_redirects=True,
             headers=hdrs,
-        ) as client:
+        )
+        if BRIGHTDATA_PROXY:
+            client_kwargs["proxy"] = BRIGHTDATA_PROXY
+        async with httpx.AsyncClient(**client_kwargs) as client:
             resp = await client.get(url)
             if resp.status_code >= 400:
                 return None
@@ -233,14 +240,17 @@ async def _direct_fetch_json(url: str, timeout: float = 20.0, headers: dict = No
 
 
 async def _direct_fetch_text(url: str, timeout: float = 20.0, headers: dict = None) -> Optional[str]:
-    """Fetch URL directly (no Tor), return text."""
+    """Fetch URL via Bright Data proxy, return text."""
     try:
         hdrs = {**_TOR_HEADERS, **(headers or {})}
-        async with httpx.AsyncClient(
+        client_kwargs = dict(
             timeout=timeout,
             follow_redirects=True,
             headers=hdrs,
-        ) as client:
+        )
+        if BRIGHTDATA_PROXY:
+            client_kwargs["proxy"] = BRIGHTDATA_PROXY
+        async with httpx.AsyncClient(**client_kwargs) as client:
             resp = await client.get(url)
             if resp.status_code >= 400:
                 return None
@@ -421,7 +431,10 @@ async def _search_dehashed(entity: str, domain: str = "") -> list[dict]:
         queries = [entity]
         if domain:
             queries.append(domain)
-        async with httpx.AsyncClient(timeout=25) as client:
+        dh_kwargs = dict(timeout=25)
+        if BRIGHTDATA_PROXY:
+            dh_kwargs["proxy"] = BRIGHTDATA_PROXY
+        async with httpx.AsyncClient(**dh_kwargs) as client:
             for query in queries:
                 resp = await client.post(
                     "https://api.dehashed.com/v2/search",
@@ -1414,7 +1427,10 @@ async def _search_intelx(entity: str) -> list[dict]:
     try:
         if INTELX_API_KEY:
             search_body = {"term": entity, "maxresults": 20, "media": 0, "sort": 2, "terminate": []}
-            async with httpx.AsyncClient(timeout=30) as client:
+            ix_kwargs = dict(timeout=30)
+            if BRIGHTDATA_PROXY:
+                ix_kwargs["proxy"] = BRIGHTDATA_PROXY
+            async with httpx.AsyncClient(**ix_kwargs) as client:
                 resp = await client.post(
                     "https://free.intelx.io/intelligent/search",
                     json=search_body,

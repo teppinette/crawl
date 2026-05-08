@@ -35,6 +35,8 @@ def get_secret(name: str) -> str:
 MLX_EMAIL = get_secret("multilogin-email") or "teppinette@copap.com"
 MLX_PASSWORD = get_secret("multilogin-password")
 MLX_FOLDER_ID = get_secret("multilogin-folder-id")
+MLX_PROXY_USER = get_secret("multilogin-proxy-user")
+MLX_PROXY_PASS = get_secret("multilogin-proxy-pass")
 CLI_PATH = Path("/home/copapadmin/mlx/deps/cli/xcli")
 
 OUTPUT_DIR = Path("/home/copapadmin/crawl/output/investigations/super-save-general-trading")
@@ -65,14 +67,23 @@ def get_token() -> str:
 
 
 def create_profile_no_proxy(token: str, name: str) -> str:
+    profile_json = {
+        "name": name,
+        "browser_type": "mimic",
+        "folder_id": MLX_FOLDER_ID,
+        "parameters": {"fingerprint": {}},
+    }
+    if MLX_PROXY_USER and MLX_PROXY_PASS:
+        profile_json["parameters"]["proxy"] = {
+            "type": "http",
+            "host": "gate.multilogin.com",
+            "port": 8080,
+            "username": MLX_PROXY_USER,
+            "password": MLX_PROXY_PASS,
+        }
     resp = requests.post(
         "https://api.multilogin.com/profile/create",
-        json={
-            "name": name,
-            "browser_type": "mimic",
-            "folder_id": MLX_FOLDER_ID,
-            "parameters": {"fingerprint": {}},
-        },
+        json=profile_json,
         headers={
             "Accept": "application/json",
             "Content-Type": "application/json",

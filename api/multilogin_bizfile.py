@@ -33,6 +33,8 @@ log = logging.getLogger("crawl-gateway")
 _MLX_EMAIL = None
 _MLX_PASSWORD = None
 _MLX_FOLDER_ID = None
+_MLX_PROXY_USER = None
+_MLX_PROXY_PASS = None
 _POOL_PROFILE_IDS = []
 _CLI_PATH = Path("/home/copapadmin/mlx/deps/cli/xcli")
 
@@ -48,11 +50,13 @@ _pool_initialized = False
 
 def init(get_secret):
     """Initialize credentials from Key Vault. Call once at startup."""
-    global _MLX_EMAIL, _MLX_PASSWORD, _MLX_FOLDER_ID, _POOL_PROFILE_IDS
+    global _MLX_EMAIL, _MLX_PASSWORD, _MLX_FOLDER_ID, _MLX_PROXY_USER, _MLX_PROXY_PASS, _POOL_PROFILE_IDS
 
     _MLX_EMAIL = get_secret("multilogin-email") or "teppinette@copap.com"
     _MLX_PASSWORD = get_secret("multilogin-password")
     _MLX_FOLDER_ID = get_secret("multilogin-folder-id")
+    _MLX_PROXY_USER = get_secret("multilogin-proxy-user")
+    _MLX_PROXY_PASS = get_secret("multilogin-proxy-pass")
 
     pool_json = get_secret("multilogin-pool-profiles")
     if pool_json:
@@ -141,7 +145,14 @@ def _do_bizfile_lookup(port: int, entity_name: str, uen: str, profile_id: str) -
             from playwright.sync_api import sync_playwright
             with sync_playwright() as pw:
                 browser = pw.chromium.connect_over_cdp(f"http://127.0.0.1:{port}")
-                context = browser.new_context(ignore_https_errors=True)
+                ctx_kwargs = {"ignore_https_errors": True}
+                if _MLX_PROXY_USER and _MLX_PROXY_PASS:
+                    ctx_kwargs["proxy"] = {
+                        "server": "gate.multilogin.com:8080",
+                        "username": _MLX_PROXY_USER,
+                        "password": _MLX_PROXY_PASS,
+                    }
+                context = browser.new_context(**ctx_kwargs)
                 page = context.new_page()
                 try:
                     result.update(_navigate_and_extract(page, entity_name, uen))
