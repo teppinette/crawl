@@ -43,6 +43,7 @@ from pydantic import BaseModel, Field, model_validator
 
 from keyvault import get_secret, load_vm_tokens
 from event_log import log_job_event, log_api_access
+import adverse_media
 # Multilogin modules now run on crawl-verify VM (180.20.0.4:8460)
 # import multilogin_fbr
 # import multilogin_dgft
@@ -57,6 +58,7 @@ log = logging.getLogger("crawl-gateway")
 # ---------------------------------------------------------------------------
 
 API_KEY = get_secret("cir-api-key")
+INTERNAL_API_TOKEN = get_secret("internal-api-token")
 MAX_RETRIES = 1
 API_VERSION = "3.0.0"
 
@@ -3698,3 +3700,64 @@ def _job_to_response(job: dict) -> JobResponse:
         review=job.get("review"),
         dark_web=dark_web,
     )
+
+
+# ---------------------------------------------------------------------------
+# Adverse Media Tool — /tools/adverse_media
+# ---------------------------------------------------------------------------
+
+_internal_token_header = APIKeyHeader(name="X-Internal-Token", auto_error=False)
+
+
+async def verify_internal_token(
+    request: Request,
+    token: str = Security(_internal_token_header),
+):
+    """Auth for internal tool endpoints. Accepts X-Internal-Token or falls back to X-API-Key."""
+    # Accept internal token
+    if token and INTERNAL_API_TOKEN and token == INTERNAL_API_TOKEN:
+        return token
+    # Fall back to standard API key (so OpenClaw agents can also call this)
+    key = request.headers.get("X-API-Key", "")
+    if not key:
+        auth = request.headers.get("Authorization", "")
+        if auth.startswith("Bearer "):
+            key = auth[7:].strip()
+    if key and key == API_KEY:
+        return key
+    client_ip = request.client.host if request.client else "unknown"
+    log.warning("INTERNAL AUTH FAIL from %s", client_ip)
+    raise HTTPException(status_code=403, detail="Invalid token")
+
+
+class AdverseMediaRequest(BaseModel):
+    entity_id: int = Field(0, description="Entity ID (echoed back, not used for lookup)")
+    company_name: str = Field(..., description="Full legal name")
+    country: str = Field(..., description="ISO 2-letter country code", min_length=2, max_length=2)
+    languages: Optional[list[str]] = Field(None, description="ISO 639-1 codes; defaults by country")
+    tier: str = Field("STANDARD", description="BASE | STANDARD | ENHANCED")
+    days_back: int = Field(7, ge=1, le=90, description="Lookback window in days")
+    max_results: int = Field(20, ge=1, le=250, description="Max articles returned")
+    website: Optional[str] = Field(None, description="Entity website for shell signal checks")
+
+
+@app.post("/tools/adverse_media")
+async def adverse_media_scan(req: AdverseMediaRequest, _: str = Depends(verify_internal_token)):
+    """Multi-provider adverse media scan. Returns structured articles + shell signals."""
+    result = await adverse_media.scan(
+        company_name=req.company_name,
+        country=req.country.upper(),
+        entity_id=req.entity_id,
+        languages=req.languages,
+        tier=req.tier.upper(),
+        days_back=req.days_back,
+        max_results=req.max_results,
+        website=req.website,
+    )
+    return result
+
+
+@app.get("/tools/adverse_media/health")
+async def adverse_media_health():
+    """Provider health check — no auth required (used by RegistryAdapterHealth probe)."""
+    return await adverse_media.health()
