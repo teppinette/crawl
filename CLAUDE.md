@@ -128,7 +128,8 @@ Production Bridge (human review):
 
 | Endpoint | Method | Purpose |
 |----------|--------|---------|
-| `/api/v1/verify` | POST | Synchronous registry check (PK SECP, IN MCA) — 8-15s |
+| `/api/v1/verify` | POST | Synchronous registry check (PK/IN/SG/TR/AE/CN/GB/BR) — 2-15s |
+| `/api/v1/verify/lei` | POST | GLEIF LEI corporate hierarchy lookup (cross-country) — 2-5s |
 | `/api/v1/verify-job` | POST | Async full verification (registry + LinkedIn + dark web) — 1-5 min |
 | `/api/v1/verify-job/{job_id}` | GET | Poll verify job (progressive results) |
 | `/api/v1/verify-jobs` | GET | List recent verify jobs |
@@ -280,7 +281,7 @@ The Global Compliance app (172.20.0.11) connects to this API via:
 | Blob Container | osint-staging | -- | JSON reports from all regions |
 | VMs (5x regional) | crawl-{americas,europe,gulf,china,india} | crawldevvm_group | Regional OSINT agents |
 | VM (dark web) | crawldarkwebvm | crawldevvm_group | Tor research (West Europe / Netherlands) |
-| VM (verify) | crawl-verify | crawldevvm_group | Entity verification (East US 2) |
+| VM (verify) | crawl-verify | crawldevvm_group | Entity verification — 8 countries + GLEIF LEI (East US 2) |
 | Key Vault | crawlkeyvault | crawldevvm_group | All platform secrets (East US 2, purge-protected) |
 | Backup Vault | crawl-backup-vault | crawldevvm_group | VM backups — East US 2 (crawldevvm, americas, verify) |
 | Backup Vault | crawl-backup-westeurope | crawldevvm_group | VM backup — West Europe (darkweb) |

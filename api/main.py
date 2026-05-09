@@ -2461,6 +2461,8 @@ _VERIFY_SOURCES = {
     "TR": "GIB VKN tax ID verification (via crawl-verify VM) — company name, tax office",
     "AE": "FTA TRN verification (via crawl-verify VM) — entity name, status",
     "CN": "SAMR/GSXT (via crawl-china VM) — company name, USCC, legal rep",
+    "GB": "Companies House (gov.uk) — company name, number, status, address, SIC codes",
+    "BR": "Receita Federal CNPJ (BrasilAPI) — company name, status, address, partners, CNAE",
 }
 
 
@@ -2687,6 +2689,101 @@ async def verify_entity(
             "timestamp": now,
             "summary": result.get("legal_name", entity_name) if result.get("found") else f"'{entity_name}' not verified",
         }
+
+    # --------------- UK ---------------
+    if country_code == "GB":
+        company_number = body.get("company_number", "").strip()
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "GB", "company_number": company_number}
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        return {
+            "entity_name": entity_name, "country_code": "GB",
+            "verified": result.get("found", False),
+            "legal_name": result.get("entity_name"),
+            "company_number": result.get("company_number"),
+            "status": result.get("status"),
+            "company_type": result.get("company_type"),
+            "incorporated_on": result.get("incorporated_on"),
+            "registered_address": result.get("registered_address"),
+            "sic_codes": result.get("sic_codes"),
+            "previous_names": result.get("previous_names"),
+            "alternatives": result.get("alternatives"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+            "summary": (
+                f"{result.get('entity_name', entity_name)} — #{result.get('company_number', 'N/A')} — "
+                f"{result.get('status', 'Unknown')} — Inc: {result.get('incorporated_on', 'N/A')}"
+            ) if result.get("found") else f"'{entity_name}' not found in Companies House",
+        }
+
+    # --------------- BRAZIL ---------------
+    if country_code == "BR":
+        cnpj = body.get("cnpj", "").strip()
+        if not cnpj:
+            raise HTTPException(status_code=422, detail="cnpj (14-digit CNPJ) required for BR verification")
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "BR", "cnpj": cnpj}
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        return {
+            "entity_name": entity_name, "country_code": "BR",
+            "verified": result.get("found", False),
+            "legal_name": result.get("entity_name"),
+            "trade_name": result.get("trade_name"),
+            "cnpj": result.get("cnpj"),
+            "status": result.get("status"),
+            "date_opened": result.get("date_opened"),
+            "legal_nature": result.get("legal_nature"),
+            "registered_address": result.get("registered_address"),
+            "cnae_code": result.get("cnae_code"),
+            "cnae_description": result.get("cnae_description"),
+            "capital_social": result.get("capital_social"),
+            "partners": result.get("partners"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+            "summary": (
+                f"{result.get('entity_name', entity_name)} — CNPJ {result.get('cnpj', 'N/A')} — "
+                f"{result.get('status', 'Unknown')} — {result.get('cnae_description', '')}"
+            ) if result.get("found") else f"CNPJ not found in Receita Federal",
+        }
+
+
+@app.post("/api/v1/verify/lei")
+async def verify_lei(
+    request: Request,
+    _key: str = Depends(verify_api_key),
+):
+    """
+    GLEIF LEI lookup — corporate hierarchy mapping.
+    Returns: LEI, entity details, direct parent, ultimate parent.
+
+    Body: {
+        "entity_name": "HSBC Holdings",    // Search by name
+        "lei": "MLU0ZO3ML4LN2LL2TL39",    // Or direct LEI lookup
+        "country_code": "GB",              // Optional country filter
+    }
+    """
+    body = await request.json()
+    entity_name = body.get("entity_name", "").strip()
+    lei = body.get("lei", "").strip()
+    country_code = body.get("country_code", "").strip()
+
+    if not entity_name and not lei:
+        raise HTTPException(status_code=422, detail="entity_name or lei required")
+
+    import requests as _req
+    try:
+        resp = _req.post(
+            f"{VERIFY_VM_URL}/verify/lei",
+            json={"entity_name": entity_name, "lei": lei, "country_code": country_code},
+            headers={"X-API-Key": API_KEY, "Content-Type": "application/json"},
+            timeout=30,
+        )
+        return resp.json()
+    except Exception as e:
+        log.warning("LEI lookup failed: %s", e)
+        raise HTTPException(status_code=502, detail=f"LEI lookup failed: {str(e)[:200]}")
 
 
 # ---------------------------------------------------------------------------
