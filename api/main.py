@@ -2463,6 +2463,8 @@ _VERIFY_SOURCES = {
     "CN": "SAMR/GSXT (via crawl-china VM) — company name, USCC, legal rep",
     "GB": "Companies House (gov.uk) — company name, number, status, address, SIC codes",
     "BR": "Receita Federal CNPJ (BrasilAPI) — company name, status, address, partners, CNAE",
+    "US": "SEC EDGAR — CIK, entity type, SIC, EIN, tickers, exchanges, addresses, filings",
+    "KR": "DART (FSS) — corp name (KR+EN), stock code, CEO, market, BRN, address, industry",
 }
 
 
@@ -2478,7 +2480,7 @@ async def verify_entity(
 
     Body: {
         "entity_name": "Agro China Pakistan",
-        "country_code": "PK",              // PK, IN, TR, AE, CN
+        "country_code": "PK",              // PK, IN, TR, AE, CN, GB, BR, US, KR
         "ntn": "4334750-9",                 // optional, Pakistan NTN
         "cin": "U24110MH2008PTC186710"      // optional, India CIN
     }
@@ -2497,8 +2499,10 @@ async def verify_entity(
     cin = body.get("cin", "").strip().upper()
     iec = body.get("iec", "").strip().upper()  # IEC = PAN for Indian companies
 
-    if not entity_name or not country_code:
-        raise HTTPException(status_code=422, detail="entity_name and country_code required")
+    # US allows lookup by CIK or ticker without entity_name
+    has_alt_id = country_code == "US" and (body.get("cik", "").strip() or body.get("ticker", "").strip())
+    if not country_code or (not entity_name and not has_alt_id):
+        raise HTTPException(status_code=422, detail="entity_name and country_code required (US allows cik or ticker instead of entity_name)")
     if country_code not in _VERIFY_SOURCES:
         raise HTTPException(
             status_code=422,
@@ -2746,6 +2750,76 @@ async def verify_entity(
                 f"{result.get('entity_name', entity_name)} — CNPJ {result.get('cnpj', 'N/A')} — "
                 f"{result.get('status', 'Unknown')} — {result.get('cnae_description', '')}"
             ) if result.get("found") else f"CNPJ not found in Receita Federal",
+        }
+
+    # --------------- US (SEC EDGAR) ---------------
+    if country_code == "US":
+        cik = body.get("cik", "").strip()
+        ticker = body.get("ticker", "").strip()
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "US", "cik": cik, "ticker": ticker}
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        return {
+            "entity_name": entity_name, "country_code": "US",
+            "verified": result.get("found", False),
+            "legal_name": result.get("entity_name"),
+            "cik": result.get("cik"),
+            "status": result.get("status"),
+            "entity_type": result.get("entity_type"),
+            "sic_code": result.get("sic_code"),
+            "sic_description": result.get("sic_description"),
+            "ein": result.get("ein"),
+            "state_of_incorporation": result.get("state_of_incorporation"),
+            "tickers": result.get("tickers"),
+            "exchanges": result.get("exchanges"),
+            "category": result.get("category"),
+            "fiscal_year_end": result.get("fiscal_year_end"),
+            "phone": result.get("phone"),
+            "mailing_address": result.get("mailing_address"),
+            "business_address": result.get("business_address"),
+            "former_names": result.get("former_names"),
+            "total_filings": result.get("total_filings"),
+            "alternatives": result.get("alternatives"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+            "summary": (
+                f"{result.get('entity_name', entity_name)} — CIK {result.get('cik', 'N/A')} — "
+                f"{result.get('status', 'Unknown')} — {result.get('sic_description', '')}"
+            ) if result.get("found") else f"'{entity_name}' not found in SEC EDGAR",
+        }
+
+    # --------------- SOUTH KOREA (DART/FSS) ---------------
+    if country_code == "KR":
+        corp_code = body.get("corp_code", "").strip()
+        brn = body.get("brn", "").strip()
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "KR", "corp_code": corp_code, "brn": brn}
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        return {
+            "entity_name": entity_name, "country_code": "KR",
+            "verified": result.get("found", False),
+            "legal_name": result.get("entity_name"),
+            "entity_name_eng": result.get("entity_name_eng"),
+            "corp_code": result.get("corp_code"),
+            "status": result.get("status"),
+            "stock_code": result.get("stock_code"),
+            "market": result.get("market"),
+            "ceo": result.get("ceo"),
+            "business_registration_number": result.get("business_registration_number"),
+            "address": result.get("address"),
+            "industry_code": result.get("industry_code"),
+            "established_date": result.get("established_date"),
+            "fiscal_year_end_month": result.get("fiscal_year_end_month"),
+            "homepage": result.get("homepage"),
+            "phone": result.get("phone"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+            "summary": (
+                f"{result.get('entity_name', entity_name)} — "
+                f"{result.get('market', '')} — {result.get('entity_name_eng', '')}"
+            ) if result.get("found") else f"'{entity_name}' not found in DART (FSS)",
         }
 
 

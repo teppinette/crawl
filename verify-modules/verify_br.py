@@ -3,6 +3,7 @@ Brazil CNPJ verification via BrasilAPI.
 
 Endpoint: https://brasilapi.com.br/api/cnpj/v1/{cnpj}
 Free, no auth, no CAPTCHA. Wraps Receita Federal data.
+Uses Bright Data BR residential proxy.
 
 Returns: razao_social, fantasia, situacao_cadastral, endereco,
          cnae, capital_social, quadro_societario (partners).
@@ -15,16 +16,25 @@ import re
 import time
 
 from curl_cffi import requests as cffi_requests
+from proxy_cfg import get_proxy, get_dc_proxy
 
 log = logging.getLogger("verify-gateway")
 
 _BRASIL_API = "https://brasilapi.com.br/api/cnpj/v1"
 _RECEITAWS_API = "https://receitaws.com.br/v1/cnpj"
+_PROXY = None
 
 
 def init(get_secret):
-    """No secrets needed — BrasilAPI is free and open."""
-    log.info("BR CNPJ ready (BrasilAPI + ReceitaWS fallback, no auth)")
+    global _PROXY
+    try:
+        from curl_cffi import requests as _r
+        _r.get("https://lumtest.com/myip.json", proxy=get_proxy("br"), impersonate="chrome", timeout=10)
+        _PROXY = get_proxy("br")
+        log.info("BR CNPJ ready (Bright Data BR residential proxy)")
+    except Exception:
+        _PROXY = get_dc_proxy()
+        log.info("BR CNPJ ready (Bright Data KR datacenter proxy — residential pending)")
 
 
 def cnpj_verify(entity_name: str, cnpj: str = "") -> dict:
@@ -66,6 +76,7 @@ def _try_brasilapi(cnpj: str, entity_name: str) -> dict:
         resp = cffi_requests.get(
             f"{_BRASIL_API}/{cnpj}",
             impersonate="chrome",
+            proxy=_PROXY,
             timeout=20,
         )
 
@@ -91,6 +102,7 @@ def _try_receitaws(cnpj: str, entity_name: str) -> dict:
         resp = cffi_requests.get(
             f"{_RECEITAWS_API}/{cnpj}",
             impersonate="chrome",
+            proxy=_PROXY,
             timeout=20,
         )
 

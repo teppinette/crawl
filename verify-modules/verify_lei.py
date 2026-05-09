@@ -3,6 +3,7 @@ GLEIF LEI (Legal Entity Identifier) lookup.
 
 Endpoint: https://api.gleif.org/api/v1/lei-records
 Free API, no auth, no rate limit (reasonable use).
+Uses Bright Data residential proxy (no country targeting — GLEIF is global).
 
 Returns: LEI, entity name, legal address, HQ address, registration status,
          direct parent, ultimate parent, registration authority, entity category.
@@ -15,14 +16,24 @@ import logging
 import time
 
 from curl_cffi import requests as cffi_requests
+from proxy_cfg import get_proxy, get_dc_proxy
 
 log = logging.getLogger("verify-gateway")
 
 _BASE_URL = "https://api.gleif.org/api/v1"
+_PROXY = None
 
 
 def init(get_secret):
-    log.info("GLEIF LEI ready (free API, no auth, global corporate hierarchy)")
+    global _PROXY
+    try:
+        from curl_cffi import requests as _r
+        _r.get("https://lumtest.com/myip.json", proxy=get_proxy(), impersonate="chrome", timeout=10)
+        _PROXY = get_proxy()
+        log.info("GLEIF LEI ready (Bright Data residential proxy)")
+    except Exception:
+        _PROXY = get_dc_proxy()
+        log.info("GLEIF LEI ready (Bright Data KR datacenter proxy — residential pending)")
 
 
 def lei_lookup(entity_name: str = "", lei: str = "", country_code: str = "") -> dict:
@@ -47,6 +58,7 @@ def _lookup_by_lei(lei: str) -> dict:
         f"{_BASE_URL}/lei-records/{lei}",
         headers={"Accept": "application/vnd.api+json"},
         impersonate="chrome",
+        proxy=_PROXY,
         timeout=15,
     )
     if resp.status_code == 404:
@@ -176,7 +188,7 @@ def _enrich_relationships(lei: str, result: dict):
             resp = cffi_requests.get(
                 f"{_BASE_URL}/lei-records/{lei}/{rel_type}",
                 headers={"Accept": "application/vnd.api+json"},
-                impersonate="chrome", timeout=10,
+                impersonate="chrome", proxy=_PROXY, timeout=10,
             )
             if resp.status_code == 200:
                 pdata = resp.json().get("data", {})

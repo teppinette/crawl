@@ -2,8 +2,8 @@
 UK Companies House verification via gov.uk web search.
 
 Source: https://find-and-update.company-information.service.gov.uk
-No API key needed. No CAPTCHA. No proxy needed.
-Uses curl_cffi for browser TLS fingerprint.
+No API key needed. No CAPTCHA.
+Uses curl_cffi with Bright Data GB residential proxy.
 
 Returns: company name, number, status, type, address, incorporation date, SIC codes.
 """
@@ -14,14 +14,16 @@ import time
 
 from bs4 import BeautifulSoup
 from curl_cffi import requests as cffi_requests
-
 log = logging.getLogger("verify-gateway")
 
 _BASE = "https://find-and-update.company-information.service.gov.uk"
+# Companies House (.gov.uk) blocks ALL Bright Data proxies by policy (403).
+# Direct access — open public registry, no anti-bot, no CAPTCHA.
+_PROXY = None
 
 
 def init(get_secret):
-    log.info("UK Companies House ready (gov.uk web scrape, no auth)")
+    log.info("UK Companies House ready (direct access — gov.uk blocks all Bright Data proxies)")
 
 
 def companies_house_verify(entity_name: str, company_number: str = "") -> dict:
