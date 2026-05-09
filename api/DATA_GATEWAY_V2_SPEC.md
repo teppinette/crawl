@@ -1,6 +1,6 @@
 # Crawl Data Gateway — API v2.0 Specification
 ## For: Global Compliance, Onboarding, SalesTracker, iPhone App
-### Document: CRG-DATA-V2-001 | Version 2.1 | 2026-05-09
+### Document: CRG-DATA-V2-001 | Version 2.2 | 2026-05-09
 
 ---
 
@@ -22,6 +22,7 @@ from authoritative sources, delivered as JSON.
 | `POST /api/v2/verify/lei` | GLEIF LEI corporate hierarchy | GLEIF API | 2-5s |
 | `POST /api/v2/media` | Adverse media / news screening | GDELT (65 languages), Bright Data SERP (Google News), Bright Data Discover (AI-ranked), crt.sh, Wayback | 10-25s |
 | `POST /api/v2/enrich` | Company enrichment (revenue, employees, leadership, funding) | Bright Data Deep Lookup (1000+ sources), Crunchbase | 30-60s |
+| `POST /api/v2/screening` | Sanctions & watchlist screening (6 sources) | CSL/OFAC, UK FCDO, UN SC, FBI, INTERPOL, EU (limited) | 3-8s |
 | `POST /api/v2/lookup` | One-shot fan-out (all above in parallel) | All above | 30-60s |
 | `GET /api/v2/health` | Per-source health status | All above | <1s |
 
@@ -29,7 +30,7 @@ from authoritative sources, delivered as JSON.
 
 | Capability | Where it lives | Why |
 |-----------|---------------|-----|
-| Sanctions / PEP / watchlist screening | LexisNexis Bridger (GC) | Bridger covers OFAC, EU, UK, UN, Interpol, PEPs — comprehensive, paid, sub-second |
+| Sanctions / PEP screening (Bridger) | LexisNexis Bridger (GC) | Bridger is the primary paid screening engine — PEPs, sub-second, commercial grade. v2/screening is a free cross-check layer. |
 | Offshore leaks (Panama/Paradise/Pandora) | ICIJ Neo4j mirror (.11) | Already local, no network call needed |
 | Market data (SEC/GLEIF/Yahoo/OpenFIGI) | GC direct calls | Sub-second, working adapters, no proxy needed |
 | Trade data (Volza/Panjiva) | GC deepdive.py | Custom risk-relevant parsing too tightly integrated to extract |
@@ -322,13 +323,103 @@ profile with citations that can be independently verified.
 
 ---
 
-### 3.5 One-Shot Lookup
+### 3.5 Sanctions & Watchlist Screening
+
+```
+POST /api/v2/screening
+```
+
+Free cross-check layer screening against 6 government sanctions/watchlist sources
+in parallel. Supplements Bridger (which remains the primary paid screening engine
+on GC). No API costs — all sources are free public APIs or cached XML lists.
+
+**Request:**
+```json
+{
+    "entity_name": "Gazprom",
+    "country": "RU",
+    "entity_type": "company"
+}
+```
+
+| Field | Required | Default | Notes |
+|-------|----------|---------|-------|
+| `entity_name` | Yes | — | Company or person name |
+| `country` | No | — | ISO 2-letter code (used by CSL for filtering) |
+| `entity_type` | No | `"both"` | `"company"`, `"person"`, or `"both"` |
+
+**Response:**
+```json
+{
+    "status": "hit",
+    "risk_level": "HIGH",
+    "total_hits": 4,
+    "duration_ms": 6637,
+    "entity_name": "Gazprom",
+    "country": "RU",
+    "entity_type": "company",
+    "sources": {
+        "CSL": {
+            "source": "CSL",
+            "status": "hit",
+            "risk_level": "HIGH",
+            "hits": [
+                {
+                    "name": "Gazprom, OAO",
+                    "source_list": "Entity List (EL) - Bureau of Industry and Security",
+                    "type": "Entity",
+                    "programs": ["EAR99"],
+                    "addresses": [{"country": "Russia"}]
+                }
+            ],
+            "hit_count": 2,
+            "latency_ms": 1200
+        },
+        "UK_FCDO": {
+            "source": "UK_FCDO",
+            "status": "hit",
+            "risk_level": "HIGH",
+            "hits": [
+                {"name": "GAZPROM NEFT", "list_type": "entity", "detail": "UK_FCDO (entity): GAZPROM NEFT"}
+            ],
+            "hit_count": 2,
+            "latency_ms": 223
+        },
+        "EU": {"source": "EU", "status": "unavailable", "error": "List unavailable"},
+        "UN_SC": {"source": "UN_SC", "status": "clear", "hit_count": 0, "latency_ms": 11},
+        "FBI": {"source": "FBI", "status": "clear", "hit_count": 0, "latency_ms": 11},
+        "INTERPOL": {"source": "INTERPOL", "status": "clear", "hit_count": 0, "latency_ms": 343}
+    },
+    "timestamp": "2026-05-09T22:00:04Z"
+}
+```
+
+**Screening sources (all free):**
+
+| Source | What it covers | Type | Notes |
+|--------|---------------|------|-------|
+| **CSL** | OFAC SDN + 10 US lists (BIS Entity/Denied/Unverified, SSI, FSE, CMIC, MEU) | Real-time API | Subscription key in Key Vault |
+| **UK_FCDO** | UK Financial Sanctions | XML, cached 12h | ~2000 entries |
+| **EU** | EU Consolidated Sanctions | XML, cached 12h | Currently unavailable (webgate 403 from Azure) |
+| **UN_SC** | UN Security Council Consolidated List | XML, cached 12h | ~800 entries |
+| **FBI** | FBI Most Wanted | JSON API, cached 12h | Persons only |
+| **INTERPOL** | INTERPOL Red Notices | REST API, real-time | Persons only |
+
+**Risk levels:** `CLEAR` (no hits), `MEDIUM` (non-SDN list match), `HIGH` (BIS/SSI/FCDO/UN match), `CRITICAL` (SDN/FBI/INTERPOL match).
+
+**Name matching:** Fuzzy matching via SequenceMatcher (threshold 0.82 for companies, 0.90 for persons) + token overlap. Filters out spurious Elasticsearch fuzzy matches.
+
+**Typical response time:** 3-8 seconds (first call loads XML caches ~5s, subsequent calls <1s from cache).
+
+---
+
+### 3.6 One-Shot Lookup
 
 ```
 POST /api/v2/lookup
 ```
 
-Runs verify + LEI + media + enrich in parallel. Returns combined result.
+Runs verify + LEI + media + enrich + screening in parallel. Returns combined result.
 Designed for iPhone app / quick lookups before a meeting.
 
 **Request:**
@@ -374,6 +465,12 @@ Designed for iPhone app / quick lookups before a meeting.
         "website": "https://www.samsung.com",
         "revenue": "$234.62 billion USD"
     },
+    "screening": {
+        "status": "clear",
+        "risk_level": "CLEAR",
+        "total_hits": 0,
+        "sources": {"CSL": "clear", "UK_FCDO": "clear", "UN_SC": "clear", "FBI": "clear", "INTERPOL": "clear"}
+    },
     "timestamp": "2026-05-09T19:15:00Z"
 }
 ```
@@ -382,7 +479,7 @@ Designed for iPhone app / quick lookups before a meeting.
 
 ---
 
-### 3.6 Health
+### 3.7 Health
 
 ```
 GET /api/v2/health
@@ -409,6 +506,14 @@ No auth required. Shows per-source status. Use for monitoring probes.
         "enrichment": {
             "CRUNCHBASE": "up",
             "DEEP_LOOKUP": "up"
+        },
+        "screening": {
+            "CSL": "up",
+            "UK_FCDO": "up",
+            "EU": "limited",
+            "UN_SC": "up",
+            "FBI": "up",
+            "INTERPOL": "up"
         },
         "verify_countries": ["PK","IN","SG","TR","AE","CN","GB","BR","US","KR"]
     }
@@ -503,8 +608,18 @@ def crawl_enrich(entity_name, country_code="", domain=None):
     return resp.json()
 
 
+def crawl_screening(entity_name, country="", entity_type="both"):
+    """Sanctions & watchlist screening — 3-8s."""
+    resp = requests.post(f"{CRAWL_API}/screening",
+        json={"entity_name": entity_name, "country": country,
+              "entity_type": entity_type},
+        headers=HEADERS, timeout=15, verify=False)
+    resp.raise_for_status()
+    return resp.json()
+
+
 def crawl_lookup(entity_name, country_code, **kwargs):
-    """One-shot: verify + LEI + media + enrich — 30-60s."""
+    """One-shot: verify + LEI + media + enrich + screening — 30-60s."""
     resp = requests.post(f"{CRAWL_API}/lookup",
         json={"entity_name": entity_name, "country_code": country_code, **kwargs},
         headers=HEADERS, timeout=90, verify=False)
