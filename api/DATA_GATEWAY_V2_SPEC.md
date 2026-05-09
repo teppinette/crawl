@@ -20,11 +20,11 @@ authoritative sources.
 |----------|-------------|---------|
 | `POST /api/v2/verify` | Gov registry verification (10+ countries) | SECP, FBR, MCA, ACRA, GIB, FTA, Tianyancha, Companies House, Receita Federal, SEC EDGAR, DART |
 | `POST /api/v2/verify/lei` | GLEIF LEI corporate hierarchy | GLEIF API |
-| `POST /api/v2/media` | Adverse media / news screening | GDELT (65 languages), Bing News*, SerpAPI*, crt.sh, Wayback |
+| `POST /api/v2/media` | Adverse media / news screening | GDELT (65 languages), Bright Data SERP (Google News), Bright Data Discover (AI-ranked), crt.sh, Wayback |
 | `POST /api/v2/lookup` | One-shot fan-out (all above in parallel) | All above |
 | `GET /api/v2/health` | Per-source health status | All above |
 
-*Bing and SerpAPI pending API key provisioning.
+*BD_SERP requires SERP API zone creation at brightdata.com/cp/zones.
 
 ### What v2 does NOT cover (covered elsewhere)
 
@@ -177,8 +177,8 @@ Searches mainstream news sources for adverse coverage. NOT dark web.
     "duration_ms": 12918,
     "providers": {
         "GDELT": {"status": "ok", "count": 15, "latency_ms": 8200},
-        "BING": {"status": "disabled", "count": 0},
-        "SERPAPI": {"status": "disabled", "count": 0},
+        "BD_SERP": {"status": "ok", "count": 8, "latency_ms": 3200},
+        "BD_DISCOVER": {"status": "ok", "count": 5, "latency_ms": 6100},
         "CRT_SH": {"status": "ok", "count": 3},
         "WAYBACK": {"status": "ok", "count": 12}
     },
@@ -267,7 +267,8 @@ No auth required. Shows per-source status.
         "verify_vm": { "status": "up", "version": "1.3.0", "countries": [...] },
         "adverse_media": {
             "GDELT": "up",
-            "BING": "disabled",
+            "BD_SERP": "up",
+            "BD_DISCOVER": "up",
             "CRT_SH": "up",
             "WAYBACK": "up"
         },
@@ -350,7 +351,7 @@ def crawl_lookup(entity_name, country_code, **kwargs):
 | **crawl-verify** (180.20.0.4) | Gov registry verification | All country registry adapters. One source of truth. |
 | **crawl-darkweb** (20.86.161.6) | Dark web / breach / leak | 37 Tor sources. Network-isolated. |
 | **5x OpenClaw VMs** | Deep AI research | CIR narratives, product intel, financial analysis |
-| **crawldevvm** (20.94.45.219) | Gateway + adverse media | Routes all requests. Runs GDELT/Bing/SerpAPI locally. |
+| **crawldevvm** (20.94.45.219) | Gateway + adverse media | Routes all requests. Runs GDELT + Bright Data SERP/Discover locally. |
 | **GC app** (.11) | Compliance decision engine | Bridger, ICIJ Neo4j, market data, trade data, AI synthesis |
 
 Nothing is duplicated. Each server has one job.

@@ -2,11 +2,11 @@
 Adverse Media Tool — multi-provider adverse media screening.
 
 Providers:
-  GDELT    — Global Database of Events, Language and Tone (65 languages, free)
-  BING     — Bing News Search API (requires key, disabled until provisioned)
-  SERPAPI  — SerpAPI Google News (requires key, disabled until provisioned)
-  CRT_SH   — Certificate Transparency logs (shell company signal)
-  WAYBACK  — Wayback Machine CDX API (domain age / capture history)
+  GDELT       — Global Database of Events, Language and Tone (65 languages, free)
+  BD_SERP     — Bright Data SERP API: Google News search (paid, per-request)
+  BD_DISCOVER — Bright Data Discover API: AI-ranked adverse media search (paid)
+  CRT_SH      — Certificate Transparency logs (shell company signal)
+  WAYBACK     — Wayback Machine CDX API (domain age / capture history)
 
 Contract: POST /tools/adverse_media — returns structured articles + shell signals.
 GC owns classification + persistence; this module is I/O only.
@@ -31,16 +31,22 @@ log = logging.getLogger("adverse-media")
 # ---------------------------------------------------------------------------
 
 ANTHROPIC_API_KEY = get_secret("anthropic-api-key")
-BING_API_KEY = get_secret("bing-news-api-key")        # empty until provisioned
-SERPAPI_KEY = get_secret("serpapi-api-key")             # empty until provisioned
 
-VERSION = "1.0.0"
+# Bright Data API key (for SERP API + Discover API)
+_BD_API_KEY = get_secret("brightdata-api-key") or "a5327ce4-3832-42a8-86b7-96bf0dd1950c"
+_BD_SERP_ZONE = os.environ.get("BD_SERP_ZONE", "serp_api1")
 
-# Bright Data proxy — used for ALL outbound calls (GDELT unreachable direct from Azure)
+VERSION = "2.0.0"
+
+# Bright Data residential proxy — ALL outbound goes through this
 _BD_PROXY = os.environ.get("BRIGHTDATA_PROXY", "")
 if not _BD_PROXY:
-    # Fallback: build from known Bright Data residential creds
     _BD_PROXY = "http://brd-customer-hl_7bf69e76-zone-pk_residental:o6nw1d0jrol0@brd.superproxy.io:33335"
+
+# Combined CA bundle: system CAs + Bright Data proxy CA (required for httpx through proxy)
+_BD_CA_BUNDLE = "/home/copapadmin/crawl/config/ca-bundle-with-bd.crt"
+if not os.path.exists(_BD_CA_BUNDLE):
+    _BD_CA_BUNDLE = True  # fall back to system CA only
 
 # Country → default search languages (ISO 639-1)
 COUNTRY_LANGUAGES = {
@@ -78,11 +84,6 @@ _GDELT_TO_ISO = {v: k for k, v in _ISO_TO_GDELT.items()}
 _GDELT_TO_ISO["english"] = "en"
 
 # Adverse media keywords (English) — used in Bing/SerpAPI queries (NOT GDELT, which uses tone filter)
-_ADVERSE_KEYWORDS = (
-    "fraud OR corruption OR sanction OR lawsuit OR investigation "
-    "OR penalty OR arrest OR scandal OR smuggling OR debarment"
-)
-
 
 # ---------------------------------------------------------------------------
 # URL Canonicalization (dedup key for GC)
@@ -205,7 +206,8 @@ async def _query_gdelt(company_name: str, country: str, languages: list[str],
                     "sort": "datedesc",
                     "timespan": timespan,
                 }
-                async with httpx.AsyncClient(timeout=25, follow_redirects=True) as client:
+                async with httpx.AsyncClient(timeout=25, follow_redirects=True,
+                                               proxy=_BD_PROXY, verify=_BD_CA_BUNDLE) as client:
                     resp = await client.get(_GDELT_BASE, params=params)
                     if resp.status_code == 429:
                         if attempt == 0:
@@ -267,57 +269,66 @@ def _gdelt_parse_date(s: str) -> Optional[str]:
 
 
 # ---------------------------------------------------------------------------
-# Provider: Bing News Search API
+# Provider: Bright Data SERP API (Google News)
 # ---------------------------------------------------------------------------
 
-_BING_URL = "https://api.bing.microsoft.com/v7.0/news/search"
+_BD_SERP_URL = "https://api.brightdata.com/request"
 
 
-async def _query_bing(company_name: str, country: str, languages: list[str],
-                       days_back: int, max_results: int) -> dict:
-    """Bing News search with country proxy routing."""
-    if not BING_API_KEY:
+async def _query_bd_serp(company_name: str, country: str, languages: list[str],
+                          days_back: int, max_results: int) -> dict:
+    """Bright Data SERP API — Google News search. Requires serp_api1 zone."""
+    if not _BD_API_KEY:
         return {"status": "disabled", "count": 0, "latency_ms": 0, "articles": [],
-                "error": "bing-news-api-key not provisioned"}
+                "error": "brightdata-api-key not configured"}
 
     t0 = time.monotonic()
     articles = []
     errors = []
 
-    freshness = "Day" if days_back <= 1 else "Week" if days_back <= 7 else "Month"
-    query = f'"{company_name}" AND ({_ADVERSE_KEYWORDS})'
+    # Build adverse media query
+    query = f'"{company_name}" fraud OR corruption OR scandal OR sanction OR lawsuit OR penalty OR investigation'
+    tbs = "qdr:d" if days_back <= 1 else "qdr:w" if days_back <= 7 else "qdr:m"
+    gl = country.lower() if country else "us"
+
+    google_url = f"https://www.google.com/search?q={quote_plus(query)}&tbm=nws&tbs={tbs}&gl={gl}&num={min(max_results, 20)}"
 
     try:
-        client_kwargs = {"timeout": 15, "follow_redirects": True}
-        if _BD_PROXY:
-            client_kwargs["proxy"] = _BD_PROXY
-
-        async with httpx.AsyncClient(**client_kwargs) as client:
-            resp = await client.get(
-                _BING_URL,
-                params={"q": query, "count": min(max_results, 100),
-                        "freshness": freshness, "mkt": _country_to_bing_mkt(country),
-                        "sortBy": "Date"},
-                headers={"Ocp-Apim-Subscription-Key": BING_API_KEY},
+        async with httpx.AsyncClient(timeout=20, follow_redirects=True) as client:
+            resp = await client.post(
+                _BD_SERP_URL,
+                headers={
+                    "Content-Type": "application/json",
+                    "Authorization": f"Bearer {_BD_API_KEY}",
+                },
+                json={
+                    "zone": _BD_SERP_ZONE,
+                    "url": google_url,
+                    "format": "raw",
+                },
             )
+            if resp.status_code == 400 and "not found" in resp.text.lower():
+                return {"status": "disabled", "count": 0, "latency_ms": 0, "articles": [],
+                        "error": f"SERP zone '{_BD_SERP_ZONE}' not created — create at brightdata.com/cp/zones"}
             if resp.status_code != 200:
-                errors.append(f"HTTP {resp.status_code}")
+                errors.append(f"HTTP {resp.status_code}: {resp.text[:200]}")
             else:
-                for art in resp.json().get("value", []):
+                data = resp.json()
+                for art in data.get("news", []):
                     articles.append({
-                        "title": (art.get("name") or "")[:1000],
-                        "description": (art.get("description") or "")[:4000],
-                        "url": art.get("url", ""),
-                        "source": (art.get("provider") or [{}])[0].get("name", ""),
+                        "title": (art.get("title") or "")[:1000],
+                        "description": (art.get("description") or art.get("snippet") or "")[:4000],
+                        "url": art.get("link", ""),
+                        "source": art.get("source", ""),
                         "author": None,
-                        "published_at": art.get("datePublished"),
+                        "published_at": art.get("date"),
                         "language": languages[0] if languages else "en",
-                        "source_provider": "BING",
+                        "source_provider": "BD_SERP",
                         "tone": None,
                         "themes": [],
                     })
     except Exception as e:
-        errors.append(str(e))
+        errors.append(f"BD_SERP: {type(e).__name__}: {e}")
 
     latency = int((time.monotonic() - t0) * 1000)
     return {
@@ -329,66 +340,106 @@ async def _query_bing(company_name: str, country: str, languages: list[str],
     }
 
 
-def _country_to_bing_mkt(cc: str) -> str:
-    """Map country code to Bing market code."""
-    return {
-        "US": "en-US", "GB": "en-GB", "DE": "de-DE", "FR": "fr-FR",
-        "CN": "zh-CN", "JP": "ja-JP", "KR": "ko-KR", "IN": "en-IN",
-        "AE": "ar-AE", "SA": "ar-SA", "TR": "tr-TR", "RU": "ru-RU",
-        "BR": "pt-BR", "MX": "es-MX", "ES": "es-ES", "IT": "it-IT",
-        "PK": "en-PK", "NL": "nl-NL",
-    }.get(cc, "en-US")
-
-
 # ---------------------------------------------------------------------------
-# Provider: SerpAPI (Google News)
+# Provider: Bright Data Discover API (AI-ranked adverse media)
 # ---------------------------------------------------------------------------
 
-_SERPAPI_URL = "https://serpapi.com/search.json"
+_BD_DISCOVER_URL = "https://api.brightdata.com/discover"
 
 
-async def _query_serpapi(company_name: str, country: str, languages: list[str],
-                          days_back: int, max_results: int) -> dict:
-    """SerpAPI Google News — disabled until key provisioned."""
-    if not SERPAPI_KEY:
+async def _query_bd_discover(company_name: str, country: str, languages: list[str],
+                              days_back: int, max_results: int) -> dict:
+    """Bright Data Discover API — AI-ranked web search with adverse media intent."""
+    if not _BD_API_KEY:
         return {"status": "disabled", "count": 0, "latency_ms": 0, "articles": [],
-                "error": "serpapi-api-key not provisioned"}
+                "error": "brightdata-api-key not configured"}
 
     t0 = time.monotonic()
     articles = []
     errors = []
 
-    query = f'"{company_name}" fraud OR corruption OR scandal OR sanction OR lawsuit'
-    tbs = f"qdr:d" if days_back <= 1 else f"qdr:w" if days_back <= 7 else f"qdr:m"
+    # Build intent-driven query for adverse media screening
+    intent = (
+        "Find news articles, regulatory actions, court filings, and investigative reports "
+        "about this company involving fraud, corruption, sanctions violations, money laundering, "
+        "smuggling, debarment, penalties, lawsuits, criminal investigations, or financial scandals. "
+        "Exclude press releases, marketing content, and neutral business coverage. "
+        "Prioritize articles from reputable news organizations and government sources."
+    )
+
+    # Date filtering
+    end_date = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    start_date = (datetime.now(timezone.utc) - timedelta(days=days_back)).strftime("%Y-%m-%d")
+
+    payload = {
+        "query": f"{company_name} fraud corruption scandal sanction",
+        "mode": "fast",
+        "intent": intent,
+        "num_results": min(max_results, 20),
+        "start_date": start_date,
+        "end_date": end_date,
+    }
+    if country:
+        payload["country"] = country.lower()
+    if languages and languages[0] != "en":
+        payload["language"] = languages[0]
 
     try:
-        async with httpx.AsyncClient(timeout=15, follow_redirects=True) as client:
-            resp = await client.get(
-                _SERPAPI_URL,
-                params={
-                    "q": query, "tbm": "nws", "api_key": SERPAPI_KEY,
-                    "gl": country.lower(), "num": min(max_results, 100),
-                    "tbs": tbs,
+        # Step 1: Submit task
+        async with httpx.AsyncClient(timeout=10) as client:
+            resp = await client.post(
+                _BD_DISCOVER_URL,
+                headers={
+                    "Content-Type": "application/json",
+                    "Authorization": f"Bearer {_BD_API_KEY}",
                 },
+                json=payload,
             )
             if resp.status_code != 200:
-                errors.append(f"HTTP {resp.status_code}")
-            else:
-                for art in resp.json().get("news_results", []):
-                    articles.append({
-                        "title": (art.get("title") or "")[:1000],
-                        "description": (art.get("snippet") or "")[:4000],
-                        "url": art.get("link", ""),
-                        "source": art.get("source", ""),
-                        "author": None,
-                        "published_at": None,
-                        "language": languages[0] if languages else "en",
-                        "source_provider": "SERPAPI",
-                        "tone": None,
-                        "themes": [],
-                    })
+                errors.append(f"Discover submit: HTTP {resp.status_code}")
+                latency = int((time.monotonic() - t0) * 1000)
+                return {"status": "error", "count": 0, "latency_ms": latency, "articles": [],
+                        "error": "; ".join(errors)}
+            task_id = resp.json().get("task_id")
+
+        # Step 2: Poll for results (max 25s, 2s intervals)
+        result_data = None
+        for _ in range(12):
+            await asyncio.sleep(2)
+            async with httpx.AsyncClient(timeout=10) as client:
+                resp = await client.get(
+                    f"{_BD_DISCOVER_URL}?task_id={task_id}",
+                    headers={"Authorization": f"Bearer {_BD_API_KEY}"},
+                )
+                if resp.status_code == 200:
+                    data = resp.json()
+                    if data.get("status") == "done":
+                        result_data = data
+                        break
+                    elif data.get("status") == "failed":
+                        errors.append(f"Discover task failed: {data.get('error', 'unknown')}")
+                        break
+
+        if result_data:
+            for item in result_data.get("results", []):
+                articles.append({
+                    "title": (item.get("title") or "")[:1000],
+                    "description": (item.get("description") or "")[:4000],
+                    "url": item.get("link", ""),
+                    "source": urlparse(item.get("link", "")).netloc,
+                    "author": None,
+                    "published_at": None,
+                    "language": languages[0] if languages else "en",
+                    "source_provider": "BD_DISCOVER",
+                    "tone": None,
+                    "themes": [],
+                    "relevance_score": item.get("relevance_score"),
+                })
+        elif not errors:
+            errors.append("Discover: timed out waiting for results")
+
     except Exception as e:
-        errors.append(str(e))
+        errors.append(f"BD_DISCOVER: {type(e).__name__}: {e}")
 
     latency = int((time.monotonic() - t0) * 1000)
     return {
@@ -421,7 +472,8 @@ async def _query_crtsh(domain: str) -> dict:
     domain = domain.lower().replace("http://", "").replace("https://", "").split("/")[0]
 
     try:
-        async with httpx.AsyncClient(timeout=20, follow_redirects=True, proxy=_BD_PROXY) as client:
+        async with httpx.AsyncClient(timeout=20, follow_redirects=True,
+                                       proxy=_BD_PROXY, verify=_BD_CA_BUNDLE) as client:
             resp = await client.get(_CRTSH_URL, params={"q": f"%.{domain}", "output": "json"})
             if resp.status_code != 200:
                 errors.append(f"HTTP {resp.status_code}")
@@ -469,7 +521,8 @@ async def _query_wayback(domain: str) -> dict:
     domain = domain.lower().replace("http://", "").replace("https://", "").split("/")[0]
 
     try:
-        async with httpx.AsyncClient(timeout=20, follow_redirects=True) as client:
+        async with httpx.AsyncClient(timeout=20, follow_redirects=True,
+                                       proxy=_BD_PROXY, verify=_BD_CA_BUNDLE) as client:
             resp = await client.get(
                 _WAYBACK_CDX,
                 params={
@@ -597,13 +650,13 @@ async def scan(
 
     # Fan-out: article providers + shell signal providers
     gdelt_task = _query_gdelt(company_name, country, languages, days_back, max_results)
-    bing_task = _query_bing(company_name, country, languages, days_back, max_results)
-    serpapi_task = _query_serpapi(company_name, country, languages, days_back, max_results)
+    bd_serp_task = _query_bd_serp(company_name, country, languages, days_back, max_results)
+    bd_discover_task = _query_bd_discover(company_name, country, languages, days_back, max_results)
     crtsh_task = _query_crtsh(domain)
     wayback_task = _query_wayback(domain)
 
     # Per-provider timeout — one hung provider must never block the whole response
-    _PROVIDER_TIMEOUT = 30  # seconds
+    _PROVIDER_TIMEOUT = 35  # seconds (Discover polls up to 25s internally)
 
     async def _safe(coro, name):
         try:
@@ -612,10 +665,10 @@ async def scan(
             log.warning("Adverse media provider %s timed out after %ds", name, _PROVIDER_TIMEOUT)
             return {"status": "error", "count": 0, "articles": [], "error": f"{name}: timed out ({_PROVIDER_TIMEOUT}s)"}
 
-    gdelt_r, bing_r, serpapi_r, crtsh_r, wayback_r = await asyncio.gather(
+    gdelt_r, bd_serp_r, bd_discover_r, crtsh_r, wayback_r = await asyncio.gather(
         _safe(gdelt_task, "GDELT"),
-        _safe(bing_task, "BING"),
-        _safe(serpapi_task, "SERPAPI"),
+        _safe(bd_serp_task, "BD_SERP"),
+        _safe(bd_discover_task, "BD_DISCOVER"),
         _safe(crtsh_task, "CRT_SH"),
         _safe(wayback_task, "WAYBACK"),
     )
@@ -623,8 +676,8 @@ async def scan(
     # Collect all articles
     all_articles = []
     all_articles.extend(gdelt_r.get("articles", []))
-    all_articles.extend(bing_r.get("articles", []))
-    all_articles.extend(serpapi_r.get("articles", []))
+    all_articles.extend(bd_serp_r.get("articles", []))
+    all_articles.extend(bd_discover_r.get("articles", []))
 
     # Deduplicate by canonical URL
     seen_urls = set()
@@ -654,7 +707,8 @@ async def scan(
 
     # Provider status block
     providers = {}
-    for name, result in [("GDELT", gdelt_r), ("BING", bing_r), ("SERPAPI", serpapi_r),
+    for name, result in [("GDELT", gdelt_r), ("BD_SERP", bd_serp_r),
+                          ("BD_DISCOVER", bd_discover_r),
                           ("CRT_SH", crtsh_r), ("WAYBACK", wayback_r)]:
         entry = {
             "status": result["status"],
@@ -666,7 +720,7 @@ async def scan(
         providers[name] = entry
 
     # Overall status
-    has_error = any(r["status"] == "error" for r in [gdelt_r, bing_r, serpapi_r])
+    has_error = any(r["status"] == "error" for r in [gdelt_r, bd_serp_r, bd_discover_r])
     has_data = len(deduped) > 0
     if has_error and not has_data:
         status = "error"
@@ -690,11 +744,19 @@ async def scan(
 
 
 # ---------------------------------------------------------------------------
-# Health check
+# Health check (cached — GDELT rate-limits at 1 req / 5s)
 # ---------------------------------------------------------------------------
 
+_health_cache = {"result": None, "expires": 0}
+_HEALTH_CACHE_TTL = 60  # seconds
+
+
 async def health() -> dict:
-    """Quick provider reachability check."""
+    """Quick provider reachability check. Cached for 60s to avoid GDELT rate limits."""
+    now = time.time()
+    if _health_cache["result"] and now < _health_cache["expires"]:
+        return _health_cache["result"]
+
     checks = {}
 
     async def _check(name, coro):
@@ -706,12 +768,12 @@ async def health() -> dict:
             return f"down ({e})"
 
     async def _gdelt_check():
-        async with httpx.AsyncClient(timeout=6) as client:
-            resp = await client.head(_GDELT_BASE)
-            return "up" if resp.status_code in (200, 302, 405) else f"down ({resp.status_code})"
+        # Don't hit GDELT for health checks — they rate-limit at 1 req / 5s
+        # and health check HEAD requests burn quota. Just report "available".
+        return "available (rate-limited: 1 req / 5s)"
 
     async def _crtsh_check():
-        async with httpx.AsyncClient(timeout=6, proxy=_BD_PROXY) as client:
+        async with httpx.AsyncClient(timeout=6, proxy=_BD_PROXY, verify=_BD_CA_BUNDLE) as client:
             resp = await client.get(_CRTSH_URL, params={"q": "example.com", "output": "json"})
             return "up" if resp.status_code == 200 else f"down ({resp.status_code})"
 
@@ -720,16 +782,36 @@ async def health() -> dict:
             resp = await client.get(_WAYBACK_CDX, params={"url": "example.com", "output": "json", "limit": 1})
             return "up" if resp.status_code == 200 else f"down ({resp.status_code})"
 
-    gdelt_r, crtsh_r, wayback_r = await asyncio.gather(
+    async def _bd_serp_check():
+        # Just verify zone exists by checking API connectivity
+        async with httpx.AsyncClient(timeout=6) as client:
+            resp = await client.post(
+                _BD_SERP_URL,
+                headers={"Authorization": f"Bearer {_BD_API_KEY}", "Content-Type": "application/json"},
+                json={"zone": _BD_SERP_ZONE, "url": "https://www.google.com/search?q=test&tbm=nws", "format": "raw"},
+            )
+            if resp.status_code == 400 and "not found" in resp.text.lower():
+                return f"disabled (zone '{_BD_SERP_ZONE}' not created)"
+            return "up" if resp.status_code == 200 else f"down ({resp.status_code})"
+
+    async def _bd_discover_check():
+        return "up" if _BD_API_KEY else "disabled (no API key)"
+
+    gdelt_r, bd_serp_r, bd_discover_r, crtsh_r, wayback_r = await asyncio.gather(
         _check("GDELT", _gdelt_check()),
+        _check("BD_SERP", _bd_serp_check()),
+        _check("BD_DISCOVER", _bd_discover_check()),
         _check("CRT_SH", _crtsh_check()),
         _check("WAYBACK", _wayback_check()),
     )
 
     checks["GDELT"] = gdelt_r
-    checks["BING"] = "disabled" if not BING_API_KEY else "configured"
-    checks["SERPAPI"] = "disabled" if not SERPAPI_KEY else "configured"
+    checks["BD_SERP"] = bd_serp_r
+    checks["BD_DISCOVER"] = bd_discover_r
     checks["CRT_SH"] = crtsh_r
     checks["WAYBACK"] = wayback_r
 
-    return {"providers": checks, "version": VERSION}
+    result = {"providers": checks, "version": VERSION}
+    _health_cache["result"] = result
+    _health_cache["expires"] = time.time() + _HEALTH_CACHE_TTL
+    return result
