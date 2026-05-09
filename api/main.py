@@ -45,6 +45,7 @@ from keyvault import get_secret, load_vm_tokens
 from event_log import log_job_event, log_api_access
 import adverse_media
 import enrichment
+import screening
 # Multilogin modules now run on crawl-verify VM (180.20.0.4:8460)
 # import multilogin_fbr
 # import multilogin_dgft
@@ -4009,6 +4010,32 @@ async def v2_media(request: Request, _key: str = Depends(verify_api_key)):
     return result
 
 
+@app.post("/api/v2/screening")
+async def v2_screening(request: Request, _key: str = Depends(verify_api_key)):
+    """
+    Sanctions & watchlist screening — 7 sources in parallel.
+    CSL (11 US gov lists), UK FCDO, EU, UN SC, FBI, INTERPOL, OpenSanctions.
+
+    Body: {
+        "entity_name": "NIS A.D. NOVI SAD",
+        "country": "RS",            // optional, ISO-2
+        "entity_type": "company"     // optional: company|person|both (default: both)
+    }
+    """
+    body = await request.json()
+    entity_name = (body.get("entity_name") or "").strip()
+    if not entity_name:
+        raise HTTPException(status_code=422, detail="entity_name required")
+
+    result = await screening.screen(
+        entity_name=entity_name,
+        country=(body.get("country") or "").strip().upper(),
+        entity_type=(body.get("entity_type") or "both").strip().lower(),
+    )
+    result["timestamp"] = datetime.now(timezone.utc).isoformat()
+    return result
+
+
 @app.post("/api/v2/enrich")
 async def v2_enrich(request: Request, _key: str = Depends(verify_api_key)):
     """
@@ -4166,12 +4193,35 @@ async def v2_lookup(request: Request, _key: str = Depends(verify_api_key)):
         except Exception as e:
             return {"status": "error", "error": str(e)[:200]}
 
-    # Run all four in parallel
-    verify_r, lei_r, media_r, enrich_r = await asyncio.gather(
+    # 5. Screening (sanctions + watchlists)
+    async def _do_screening():
+        try:
+            result = await asyncio.wait_for(
+                screening.screen(
+                    entity_name=entity_name,
+                    country=country_code,
+                    entity_type="both",
+                ),
+                timeout=45,
+            )
+            return {
+                "status": result.get("status", "clear"),
+                "risk_level": result.get("risk_level", "CLEAR"),
+                "total_hits": result.get("total_hits", 0),
+                "sources": {k: v.get("status", "error") for k, v in result.get("sources", {}).items()},
+            }
+        except asyncio.TimeoutError:
+            return {"status": "timeout", "risk_level": "UNKNOWN"}
+        except Exception as e:
+            return {"status": "error", "risk_level": "UNKNOWN", "error": str(e)[:200]}
+
+    # Run all five in parallel
+    verify_r, lei_r, media_r, enrich_r, screening_r = await asyncio.gather(
         _do_verify(),
         loop.run_in_executor(None, _do_lei_sync),
         _do_media(),
         _do_enrich(),
+        _do_screening(),
     )
 
     duration_ms = int((time.time() - t0) * 1000)
@@ -4184,6 +4234,7 @@ async def v2_lookup(request: Request, _key: str = Depends(verify_api_key)):
         "lei": lei_r,
         "media": media_r,
         "enrichment": enrich_r,
+        "screening": screening_r,
         "timestamp": datetime.now(timezone.utc).isoformat(),
     }
 
@@ -4235,7 +4286,14 @@ async def v2_health():
     except Exception as e:
         sources["enrichment"] = {"status": f"down ({e})"}
 
-    # 5. Supported countries for verify
+    # 5. Screening providers
+    try:
+        sc_health = await screening.health()
+        sources["screening"] = sc_health.get("providers", {})
+    except Exception as e:
+        sources["screening"] = {"status": f"down ({e})"}
+
+    # 6. Supported countries for verify
     sources["verify_countries"] = list(_VERIFY_SOURCES.keys())
 
     return {
