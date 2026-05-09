@@ -44,6 +44,7 @@ from pydantic import BaseModel, Field, model_validator
 from keyvault import get_secret, load_vm_tokens
 from event_log import log_job_event, log_api_access
 import adverse_media
+import enrichment
 # Multilogin modules now run on crawl-verify VM (180.20.0.4:8460)
 # import multilogin_fbr
 # import multilogin_dgft
@@ -3943,8 +3944,9 @@ async def adverse_media_health():
 # Roles (no duplication):
 #   /api/v2/verify     → gov registry verification (crawl-verify VM)
 #   /api/v2/verify/lei → GLEIF corporate hierarchy (crawl-verify VM)
-#   /api/v2/media      → adverse media (GDELT, Bing, SerpAPI on crawldevvm)
-#   /api/v2/lookup     → one-shot fan-out (verify + LEI + media)
+#   /api/v2/media      → adverse media (GDELT, BD SERP, BD Discover on crawldevvm)
+#   /api/v2/enrich     → company enrichment (Crunchbase + Deep Lookup via Bright Data)
+#   /api/v2/lookup     → one-shot fan-out (verify + LEI + media + enrich)
 #   /api/v2/health     → per-source health
 #
 # NOT in v2 (covered elsewhere):
@@ -4004,6 +4006,32 @@ async def v2_media(request: Request, _key: str = Depends(verify_api_key)):
         max_results=am_request.max_results,
         website=am_request.website,
     )
+    return result
+
+
+@app.post("/api/v2/enrich")
+async def v2_enrich(request: Request, _key: str = Depends(verify_api_key)):
+    """
+    Company enrichment — Crunchbase + Deep Lookup via Bright Data.
+    Returns structured company profile with citations from 1000+ sources.
+
+    Body: {
+        "entity_name": "Tesla Inc",
+        "country_code": "US",       // optional
+        "domain": "tesla.com"       // optional, improves Crunchbase match
+    }
+    """
+    body = await request.json()
+    entity_name = (body.get("entity_name") or "").strip()
+    if not entity_name:
+        raise HTTPException(status_code=422, detail="entity_name required")
+
+    result = await enrichment.enrich(
+        entity_name=entity_name,
+        country_code=(body.get("country_code") or "").strip().upper(),
+        domain=(body.get("domain") or "").strip(),
+    )
+    result["timestamp"] = datetime.now(timezone.utc).isoformat()
     return result
 
 
@@ -4111,11 +4139,39 @@ async def v2_lookup(request: Request, _key: str = Depends(verify_api_key)):
         except Exception as e:
             return {"total_articles": 0, "risk_level": "UNKNOWN", "error": str(e)[:200]}
 
-    # Run all three in parallel
-    verify_r, lei_r, media_r = await asyncio.gather(
+    # 4. Enrichment (Crunchbase + Deep Lookup)
+    async def _do_enrich():
+        try:
+            result = await asyncio.wait_for(
+                enrichment.enrich(
+                    entity_name=entity_name,
+                    country_code=country_code,
+                    domain=body.get("domain", ""),
+                ),
+                timeout=70,
+            )
+            if result.get("profile"):
+                return {
+                    "status": result["status"],
+                    "name": result["profile"].get("name"),
+                    "industry": result["profile"].get("industries") or result["profile"].get("industry"),
+                    "employee_count": result["profile"].get("employee_count"),
+                    "headquarters": result["profile"].get("headquarters") or result["profile"].get("region"),
+                    "website": result["profile"].get("website"),
+                    "revenue": result["profile"].get("revenue"),
+                }
+            return {"status": result.get("status", "not_found")}
+        except asyncio.TimeoutError:
+            return {"status": "timeout"}
+        except Exception as e:
+            return {"status": "error", "error": str(e)[:200]}
+
+    # Run all four in parallel
+    verify_r, lei_r, media_r, enrich_r = await asyncio.gather(
         _do_verify(),
         loop.run_in_executor(None, _do_lei_sync),
         _do_media(),
+        _do_enrich(),
     )
 
     duration_ms = int((time.time() - t0) * 1000)
@@ -4127,6 +4183,7 @@ async def v2_lookup(request: Request, _key: str = Depends(verify_api_key)):
         "registry": verify_r,
         "lei": lei_r,
         "media": media_r,
+        "enrichment": enrich_r,
         "timestamp": datetime.now(timezone.utc).isoformat(),
     }
 
@@ -4171,7 +4228,14 @@ async def v2_health():
     except Exception as e:
         sources["adverse_media"] = {"status": f"down ({e})"}
 
-    # 4. Supported countries for verify
+    # 4. Enrichment providers
+    try:
+        en_health = await enrichment.health()
+        sources["enrichment"] = en_health.get("providers", {})
+    except Exception as e:
+        sources["enrichment"] = {"status": f"down ({e})"}
+
+    # 5. Supported countries for verify
     sources["verify_countries"] = list(_VERIFY_SOURCES.keys())
 
     return {
