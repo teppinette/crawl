@@ -21,6 +21,7 @@ authoritative sources.
 | `POST /api/v2/verify` | Gov registry verification (10+ countries) | SECP, FBR, MCA, ACRA, GIB, FTA, Tianyancha, Companies House, Receita Federal, SEC EDGAR, DART |
 | `POST /api/v2/verify/lei` | GLEIF LEI corporate hierarchy | GLEIF API |
 | `POST /api/v2/media` | Adverse media / news screening | GDELT (65 languages), Bright Data SERP (Google News), Bright Data Discover (AI-ranked), crt.sh, Wayback |
+| `POST /api/v2/enrich` | Company enrichment (revenue, employees, leadership) | Bright Data Deep Lookup (1000+ sources), Crunchbase |
 | `POST /api/v2/lookup` | One-shot fan-out (all above in parallel) | All above |
 | `GET /api/v2/health` | Per-source health status | All above |
 
@@ -198,13 +199,74 @@ Searches mainstream news sources for adverse coverage. NOT dark web.
 
 ---
 
-### 3.4 One-Shot Lookup
+### 3.4 Company Enrichment
+
+```
+POST /api/v2/enrich
+```
+
+AI-powered company enrichment from 1000+ public sources. Returns structured
+profile with citations. Uses Bright Data Deep Lookup + Crunchbase scraper.
+
+**Request:**
+```json
+{
+    "entity_name": "Samsung Electronics",
+    "country_code": "KR",
+    "domain": "samsung.com"
+}
+```
+
+**Response:**
+```json
+{
+    "status": "complete",
+    "duration_ms": 51248,
+    "entity_name": "Samsung Electronics",
+    "providers": {
+        "CRUNCHBASE": {"status": "ok", "latency_ms": 17447},
+        "DEEP_LOOKUP": {"status": "ok", "latency_ms": 51597}
+    },
+    "profile": {
+        "name": "Samsung Electronics",
+        "domain": "samsung.com",
+        "revenue": "$234.62 billion USD",
+        "employee_count": "262,647 employees",
+        "headquarters": "Suwon-si, Gyeonggi-do, South Korea",
+        "ceo": "TM Roh and Young Hyun Jun",
+        "founded": "1969",
+        "industry": "Consumer Electronics",
+        "industries": ["Consumer Electronics", "Electronics", "Manufacturing"],
+        "website": "https://www.samsung.com",
+        "funding": { "total_raised": "...", "num_rounds": 3 },
+        "leadership": [{"name": "...", "title": "...", "linkedin": "..."}]
+    },
+    "citations": [
+        {
+            "field": "revenue",
+            "url": "https://www.macrotrends.net/...",
+            "title": "Samsung Electronics Revenue 2012-2026",
+            "excerpt": "Samsung annual revenue for 2025 was $234.62B"
+        }
+    ],
+    "timestamp": "2026-05-09T19:10:00Z"
+}
+```
+
+**Typical response time:** 30-60 seconds (Deep Lookup polls public sources).
+
+**Cost:** ~$1/record (Deep Lookup) + Crunchbase scraper cost. Only charged for
+matched records.
+
+---
+
+### 3.5 One-Shot Lookup
 
 ```
 POST /api/v2/lookup
 ```
 
-Runs verify + LEI + media in parallel. Returns combined result.
+Runs verify + LEI + media + enrich in parallel. Returns combined result.
 Designed for iPhone app / quick lookups before a meeting.
 
 **Request:**
