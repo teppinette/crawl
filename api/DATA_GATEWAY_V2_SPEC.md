@@ -1,31 +1,29 @@
 # Crawl Data Gateway — API v2.0 Specification
 ## For: Global Compliance, Onboarding, SalesTracker, iPhone App
-### Document: CRG-DATA-V2-001 | Version 2.0 | 2026-05-09
+### Document: CRG-DATA-V2-001 | Version 2.1 | 2026-05-09
 
 ---
 
 ## 1. WHAT IS THIS
 
 A unified data API for structured lookups — government registry verification,
-corporate hierarchy mapping, and adverse media screening. Every response
-includes `validation_source` so compliance teams can independently verify
-the data.
+corporate hierarchy mapping, adverse media screening, and company enrichment.
+Every response includes `validation_source` or `citations` so compliance teams
+can independently verify the data.
 
-No AI. No dark web. No proxy knowledge required. Just structured data from
-authoritative sources.
+No AI agents. No dark web. No proxy knowledge required. Just structured data
+from authoritative sources, delivered as JSON.
 
 ### What v2 covers
 
-| Endpoint | What it does | Sources |
-|----------|-------------|---------|
-| `POST /api/v2/verify` | Gov registry verification (10+ countries) | SECP, FBR, MCA, ACRA, GIB, FTA, Tianyancha, Companies House, Receita Federal, SEC EDGAR, DART |
-| `POST /api/v2/verify/lei` | GLEIF LEI corporate hierarchy | GLEIF API |
-| `POST /api/v2/media` | Adverse media / news screening | GDELT (65 languages), Bright Data SERP (Google News), Bright Data Discover (AI-ranked), crt.sh, Wayback |
-| `POST /api/v2/enrich` | Company enrichment (revenue, employees, leadership) | Bright Data Deep Lookup (1000+ sources), Crunchbase |
-| `POST /api/v2/lookup` | One-shot fan-out (all above in parallel) | All above |
-| `GET /api/v2/health` | Per-source health status | All above |
-
-*BD_SERP requires SERP API zone creation at brightdata.com/cp/zones.
+| Endpoint | What it does | Sources | Response time |
+|----------|-------------|---------|---------------|
+| `POST /api/v2/verify` | Gov registry verification (10 countries) | SECP, FBR, MCA, ACRA, GIB, FTA, Tianyancha, Companies House, Receita Federal, SEC EDGAR, DART | 2-15s |
+| `POST /api/v2/verify/lei` | GLEIF LEI corporate hierarchy | GLEIF API | 2-5s |
+| `POST /api/v2/media` | Adverse media / news screening | GDELT (65 languages), Bright Data SERP (Google News), Bright Data Discover (AI-ranked), crt.sh, Wayback | 10-25s |
+| `POST /api/v2/enrich` | Company enrichment (revenue, employees, leadership, funding) | Bright Data Deep Lookup (1000+ sources), Crunchbase | 30-60s |
+| `POST /api/v2/lookup` | One-shot fan-out (all above in parallel) | All above | 30-60s |
+| `GET /api/v2/health` | Per-source health status | All above | <1s |
 
 ### What v2 does NOT cover (covered elsewhere)
 
@@ -44,7 +42,7 @@ authoritative sources.
 |-------------|---------|
 | `POST /api/v1/jobs` | Submit AI research jobs (CIR, product-intel) |
 | `GET /api/v1/jobs/{id}` | Poll AI research jobs |
-| `POST /api/v1/verify` | v1 verify (still works, v2 is the same endpoint) |
+| `POST /api/v1/verify` | v1 verify (still works, v2 is the same logic) |
 | `POST /tools/adverse_media` | v1 adverse media (v2/media wraps this) |
 
 ---
@@ -54,13 +52,21 @@ authoritative sources.
 ```
 Base URL:   https://crawldevvm:8443/api/v2
             http://20.94.45.219:8400/api/v2    (plain HTTP, internal)
-Auth:       X-API-Key header
+Auth:       X-API-Key header (or Authorization: Bearer <key>)
 Content:    application/json (POST body + response)
-Timeout:    30s for verify/lei/media, 60s for lookup
+Timeout:    30s for verify/lei, 30s for media, 75s for enrich, 75s for lookup
 Rate limit: 30 requests / 60 seconds per API key
 ```
 
 GC app connects from 104.209.146.16 — already allowed in NSG (rules 205/206).
+
+### API Key
+
+```
+X-API-Key: <key>
+```
+
+Same key for all endpoints. Contact crawl-infra for provisioning.
 
 ---
 
@@ -71,6 +77,10 @@ GC app connects from 104.209.146.16 — already allowed in NSG (rules 205/206).
 ```
 POST /api/v2/verify
 ```
+
+Verifies an entity against the official government registry for its country.
+Returns the legal name, status, and a `validation_source` block that a banker
+can use to independently verify.
 
 **Request:**
 ```json
@@ -121,6 +131,9 @@ Response fields vary by country. Every response always includes:
 POST /api/v2/verify/lei
 ```
 
+Looks up the Legal Entity Identifier and returns the full corporate hierarchy
+(parent → ultimate parent) from GLEIF.
+
 **Request:**
 ```json
 {
@@ -158,6 +171,7 @@ POST /api/v2/media
 ```
 
 Searches mainstream news sources for adverse coverage. NOT dark web.
+Three article providers run in parallel; results are deduplicated by URL.
 
 **Request:**
 ```json
@@ -170,6 +184,15 @@ Searches mainstream news sources for adverse coverage. NOT dark web.
     "max_results": 20
 }
 ```
+
+| Field | Required | Default | Notes |
+|-------|----------|---------|-------|
+| `entity_name` | Yes | — | Company or person name |
+| `country_code` | No | "XX" | ISO 2-letter, auto-selects languages |
+| `domain` | No | — | Enables crt.sh + Wayback shell signals |
+| `languages` | No | Auto from country | ISO 639-1 codes |
+| `days_back` | No | 7 | Max 90 (GDELT caps at ~84 days) |
+| `max_results` | No | 20 | Max articles returned |
 
 **Response:**
 ```json
@@ -190,12 +213,31 @@ Searches mainstream news sources for adverse coverage. NOT dark web.
             "source": "irishtimes.com",
             "published_at": "2026-04-10T05:00:00Z",
             "language": "en",
-            "source_provider": "GDELT"
+            "source_provider": "GDELT",
+            "relevance_score": null
         }
     ],
-    "shell_signals": { ... }
+    "shell_signals": {
+        "cert_count": 3,
+        "earliest_cert_date": "2015-03-12",
+        "wayback_first_capture": "2006-02-14",
+        "wayback_total_captures": 12,
+        "domain_age_days": 7400
+    }
 }
 ```
+
+**Article providers:**
+- **GDELT** — 65 languages, negative-tone filter, free (rate-limited 1 req/5s)
+- **BD_SERP** — Google News via Bright Data SERP API (paid per request)
+- **BD_DISCOVER** — AI-ranked results with `relevance_score` 0-1 (paid per request)
+
+**Shell signal providers** (only if `domain` provided):
+- **CRT_SH** — SSL certificate transparency (new domain = shell company risk)
+- **WAYBACK** — Wayback Machine captures (no web history = shell company risk)
+
+**Status values:** `complete` (all providers ok), `partial` (some failed, some data),
+`error` (all article providers failed).
 
 ---
 
@@ -206,7 +248,7 @@ POST /api/v2/enrich
 ```
 
 AI-powered company enrichment from 1000+ public sources. Returns structured
-profile with citations. Uses Bright Data Deep Lookup + Crunchbase scraper.
+profile with citations that can be independently verified.
 
 **Request:**
 ```json
@@ -216,6 +258,12 @@ profile with citations. Uses Bright Data Deep Lookup + Crunchbase scraper.
     "domain": "samsung.com"
 }
 ```
+
+| Field | Required | Notes |
+|-------|----------|-------|
+| `entity_name` | Yes | Company name |
+| `country_code` | No | Improves Deep Lookup accuracy |
+| `domain` | No | Improves Crunchbase slug matching |
 
 **Response:**
 ```json
@@ -238,13 +286,24 @@ profile with citations. Uses Bright Data Deep Lookup + Crunchbase scraper.
         "industry": "Consumer Electronics",
         "industries": ["Consumer Electronics", "Electronics", "Manufacturing"],
         "website": "https://www.samsung.com",
-        "funding": { "total_raised": "...", "num_rounds": 3 },
-        "leadership": [{"name": "...", "title": "...", "linkedin": "..."}]
+        "operating_status": "active",
+        "contact_email": "...",
+        "contact_phone": "...",
+        "social_media": ["https://linkedin.com/company/..."],
+        "funding": {
+            "total_raised": "...",
+            "last_round_type": "...",
+            "last_round_date": "...",
+            "num_rounds": 3
+        },
+        "leadership": [
+            {"name": "TM Roh", "title": "President & Head of MX", "linkedin": "..."}
+        ]
     },
     "citations": [
         {
             "field": "revenue",
-            "url": "https://www.macrotrends.net/...",
+            "url": "https://www.macrotrends.net/stocks/charts/SSNLF/samsung/revenue",
             "title": "Samsung Electronics Revenue 2012-2026",
             "excerpt": "Samsung annual revenue for 2025 was $234.62B"
         }
@@ -253,10 +312,13 @@ profile with citations. Uses Bright Data Deep Lookup + Crunchbase scraper.
 }
 ```
 
-**Typical response time:** 30-60 seconds (Deep Lookup polls public sources).
+**Enrichment providers:**
+- **CRUNCHBASE** — Structured company data (funding, leadership, financials).
+  Best for public / VC-backed companies.
+- **DEEP_LOOKUP** — AI-powered search across 1000+ public sources with citations.
+  Works for private companies too. ~$1/matched record.
 
-**Cost:** ~$1/record (Deep Lookup) + Crunchbase scraper cost. Only charged for
-matched records.
+**Typical response time:** 30-60 seconds.
 
 ---
 
@@ -283,12 +345,12 @@ Designed for iPhone app / quick lookups before a meeting.
 {
     "entity_name": "Samsung Electronics",
     "country_code": "KR",
-    "lookup_time_ms": 15200,
+    "lookup_time_ms": 52000,
     "registry": {
         "verified": true,
         "legal_name": "삼성전자",
         "status": "ACTIVE",
-        "validation_source": { ... }
+        "validation_source": { "..." }
     },
     "lei": {
         "found": true,
@@ -300,23 +362,33 @@ Designed for iPhone app / quick lookups before a meeting.
     "media": {
         "total_articles": 5,
         "risk_level": "LOW",
-        "top_article": "Samsung reports record Q1 chip revenue — reuters.com"
+        "top_article": "Samsung reports record Q1 chip revenue — reuters.com",
+        "providers": {"GDELT": "ok", "BD_SERP": "ok", "BD_DISCOVER": "ok"}
     },
-    "timestamp": "2026-05-09T17:46:19Z"
+    "enrichment": {
+        "status": "complete",
+        "name": "Samsung Electronics",
+        "industry": ["Consumer Electronics", "Electronics"],
+        "employee_count": "262,647",
+        "headquarters": "Suwon-si, South Korea",
+        "website": "https://www.samsung.com",
+        "revenue": "$234.62 billion USD"
+    },
+    "timestamp": "2026-05-09T19:15:00Z"
 }
 ```
 
-**Typical response time:** 10-30 seconds.
+**Typical response time:** 30-60 seconds (bounded by enrichment + media).
 
 ---
 
-### 3.5 Health
+### 3.6 Health
 
 ```
 GET /api/v2/health
 ```
 
-No auth required. Shows per-source status.
+No auth required. Shows per-source status. Use for monitoring probes.
 
 **Response:**
 ```json
@@ -326,13 +398,17 @@ No auth required. Shows per-source status.
     "api_version": "2.0.0",
     "sources": {
         "gateway": { "status": "up", "version": "3.0.0" },
-        "verify_vm": { "status": "up", "version": "1.3.0", "countries": [...] },
+        "verify_vm": { "status": "up", "version": "1.3.0", "countries": ["PK","IN","SG","TR","AE","CN","GB","BR","US","KR"] },
         "adverse_media": {
             "GDELT": "up",
             "BD_SERP": "up",
             "BD_DISCOVER": "up",
             "CRT_SH": "up",
             "WAYBACK": "up"
+        },
+        "enrichment": {
+            "CRUNCHBASE": "up",
+            "DEEP_LOOKUP": "up"
         },
         "verify_countries": ["PK","IN","SG","TR","AE","CN","GB","BR","US","KR"]
     }
@@ -345,18 +421,22 @@ No auth required. Shows per-source status.
 
 | Code | Meaning |
 |------|---------|
-| 200 | Success (check `verified`/`found` fields — 200 with `false` means not found, not an error) |
+| 200 | Success (check `verified`/`found`/`status` fields — 200 with `verified: false` means not found, not an error) |
 | 400 | Blocked terms detected (data sanitization) |
-| 401 | Missing or invalid API key |
+| 403 | Missing or invalid API key |
 | 422 | Validation error (missing required fields, unsupported country) |
 | 429 | Rate limited (30 req / 60s) |
 | 502 | Upstream source unavailable |
+
+**Partial success:** Media and enrich endpoints return `status: "partial"` when
+some providers fail but others returned data. Check the `providers` block to see
+which sources contributed.
 
 ---
 
 ## 5. VALIDATION SOURCE
 
-Every response includes:
+Every verify/LEI response includes:
 
 ```json
 {
@@ -372,12 +452,15 @@ Every response includes:
 
 For compliance audit trail. A banker can follow `how_to_reproduce` to verify independently.
 
+Every enrich response includes `citations[]` — URL + title + excerpt for each data point.
+
 ---
 
 ## 6. DATA SANITIZATION
 
 - **NEVER** include COPAP name, customer names, supplier names, or internal identifiers
 - Gateway HARD FAILS (HTTP 400) on blocked terms — does not silently redact
+- Callers must sanitize entity names before sending (no internal references)
 
 ---
 
@@ -388,21 +471,70 @@ import requests, os
 
 CRAWL_API = "https://crawldevvm:8443/api/v2"
 API_KEY = os.environ["CRAWL_API_KEY"]
+HEADERS = {"X-API-Key": API_KEY, "Content-Type": "application/json"}
+
 
 def crawl_verify(entity_name, country_code, **kwargs):
+    """Registry verification — 2-15s."""
     resp = requests.post(f"{CRAWL_API}/verify",
         json={"entity_name": entity_name, "country_code": country_code, **kwargs},
-        headers={"X-API-Key": API_KEY}, timeout=30, verify=False)
+        headers=HEADERS, timeout=30, verify=False)
     resp.raise_for_status()
     return resp.json()
 
+
+def crawl_media(entity_name, country_code="XX", domain=None, days_back=30):
+    """Adverse media screening — 10-25s."""
+    resp = requests.post(f"{CRAWL_API}/media",
+        json={"entity_name": entity_name, "country_code": country_code,
+              "domain": domain, "days_back": days_back},
+        headers=HEADERS, timeout=35, verify=False)
+    resp.raise_for_status()
+    return resp.json()
+
+
+def crawl_enrich(entity_name, country_code="", domain=None):
+    """Company enrichment — 30-60s."""
+    resp = requests.post(f"{CRAWL_API}/enrich",
+        json={"entity_name": entity_name, "country_code": country_code,
+              "domain": domain},
+        headers=HEADERS, timeout=90, verify=False)
+    resp.raise_for_status()
+    return resp.json()
+
+
 def crawl_lookup(entity_name, country_code, **kwargs):
+    """One-shot: verify + LEI + media + enrich — 30-60s."""
     resp = requests.post(f"{CRAWL_API}/lookup",
         json={"entity_name": entity_name, "country_code": country_code, **kwargs},
-        headers={"X-API-Key": API_KEY}, timeout=60, verify=False)
+        headers=HEADERS, timeout=90, verify=False)
     resp.raise_for_status()
     return resp.json()
 ```
+
+### Integration Notes for GC / Onboarding
+
+1. **Replace internal registry calls** with `/api/v2/verify` — one endpoint,
+   10 countries, consistent `validation_source` format. No more per-country
+   adapter maintenance on the GC side.
+
+2. **Replace adverse media gaps** with `/api/v2/media` — the screening
+   completeness watcher can call this directly. Returns structured articles
+   with `source_provider` so you know where each result came from.
+
+3. **New: company enrichment** via `/api/v2/enrich` — revenue, employees,
+   leadership, funding, headquarters. Useful for onboarding risk scoring
+   and compliance profiles. Citations included for audit trail.
+
+4. **For quick lookups** (iPhone app, pre-meeting checks), use `/api/v2/lookup`
+   to get everything in one call.
+
+5. **Timeouts:** Set 30s for verify/media, 90s for enrich/lookup. The gateway
+   handles per-provider timeouts internally — a slow provider won't block
+   the whole response.
+
+6. **Partial results:** Media and enrich can return `status: "partial"` if some
+   providers fail. Always check the `providers` block to see what contributed.
 
 ---
 
@@ -413,7 +545,26 @@ def crawl_lookup(entity_name, country_code, **kwargs):
 | **crawl-verify** (180.20.0.4) | Gov registry verification | All country registry adapters. One source of truth. |
 | **crawl-darkweb** (20.86.161.6) | Dark web / breach / leak | 37 Tor sources. Network-isolated. |
 | **5x OpenClaw VMs** | Deep AI research | CIR narratives, product intel, financial analysis |
-| **crawldevvm** (20.94.45.219) | Gateway + adverse media | Routes all requests. Runs GDELT + Bright Data SERP/Discover locally. |
+| **crawldevvm** (20.94.45.219) | Gateway + data APIs | Routes all requests. Adverse media, enrichment, Bright Data APIs. |
 | **GC app** (.11) | Compliance decision engine | Bridger, ICIJ Neo4j, market data, trade data, AI synthesis |
 
 Nothing is duplicated. Each server has one job.
+
+---
+
+## 9. MIGRATION PLAN
+
+### Phase 1 (now) — Adopt new endpoints
+- GC/Onboarding start calling `/api/v2/media` for adverse media screening
+- GC/Onboarding start calling `/api/v2/enrich` for company enrichment
+- Both systems continue running existing registry adapters
+
+### Phase 2 — Registry consolidation
+- Port GC's mature country adapters (GB, IN, US, SG) into crawl-verify
+- GC/Onboarding switch to `/api/v2/verify` for all registry checks
+- Retire per-country adapters on GC side
+
+### Phase 3 — Full v2 adoption
+- All structured lookups go through v2 API
+- GC keeps: Bridger, ICIJ, market data, trade data, AI synthesis
+- iPhone app / SalesTracker use `/api/v2/lookup` for one-shot lookups
