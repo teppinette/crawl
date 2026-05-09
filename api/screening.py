@@ -29,6 +29,7 @@ from xml.etree import ElementTree as ET
 import httpx
 
 from keyvault import get_secret
+import raw_store
 
 log = logging.getLogger("screening")
 
@@ -142,6 +143,16 @@ async def _query_csl(entity_name: str, country: str = "") -> dict:
             data = resp.json()
 
         latency = int((time.monotonic() - t0) * 1000)
+
+        raw_store.store(
+            source="CSL", entity_name=entity_name, country_code=country,
+            request_method="GET", request_url=_CSL_URL,
+            request_params=params, request_headers=dict(headers),
+            response_status=resp.status_code,
+            response_headers=dict(resp.headers),
+            response_body=resp.text, duration_ms=latency,
+        )
+
         results = data.get("results", [])
 
         # Filter spurious fuzzy matches
@@ -196,11 +207,21 @@ async def _load_xml_list(source: str, url: str, parser) -> list:
         return cached["entries"]
 
     try:
+        t0 = time.monotonic()
         async with httpx.AsyncClient(timeout=60, follow_redirects=True) as client:
             resp = await client.get(url, headers={
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
             })
             resp.raise_for_status()
+        load_ms = int((time.monotonic() - t0) * 1000)
+
+        raw_store.store(
+            source=source, request_method="GET", request_url=url,
+            response_status=resp.status_code,
+            response_headers=dict(resp.headers),
+            response_body=resp.text, duration_ms=load_ms,
+        )
+
         entries = parser(resp.content)
         _LIST_CACHE[source] = {"loaded_at": datetime.now(timezone.utc), "entries": entries}
         log.info("Loaded %s: %d entries", source, len(entries))
@@ -360,9 +381,18 @@ async def _query_fbi(entity_name: str) -> dict:
             page = 1
             async with httpx.AsyncClient(timeout=30) as client:
                 while page <= 10:
-                    resp = await client.get(_FBI_URL, params={"page": page, "pageSize": 50})
+                    fbi_params = {"page": page, "pageSize": 50}
+                    resp = await client.get(_FBI_URL, params=fbi_params)
                     if resp.status_code != 200:
                         break
+                    raw_store.store(
+                        source="FBI", request_method="GET", request_url=_FBI_URL,
+                        request_params=fbi_params,
+                        response_status=resp.status_code,
+                        response_headers=dict(resp.headers),
+                        response_body=resp.text,
+                        duration_ms=int((time.monotonic() - t0) * 1000),
+                    )
                     data = resp.json()
                     items = data.get("items", [])
                     if not items:
@@ -417,6 +447,15 @@ async def _query_interpol(entity_name: str) -> dict:
         headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
         async with httpx.AsyncClient(timeout=15) as client:
             resp = await client.get(_INTERPOL_URL, params=params, headers=headers)
+            latency_now = int((time.monotonic() - t0) * 1000)
+            raw_store.store(
+                source="INTERPOL", entity_name=entity_name,
+                request_method="GET", request_url=_INTERPOL_URL,
+                request_params=params, request_headers=headers,
+                response_status=resp.status_code,
+                response_headers=dict(resp.headers),
+                response_body=resp.text, duration_ms=latency_now,
+            )
             if resp.status_code != 200:
                 latency = int((time.monotonic() - t0) * 1000)
                 return {"source": "INTERPOL", "status": "error", "hits": [],
@@ -476,6 +515,15 @@ async def _query_opensanctions(entity_name: str) -> dict:
         headers = {"Authorization": f"ApiKey {_OPENSANCTIONS_API_KEY}"}
         async with httpx.AsyncClient(timeout=15) as client:
             resp = await client.get(_OPENSANCTIONS_URL, params=params, headers=headers)
+            latency_now = int((time.monotonic() - t0) * 1000)
+            raw_store.store(
+                source="OPENSANCTIONS", entity_name=entity_name,
+                request_method="GET", request_url=_OPENSANCTIONS_URL,
+                request_params=params, request_headers=dict(headers),
+                response_status=resp.status_code,
+                response_headers=dict(resp.headers),
+                response_body=resp.text, duration_ms=latency_now,
+            )
             if resp.status_code != 200:
                 latency = int((time.monotonic() - t0) * 1000)
                 return {"source": "OPENSANCTIONS", "status": "error",

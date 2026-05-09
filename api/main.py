@@ -47,6 +47,7 @@ import adverse_media
 import enrichment
 import screening
 import aggregator
+import raw_store
 # Multilogin modules now run on crawl-verify VM (180.20.0.4:8460)
 # import multilogin_fbr
 # import multilogin_dgft
@@ -4313,6 +4314,12 @@ async def v2_health():
         list(_VERIFY_SOURCES.keys()) + aggregator.supported_countries()
     ))
 
+    # 8. Raw response store stats
+    try:
+        sources["raw_store"] = raw_store.stats()
+    except Exception as e:
+        sources["raw_store"] = {"status": f"error ({e})"}
+
     return {
         "status": "ok",
         "service": "crawl-data-gateway",
@@ -4320,3 +4327,49 @@ async def v2_health():
         "sources": sources,
         "timestamp": datetime.now(timezone.utc).isoformat(),
     }
+
+
+# ---------------------------------------------------------------------------
+# Raw Response Store — 90-day retention endpoints
+# ---------------------------------------------------------------------------
+
+@app.get("/api/v2/raw/stats")
+async def v2_raw_stats(_key: str = Depends(verify_api_key)):
+    """Get raw response store statistics."""
+    return raw_store.stats()
+
+
+@app.get("/api/v2/raw")
+async def v2_raw_list(
+    request: Request,
+    _key: str = Depends(verify_api_key),
+    date: str = "",
+    source: str = "",
+    entity_name: str = "",
+    limit: int = 50,
+):
+    """
+    List stored raw responses (metadata only, no body).
+    Query params: date (YYYY-MM-DD), source, entity_name, limit.
+    """
+    results = raw_store.list_responses(
+        date=date, source=source, entity_name=entity_name,
+        limit=min(limit, 200),
+    )
+    return {"count": len(results), "responses": results}
+
+
+@app.post("/api/v2/raw/cleanup")
+async def v2_raw_cleanup(_key: str = Depends(verify_api_key)):
+    """Manually trigger cleanup of raw responses older than 90 days."""
+    stats = raw_store.cleanup()
+    return {"status": "ok", **stats}
+
+
+@app.get("/api/v2/raw/{response_id}")
+async def v2_raw_get(response_id: str, _key: str = Depends(verify_api_key)):
+    """Retrieve a stored raw upstream response by ID."""
+    record = raw_store.retrieve(response_id)
+    if record is None:
+        raise HTTPException(status_code=404, detail="Raw response not found")
+    return record

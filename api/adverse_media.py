@@ -23,6 +23,7 @@ from urllib.parse import urlparse, parse_qs, urlencode, quote_plus
 import httpx
 
 from keyvault import get_secret
+import raw_store
 
 log = logging.getLogger("adverse-media")
 
@@ -308,6 +309,17 @@ async def _query_bd_serp(company_name: str, country: str, languages: list[str],
                     "format": "raw",
                 },
             )
+            raw_store.store(
+                source="BD_SERP", entity_name=company_name,
+                country_code=country,
+                request_method="POST", request_url=_BD_SERP_URL,
+                request_params={"zone": _BD_SERP_ZONE, "url": google_url},
+                request_headers={"Authorization": f"Bearer {_BD_API_KEY}"},
+                response_status=resp.status_code,
+                response_headers=dict(resp.headers),
+                response_body=resp.text,
+                duration_ms=int((time.monotonic() - t0) * 1000),
+            )
             if resp.status_code == 400 and "not found" in resp.text.lower():
                 return {"status": "disabled", "count": 0, "latency_ms": 0, "articles": [],
                         "error": f"SERP zone '{_BD_SERP_ZONE}' not created — create at brightdata.com/cp/zones"}
@@ -396,6 +408,17 @@ async def _query_bd_discover(company_name: str, country: str, languages: list[st
                 },
                 json=payload,
             )
+            raw_store.store(
+                source="BD_DISCOVER", entity_name=company_name,
+                country_code=country,
+                request_method="POST", request_url=_BD_DISCOVER_URL,
+                request_params=payload,
+                request_headers={"Authorization": f"Bearer {_BD_API_KEY}"},
+                response_status=resp.status_code,
+                response_headers=dict(resp.headers),
+                response_body=resp.text,
+                duration_ms=int((time.monotonic() - t0) * 1000),
+            )
             if resp.status_code != 200:
                 errors.append(f"Discover submit: HTTP {resp.status_code}")
                 latency = int((time.monotonic() - t0) * 1000)
@@ -475,7 +498,17 @@ async def _query_crtsh(domain: str) -> dict:
     try:
         async with httpx.AsyncClient(timeout=20, follow_redirects=True,
                                        proxy=_BD_PROXY, verify=_BD_CA_BUNDLE) as client:
-            resp = await client.get(_CRTSH_URL, params={"q": f"%.{domain}", "output": "json"})
+            crtsh_params = {"q": f"%.{domain}", "output": "json"}
+            resp = await client.get(_CRTSH_URL, params=crtsh_params)
+            raw_store.store(
+                source="crt.sh", entity_name=domain,
+                request_method="GET", request_url=_CRTSH_URL,
+                request_params=crtsh_params,
+                response_status=resp.status_code,
+                response_headers=dict(resp.headers),
+                response_body=resp.text,
+                duration_ms=int((time.monotonic() - t0) * 1000),
+            )
             if resp.status_code != 200:
                 errors.append(f"HTTP {resp.status_code}")
             else:

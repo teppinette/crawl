@@ -21,6 +21,7 @@ from urllib.parse import quote_plus
 import httpx
 
 from keyvault import get_secret
+import raw_store
 
 log = logging.getLogger("enrichment")
 
@@ -110,16 +111,26 @@ async def _try_crunchbase_url(crunchbase_url: str, t0: float) -> dict:
     """Try a single Crunchbase URL via Bright Data scraper."""
     try:
         async with httpx.AsyncClient(timeout=60) as client:
+            req_url = f"{_BD_SCRAPER_URL}?dataset_id={_CRUNCHBASE_DATASET_ID}&format=json"
+            req_headers = {
+                "Authorization": f"Bearer {_BD_API_KEY}",
+                "Content-Type": "application/json",
+            }
             resp = await client.post(
-                f"{_BD_SCRAPER_URL}?dataset_id={_CRUNCHBASE_DATASET_ID}&format=json",
-                headers={
-                    "Authorization": f"Bearer {_BD_API_KEY}",
-                    "Content-Type": "application/json",
-                },
+                req_url, headers=req_headers,
                 json=[{"url": crunchbase_url}],
             )
 
             latency = int((time.monotonic() - t0) * 1000)
+
+            raw_store.store(
+                source="crunchbase", entity_name=crunchbase_url,
+                request_method="POST", request_url=req_url,
+                request_headers=req_headers,
+                response_status=resp.status_code,
+                response_headers=dict(resp.headers),
+                response_body=resp.text, duration_ms=latency,
+            )
 
             if resp.status_code == 202:
                 return {"status": "pending", "latency_ms": latency,
@@ -217,11 +228,21 @@ async def _query_deep_lookup(entity_name: str, country_code: str = None) -> dict
 
     try:
         # Step 1: Create preview (free, returns sample data)
+        preview_url = f"{_BD_DEEP_LOOKUP_URL}/preview"
         async with httpx.AsyncClient(timeout=15) as client:
             resp = await client.post(
-                f"{_BD_DEEP_LOOKUP_URL}/preview",
-                headers=headers,
+                preview_url, headers=headers,
                 json={"query": query},
+            )
+            raw_store.store(
+                source="deep_lookup", entity_name=entity_name,
+                request_method="POST", request_url=preview_url,
+                request_params={"query": query},
+                request_headers=dict(headers),
+                response_status=resp.status_code,
+                response_headers=dict(resp.headers),
+                response_body=resp.text,
+                duration_ms=int((time.monotonic() - t0) * 1000),
             )
             if resp.status_code != 200:
                 latency = int((time.monotonic() - t0) * 1000)

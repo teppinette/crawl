@@ -26,6 +26,7 @@ from typing import Optional
 import httpx
 
 from keyvault import get_secret
+import raw_store
 
 log = logging.getLogger("aggregator")
 
@@ -747,11 +748,23 @@ def _get_name_re(cfg: dict):
 
 async def _fc_search(query: str, limit: int = 2) -> list:
     """Search via Firecrawl."""
+    t0 = time.monotonic()
+    req_body = {"query": query, "limit": limit}
     async with httpx.AsyncClient(timeout=20) as client:
         resp = await client.post(
             _FC_SEARCH_URL,
-            json={"query": query, "limit": limit},
+            json=req_body,
             headers={"Authorization": f"Bearer {_FC_API_KEY}"},
+        )
+        latency = int((time.monotonic() - t0) * 1000)
+        raw_store.store(
+            source="firecrawl_search", entity_name=query,
+            request_method="POST", request_url=_FC_SEARCH_URL,
+            request_params=req_body,
+            request_headers={"Authorization": f"Bearer {_FC_API_KEY}"},
+            response_status=resp.status_code,
+            response_headers=dict(resp.headers),
+            response_body=resp.text, duration_ms=latency,
         )
         if resp.status_code != 200:
             log.warning("Firecrawl search failed: %d %s", resp.status_code, resp.text[:200])
@@ -762,11 +775,23 @@ async def _fc_search(query: str, limit: int = 2) -> list:
 
 async def _fc_scrape(url: str) -> str:
     """Scrape a page via Firecrawl, return markdown."""
+    t0 = time.monotonic()
+    req_body = {"url": url, "formats": ["markdown"]}
     async with httpx.AsyncClient(timeout=20) as client:
         resp = await client.post(
             _FC_SCRAPE_URL,
-            json={"url": url, "formats": ["markdown"]},
+            json=req_body,
             headers={"Authorization": f"Bearer {_FC_API_KEY}"},
+        )
+        latency = int((time.monotonic() - t0) * 1000)
+        raw_store.store(
+            source="firecrawl_scrape", entity_name=url,
+            request_method="POST", request_url=_FC_SCRAPE_URL,
+            request_params=req_body,
+            request_headers={"Authorization": f"Bearer {_FC_API_KEY}"},
+            response_status=resp.status_code,
+            response_headers=dict(resp.headers),
+            response_body=resp.text, duration_ms=latency,
         )
         if resp.status_code != 200:
             return ""
