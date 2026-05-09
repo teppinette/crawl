@@ -522,6 +522,24 @@ log.info("Verify VM configured at %s", VERIFY_VM_URL)
 # Rate limiting — per-IP sliding window
 # ---------------------------------------------------------------------------
 
+@app.middleware("http")
+async def schema_version_middleware(request: Request, call_next):
+    """Inject X-API-Version and X-Schema-Version headers on v2 responses."""
+    response = await call_next(request)
+    path = request.url.path
+    if path.startswith("/api/v2/"):
+        response.headers["X-API-Version"] = V2_VERSION
+        # Match longest prefix
+        schema_v = None
+        for prefix, ver in _V2_SCHEMA_VERSIONS.items():
+            if path.startswith(prefix):
+                if schema_v is None or len(prefix) > len(schema_v[0]):
+                    schema_v = (prefix, ver)
+        if schema_v:
+            response.headers["X-Schema-Version"] = schema_v[1]
+    return response
+
+
 _RATE_LIMIT = 30        # max requests per window
 _RATE_WINDOW = 60       # window in seconds
 _rate_hits: dict[str, collections.deque] = {}
@@ -3966,7 +3984,20 @@ async def adverse_media_health():
 #   Trade data (Volza/Panjiva) → GC deepdive.py (custom parsing)
 # ===========================================================================
 
-V2_VERSION = "2.0.0"
+V2_VERSION = "2.2.0"
+
+# Schema versions per endpoint — bump when response shape changes.
+# GC can pin to a schema version via Accept header or just read the response header.
+_V2_SCHEMA_VERSIONS = {
+    "/api/v2/verify": "1.0",
+    "/api/v2/verify/lei": "1.0",
+    "/api/v2/media": "1.0",
+    "/api/v2/enrich": "1.0",
+    "/api/v2/screening": "1.0",
+    "/api/v2/lookup": "1.0",
+    "/api/v2/health": "1.0",
+    "/api/v2/raw": "1.0",
+}
 
 
 @app.post("/api/v2/verify")
