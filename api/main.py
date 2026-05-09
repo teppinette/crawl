@@ -2531,6 +2531,41 @@ async def verify_entity(
             log.info("Verify (aggregator): %s (%s)", entity_name, country_code)
             result = await aggregator.lookup(country_code, entity_name)
             if result is not None:
+                # If aggregator found no directors, try Deep Lookup as fallback
+                # (free preview only — no cost, enriches with revenue/CEO/HQ)
+                if not result.get("officers") and not result.get("verified"):
+                    log.info("Verify (aggregator empty, trying Deep Lookup fallback): %s (%s)",
+                             entity_name, country_code)
+                    try:
+                        # Call Deep Lookup directly (not full enrich — skip Crunchbase to save time)
+                        dl = await asyncio.wait_for(
+                            enrichment._query_deep_lookup(entity_name, country_code),
+                            timeout=75,
+                        )
+                        if dl.get("status") == "ok" and dl.get("profile"):
+                            p = dl["profile"]
+                            result["deep_lookup"] = {
+                                "name": p.get("name"),
+                                "industry": p.get("industry"),
+                                "employee_count": p.get("employee_count"),
+                                "headquarters": p.get("headquarters"),
+                                "website": p.get("website"),
+                                "ceo": p.get("ceo"),
+                                "revenue": p.get("revenue"),
+                                "founded": p.get("founded"),
+                                "source": "deep_lookup",
+                                "citations": dl.get("citations", [])[:10],
+                            }
+                            if p.get("ceo"):
+                                result["officers"] = [{
+                                    "name": p["ceo"],
+                                    "role": "CEO (Deep Lookup)",
+                                    "source_url": p.get("website"),
+                                    "source_label": "deep_lookup",
+                                }]
+                    except Exception as e:
+                        log.warning("Deep Lookup fallback failed for %s: %s", entity_name, e)
+
                 result["timestamp"] = datetime.now(timezone.utc).isoformat()
                 return result
         raise HTTPException(

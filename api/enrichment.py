@@ -212,11 +212,10 @@ async def _query_deep_lookup(entity_name: str, country_code: str = None) -> dict
     t0 = time.monotonic()
 
     country_clause = f" in {country_code}" if country_code else ""
-    # IMPORTANT: Use "Find the company" (singular) — NOT "Find all companies".
-    # Deep Lookup charges $1 per matched record. "all" could match 100+ records.
-    # We only use /preview (free, 10 samples). Never use /v3/trigger without a budget cap.
+    # Deep Lookup API requires "Find all" prefix. We ONLY use /preview (free,
+    # returns 10 samples). NEVER use /v3/trigger — that's $1 per matched record.
     query = (
-        f"Find the company named {entity_name}{country_clause} "
+        f"Find all companies named {entity_name}{country_clause} "
         f"with their revenue, employee count, headquarters location, "
         f"CEO name, website, year founded, and industry"
     )
