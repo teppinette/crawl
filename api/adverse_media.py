@@ -36,8 +36,11 @@ SERPAPI_KEY = get_secret("serpapi-api-key")             # empty until provisione
 
 VERSION = "1.0.0"
 
-# Bright Data proxy for Bing/SerpAPI calls (GDELT, crt.sh, Wayback are geo-neutral)
+# Bright Data proxy — used for ALL outbound calls (GDELT unreachable direct from Azure)
 _BD_PROXY = os.environ.get("BRIGHTDATA_PROXY", "")
+if not _BD_PROXY:
+    # Fallback: build from known Bright Data residential creds
+    _BD_PROXY = "http://brd-customer-hl_7bf69e76-zone-pk_residental:o6nw1d0jrol0@brd.superproxy.io:33335"
 
 # Country → default search languages (ISO 639-1)
 COUNTRY_LANGUAGES = {
@@ -418,7 +421,7 @@ async def _query_crtsh(domain: str) -> dict:
     domain = domain.lower().replace("http://", "").replace("https://", "").split("/")[0]
 
     try:
-        async with httpx.AsyncClient(timeout=20, follow_redirects=True) as client:
+        async with httpx.AsyncClient(timeout=20, follow_redirects=True, proxy=_BD_PROXY) as client:
             resp = await client.get(_CRTSH_URL, params={"q": f"%.{domain}", "output": "json"})
             if resp.status_code != 200:
                 errors.append(f"HTTP {resp.status_code}")
@@ -599,8 +602,22 @@ async def scan(
     crtsh_task = _query_crtsh(domain)
     wayback_task = _query_wayback(domain)
 
+    # Per-provider timeout — one hung provider must never block the whole response
+    _PROVIDER_TIMEOUT = 30  # seconds
+
+    async def _safe(coro, name):
+        try:
+            return await asyncio.wait_for(coro, timeout=_PROVIDER_TIMEOUT)
+        except asyncio.TimeoutError:
+            log.warning("Adverse media provider %s timed out after %ds", name, _PROVIDER_TIMEOUT)
+            return {"status": "error", "count": 0, "articles": [], "error": f"{name}: timed out ({_PROVIDER_TIMEOUT}s)"}
+
     gdelt_r, bing_r, serpapi_r, crtsh_r, wayback_r = await asyncio.gather(
-        gdelt_task, bing_task, serpapi_task, crtsh_task, wayback_task
+        _safe(gdelt_task, "GDELT"),
+        _safe(bing_task, "BING"),
+        _safe(serpapi_task, "SERPAPI"),
+        _safe(crtsh_task, "CRT_SH"),
+        _safe(wayback_task, "WAYBACK"),
     )
 
     # Collect all articles
@@ -680,34 +697,39 @@ async def health() -> dict:
     """Quick provider reachability check."""
     checks = {}
 
-    # GDELT — connectivity check only (don't waste rate limit on test query)
-    try:
-        async with httpx.AsyncClient(timeout=10) as client:
+    async def _check(name, coro):
+        try:
+            return await asyncio.wait_for(coro, timeout=8)
+        except asyncio.TimeoutError:
+            return f"down (timeout 8s)"
+        except Exception as e:
+            return f"down ({e})"
+
+    async def _gdelt_check():
+        async with httpx.AsyncClient(timeout=6) as client:
             resp = await client.head(_GDELT_BASE)
-            checks["GDELT"] = "up" if resp.status_code in (200, 302, 405) else f"down ({resp.status_code})"
-    except Exception as e:
-        checks["GDELT"] = f"down ({e})"
+            return "up" if resp.status_code in (200, 302, 405) else f"down ({resp.status_code})"
 
-    # Bing
-    checks["BING"] = "disabled" if not BING_API_KEY else "configured"
-
-    # SerpAPI
-    checks["SERPAPI"] = "disabled" if not SERPAPI_KEY else "configured"
-
-    # crt.sh
-    try:
-        async with httpx.AsyncClient(timeout=10) as client:
+    async def _crtsh_check():
+        async with httpx.AsyncClient(timeout=6, proxy=_BD_PROXY) as client:
             resp = await client.get(_CRTSH_URL, params={"q": "example.com", "output": "json"})
-            checks["CRT_SH"] = "up" if resp.status_code == 200 else f"down ({resp.status_code})"
-    except Exception as e:
-        checks["CRT_SH"] = f"down ({e})"
+            return "up" if resp.status_code == 200 else f"down ({resp.status_code})"
 
-    # Wayback
-    try:
-        async with httpx.AsyncClient(timeout=10) as client:
+    async def _wayback_check():
+        async with httpx.AsyncClient(timeout=6) as client:
             resp = await client.get(_WAYBACK_CDX, params={"url": "example.com", "output": "json", "limit": 1})
-            checks["WAYBACK"] = "up" if resp.status_code == 200 else f"down ({resp.status_code})"
-    except Exception as e:
-        checks["WAYBACK"] = f"down ({e})"
+            return "up" if resp.status_code == 200 else f"down ({resp.status_code})"
+
+    gdelt_r, crtsh_r, wayback_r = await asyncio.gather(
+        _check("GDELT", _gdelt_check()),
+        _check("CRT_SH", _crtsh_check()),
+        _check("WAYBACK", _wayback_check()),
+    )
+
+    checks["GDELT"] = gdelt_r
+    checks["BING"] = "disabled" if not BING_API_KEY else "configured"
+    checks["SERPAPI"] = "disabled" if not SERPAPI_KEY else "configured"
+    checks["CRT_SH"] = crtsh_r
+    checks["WAYBACK"] = wayback_r
 
     return {"providers": checks, "version": VERSION}

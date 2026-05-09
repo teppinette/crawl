@@ -3932,3 +3932,252 @@ async def adverse_media_scan(req: AdverseMediaRequest, _: str = Depends(verify_i
 async def adverse_media_health():
     """Provider health check — no auth required (used by RegistryAdapterHealth probe)."""
     return await adverse_media.health()
+
+
+# ===========================================================================
+# API v2 — Crawl Data Gateway
+# ===========================================================================
+# Clean, versioned endpoints for GC, Onboarding, SalesTracker, iPhone app.
+# No AI, no dark web. Structured data with validation_source on every response.
+#
+# Roles (no duplication):
+#   /api/v2/verify     → gov registry verification (crawl-verify VM)
+#   /api/v2/verify/lei → GLEIF corporate hierarchy (crawl-verify VM)
+#   /api/v2/media      → adverse media (GDELT, Bing, SerpAPI on crawldevvm)
+#   /api/v2/lookup     → one-shot fan-out (verify + LEI + media)
+#   /api/v2/health     → per-source health
+#
+# NOT in v2 (covered elsewhere):
+#   Sanctions/PEP/watchlist → LexisNexis Bridger (on GC)
+#   Offshore leaks → ICIJ Neo4j mirror (on .11)
+#   Market data (SEC/GLEIF/Yahoo/OpenFIGI) → GC direct (sub-second)
+#   Trade data (Volza/Panjiva) → GC deepdive.py (custom parsing)
+# ===========================================================================
+
+V2_VERSION = "2.0.0"
+
+
+@app.post("/api/v2/verify")
+async def v2_verify(request: Request, _key: str = Depends(verify_api_key)):
+    """
+    Registry verification — v2 passthrough to v1 verify.
+    Same logic, clean v2 path. See /api/v1/verify for full docs.
+    """
+    return await verify_entity(request, _key)
+
+
+@app.post("/api/v2/verify/lei")
+async def v2_verify_lei(request: Request, _key: str = Depends(verify_api_key)):
+    """
+    GLEIF LEI lookup — v2 passthrough to v1 verify/lei.
+    """
+    return await verify_lei(request, _key)
+
+
+@app.post("/api/v2/media")
+async def v2_media(request: Request, _key: str = Depends(verify_api_key)):
+    """
+    Adverse media scan — v2 wrapper around /tools/adverse_media.
+    Accepts v2 field names (entity_name → company_name).
+    """
+    body = await request.json()
+
+    # Map v2 field names to internal adverse_media field names
+    am_request = AdverseMediaRequest(
+        company_name=body.get("entity_name") or body.get("company_name", ""),
+        country=body.get("country_code") or body.get("country", "XX"),
+        entity_id=body.get("entity_id", 0),
+        languages=body.get("languages"),
+        tier=body.get("tier", "STANDARD"),
+        days_back=body.get("days_back", 7),
+        max_results=body.get("max_results", 20),
+        website=body.get("domain") or body.get("website"),
+    )
+
+    result = await adverse_media.scan(
+        company_name=am_request.company_name,
+        country=am_request.country.upper(),
+        entity_id=am_request.entity_id,
+        languages=am_request.languages,
+        tier=am_request.tier.upper(),
+        days_back=am_request.days_back,
+        max_results=am_request.max_results,
+        website=am_request.website,
+    )
+    return result
+
+
+@app.post("/api/v2/lookup")
+async def v2_lookup(request: Request, _key: str = Depends(verify_api_key)):
+    """
+    One-shot lookup — fan-out to verify + LEI + media in parallel.
+    Returns combined result. Designed for iPhone app / quick lookups.
+
+    Body: {
+        "entity_name": "Samsung Electronics",
+        "country_code": "KR",
+        "ticker": "",
+        "domain": "samsung.com"
+    }
+    """
+    body = await request.json()
+    entity_name = body.get("entity_name", "").strip()
+    country_code = body.get("country_code", "").strip().upper()
+
+    if not entity_name:
+        raise HTTPException(status_code=422, detail="entity_name required")
+
+    t0 = time.time()
+    loop = asyncio.get_event_loop()
+
+    # --- Fan-out: verify + LEI + media in parallel ---
+
+    # 1. Registry verify (only if country is supported)
+    async def _do_verify():
+        if country_code and country_code in _VERIFY_SOURCES:
+            try:
+                result = await loop.run_in_executor(
+                    _ssh_pool, _verify_vm_call,
+                    {**body, "entity_name": entity_name, "country_code": country_code},
+                )
+                return {
+                    "verified": result.get("found", False),
+                    "legal_name": result.get("entity_name"),
+                    "status": result.get("status"),
+                    "summary": result.get("summary", ""),
+                    "validation_source": result.get("validation_source"),
+                }
+            except Exception as e:
+                return {"verified": False, "error": str(e)[:200]}
+        return {"verified": False, "note": f"Country {country_code} not supported for verify"}
+
+    # 2. LEI lookup (sync call in executor)
+    def _do_lei_sync():
+        import requests as _req
+        try:
+            resp = _req.post(
+                f"{VERIFY_VM_URL}/verify/lei",
+                json={"entity_name": entity_name, "country_code": country_code},
+                headers={"X-API-Key": API_KEY, "Content-Type": "application/json"},
+                timeout=20,
+            )
+            data = resp.json()
+            if data.get("found"):
+                return {
+                    "found": True,
+                    "lei": data.get("lei"),
+                    "entity_name": data.get("entity_name"),
+                    "parent": data.get("parent"),
+                    "ultimate_parent": data.get("ultimate_parent"),
+                    "jurisdiction": data.get("jurisdiction"),
+                }
+            return {"found": False}
+        except Exception as e:
+            return {"found": False, "error": str(e)[:200]}
+
+    # 3. Adverse media
+    async def _do_media():
+        try:
+            result = await asyncio.wait_for(
+                adverse_media.scan(
+                    company_name=entity_name,
+                    country=country_code or "XX",
+                    days_back=30,
+                    max_results=10,
+                    website=body.get("domain"),
+                ),
+                timeout=35,
+            )
+            articles = result.get("articles", [])
+            # Determine risk level from article count
+            n = len(articles)
+            if n == 0:
+                risk = "NONE"
+            elif n <= 3:
+                risk = "LOW"
+            elif n <= 10:
+                risk = "MEDIUM"
+            else:
+                risk = "HIGH"
+            top = articles[0] if articles else None
+            return {
+                "total_articles": n,
+                "risk_level": risk,
+                "top_article": f"{top['title'][:100]} — {top['source']}" if top else None,
+                "providers": {k: v["status"] for k, v in result.get("providers", {}).items()},
+            }
+        except asyncio.TimeoutError:
+            return {"total_articles": 0, "risk_level": "UNKNOWN", "error": "media scan timed out"}
+        except Exception as e:
+            return {"total_articles": 0, "risk_level": "UNKNOWN", "error": str(e)[:200]}
+
+    # Run all three in parallel
+    verify_r, lei_r, media_r = await asyncio.gather(
+        _do_verify(),
+        loop.run_in_executor(None, _do_lei_sync),
+        _do_media(),
+    )
+
+    duration_ms = int((time.time() - t0) * 1000)
+
+    return {
+        "entity_name": entity_name,
+        "country_code": country_code,
+        "lookup_time_ms": duration_ms,
+        "registry": verify_r,
+        "lei": lei_r,
+        "media": media_r,
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+    }
+
+
+@app.get("/api/v2/health")
+async def v2_health():
+    """
+    Per-source health — shows each upstream source individually.
+    No auth required (monitoring probes).
+    """
+    import requests as _req
+
+    sources = {}
+
+    # 1. Gateway itself
+    sources["gateway"] = {
+        "status": "up",
+        "version": API_VERSION,
+        "v2_version": V2_VERSION,
+        "active_threads": len(_ssh_pool._threads) if hasattr(_ssh_pool, '_threads') else 0,
+    }
+
+    # 2. Verify VM
+    try:
+        resp = _req.get(f"{VERIFY_VM_URL}/health", timeout=5)
+        if resp.status_code == 200:
+            vdata = resp.json()
+            sources["verify_vm"] = {
+                "status": "up",
+                "version": vdata.get("version", "unknown"),
+                "countries": vdata.get("countries", []),
+            }
+        else:
+            sources["verify_vm"] = {"status": f"down (HTTP {resp.status_code})"}
+    except Exception as e:
+        sources["verify_vm"] = {"status": f"down ({type(e).__name__})"}
+
+    # 3. Adverse media providers
+    try:
+        am_health = await adverse_media.health()
+        sources["adverse_media"] = am_health.get("providers", {})
+    except Exception as e:
+        sources["adverse_media"] = {"status": f"down ({e})"}
+
+    # 4. Supported countries for verify
+    sources["verify_countries"] = list(_VERIFY_SOURCES.keys())
+
+    return {
+        "status": "ok",
+        "service": "crawl-data-gateway",
+        "api_version": V2_VERSION,
+        "sources": sources,
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+    }
