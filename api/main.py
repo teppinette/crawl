@@ -46,6 +46,7 @@ from event_log import log_job_event, log_api_access
 import adverse_media
 import enrichment
 import screening
+import aggregator
 # Multilogin modules now run on crawl-verify VM (180.20.0.4:8460)
 # import multilogin_fbr
 # import multilogin_dgft
@@ -2506,9 +2507,16 @@ async def verify_entity(
     if not country_code or (not entity_name and not has_alt_id):
         raise HTTPException(status_code=422, detail="entity_name and country_code required (US allows cik or ticker instead of entity_name)")
     if country_code not in _VERIFY_SOURCES:
+        # Fall through to aggregator scrape for 50+ other countries
+        if country_code in aggregator.COUNTRIES:
+            log.info("Verify (aggregator): %s (%s)", entity_name, country_code)
+            result = await aggregator.lookup(country_code, entity_name)
+            if result is not None:
+                result["timestamp"] = datetime.now(timezone.utc).isoformat()
+                return result
         raise HTTPException(
             status_code=422,
-            detail=f"Verify not yet supported for {country_code}. Supported: {', '.join(sorted(_VERIFY_SOURCES))}.",
+            detail=f"Verify not yet supported for {country_code}. Supported: {', '.join(sorted(set(list(_VERIFY_SOURCES.keys()) + aggregator.supported_countries())))}.",
         )
 
     log.info("Verify: %s (%s) cin=%s ntn=%s", entity_name, country_code,
@@ -4293,8 +4301,17 @@ async def v2_health():
     except Exception as e:
         sources["screening"] = {"status": f"down ({e})"}
 
-    # 6. Supported countries for verify
-    sources["verify_countries"] = list(_VERIFY_SOURCES.keys())
+    # 6. Aggregator registry (50+ countries via Firecrawl)
+    try:
+        agg_health = await aggregator.health()
+        sources["aggregator"] = agg_health
+    except Exception as e:
+        sources["aggregator"] = {"status": f"down ({e})"}
+
+    # 7. Supported countries for verify
+    sources["verify_countries"] = sorted(set(
+        list(_VERIFY_SOURCES.keys()) + aggregator.supported_countries()
+    ))
 
     return {
         "status": "ok",
