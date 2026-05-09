@@ -206,8 +206,9 @@ async def _query_gdelt(company_name: str, country: str, languages: list[str],
                     "sort": "datedesc",
                     "timespan": timespan,
                 }
-                async with httpx.AsyncClient(timeout=25, follow_redirects=True,
-                                               proxy=_BD_PROXY, verify=_BD_CA_BUNDLE) as client:
+                # GDELT is a free public API — route DIRECT, not through proxy
+                # (Bright Data proxy gets blocked by GDELT's CDN, causing timeouts)
+                async with httpx.AsyncClient(timeout=25, follow_redirects=True) as client:
                     resp = await client.get(_GDELT_BASE, params=params)
                     if resp.status_code == 429:
                         if attempt == 0:
