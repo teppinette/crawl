@@ -42,6 +42,13 @@ VERSION = "1.0.0"
 _CSL_API_KEY = get_secret("csl-subscription-key") or os.environ.get("CSL_API_KEY", "")
 _OPENSANCTIONS_API_KEY = get_secret("opensanctions-api-key") or os.environ.get("OPENSANCTIONS_API_KEY", "")
 
+# Proxy note: All 5 screening sources are PUBLIC REST/XML APIs (not web scraping).
+# Bright Data residential proxy blocks all of them (gov-site policy: CSL, FBI;
+# 403/partial: INTERPOL, UN_SC, FCDO). These are the same category as calling
+# api.brightdata.com — public API endpoints with auth keys, not scraping targets.
+# Tested 2026-05-10: all 5 return 403/ProxyError through BD residential.
+# Decision: route direct. If proxy becomes available, add here.
+
 _CSL_URL = "https://data.trade.gov/consolidated_screening_list/v1/search"
 _FCDO_URL = "https://ofsistorage.blob.core.windows.net/publishlive/2022format/ConList.xml"
 _EU_URL = "https://webgate.ec.europa.eu/fsd/fsf/public/files/xmlFullSanctionsList_1_1/content?token=dG9rZW4tMjAxNw"

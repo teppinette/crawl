@@ -795,9 +795,9 @@ async def health() -> dict:
 
     async def _check(name, coro):
         try:
-            return await asyncio.wait_for(coro, timeout=8)
+            return await asyncio.wait_for(coro, timeout=16)
         except asyncio.TimeoutError:
-            return f"down (timeout 8s)"
+            return f"down (timeout 16s)"
         except Exception as e:
             return f"down ({e})"
 
@@ -812,7 +812,7 @@ async def health() -> dict:
             return "up" if resp.status_code == 200 else f"down ({resp.status_code})"
 
     async def _wayback_check():
-        async with httpx.AsyncClient(timeout=6) as client:
+        async with httpx.AsyncClient(timeout=15, proxy=_BD_PROXY, verify=_BD_CA_BUNDLE) as client:
             resp = await client.get(_WAYBACK_CDX, params={"url": "example.com", "output": "json", "limit": 1})
             return "up" if resp.status_code == 200 else f"down ({resp.status_code})"
 
