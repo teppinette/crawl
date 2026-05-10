@@ -4031,6 +4031,7 @@ _V2_SCHEMA_VERSIONS = {
     "/api/v2/screening": "1.0",
     "/api/v2/lookup": "1.0",
     "/api/v2/health": "1.0",
+    "/api/v2/metrics": "1.0",
     "/api/v2/raw": "1.0",
 }
 
@@ -4391,6 +4392,165 @@ async def v2_health():
         "service": "crawl-data-gateway",
         "api_version": V2_VERSION,
         "sources": sources,
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+    }
+
+
+# ---------------------------------------------------------------------------
+# Latency Metrics — p50/p95/p99 per endpoint from api_access_log
+# ---------------------------------------------------------------------------
+
+# Per-call cost in USD for each v2 endpoint (upstream provider costs)
+_ENDPOINT_COSTS = {
+    "/api/v2/verify": {
+        "gov_registry": {"cost_per_call": 0.00, "note": "Free gov registries via crawl-verify VM"},
+        "aggregator": {"cost_per_call": 0.02, "note": "~5 Firecrawl searches × $0.004/search"},
+        "deep_lookup_fallback": {"cost_per_call": 0.00, "note": "Free preview only, no trigger"},
+        "total_typical": 0.02,
+    },
+    "/api/v2/verify/lei": {
+        "gleif": {"cost_per_call": 0.00, "note": "Free GLEIF API"},
+        "total_typical": 0.00,
+    },
+    "/api/v2/screening": {
+        "csl": {"cost_per_call": 0.00, "note": "Free US gov API (subscription key)"},
+        "uk_fcdo": {"cost_per_call": 0.00, "note": "Free XML, cached 12h"},
+        "un_sc": {"cost_per_call": 0.00, "note": "Free XML, cached 12h"},
+        "fbi": {"cost_per_call": 0.00, "note": "Free JSON API, cached 12h"},
+        "interpol": {"cost_per_call": 0.00, "note": "Free REST API"},
+        "total_typical": 0.00,
+    },
+    "/api/v2/media": {
+        "gdelt": {"cost_per_call": 0.00, "note": "Free public API"},
+        "bd_serp": {"cost_per_call": 0.005, "note": "Bright Data SERP, ~$5/1K"},
+        "bd_discover": {"cost_per_call": 0.01, "note": "Bright Data Discover, ~$10/1K"},
+        "crt_sh": {"cost_per_call": 0.00, "note": "Free CT log"},
+        "wayback": {"cost_per_call": 0.00, "note": "Free CDX API"},
+        "translate": {"cost_per_call": 0.001, "note": "Claude Haiku per language"},
+        "total_typical": 0.02,
+    },
+    "/api/v2/enrich": {
+        "crunchbase": {"cost_per_call": 0.01, "note": "Bright Data Web Scraper"},
+        "deep_lookup": {"cost_per_call": 0.00, "note": "Free preview only (10 samples)"},
+        "total_typical": 0.01,
+    },
+    "/api/v2/lookup": {
+        "note": "Fan-out: verify + LEI + media + enrich + screening",
+        "total_typical": 0.05,
+    },
+}
+
+
+@app.get("/api/v2/metrics")
+async def v2_metrics(_key: str = Depends(verify_api_key)):
+    """
+    Latency SLOs — p50/p95/p99 per endpoint from api_access_log.
+    Includes per-call cost breakdown.
+    """
+    from event_log import _get_conn
+
+    metrics = {}
+    try:
+        conn = _get_conn()
+        cur = conn.cursor()
+
+        # Aggregate latency by endpoint path prefix
+        cur.execute("""
+            SELECT
+                CASE
+                    WHEN path = '/api/v2/verify/lei' THEN '/api/v2/verify/lei'
+                    WHEN path LIKE '/api/v2/raw/%' THEN '/api/v2/raw'
+                    WHEN path LIKE '/api/v2/%' THEN split_part(path, '/', 4)
+                    WHEN path LIKE '/tools/adverse_media%' THEN '/tools/adverse_media'
+                    ELSE path
+                END as endpoint,
+                count(*) as request_count,
+                round(percentile_cont(0.5) WITHIN GROUP (ORDER BY duration_ms)::numeric, 0) as p50_ms,
+                round(percentile_cont(0.95) WITHIN GROUP (ORDER BY duration_ms)::numeric, 0) as p95_ms,
+                round(percentile_cont(0.99) WITHIN GROUP (ORDER BY duration_ms)::numeric, 0) as p99_ms,
+                round(avg(duration_ms)::numeric, 0) as avg_ms,
+                min(duration_ms) as min_ms,
+                max(duration_ms) as max_ms,
+                count(*) FILTER (WHERE status_code >= 500) as error_5xx,
+                count(*) FILTER (WHERE status_code = 200) as success_count
+            FROM api_access_log
+            WHERE duration_ms > 0
+              AND path LIKE '/api/v2/%'
+              AND status_code = 200
+            GROUP BY endpoint
+            ORDER BY request_count DESC
+        """)
+
+        for row in cur.fetchall():
+            endpoint = row[0]
+            path_key = f"/api/v2/{endpoint}" if not endpoint.startswith("/") else endpoint
+            metrics[path_key] = {
+                "request_count": row[1],
+                "latency_ms": {
+                    "p50": int(row[2]),
+                    "p95": int(row[3]),
+                    "p99": int(row[4]),
+                    "avg": int(row[5]),
+                    "min": row[6],
+                    "max": row[7],
+                },
+                "errors_5xx": row[8],
+                "cost": _ENDPOINT_COSTS.get(path_key, {}),
+            }
+
+        # Also get /tools/adverse_media
+        cur.execute("""
+            SELECT count(*),
+                round(percentile_cont(0.5) WITHIN GROUP (ORDER BY duration_ms)::numeric, 0),
+                round(percentile_cont(0.95) WITHIN GROUP (ORDER BY duration_ms)::numeric, 0),
+                round(percentile_cont(0.99) WITHIN GROUP (ORDER BY duration_ms)::numeric, 0),
+                round(avg(duration_ms)::numeric, 0),
+                min(duration_ms), max(duration_ms)
+            FROM api_access_log
+            WHERE path = '/tools/adverse_media' AND status_code = 200 AND duration_ms > 0
+        """)
+        row = cur.fetchone()
+        if row and row[0] > 0:
+            metrics["/tools/adverse_media"] = {
+                "request_count": row[0],
+                "latency_ms": {
+                    "p50": int(row[1]), "p95": int(row[2]), "p99": int(row[3]),
+                    "avg": int(row[4]), "min": row[5], "max": row[6],
+                },
+                "cost": _ENDPOINT_COSTS.get("/api/v2/media", {}),
+            }
+
+        conn.close()
+    except Exception as e:
+        return {"status": "error", "error": str(e), "metrics": {}}
+
+    # Cost summary for a typical CIR flow
+    cir_flow_cost = {
+        "verify": 0.02,
+        "screening": 0.00,
+        "media": 0.02,
+        "enrich": 0.01,
+        "total_per_entity": 0.05,
+        "note": "Estimated cost per entity lookup across all v2 endpoints",
+        "monthly_estimate": {
+            "10_entities_day": round(0.05 * 10 * 30, 2),
+            "50_entities_day": round(0.05 * 50 * 30, 2),
+            "100_entities_day": round(0.05 * 100 * 30, 2),
+        },
+    }
+
+    return {
+        "status": "ok",
+        "endpoints": metrics,
+        "cost_summary": cir_flow_cost,
+        "slo_targets": {
+            "/api/v2/verify": {"p95_target_ms": 15000, "note": "Gov registry 2-15s, aggregator 15-30s"},
+            "/api/v2/verify/lei": {"p95_target_ms": 5000},
+            "/api/v2/screening": {"p95_target_ms": 10000, "note": "7 sources in parallel"},
+            "/api/v2/media": {"p95_target_ms": 30000, "note": "GDELT rate-limited, 6s stagger"},
+            "/api/v2/enrich": {"p95_target_ms": 75000, "note": "Deep Lookup polls up to 60s"},
+            "/api/v2/lookup": {"p95_target_ms": 75000, "note": "Fan-out, bounded by slowest source"},
+        },
         "timestamp": datetime.now(timezone.utc).isoformat(),
     }
 
