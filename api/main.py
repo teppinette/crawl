@@ -540,28 +540,47 @@ async def schema_version_middleware(request: Request, call_next):
     return response
 
 
-_RATE_LIMIT = 30        # max requests per window
-_RATE_WINDOW = 60       # window in seconds
+_RATE_LIMIT_DEFAULT = 30   # max requests per window (most endpoints)
+_RATE_WINDOW = 60          # window in seconds
+# Per-endpoint overrides (prefix match, longest wins)
+_RATE_LIMIT_OVERRIDES = {
+    "/api/v2/screening": 600,   # 10 req/s — free, cache-driven
+    "/tools/adverse_media": 60, # 1 req/s — paid BD calls
+}
 _rate_hits: dict[str, collections.deque] = {}
 _rate_lock = threading.Lock()
 
 
+def _rate_limit_for_path(path: str) -> int:
+    """Return the rate limit for a given request path."""
+    best_prefix, best_limit = "", _RATE_LIMIT_DEFAULT
+    for prefix, limit in _RATE_LIMIT_OVERRIDES.items():
+        if path.startswith(prefix) and len(prefix) > len(best_prefix):
+            best_prefix, best_limit = prefix, limit
+    return best_limit
+
+
 @app.middleware("http")
 async def rate_limit_middleware(request: Request, call_next):
-    """Reject requests if a single IP exceeds the rate limit."""
+    """Reject requests if a single IP exceeds the per-endpoint rate limit."""
     client_ip = request.client.host if request.client else "unknown"
+    path = request.url.path
+    limit = _rate_limit_for_path(path)
+    bucket_key = f"{client_ip}:{path}"
     now = time.monotonic()
     with _rate_lock:
-        if client_ip not in _rate_hits:
-            _rate_hits[client_ip] = collections.deque()
-        dq = _rate_hits[client_ip]
+        if bucket_key not in _rate_hits:
+            _rate_hits[bucket_key] = collections.deque()
+        dq = _rate_hits[bucket_key]
         # Evict old entries
         while dq and dq[0] < now - _RATE_WINDOW:
             dq.popleft()
-        if len(dq) >= _RATE_LIMIT:
+        if len(dq) >= limit:
+            retry_after = int(_RATE_WINDOW - (now - dq[0])) + 1
             return JSONResponse(
                 status_code=429,
-                content={"detail": f"Rate limit exceeded ({_RATE_LIMIT} req/{_RATE_WINDOW}s)"},
+                content={"detail": f"Rate limit exceeded ({limit} req/{_RATE_WINDOW}s)"},
+                headers={"Retry-After": str(retry_after)},
             )
         dq.append(now)
     return await call_next(request)
