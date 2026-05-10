@@ -48,6 +48,7 @@ import enrichment
 import screening
 import aggregator
 import raw_store
+import sandbox_india
 # Multilogin modules now run on crawl-verify VM (180.20.0.4:8460)
 # import multilogin_fbr
 # import multilogin_dgft
@@ -2641,13 +2642,20 @@ async def verify_entity(
 
     # --------------- INDIA ---------------
     if country_code == "IN":
+        pan = body.get("pan", "").strip().upper()
+        gstin = body.get("gstin", "").strip().upper()
+
         tofler_fut = loop.run_in_executor(_ssh_pool, _india_tofler_lookup, entity_name, cin)
         dgft_fut = loop.run_in_executor(
             _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "IN", "iec": iec}
         ) if iec else None
+        pan_fut = sandbox_india.verify_pan(pan, name=entity_name) if pan else None
+        gstin_fut = sandbox_india.verify_gstin(gstin) if gstin else None
 
         result = await tofler_fut
         dgft = (await dgft_fut) if dgft_fut else None
+        pan_result = (await pan_fut) if pan_fut else None
+        gstin_result = (await gstin_fut) if gstin_fut else None
 
         verified = result.get("found", False)
         now = datetime.now(timezone.utc).isoformat()
@@ -2661,6 +2669,8 @@ async def verify_entity(
             "authorized_capital": result.get("authorized_capital"),
             "paidup_capital": result.get("paidup_capital"),
             "dgft": dgft,
+            "pan": pan_result,
+            "gstin": gstin_result,
             "validation_source": {
                 "registry": "Ministry of Corporate Affairs (MCA21), Government of India",
                 "url": result.get("source_url"),
@@ -4044,6 +4054,8 @@ V2_VERSION = "2.2.0"
 # GC can pin to a schema version via Accept header or just read the response header.
 _V2_SCHEMA_VERSIONS = {
     "/api/v2/verify": "1.0",
+    "/api/v2/verify/pan": "1.0",
+    "/api/v2/verify/gstin": "1.0",
     "/api/v2/verify/lei": "1.0",
     "/api/v2/media": "1.0",
     "/api/v2/enrich": "1.0",
@@ -4062,6 +4074,73 @@ async def v2_verify(request: Request, _key: str = Depends(verify_api_key)):
     Same logic, clean v2 path. See /api/v1/verify for full docs.
     """
     return await verify_entity(request, _key)
+
+
+@app.post("/api/v2/verify/pan")
+async def v2_verify_pan(request: Request, _key: str = Depends(verify_api_key)):
+    """
+    India PAN verification via Sandbox.co.in.
+
+    Body: {
+        "pan": "AAACR5055K",                    // REQUIRED — 10-char PAN
+        "name": "RELIANCE INDUSTRIES LIMITED",   // REQUIRED — name as per PAN
+        "dob": "08/05/1973"                      // REQUIRED — DD/MM/YYYY (incorporation date for companies)
+    }
+
+    Response: {
+        "verified": true,
+        "pan": "AAACR5055K",
+        "status": "valid",
+        "category": "company",
+        "name_match": true,
+        "dob_match": true,
+        "aadhaar_linked": "na",
+        "validation_source": {...},
+        "latency_ms": 1234
+    }
+    """
+    body = await request.json()
+    pan = body.get("pan", "").strip().upper()
+    if not pan:
+        raise HTTPException(status_code=422, detail="pan required (10-char, e.g. AAACR5055K)")
+    return await sandbox_india.verify_pan(
+        pan,
+        name=body.get("name", "").strip(),
+        dob=body.get("dob", "").strip(),
+    )
+
+
+@app.post("/api/v2/verify/gstin")
+async def v2_verify_gstin(request: Request, _key: str = Depends(verify_api_key)):
+    """
+    India GSTIN verification via Sandbox.co.in.
+
+    Body: {
+        "gstin": "27AAACR5055K1Z7"    // REQUIRED — 15-char GSTIN
+    }
+
+    Response: {
+        "verified": true,
+        "gstin": "27AAACR5055K1Z7",
+        "legal_name": "RELIANCE INDUSTRIES LIMITED",
+        "trade_name": "RELIANCE",
+        "status": "Active",
+        "taxpayer_type": "Regular",
+        "constitution": "Public Limited Company",
+        "registration_date": "01/07/2017",
+        "business_activities": ["Factory / Manufacturing", ...],
+        "address": {"building": "...", "street": "...", "district": "...", "state": "...", "pincode": "..."},
+        "state_jurisdiction": "...",
+        "center_jurisdiction": "...",
+        "validation_source": {...},
+        "latency_ms": 1234
+    }
+    """
+    body = await request.json()
+    gstin = body.get("gstin", "").strip().upper()
+    if not gstin:
+        raise HTTPException(status_code=422, detail="gstin required (15-char, e.g. 27AAACR5055K1Z7)")
+    return await sandbox_india.verify_gstin(gstin)
 
 
 @app.post("/api/v2/verify/lei")
