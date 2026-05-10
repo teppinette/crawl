@@ -345,7 +345,7 @@ Map from GC onboarding form fields to verify-job API fields:
 
 ## Cost & Rate Limits
 
-- **Cost per job:** < $0.01 (covered by platform)
+- **Cost per job:** < $0.01 variable (Bright Data Web Scraper for LinkedIn, Tavily for URL discovery). Fixed platform costs (Bright Data proxy, Multilogin $80/mo, Azure VMs) — see migration guide Section 6
 - **Rate limit:** 30 requests/minute per IP
 - **Max concurrent jobs:** 20 across all scenarios
 - **Job retention:** 30 days

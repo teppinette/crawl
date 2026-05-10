@@ -395,13 +395,16 @@ results — use what's available.
 
 ## Cost Per Job
 
-| Check | Cost |
-|-------|------|
-| Registry (SECP/MCA) | Free (SSH to our VMs) |
-| LinkedIn Company | ~$0.0015 (1 Bright Data request) |
-| LinkedIn Persons (3 people) | ~$0.005 (3 Bright Data + 6 Tavily searches) |
-| Dark Web | Free (our own VM + Tor) |
-| **Total per job** | **< $0.01** |
+| Check | Cost | Vendor |
+|-------|------|--------|
+| Registry (SECP/MCA) | Free (SSH to our VMs) | — |
+| LinkedIn Company | ~$0.0015 (1 Bright Data Web Scraper request) | Bright Data |
+| LinkedIn Persons (3 people) | ~$0.005 (3 Bright Data Web Scraper + 6 Tavily searches) | Bright Data + Tavily |
+| Dark Web | Free (our own VM + Tor) | — |
+| Multilogin (PK FBR only) | ~$0.40/lookup (amortized from $80/mo plan) | Multilogin |
+| **Total per job** | **< $0.01 (excl. Multilogin)** | |
+
+**Note:** Variable costs above exclude fixed platform costs (Bright Data proxy, Multilogin $80/mo, Azure VMs). See migration guide Section 6 for full loaded cost.
 
 ---
 

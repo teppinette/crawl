@@ -316,8 +316,8 @@ profile with citations that can be independently verified.
 **Enrichment providers:**
 - **CRUNCHBASE** — Structured company data (funding, leadership, financials).
   Best for public / VC-backed companies.
-- **DEEP_LOOKUP** — AI-powered search across 1000+ public sources with citations.
-  Works for private companies too. ~$1/matched record.
+- **DEEP_LOOKUP** — AI-powered search across 1000+ public sources with citations via Bright Data.
+  Works for private companies too. We use the free preview only (10 samples, no charge).
 
 **Typical response time:** 30-60 seconds.
 
@@ -331,7 +331,8 @@ POST /api/v2/screening
 
 Free cross-check layer screening against 6 government sanctions/watchlist sources
 in parallel. Supplements Bridger (which remains the primary paid screening engine
-on GC). No API costs — all sources are free public APIs or cached XML lists.
+on GC). No per-call API costs — all sources are free public APIs or cached XML lists.
+Platform infrastructure costs (Bright Data proxy, Multilogin, Azure VMs) apply — see migration guide.
 
 **Request:**
 ```json

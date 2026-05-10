@@ -15,7 +15,7 @@ All 7 blockers identified in the v2 spec review are now resolved.
 | Per-source health | DONE | `GET /api/v2/health` — each upstream source individually |
 | Schema versioning | DONE | `X-API-Version` + `X-Schema-Version` response headers |
 | Raw response retention | DONE | 90-day store, `GET /api/v2/raw/{id}` for audit replay |
-| Pricing model | DONE | $0.05/entity, per-provider breakdown in `/api/v2/metrics` |
+| Pricing model | DONE | Per-provider breakdown in `/api/v2/metrics` (see Section 6) |
 | Real SSL cert | DONE | Let's Encrypt on `crawldevvm.eastus2.cloudapp.azure.com` |
 
 ---
@@ -286,23 +286,46 @@ Your client can check `X-Schema-Version` and warn/fail if it sees an unexpected 
 
 ## 6. COST ESTIMATE
 
+### 6a. Variable API costs (per call)
+
 | Endpoint | Cost/call | Source breakdown |
 |----------|-----------|-----------------|
 | /api/v2/screening | $0.00 | All 6 sources are free gov APIs |
 | /api/v2/verify (gov) | $0.00 | Free gov registries |
 | /api/v2/verify (aggregator) | ~$0.02 | ~5 Firecrawl searches |
 | /api/v2/media | ~$0.02 | GDELT free + BD SERP $0.005 + BD Discover $0.01 |
-| /api/v2/enrich | ~$0.01 | Crunchbase scraper (Deep Lookup preview free) |
+| /api/v2/enrich | ~$0.01 | Crunchbase via Bright Data Web Scraper (Deep Lookup preview free) |
 | /api/v2/lookup | ~$0.05 | All above combined |
 | /api/v2/verify/lei | $0.00 | Free GLEIF API |
 
-**Monthly projections (all endpoints per entity):**
+### 6b. Fixed platform costs (monthly)
 
-| Volume | Monthly cost |
-|--------|-------------|
-| 10 entities/day | $15 |
-| 50 entities/day | $75 |
-| 100 entities/day | $150 |
+| Item | Monthly | Vendor |
+|------|---------|--------|
+| Multilogin Business 300 (anti-detect browser, PK FBR + future gov sites) | $80 | Multilogin |
+| Bright Data residential proxy (all outbound traffic) | included in API costs | Bright Data |
+| Bright Data SERP API (adverse media) | ~$5/1K requests | Bright Data |
+| Bright Data Discover API (adverse media) | ~$10/1K requests | Bright Data |
+| Bright Data Web Scraper (Crunchbase enrichment) | ~$1.50/1K requests | Bright Data |
+| Bright Data Deep Lookup (verify fallback) | free preview only | Bright Data |
+| Dehashed (breach database, dark web) | $15 | Dehashed |
+| 6 Azure VMs (5 regional + 1 dark web, auto-shutdown) | $190-260 | Azure |
+| Azure Backup (8 VMs, daily, 30-day retention) | $80-120 | Azure |
+| Azure Storage (RA-GRS, blob + raw responses) | $8-10 | Azure |
+| Claude API (regional agents + CAPTCHA OCR) | $50-100 | Anthropic |
+| DeepSeek API (China VM) | $15-30 | DeepSeek |
+| Networking/egress | $10-20 | Azure |
+| **Total fixed** | **$455-645** | |
+
+### 6c. Loaded cost per entity (fixed + variable)
+
+| Volume | Variable/mo | Fixed/mo | Total/mo | Per entity |
+|--------|-------------|----------|----------|------------|
+| 10 entities/day (300/mo) | $15 | ~$550 | ~$565 | ~$1.88 |
+| 50 entities/day (1,500/mo) | $75 | ~$550 | ~$625 | ~$0.42 |
+| 100 entities/day (3,000/mo) | $150 | ~$550 | ~$700 | ~$0.23 |
+
+**Key vendors:** Bright Data (proxy, SERP, Discover, Web Scraper, Deep Lookup), Multilogin (anti-detect browser).
 
 ---
 

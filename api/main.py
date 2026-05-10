@@ -4524,19 +4524,34 @@ async def v2_metrics(_key: str = Depends(verify_api_key)):
     except Exception as e:
         return {"status": "error", "error": str(e), "metrics": {}}
 
-    # Cost summary for a typical CIR flow
+    # Cost summary — variable (per-call) + fixed (infrastructure)
+    fixed_monthly = 550  # midpoint of $455-645 range
     cir_flow_cost = {
-        "verify": 0.02,
-        "screening": 0.00,
-        "media": 0.02,
-        "enrich": 0.01,
-        "total_per_entity": 0.05,
-        "note": "Estimated cost per entity lookup across all v2 endpoints",
-        "monthly_estimate": {
-            "10_entities_day": round(0.05 * 10 * 30, 2),
-            "50_entities_day": round(0.05 * 50 * 30, 2),
-            "100_entities_day": round(0.05 * 100 * 30, 2),
+        "variable_per_entity": {
+            "verify": 0.02,
+            "screening": 0.00,
+            "media": 0.02,
+            "enrich": 0.01,
+            "total": 0.05,
         },
+        "fixed_monthly": {
+            "multilogin": 80,
+            "dehashed": 15,
+            "azure_vms": "190-260",
+            "azure_backup": "80-120",
+            "azure_storage": "8-10",
+            "claude_api": "50-100",
+            "deepseek_api": "15-30",
+            "networking": "10-20",
+            "total_range": "455-645",
+            "note": "Bright Data proxy costs included in variable per-call costs above",
+        },
+        "loaded_per_entity": {
+            "10_entities_day": {"variable_mo": 15, "fixed_mo": fixed_monthly, "total_mo": 15 + fixed_monthly, "per_entity": round((15 + fixed_monthly) / 300, 2)},
+            "50_entities_day": {"variable_mo": 75, "fixed_mo": fixed_monthly, "total_mo": 75 + fixed_monthly, "per_entity": round((75 + fixed_monthly) / 1500, 2)},
+            "100_entities_day": {"variable_mo": 150, "fixed_mo": fixed_monthly, "total_mo": 150 + fixed_monthly, "per_entity": round((150 + fixed_monthly) / 3000, 2)},
+        },
+        "note": "Variable = Bright Data (SERP, Discover, Web Scraper), Firecrawl. Fixed = Multilogin, Dehashed, Azure VMs/backup/storage, Claude/DeepSeek APIs.",
     }
 
     return {
