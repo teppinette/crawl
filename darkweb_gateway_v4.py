@@ -428,7 +428,9 @@ async def _search_dehashed(entity: str, domain: str = "") -> list[dict]:
             "Content-Type": "application/json",
             "Accept": "application/json",
         }
-        queries = [entity]
+        # Use exact-phrase match for entity name to avoid substring false positives.
+        # Domain searched as-is (already specific).
+        queries = [f'"{entity}"']
         if domain:
             queries.append(domain)
         dh_kwargs = dict(timeout=25)
@@ -475,7 +477,8 @@ async def _search_leakcheck(entity: str, domain: str = "") -> list[dict]:
     targets = []
     if domain:
         targets.append(("domain", domain))
-    targets.append(("keyword", entity))
+    # Exact phrase to avoid substring false positives on common words
+    targets.append(("keyword", f'"{entity}"'))
     try:
         for search_type, query in targets:
             q = quote_plus(query)
@@ -782,7 +785,8 @@ async def _search_ransomlook(entity: str) -> list[dict]:
 async def _search_occrp(entity: str) -> list[dict]:
     findings = []
     try:
-        q = quote_plus(entity)
+        # Exact phrase match to avoid substring false positives
+        q = quote_plus(f'"{entity}"')
         data = await _direct_fetch_json(
             f"https://aleph.occrp.org/api/2/search?q={q}&limit=20",
             timeout=25,
@@ -811,7 +815,8 @@ async def _search_occrp(entity: str) -> list[dict]:
 async def _search_icij(entity: str) -> list[dict]:
     findings = []
     try:
-        q = quote_plus(entity)
+        # Exact phrase match to avoid substring false positives
+        q = quote_plus(f'"{entity}"')
         data = await _direct_fetch_json(
             f"https://offshoreleaks.icij.org/api/v1/search?q={q}&limit=20",
             timeout=25,
@@ -847,6 +852,9 @@ async def _search_opensanctions(entity: str) -> list[dict]:
         )
         if data and "results" in data:
             for item in data["results"][:15]:
+                # Filter low-confidence fuzzy matches (score 0-100)
+                if item.get("score", 0) < 70:
+                    continue
                 props = item.get("properties", {})
                 findings.append({
                     "source": "opensanctions",

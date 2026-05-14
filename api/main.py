@@ -1352,8 +1352,13 @@ def _run_darkweb_enrichment(job_id: str, entity_name: str, country: str,
             return {"status": dw_status, "findings": [], "summary": dw_result.get("summary", {})}
 
         # Fetch the full result from blob storage
+        # Strip container prefix if gateway included it (e.g. "osint-staging/dark-web/...")
+        clean_blob_path = blob_path
+        container_prefix = f"{BLOB_CONTAINER}/"
+        if clean_blob_path.startswith(container_prefix):
+            clean_blob_path = clean_blob_path[len(container_prefix):]
         sas = _BLOB_SAS_TOKEN
-        blob_url = f"https://{BLOB_ACCOUNT}.blob.core.windows.net/{BLOB_CONTAINER}/{blob_path}?{sas}"
+        blob_url = f"https://{BLOB_ACCOUNT}.blob.core.windows.net/{BLOB_CONTAINER}/{clean_blob_path}?{sas}"
         blob_resp = _req.get(blob_url, timeout=30)
 
         if blob_resp.status_code == 200 and blob_resp.text.strip():
@@ -1392,35 +1397,78 @@ def _inject_darkweb_into_blob(local_file: Path, darkweb_data: dict) -> bool:
             blob = json.load(f)
 
         summary = darkweb_data.get("summary", {})
-        findings = darkweb_data.get("findings", [])
-        total = summary.get("total_findings", 0)
+        raw_findings = darkweb_data.get("findings", [])
         sources_searched = summary.get("sources_searched", 0)
         sources_hit = summary.get("sources_with_results", 0)
-        by_source = summary.get("by_source", {})
-        by_type = summary.get("by_type", {})
 
-        # --- Classify risk level ---
-        has_breach = any(f.get("type") in (
-            "infostealer_exposure", "paste_dump", "exposed_service", "ransomware_victim"
-        ) for f in findings)
-        has_darknet = any(f.get("type") == "dark_web_mention" for f in findings)
-        has_offshore = any(f.get("type") == "offshore_entity" for f in findings)
-        has_sanctions = any(f.get("type") == "sanctions_pep" for f in findings)
-        has_occrp = any(f.get("type") == "organized_crime_data" for f in findings)
-        has_wikileaks = any(f.get("type") == "leaked_document" for f in findings)
-        has_adverse = any(f.get("type") == "adverse_media" for f in findings)
-        has_interpol = any(f.get("type") == "wanted_person" for f in findings)
-        has_un_notice = any(f.get("type") == "un_sanctions_notice" for f in findings)
-        has_debarment = any(f.get("type") == "debarment_record" for f in findings)
-        has_code_leak = any(f.get("type") == "code_leak" for f in findings)
+        # --- Deduplicate findings by (source, type, key identifier) ---
+        seen = set()
+        findings = []
+        for f in raw_findings:
+            if f.get("type") == "error":
+                continue
+            key = (
+                f.get("source", ""),
+                f.get("type", ""),
+                (f.get("title") or f.get("email") or f.get("domain") or
+                 f.get("database_name") or f.get("victim") or "")[:100],
+            )
+            if key not in seen:
+                seen.add(key)
+                findings.append(f)
 
-        if has_darknet or has_breach or has_sanctions or has_occrp or has_interpol or has_un_notice or has_debarment:
+        total = len(findings)
+        deduplicated = len(raw_findings) - total
+        if deduplicated > 0:
+            log.info("Dark web dedup: %d raw -> %d unique (%d duplicates removed)",
+                     len(raw_findings), total, deduplicated)
+
+        # Recompute by_source / by_type from deduplicated findings
+        by_source = {}
+        by_type = {}
+        for f in findings:
+            src = f.get("source", "unknown")
+            typ = f.get("type", "unknown")
+            by_source[src] = by_source.get(src, 0) + 1
+            by_type[typ] = by_type.get(typ, 0) + 1
+
+        # --- Noise types: informational only, don't count toward risk ---
+        _NOISE_TYPES = {
+            "certificate_transparency", "social_mention", "web_mention",
+            "corporate_record", "website_scan", "domain_reputation",
+        }
+        actionable_findings = [f for f in findings if f.get("type") not in _NOISE_TYPES]
+        actionable_count = len(actionable_findings)
+
+        # --- Classify risk level (based on actionable findings only) ---
+        def _count_type(t):
+            return sum(1 for f in actionable_findings if f.get("type") == t)
+
+        n_infostealer = _count_type("infostealer_exposure")
+        n_ransomware = _count_type("ransomware_victim")
+        n_darknet = _count_type("dark_web_mention")
+        n_sanctions = _count_type("sanctions_pep")
+        n_occrp = _count_type("organized_crime_data")
+        n_interpol = _count_type("wanted_person")
+        n_un_notice = _count_type("un_sanctions_notice")
+        n_debarment = _count_type("debarment_record")
+        n_offshore = _count_type("offshore_entity")
+        n_wikileaks = _count_type("leaked_document")
+        n_code_leak = _count_type("code_leak")
+        n_adverse = _count_type("adverse_media")
+        n_breach = _count_type("breach_record")
+
+        # CRITICAL requires genuinely alarming findings (not just breach DB noise)
+        if n_interpol or n_un_notice or n_debarment or n_ransomware:
             risk_level = "CRITICAL"
-        elif has_offshore or has_wikileaks or has_adverse or has_code_leak or total > 15:
+        elif n_darknet >= 2 or n_sanctions >= 2 or n_occrp >= 2 or n_infostealer >= 2:
+            risk_level = "CRITICAL"
+        elif (n_darknet or n_infostealer or n_sanctions or n_occrp
+              or n_offshore or n_wikileaks or n_code_leak):
             risk_level = "HIGH"
-        elif total > 5:
+        elif n_adverse or n_breach >= 3 or actionable_count > 10:
             risk_level = "MEDIUM"
-        elif total > 0:
+        elif actionable_count > 0:
             risk_level = "LOW"
         else:
             risk_level = "CLEAN"
@@ -1475,6 +1523,8 @@ def _inject_darkweb_into_blob(local_file: Path, darkweb_data: dict) -> bool:
         blob["dark_web_screening"] = {
             "risk_level": risk_level,
             "total_findings": total,
+            "actionable_findings": actionable_count,
+            "duplicates_removed": deduplicated,
             "sources_searched": sources_searched,
             "sources_with_hits": sources_hit,
             "key_findings": key_findings[:10],
@@ -1528,9 +1578,11 @@ def _inject_darkweb_into_blob(local_file: Path, darkweb_data: dict) -> bool:
             dw_text = f"DARK WEB SCREENING: CLEAN — {sources_searched} sources searched, no findings."
         else:
             top_hits = "; ".join(key_findings[:3])
+            noise_note = (f" ({total - actionable_count} informational/noise excluded)"
+                          if total > actionable_count else "")
             dw_text = (
                 f"DARK WEB SCREENING: {risk_level} — "
-                f"{total} findings across {sources_hit}/{sources_searched} sources. "
+                f"{actionable_count} actionable findings across {sources_hit}/{sources_searched} sources{noise_note}. "
                 f"Key: {top_hits}"
             )
 
@@ -1548,17 +1600,17 @@ def _inject_darkweb_into_blob(local_file: Path, darkweb_data: dict) -> bool:
         # --- 3. Build risk addendum ---
         if risk_level in ("CRITICAL", "HIGH"):
             risk_text = (
-                f"DARK WEB RISK ({risk_level}): {total} findings detected. "
+                f"DARK WEB RISK ({risk_level}): {actionable_count} actionable findings detected. "
                 f"Immediate review recommended. Key hits: {'; '.join(key_findings[:3])}"
             )
         elif risk_level == "MEDIUM":
             risk_text = (
-                f"DARK WEB RISK (MEDIUM): {total} findings detected across "
+                f"DARK WEB RISK (MEDIUM): {actionable_count} actionable findings across "
                 f"{sources_hit} sources. Review recommended."
             )
         else:
             risk_text = (
-                f"DARK WEB RISK ({risk_level}): {total} findings. "
+                f"DARK WEB RISK ({risk_level}): {actionable_count} actionable findings. "
                 f"No immediate action required."
             )
 
@@ -1578,6 +1630,8 @@ def _inject_darkweb_into_blob(local_file: Path, darkweb_data: dict) -> bool:
             "sources_searched": sources_searched,
             "sources_with_results": sources_hit,
             "total_findings": total,
+            "actionable_findings": actionable_count,
+            "duplicates_removed": deduplicated,
             "findings": findings,
             "source_status": darkweb_data.get("source_status", {}),
             "by_source": by_source,
@@ -1718,11 +1772,11 @@ async def dispatch_single(job_id: str, region: str, prompt: str, scenario: str):
                         job_id[:8], len(owners), len(affiliated_entities), domain or "none"
                     )
 
-                    # Add affiliated entities to owners list for dark web search
-                    # (they'll be searched individually across investigative DBs)
-                    for ae in affiliated_entities:
-                        if ae not in owners:
-                            owners.append(ae)
+                    # NOTE: affiliated entities (trade names, DBAs) are NOT added to
+                    # the owners list. They're company names, not people — searching
+                    # them as individuals across OCCRP/ICIJ/OpenSanctions produces
+                    # massive false positives. The primary entity_name already covers
+                    # the company-level search.
 
                 except Exception as e:
                     log.warning("Job %s [cir]: failed to parse blob for enrichment: %s",
@@ -1776,21 +1830,65 @@ async def dispatch_single(job_id: str, region: str, prompt: str, scenario: str):
                                        "status": dw_data.get("status", "unknown")})
 
                 # Update job with dark-web summary + prepend banner to report_summary
-                dw_total = dw_summary.get("total_findings", 0)
                 dw_sources = dw_summary.get("sources_searched", 0)
                 dw_hits = dw_summary.get("sources_with_results", 0)
-                dw_by_type = dw_summary.get("by_type", {})
 
-                # Classify
-                dw_findings_list = dw_data.get("findings", [])
-                _has = lambda t: any(f.get("type") == t for f in dw_findings_list)
-                if _has("wanted_person") or _has("un_sanctions_notice") or _has("debarment_record") or _has("infostealer_exposure") or _has("dark_web_mention") or _has("ransomware_victim") or _has("sanctions_pep") or _has("organized_crime_data"):
+                # Deduplicate + filter noise (same logic as _inject_darkweb_into_blob)
+                _NOISE_TYPES_DW = {
+                    "certificate_transparency", "social_mention", "web_mention",
+                    "corporate_record", "website_scan", "domain_reputation",
+                }
+                _seen_dw = set()
+                dw_findings_list = []
+                for _f in dw_data.get("findings", []):
+                    if _f.get("type") == "error":
+                        continue
+                    _key = (
+                        _f.get("source", ""),
+                        _f.get("type", ""),
+                        (_f.get("title") or _f.get("email") or _f.get("domain") or
+                         _f.get("database_name") or _f.get("victim") or "")[:100],
+                    )
+                    if _key not in _seen_dw:
+                        _seen_dw.add(_key)
+                        dw_findings_list.append(_f)
+                dw_total = len(dw_findings_list)
+                dw_actionable = [f for f in dw_findings_list if f.get("type") not in _NOISE_TYPES_DW]
+
+                # Recompute by_type from deduped findings
+                dw_by_type = {}
+                dw_by_source = dw_summary.get("by_source", {})
+                for _f in dw_findings_list:
+                    _t = _f.get("type", "unknown")
+                    dw_by_type[_t] = dw_by_type.get(_t, 0) + 1
+
+                # Classify (matching thresholds from _inject_darkweb_into_blob)
+                def _cnt(t):
+                    return sum(1 for f in dw_actionable if f.get("type") == t)
+                _n_interpol = _cnt("wanted_person")
+                _n_un = _cnt("un_sanctions_notice")
+                _n_debarment = _cnt("debarment_record")
+                _n_ransomware = _cnt("ransomware_victim")
+                _n_darknet = _cnt("dark_web_mention")
+                _n_sanctions = _cnt("sanctions_pep")
+                _n_occrp = _cnt("organized_crime_data")
+                _n_infostealer = _cnt("infostealer_exposure")
+                _n_offshore = _cnt("offshore_entity")
+                _n_wikileaks = _cnt("leaked_document")
+                _n_code_leak = _cnt("code_leak")
+                _n_adverse = _cnt("adverse_media")
+                _n_breach = _cnt("breach_record")
+
+                if _n_interpol or _n_un or _n_debarment or _n_ransomware:
                     dw_risk = "CRITICAL"
-                elif _has("offshore_entity") or _has("leaked_document") or _has("adverse_media") or _has("code_leak") or dw_total > 15:
+                elif _n_darknet >= 2 or _n_sanctions >= 2 or _n_occrp >= 2 or _n_infostealer >= 2:
+                    dw_risk = "CRITICAL"
+                elif (_n_darknet or _n_infostealer or _n_sanctions or _n_occrp
+                      or _n_offshore or _n_wikileaks or _n_code_leak):
                     dw_risk = "HIGH"
-                elif dw_total > 5:
+                elif _n_adverse or _n_breach >= 3 or len(dw_actionable) > 10:
                     dw_risk = "MEDIUM"
-                elif dw_total > 0:
+                elif len(dw_actionable) > 0:
                     dw_risk = "LOW"
                 else:
                     dw_risk = "CLEAN"
@@ -1834,12 +1932,14 @@ async def dispatch_single(job_id: str, region: str, prompt: str, scenario: str):
                         break
 
                 # Build banner
+                _noise_excluded = dw_total - len(dw_actionable)
+                _noise_note = f" ({_noise_excluded} informational excluded)" if _noise_excluded else ""
                 banner_lines = [
                     "",
                     "---",
                     "",
                     f"## DARK WEB SCREENING — {dw_risk}",
-                    f"**{dw_total} findings** from {dw_hits}/{dw_sources} sources via Tor (Netherlands exit node)",
+                    f"**{len(dw_actionable)} actionable findings** from {dw_hits}/{dw_sources} sources via Tor (Netherlands exit node){_noise_note}",
                     "",
                 ]
                 if dw_risk == "CLEAN":
@@ -1878,6 +1978,56 @@ async def dispatch_single(job_id: str, region: str, prompt: str, scenario: str):
                             banner_lines.append(f"- {kh}")
                     banner_lines.append("")
 
+                # Source-by-source breakdown with actual findings
+                if dw_by_source:
+                    banner_lines.append("### Sources with findings")
+                    banner_lines.append("")
+                    banner_lines.append("| Source | Findings | Details |")
+                    banner_lines.append("|--------|----------|---------|")
+                    for src_name, src_count in sorted(dw_by_source.items(), key=lambda x: -x[1]):
+                        if src_count > 0:
+                            # Get sample findings from this source
+                            src_findings = [f for f in dw_findings_list if f.get("source", "") == src_name][:3]
+                            details = "; ".join(
+                                (f.get("title") or f.get("victim") or f.get("domain") or f.get("type", ""))[:60]
+                                for f in src_findings
+                            )
+                            if len(src_findings) < src_count:
+                                details += f" (+{src_count - len(src_findings)} more)"
+                            banner_lines.append(f"| {src_name} | {src_count} | {details} |")
+                    banner_lines.append("")
+
+                # Enumerate all findings (grouped by type)
+                if dw_findings_list and dw_total <= 100:
+                    banner_lines.append("### All findings detail")
+                    banner_lines.append("")
+                    by_type_grouped = {}
+                    for f in dw_findings_list:
+                        ft = f.get("type", "unknown")
+                        by_type_grouped.setdefault(ft, []).append(f)
+                    for ft in _priority + [t for t in by_type_grouped if t not in _priority]:
+                        items = by_type_grouped.get(ft, [])
+                        if not items:
+                            continue
+                        label = _type_labels.get(ft, ft.replace("_", " ").upper())
+                        banner_lines.append(f"**{label}** ({len(items)})")
+                        for f in items[:20]:
+                            title = f.get("title") or f.get("victim") or f.get("domain") or ""
+                            src = f.get("source", "")
+                            url = f.get("url", "")
+                            indiv = f.get("searched_individual", "")
+                            line = f"- {title[:100]}"
+                            if src:
+                                line += f" — *{src}*"
+                            if indiv:
+                                line += f" (searched: {indiv})"
+                            if url:
+                                line += f" [{url[:80]}]"
+                            banner_lines.append(line)
+                        if len(items) > 20:
+                            banner_lines.append(f"- ... and {len(items) - 20} more")
+                        banner_lines.append("")
+
                 banner_lines.append("*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*")
                 banner_lines.append("")
                 banner_lines.append("---")
@@ -1891,7 +2041,7 @@ async def dispatch_single(job_id: str, region: str, prompt: str, scenario: str):
 
                 update_job_fields(job_id, {
                     "status": "completed",
-                    "dark_web_findings": dw_total,
+                    "dark_web_findings": len(dw_actionable),
                     "dark_web_sources": dw_sources,
                     "report_summary": new_summary,
                     "updated_at": datetime.now(timezone.utc).isoformat(),
@@ -2507,6 +2657,10 @@ _VERIFY_SOURCES = {
     "BR": "Receita Federal CNPJ (BrasilAPI) — company name, status, address, partners, CNAE",
     "US": "SEC EDGAR — CIK, entity type, SIC, EIN, tickers, exchanges, addresses, filings",
     "KR": "DART (FSS) — corp name (KR+EN), stock code, CEO, market, BRN, address, industry",
+    "SA": "Wathq (MCI) — commercial registration, owners, managers, capital (free API)",
+    "CL": "SII RUT — taxpayer status, economic activities, address (free, no CAPTCHA)",
+    "CO": "RUES — commercial registration, NIT, legal form, chamber of commerce (free)",
+    "PE": "SUNAT RUC — company name, status, condition, address, economic activity (free API)",
 }
 
 
@@ -2913,6 +3067,123 @@ async def verify_entity(
                 f"{result.get('entity_name', entity_name)} — "
                 f"{result.get('market', '')} — {result.get('entity_name_eng', '')}"
             ) if result.get("found") else f"'{entity_name}' not found in DART (FSS)",
+        }
+
+    # --------------- SAUDI ARABIA (Wathq/MCI) ---------------
+    if country_code == "SA":
+        cr_number = body.get("cr_number", "").strip()
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "SA", "cr_number": cr_number}
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        return {
+            "entity_name": entity_name, "country_code": "SA",
+            "verified": result.get("found", False),
+            "legal_name": result.get("entity_name"),
+            "cr_number": result.get("cr_number"),
+            "trade_name": result.get("trade_name"),
+            "status": result.get("status"),
+            "business_type": result.get("business_type"),
+            "capital": result.get("capital"),
+            "issue_date": result.get("issue_date"),
+            "expiry_date": result.get("expiry_date"),
+            "location": result.get("location"),
+            "activities": result.get("activities"),
+            "owners": result.get("owners"),
+            "managers": result.get("managers"),
+            "alternatives": result.get("alternatives"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+            "summary": (
+                f"{result.get('entity_name', entity_name)} — CR {result.get('cr_number', 'N/A')} — "
+                f"{result.get('status', 'Unknown')}"
+            ) if result.get("found") else f"'{entity_name}' not found in MCI (Wathq)",
+        }
+
+    # --------------- CHILE (SII RUT) ---------------
+    if country_code == "CL":
+        rut = body.get("rut", "").strip()
+        if not rut:
+            raise HTTPException(status_code=422, detail="rut (Chilean RUT e.g. 76123456-7) required for CL verification")
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "CL", "rut": rut}
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        return {
+            "entity_name": entity_name, "country_code": "CL",
+            "verified": result.get("found", False),
+            "legal_name": result.get("entity_name"),
+            "rut": result.get("rut"),
+            "status": result.get("status"),
+            "activity_start_date": result.get("activity_start_date"),
+            "economic_activities": result.get("economic_activities"),
+            "registered_address": result.get("registered_address"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+            "summary": (
+                f"{result.get('entity_name', entity_name)} — RUT {result.get('rut', 'N/A')} — "
+                f"{result.get('status', 'Unknown')}"
+            ) if result.get("found") else f"RUT {rut} not verified via SII",
+        }
+
+    # --------------- COLOMBIA (RUES) ---------------
+    if country_code == "CO":
+        nit = body.get("nit", "").strip()
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "CO", "nit": nit}
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        return {
+            "entity_name": entity_name, "country_code": "CO",
+            "verified": result.get("found", False),
+            "legal_name": result.get("entity_name"),
+            "nit": result.get("nit"),
+            "status": result.get("status"),
+            "registration_number": result.get("registration_number"),
+            "chamber_of_commerce": result.get("chamber_of_commerce"),
+            "legal_form": result.get("legal_form"),
+            "category": result.get("category"),
+            "economic_activity": result.get("economic_activity"),
+            "registration_date": result.get("registration_date"),
+            "last_renewal": result.get("last_renewal"),
+            "alternatives": result.get("alternatives"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+            "summary": (
+                f"{result.get('entity_name', entity_name)} — NIT {result.get('nit', 'N/A')} — "
+                f"{result.get('status', 'Unknown')}"
+            ) if result.get("found") else f"NIT {nit or entity_name} not found in RUES",
+        }
+
+    # --------------- PERU (SUNAT RUC) ---------------
+    if country_code == "PE":
+        ruc = body.get("ruc", "").strip()
+        if not ruc:
+            raise HTTPException(status_code=422, detail="ruc (11-digit RUC starting with 10 or 20) required for PE verification")
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "PE", "ruc": ruc}
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        return {
+            "entity_name": entity_name, "country_code": "PE",
+            "verified": result.get("found", False),
+            "legal_name": result.get("entity_name"),
+            "ruc": result.get("ruc"),
+            "status": result.get("status"),
+            "condition": result.get("condition"),
+            "trade_name": result.get("trade_name"),
+            "taxpayer_type": result.get("taxpayer_type"),
+            "registered_address": result.get("registered_address"),
+            "department": result.get("department"),
+            "province": result.get("province"),
+            "district": result.get("district"),
+            "economic_activity": result.get("economic_activity"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+            "summary": (
+                f"{result.get('entity_name', entity_name)} — RUC {result.get('ruc', 'N/A')} — "
+                f"{result.get('status', 'Unknown')}"
+            ) if result.get("found") else f"RUC {ruc} not found in SUNAT",
         }
 
 
