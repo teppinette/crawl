@@ -1,0 +1,65 @@
+{
+  "entities": [
+    {
+      "id": 1454,
+      "name": "COPAP INC",
+      "country": "CA",
+      "domain": "copap.com",
+      "scan": ["darkweb", "screening", "media", "cir"]
+    },
+    {
+      "id": 1048,
+      "name": "COPAP TRADING INC",
+      "country": "CA",
+      "domain": null,
+      "scan": ["darkweb", "screening", "media", "cir"]
+    },
+    {
+      "id": 3786,
+      "name": "COPAP USA INC",
+      "country": "US",
+      "domain": null,
+      "scan": ["darkweb", "screening", "media", "cir"]
+    },
+    {
+      "id": 1047,
+      "name": "COPAP EUROPE",
+      "country": "FR",
+      "domain": null,
+      "scan": ["darkweb", "screening", "media", "cir"]
+    },
+    {
+      "id": 5687,
+      "name": "COPAP INTERNATIONAL INC.",
+      "country": "CA",
+      "domain": null,
+      "scan": ["darkweb", "screening", "media", "cir"]
+    },
+    {
+      "id": 4356,
+      "name": "COPAP MIDDLE EAST GENERAL TRADING CO. LLC",
+      "country": "AE",
+      "domain": null,
+      "scan": ["darkweb", "screening", "media", "cir"]
+    },
+    {
+      "id": 1241,
+      "name": "SIGMA TRADE FINANCE INC",
+      "country": "CA",
+      "domain": null,
+      "scan": ["darkweb", "screening", "media", "cir"]
+    }
+  ],
+  "schedule": "Sunday 22:00 UTC",
+  "delivery": {
+    "teams_webhook": true,
+    "blob_upload": true,
+    "blob_path_pattern": "reports/copap-weekly/COPAP_Weekly_{date}.pdf"
+  },
+  "excluded": [
+    {"id": 1502, "name": "COPAP EUROPE - EUROS (DO NOT USE)", "reason": "inactive"},
+    {"id": 1503, "name": "COPAP INC EUROS (DO NOT USE)", "reason": "inactive"},
+    {"id": 1504, "name": "COPAP TRADING INC EUROS (DO NOT USE)", "reason": "inactive"},
+    {"id": "?", "name": "INTERNAL (Converting)", "reason": "inactive"}
+  ]
+}
