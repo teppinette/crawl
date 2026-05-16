@@ -43,6 +43,7 @@ from pydantic import BaseModel, Field, model_validator
 
 from keyvault import get_secret, load_vm_tokens
 from event_log import log_job_event, log_api_access
+from report_db import save_cir_report, save_verification
 import adverse_media
 import enrichment
 import screening
@@ -2047,6 +2048,30 @@ async def dispatch_single(job_id: str, region: str, prompt: str, scenario: str):
                     "updated_at": datetime.now(timezone.utc).isoformat(),
                 })
 
+                # Persist to crawl_reports DB
+                _dw_alert = "CLEAN"
+                if len(dw_actionable) >= 16:
+                    _dw_alert = "CRITICAL"
+                elif len(dw_actionable) >= 6:
+                    _dw_alert = "HIGH"
+                elif len(dw_actionable) >= 1:
+                    _dw_alert = "MEDIUM"
+                _job_final = load_job(job_id)
+                save_cir_report(
+                    job_id=job_id,
+                    entity_name=entity_name,
+                    country=country,
+                    region=_job_final.get("region", ""),
+                    status="completed",
+                    blob_path=_job_final.get("blob_path"),
+                    report_summary=new_summary,
+                    dark_web_findings=len(dw_actionable),
+                    dark_web_sources=dw_sources,
+                    dark_web_alert=_dw_alert,
+                    seed_data=_job_final.get("seed_data"),
+                    created_at=_job_final.get("created_at"),
+                )
+
             except Exception as e:
                 log.error("Job %s [cir]: dark-web enrichment failed: %s", job_id[:8], e)
                 update_job_fields(job_id, {
@@ -2054,6 +2079,23 @@ async def dispatch_single(job_id: str, region: str, prompt: str, scenario: str):
                     "dark_web_error": str(e)[:300],
                     "updated_at": datetime.now(timezone.utc).isoformat(),
                 })
+
+                # Still persist to crawl_reports DB (dark web failed but CIR completed)
+                _job_err = load_job(job_id)
+                save_cir_report(
+                    job_id=job_id,
+                    entity_name=entity_name,
+                    country=country,
+                    region=_job_err.get("region", ""),
+                    status="completed",
+                    blob_path=_job_err.get("blob_path"),
+                    report_summary=_job_err.get("report_summary"),
+                    dark_web_findings=0,
+                    dark_web_sources=0,
+                    dark_web_alert="ERROR",
+                    seed_data=_job_err.get("seed_data"),
+                    created_at=_job_err.get("created_at"),
+                )
 
 
 async def dispatch_fanout(job_id: str, regions: list[str], prompts: dict[str, str], scenario: str):
@@ -2695,6 +2737,14 @@ async def verify_entity(
     cin = body.get("cin", "").strip().upper()
     iec = body.get("iec", "").strip().upper()  # IEC = PAN for Indian companies
 
+    _verify_start = time.monotonic()
+
+    def _persist_verify(resp):
+        """Fire-and-forget: persist to crawl_verification DB."""
+        resp["duration_ms"] = int((time.monotonic() - _verify_start) * 1000)
+        save_verification(resp)
+        return resp
+
     # US allows lookup by CIK or ticker without entity_name
     has_alt_id = country_code == "US" and (body.get("cik", "").strip() or body.get("ticker", "").strip())
     if not country_code or (not entity_name and not has_alt_id):
@@ -2741,7 +2791,7 @@ async def verify_entity(
                         log.warning("Deep Lookup fallback failed for %s: %s", entity_name, e)
 
                 result["timestamp"] = datetime.now(timezone.utc).isoformat()
-                return result
+                return _persist_verify(result)
         raise HTTPException(
             status_code=422,
             detail=f"Verify not yet supported for {country_code}. Supported: {', '.join(sorted(set(list(_VERIFY_SOURCES.keys()) + aggregator.supported_countries())))}.",
@@ -2792,7 +2842,7 @@ async def verify_entity(
             resp["summary"] = f"No SECP registration found for '{entity_name}'"
             if secp.get("error"):
                 resp["error"] = secp["error"]
-        return resp
+        return _persist_verify(resp)
 
     # --------------- INDIA ---------------
     if country_code == "IN":
@@ -2846,7 +2896,7 @@ async def verify_entity(
             resp["summary"] = f"No registration found for '{entity_name}'"
             if result.get("error"):
                 resp["error"] = result["error"]
-        return resp
+        return _persist_verify(resp)
 
     # --------------- SINGAPORE ---------------
     if country_code == "SG":
@@ -2878,7 +2928,7 @@ async def verify_entity(
             resp["summary"] = f"No ACRA registration found for '{entity_name}'"
             if result.get("error"):
                 resp["error"] = result["error"]
-        return resp
+        return _persist_verify(resp)
 
     # --------------- TURKEY ---------------
     if country_code == "TR":
@@ -2889,7 +2939,7 @@ async def verify_entity(
             _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "TR", "vkn": vkn}
         )
         now = datetime.now(timezone.utc).isoformat()
-        return {
+        return _persist_verify({
             "entity_name": entity_name, "country_code": "TR",
             "verified": result.get("found", False),
             "legal_name": result.get("legal_name"),
@@ -2899,7 +2949,7 @@ async def verify_entity(
             "validation_source": result.get("validation_source"),
             "timestamp": now,
             "summary": result.get("legal_name", f"VKN {vkn}") if result.get("found") else f"VKN {vkn} not verified",
-        }
+        })
 
     # --------------- UAE ---------------
     if country_code == "AE":
@@ -2910,7 +2960,7 @@ async def verify_entity(
             _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "AE", "trn": trn}
         )
         now = datetime.now(timezone.utc).isoformat()
-        return {
+        return _persist_verify({
             "entity_name": entity_name, "country_code": "AE",
             "verified": result.get("found", False),
             "legal_name": result.get("legal_name"),
@@ -2918,7 +2968,7 @@ async def verify_entity(
             "validation_source": result.get("validation_source"),
             "timestamp": now,
             "summary": result.get("legal_name", f"TRN {trn}") if result.get("found") else f"TRN {trn} not verified",
-        }
+        })
 
     # --------------- CHINA ---------------
     if country_code == "CN":
@@ -2927,7 +2977,7 @@ async def verify_entity(
             _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "CN", "uscc": uscc}
         )
         now = datetime.now(timezone.utc).isoformat()
-        return {
+        return _persist_verify({
             "entity_name": entity_name, "country_code": "CN",
             "verified": result.get("found", False),
             "legal_name": result.get("legal_name"),
@@ -2939,7 +2989,7 @@ async def verify_entity(
             "validation_source": result.get("validation_source"),
             "timestamp": now,
             "summary": result.get("legal_name", entity_name) if result.get("found") else f"'{entity_name}' not verified",
-        }
+        })
 
     # --------------- UK ---------------
     if country_code == "GB":
@@ -2948,7 +2998,7 @@ async def verify_entity(
             _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "GB", "company_number": company_number}
         )
         now = datetime.now(timezone.utc).isoformat()
-        return {
+        return _persist_verify({
             "entity_name": entity_name, "country_code": "GB",
             "verified": result.get("found", False),
             "legal_name": result.get("entity_name"),
@@ -2966,7 +3016,7 @@ async def verify_entity(
                 f"{result.get('entity_name', entity_name)} — #{result.get('company_number', 'N/A')} — "
                 f"{result.get('status', 'Unknown')} — Inc: {result.get('incorporated_on', 'N/A')}"
             ) if result.get("found") else f"'{entity_name}' not found in Companies House",
-        }
+        })
 
     # --------------- BRAZIL ---------------
     if country_code == "BR":
@@ -2977,7 +3027,7 @@ async def verify_entity(
             _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "BR", "cnpj": cnpj}
         )
         now = datetime.now(timezone.utc).isoformat()
-        return {
+        return _persist_verify({
             "entity_name": entity_name, "country_code": "BR",
             "verified": result.get("found", False),
             "legal_name": result.get("entity_name"),
@@ -2997,7 +3047,7 @@ async def verify_entity(
                 f"{result.get('entity_name', entity_name)} — CNPJ {result.get('cnpj', 'N/A')} — "
                 f"{result.get('status', 'Unknown')} — {result.get('cnae_description', '')}"
             ) if result.get("found") else f"CNPJ not found in Receita Federal",
-        }
+        })
 
     # --------------- US (SEC EDGAR) ---------------
     if country_code == "US":
@@ -3007,7 +3057,7 @@ async def verify_entity(
             _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "US", "cik": cik, "ticker": ticker}
         )
         now = datetime.now(timezone.utc).isoformat()
-        return {
+        return _persist_verify({
             "entity_name": entity_name, "country_code": "US",
             "verified": result.get("found", False),
             "legal_name": result.get("entity_name"),
@@ -3034,7 +3084,7 @@ async def verify_entity(
                 f"{result.get('entity_name', entity_name)} — CIK {result.get('cik', 'N/A')} — "
                 f"{result.get('status', 'Unknown')} — {result.get('sic_description', '')}"
             ) if result.get("found") else f"'{entity_name}' not found in SEC EDGAR",
-        }
+        })
 
     # --------------- SOUTH KOREA (DART/FSS) ---------------
     if country_code == "KR":
@@ -3044,7 +3094,7 @@ async def verify_entity(
             _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "KR", "corp_code": corp_code, "brn": brn}
         )
         now = datetime.now(timezone.utc).isoformat()
-        return {
+        return _persist_verify({
             "entity_name": entity_name, "country_code": "KR",
             "verified": result.get("found", False),
             "legal_name": result.get("entity_name"),
@@ -3067,7 +3117,7 @@ async def verify_entity(
                 f"{result.get('entity_name', entity_name)} — "
                 f"{result.get('market', '')} — {result.get('entity_name_eng', '')}"
             ) if result.get("found") else f"'{entity_name}' not found in DART (FSS)",
-        }
+        })
 
     # --------------- SAUDI ARABIA (Wathq/MCI) ---------------
     if country_code == "SA":
@@ -3076,7 +3126,7 @@ async def verify_entity(
             _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "SA", "cr_number": cr_number}
         )
         now = datetime.now(timezone.utc).isoformat()
-        return {
+        return _persist_verify({
             "entity_name": entity_name, "country_code": "SA",
             "verified": result.get("found", False),
             "legal_name": result.get("entity_name"),
@@ -3098,7 +3148,7 @@ async def verify_entity(
                 f"{result.get('entity_name', entity_name)} — CR {result.get('cr_number', 'N/A')} — "
                 f"{result.get('status', 'Unknown')}"
             ) if result.get("found") else f"'{entity_name}' not found in MCI (Wathq)",
-        }
+        })
 
     # --------------- CHILE (SII RUT) ---------------
     if country_code == "CL":
@@ -3109,7 +3159,7 @@ async def verify_entity(
             _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "CL", "rut": rut}
         )
         now = datetime.now(timezone.utc).isoformat()
-        return {
+        return _persist_verify({
             "entity_name": entity_name, "country_code": "CL",
             "verified": result.get("found", False),
             "legal_name": result.get("entity_name"),
@@ -3124,7 +3174,7 @@ async def verify_entity(
                 f"{result.get('entity_name', entity_name)} — RUT {result.get('rut', 'N/A')} — "
                 f"{result.get('status', 'Unknown')}"
             ) if result.get("found") else f"RUT {rut} not verified via SII",
-        }
+        })
 
     # --------------- COLOMBIA (RUES) ---------------
     if country_code == "CO":
@@ -3133,7 +3183,7 @@ async def verify_entity(
             _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "CO", "nit": nit}
         )
         now = datetime.now(timezone.utc).isoformat()
-        return {
+        return _persist_verify({
             "entity_name": entity_name, "country_code": "CO",
             "verified": result.get("found", False),
             "legal_name": result.get("entity_name"),
@@ -3153,7 +3203,7 @@ async def verify_entity(
                 f"{result.get('entity_name', entity_name)} — NIT {result.get('nit', 'N/A')} — "
                 f"{result.get('status', 'Unknown')}"
             ) if result.get("found") else f"NIT {nit or entity_name} not found in RUES",
-        }
+        })
 
     # --------------- PERU (SUNAT RUC) ---------------
     if country_code == "PE":
@@ -3164,7 +3214,7 @@ async def verify_entity(
             _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "PE", "ruc": ruc}
         )
         now = datetime.now(timezone.utc).isoformat()
-        return {
+        return _persist_verify({
             "entity_name": entity_name, "country_code": "PE",
             "verified": result.get("found", False),
             "legal_name": result.get("entity_name"),
@@ -3184,7 +3234,7 @@ async def verify_entity(
                 f"{result.get('entity_name', entity_name)} — RUC {result.get('ruc', 'N/A')} — "
                 f"{result.get('status', 'Unknown')}"
             ) if result.get("found") else f"RUC {ruc} not found in SUNAT",
-        }
+        })
 
 
 @app.post("/api/v1/verify/lei")
