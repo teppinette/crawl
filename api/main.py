@@ -2703,6 +2703,10 @@ _VERIFY_SOURCES = {
     "CL": "SII RUT — taxpayer status, economic activities, address (free, no CAPTCHA)",
     "CO": "RUES — commercial registration, NIT, legal form, chamber of commerce (free)",
     "PE": "SUNAT RUC — company name, status, condition, address, economic activity (free API)",
+    "MX": "DENUE (INEGI) — establishment name, legal name, activity, address, employee size (free API)",
+    "IL": "ICA (data.gov.il) — company name (HE+EN), number, type, status, address (free CKAN API)",
+    "CA": "BC OrgBook — entity name, BN, status, type, registration date, jurisdiction (free API)",
+    "FR": "Registre National des Entreprises (INSEE/INPI) — SIREN, directors, legal form, activity, address (free API)",
 }
 
 
@@ -2792,10 +2796,19 @@ async def verify_entity(
 
                 result["timestamp"] = datetime.now(timezone.utc).isoformat()
                 return _persist_verify(result)
-        raise HTTPException(
-            status_code=422,
-            detail=f"Verify not yet supported for {country_code}. Supported: {', '.join(sorted(set(list(_VERIFY_SOURCES.keys()) + aggregator.supported_countries())))}.",
-        )
+        # Country not in gov sources or aggregator — return clean JSON, not HTTP error
+        now = datetime.now(timezone.utc).isoformat()
+        return _persist_verify({
+            "entity_name": entity_name, "country_code": country_code,
+            "verified": False,
+            "status": "NOT_COVERED",
+            "note": f"Government registry verification not yet available for {country_code}. "
+                    f"Direct gov sources: {', '.join(sorted(_VERIFY_SOURCES.keys()))}. "
+                    f"Aggregator coverage: {len(aggregator.COUNTRIES)} countries.",
+            "timestamp": now,
+            "summary": f"{entity_name} ({country_code}) — verification not yet available for this country",
+            "duration_ms": 0,
+        })
 
     log.info("Verify: %s (%s) cin=%s ntn=%s", entity_name, country_code,
              cin or "none", ntn or "none")
@@ -3234,6 +3247,140 @@ async def verify_entity(
                 f"{result.get('entity_name', entity_name)} — RUC {result.get('ruc', 'N/A')} — "
                 f"{result.get('status', 'Unknown')}"
             ) if result.get("found") else f"RUC {ruc} not found in SUNAT",
+        })
+
+    # --------------- MEXICO (DENUE / INEGI) ---------------
+    if country_code == "MX":
+        rfc = body.get("rfc", "").strip()
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "MX", "rfc": rfc}
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        return _persist_verify({
+            "entity_name": entity_name, "country_code": "MX",
+            "verified": result.get("found", False),
+            "legal_name": result.get("legal_name") or result.get("entity_name"),
+            "rfc": result.get("rfc"),
+            "status": result.get("status"),
+            "establishment_name": result.get("establishment_name"),
+            "economic_activity": result.get("economic_activity"),
+            "employee_size": result.get("employee_size"),
+            "registered_address": result.get("registered_address"),
+            "postal_code": result.get("postal_code"),
+            "phone": result.get("phone"),
+            "email": result.get("email"),
+            "website": result.get("website"),
+            "coordinates": result.get("coordinates"),
+            "denue_id": result.get("denue_id"),
+            "total_matches": result.get("total_matches"),
+            "other_matches": result.get("other_matches"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+            "summary": (
+                f"{result.get('entity_name', entity_name)} — "
+                f"{result.get('economic_activity', 'N/A')} — "
+                f"{result.get('registered_address', 'N/A')}"
+            ) if result.get("found") else f"{entity_name} not found in DENUE",
+        })
+
+    # --------------- ISRAEL (ICA / data.gov.il) ---------------
+    if country_code == "IL":
+        company_number = body.get("company_number", "").strip()
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "IL", "company_number": company_number}
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        return _persist_verify({
+            "entity_name": entity_name, "country_code": "IL",
+            "verified": result.get("found", False),
+            "legal_name": result.get("entity_name"),
+            "legal_name_hebrew": result.get("legal_name_hebrew"),
+            "legal_name_english": result.get("legal_name_english"),
+            "company_number": result.get("company_number"),
+            "company_type": result.get("company_type"),
+            "status": result.get("status"),
+            "incorporation_date": result.get("incorporation_date"),
+            "registered_address": result.get("registered_address"),
+            "city": result.get("city"),
+            "is_government_company": result.get("is_government_company"),
+            "limitations": result.get("limitations"),
+            "violator": result.get("violator"),
+            "last_annual_report_year": result.get("last_annual_report_year"),
+            "total_matches": result.get("total_matches"),
+            "other_matches": result.get("other_matches"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+            "summary": (
+                f"{result.get('legal_name_english') or result.get('entity_name', entity_name)} — "
+                f"#{result.get('company_number', 'N/A')} — {result.get('status', 'Unknown')}"
+            ) if result.get("found") else f"{entity_name} not found in ICA registry",
+        })
+
+    # ── CA (Canada) — BC OrgBook ───────────────────────────────
+    if country_code == "CA":
+        bn = body.get("business_number", "").strip()
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "CA", "business_number": bn}
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        return _persist_verify({
+            "entity_name": entity_name, "country_code": "CA",
+            "verified": result.get("found", False),
+            "legal_name": result.get("entity_name"),
+            "business_number": result.get("business_number"),
+            "source_id": result.get("source_id"),
+            "entity_type": result.get("entity_type"),
+            "entity_type_code": result.get("entity_type_code"),
+            "status": result.get("status"),
+            "registration_date": result.get("registration_date"),
+            "home_jurisdiction": result.get("home_jurisdiction"),
+            "registered_jurisdiction": result.get("registered_jurisdiction"),
+            "total_matches": result.get("total_matches"),
+            "other_matches": result.get("other_matches"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+            "summary": (
+                f"{result.get('entity_name', entity_name)} — "
+                f"BN {result.get('business_number', 'N/A')} — {result.get('status', 'Unknown')} — "
+                f"{result.get('home_jurisdiction', '')}"
+            ) if result.get("found") else f"{entity_name} not found in BC OrgBook",
+        })
+
+    # ── FR (France) — Registre National des Entreprises ────────
+    if country_code == "FR":
+        siren = body.get("siren", "").strip()
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "FR", "siren": siren}
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        directors = result.get("directors")
+        return _persist_verify({
+            "entity_name": entity_name, "country_code": "FR",
+            "verified": result.get("found", False),
+            "legal_name": result.get("entity_name"),
+            "siren": result.get("siren"),
+            "raison_sociale": result.get("raison_sociale"),
+            "sigle": result.get("sigle"),
+            "legal_form": result.get("legal_form"),
+            "status": result.get("status"),
+            "creation_date": result.get("creation_date"),
+            "category": result.get("category"),
+            "employee_range": result.get("employee_range"),
+            "economic_activity": result.get("economic_activity"),
+            "registered_address": result.get("registered_address"),
+            "commune": result.get("commune"),
+            "directors": directors,
+            "establishments_total": result.get("establishments_total"),
+            "establishments_active": result.get("establishments_active"),
+            "total_matches": result.get("total_matches"),
+            "other_matches": result.get("other_matches"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+            "summary": (
+                f"{result.get('entity_name', entity_name)} — "
+                f"SIREN {result.get('siren', 'N/A')} — {result.get('status', 'Unknown')} — "
+                f"{result.get('commune', '')}"
+            ) if result.get("found") else f"{entity_name} not found in French registry",
         })
 
 
