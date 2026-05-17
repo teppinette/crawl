@@ -344,31 +344,69 @@ az storage blob list --account-name stcrawlosint --container-name osint-staging 
   --sas-token "$SAS_TOKEN" --query '[].{name:name,size:properties.contentLength}' -o table
 ```
 
-## Monitoring Database (PostgreSQL)
+## PostgreSQL Databases
 
-**Host:** `crawl-monitor-db.postgres.database.azure.com`
-**DB:** `crawlmonitor` | **User:** `crawladmin` (password in Key Vault `db-password`)
+**Server:** `crawl-monitor-db.postgres.database.azure.com`
+**User:** `crawladmin` (password in Key Vault `db-password`)
+**Connection helper:** `api/keyvault.py` → `load_db_config()`
 
-| Table | Purpose | Rows | Writer |
-|-------|---------|------|--------|
-| `job_events` | Job lifecycle (submitted/dispatched/completed/failed) | grows | main.py via event_log.py |
-| `api_access_log` | Every HTTP request (IP, path, status, duration) | grows | main.py middleware |
-| `pipeline_events` | Infrastructure health (SSH, OpenClaw, SAS) | ~15K | health_check.py (every 15m) |
-| `api_usage_daily` | Daily API spend per provider | ~130 | usage_monitor.py (daily) |
+Three databases on the same server, segmented by purpose:
+
+### crawlmonitor — Ops & Observability
+
+| Table | Purpose | Writer |
+|-------|---------|--------|
+| `job_events` | Job lifecycle (submitted/dispatched/completed/failed) | main.py via event_log.py |
+| `api_access_log` | Every HTTP request (IP, path, status, duration) | main.py middleware |
+| `pipeline_events` | Infrastructure health (SSH, OpenClaw, SAS) | health_check.py (every 15m) |
+| `api_usage_daily` | Daily API spend per provider | usage_monitor.py (daily) |
+| `daily_prices` | Petrochem daily spot prices | petrochem scraper (daily cron) |
+| `futures_prices` | Petrochem futures/contracts | petrochem scraper (daily cron) |
+
+### crawl_reports — CIR Research Output
+
+| Table | Purpose | Writer |
+|-------|---------|--------|
+| `cir_reports` | Completed CIR jobs with dark web enrichment summary | main.py via report_db.py |
+
+Columns: `job_id` (UNIQUE), `entity_name`, `country`, `region`, `status`, `blob_path`,
+`report_summary`, `dark_web_findings`, `dark_web_sources`, `dark_web_alert`,
+`seed_data` (JSONB), `duration_ms`, `created_at`, `completed_at`
+
+### crawl_verification — Entity Verification Results
+
+| Table | Purpose | Writer |
+|-------|---------|--------|
+| `verification_results` | Every /api/v1/verify call (all countries) | main.py via report_db.py |
+
+Columns: `entity_name`, `country`, `registry_source`, `status`, `verified` (bool),
+`registration_number`, `registration_date`, `legal_status`, `address`,
+`directors` (JSONB), `raw_response` (JSONB), `error`, `duration_ms`, `created_at`
+
+### Writer Modules
+
+- `api/event_log.py` — writes to `crawlmonitor` (job_events, api_access_log)
+- `api/report_db.py` — writes to `crawl_reports` and `crawl_verification`
+- Both use fire-and-forget background threads (never block the API)
 
 **Querying:**
 ```bash
-# Connect
+# Connect to any database
 psql "host=crawl-monitor-db.postgres.database.azure.com dbname=crawlmonitor user=crawladmin sslmode=require"
+psql "host=crawl-monitor-db.postgres.database.azure.com dbname=crawl_reports user=crawladmin sslmode=require"
+psql "host=crawl-monitor-db.postgres.database.azure.com dbname=crawl_verification user=crawladmin sslmode=require"
 
 # Recent job failures
 SELECT job_id, scenario, region, error FROM job_events WHERE status='failed' ORDER BY event_time DESC LIMIT 10;
 
+# CIR reports by country
+SELECT entity_name, country, dark_web_alert, completed_at FROM cir_reports ORDER BY completed_at DESC LIMIT 10;
+
+# Verification success rate by country
+SELECT country, count(*), sum(verified::int), round(100.0*sum(verified::int)/count(*),1) as pct FROM verification_results GROUP BY country ORDER BY count(*) DESC;
+
 # API access from unknown IPs
 SELECT client_ip, count(*), min(event_time) FROM api_access_log WHERE status_code=403 GROUP BY client_ip;
-
-# CIR completion times
-SELECT region, avg(duration_ms)/1000 as avg_sec FROM job_events WHERE event='region_complete' AND scenario='cir' GROUP BY region;
 ```
 
 ## VM Specifications
@@ -415,7 +453,8 @@ Swap file at `/swapfile` (2GB) enabled on crawl-americas for this purpose.
     main.py              -- FastAPI app (port 8400, systemd-managed)
     multilogin_fbr.py    -- FBR ATL via Multilogin anti-detect browser
     keyvault.py          -- Azure Key Vault helper (managed identity, caches secrets)
-    event_log.py         -- Job event + API access logging to PostgreSQL
+    event_log.py         -- Job event + API access logging to PostgreSQL (crawlmonitor)
+    report_db.py         -- CIR report + verification persistence (crawl_reports, crawl_verification)
     crawl-gateway.service      -- systemd unit file (copied to /etc/systemd/system/)
     jobs/                -- Job state files (JSON per job_id, archived after 30d)
     openapi.json         -- API spec
@@ -577,8 +616,9 @@ az backup recoverypoint list --resource-group crawldevvm_group \
 - Deleted secrets recoverable for 90 days, cannot be permanently purged
 
 ### PostgreSQL (crawl-monitor-db)
+- 3 databases: `crawlmonitor` (ops), `crawl_reports` (CIR output), `crawl_verification` (verify results)
 - Auto-backup: 7-day retention, same region (East US 2)
-- Geo-redundancy: disabled (acceptable for monitoring data)
+- Geo-redundancy: disabled (acceptable for monitoring + research data)
 
 ## Cost Estimate
 

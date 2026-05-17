@@ -52,6 +52,10 @@ MLX_PROXY_USER = os.environ.get("MULTILOGIN_PROXY_USER", "")
 MLX_PROXY_PASS = os.environ.get("MULTILOGIN_PROXY_PASS", "")
 BLOB_SAS_TOKEN = os.environ.get("BLOB_SAS_TOKEN", "")
 
+# Barchart Premier (CSV downloads — 250/day, history to 1980)
+BARCHART_EMAIL = os.environ.get("BARCHART_EMAIL", "")
+BARCHART_PASSWORD = os.environ.get("BARCHART_PASSWORD", "")
+
 # PostgreSQL (crawl-monitor-db)
 DB_HOST = os.environ.get("DB_HOST", "crawl-monitor-db.postgres.database.azure.com")
 DB_NAME = os.environ.get("DB_NAME", "crawlmonitor")
@@ -121,6 +125,76 @@ ECHEMI_PRICE_CURVES = {
     "xylene": "https://www.echemi.com/price-curve/xylene-pd1707041010-1.html",
 }
 
+# PIP pages — single product/region price series.
+# These feed Salestracker MTM for naphtha-linked and kero-linked deals.
+ECHEMI_PIP_PAGES = [
+    {
+        "name": "naphtha_japan_cfr",
+        "product": "Naphtha",
+        "region": "Japan CFR",
+        "url": "https://www.echemi.com/pip/petroleumether-pid_Rock27583/japan-cf.html",
+    },
+    {
+        "name": "naphtha_singapore_cfr",
+        "product": "Naphtha",
+        "region": "Singapore CFR",
+        "url": "https://www.echemi.com/pip/petroleumether-pid_Rock27583/singapore.html",
+    },
+    {
+        "name": "kerosene_singapore_cfr",
+        "product": "Kerosene",
+        "region": "Singapore CFR",
+        "url": "https://www.echemi.com/pip/kerosene-pid_Rock27024/singapore-cfr-aviation.html",
+    },
+]
+
+# Barchart Premier CSV download contracts.
+# Premier login gives 250 CSV downloads/day with history back to 1980.
+# Each entry: root ticker (without month code), product name, exchange.
+# We download the front-month contract's historical daily settlements.
+BARCHART_CONTRACTS = [
+    {
+        "ticker": "JJA",
+        "product": "Naphtha Japan CFR",
+        "description": "Japan C&F Naphtha (Platts) Swap",
+        "exchange": "NYMEX",
+        "unit": "USD/bbl",
+        "bbl_to_mt": 8.9,   # ~8.9 bbl/mt for naphtha
+    },
+    {
+        "ticker": "JKS",
+        "product": "Kerosene Singapore",
+        "description": "Singapore Jet Kerosene (Platts) Swap",
+        "exchange": "NYMEX",
+        "unit": "USD/bbl",
+        "bbl_to_mt": 7.88,  # ~7.88 bbl/mt for kerosene
+    },
+    {
+        "ticker": "H9",
+        "product": "Benzene SGX",
+        "description": "SGX Benzene",
+        "exchange": "SGX",
+        "unit": "USD/mt",
+        "bbl_to_mt": None,
+    },
+    {
+        "ticker": "INO",
+        "product": "Naphtha NWE Crack",
+        "description": "Naphtha CIF NWE Platts Crack Spread",
+        "exchange": "NYMEX",
+        "unit": "USD/bbl",
+        "bbl_to_mt": 8.9,
+    },
+    {
+        "ticker": "CB",
+        "product": "Brent Crude ICE",
+        "description": "ICE Brent Crude Oil",
+        "exchange": "ICE",
+        "unit": "USD/bbl",
+        "bbl_to_mt": 7.33,  # ~7.33 bbl/mt for crude
+    },
+]
+
 
 # ---------------------------------------------------------------------------
 # Multilogin helpers (same pattern as multilogin_fbr.py)
@@ -175,6 +249,173 @@ def _stop_profile(profile_id: str):
         )
     except Exception:
         pass
+
+
+# ---------------------------------------------------------------------------
+# Barchart Premier CSV download
+# ---------------------------------------------------------------------------
+
+def _dismiss_cookie_banner(page):
+    """Remove Barchart/CMP cookie consent overlay that intercepts pointer events."""
+    try:
+        page.evaluate("""() => {
+            document.querySelectorAll('#cmpwrapper, .cmpwrapper, #cmpbox, .cmpboxBG')
+                .forEach(el => el.remove());
+        }""")
+    except Exception:
+        pass
+
+
+def _barchart_login(page) -> bool:
+    """Login to Barchart with Premier credentials. Returns True on success."""
+    if not BARCHART_EMAIL or not BARCHART_PASSWORD:
+        log.warning("Barchart credentials not set — skipping CSV downloads")
+        return False
+    try:
+        page.goto("https://www.barchart.com/login", timeout=30000, wait_until="domcontentloaded")
+        time.sleep(random.uniform(3, 5))
+        _dismiss_cookie_banner(page)
+        time.sleep(random.uniform(0.5, 1))
+
+        page.fill('input[name="email"]', BARCHART_EMAIL, timeout=10000)
+        time.sleep(random.uniform(0.5, 1.5))
+        page.fill('input[name="password"]', BARCHART_PASSWORD, timeout=10000)
+        time.sleep(random.uniform(0.5, 1.5))
+        page.click('button[type="submit"]', timeout=10000)
+        time.sleep(random.uniform(4, 7))
+        _dismiss_cookie_banner(page)
+
+        # Verify login succeeded
+        body = page.inner_text("body")
+        if any(kw in body.lower() for kw in ("sign out", "my account", "log out", "premier")):
+            log.info("Barchart login successful (Premier)")
+            return True
+
+        log.warning("Barchart login may have failed — proceeding anyway")
+        return True
+    except Exception as e:
+        log.error("Barchart login failed: %s", str(e)[:100])
+        return False
+
+
+def _barchart_download_csv(page, symbol: str) -> str:
+    """
+    Download historical daily CSV from Barchart for a futures symbol.
+    Premier account gives CSV via the DOWNLOAD button on historical-download page.
+    """
+    try:
+        url = f"https://www.barchart.com/futures/quotes/{symbol}/historical-download"
+        page.goto(url, timeout=30000, wait_until="domcontentloaded")
+        time.sleep(random.uniform(3, 5))
+        _dismiss_cookie_banner(page)
+
+        # Wait for the download button to be rendered by JS
+        page.wait_for_selector('a.download-btn', state="visible", timeout=20000)
+        time.sleep(random.uniform(1, 2))
+
+        # Click DOWNLOAD button — triggers CSV file download
+        with page.expect_download(timeout=30000) as dl_info:
+            page.click('a.download-btn', timeout=10000)
+        download = dl_info.value
+        csv_path = f"/tmp/barchart_{symbol}.csv"
+        download.save_as(csv_path)
+        with open(csv_path) as f:
+            return f.read()
+
+    except Exception as e:
+        log.error("Barchart CSV download failed for %s: %s", symbol, str(e)[:100])
+        return ""
+
+
+def _parse_barchart_csv(csv_text: str, contract_info: dict) -> list:
+    """
+    Parse Barchart historical CSV or price-history page text.
+
+    CSV format (Premier download):
+      Date,Open,High,Low,Last,Change,Volume
+      05/16/2026,620.50,625.00,618.00,622.00,+2.50,1234
+
+    Price-history page text format (fallback):
+      05/16/2026  620.50  625.00  618.00  622.00  +2.50  1234
+
+    Returns list of dicts with date, settlement_price, change, etc.
+    """
+    records = []
+    lines = csv_text.strip().split("\n")
+
+    for line in lines:
+        line = line.strip()
+        if not line:
+            continue
+
+        # Try CSV format first
+        if "," in line:
+            parts = [p.strip().strip('"') for p in line.split(",")]
+        else:
+            # Tab/space separated (from inner_text)
+            parts = line.split()
+
+        if len(parts) < 5:
+            continue
+
+        # Skip header rows
+        if parts[0].lower() in ("date", "time", "symbol", "contract"):
+            continue
+
+        # Parse date — MM/DD/YYYY or YYYY-MM-DD
+        date_str = parts[0]
+        parsed_date = None
+        for fmt in ("%m/%d/%Y", "%Y-%m-%d", "%m/%d/%y"):
+            try:
+                parsed_date = datetime.strptime(date_str, fmt)
+                break
+            except ValueError:
+                continue
+        if not parsed_date:
+            continue
+
+        # Parse price (Last or Close — usually column index 4, sometimes 3)
+        price = None
+        for idx in (4, 3, 1):  # Try Last, Low, Open
+            try:
+                val = parts[idx].replace(",", "").replace("+", "").replace("$", "")
+                if val and val not in ("unch", "n/a", "-"):
+                    price = float(val)
+                    break
+            except (ValueError, IndexError):
+                continue
+        if price is None or price <= 0:
+            continue
+
+        # Parse change
+        change = 0.0
+        try:
+            change_idx = 5 if len(parts) > 5 else 4
+            change_str = parts[change_idx].replace(",", "").replace("+", "").replace("$", "")
+            if change_str and change_str not in ("unch", "n/a", "-"):
+                change = float(change_str)
+        except (ValueError, IndexError):
+            pass
+
+        # Convert USD/bbl to USD/mt if applicable
+        price_usd_mt = price
+        if contract_info.get("bbl_to_mt"):
+            price_usd_mt = round(price * contract_info["bbl_to_mt"], 2)
+
+        records.append({
+            "date": parsed_date.strftime("%Y-%m-%d"),
+            "settlement_price": price,
+            "price_usd_mt": price_usd_mt,
+            "change": change,
+            "ticker": contract_info["ticker"],
+            "product": contract_info["product"],
+            "description": contract_info["description"],
+            "exchange": contract_info["exchange"],
+            "unit": contract_info.get("unit", "USD/mt"),
+            "currency": "USD",
+        })
+
+    return records
 
 
 # ---------------------------------------------------------------------------
@@ -320,6 +561,117 @@ def _parse_price_text(text: str) -> list:
             continue
 
         i += 1
+
+    return records
+
+
+def _parse_pip_page(text: str, product: str, region: str) -> list:
+    """
+    Parse echemi PIP page — single product/region price series.
+
+    Echemi pip pages render table cells as separate lines in inner_text:
+      Line N:   "Naphtha\xa0ARA"        (area — product prefix + area name)
+      Line N+1: "CIF"                   (incoterm)
+      Line N+2: "900.5"                 (price)
+      Line N+3: "29.5"                  (change)
+      Line N+4: "USD/ton"               (unit)
+      Line N+5: "May 14, 2026"          (date)
+
+    We parse the "{product} More International Price" section only (stop at
+    "Domestic Price" or "Related Products"). All areas are collected — the
+    DB upsert key includes region, so each area gets its own row.
+    """
+    records = []
+    lines = [l.strip().replace("\xa0", " ") for l in text.split("\n") if l.strip()]
+
+    # Find the first "International Price" section (skip "Related Products")
+    start_idx = None
+    end_idx = len(lines)
+    for i, line in enumerate(lines):
+        ll = line.lower()
+        if "more international price" in ll and start_idx is None:
+            start_idx = i + 1
+        elif start_idx is not None and (
+            "domestic price" in ll or "related products" in ll or "related chemical" in ll
+        ):
+            end_idx = i
+            break
+
+    if start_idx is None:
+        return records
+
+    # Parse 6-line groups: area, incoterm, price, change, unit, date
+    i = start_idx
+    # Skip header line
+    if i < end_idx and ("area" in lines[i].lower() or "price name" in lines[i].lower()):
+        i += 1
+
+    while i + 5 <= end_idx:
+        area_line = lines[i]
+        incoterm_line = lines[i + 1] if i + 1 < end_idx else ""
+        price_line = lines[i + 2] if i + 2 < end_idx else ""
+        change_line = lines[i + 3] if i + 3 < end_idx else ""
+        unit_line = lines[i + 4] if i + 4 < end_idx else ""
+        date_line = lines[i + 5] if i + 5 < end_idx else ""
+
+        # Validate this is a price group: incoterm must be known
+        if incoterm_line.upper() not in ("CIF", "CFR", "FOB", "C+F", "C&F", "FD", "FCA"):
+            i += 1
+            continue
+
+        # Validate price is numeric
+        try:
+            price = float(price_line.replace(",", ""))
+        except ValueError:
+            i += 1
+            continue
+
+        # Validate unit
+        if not any(u in unit_line for u in ("USD/ton", "USD/barrel", "USD/MT", "EUR/ton")):
+            i += 1
+            continue
+
+        # Skip non-USD
+        if "USD" not in unit_line:
+            i += 6
+            continue
+
+        # Parse change
+        try:
+            change = float(change_line.replace(",", "").replace("+", "")) if change_line else 0.0
+        except ValueError:
+            change = 0.0
+
+        incoterm = incoterm_line.upper().replace("C+F", "CFR").replace("C&F", "CFR")
+
+        # Extract area name (strip product prefix like "Naphtha ")
+        area_name = area_line
+        if area_name.lower().startswith(product.lower()):
+            area_name = area_name[len(product):].strip()
+        # Remove trailing "USD/ton" if echemi put it in the area name
+        area_name = re.sub(r'\s*USD/ton\s*$', '', area_name).strip()
+
+        # Normalize USD/barrel to USD/ton for naphtha (~8.9 bbl/mt)
+        if "barrel" in unit_line.lower():
+            price = round(price * 8.9, 2)
+            change = round(change * 8.9, 2)
+
+        # Extract date
+        date_match = re.search(r'(\w+\s+\d{1,2},?\s+\d{4})', date_line)
+        date_str = date_match.group(1) if date_match else ""
+
+        records.append({
+            "product": product,
+            "type": "international",
+            "incoterm": incoterm,
+            "price": price,
+            "change": change,
+            "unit": "USD/ton",
+            "date": date_str,
+            "area": area_name or region,
+        })
+
+        i += 6  # advance to next group
 
     return records
 
@@ -490,6 +842,52 @@ def _scrape_in_session(port: int) -> dict:
                         log.error("  Failed %s: %s", chem, str(e)[:100])
                         error_log.append(f"echemi_curve_{chem}: {str(e)[:100]}")
 
+                # --- ECHEMI: PIP pages (naphtha Japan/Singapore CFR, MOPS kero) ---
+                all_data["echemi"]["pip_pages"] = []
+                for pip in ECHEMI_PIP_PAGES:
+                    try:
+                        time.sleep(random.uniform(10, 25))
+
+                        # Re-check WAF challenge
+                        title = page.title()
+                        if "verification" in title.lower() or "human" in title.lower() or "confirm" in title.lower():
+                            log.info("WAF re-triggered — re-solving challenge...")
+                            page.goto("https://www.echemi.com", timeout=60000, wait_until="domcontentloaded")
+                            for _ in range(6):
+                                time.sleep(random.uniform(4, 6))
+                                if "verification" not in page.title().lower() and "human" not in page.title().lower():
+                                    break
+                            time.sleep(random.uniform(5, 10))
+
+                        log.info("Scraping echemi pip: %s...", pip["name"])
+                        page.goto(pip["url"], timeout=45000, wait_until="domcontentloaded")
+                        page.wait_for_load_state("load", timeout=30000)
+                        time.sleep(random.uniform(3, 7))
+
+                        body = page.inner_text("body")
+
+                        if "confirm you are human" in body.lower() or "security check" in body.lower():
+                            log.warning("  %s: got WAF challenge — skipping", pip["name"])
+                            error_log.append(f"echemi_pip_{pip['name']}: WAF challenge")
+                            continue
+
+                        records = _parse_pip_page(body, pip["product"], pip["region"])
+
+                        all_data["echemi"]["pip_pages"].append({
+                            "name": pip["name"],
+                            "product": pip["product"],
+                            "region": pip["region"],
+                            "url": pip["url"],
+                            "records": records,
+                            "record_count": len(records),
+                            "raw_text_preview": body[:3000],
+                        })
+                        log.info("  %s: %d price records", pip["name"], len(records))
+
+                    except Exception as e:
+                        log.error("  Failed pip %s: %s", pip["name"], str(e)[:100])
+                        error_log.append(f"echemi_pip_{pip['name']}: {str(e)[:100]}")
+
         finally:
             page.close()
             echemi_ctx.close()
@@ -530,9 +928,9 @@ def _scrape_in_session(port: int) -> dict:
             page2.close()
             sunsirs_ctx.close()
 
-        # --- BARCHART FUTURES: use Bright Data proxy (lighter than CME) ---
-        # Barchart.com renders settlement tables in plain HTML unlike CME's
-        # heavy React app. Carries all CME energy futures contracts we need.
+        # --- BARCHART PREMIER CSV DOWNLOAD ---
+        # Login with Premier account, download historical daily CSVs.
+        # 250 downloads/day, data back to 1980. Replaces JS table scraping.
         time.sleep(random.uniform(15, 30))
         barchart_ctx = browser.new_context(
             proxy={
@@ -545,65 +943,57 @@ def _scrape_in_session(port: int) -> dict:
         barchart_page = barchart_ctx.new_page()
 
         try:
-            # Barchart ticker symbols for CME energy swap futures
-            # INO = Naphtha CIF NWE Crack Spread (confirmed working)
-            # JKS/JNP tickers don't exist on Barchart — use individual
-            # contract month pages for Singapore Jet Kero (JK) and
-            # Japan Naphtha (JNA or UN)
-            barchart_targets = {
-                "naphtha_nwe_crack": {
-                    "url": "https://www.barchart.com/futures/quotes/INO*0/futures-prices",
-                    "description": "Naphtha CIF NWE Platts Crack Spread — NWE Naphtha proxy for Hexane",
-                },
-                "singapore_fuel_oil": {
-                    "url": "https://www.barchart.com/futures/quotes/UA*0/futures-prices",
-                    "description": "Singapore Fuel Oil 180 CST — Asian refinery product proxy",
-                },
-                "brent_crude_ice": {
-                    "url": "https://www.barchart.com/futures/quotes/CB*0/futures-prices",
-                    "description": "ICE Brent Crude — benchmark for naphtha/kero spreads",
-                },
-            }
-
             all_data["futures"] = []
-            for name, info in barchart_targets.items():
+            logged_in = _barchart_login(barchart_page)
+
+            for contract in BARCHART_CONTRACTS:
                 try:
-                    time.sleep(random.uniform(10, 20))
-                    log.info("Scraping Barchart %s...", name)
-                    barchart_page.goto(info["url"], timeout=60000, wait_until="domcontentloaded")
-                    barchart_page.wait_for_load_state("load", timeout=30000)
-                    time.sleep(random.uniform(5, 8))
+                    time.sleep(random.uniform(8, 15))
+                    ticker = contract["ticker"]
 
-                    # Scroll down to trigger lazy-loaded table
-                    barchart_page.evaluate("window.scrollTo(0, document.body.scrollHeight / 2)")
-                    time.sleep(random.uniform(3, 6))
-                    barchart_page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
-                    time.sleep(random.uniform(3, 6))
+                    # Build front-month symbol: ticker + month code + 2-digit year
+                    month_codes = "FGHJKMNQUVXZ"
+                    now = datetime.now(timezone.utc)
+                    fm_month = now.month % 12 + 1
+                    fm_year = now.year if fm_month > now.month else now.year + 1
+                    fm_code = month_codes[fm_month - 1]
+                    front_symbol = f"{ticker}{fm_code}{str(fm_year)[-2:]}"
 
-                    body = barchart_page.inner_text("body")
+                    log.info("Downloading Barchart CSV: %s (%s)...", front_symbol, contract["product"])
 
-                    # First try parsing the table
-                    records = _parse_barchart_futures(body, name)
+                    csv_text = _barchart_download_csv(barchart_page, front_symbol)
+                    records = _parse_barchart_csv(csv_text, contract) if csv_text else []
 
-                    # Fallback: at least extract the header price
+                    # If front-month has no data (illiquid contract), try current month
                     if not records:
-                        records = _parse_barchart_header(body, name)
+                        cm_code = month_codes[now.month - 1]
+                        alt_symbol = f"{ticker}{cm_code}{str(now.year)[-2:]}"
+                        if alt_symbol != front_symbol:
+                            log.info("  Retrying with %s...", alt_symbol)
+                            time.sleep(random.uniform(3, 6))
+                            csv_text = _barchart_download_csv(barchart_page, alt_symbol)
+                            alt_records = _parse_barchart_csv(csv_text, contract) if csv_text else []
+                            if alt_records:
+                                records = alt_records
+                                front_symbol = alt_symbol
 
                     all_data["futures"].append({
-                        "contract": name,
-                        "description": info["description"],
-                        "url": info["url"],
+                        "contract": contract["product"],
+                        "description": contract["description"],
+                        "ticker": front_symbol,
+                        "source": "barchart_csv" if logged_in else "barchart",
                         "records": records,
                         "record_count": len(records),
-                        "raw_text_preview": body[:3000],
+                        "raw_csv_preview": csv_text[:2000] if csv_text else "",
                     })
-                    log.info("  Barchart %s: %d futures records", name, len(records))
+                    log.info("  Barchart %s: %d daily records", front_symbol, len(records))
+
                 except Exception as e:
-                    log.error("  Barchart %s failed: %s", name, str(e)[:100])
-                    error_log.append(f"barchart_{name}: {str(e)[:100]}")
+                    log.error("  Barchart %s failed: %s", contract["ticker"], str(e)[:100])
+                    error_log.append(f"barchart_{contract["ticker"]}: {str(e)[:100]}")
 
         except Exception as e:
-            log.error("Barchart scraping failed: %s", str(e)[:100])
+            log.error("Barchart CSV download failed: %s", str(e)[:100])
             error_log.append(f"barchart_general: {str(e)[:100]}")
         finally:
             barchart_page.close()
@@ -1025,7 +1415,7 @@ def scrape_all(profile_id: str) -> dict:
     try:
         t = threading.Thread(target=_run, daemon=True)
         t.start()
-        t.join(timeout=900)  # 15 min max (added CME + JPX)
+        t.join(timeout=1500)  # 25 min max (added Barchart CSV downloads)
 
         if t.is_alive():
             log.error("Scrape session TIMED OUT (900s)")
@@ -1087,6 +1477,23 @@ def _get_db_conn():
     )
 
 
+def _parse_date_to_pg(date_str: str) -> str | None:
+    """Convert date strings like 'May 16, 2026' or '2026-05-16' to YYYY-MM-DD."""
+    if not date_str:
+        return None
+    # Already ISO format
+    if re.match(r'^\d{4}-\d{2}-\d{2}$', date_str.strip()):
+        return date_str.strip()
+    # "May 16, 2026" or "May 16 2026"
+    for fmt in ("%B %d, %Y", "%B %d %Y", "%b %d, %Y", "%b %d %Y"):
+        try:
+            dt = datetime.strptime(date_str.strip(), fmt)
+            return dt.strftime("%Y-%m-%d")
+        except ValueError:
+            continue
+    return None
+
+
 def _classify_price(record: dict, source: str) -> dict | None:
     """Map a scraped record to daily_prices columns."""
     product = record.get("product", "")
@@ -1121,7 +1528,8 @@ def _classify_price(record: dict, source: str) -> dict | None:
     if record.get("type") == "china_domestic":
         region = "China Domestic"
     elif record.get("type") == "international":
-        region = record.get("incoterm", "International")
+        # Prefer explicit area (e.g. "ARA", "Singapore") over bare incoterm
+        region = record.get("area") or record.get("incoterm", "International")
     elif record.get("type") == "regional":
         region = "China Regional"
 
@@ -1230,6 +1638,35 @@ def write_to_postgres(output: dict) -> int:
                 except Exception as e:
                     log.debug("daily_prices insert skip: %s", str(e)[:80])
 
+        # --- daily_prices: echemi pip pages (naphtha Japan/SG, MOPS kero) ---
+        for pip_page in output.get("echemi", {}).get("pip_pages", []):
+            for rec in pip_page.get("records", []):
+                row = _classify_price(rec, "echemi")
+                if not row:
+                    continue
+                # Use the record's own date as scrape_date (for backfill)
+                rec_date = _parse_date_to_pg(row["raw_date"]) or scrape_date_pg
+                try:
+                    cur.execute("""
+                        INSERT INTO daily_prices
+                            (scrape_date, source, product, region, price_type,
+                             price, currency, unit, price_usd_mt,
+                             change_amount, change_pct, incoterm, raw_date)
+                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                        ON CONFLICT (scrape_date, source, product, region, price_type)
+                        DO UPDATE SET price = EXCLUDED.price,
+                                      price_usd_mt = EXCLUDED.price_usd_mt,
+                                      change_amount = EXCLUDED.change_amount,
+                                      raw_date = EXCLUDED.raw_date
+                    """, (rec_date, row["source"], row["product"],
+                          row["region"], row["price_type"], row["price"],
+                          row["currency"], row["unit"], row["price_usd_mt"],
+                          row["change_amount"], row["change_pct"],
+                          row["incoterm"], row["raw_date"]))
+                    daily_rows += 1
+                except Exception as e:
+                    log.debug("daily_prices pip insert skip: %s", str(e)[:80])
+
         # --- daily_prices: sunsirs ---
         for rec in output.get("sunsirs", {}).get("records", []):
             try:
@@ -1280,29 +1717,63 @@ def write_to_postgres(output: dict) -> int:
                 except Exception as e:
                     log.debug("eia insert skip: %s", str(e)[:80])
 
-        # --- futures_prices: barchart ---
+        # --- daily_prices + futures_prices: barchart CSV (last 7 days only) ---
+        cutoff_date = (datetime.now(timezone.utc) - timedelta(days=7)).strftime("%Y-%m-%d")
         for contract in output.get("futures", []):
             for rec in contract.get("records", []):
-                price = rec.get("last") or rec.get("settlement_price")
+                price = rec.get("settlement_price")
                 if price is None:
                     continue
+                rec_date = rec.get("date", scrape_date_pg)
+                if rec_date < cutoff_date:
+                    continue
+
+                # Write to daily_prices (settlement as spot proxy)
                 try:
                     cur.execute("""
-                        INSERT INTO futures_prices
-                            (scrape_date, source, product, contract_month,
-                             settlement_price, currency, unit, price_usd_mt,
-                             ticker, exchange)
-                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-                        ON CONFLICT (scrape_date, source, product, contract_month)
-                        DO UPDATE SET settlement_price = EXCLUDED.settlement_price
-                    """, (scrape_date_pg, "barchart",
-                          contract.get("description", rec.get("contract", "")),
-                          rec.get("contract_month", ""),
-                          price, "USD", "USD/mt", float(price),
-                          rec.get("ticker", ""), "NYMEX"))
-                    futures_rows += 1
+                        INSERT INTO daily_prices
+                            (scrape_date, source, product, region, price_type,
+                             price, currency, unit, price_usd_mt,
+                             change_amount, change_pct, incoterm, raw_date)
+                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                        ON CONFLICT (scrape_date, source, product, region, price_type)
+                        DO UPDATE SET price = EXCLUDED.price,
+                                      price_usd_mt = EXCLUDED.price_usd_mt,
+                                      change_amount = EXCLUDED.change_amount
+                    """, (rec_date, "barchart",
+                          rec.get("product", contract.get("contract", "")),
+                          "Settlement", "settlement",
+                          price, "USD",
+                          rec.get("unit", "USD/mt"),
+                          rec.get("price_usd_mt"),
+                          rec.get("change", 0), None,
+                          None, rec_date))
+                    daily_rows += 1
                 except Exception as e:
-                    log.debug("barchart futures insert skip: %s", str(e)[:80])
+                    log.debug("barchart daily insert skip: %s", str(e)[:80])
+
+                # Also write to futures_prices (today's data only)
+                if rec_date == scrape_date_pg:
+                    try:
+                        cur.execute("""
+                            INSERT INTO futures_prices
+                                (scrape_date, source, product, contract_month,
+                                 settlement_price, currency, unit, price_usd_mt,
+                                 ticker, exchange)
+                            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                            ON CONFLICT (scrape_date, source, product, contract_month)
+                            DO UPDATE SET settlement_price = EXCLUDED.settlement_price
+                        """, (rec_date, "barchart",
+                              rec.get("product", ""),
+                              contract.get("ticker", ""),
+                              price, "USD",
+                              rec.get("unit", "USD/mt"),
+                              rec.get("price_usd_mt"),
+                              rec.get("ticker", ""),
+                              rec.get("exchange", "NYMEX")))
+                        futures_rows += 1
+                    except Exception as e:
+                        log.debug("barchart futures insert skip: %s", str(e)[:80])
 
         # --- futures_prices: JPX ---
         for rec in output.get("jpx", {}).get("records", []):
@@ -1378,13 +1849,17 @@ def main():
     }
 
     # Count totals
+    pip_records = sum(
+        p.get("record_count", 0)
+        for p in output["echemi"].get("pip_pages", [])
+    )
     echemi_records = sum(
         p.get("record_count", 0)
         for p in output["echemi"].get("pages", [])
     ) + sum(
         p.get("record_count", 0)
         for p in output["echemi"].get("price_curves", [])
-    )
+    ) + pip_records
     sunsirs_records = output["sunsirs"].get("record_count", 0)
     eia_records = sum(v.get("record_count", 0) for v in output["eia"].values() if isinstance(v, dict))
     futures_records = sum(c.get("record_count", 0) for c in output["futures"])
@@ -1422,6 +1897,8 @@ def main():
         log.info("  echemi/%-20s  %d records", p["name"], p["record_count"])
     for p in output["echemi"].get("price_curves", []):
         log.info("  echemi/curve/%-15s  %d records", p["chemical"], p["record_count"])
+    for p in output["echemi"].get("pip_pages", []):
+        log.info("  echemi/pip/%-17s  %d records", p["name"], p["record_count"])
     if output["sunsirs"]:
         log.info("  sunsirs                     %d records", sunsirs_records)
     for name, data in output["eia"].items():
