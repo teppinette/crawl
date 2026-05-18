@@ -2707,6 +2707,22 @@ _VERIFY_SOURCES = {
     "IL": "ICA (data.gov.il) — company name (HE+EN), number, type, status, address (free CKAN API)",
     "CA": "BC OrgBook — entity name, BN, status, type, registration date, jurisdiction (free API)",
     "FR": "Registre National des Entreprises (INSEE/INPI) — SIREN, directors, legal form, activity, address (free API)",
+    "TW": "GCIS Open Data (MOEA) — UBN, company name, status, capital, address, responsible person (free JSON API)",
+    "BE": "VIES (EU VAT) + KBO/BCE — CBE number, legal name, status, legal form, address (free REST API)",
+    "ZA": "GLEIF LEI API (primary) + CIPC eServices enterprise-number (secondary) — legal name, LEI, status, address (directors require paid CIPC account)",
+    "PL": "KRS (Krajowy Rejestr Sądowy, Ministry of Justice) — KRS number, NIP, REGON, legal form, address, representatives, PKD codes (free API); VIES fallback for NIP-only lookups",
+    "EC": "SRI (Servicio de Rentas Internas) — RUC, legal name, status, economic activity, address (free API)",
+    "HK": "ICRIS (Companies Registry) — CR number, company name, status, type (free public search)",
+    "CH": "Zefix (FOSC) — UID, legal name, status, legal form, purpose, canton, address (free REST API)",
+    "AU": "ABR (Australian Business Register) — ABN, ACN, legal name, entity type, status, GST (free JSONP API)",
+    "JP": "Houjin Bangou (NTA) — corporate number, legal name (JP+EN), kind, status, address (free API, needs app ID)",
+    "NL": "KvK (Kamer van Koophandel) — KVK number, legal name, status, legal form, address (free public search)",
+    "IT": "VIES (EU VAT) — P.IVA, legal name, status, address (free EU tax validation)",
+    "AR": "AFIP (CUIT) — CUIT, legal name, tax status, address, economic activities (free API)",
+    "EG": "GLEIF LEI Registry — LEI, legal name (AR+EN), status, commercial reg, address (free API, ~322 entities)",
+    "ES": "VIES (EU VAT) — CIF, legal name, status, address (free EU tax validation)",
+    "DE": "VIES (EU VAT) — USt-IdNr, legal name, status, address (free EU tax validation)",
+    "PT": "VIES (EU VAT) — NIPC/NIF, legal name, status, address (free EU tax validation)",
 }
 
 
@@ -3381,6 +3397,401 @@ async def verify_entity(
                 f"SIREN {result.get('siren', 'N/A')} — {result.get('status', 'Unknown')} — "
                 f"{result.get('commune', '')}"
             ) if result.get("found") else f"{entity_name} not found in French registry",
+        })
+
+    # ── ZA (South Africa) — BizPortal / CIPC ──────────────────
+    if country_code == "ZA":
+        crn = body.get("crn", "").strip()
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call,
+            {"entity_name": entity_name, "country_code": "ZA", "crn": crn},
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        return _persist_verify({
+            "entity_name": entity_name, "country_code": "ZA",
+            "verified": result.get("found", False),
+            "legal_name": result.get("legal_name"),
+            "crn": result.get("crn"),
+            "status": result.get("status"),
+            "entity_type": result.get("entity_type"),
+            "registered_address": result.get("registered_address"),
+            "registration_date": result.get("registration_date"),
+            "total_matches": result.get("total_matches"),
+            "other_matches": result.get("other_matches"),
+            "directors_note": result.get("directors_note"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+            "summary": (
+                f"{result.get('legal_name', entity_name)} — "
+                f"CRN {result.get('crn', 'N/A')} — {result.get('status', 'Unknown')} — "
+                f"{result.get('entity_type', '')}"
+            ) if result.get("found") else f"{entity_name} not found in CIPC/BizPortal",
+        })
+
+    # ── TW (Taiwan) — MOEA GCIS Open Data ──────────────────────
+    if country_code == "TW":
+        ubn = body.get("ubn", "").strip()
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "TW", "ubn": ubn}
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        return _persist_verify({
+            "entity_name": entity_name, "country_code": "TW",
+            "verified": result.get("found", False),
+            "legal_name": result.get("legal_name"),
+            "ubn": result.get("ubn"),
+            "status": result.get("status"),
+            "capital": result.get("capital"),
+            "registered_address": result.get("registered_address"),
+            "responsible_person": result.get("responsible_person"),
+            "establishment_date": result.get("establishment_date"),
+            "organisation_type": result.get("organisation_type"),
+            "business_scope": result.get("business_scope"),
+            "total_matches": result.get("total_matches"),
+            "other_matches": result.get("other_matches"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+            "summary": (
+                f"{result.get('legal_name', entity_name)} — "
+                f"UBN {result.get('ubn', 'N/A')} — {result.get('status', 'Unknown')} — "
+                f"{result.get('registered_address', '')}"
+            ) if result.get("found") else f"{entity_name} not found in MOEA GCIS registry",
+        })
+
+    if country_code == "BE":
+        cbe_number = body.get("cbe_number", body.get("cbe", body.get("vat_id", ""))).strip()
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "BE", "cbe_number": cbe_number}
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        return _persist_verify({
+            "entity_name": entity_name, "country_code": "BE",
+            "verified": result.get("found", False),
+            "legal_name": result.get("entity_name") or result.get("legal_name"),
+            "cbe_number": result.get("cbe_number"),
+            "vat_number": result.get("vat_number"),
+            "legal_form": result.get("legal_form"),
+            "status": result.get("status"),
+            "registered_address": result.get("registered_address"),
+            "start_date": result.get("start_date"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+            "summary": (
+                f"{result.get('legal_name', entity_name)} — "
+                f"CBE {result.get('cbe_number', 'N/A')} — {result.get('status', 'Unknown')}"
+            ) if result.get("found") else f"{entity_name} not found in Belgian KBO/BCE registry",
+        })
+
+    # --------------- ECUADOR (SRI / Supercias) ---------------
+    if country_code == "EC":
+        ruc = body.get("ruc", "").strip()
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "EC", "ruc": ruc}
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        return _persist_verify({
+            "entity_name": entity_name, "country_code": "EC",
+            "verified": result.get("found", False),
+            "legal_name": result.get("entity_name") or result.get("legal_name"),
+            "ruc": result.get("ruc"),
+            "status": result.get("status"),
+            "economic_activity": result.get("economic_activity"),
+            "registered_address": result.get("registered_address"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+            "summary": (
+                f"{result.get('entity_name', entity_name)} — "
+                f"RUC {result.get('ruc', 'N/A')} — {result.get('status', 'Unknown')}"
+            ) if result.get("found") else f"{entity_name} not found in SRI/Supercias",
+        })
+
+    # --------------- HONG KONG (ICRIS) ---------------
+    if country_code == "HK":
+        cr_number = body.get("cr_number", "").strip()
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "HK", "cr_number": cr_number}
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        return _persist_verify({
+            "entity_name": entity_name, "country_code": "HK",
+            "verified": result.get("found", False),
+            "legal_name": result.get("entity_name"),
+            "cr_number": result.get("cr_number"),
+            "company_type": result.get("company_type"),
+            "status": result.get("status"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+            "summary": (
+                f"{result.get('entity_name', entity_name)} — "
+                f"CR# {result.get('cr_number', 'N/A')} — {result.get('status', 'Unknown')}"
+            ) if result.get("found") else f"{entity_name} not found in ICRIS",
+        })
+
+    # --------------- SWITZERLAND (Zefix) ---------------
+    if country_code == "CH":
+        uid = body.get("uid", "").strip()
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "CH", "uid": uid}
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        return _persist_verify({
+            "entity_name": entity_name, "country_code": "CH",
+            "verified": result.get("found", False),
+            "legal_name": result.get("entity_name"),
+            "uid": result.get("uid"),
+            "status": result.get("status"),
+            "legal_form": result.get("legal_form"),
+            "canton": result.get("canton"),
+            "registered_address": result.get("registered_address"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+            "summary": (
+                f"{result.get('entity_name', entity_name)} — "
+                f"UID {result.get('uid', 'N/A')} — {result.get('status', 'Unknown')} — "
+                f"{result.get('canton', '')}"
+            ) if result.get("found") else f"{entity_name} not found in Zefix",
+        })
+
+    # --------------- AUSTRALIA (ABR) ---------------
+    if country_code == "AU":
+        abn = body.get("abn", "").strip()
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "AU", "abn": abn}
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        return _persist_verify({
+            "entity_name": entity_name, "country_code": "AU",
+            "verified": result.get("found", False),
+            "legal_name": result.get("entity_name"),
+            "abn": result.get("abn"),
+            "acn": result.get("acn"),
+            "entity_type": result.get("entity_type"),
+            "status": result.get("status"),
+            "state": result.get("state"),
+            "registered_address": result.get("registered_address"),
+            "gst_registered": result.get("gst_registered"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+            "summary": (
+                f"{result.get('entity_name', entity_name)} — "
+                f"ABN {result.get('abn', 'N/A')} — {result.get('status', 'Unknown')}"
+            ) if result.get("found") else f"{entity_name} not found in ABR",
+        })
+
+    # --------------- JAPAN (Houjin Bangou) ---------------
+    if country_code == "JP":
+        corp_number = body.get("corp_number", "").strip()
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "JP", "corp_number": corp_number}
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        return _persist_verify({
+            "entity_name": entity_name, "country_code": "JP",
+            "verified": result.get("found", False),
+            "legal_name": result.get("entity_name"),
+            "legal_name_ja": result.get("legal_name_ja"),
+            "legal_name_en": result.get("legal_name_en"),
+            "corp_number": result.get("corp_number"),
+            "kind": result.get("kind"),
+            "status": result.get("status"),
+            "registered_address": result.get("registered_address"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+            "summary": (
+                f"{result.get('entity_name', entity_name)} — "
+                f"Corp# {result.get('corp_number', 'N/A')} — {result.get('status', 'Unknown')}"
+            ) if result.get("found") else f"{entity_name} not found in Houjin Bangou",
+        })
+
+    # --------------- NETHERLANDS (KvK) ---------------
+    if country_code == "NL":
+        kvk_number = body.get("kvk_number", "").strip()
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "NL", "kvk_number": kvk_number}
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        return _persist_verify({
+            "entity_name": entity_name, "country_code": "NL",
+            "verified": result.get("found", False),
+            "legal_name": result.get("entity_name"),
+            "kvk_number": result.get("kvk_number"),
+            "status": result.get("status"),
+            "legal_form": result.get("legal_form"),
+            "registered_address": result.get("registered_address"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+            "summary": (
+                f"{result.get('entity_name', entity_name)} — "
+                f"KVK {result.get('kvk_number', 'N/A')} — {result.get('status', 'Unknown')}"
+            ) if result.get("found") else f"{entity_name} not found in KvK",
+        })
+
+    # --------------- ITALY (VIES) ---------------
+    if country_code == "IT":
+        partita_iva = body.get("partita_iva", body.get("vat_id", "")).strip()
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "IT", "partita_iva": partita_iva}
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        return _persist_verify({
+            "entity_name": entity_name, "country_code": "IT",
+            "verified": result.get("found", False),
+            "legal_name": result.get("entity_name"),
+            "partita_iva": result.get("partita_iva"),
+            "vat_number": result.get("vat_number"),
+            "status": result.get("status"),
+            "registered_address": result.get("registered_address"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+            "summary": (
+                f"{result.get('entity_name', entity_name)} — "
+                f"P.IVA {result.get('partita_iva', 'N/A')} — {result.get('status', 'Unknown')}"
+            ) if result.get("found") else f"{entity_name} — P.IVA required for Italy verification",
+        })
+
+    # --------------- ARGENTINA (AFIP) ---------------
+    if country_code == "AR":
+        cuit = body.get("cuit", "").strip()
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "AR", "cuit": cuit}
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        return _persist_verify({
+            "entity_name": entity_name, "country_code": "AR",
+            "verified": result.get("found", False),
+            "legal_name": result.get("entity_name"),
+            "cuit": result.get("cuit"),
+            "status": result.get("status"),
+            "registered_address": result.get("registered_address"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+            "summary": (
+                f"{result.get('entity_name', entity_name)} — "
+                f"CUIT {result.get('cuit', 'N/A')} — {result.get('status', 'Unknown')}"
+            ) if result.get("found") else f"{entity_name} — CUIT required for Argentina verification",
+        })
+
+    # --------------- EGYPT (GLEIF) ---------------
+    if country_code == "EG":
+        commercial_reg = body.get("commercial_reg", "").strip()
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "EG", "commercial_reg": commercial_reg}
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        return _persist_verify({
+            "entity_name": entity_name, "country_code": "EG",
+            "verified": result.get("found", False),
+            "legal_name": result.get("entity_name") or result.get("legal_name"),
+            "commercial_reg": result.get("commercial_reg"),
+            "lei": result.get("lei"),
+            "status": result.get("status"),
+            "registered_address": result.get("registered_address"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+            "summary": (
+                f"{result.get('entity_name', entity_name)} — "
+                f"LEI {result.get('lei', 'N/A')} — {result.get('status', 'Unknown')}"
+            ) if result.get("found") else f"{entity_name} not found in GLEIF (EG)",
+        })
+
+    # --------------- SPAIN (VIES) ---------------
+    if country_code == "ES":
+        cif = body.get("cif", body.get("vat_id", "")).strip()
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "ES", "cif": cif}
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        return _persist_verify({
+            "entity_name": entity_name, "country_code": "ES",
+            "verified": result.get("found", False),
+            "legal_name": result.get("entity_name"),
+            "cif": result.get("cif"),
+            "vat_number": result.get("vat_number"),
+            "status": result.get("status"),
+            "registered_address": result.get("registered_address"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+            "summary": (
+                f"{result.get('entity_name', entity_name)} — "
+                f"CIF {result.get('cif', 'N/A')} — {result.get('status', 'Unknown')}"
+            ) if result.get("found") else f"{entity_name} — CIF required for Spain verification",
+        })
+
+    # --------------- GERMANY (VIES) ---------------
+    if country_code == "DE":
+        vat_id = body.get("vat_id", body.get("ust_id", "")).strip()
+        hrb = body.get("hrb", "").strip()
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "DE", "vat_id": vat_id, "hrb": hrb}
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        return _persist_verify({
+            "entity_name": entity_name, "country_code": "DE",
+            "verified": result.get("found", False),
+            "legal_name": result.get("entity_name"),
+            "vat_id": result.get("vat_id"),
+            "status": result.get("status"),
+            "registered_address": result.get("registered_address"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+            "summary": (
+                f"{result.get('entity_name', entity_name)} — "
+                f"VAT {result.get('vat_id', 'N/A')} — {result.get('status', 'Unknown')}"
+            ) if result.get("found") else f"{entity_name} — USt-IdNr required for Germany verification",
+        })
+
+    # --------------- PORTUGAL (VIES) ---------------
+    if country_code == "PT":
+        nipc = body.get("nipc", body.get("nif", body.get("vat_id", ""))).strip()
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "PT", "nipc": nipc}
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        return _persist_verify({
+            "entity_name": entity_name, "country_code": "PT",
+            "verified": result.get("found", False),
+            "legal_name": result.get("entity_name"),
+            "nipc": result.get("nipc"),
+            "vat_number": result.get("vat_number"),
+            "status": result.get("status"),
+            "registered_address": result.get("registered_address"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+            "summary": (
+                f"{result.get('entity_name', entity_name)} — "
+                f"NIPC {result.get('nipc', 'N/A')} — {result.get('status', 'Unknown')}"
+            ) if result.get("found") else f"{entity_name} — NIPC required for Portugal verification",
+        })
+
+    # ── PL (Poland) — KRS (Krajowy Rejestr Sądowy) + VIES ──────
+    if country_code == "PL":
+        krs_number = body.get("krs", "").strip()
+        nip = body.get("nip", "").strip()
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "PL", "krs": krs_number, "nip": nip}
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        return _persist_verify({
+            "entity_name": entity_name, "country_code": "PL",
+            "verified": result.get("found", False),
+            "legal_name": result.get("legal_name"),
+            "krs": result.get("krs"),
+            "nip": result.get("nip"),
+            "regon": result.get("regon"),
+            "legal_form": result.get("legal_form"),
+            "status": result.get("status"),
+            "registration_date": result.get("registration_date"),
+            "registered_address": result.get("registered_address"),
+            "court": result.get("court"),
+            "representatives": result.get("representatives"),
+            "pkd_codes": result.get("pkd_codes"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+            "summary": (
+                f"{result.get('legal_name', entity_name)} — "
+                f"KRS {result.get('krs', 'N/A')} — NIP {result.get('nip', 'N/A')} — "
+                f"{result.get('status', 'Unknown')}"
+            ) if result.get("found") else f"{entity_name} not found in KRS registry",
         })
 
 

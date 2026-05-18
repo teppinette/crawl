@@ -128,7 +128,7 @@ Production Bridge (human review):
 
 | Endpoint | Method | Purpose |
 |----------|--------|---------|
-| `/api/v1/verify` | POST | Synchronous registry check (PK/IN/SG/TR/AE/CN/GB/BR/US/KR) — 2-15s |
+| `/api/v1/verify` | POST | Synchronous registry check (34 countries) — 2-15s |
 | `/api/v1/verify/lei` | POST | GLEIF LEI corporate hierarchy lookup (cross-country) — 2-5s |
 | `/api/v1/verify-job` | POST | Async full verification (registry + LinkedIn + dark web) — 1-5 min |
 | `/api/v1/verify-job/{job_id}` | GET | Poll verify job (progressive results) |
@@ -208,26 +208,31 @@ completes. The enrichment flow:
 **Cost:** $15/mo
 **Rate limit:** 10 req/sec
 
-### Multilogin Anti-Detect Browser (PK FBR IRIS)
+### Multilogin Anti-Detect Browser (All Verification)
 
-**Purpose:** FBR Active Taxpayer List verification — the only PK gov site that
-requires anti-detect browser (CAPTCHA + WAF). All other PK sites work via
-simple proxy or direct access.
+**HARD RULE:** ALL outbound HTTP from crawl-verify must go through Multilogin
+anti-detect browser with country-targeted proxy. No curl_cffi, no direct requests,
+no exposed VM IP. The proxy must exit from the target entity's country
+(e.g., PT entity → PT exit IP). Only exception: proper APIs with API keys (e.g., EIA).
 
 **Account:** teppinette@copap.com (Business 300, €75/mo, 300 profiles, ~1GB proxy/mo)
-**Agent:** Multilogin X v12.2.0 on crawldevvm (`/opt/mlxapp/desktop.bin`)
+**Agent:** Multilogin X v12.2.0 on crawl-verify VM (`/opt/mlxapp/desktop.bin`)
 **Services:** `xvfb.service` (virtual display :99) + `mlx.service` (agent)
-**Proxy:** Multilogin PK residential (`gate.multilogin.com:8080`) — applied at
-Playwright context level, not profile level (avoids proxy verification issues)
+**Proxy:** Multilogin residential (`gate.multilogin.com:8080`) with country targeting
+  via `xcli proxy-get --country-code XX --protocol http --type rotating`
 **CAPTCHA:** Claude Haiku vision OCR (~$0.001/solve)
-**Module:** `api/multilogin_fbr.py`
+**Shared helper:** `api/mlx_http.py` — provides `mlx_get()`, `mlx_post()`, `mlx_navigate()`
+**Bespoke modules:** `multilogin_fbr.py` (PK FBR), `multilogin_dgft.py` (IN DGFT),
+  `multilogin_bizfile.py` (SG Bizfile)
 
-**Flow:** Create temp profile → launch headless → Playwright CDP → navigate IRIS →
+**Flow (mlx_http):** Acquire pool profile → set country proxy → launch headless →
+Playwright CDP → execute fetch()/navigate → extract response → stop profile → return to pool.
+
+**Flow (FBR):** Create temp profile → launch headless → Playwright CDP → navigate IRIS →
 fill NTN → OCR canvas CAPTCHA → click Verify → parse result → stop + delete profile.
 
-**Concurrency:** 5 parallel lookups (semaphore-limited). Temp profiles created per
-call — each gets a unique fingerprint. 50 NTNs at 5 concurrent ≈ 5 min.
-**Bandwidth:** ~2.5 MB/lookup. 200 NTNs/mo = ~500 MB (within 1 GB plan).
+**Concurrency:** 5 pool profiles (shared across all countries).
+**Bandwidth:** ~2.5 MB/lookup. 200 lookups/mo = ~500 MB (within 1 GB plan).
 
 **Managing Multilogin:**
 ```bash
@@ -248,7 +253,8 @@ sudo systemctl status xvfb              # virtual display
 - Dark-web VM has NO OpenClaw — standalone Tor gateway with its own API
 - Dark-web enrichment is automatic for CIR — no extra API call needed
 - OpenClaw agents NEVER know who requested the research
-- FBR ATL via Multilogin — only gov site requiring anti-detect browser
+- ALL verification traffic via Multilogin anti-detect browser with country-targeted proxy
+- Shared `mlx_http.py` module for simple API calls; bespoke modules for CAPTCHA sites
 
 **Managing the service:**
 ```bash
@@ -281,7 +287,7 @@ The Global Compliance app (172.20.0.11) connects to this API via:
 | Blob Container | osint-staging | -- | JSON reports from all regions |
 | VMs (5x regional) | crawl-{americas,europe,gulf,china,india} | crawldevvm_group | Regional OSINT agents |
 | VM (dark web) | crawldarkwebvm | crawldevvm_group | Tor research (West Europe / Netherlands) |
-| VM (verify) | crawl-verify | crawldevvm_group | Entity verification — 10 countries + GLEIF LEI (East US 2) |
+| VM (verify) | crawl-verify | crawldevvm_group | Entity verification — 34 countries + GLEIF LEI (East US 2) |
 | Key Vault | crawlkeyvault | crawldevvm_group | All platform secrets (East US 2, purge-protected) |
 | Backup Vault | crawl-backup-vault | crawldevvm_group | VM backups — East US 2 (crawldevvm, americas, verify) |
 | Backup Vault | crawl-backup-westeurope | crawldevvm_group | VM backup — West Europe (darkweb) |
@@ -420,9 +426,11 @@ SELECT client_ip, count(*), min(event_time) FROM api_access_log WHERE status_cod
 | crawl-china | 10.0.0.4 | copapadmin | deepseek-chat | Qichacha, Tianyancha, NECIPS/GSXT, UFLPA Entity List, BIS MEU, wenshu.court.gov.cn |
 | crawl-india | 20.193.150.43 | copapadmin | claude-sonnet-4-6 | MCA21, Zauba Corp, DIN cross-ref, GST Portal, DGFT IEC, eCourts, Indian Kanoon, NCLT, SEBI, RBI |
 | crawl-darkweb | 20.86.161.6 | copapadmin | N/A (no OpenClaw) | 37 sources via Tor: Ahmia, Torch, Haystak, DDG-Tor, DDG-adverse, Onion.live, Dehashed($15/mo), HIBP, LeakCheck, BreachDirectory, Psbdmp, JustPaste.it, LeakIX, HudsonRock, GitHub, Ransomlook, OCCRP, ICIJ, OpenSanctions, OpenCorporates, Interpol Red Notices, World Bank Debarment, WikiLeaks, Telegram, Web Archive, Court records, Reddit, PulseDive, FullHunt, Greynoise, Shodan, VirusTotal, AlienVault OTX, AbuseIPDB, crt.sh, URLScan.io, IntelX |
+| crawl-verify | 180.20.0.4 | copapadmin | N/A (API host) | 34 countries: PK,IN,SG,TR,AE,CN,GB,BR,US,KR,SA,CL,CO,PE,MX,IL,CA,FR,TW,EC,HK,CH,AU,JP,NL,IT,AR,EG,ES,DE,BE,PT,ZA,PL + GLEIF LEI. Multilogin anti-detect browser + Bright Data residential proxy. Port 8460. |
 
 **IMPORTANT:** Gulf VM uses `copadmin` not `copapadmin` (typo during VM creation).
 **IMPORTANT:** Dark web VM has NO OpenClaw — standalone Tor gateway (port 8450).
+**IMPORTANT:** crawl-verify runs verify-gateway (port 8460), NOT OpenClaw. Multilogin agent + xcli at `/home/copapadmin/mlx/deps/cli/xcli`.
 
 SSH key for all VMs: `~/.ssh/crawldevvm_key.pem`
 SSH alias: `ssh crawl-darkweb` (configured in ~/.ssh/config)
@@ -451,10 +459,13 @@ Swap file at `/swapfile` (2GB) enabled on crawl-americas for this purpose.
 
   api/                   -- Crawl Research Gateway v3.0
     main.py              -- FastAPI app (port 8400, systemd-managed)
+    mlx_http.py          -- Shared Multilogin HTTP helper (mlx_get/mlx_post/mlx_navigate)
     multilogin_fbr.py    -- FBR ATL via Multilogin anti-detect browser
     keyvault.py          -- Azure Key Vault helper (managed identity, caches secrets)
     event_log.py         -- Job event + API access logging to PostgreSQL (crawlmonitor)
     report_db.py         -- CIR report + verification persistence (crawl_reports, crawl_verification)
+    proxy_cfg.py         -- Bright Data proxy config (residential + datacenter)
+    verify_*.py          -- Country verification adapters (34 countries, mirrored to crawl-verify VM)
     crawl-gateway.service      -- systemd unit file (copied to /etc/systemd/system/)
     jobs/                -- Job state files (JSON per job_id, archived after 30d)
     openapi.json         -- API spec
@@ -530,6 +541,27 @@ ssh -i ~/.ssh/crawldevvm_key.pem copapadmin@<VM_IP> "openclaw gateway restart"
   workspace/                     -- AGENTS.md, SOUL.md, IDENTITY.md, skills/
   agents/main/                   -- agent sessions
 ```
+
+## Directory Structure (crawl-verify VM — 180.20.0.4)
+
+```
+~/verify-gateway/
+  main.py              -- FastAPI verify app (port 8460, systemd-managed)
+  mlx_http.py          -- Shared Multilogin HTTP helper
+  keyvault.py          -- Azure Key Vault helper (same as crawldevvm)
+  proxy_cfg.py         -- Bright Data proxy config
+  multilogin_fbr.py    -- PK FBR ATL via Multilogin
+  multilogin_dgft.py   -- IN DGFT IEC via Multilogin
+  multilogin_bizfile.py -- SG Bizfile ACRA via Multilogin
+  verify_*.py          -- 34 country adapters (mirrored from crawldevvm api/)
+  verify_lei.py        -- GLEIF LEI corporate hierarchy lookup
+
+~/mlx/deps/cli/xcli   -- Multilogin X CLI tool
+```
+
+**Service:** `verify-gateway.service` (systemd)
+**Managing:** `sudo systemctl {status|stop|start} verify-gateway`
+**Health:** `curl http://127.0.0.1:8460/health`
 
 ## Security Rules
 
