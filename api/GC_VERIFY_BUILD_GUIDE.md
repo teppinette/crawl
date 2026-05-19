@@ -5,6 +5,12 @@
 **Date:** 2026-05-03
 **Priority:** Ready to build — API is live
 
+> **Current country coverage and adapter behavior changes (most recent):**
+> see `MIGRATION_GUIDE.md` §10. As of 2026-05-19, six adapters (CL, CO, HK,
+> SA, TW, PE) changed source or became newly functional. The Supported
+> Countries table near the bottom of this guide reflects an earlier sprint
+> and is not the source of truth for current coverage.
+
 ---
 
 ## What This Is

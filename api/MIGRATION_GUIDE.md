@@ -1,5 +1,10 @@
 # Crawl v2 API — Migration Guide for GC & Onboarding
-### Document: CRG-MIGRATE-001 | Version 1.0 | 2026-05-10
+### Document: CRG-MIGRATE-001 | Version 1.1 | 2026-05-19
+
+**v1.1 changes** — see Section 10 (Changelog). Six country adapters changed
+behavior on 2026-05-19; the field shape on the wire is unchanged but the
+data source behind CL / CO / HK switched from broken gov scrapes to GLEIF
+LEI fallback, and SA / TW / PE became newly functional.
 
 ---
 
@@ -363,3 +368,167 @@ No v1 endpoints were changed or removed. v2 is a parallel layer.
 - **Logs:** `journalctl -u crawl-gateway -f` on crawldevvm
 - **DB queries:** PostgreSQL `crawl-monitor-db` — tables `api_access_log`, `job_events`
 - **Raw responses:** `GET /api/v2/raw?source=CSL&date=2026-05-10`
+
+---
+
+## 10. CHANGELOG — 2026-05-19 (v1.1)
+
+Six country adapters changed behavior. The wire contract for `/api/v2/verify`
+and `/api/v1/verify` is unchanged — same field names, same status codes — but
+behind several adapters the data source moved, and three adapters that were
+previously broken now return data. Onboarding QA should plan a pass on each
+of the six.
+
+### 10.1 Summary
+
+| Country | Before 2026-05-19 | After 2026-05-19 | Onboarding QA action |
+|---------|-------------------|------------------|----------------------|
+| CL | Broken — SII endpoint deprecated, HTTP 500 | **GLEIF LEI fallback** (ISO 17442) | Re-test; confirm GLEIF tier on Verification tab; check NOT_FOUND handling for small entities without LEIs |
+| CO | Broken — RUES API returns 401 (auth restricted to Colombian chambers of commerce) | **GLEIF LEI fallback** | Same as CL |
+| HK | Broken — ICRIS migrated to a JS-only SPA (ICRIS3EP), bot-blocked | **GLEIF LEI fallback** | Same as CL/CO; +verify the parent-vs-subsidiary re-ranking returns the parent on common queries (HSBC HK, Cathay Pacific, Sun Hung Kai, Standard Chartered) |
+| SA | Broken — MCI BotDetect CAPTCHA solver looping on cookie banner | **MCI live** via Multilogin + Sonnet 4.6 OCR | Confirm Arabic-script `legal_name` renders correctly in the UI; check fuzzy-match dedup against existing transliterated entries; add a normalization/transliteration step if needed |
+| TW | Broken — GCIS dataset IDs renumbered; name-search filter missing required `Company_Status` clause | **Fixed + enriched** (App3 business items now populated) | Verify `paid_in_capital` and `business_scope` are surfaced where useful |
+| PE | New adapter | **Decolecta SUNAT live** (1000 req/mo free tier) | Add Spanish-language status values to Onboarding's normalization map (see 10.4) |
+
+### 10.2 GLEIF fallback (CL, CO, HK — and CH from 2026-05-15)
+
+Three previously-broken adapters now use the GLEIF LEI Registry as a primary
+source. This is the same pattern shipped earlier for Switzerland (`verify_ch.py`),
+extended to CL / CO / HK after the local gov-scrape paths were ruled out for
+the reasons in the table above.
+
+**Field-shape differences vs gov-registry responses:**
+
+- `validation_source.registry` now reads
+  `"GLEIF — Global Legal Entity Identifier Foundation (ISO 17442)"` instead
+  of the local gov registry name (`SII`, `RUES`, `ICRIS`). If your
+  `consolidate_*` corroboration synth on the Verification tab keys off the
+  registry string for tiering, audit the lookup table.
+- New top-level field: `lei` — ISO 17442 20-character identifier (string).
+- `legal_form` formatted per GLEIF conventions (ELF code or "other" string),
+  not local-registry conventions (e.g. SII's "S.A.", RUES's "S.A.S.").
+- `registered_address` joined from GLEIF's `addressLines` + city/region/postal/
+  country — flat string, not the structured object some local registries
+  returned.
+- `source` field appended with the gov-registry deprecation reason —
+  e.g. `"GLEIF LEI Registry (SII RUT lookup deprecated)"`.
+- Smaller entities without LEIs return:
+  ```json
+  {
+    "found": false,
+    "status": "NOT_FOUND",
+    "note": "GLEIF covers <COUNTRY> companies with Legal Entity Identifiers (banks, listed, large corporates)...",
+    "validation_source": { ... }
+  }
+  ```
+  — Onboarding's UI should render the `note` verbatim so analysts understand
+  the limitation rather than treating it as "company doesn't exist."
+
+**Coverage rule of thumb:**
+
+GLEIF covers entities with regulatory derivatives-reporting or
+financial-licensing obligations — banks, exchange-listed companies, insurers,
+regulated funds, large corporates. The local gov registry would cover any
+registered company, but for CL / CO / HK those gov paths aren't currently
+reachable from a server (paywall, auth wall, or SPA bot-block respectively).
+
+For high-volume Onboarding of smaller entities in CL / CO / HK, the gateway
+will return `found: false` more often than it did before. This isn't a
+regression in the data path — the data path is fixed and working — it's a
+fundamental ceiling of free public sources for those jurisdictions.
+
+### 10.3 SA Arabic-script `legal_name`
+
+The MCI live response returns the legal name in Arabic UTF-8:
+
+```json
+{
+  "verified": true,
+  "country_code": "SA",
+  "legal_name": "الشركة السعودية للصناعات الأساسيه سابك",
+  "cr_number": "1010010813",
+  "status": "نشط",
+  "capital": "30000000000.0",
+  ...
+}
+```
+
+**Onboarding implications:**
+
+- `Counterparty.LegalName` will receive Arabic-script content. The detail
+  page renders this raw — confirm the UI uses a font stack that includes an
+  Arabic-script face (e.g. Noto Sans Arabic, Segoe UI, Arial Unicode MS) so
+  the glyphs don't fall back to tofu boxes on Windows clients.
+- Fuzzy matching during merge/dedup needs to handle the case where one
+  record has the Arabic name and another has a Latin transliteration ("SABIC"
+  or "Saudi Basic Industries Corporation"). Options: (a) run an Arabic →
+  Latin transliteration step on import and store both, (b) widen the fuzzy
+  matcher to compare against the `cr_number` + jurisdiction first, falling
+  back to name only on tie.
+- Excel exports: ensure the export pipeline writes UTF-8 with BOM (or .xlsx
+  rather than .csv) so Excel doesn't mojibake the Arabic.
+- `status` value is also Arabic — `نشط` means "ACTIVE." Decision: either
+  Onboarding maps Arabic statuses in its normalization layer, or we add a
+  field-level English-status mapping in the SA adapter. Reach out and tell
+  us which side you'd prefer.
+
+### 10.4 PE Spanish status normalization
+
+New PE adapter returns SUNAT's native Spanish status values:
+
+| `status` value | English equivalent | Equivalent to Onboarding map |
+|----------------|--------------------|------------------------------|
+| `ACTIVO` | Active | `ACTIVE` |
+| `SUSPENDIDO` | Suspended | `SUSPENDED` |
+| `INACTIVO` | Inactive | `INACTIVE` |
+| `BAJA DEFINITIVA` | Definitively closed | `DISSOLVED` |
+| `BAJA PROVISIONAL` | Provisionally closed | `INACTIVE` |
+
+The adapter also returns a separate `condition` field (SUNAT's "estado del
+contribuyente" — taxpayer condition):
+
+| `condition` value | English equivalent |
+|-------------------|--------------------|
+| `HABIDO` | Locatable (in good standing for tax notices) |
+| `NO HABIDO` | Unlocatable (compliance risk) |
+| `NO HALLADO` | Not found at registered address |
+
+Suggest adding these to Onboarding's status normalization map. `NO HABIDO`
+in particular is a useful adverse-flag signal that doesn't fit the standard
+ACTIVE/INACTIVE binary.
+
+### 10.5 TW field expansion
+
+The fixed `verify_tw.py` adapter now populates two fields that were
+empty / null before:
+
+- `paid_in_capital`: e.g. `"TWD 259,325,245,210"` (TSMC) — paid-in capital
+  alongside the existing `capital` (authorized capital). Useful for
+  distinguishing shell companies (high authorized, near-zero paid-in) from
+  operating businesses.
+- `business_scope`: e.g. `"CC01080 電子零組件製造業; CC01090 電池製造業; ..."` —
+  formatted as `"{code} {Chinese description}; ..."` joined from GCIS App3's
+  `Cmp_Business` array, up to 20 items.
+
+Both fields are nullable — older entries scraped before 2026-05-19 stayed at
+`null` in the DB and won't repopulate retroactively.
+
+### 10.6 Still blocked / awaiting credentials
+
+| Country | Status | Action holder |
+|---------|--------|---------------|
+| EC | supercias.gob.ec unreachable from server (direct + proxy) — endpoint may have moved or be geo-fenced beyond what Bright Data residential pools cover | Crawl — periodic recheck; alternative SRI endpoint research |
+| NL | zoeken.kvk.nl unreachable from server — KvK has a paid Handelsregister API as the realistic path | Open business decision |
+| CH | GLEIF fallback live; awaiting Zefix Basic auth credentials (email `zefix@bj.admin.ch`) for the authoritative path | Crawl — credential request sent |
+| AU | Awaiting free ABR Web Services GUID registration (`abr.business.gov.au`) | Crawl — pending |
+| JP | Awaiting free houjin-bangou app ID registration (`houjin-bangou.nta.go.jp`) | Crawl — pending |
+
+### 10.7 Adapter source commits (2026-05-19)
+
+| Commit | Scope |
+|--------|-------|
+| `9d3c039` | Add CL/CO/PE verification + fix SA MCI CAPTCHA capture |
+| `c7b6810` | Fix TW MOEA GCIS verification — refresh dataset IDs + name search filter |
+| `90ee8d7` | Fix HK ICRIS verification — switch to GLEIF (ICRIS migrated to paywalled SPA) |
+| `f9b98f0` | (earlier) Add GLEIF LEI fallback for CH verification |
+| `0db7334` | (earlier) Add 16 expansion country verifiers + mlx_http proxy-only rewrite |
