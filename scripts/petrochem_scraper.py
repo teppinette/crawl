@@ -161,13 +161,28 @@ BARCHART_CONTRACTS = [
         "unit": "USD/bbl",
         "bbl_to_mt": 8.9,   # ~8.9 bbl/mt for naphtha
     },
+    # JKS (Singapore Jet Kerosene Swap) intentionally NOT here:
+    # Barchart carries the contract listings but publishes zero daily-trade
+    # data — the swap clears against Platts MOPS monthly without daily
+    # settlements between rolls. Live quote shows lastPrice=0, tradeTime=N/A
+    # on every JKSK26/JKSM26/JKSN26 contract. *0 wildcard also 404s.
+    # Verified 2026-05-19. MOPS Kero must be sourced from Platts directly
+    # (or Argus/ICIS) — there is no Barchart fallback.
     {
-        "ticker": "JKS",
-        "product": "Kerosene Singapore",
-        "description": "Singapore Jet Kerosene (Platts) Swap",
+        "ticker": "JSG",
+        "product": "Singapore Gasoil 0.05%",
+        "description": "Singapore Gasoil Platts Calendar Swap",
         "exchange": "NYMEX",
         "unit": "USD/bbl",
-        "bbl_to_mt": 7.88,  # ~7.88 bbl/mt for kerosene
+        "bbl_to_mt": 7.45,  # ~7.45 bbl/mt for gasoil
+    },
+    {
+        "ticker": "JSE",
+        "product": "Singapore Fuel Oil 380 cst",
+        "description": "Singapore FO 380 cst Platts Calendar Swap",
+        "exchange": "NYMEX",
+        "unit": "USD/mt",
+        "bbl_to_mt": None,
     },
     {
         "ticker": "H9",
@@ -301,10 +316,13 @@ def _barchart_login(page) -> bool:
 def _barchart_download_csv(page, symbol: str) -> str:
     """
     Download historical daily CSV from Barchart for a futures symbol.
-    Premier account gives CSV via the DOWNLOAD button on historical-download page.
+    Supports auto-rolling front-month wildcards like 'JJA*0' (asterisk
+    URL-encoded). Premier account required for the DOWNLOAD button.
     """
     try:
-        url = f"https://www.barchart.com/futures/quotes/{symbol}/historical-download"
+        url_symbol = symbol.replace("*", "%2A")
+        safe_name = symbol.replace("*", "_STAR_").replace("/", "_")
+        url = f"https://www.barchart.com/futures/quotes/{url_symbol}/historical-download"
         page.goto(url, timeout=30000, wait_until="domcontentloaded")
         time.sleep(random.uniform(3, 5))
         _dismiss_cookie_banner(page)
@@ -317,7 +335,7 @@ def _barchart_download_csv(page, symbol: str) -> str:
         with page.expect_download(timeout=30000) as dl_info:
             page.click('a.download-btn', timeout=10000)
         download = dl_info.value
-        csv_path = f"/tmp/barchart_{symbol}.csv"
+        csv_path = f"/tmp/barchart_{safe_name}.csv"
         download.save_as(csv_path)
         with open(csv_path) as f:
             return f.read()
@@ -325,6 +343,59 @@ def _barchart_download_csv(page, symbol: str) -> str:
     except Exception as e:
         log.error("Barchart CSV download failed for %s: %s", symbol, str(e)[:100])
         return ""
+
+
+def _barchart_scrape_live_quote(page, symbol: str) -> dict | None:
+    """Scrape the live quote page for today's settlement.
+
+    The CSV historical-download lags 1-3 trading days behind the live quote
+    page. Scraping the overview JSON closes that gap — typically gives us
+    T-1 settlement when the CSV only has T-3.
+
+    Returns: {last_price, change, trade_time, contract_label} or None.
+    """
+    try:
+        url_symbol = symbol.replace("*", "%2A")
+        url = f"https://www.barchart.com/futures/quotes/{url_symbol}/overview"
+        page.goto(url, timeout=30000, wait_until="domcontentloaded")
+        time.sleep(random.uniform(2, 4))
+        html = page.content()
+
+        last = re.search(r'"lastPrice"\s*:\s*"?([\d.,]+)"?', html)
+        chg = re.search(r'"priceChange"\s*:\s*"?([+\-\d.,]+)"?', html)
+        tt = re.search(r'"tradeTime"\s*:\s*"?([^"]+)"?', html)
+        title_m = re.search(r'<title>(.*?)</title>', html, re.I | re.S)
+
+        if not last:
+            return None
+        try:
+            last_value = float(last.group(1).replace(",", ""))
+        except ValueError:
+            return None
+        # 0 / 0.0 / N/A → no live data, fall back to CSV only
+        if last_value == 0 or (tt and "N/A" in tt.group(1)):
+            return None
+
+        # Extract contract code from title (e.g. "Japan C&F Naphtha Platts Swap Jun '26 ...")
+        # We don't try to derive the full contract_code here — caller knows the ticker
+        contract_label = (title_m.group(1).strip() if title_m else "")[:100]
+        change_value = 0.0
+        if chg:
+            try:
+                change_value = float(chg.group(1).replace(",", "").replace("+", ""))
+            except ValueError:
+                pass
+        trade_time = tt.group(1).replace("\\/", "/") if tt else ""
+
+        return {
+            "last_price": last_value,
+            "change": change_value,
+            "trade_time": trade_time,
+            "contract_label": contract_label,
+        }
+    except Exception as e:
+        log.error("Barchart live-quote scrape failed for %s: %s", symbol, str(e)[:100])
+        return None
 
 
 def _parse_barchart_csv(csv_text: str, contract_info: dict) -> list:
@@ -979,43 +1050,101 @@ def _scrape_in_session(port: int) -> dict:
             all_data["futures"] = []
             logged_in = _barchart_login(barchart_page)
 
-            # Download CURRENT + NEXT 2 months for every contract. Salestracker
-            # needs each forward month independently for MTM (PO priced on current
-            # month, sell priced on next month, etc.).
+            # For each contract, download:
+            #   (a) the *0 wildcard — Barchart's auto-rolling front-month series
+            #       with ~2 years of daily settlements stitched across rolls.
+            #       Always returns data even when explicit forward months are empty.
+            #   (b) the explicit CURRENT-calendar-month contract (e.g. JJAK26 in
+            #       May 2026) — only the contract in its settlement window has
+            #       reliable per-contract history via the explicit URL; forwards
+            #       come back empty so we don't bother fetching them.
+            #   (c) the live quote page for the *0 symbol — closes the CSV's
+            #       T-3 lag, giving us today's settlement (T-1).
+            # JKS (Singapore Jet Kero Swap) is intentionally absent — see the
+            # comment in BARCHART_CONTRACTS.
             month_codes = "FGHJKMNQUVXZ"
             now = datetime.now(timezone.utc)
-
-            def _month_symbol(ticker: str, offset: int) -> str:
-                m = ((now.month - 1) + offset) % 12 + 1
-                y = now.year + ((now.month - 1) + offset) // 12
-                return f"{ticker}{month_codes[m - 1]}{str(y)[-2:]}"
+            cm_code = month_codes[now.month - 1]
+            cm_year_yy = str(now.year)[-2:]
 
             for contract in BARCHART_CONTRACTS:
                 ticker = contract["ticker"]
-                # 0 = current calendar month (spot), 1 = next month, 2 = month-after-next
-                for offset in (0, 1, 2):
-                    symbol = _month_symbol(ticker, offset)
-                    try:
-                        time.sleep(random.uniform(6, 12))
-                        log.info("Downloading Barchart CSV: %s (%s, M+%d)...", symbol, contract["product"], offset)
-                        csv_text = _barchart_download_csv(barchart_page, symbol)
-                        records = _parse_barchart_csv(csv_text, contract) if csv_text else []
+                star0_symbol = f"{ticker}*0"
+                cm_symbol = f"{ticker}{cm_code}{cm_year_yy}"
 
+                # (a) *0 — auto-rolling front-month series
+                try:
+                    time.sleep(random.uniform(6, 12))
+                    log.info("Downloading Barchart CSV: %s (%s — rolling front-month)...",
+                             star0_symbol, contract["product"])
+                    csv_text = _barchart_download_csv(barchart_page, star0_symbol)
+                    records = _parse_barchart_csv(csv_text, contract) if csv_text else []
+                    all_data["futures"].append({
+                        "contract": contract["product"],
+                        "description": contract["description"],
+                        "ticker": star0_symbol,
+                        "kind": "rolling_front",
+                        "source": "barchart_csv" if logged_in else "barchart",
+                        "records": records,
+                        "record_count": len(records),
+                        "raw_csv_preview": csv_text[:2000] if csv_text else "",
+                    })
+                    log.info("  Barchart %s: %d daily records (rolling front)",
+                             star0_symbol, len(records))
+                except Exception as e:
+                    log.error("  Barchart %s failed: %s", star0_symbol, str(e)[:100])
+                    error_log.append(f"barchart_{star0_symbol}: {str(e)[:100]}")
+
+                # (b) Explicit current-calendar-month — only fetches the one
+                # contract that is currently in its settlement window.
+                try:
+                    time.sleep(random.uniform(4, 8))
+                    log.info("Downloading Barchart CSV: %s (%s — current month)...",
+                             cm_symbol, contract["product"])
+                    csv_text = _barchart_download_csv(barchart_page, cm_symbol)
+                    records = _parse_barchart_csv(csv_text, contract) if csv_text else []
+                    all_data["futures"].append({
+                        "contract": contract["product"],
+                        "description": contract["description"],
+                        "ticker": cm_symbol,
+                        "kind": "explicit_month",
+                        "source": "barchart_csv" if logged_in else "barchart",
+                        "records": records,
+                        "record_count": len(records),
+                        "raw_csv_preview": csv_text[:2000] if csv_text else "",
+                    })
+                    log.info("  Barchart %s: %d daily records (current month)",
+                             cm_symbol, len(records))
+                except Exception as e:
+                    log.error("  Barchart %s failed: %s", cm_symbol, str(e)[:100])
+                    error_log.append(f"barchart_{cm_symbol}: {str(e)[:100]}")
+
+                # (c) Live quote — closes the CSV's T-3 lag with today's T-1 value
+                try:
+                    time.sleep(random.uniform(3, 6))
+                    live = _barchart_scrape_live_quote(barchart_page, star0_symbol)
+                    if live:
+                        log.info("  Barchart %s LIVE: %.3f as of %s (%s)",
+                                 star0_symbol, live["last_price"],
+                                 live["trade_time"], live["contract_label"][:60])
                         all_data["futures"].append({
                             "contract": contract["product"],
                             "description": contract["description"],
-                            "ticker": symbol,
-                            "month_offset": offset,
-                            "source": "barchart_csv" if logged_in else "barchart",
-                            "records": records,
-                            "record_count": len(records),
-                            "raw_csv_preview": csv_text[:2000] if csv_text else "",
+                            "ticker": star0_symbol,
+                            "kind": "live_quote",
+                            "source": "barchart_live",
+                            "live_quote": live,
+                            "records": [],
+                            "record_count": 0,
+                            "raw_csv_preview": "",
                         })
-                        log.info("  Barchart %s: %d daily records", symbol, len(records))
-
-                    except Exception as e:
-                        log.error("  Barchart %s failed: %s", symbol, str(e)[:100])
-                        error_log.append(f"barchart_{symbol}: {str(e)[:100]}")
+                    else:
+                        log.info("  Barchart %s LIVE: no usable price (illiquid or N/A)",
+                                 star0_symbol)
+                except Exception as e:
+                    log.error("  Barchart %s live-quote failed: %s",
+                              star0_symbol, str(e)[:100])
+                    error_log.append(f"barchart_live_{star0_symbol}: {str(e)[:100]}")
 
         except Exception as e:
             log.error("Barchart CSV download failed: %s", str(e)[:100])
@@ -1742,45 +1871,83 @@ def write_to_postgres(output: dict) -> int:
                 except Exception as e:
                     log.debug("eia insert skip: %s", str(e)[:80])
 
-        # --- daily_prices + futures_prices: barchart CSV (last 7 days only) ---
+        # --- daily_prices + futures_prices: barchart ---
+        # CSV entries (kind=rolling_front or explicit_month): persist every
+        # historical settlement, keyed by (settlement_date, contract_month).
+        # daily_prices gets the last 7 days as a spot-proxy view; futures_prices
+        # gets full history per contract.
+        # live_quote entries: a single row for today's settlement (T-1), the
+        # CSV's edge. Written under contract_month = the Barchart ticker the
+        # caller supplied (e.g. "JJA*0") so Salestracker can pick this up as
+        # the "latest available" mark even before the CSV catches up.
         cutoff_date = (datetime.now(timezone.utc) - timedelta(days=7)).strftime("%Y-%m-%d")
         for contract in output.get("futures", []):
+            # --- live-quote single row (today's settlement edge) ---
+            live = contract.get("live_quote")
+            if contract.get("kind") == "live_quote" and live:
+                try:
+                    # Parse trade_time into a date — Barchart returns either
+                    # "MM/DD/YY" or "HH:MM CT". For HH:MM, treat it as today UTC.
+                    tt = live.get("trade_time", "") or ""
+                    m = re.match(r"^(\d{2})/(\d{2})/(\d{2})$", tt)
+                    if m:
+                        live_date = f"20{m.group(3)}-{m.group(1)}-{m.group(2)}"
+                    else:
+                        live_date = scrape_date_pg
+                    cur.execute("""
+                        INSERT INTO futures_prices
+                            (scrape_date, source, product, contract_month,
+                             settlement_price, currency, unit, price_usd_mt,
+                             ticker, exchange)
+                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                        ON CONFLICT (scrape_date, source, product, contract_month)
+                        DO UPDATE SET settlement_price = EXCLUDED.settlement_price
+                    """, (live_date, "barchart_live",
+                          contract.get("contract", ""),
+                          contract.get("ticker", ""),  # e.g. JJA*0
+                          live["last_price"], "USD",
+                          contract.get("unit", "USD/mt") if False else "USD/mt",
+                          None,
+                          contract.get("ticker", ""),
+                          contract.get("exchange", "NYMEX")))
+                    futures_rows += 1
+                except Exception as e:
+                    log.debug("barchart live-quote insert skip: %s", str(e)[:80])
+                continue  # no record-list rows to process for live-quote entries
+
+            # --- CSV-record entries (rolling_front + explicit_month) ---
             for rec in contract.get("records", []):
                 price = rec.get("settlement_price")
                 if price is None:
                     continue
                 rec_date = rec.get("date", scrape_date_pg)
-                if rec_date < cutoff_date:
-                    continue
 
-                # Write to daily_prices (settlement as spot proxy)
-                try:
-                    cur.execute("""
-                        INSERT INTO daily_prices
-                            (scrape_date, source, product, region, price_type,
-                             price, currency, unit, price_usd_mt,
-                             change_amount, change_pct, incoterm, raw_date)
-                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-                        ON CONFLICT (scrape_date, source, product, region, price_type)
-                        DO UPDATE SET price = EXCLUDED.price,
-                                      price_usd_mt = EXCLUDED.price_usd_mt,
-                                      change_amount = EXCLUDED.change_amount
-                    """, (rec_date, "barchart",
-                          rec.get("product", contract.get("contract", "")),
-                          "Settlement", "settlement",
-                          price, "USD",
-                          rec.get("unit", "USD/mt"),
-                          rec.get("price_usd_mt"),
-                          rec.get("change", 0), None,
-                          None, rec_date))
-                    daily_rows += 1
-                except Exception as e:
-                    log.debug("barchart daily insert skip: %s", str(e)[:80])
+                # daily_prices gets only the last 7 days — spot-proxy view
+                if rec_date >= cutoff_date:
+                    try:
+                        cur.execute("""
+                            INSERT INTO daily_prices
+                                (scrape_date, source, product, region, price_type,
+                                 price, currency, unit, price_usd_mt,
+                                 change_amount, change_pct, incoterm, raw_date)
+                            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                            ON CONFLICT (scrape_date, source, product, region, price_type)
+                            DO UPDATE SET price = EXCLUDED.price,
+                                          price_usd_mt = EXCLUDED.price_usd_mt,
+                                          change_amount = EXCLUDED.change_amount
+                        """, (rec_date, "barchart",
+                              rec.get("product", contract.get("contract", "")),
+                              "Settlement", "settlement",
+                              price, "USD",
+                              rec.get("unit", "USD/mt"),
+                              rec.get("price_usd_mt"),
+                              rec.get("change", 0), None,
+                              None, rec_date))
+                        daily_rows += 1
+                    except Exception as e:
+                        log.debug("barchart daily insert skip: %s", str(e)[:80])
 
-                # Write to futures_prices — one row per settlement_date per contract.
-                # The UNIQUE key (scrape_date, source, product, contract_month) treats
-                # scrape_date as the settlement date here, which gives Salestracker
-                # per-day historical settlements per contract_month for MTM curves.
+                # futures_prices gets full per-contract history (no cutoff)
                 try:
                     cur.execute("""
                         INSERT INTO futures_prices
@@ -1793,7 +1960,7 @@ def write_to_postgres(output: dict) -> int:
                                       price_usd_mt = EXCLUDED.price_usd_mt
                     """, (rec_date, "barchart",
                           rec.get("product", contract.get("contract", "")),
-                          contract.get("ticker", ""),  # JJAK26, JJAM26, etc.
+                          contract.get("ticker", ""),  # JJAK26 or JJA*0
                           price, "USD",
                           rec.get("unit", "USD/mt"),
                           rec.get("price_usd_mt"),
