@@ -821,11 +821,27 @@ def _scrape_in_session(port: int) -> dict:
 
                         body = page.inner_text("body")
 
-                        # Check if we got a challenge page instead of data
+                        # WAF interstitial on the curve page — re-solve and retry once
                         if "confirm you are human" in body.lower() or "security check" in body.lower():
-                            log.warning("  %s: got WAF challenge instead of data — skipping", chem)
-                            error_log.append(f"echemi_curve_{chem}: WAF challenge on page")
-                            continue
+                            log.info("  %s: curve-page WAF challenge — re-solving + retry", chem)
+                            page.goto("https://www.echemi.com", timeout=60000, wait_until="domcontentloaded")
+                            for _ in range(8):
+                                time.sleep(random.uniform(4, 6))
+                                t = page.title().lower()
+                                b = page.inner_text("body").lower()
+                                if ("verification" not in t and "human" not in t and "confirm" not in t
+                                        and "confirm you are human" not in b):
+                                    break
+                            time.sleep(random.uniform(8, 12))
+                            page.goto(url, timeout=45000, wait_until="domcontentloaded")
+                            page.wait_for_load_state("load", timeout=30000)
+                            time.sleep(random.uniform(5, 9))
+                            body = page.inner_text("body")
+                            if "confirm you are human" in body.lower() or "security check" in body.lower():
+                                log.warning("  %s: still WAF-blocked after retry — skipping", chem)
+                                error_log.append(f"echemi_curve_{chem}: WAF challenge (retry failed)")
+                                continue
+                            log.info("  %s: retry succeeded", chem)
 
                         records = _parse_price_text(body)
 
@@ -848,7 +864,7 @@ def _scrape_in_session(port: int) -> dict:
                     try:
                         time.sleep(random.uniform(10, 25))
 
-                        # Re-check WAF challenge
+                        # Re-check WAF challenge (title-level)
                         title = page.title()
                         if "verification" in title.lower() or "human" in title.lower() or "confirm" in title.lower():
                             log.info("WAF re-triggered — re-solving challenge...")
@@ -866,10 +882,27 @@ def _scrape_in_session(port: int) -> dict:
 
                         body = page.inner_text("body")
 
+                        # WAF interstitial on the pip page itself — re-solve and retry once
                         if "confirm you are human" in body.lower() or "security check" in body.lower():
-                            log.warning("  %s: got WAF challenge — skipping", pip["name"])
-                            error_log.append(f"echemi_pip_{pip['name']}: WAF challenge")
-                            continue
+                            log.info("  %s: pip-page WAF challenge — re-solving + retry", pip["name"])
+                            page.goto("https://www.echemi.com", timeout=60000, wait_until="domcontentloaded")
+                            for _ in range(8):
+                                time.sleep(random.uniform(4, 6))
+                                t = page.title().lower()
+                                b = page.inner_text("body").lower()
+                                if ("verification" not in t and "human" not in t and "confirm" not in t
+                                        and "confirm you are human" not in b):
+                                    break
+                            time.sleep(random.uniform(8, 12))
+                            page.goto(pip["url"], timeout=45000, wait_until="domcontentloaded")
+                            page.wait_for_load_state("load", timeout=30000)
+                            time.sleep(random.uniform(5, 9))
+                            body = page.inner_text("body")
+                            if "confirm you are human" in body.lower() or "security check" in body.lower():
+                                log.warning("  %s: still WAF-blocked after retry — skipping", pip["name"])
+                                error_log.append(f"echemi_pip_{pip['name']}: WAF challenge (retry failed)")
+                                continue
+                            log.info("  %s: retry succeeded", pip["name"])
 
                         records = _parse_pip_page(body, pip["product"], pip["region"])
 
@@ -946,51 +979,43 @@ def _scrape_in_session(port: int) -> dict:
             all_data["futures"] = []
             logged_in = _barchart_login(barchart_page)
 
+            # Download CURRENT + NEXT 2 months for every contract. Salestracker
+            # needs each forward month independently for MTM (PO priced on current
+            # month, sell priced on next month, etc.).
+            month_codes = "FGHJKMNQUVXZ"
+            now = datetime.now(timezone.utc)
+
+            def _month_symbol(ticker: str, offset: int) -> str:
+                m = ((now.month - 1) + offset) % 12 + 1
+                y = now.year + ((now.month - 1) + offset) // 12
+                return f"{ticker}{month_codes[m - 1]}{str(y)[-2:]}"
+
             for contract in BARCHART_CONTRACTS:
-                try:
-                    time.sleep(random.uniform(8, 15))
-                    ticker = contract["ticker"]
+                ticker = contract["ticker"]
+                # 0 = current calendar month (spot), 1 = next month, 2 = month-after-next
+                for offset in (0, 1, 2):
+                    symbol = _month_symbol(ticker, offset)
+                    try:
+                        time.sleep(random.uniform(6, 12))
+                        log.info("Downloading Barchart CSV: %s (%s, M+%d)...", symbol, contract["product"], offset)
+                        csv_text = _barchart_download_csv(barchart_page, symbol)
+                        records = _parse_barchart_csv(csv_text, contract) if csv_text else []
 
-                    # Build front-month symbol: ticker + month code + 2-digit year
-                    month_codes = "FGHJKMNQUVXZ"
-                    now = datetime.now(timezone.utc)
-                    fm_month = now.month % 12 + 1
-                    fm_year = now.year if fm_month > now.month else now.year + 1
-                    fm_code = month_codes[fm_month - 1]
-                    front_symbol = f"{ticker}{fm_code}{str(fm_year)[-2:]}"
+                        all_data["futures"].append({
+                            "contract": contract["product"],
+                            "description": contract["description"],
+                            "ticker": symbol,
+                            "month_offset": offset,
+                            "source": "barchart_csv" if logged_in else "barchart",
+                            "records": records,
+                            "record_count": len(records),
+                            "raw_csv_preview": csv_text[:2000] if csv_text else "",
+                        })
+                        log.info("  Barchart %s: %d daily records", symbol, len(records))
 
-                    log.info("Downloading Barchart CSV: %s (%s)...", front_symbol, contract["product"])
-
-                    csv_text = _barchart_download_csv(barchart_page, front_symbol)
-                    records = _parse_barchart_csv(csv_text, contract) if csv_text else []
-
-                    # If front-month has no data (illiquid contract), try current month
-                    if not records:
-                        cm_code = month_codes[now.month - 1]
-                        alt_symbol = f"{ticker}{cm_code}{str(now.year)[-2:]}"
-                        if alt_symbol != front_symbol:
-                            log.info("  Retrying with %s...", alt_symbol)
-                            time.sleep(random.uniform(3, 6))
-                            csv_text = _barchart_download_csv(barchart_page, alt_symbol)
-                            alt_records = _parse_barchart_csv(csv_text, contract) if csv_text else []
-                            if alt_records:
-                                records = alt_records
-                                front_symbol = alt_symbol
-
-                    all_data["futures"].append({
-                        "contract": contract["product"],
-                        "description": contract["description"],
-                        "ticker": front_symbol,
-                        "source": "barchart_csv" if logged_in else "barchart",
-                        "records": records,
-                        "record_count": len(records),
-                        "raw_csv_preview": csv_text[:2000] if csv_text else "",
-                    })
-                    log.info("  Barchart %s: %d daily records", front_symbol, len(records))
-
-                except Exception as e:
-                    log.error("  Barchart %s failed: %s", contract["ticker"], str(e)[:100])
-                    error_log.append(f"barchart_{contract["ticker"]}: {str(e)[:100]}")
+                    except Exception as e:
+                        log.error("  Barchart %s failed: %s", symbol, str(e)[:100])
+                        error_log.append(f"barchart_{symbol}: {str(e)[:100]}")
 
         except Exception as e:
             log.error("Barchart CSV download failed: %s", str(e)[:100])
@@ -1752,28 +1777,31 @@ def write_to_postgres(output: dict) -> int:
                 except Exception as e:
                     log.debug("barchart daily insert skip: %s", str(e)[:80])
 
-                # Also write to futures_prices (today's data only)
-                if rec_date == scrape_date_pg:
-                    try:
-                        cur.execute("""
-                            INSERT INTO futures_prices
-                                (scrape_date, source, product, contract_month,
-                                 settlement_price, currency, unit, price_usd_mt,
-                                 ticker, exchange)
-                            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-                            ON CONFLICT (scrape_date, source, product, contract_month)
-                            DO UPDATE SET settlement_price = EXCLUDED.settlement_price
-                        """, (rec_date, "barchart",
-                              rec.get("product", ""),
-                              contract.get("ticker", ""),
-                              price, "USD",
-                              rec.get("unit", "USD/mt"),
-                              rec.get("price_usd_mt"),
-                              rec.get("ticker", ""),
-                              rec.get("exchange", "NYMEX")))
-                        futures_rows += 1
-                    except Exception as e:
-                        log.debug("barchart futures insert skip: %s", str(e)[:80])
+                # Write to futures_prices — one row per settlement_date per contract.
+                # The UNIQUE key (scrape_date, source, product, contract_month) treats
+                # scrape_date as the settlement date here, which gives Salestracker
+                # per-day historical settlements per contract_month for MTM curves.
+                try:
+                    cur.execute("""
+                        INSERT INTO futures_prices
+                            (scrape_date, source, product, contract_month,
+                             settlement_price, currency, unit, price_usd_mt,
+                             ticker, exchange)
+                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                        ON CONFLICT (scrape_date, source, product, contract_month)
+                        DO UPDATE SET settlement_price = EXCLUDED.settlement_price,
+                                      price_usd_mt = EXCLUDED.price_usd_mt
+                    """, (rec_date, "barchart",
+                          rec.get("product", contract.get("contract", "")),
+                          contract.get("ticker", ""),  # JJAK26, JJAM26, etc.
+                          price, "USD",
+                          rec.get("unit", "USD/mt"),
+                          rec.get("price_usd_mt"),
+                          contract.get("ticker", ""),
+                          contract.get("exchange", "NYMEX")))
+                    futures_rows += 1
+                except Exception as e:
+                    log.debug("barchart futures insert skip: %s", str(e)[:80])
 
         # --- futures_prices: JPX ---
         for rec in output.get("jpx", {}).get("records", []):
