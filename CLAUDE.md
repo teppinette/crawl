@@ -124,7 +124,7 @@ Production Bridge (human review):
 | `/api/v1/research/{job_id}/review` | POST | Submit analyst review (score 1-5) |
 | `/api/v1/reviews` | GET | Review dashboard (per-region averages) |
 
-### Endpoints — Entity Verification (NEW 2026-05-03)
+### Endpoints — Entity Verification (NEW 2026-05-03, refreshed 2026-05-19)
 
 | Endpoint | Method | Purpose |
 |----------|--------|---------|
@@ -133,6 +133,17 @@ Production Bridge (human review):
 | `/api/v1/verify-job` | POST | Async full verification (registry + LinkedIn + dark web) — 1-5 min |
 | `/api/v1/verify-job/{job_id}` | GET | Poll verify job (progressive results) |
 | `/api/v1/verify-jobs` | GET | List recent verify jobs |
+
+**GLEIF-LEI fallback primary source for CL, CO, HK, CH** (gov registries
+all paywalled / auth-walled / SPA-blocked respectively — see §10.2 of
+`api/MIGRATION_GUIDE.md`). Coverage limited to entities with LEIs (banks,
+listed, large corporates); smaller entities return `found: false` with
+explicit `note`. SA legal_name returned in Arabic; `status` normalized to
+English vocab on the producer side; `status_raw` preserves the original
+Arabic for audit. PE via Decolecta SUNAT (1K/mo free tier). TW via GCIS
+open data — dataset IDs refreshed via Swagger when they renumber.
+**Migration guide:** `api/MIGRATION_GUIDE.md` v1.2 documents per-country
+behavior, field shapes, and Onboarding-side QA decisions.
 
 ### Endpoints — System
 
