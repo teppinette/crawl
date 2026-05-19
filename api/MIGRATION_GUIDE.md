@@ -1,10 +1,10 @@
 # Crawl v2 API — Migration Guide for GC & Onboarding
-### Document: CRG-MIGRATE-001 | Version 1.1 | 2026-05-19
+### Document: CRG-MIGRATE-001 | Version 1.2 | 2026-05-19
 
-**v1.1 changes** — see Section 10 (Changelog). Six country adapters changed
-behavior on 2026-05-19; the field shape on the wire is unchanged but the
-data source behind CL / CO / HK switched from broken gov scrapes to GLEIF
-LEI fallback, and SA / TW / PE became newly functional.
+**v1.1 → v1.2** — folded in Onboarding's QA review of §10. Tier-engine
+impact resolved (none), font stack chosen, dedup approach decided, PE map
+approved, SA status now normalized on Crawl side. See §10 footers for
+"Resolved" lines under each subsection.
 
 ---
 
@@ -437,6 +437,14 @@ will return `found: false` more often than it did before. This isn't a
 regression in the data path — the data path is fixed and working — it's a
 fundamental ceiling of free public sources for those jurisdictions.
 
+**Resolved (Onboarding QA, 2026-05-19):** Tier-engine impact = **none**. A
+grep across the Onboarding app for `validation_source` found zero
+references — the corroboration synth on the Verification tab doesn't key
+off the registry-name string for tiering. The GLEIF rename is cosmetic
+(surfaces only in the Verification tab UI text). `_gleif_normalize`
+already uses `\w` and is Unicode-safe. No code change required on
+Onboarding side.
+
 ### 10.3 SA Arabic-script `legal_name`
 
 The MCI live response returns the legal name in Arabic UTF-8:
@@ -467,10 +475,36 @@ The MCI live response returns the legal name in Arabic UTF-8:
   back to name only on tie.
 - Excel exports: ensure the export pipeline writes UTF-8 with BOM (or .xlsx
   rather than .csv) so Excel doesn't mojibake the Arabic.
-- `status` value is also Arabic — `نشط` means "ACTIVE." Decision: either
-  Onboarding maps Arabic statuses in its normalization layer, or we add a
-  field-level English-status mapping in the SA adapter. Reach out and tell
-  us which side you'd prefer.
+- `status` was Arabic in the initial 2026-05-19 commit (e.g. `نشط`). As of
+  the follow-up commit on the same day, the SA adapter normalizes statuses
+  to the standard English vocab (`ACTIVE`, `CANCELLED`, `DELETED`, `EXPIRED`,
+  `SUSPENDED`, `WINDING_UP`, `LIQUIDATING`) and exposes the original Arabic
+  string under `status_raw` for audit. Onboarding's tier engine can match
+  on `status` directly without an Arabic-aware mapping layer.
+
+**Resolved (Onboarding QA, 2026-05-19):**
+
+- **Font stack:** Add `'Noto Sans Arabic', 'Segoe UI', system-ui, sans-serif`
+  to the `body` rule in `templates/base.html`. Bootstrap's default stack
+  picks Segoe UI on Windows (renders Arabic) but is fragile on Linux/macOS;
+  the explicit declaration removes the fragility. Transliteration skipped
+  as overkill for the scale.
+- **Fuzzy-dedup approach:** SA entities will dedup on `cr_number` +
+  jurisdiction first, with normalized-Latin-only name as a fallback on tie.
+  This dovetails with a separate Onboarding bug found during the grep:
+  two existing normalizers (`routes.py:89` for `ComplianceEntity.NormalizedName`
+  and `_normalize_deny_name` at `routes.py:1284`) use `NFKD → encode('ascii','ignore')`
+  which turns Arabic into an empty string. Both will be fixed to persist
+  the original Unicode form in a separate column for display, while keeping
+  the Latin-stripped form for matching. The SA adapter's
+  `cr_number` field is reliable (per §10.3 worked example), so this approach
+  works today without further Crawl-side change.
+- **Crawl-side follow-up requested:** Add a parallel `legal_name_latin`
+  field to SA verify responses. Rationale: Crawl has the source-doc
+  context (CR-number lookup against MCI page) and can pull a Latin name
+  from CR-side metadata when present; Onboarding would be doing
+  string-only transliteration in isolation. Queued as a Crawl-side TODO
+  — see `project_verify_followups.md` in Crawl memory.
 
 ### 10.4 PE Spanish status normalization
 
@@ -496,6 +530,13 @@ contribuyente" — taxpayer condition):
 Suggest adding these to Onboarding's status normalization map. `NO HABIDO`
 in particular is a useful adverse-flag signal that doesn't fit the standard
 ACTIVE/INACTIVE binary.
+
+**Resolved (Onboarding QA, 2026-05-19):** Map approved as proposed.
+Refinement: `condition` (`HABIDO` / `NO HABIDO` / `NO HALLADO`) is a
+distinct concept from active/inactive — Onboarding will surface
+`NO HABIDO` and `NO HALLADO` as a **yellow adverse-flag badge** on the
+counterparty detail page, not merge into the `status` field. The
+`BAJA PROVISIONAL → INACTIVE` mapping is accepted.
 
 ### 10.5 TW field expansion
 

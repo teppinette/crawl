@@ -429,7 +429,24 @@ def _parse_mci_result(query: str, body: str) -> dict:
         unified_number = unified_match.group(1)
 
     # Status
-    status = fields.get("حالة السجل", "")
+    status_raw = fields.get("حالة السجل", "")
+    # Normalize MCI Arabic status values to English vocab so downstream
+    # consumers (Onboarding tier engine, fuzzy match) don't have to map them.
+    # The raw Arabic stays available as status_raw for audit.
+    _SA_STATUS_MAP = {
+        "نشط": "ACTIVE",            # Active
+        "ساري": "ACTIVE",            # Active (alt phrasing)
+        "ملغي": "CANCELLED",         # Cancelled
+        "ملغى": "CANCELLED",         # Cancelled (alt spelling)
+        "محذوف": "DELETED",          # Deleted
+        "منتهي": "EXPIRED",          # Expired
+        "منتهٍ": "EXPIRED",          # Expired (alt)
+        "موقوف": "SUSPENDED",        # Suspended
+        "متوقف": "SUSPENDED",        # Suspended (alt)
+        "تحت التصفية": "WINDING_UP", # In liquidation
+        "تصفية": "LIQUIDATING",      # Liquidating
+    }
+    status = _SA_STATUS_MAP.get(status_raw.strip(), status_raw.strip())
 
     # Capital
     capital = fields.get("رأس المال", "")
@@ -464,7 +481,8 @@ def _parse_mci_result(query: str, body: str) -> dict:
         "entity_name": entity_name or None,
         "cr_number": cr_number or (query if re.match(r"^\d{10}$", query) else None),
         "unified_number": unified_number or None,
-        "status": status.upper() if status else ("FOUND" if found else "NOT_FOUND"),
+        "status": status if status else ("FOUND" if found else "NOT_FOUND"),
+        "status_raw": status_raw or None,
         "capital": capital or None,
         "registration_date": reg_date or None,
         "duration_years": duration or None,
