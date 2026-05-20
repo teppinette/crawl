@@ -51,6 +51,7 @@ def save_cir_report(
     seed_data: dict = None,
     duration_ms: int = None,
     created_at: str = None,
+    report_json: dict = None,
 ):
     """Persist a completed CIR report. Non-blocking."""
     def _write():
@@ -62,8 +63,9 @@ def save_cir_report(
                     """INSERT INTO cir_reports
                        (job_id, entity_name, country, region, status, blob_path,
                         report_summary, dark_web_findings, dark_web_sources,
-                        dark_web_alert, seed_data, duration_ms, created_at)
-                       VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                        dark_web_alert, seed_data, duration_ms, created_at,
+                        report_json)
+                       VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                        ON CONFLICT (job_id) DO UPDATE SET
                            status = EXCLUDED.status,
                            blob_path = EXCLUDED.blob_path,
@@ -72,6 +74,7 @@ def save_cir_report(
                            dark_web_sources = EXCLUDED.dark_web_sources,
                            dark_web_alert = EXCLUDED.dark_web_alert,
                            duration_ms = EXCLUDED.duration_ms,
+                           report_json = COALESCE(EXCLUDED.report_json, cir_reports.report_json),
                            completed_at = NOW()
                     """,
                     (
@@ -80,6 +83,7 @@ def save_cir_report(
                         dark_web_alert,
                         json.dumps(seed_data, default=str) if seed_data else None,
                         duration_ms, created_at,
+                        json.dumps(report_json, default=str) if report_json else None,
                     ),
                 )
                 conn.commit()
@@ -88,6 +92,76 @@ def save_cir_report(
                 log.info("report_db: saved CIR report %s (%s/%s)", job_id[:8], entity_name, country)
         except Exception as e:
             log.warning("report_db: failed to save CIR report %s: %s", job_id[:8], e)
+
+    _bg_write(_write)
+
+
+# -----------------------------------------------------------------------
+# Standalone dark-web reports (crawl_reports database)
+# -----------------------------------------------------------------------
+
+
+def save_darkweb_report(
+    job_id: str,
+    entity_name: str,
+    country: str,
+    owners: list = None,
+    domain: str = None,
+    depth: str = None,
+    status: str = "completed",
+    blob_path: str = None,
+    findings_count: int = 0,
+    sources_searched: int = 0,
+    sources_with_results: int = 0,
+    alert_level: str = None,
+    report_summary: str = None,
+    error: str = None,
+    report_json: dict = None,
+    created_at: str = None,
+):
+    """Persist a completed standalone dark-web job. Non-blocking."""
+    def _write():
+        try:
+            with _write_lock:
+                conn = _get_conn()
+                cur = conn.cursor()
+                cur.execute(
+                    """INSERT INTO darkweb_reports
+                       (job_id, entity_name, country, owners, domain, depth,
+                        status, blob_path, findings_count, sources_searched,
+                        sources_with_results, alert_level, report_summary,
+                        error, report_json, created_at)
+                       VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+                               %s, %s, %s, %s)
+                       ON CONFLICT (job_id) DO UPDATE SET
+                           status = EXCLUDED.status,
+                           blob_path = EXCLUDED.blob_path,
+                           findings_count = EXCLUDED.findings_count,
+                           sources_searched = EXCLUDED.sources_searched,
+                           sources_with_results = EXCLUDED.sources_with_results,
+                           alert_level = EXCLUDED.alert_level,
+                           report_summary = EXCLUDED.report_summary,
+                           error = EXCLUDED.error,
+                           report_json = COALESCE(EXCLUDED.report_json, darkweb_reports.report_json),
+                           completed_at = NOW()
+                    """,
+                    (
+                        job_id, entity_name, country,
+                        json.dumps(owners, default=str) if owners else None,
+                        domain, depth, status, blob_path,
+                        findings_count, sources_searched, sources_with_results,
+                        alert_level, report_summary, error,
+                        json.dumps(report_json, default=str) if report_json else None,
+                        created_at,
+                    ),
+                )
+                conn.commit()
+                cur.close()
+                conn.close()
+                log.info("report_db: saved darkweb report %s (%s/%s) findings=%d alert=%s",
+                         job_id[:8], entity_name, country, findings_count, alert_level)
+        except Exception as e:
+            log.warning("report_db: failed to save darkweb report %s: %s", job_id[:8], e)
 
     _bg_write(_write)
 

@@ -43,7 +43,7 @@ from pydantic import BaseModel, Field, model_validator
 
 from keyvault import get_secret, load_vm_tokens
 from event_log import log_job_event, log_api_access
-from report_db import save_cir_report, save_verification
+from report_db import save_cir_report, save_darkweb_report, save_verification
 import adverse_media
 import enrichment
 import screening
@@ -1650,6 +1650,20 @@ def _inject_darkweb_into_blob(local_file: Path, darkweb_data: dict) -> bool:
         return False
 
 
+def _load_local_report_json(entity_snake: str, date_str: str) -> dict | None:
+    """Read the most-recent enriched local CIR JSON for DB persistence."""
+    try:
+        candidates = list(LOCAL_OUTPUT_DIR.glob(f"*{entity_snake}*{date_str}*.json"))
+        if not candidates:
+            return None
+        local_file = sorted(candidates, key=lambda p: p.stat().st_mtime, reverse=True)[0]
+        with open(local_file) as f:
+            return json.load(f)
+    except Exception as e:
+        log.warning("Failed to load local report JSON for %s/%s: %s", entity_snake, date_str, e)
+        return None
+
+
 def _count_active_jobs() -> int:
     """Count jobs currently queued or running."""
     count = 0
@@ -2057,6 +2071,7 @@ async def dispatch_single(job_id: str, region: str, prompt: str, scenario: str):
                 elif len(dw_actionable) >= 1:
                     _dw_alert = "MEDIUM"
                 _job_final = load_job(job_id)
+                _report_json = _load_local_report_json(entity_snake, date_str)
                 save_cir_report(
                     job_id=job_id,
                     entity_name=entity_name,
@@ -2070,6 +2085,7 @@ async def dispatch_single(job_id: str, region: str, prompt: str, scenario: str):
                     dark_web_alert=_dw_alert,
                     seed_data=_job_final.get("seed_data"),
                     created_at=_job_final.get("created_at"),
+                    report_json=_report_json,
                 )
 
             except Exception as e:
@@ -2082,6 +2098,7 @@ async def dispatch_single(job_id: str, region: str, prompt: str, scenario: str):
 
                 # Still persist to crawl_reports DB (dark web failed but CIR completed)
                 _job_err = load_job(job_id)
+                _report_json = _load_local_report_json(entity_snake, date_str)
                 save_cir_report(
                     job_id=job_id,
                     entity_name=entity_name,
@@ -2095,6 +2112,7 @@ async def dispatch_single(job_id: str, region: str, prompt: str, scenario: str):
                     dark_web_alert="ERROR",
                     seed_data=_job_err.get("seed_data"),
                     created_at=_job_err.get("created_at"),
+                    report_json=_report_json,
                 )
 
 
@@ -4761,6 +4779,42 @@ async def _dispatch_darkweb(job_id: str, entity_name: str, country: str,
                       details={"findings": findings_count, "blob_path": this_blob})
         log.info("Job %s [dark-web]: %s (blob: %s, findings: %d)",
                  job_id[:8], updates["status"], this_blob, findings_count)
+
+        # --- Dual-write: persist full JSON + summary to crawl_reports.darkweb_reports ---
+        try:
+            _dw_full = None
+            if local_file.exists() and local_file.stat().st_size > 0:
+                with open(local_file) as _f:
+                    _dw_full = json.load(_f)
+            _summary = (_dw_full or {}).get("summary", {}) if isinstance(_dw_full, dict) else {}
+            _alert = "CLEAN"
+            if findings_count >= 16:
+                _alert = "CRITICAL"
+            elif findings_count >= 6:
+                _alert = "HIGH"
+            elif findings_count >= 1:
+                _alert = "MEDIUM"
+            _job_dw = load_job(job_id)
+            save_darkweb_report(
+                job_id=job_id,
+                entity_name=entity_name,
+                country=country,
+                owners=owners or [],
+                domain=domain or "",
+                depth=depth,
+                status=updates["status"],
+                blob_path=this_blob,
+                findings_count=findings_count,
+                sources_searched=_summary.get("sources_searched", 0),
+                sources_with_results=_summary.get("sources_with_results", 0),
+                alert_level=_alert,
+                report_summary=updates.get("report_summary"),
+                error=updates.get("error"),
+                report_json=_dw_full,
+                created_at=(_job_dw or {}).get("created_at"),
+            )
+        except Exception as _e:
+            log.warning("Job %s [dark-web]: DB dual-write failed: %s", job_id[:8], _e)
 
     except Exception as e:
         log.error("Job %s [dark-web] failed: %s", job_id[:8], e)
