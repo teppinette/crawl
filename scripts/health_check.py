@@ -201,9 +201,13 @@ def check_gateway() -> dict:
         # Check systemd service is actually running (not crash-looping).
         # Canonical unit is the USER-level copap-cir-api.service; the legacy
         # system unit crawl-gateway.service was disabled 2026-05-20.
+        # Under cron XDG_RUNTIME_DIR is unset, so `systemctl --user` cannot
+        # find the user dbus socket — inject it explicitly. Linger is enabled
+        # so /run/user/<uid> exists at boot regardless of login sessions.
+        svc_env = {**os.environ, "XDG_RUNTIME_DIR": f"/run/user/{os.getuid()}"}
         svc_result = subprocess.run(
             ["systemctl", "--user", "is-active", "copap-cir-api"],
-            capture_output=True, text=True, timeout=5
+            capture_output=True, text=True, timeout=5, env=svc_env
         )
         svc_ok = svc_result.stdout.strip() == "active"
 
