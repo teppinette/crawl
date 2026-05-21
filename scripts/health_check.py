@@ -5,7 +5,7 @@ Crawl Platform Health Monitor
 Runs every 15 minutes via cron. Checks:
   1. SSH connectivity to all 5 regional VMs
   2. OpenClaw gateway health (port 18789) on each VM
-  3. crawl-gateway.service on crawldevvm (port 8400)
+  3. copap-cir-api.service (user unit) on crawldevvm (port 8400)
   4. Blob storage SAS token expiry
 
 Writes results to PostgreSQL (PipelineEvents table).
@@ -181,7 +181,7 @@ def check_openclaw(region: str, vm: dict) -> dict:
 
 
 def check_gateway() -> dict:
-    """Check crawl-gateway.service on crawldevvm.
+    """Check copap-cir-api.service (user unit) on crawldevvm.
     Checks BOTH the HTTP health endpoint AND the systemd service status,
     so a stale process holding the port while the service crash-loops is caught.
     """
@@ -198,9 +198,11 @@ def check_gateway() -> dict:
         except json.JSONDecodeError:
             http_ok = False
 
-        # Check systemd service is actually running (not crash-looping)
+        # Check systemd service is actually running (not crash-looping).
+        # Canonical unit is the USER-level copap-cir-api.service; the legacy
+        # system unit crawl-gateway.service was disabled 2026-05-20.
         svc_result = subprocess.run(
-            ["systemctl", "is-active", "crawl-gateway"],
+            ["systemctl", "--user", "is-active", "copap-cir-api"],
             capture_output=True, text=True, timeout=5
         )
         svc_ok = svc_result.stdout.strip() == "active"
