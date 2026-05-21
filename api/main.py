@@ -116,8 +116,10 @@ JOBS_DIR = Path("/home/copapadmin/crawl/api/jobs")
 JOBS_DIR.mkdir(parents=True, exist_ok=True)
 
 # Thread pool for blocking SSH work — keeps the async event loop free
-_ssh_pool = ThreadPoolExecutor(max_workers=10, thread_name_prefix="ssh")
-_MAX_QUEUED_JOBS = 20  # Reject new jobs if this many are already running/queued
+_ssh_pool = ThreadPoolExecutor(max_workers=30, thread_name_prefix="ssh")
+_MAX_QUEUED_JOBS = 100  # Reject new jobs if this many are already running/queued
+_JOB_STALE_MINUTES = 90  # Auto-fail "running"/"dispatched" jobs older than this
+_REAPER_INTERVAL_SECONDS = 300  # Reaper sweep cadence
 
 # Per-job locks to prevent concurrent SSH threads from clobbering each other's
 # blob_paths when writing to the same job file (fan-out race condition fix).
@@ -518,6 +520,14 @@ app = FastAPI(
 # Multilogin modules run on crawl-verify VM (180.20.0.4:8460)
 # No local initialization needed — gateway proxies to verify VM
 log.info("Verify VM configured at %s", VERIFY_VM_URL)
+
+
+@app.on_event("startup")
+async def _start_reaper():
+    """Launch the stale-job reaper. Without this, jobs that crash/hang on
+    the regional VM side stay in "running" forever and eventually exhaust
+    _MAX_QUEUED_JOBS, causing all new submissions to 503."""
+    asyncio.create_task(_reaper_loop())
 
 
 # ---------------------------------------------------------------------------
@@ -1685,6 +1695,72 @@ def _check_backpressure():
             status_code=503,
             detail=f"Server busy: {active} jobs in-flight (max {_MAX_QUEUED_JOBS}). Try again later.",
         )
+
+
+def _reap_stale_jobs() -> int:
+    """Mark "running"/"dispatched"/"queued"/"enriching" jobs older than
+    _JOB_STALE_MINUTES as failed, so they stop counting against the queue cap.
+
+    Returns the number reaped. Safe to call from a background loop — uses
+    the same per-job locks as the dispatcher so we never clobber a real write.
+    """
+    from datetime import datetime, timezone
+    reaped = 0
+    cutoff_min = _JOB_STALE_MINUTES
+    active_states = ("running", "dispatched", "queued", "enriching")
+    for f in JOBS_DIR.glob("*.json"):
+        try:
+            with open(f) as fp:
+                d = json.load(fp)
+        except Exception:
+            continue
+        if d.get("status") not in active_states:
+            continue
+        ts = d.get("updated_at") or d.get("created_at")
+        if not ts:
+            continue
+        try:
+            age_min = (datetime.now(timezone.utc) - datetime.fromisoformat(ts.replace("Z", "+00:00"))).total_seconds() / 60
+        except Exception:
+            continue
+        if age_min <= cutoff_min:
+            continue
+        # Take the per-job lock so we don't race a real dispatcher write
+        lock = _get_job_lock(d.get("job_id") or f.stem)
+        with lock:
+            try:
+                with open(f) as fp:
+                    d = json.load(fp)
+            except Exception:
+                continue
+            if d.get("status") not in active_states:
+                continue
+            d["status"] = "failed"
+            d["error"] = f"orphan_timeout (stale {age_min:.0f}min, reaper cutoff {cutoff_min}min)"
+            d["updated_at"] = datetime.now(timezone.utc).isoformat()
+            try:
+                with open(f, "w") as out:
+                    json.dump(d, out, indent=2)
+                reaped += 1
+                log.warning("Reaper: failed stale job %s (age=%dmin, region=%s)",
+                            (d.get("job_id") or "?")[:8], age_min, d.get("region", "?"))
+            except Exception as e:
+                log.error("Reaper: failed to write %s: %s", f, e)
+    return reaped
+
+
+async def _reaper_loop():
+    """Background task: periodically reap stale jobs so the queue cap reflects
+    reality. Runs forever; survives individual reap failures."""
+    log.info("Reaper started: cutoff=%dmin interval=%ds", _JOB_STALE_MINUTES, _REAPER_INTERVAL_SECONDS)
+    while True:
+        try:
+            n = _reap_stale_jobs()
+            if n > 0:
+                log.warning("Reaper swept %d stale jobs", n)
+        except Exception as e:
+            log.error("Reaper sweep failed: %s", e)
+        await asyncio.sleep(_REAPER_INTERVAL_SECONDS)
 
 
 async def dispatch_single(job_id: str, region: str, prompt: str, scenario: str):
