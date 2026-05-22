@@ -158,10 +158,18 @@ The API has a mandatory sanitization layer that:
 1. **Strips internal fields** before building prompts: `copap_relationship`,
    `copap_products`, `copap_incoterms`, `source_report`, `priority`, etc.
 2. **Scans all values** for blocked terms (COPAP, customer names, system names)
-3. **HARD FAILS** (HTTP 400) if any blocked term is detected — does NOT silently redact
+3. **Redacts** blocked terms to `[REDACTED]` and logs a warning (was: hard-fail HTTP 400)
 4. **Final gate**: assembled prompt is scanned again before SSH dispatch
 
 Blocked terms list is in `_BLOCKED_TERMS` in main.py. Add new terms as needed.
+
+> **TEMP 2026-05-22:** step 3 was downgraded from hard-fail to silent redact
+> while we triage which GC field/term combo trips false positives (was
+> killing throughput with HTTP 400s). The `[REDACTED]` substitution still
+> prevents leakage to OpenClaw, but we lose the loud backstop. Revert
+> conditions in `memory/project_sanitizer_softened.md`. Grep
+> `journalctl --user -u copap-cir-api` for `sanitize_payload redacted:` to
+> see what's firing.
 
 ### CIR Dark Web Enrichment
 
@@ -313,7 +321,7 @@ The Global Compliance app (172.20.0.11) connects to this API via:
 **Access:** System-assigned managed identity on crawldevvm (get + list)
 **Helper module:** `api/keyvault.py` (caches all secrets in-memory, falls back to env vars)
 
-**Stored secrets (28):**
+**Stored secrets (41 as of 2026-05-22 — `az keyvault secret list --vault-name crawlkeyvault` for current count):**
 | Secret | Used By |
 |--------|---------|
 | `cir-api-key` | Gateway API auth |
@@ -447,6 +455,26 @@ SSH key for all VMs: `~/.ssh/crawldevvm_key.pem`
 SSH alias: `ssh crawl-darkweb` (configured in ~/.ssh/config)
 Regional gateways on port 18789. Tokens in `~/.openclaw/openclaw.json`.
 Dark web gateway on port 8450. API key: `dwk_crawl_2026Q2_f8a3b7e1d9c4`.
+
+**Standard regional VM hardening (audited 2026-05-22 — all 5 VMs):**
+- 2GB `/swapfile` enabled and persisted in `/etc/fstab` (prevents OpenClaw
+  OOM crashes that surface as "Report file not found on remote VM"; americas
+  was hit hardest at 3.8 GiB RAM, others have 7.7 GiB)
+- sshd `MaxStartups 100:30:200` (default `10:30:100` lets the gateway's
+  parallel paramiko connects trip the throttle → "Error reading SSH protocol
+  banner [Errno 104]" → all jobs fail with "No existing session")
+
+**SSH wedge recovery (when paramiko gets `Errno 104` from a regional VM):**
+1. Stop gateway: `systemctl --user stop copap-cir-api` (kills the retry hammer)
+2. Try plain SSH. If still banner-resets, the VM agent is wedged
+3. `az vm get-instance-view -g crawldevvm_group -n <vmname> --query "instanceView.statuses"` —
+   if ProvisioningState is stuck `Updating`, MDE.Linux extension is the
+   common culprit
+4. Nuclear: `az vm deallocate` then `az vm start` (IPs are static — won't
+   change). Clean boot, ~3 min total
+5. After boot, verify swap survived (`free -h`) and OpenClaw is listening
+   (`ss -tln | grep 18789`)
+6. Restart gateway: `systemctl --user start copap-cir-api`
 
 ## SwarmClaw Control Plane
 
