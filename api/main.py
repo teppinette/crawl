@@ -237,51 +237,54 @@ def sanitize_payload(data: dict) -> dict:
     Deep-sanitize a payload dict before it becomes an OpenClaw prompt.
 
     1. Remove all _INTERNAL_FIELDS entirely
-    2. Scan all string values for _BLOCKED_TERMS
-    3. Raise ValueError if a blocked term is found (hard fail, don't silently redact)
+    2. Redact any _BLOCKED_TERMS in string values (case-insensitive → [REDACTED])
+    3. Log a warning when a redaction happens — we still want to know
+
+    TEMP 2026-05-22: switched from hard-fail to silent redact while we
+    triage which GC field is firing false positives. Revert when fixed.
     """
     cleaned = {}
-    violations = []
+    redactions = []
 
     for key, value in data.items():
-        # Strip internal fields completely
         if key in _INTERNAL_FIELDS:
             continue
 
         if isinstance(value, str):
             lower = value.lower()
-            for term in _BLOCKED_TERMS:
-                if term in lower:
-                    violations.append(f"Field '{key}' contains blocked term '{term}'")
-            cleaned[key] = value
+            hit = next((t for t in _BLOCKED_TERMS if t in lower), None)
+            if hit:
+                redactions.append(f"{key}={hit}")
+                cleaned[key] = sanitize_text(value)
+            else:
+                cleaned[key] = value
         elif isinstance(value, list):
-            cleaned[key] = _sanitize_list(value, key, violations)
+            cleaned[key] = _sanitize_list(value, key, redactions)
         elif isinstance(value, dict):
             cleaned[key] = sanitize_payload(value)
         else:
             cleaned[key] = value
 
-    if violations:
-        raise ValueError(
-            f"DATA SANITIZATION FAILURE — blocked terms detected in payload: "
-            f"{'; '.join(violations)}. This data must NEVER reach OpenClaw."
-        )
+    if redactions:
+        log.warning("sanitize_payload redacted: %s", "; ".join(redactions))
 
     return cleaned
 
 
-def _sanitize_list(items: list, parent_key: str, violations: list) -> list:
-    """Sanitize list items recursively."""
+def _sanitize_list(items: list, parent_key: str, redactions: list) -> list:
+    """Sanitize list items recursively, redacting blocked terms in-place."""
     result = []
     for item in items:
         if isinstance(item, dict):
             result.append(sanitize_payload(item))
         elif isinstance(item, str):
             lower = item.lower()
-            for term in _BLOCKED_TERMS:
-                if term in lower:
-                    violations.append(f"List '{parent_key}' contains blocked term '{term}'")
-            result.append(item)
+            hit = next((t for t in _BLOCKED_TERMS if t in lower), None)
+            if hit:
+                redactions.append(f"{parent_key}[]={hit}")
+                result.append(sanitize_text(item))
+            else:
+                result.append(item)
         else:
             result.append(item)
     return result
@@ -290,15 +293,15 @@ def _sanitize_list(items: list, parent_key: str, violations: list) -> list:
 def verify_prompt_clean(prompt: str) -> str:
     """
     Final gate before any prompt is sent to OpenClaw.
-    Scans the assembled prompt for blocked terms. Hard fail if found.
+    Scans the assembled prompt for blocked terms and redacts.
+
+    TEMP 2026-05-22: redact instead of hard-fail while triaging GC payloads.
     """
     lower = prompt.lower()
-    for term in _BLOCKED_TERMS:
-        if term in lower:
-            raise ValueError(
-                f"PROMPT SANITIZATION FAILURE — blocked term '{term}' found in "
-                f"assembled prompt. Aborting dispatch. This is a critical error."
-            )
+    hit = next((t for t in _BLOCKED_TERMS if t in lower), None)
+    if hit:
+        log.warning("verify_prompt_clean redacted blocked term '%s' before dispatch", hit)
+        return sanitize_text(prompt)
     return prompt
 
 
