@@ -42,7 +42,7 @@ GC App (172.20.0.11) / Phone (Tailscale 100.68.236.16)
   v
 crawldevvm (20.94.45.219) — Crawl Research Gateway v3.0 (port 8400 / 8443 TLS)
   |  Tailscale: 100.68.236.16 (phone access via tailnet)
-  |  systemd: crawl-gateway.service (4 uvicorn workers, auto-restart)
+  |  systemd: copap-cir-api.service (USER unit, 4 uvicorn workers, auto-restart)
   |  nginx TLS reverse proxy on port 8443 (self-signed cert)
   |  Secrets: Azure Key Vault (crawlkeyvault) via managed identity
   |  DATA SANITIZATION: strips all COPAP/customer/supplier refs before dispatch
@@ -93,7 +93,7 @@ Production Bridge (human review):
 ## Crawl Research Gateway v3.0 (crawldevvm)
 
 **Location:** `/home/copapadmin/crawl/api/main.py`
-**Port:** 8400 | **Service:** `crawl-gateway.service` (systemd, 4 workers)
+**Port:** 8400 | **Service:** `copap-cir-api.service` (systemd USER unit, 4 workers)
 **Auth:** `X-API-Key` header (from Azure Key Vault `cir-api-key`)
 **TLS:** nginx reverse proxy on port 8443 (self-signed cert, IP SANs)
 
@@ -275,13 +275,17 @@ sudo systemctl status xvfb              # virtual display
 - ALL verification traffic via Multilogin anti-detect browser with country-targeted proxy
 - Shared `mlx_http.py` module for simple API calls; bespoke modules for CAPTCHA sites
 
-**Managing the service:**
+**Managing the service:** Canonical unit is the USER-level `copap-cir-api.service`
+(run as copapadmin via `systemctl --user`; linger is enabled). The old
+system-level `crawl-gateway.service` is **masked** (→/dev/null) and must stay
+that way — running both races for port 8400. See `memory/feedback_gateway_restart_method.md`.
 ```bash
-sudo systemctl status crawl-gateway      # check status
-sudo systemctl restart crawl-gateway     # restart
-sudo systemctl stop crawl-gateway        # stop
-journalctl -u crawl-gateway -f           # tail logs
+systemctl --user status copap-cir-api    # check status
+systemctl --user restart copap-cir-api   # restart (ExecStartPre self-reaps port 8400)
+systemctl --user stop copap-cir-api      # stop
+journalctl --user -u copap-cir-api -f    # tail logs
 sudo systemctl status nginx              # TLS proxy status
+# under cron/non-login: export XDG_RUNTIME_DIR=/run/user/$(id -u) first
 ```
 
 **TLS access:** `https://crawldevvm:8443/api/v1/health` (self-signed cert)
@@ -505,7 +509,7 @@ Swap file at `/swapfile` (2GB) enabled on crawl-americas for this purpose.
     report_db.py         -- CIR report + verification persistence (crawl_reports, crawl_verification)
     proxy_cfg.py         -- Bright Data proxy config (residential + datacenter)
     verify_*.py          -- Country verification adapters (34 countries, mirrored to crawl-verify VM)
-    crawl-gateway.service      -- systemd unit file (copied to /etc/systemd/system/)
+    cir-api.service            -- systemd USER unit (deployed to ~/.config/systemd/user/copap-cir-api.service)
     jobs/                -- Job state files (JSON per job_id, archived after 30d)
     openapi.json         -- API spec
     BUILD_SPEC_GC_HANDOFF.md -- GC integration spec
