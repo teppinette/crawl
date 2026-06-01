@@ -22,15 +22,56 @@ The API enforces this with a sanitization layer that HARD FAILS on violations.
 
 **CRITICAL ISOLATION RULES:**
 1. NO production credentials ever go in this repo or on any crawl VM
-2. NO VNet peering between COPAPCrawl and production COPAP AI subscription
-3. The ONLY bridge to production is the `osint-staging` blob container (human review required)
-4. Seed data (entity names + countries) is plain text only -- no EntityIDs, no financial data
-5. API keys for LLM providers are separate from production keys
-6. NEVER send customer/supplier names or any COPAP identifier to OpenClaw
-7. Regional VMs are reachable ONLY from crawldevvm (NSG enforced)
+2. The ONLY bridge to production is the `osint-staging` blob container (human review required)
+3. Seed data (entity names + countries) is plain text only -- no EntityIDs, no financial data
+4. API keys for LLM providers are separate from production keys
+5. NEVER send customer/supplier names or any COPAP identifier to OpenClaw
+6. Regional VMs are reachable ONLY from crawldevvm (NSG enforced)
+
+> **2026-06-01:** the "NO VNet peering between COPAPCrawl and production COPAP AI"
+> rule was retired. Rationale: OpenClaw is being removed; CIR is consolidating
+> onto the centralized Foundry/Mistral endpoint, which requires routed
+> connectivity rather than per-host public IP + NSG ACLs. Data isolation
+> (rule 2, ex-rule 3) still holds — the only DATA path to production remains
+> the osint-staging blob with human review.
 
 ---
+## *** 2026-05-29 MIGRATION -- ANTHROPIC DISABLED -> SELF-HOSTED Qwen + SearXNG ***
 
+**ANTHROPIC IS DISABLED on ALL crawl VMs. Do NOT re-enable it. Same for deepseek.**
+
+ROOT CAUSE of failing/empty CIRs (since ~2026-05-27): the Anthropic workspace hit
+its usage cap ("reached your specified workspace API usage limits, regain access
+2026-06-01"). Every regional agent errored out -> report_summary fallback -> thin CIRs.
+
+FIX applied to all 6 VMs (crawldevvm, crawlamericasvm, crawlindiavm, crawlchinavm,
+crawleuropevm, crawl-gulf):
+- LLM: agents.defaults.model.primary = "qwen/Qwen/Qwen2.5-72B-Instruct-AWQ".
+  Provider in models.providers.qwen (api=openai-completions,
+  baseUrl=http://20.25.145.60:8000/v1). anthropic + deepseek plugins DISABLED.
+- Search: searxng ENABLED at entries.searxng.config.webSearch.baseUrl =
+  http://104.209.153.42:8888 . tavily/firecrawl/exa/perplexity/sarvam-translate
+  DISABLED. Kept free: brave, duckduckgo. Page-fetch = built-in browser tool.
+- Result: crawl is 100% self-hosted, $0 AI tokens. Bright Data + Dehashed kept.
+
+NETWORK (public IP + NSG today; VNet peering option opened 2026-06-01 after the no-peering rule was retired):
+- Qwen     = copapai-llm  20.25.145.60:8000   (NSG copapai-llm-crawl-nsg)
+- SearXNG  = copapai-aux  104.209.153.42:8888
+- Crawl4AI = copapai-aux  104.209.153.42:11235
+- All NSG-locked to the 8 crawl egress IPs + VPN 10.0.0.0/24; internet denied; SSH not exposed.
+- These live in the PRODUCTION COPAP AI subscription. Deliberate, approved runtime
+  dependency on the self-hosted LLM engine. Gateway sanitization still strips all
+  COPAP identifiers before any prompt reaches Qwen (Qwen self-hosted = more private
+  than Anthropic was). The osint-staging blob remains the only DATA bridge.
+
+OPS:
+- copapai-llm is an H100 (~$7/hr) that deallocates when idle. If Qwen is
+  unreachable, START copapai-llm (az vm start) -- NEVER fall back to Anthropic.
+- Restart an agent: as owner of ~/.openclaw (copapadmin),
+  `systemctl --user restart openclaw-gateway` (some VMs also have swarmclaw.service).
+- Config backups on each VM: ~/.openclaw/openclaw.json.{qwenbak,pluginbak,noanthropicbak}.<ts>
+
+---
 ## Architecture
 
 ```
