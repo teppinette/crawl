@@ -4064,52 +4064,30 @@ def _update_verify_check(job_id: str, check_name: str, data: dict):
 
 def _verify_check_registry(job_id: str, entity_name: str, country_code: str,
                             ntn: str = "", cin: str = "") -> dict:
-    """Run government registry verification (blocking)."""
-    _update_verify_check(job_id, "registry", {"status": "running", "started_at": datetime.now(timezone.utc).isoformat()})
+    """Run government registry verification by calling /api/v1/verify in-process
+    via loopback HTTP. Reuses the full 34-country + GLEIF adapter chain instead
+    of duplicating per-country logic here."""
+    _update_verify_check(job_id, "registry", {"status": "running",
+        "started_at": datetime.now(timezone.utc).isoformat()})
     try:
-        if country_code == "PK":
-            secp = _secp_query_via_ssh(entity_name)
-            fbr = multilogin_fbr.fbr_atl_verify(ntn) if ntn else None
-            regs = secp.get("results", [])
-            verified = secp.get("found", False)
-            r = regs[0] if regs else {}
-            result = {
-                "status": "completed",
-                "completed_at": datetime.now(timezone.utc).isoformat(),
-                "verified": verified,
-                "legal_name": r.get("legal_name"),
-                "registration_number": r.get("registration_number"),
-                "entity_status": r.get("status"),
-                "company_type": r.get("company_type"),
-                "cro": r.get("cro"),
-                "registration_date": r.get("registration_date"),
-                "fbr": fbr,
-                "all_matches": regs if len(regs) > 1 else None,
-                "source": "SECP eServices (direct gov query)",
-            }
-        elif country_code == "IN":
-            tofler = _india_tofler_lookup(entity_name, cin)
-            result = {
-                "status": "completed",
-                "completed_at": datetime.now(timezone.utc).isoformat(),
-                "verified": tofler.get("found", False),
-                "legal_name": tofler.get("legal_name"),
-                "cin": tofler.get("cin"),
-                "entity_status": tofler.get("status"),
-                "company_type": tofler.get("company_type"),
-                "incorporation_date": tofler.get("incorporation_date"),
-                "directors": tofler.get("directors"),
-                "registered_address": tofler.get("registered_address"),
-                "source": "MCA21 via Tofler.in (Bright Data proxy)",
-            }
+        import requests as _req
+        body = {"entity_name": entity_name, "country_code": country_code}
+        if ntn: body["ntn"] = ntn
+        if cin: body["cin"] = cin
+        resp = _req.post(
+            "http://127.0.0.1:8400/api/v1/verify",
+            json=body,
+            headers={"X-API-Key": API_KEY},
+            timeout=180,
+        )
+        if resp.status_code == 200:
+            data = resp.json()
+            data["status"] = "completed"
+            data["completed_at"] = datetime.now(timezone.utc).isoformat()
+            result = data
         else:
-            result = {
-                "status": "completed",
-                "completed_at": datetime.now(timezone.utc).isoformat(),
-                "verified": False,
-                "note": f"Real-time registry check not available for {country_code}. Included in CIR job.",
-                "source": None,
-            }
+            result = {"status": "failed",
+                      "error": f"HTTP {resp.status_code}: {resp.text[:200]}"}
     except Exception as e:
         result = {"status": "failed", "error": str(e)[:300]}
 
@@ -4119,68 +4097,15 @@ def _verify_check_registry(job_id: str, entity_name: str, country_code: str,
 
 def _verify_check_linkedin_company(job_id: str, entity_name: str,
                                     linkedin_url: str = "", domain: str = "") -> dict:
-    """Scrape company LinkedIn page via Bright Data."""
+    """Scrape company LinkedIn page via Bright Data.
+    Delegates to the BD-SERP-backed _linkedin_lookup_company helper
+    (Tavily helper removed)."""
     _update_verify_check(job_id, "linkedin_company", {
         "status": "running", "started_at": datetime.now(timezone.utc).isoformat()})
-    try:
-        # Find LinkedIn company URL if not provided
-        url = linkedin_url
-        if not url:
-            url = _find_linkedin_company_url(entity_name, domain)
-        if not url:
-            result = {"status": "completed", "completed_at": datetime.now(timezone.utc).isoformat(),
-                      "found": False, "note": "LinkedIn company page not found via search"}
-            _update_verify_check(job_id, "linkedin_company", result)
-            return result
-
-        # Trigger Bright Data scrape
-        snapshot_id = _brightdata_trigger(_BD_LINKEDIN_COMPANY_ID, [{"url": url}])
-        if not snapshot_id:
-            result = {"status": "failed", "error": "Bright Data trigger failed"}
-            _update_verify_check(job_id, "linkedin_company", result)
-            return result
-
-        # Poll
-        poll_status = _brightdata_poll(snapshot_id, timeout_s=60)
-        if poll_status != "ready":
-            result = {"status": "failed", "error": f"Bright Data poll: {poll_status}"}
-            _update_verify_check(job_id, "linkedin_company", result)
-            return result
-
-        # Download
-        data = _brightdata_download(snapshot_id)
-        if not data:
-            result = {"status": "completed", "completed_at": datetime.now(timezone.utc).isoformat(),
-                      "found": False, "note": "No data returned from LinkedIn scrape"}
-            _update_verify_check(job_id, "linkedin_company", result)
-            return result
-
-        company = data[0]
-        result = {
-            "status": "completed",
-            "completed_at": datetime.now(timezone.utc).isoformat(),
-            "found": True,
-            "name": company.get("name"),
-            "linkedin_url": url,
-            "industry": company.get("industries"),
-            "company_size": company.get("company_size"),
-            "locations": (company.get("locations") or [])[:5],
-            "about": (company.get("about") or "")[:500],
-            "followers": company.get("followers"),
-            "employees_on_linkedin": company.get("employees_in_linkedin"),
-            "organization_type": company.get("organization_type"),
-            "website": company.get("website"),
-            "specialties": company.get("specialties"),
-            "notable_employees": [
-                {"name": e.get("title", "").split(" is ")[0] if " is " in e.get("title", "") else e.get("title", ""),
-                 "link": e.get("link")}
-                for e in (company.get("employees") or [])[:10]
-            ],
-            "source": "LinkedIn via Bright Data Web Scraper API",
-        }
-    except Exception as e:
-        result = {"status": "failed", "error": str(e)[:300]}
-
+    result = _linkedin_lookup_company(entity_name, linkedin_url, domain)
+    result["status"] = "completed"
+    result["completed_at"] = datetime.now(timezone.utc).isoformat()
+    result.setdefault("source", "LinkedIn via Bright Data Web Scraper API")
     _update_verify_check(job_id, "linkedin_company", result)
     return result
 
@@ -4217,126 +4142,16 @@ def _person_matches_entity(profile: dict, entity_name: str) -> bool:
 
 def _verify_check_linkedin_persons(job_id: str, persons: list[str],
                                     entity_name: str) -> dict:
-    """Find and scrape LinkedIn profiles for each declared person.
-
-    Only reports profiles that actually match the entity. If a scraped profile
-    works at a different company, it's the wrong person — discard it and report
-    as 'not confirmed' rather than showing misleading data.
-    """
+    """Find and verify LinkedIn profiles for each declared person.
+    Delegates to the BD-SERP-backed _linkedin_lookup_persons helper
+    (Tavily helper removed)."""
     _update_verify_check(job_id, "linkedin_persons", {
         "status": "running", "started_at": datetime.now(timezone.utc).isoformat(),
         "progress": f"0/{len(persons)} searching..."})
-    try:
-        # Step 1: Find LinkedIn URLs via Tavily
-        found_urls = []
-        person_url_map = {}
-        for i, person in enumerate(persons):
-            url = _find_linkedin_profile_url(person, entity_name)
-            if url:
-                found_urls.append({"url": url})
-                person_url_map[url] = person
-            _update_verify_check(job_id, "linkedin_persons", {
-                "status": "running",
-                "progress": f"Searching {i+1}/{len(persons)}... ({len(found_urls)} candidates)"})
-
-        if not found_urls:
-            result = {
-                "status": "completed",
-                "completed_at": datetime.now(timezone.utc).isoformat(),
-                "confirmed_count": 0,
-                "not_confirmed": persons,
-                "total_searched": len(persons),
-                "profiles": [],
-                "note": "No LinkedIn profiles found matching these persons at this entity",
-            }
-            _update_verify_check(job_id, "linkedin_persons", result)
-            return result
-
-        # Step 2: Batch trigger Bright Data for all found URLs
-        _update_verify_check(job_id, "linkedin_persons", {
-            "status": "running",
-            "progress": f"Verifying {len(found_urls)} candidate profiles..."})
-
-        snapshot_id = _brightdata_trigger(_BD_LINKEDIN_PEOPLE_ID, found_urls)
-        if not snapshot_id:
-            result = {"status": "failed", "error": "Bright Data trigger failed for person profiles"}
-            _update_verify_check(job_id, "linkedin_persons", result)
-            return result
-
-        # Step 3: Poll (longer timeout — people profiles take 30-120s)
-        poll_status = _brightdata_poll(snapshot_id, timeout_s=300)
-        if poll_status != "ready":
-            result = {"status": "failed", "error": f"Bright Data poll: {poll_status}"}
-            _update_verify_check(job_id, "linkedin_persons", result)
-            return result
-
-        # Step 4: Download and filter — ONLY keep profiles that match the entity
-        data = _brightdata_download(snapshot_id)
-        confirmed = []
-        not_confirmed = []
-        checked_persons = set()
-
-        for profile in data:
-            input_url = (profile.get("input") or {}).get("url", "")
-            declared_name = person_url_map.get(input_url, "Unknown")
-            checked_persons.add(declared_name)
-
-            if _person_matches_entity(profile, entity_name):
-                current_co = profile.get("current_company") or {}
-                confirmed.append({
-                    "declared_name": declared_name,
-                    "linkedin_name": profile.get("name"),
-                    "linkedin_url": f"https://www.linkedin.com/in/{profile.get('id', '')}",
-                    "position": profile.get("position"),
-                    "current_company": current_co.get("name"),
-                    "current_title": current_co.get("title"),
-                    "city": profile.get("city"),
-                    "country_code": profile.get("country_code"),
-                    "confirmed_at_entity": True,
-                })
-            else:
-                not_confirmed.append(declared_name)
-
-        # Add persons we never found URLs for
-        for person in persons:
-            if person not in checked_persons:
-                not_confirmed.append(person)
-
-        # Build simple yes/no per person
-        verification = []
-        confirmed_names = {p["declared_name"] for p in confirmed}
-        for person in persons:
-            if person in confirmed_names:
-                match = next(p for p in confirmed if p["declared_name"] == person)
-                verification.append({
-                    "name": person,
-                    "works_at_entity": True,
-                    "title": match.get("current_title") or match.get("position"),
-                    "linkedin_url": match.get("linkedin_url"),
-                    "city": match.get("city"),
-                })
-            else:
-                verification.append({
-                    "name": person,
-                    "works_at_entity": False,
-                    "note": f"Not found at {entity_name} on LinkedIn",
-                })
-
-        result = {
-            "status": "completed",
-            "completed_at": datetime.now(timezone.utc).isoformat(),
-            "confirmed_count": len(confirmed),
-            "total_searched": len(persons),
-            "persons_verification": verification,
-            "profiles": confirmed if confirmed else None,
-            "note": (f"{len(confirmed)}/{len(persons)} persons confirmed at entity on LinkedIn"
-                     if confirmed else
-                     "No persons could be confirmed at this entity on LinkedIn"),
-            "source": "LinkedIn via Bright Data Web Scraper API",
-        }
-    except Exception as e:
-        result = {"status": "failed", "error": str(e)[:300]}
-
+    result = _linkedin_lookup_persons(entity_name, persons)
+    result["status"] = "completed"
+    result["completed_at"] = datetime.now(timezone.utc).isoformat()
+    result.setdefault("source", "LinkedIn via Bright Data Web Scraper API")
     _update_verify_check(job_id, "linkedin_persons", result)
     return result
 
