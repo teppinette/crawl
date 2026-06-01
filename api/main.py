@@ -34,6 +34,7 @@ from datetime import datetime, timezone
 from enum import Enum
 from pathlib import Path
 from typing import Optional
+from urllib.parse import quote_plus
 
 import paramiko
 from fastapi import FastAPI, HTTPException, Security, Depends, Request
@@ -4429,6 +4430,223 @@ async def _dispatch_verify_job(job_id: str, entity_name: str, country_code: str,
     update_job_fields(job_id, {"status": overall, "updated_at": datetime.now(timezone.utc).isoformat()})
     log_job_event(job_id, "verify", "completed", overall)
     log.info("Verify job %s completed: %s", job_id[:8], overall)
+
+
+_BD_SERP_URL = "https://api.brightdata.com/request"
+_BD_SERP_ZONE = os.environ.get("BD_SERP_ZONE", "serp_api1")
+
+
+def _bd_serp_linkedin_search(query: str, path: str) -> str | None:
+    """Find a LinkedIn URL via Bright Data SERP (Google). `path` is 'company' or 'in'.
+    Returns first matching linkedin.com/<path>/... URL or None.
+
+    Replaces Tavily (removed — banned per open-source-only rule and key deleted)."""
+    if not _BD_DATASETS_KEY:
+        return None
+    import requests as _req
+    google_url = f"https://www.google.com/search?q={quote_plus(query)}&num=10"
+    try:
+        resp = _req.post(
+            _BD_SERP_URL,
+            headers={"Authorization": f"Bearer {_BD_DATASETS_KEY}",
+                     "Content-Type": "application/json"},
+            json={"zone": _BD_SERP_ZONE, "url": google_url, "format": "raw"},
+            timeout=20,
+        )
+        if resp.status_code != 200:
+            log.warning("BD SERP %s for LinkedIn search: %s", resp.status_code, resp.text[:200])
+            return None
+        body = resp.text
+        # Google wraps result URLs in /url?q=<encoded>&... — extract the LinkedIn one
+        pattern = rf"https?://(?:[a-z]{{2,3}}\.)?linkedin\.com/{path}/[A-Za-z0-9\-._%/]+"
+        for m in re.finditer(pattern, body):
+            url = m.group(0)
+            # Strip Google tracking + URL-encoded artifacts
+            url = url.split("&")[0].split("%26")[0].rstrip("/")
+            return url
+    except Exception as e:
+        log.warning("BD SERP LinkedIn search error: %s", e)
+    return None
+
+
+def _linkedin_lookup_company(entity_name: str, linkedin_url: str, domain: str) -> dict:
+    """Stateless company lookup — extracted from _verify_check_linkedin_company,
+    minus the job-state plumbing. Uses BD SERP for URL discovery (not Tavily).
+    Returns a flat dict."""
+    try:
+        url = linkedin_url
+        if not url:
+            query = f'"{entity_name}" {domain} site:linkedin.com/company/' if domain \
+                    else f'"{entity_name}" site:linkedin.com/company/'
+            url = _bd_serp_linkedin_search(query, "company")
+        if not url:
+            return {"found": False, "note": "LinkedIn company page not found via search"}
+
+        snapshot_id = _brightdata_trigger(_BD_LINKEDIN_COMPANY_ID, [{"url": url}])
+        if not snapshot_id:
+            return {"found": False, "error": "Bright Data trigger failed"}
+
+        poll_status = _brightdata_poll(snapshot_id, timeout_s=60)
+        if poll_status != "ready":
+            return {"found": False, "error": f"Bright Data poll: {poll_status}"}
+
+        data = _brightdata_download(snapshot_id)
+        if not data:
+            return {"found": False, "note": "No data returned from LinkedIn scrape"}
+
+        company = data[0]
+        return {
+            "found": True,
+            "name": company.get("name"),
+            "linkedin_url": url,
+            "industry": company.get("industries"),
+            "company_size": company.get("company_size"),
+            "locations": (company.get("locations") or [])[:5],
+            "about": (company.get("about") or "")[:500],
+            "followers": company.get("followers"),
+            "employees_on_linkedin": company.get("employees_in_linkedin"),
+            "organization_type": company.get("organization_type"),
+            "website": company.get("website"),
+            "specialties": company.get("specialties"),
+            "notable_employees": [
+                {"name": e.get("title", "").split(" is ")[0] if " is " in e.get("title", "") else e.get("title", ""),
+                 "link": e.get("link")}
+                for e in (company.get("employees") or [])[:10]
+            ],
+        }
+    except Exception as e:
+        return {"found": False, "error": str(e)[:300]}
+
+
+def _linkedin_lookup_persons(entity_name: str, persons: list) -> dict:
+    """Stateless persons lookup — extracted from _verify_check_linkedin_persons,
+    minus the job-state plumbing. Returns a flat dict with per-person verification."""
+    try:
+        found_urls = []
+        person_url_map = {}
+        for person in persons:
+            query = f'"{person}" "{entity_name}" site:linkedin.com/in/'
+            url = _bd_serp_linkedin_search(query, "in")
+            if url:
+                found_urls.append({"url": url})
+                person_url_map[url] = person
+
+        if not found_urls:
+            return {
+                "confirmed_count": 0,
+                "total_searched": len(persons),
+                "persons_verification": [
+                    {"name": p, "works_at_entity": False,
+                     "note": f"No LinkedIn profile found via search"}
+                    for p in persons
+                ],
+                "note": "No LinkedIn profiles found matching these persons at this entity",
+            }
+
+        snapshot_id = _brightdata_trigger(_BD_LINKEDIN_PEOPLE_ID, found_urls)
+        if not snapshot_id:
+            return {"error": "Bright Data trigger failed for person profiles"}
+
+        poll_status = _brightdata_poll(snapshot_id, timeout_s=300)
+        if poll_status != "ready":
+            return {"error": f"Bright Data poll: {poll_status}"}
+
+        data = _brightdata_download(snapshot_id)
+        confirmed = []
+        checked_persons = set()
+        for profile in data:
+            input_url = (profile.get("input") or {}).get("url", "")
+            declared_name = person_url_map.get(input_url, "Unknown")
+            checked_persons.add(declared_name)
+            if _person_matches_entity(profile, entity_name):
+                current_co = profile.get("current_company") or {}
+                confirmed.append({
+                    "declared_name": declared_name,
+                    "linkedin_name": profile.get("name"),
+                    "linkedin_url": f"https://www.linkedin.com/in/{profile.get('id', '')}",
+                    "position": profile.get("position"),
+                    "current_company": current_co.get("name"),
+                    "current_title": current_co.get("title"),
+                    "city": profile.get("city"),
+                    "country_code": profile.get("country_code"),
+                    "confirmed_at_entity": True,
+                })
+
+        confirmed_names = {p["declared_name"] for p in confirmed}
+        verification = []
+        for person in persons:
+            if person in confirmed_names:
+                match = next(p for p in confirmed if p["declared_name"] == person)
+                verification.append({
+                    "name": person,
+                    "works_at_entity": True,
+                    "title": match.get("current_title") or match.get("position"),
+                    "linkedin_url": match.get("linkedin_url"),
+                    "city": match.get("city"),
+                })
+            else:
+                verification.append({
+                    "name": person,
+                    "works_at_entity": False,
+                    "note": f"Not found at {entity_name} on LinkedIn",
+                })
+
+        return {
+            "confirmed_count": len(confirmed),
+            "total_searched": len(persons),
+            "persons_verification": verification,
+            "profiles": confirmed or None,
+            "note": (f"{len(confirmed)}/{len(persons)} persons confirmed at entity on LinkedIn"
+                     if confirmed else
+                     "No persons could be confirmed at this entity on LinkedIn"),
+        }
+    except Exception as e:
+        return {"error": str(e)[:300]}
+
+
+@app.post("/api/v1/linkedin/lookup")
+async def linkedin_lookup(request: Request, _key: str = Depends(verify_api_key)):
+    """LinkedIn-only lookup via Bright Data. Synchronous, no job state.
+
+    NinjaPear replacement for .11. Returns company profile and (optionally)
+    per-person verification.
+
+    Body: {
+        "entity_name": "Tesco PLC",        // required
+        "domain": "tesco.com",              // optional — helps URL discovery
+        "linkedin_url": "",                 // optional — skips Tavily if known
+        "persons": ["Ken Murphy"]           // optional — verifies each at entity
+    }
+    """
+    body = await request.json()
+    entity_name = (body.get("entity_name") or "").strip()
+    if not entity_name:
+        raise HTTPException(status_code=422, detail="entity_name required")
+    domain = (body.get("domain") or "").strip()
+    linkedin_url = (body.get("linkedin_url") or "").strip()
+    persons = body.get("persons") or []
+    if persons and not isinstance(persons, list):
+        raise HTTPException(status_code=422, detail="persons must be a list of strings")
+
+    log.info("LinkedIn lookup: %s (domain=%s, persons=%d)", entity_name, domain or "none", len(persons))
+
+    t0 = time.time()
+    company = await asyncio.to_thread(
+        _linkedin_lookup_company, entity_name, linkedin_url, domain)
+    persons_result = None
+    if persons:
+        persons_result = await asyncio.to_thread(
+            _linkedin_lookup_persons, entity_name, persons)
+
+    return {
+        "entity_name": entity_name,
+        "domain": domain or None,
+        "company": company,
+        "persons": persons_result,
+        "duration_ms": int((time.time() - t0) * 1000),
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "source": "LinkedIn via Bright Data Web Scraper API",
+    }
 
 
 @app.post("/api/v1/verify-job")
