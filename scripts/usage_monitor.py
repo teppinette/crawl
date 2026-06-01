@@ -50,7 +50,7 @@ VMS = {
     "americas": {"ip": "172.206.2.41", "user": "copapadmin"},
     "europe":   {"ip": "172.189.56.218", "user": "copapadmin"},
     "gulf":     {"ip": "20.233.46.58", "user": "copadmin"},
-    "china":    {"ip": "10.0.0.4", "user": "copapadmin"},
+    "china":    {"ip": "184.0.0.4", "user": "copapadmin"},
     "india":    {"ip": "20.193.150.43", "user": "copapadmin"},
 }
 

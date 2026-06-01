@@ -4,9 +4,11 @@ Crawl Platform Health Monitor
 
 Runs every 15 minutes via cron. Checks:
   1. SSH connectivity to all 5 regional VMs
-  2. OpenClaw gateway health (port 18789) on each VM
-  3. copap-cir-api.service (user unit) on crawldevvm (port 8400)
-  4. Blob storage SAS token expiry
+  2. copap-cir-api.service (user unit) on crawldevvm (port 8400)
+  3. Blob storage SAS token expiry
+
+OpenClaw + SwarmClaw checks removed 2026-06-01 — platform pivoting off
+OpenClaw to centralized Foundry/Mistral. Pulse tests retained.
 
 Writes results to PostgreSQL (PipelineEvents table).
 Sends Teams alert on any failure.
@@ -49,7 +51,7 @@ VMS = {
     "americas": {"ip": "172.206.2.41", "user": "copapadmin"},
     "europe":   {"ip": "172.189.56.218", "user": "copapadmin"},
     "gulf":     {"ip": "20.233.46.58", "user": "copadmin"},
-    "china":    {"ip": "10.0.0.4", "user": "copapadmin"},
+    "china":    {"ip": "184.0.0.4", "user": "copapadmin"},
     "india":    {"ip": "20.193.150.43", "user": "copapadmin"},
 }
 
@@ -156,30 +158,6 @@ def check_ssh(region: str, vm: dict) -> dict:
         return {"check": "ssh", "ok": False, "error": str(e)[:200]}
 
 
-def check_openclaw(region: str, vm: dict) -> dict:
-    """Check OpenClaw gateway health on a regional VM."""
-    try:
-        result = subprocess.run(
-            ["ssh", "-i", SSH_KEY,
-             "-o", "UserKnownHostsFile=~/.ssh/crawl_known_hosts",
-             "-o", "ConnectTimeout=10",
-             "-o", "BatchMode=yes",
-             f"{vm['user']}@{vm['ip']}",
-             "curl -s -m 5 http://localhost:18789/health"],
-            capture_output=True, text=True, timeout=20
-        )
-        try:
-            health = json.loads(result.stdout.strip())
-            ok = health.get("ok", False) or health.get("status") == "live"
-        except json.JSONDecodeError:
-            ok = False
-        return {"check": "openclaw", "ok": ok,
-                "error": result.stderr.strip()[:200] if not ok else None,
-                "response": result.stdout.strip()[:200]}
-    except (subprocess.TimeoutExpired, Exception) as e:
-        return {"check": "openclaw", "ok": False, "error": str(e)[:200]}
-
-
 def check_gateway() -> dict:
     """Check copap-cir-api.service (user unit) on crawldevvm.
     Checks BOTH the HTTP health endpoint AND the systemd service status,
@@ -223,43 +201,6 @@ def check_gateway() -> dict:
                 "http_ok": http_ok, "service_ok": svc_ok, "error": error}
     except Exception as e:
         return {"check": "gateway", "ok": False, "error": str(e)[:200]}
-
-
-def check_swarmclaw() -> dict:
-    """Check SwarmClaw control plane on crawl-americas (port 3456)."""
-    vm = VMS["americas"]
-    try:
-        result = subprocess.run(
-            ["ssh", "-i", SSH_KEY,
-             "-o", "UserKnownHostsFile=~/.ssh/crawl_known_hosts",
-             "-o", "ConnectTimeout=10",
-             "-o", "BatchMode=yes",
-             f"{vm['user']}@{vm['ip']}",
-             "systemctl --user is-active swarmclaw && "
-             "curl -s -m 5 http://localhost:3456/health 2>/dev/null || echo '{}'"],
-            capture_output=True, text=True, timeout=20
-        )
-        output = result.stdout.strip()
-        # First line is "active" or "inactive"/"failed", rest is health JSON
-        lines = output.split("\n", 1)
-        svc_active = lines[0].strip() == "active"
-
-        health_ok = False
-        if len(lines) > 1:
-            try:
-                health = json.loads(lines[1].strip())
-                health_ok = bool(health)  # any valid JSON response means it's up
-            except json.JSONDecodeError:
-                pass
-
-        ok = svc_active
-        error = None
-        if not ok:
-            error = f"SwarmClaw service is {lines[0].strip()} on crawl-americas"
-
-        return {"check": "swarmclaw", "ok": ok, "health_ok": health_ok, "error": error}
-    except (subprocess.TimeoutExpired, Exception) as e:
-        return {"check": "swarmclaw", "ok": False, "error": str(e)[:200]}
 
 
 def check_sas_token() -> dict:
@@ -356,11 +297,6 @@ def send_teams_summary(results: dict):
     gw_note = f" (v{gw.get('version', '?')})" if gw.get("ok") else f" ({gw.get('error', 'down')[:60]})"
     lines.append(f"- **Gateway**: {gw_icon}{gw_note}")
 
-    # SwarmClaw
-    sc = results.get("swarmclaw", {})
-    sc_icon = "✅" if sc.get("ok") else "❌"
-    lines.append(f"- **SwarmClaw**: {sc_icon}")
-
     # SAS Token
     sas = results.get("sas_token", {})
     sas_icon = "✅" if sas.get("ok") else "⚠️"
@@ -370,8 +306,7 @@ def send_teams_summary(results: dict):
     for region in ["americas", "europe", "gulf", "china", "india"]:
         checks = results.get(region, [])
         ssh_ok = any(c.get("check") == "ssh" and c.get("ok") for c in checks)
-        oc_ok = any(c.get("check") == "openclaw" and c.get("ok") for c in checks)
-        lines.append(f"- **{region}**: SSH {'✅' if ssh_ok else '❌'} | OpenClaw {'✅' if oc_ok else '❌'}")
+        lines.append(f"- **{region}**: SSH {'✅' if ssh_ok else '❌'}")
 
     payload = {
         "type": "message",
@@ -425,12 +360,6 @@ def run_checks() -> dict:
     if not gw["ok"]:
         failures.append({"region": "crawldevvm", **gw})
 
-    # SwarmClaw control plane
-    sc = check_swarmclaw()
-    results["swarmclaw"] = sc
-    if not sc["ok"]:
-        failures.append({"region": "americas", **sc})
-
     # SAS token
     sas = check_sas_token()
     results["sas_token"] = sas
@@ -446,12 +375,6 @@ def run_checks() -> dict:
         checks.append(ssh_result)
         if not ssh_result["ok"]:
             failures.append({"region": region, **ssh_result})
-
-        oc_result = check_openclaw(region, vm)
-        oc_result["region"] = region
-        checks.append(oc_result)
-        if not oc_result["ok"]:
-            failures.append({"region": region, **oc_result})
 
         results[region] = checks
 
@@ -516,16 +439,13 @@ def main():
     else:
         gw_detail = f" [{gw.get('error', '')}]"
     print(f"Gateway:    {'OK' if gw['ok'] else 'FAIL'}{gw_detail}")
-    sc = results.get("swarmclaw", {})
-    print(f"SwarmClaw:  {'OK' if sc.get('ok') else 'FAIL'}")
     sas = results["sas_token"]
     print(f"SAS Token:  {'OK' if sas['ok'] else 'WARN'} ({sas.get('days_left', '?')} days)")
 
     for region in VMS:
         checks = results.get(region, [])
         ssh_ok = any(c["check"] == "ssh" and c["ok"] for c in checks)
-        oc_ok = any(c["check"] == "openclaw" and c["ok"] for c in checks)
-        print(f"{region:12s} SSH={'OK' if ssh_ok else 'FAIL':4s}  OpenClaw={'OK' if oc_ok else 'FAIL'}")
+        print(f"{region:12s} SSH={'OK' if ssh_ok else 'FAIL'}")
 
     print(f"\nFailures: {len(failures)}")
 
