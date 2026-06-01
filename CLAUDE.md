@@ -5,6 +5,14 @@ This project deploys autonomous OSINT researchers via a scenario-based
 gateway API. It runs on the **COPAPCrawl** Azure subscription --
 completely isolated from the production COPAP AI subscription.
 
+**OPERATING RULE — DON'T DESTROY, DON'T MOVE.** Don't propose `rm`,
+`git reset --hard`, force-push, peering/NSG bulk deletion, or repo
+restructure as a default option. Don't move or reorganize files "for
+tidiness." Don't `git init` new repos or invent new conventions
+without an explicit ask. When unsure, recommend leaving it alone —
+"do nothing" is a valid recommendation. See
+`memory/feedback_dont_destroy_dont_move.md` for the why.
+
 **THIS IS crawldevvm (20.94.45.219)** — the dev/control VM that hosts
 the Crawl Research Gateway API and SSH-coordinates all regional crawl VMs.
 
