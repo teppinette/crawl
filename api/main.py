@@ -4464,6 +4464,266 @@ async def linkedin_lookup(request: Request, _key: str = Depends(verify_api_key))
     }
 
 
+# ---------------------------------------------------------------------------
+# /api/v1/screenshot — clean full-page website capture via BD Scraping Browser
+# ---------------------------------------------------------------------------
+
+# Screenshot capture goes through local headless Chromium routed via the
+# Bright Data residential proxy. Original spec said "BD Scraping Browser",
+# but that zone (scraping_browser1) was retired in the 2026-05-11 BD
+# lockdown — `pk_residental` is the surviving BD product. Residential
+# proxy still gives bot bypass + geo; we drive Chromium ourselves so we
+# control cookie dismissal + full-page capture.
+_SCR_PROXY_SERVER = "http://brd.superproxy.io:33335"
+_SCR_PROXY_USER_BASE = "brd-customer-hl_7bf69e76-zone-pk_residental"
+
+_CC_TLDS = {
+    "br", "uk", "de", "fr", "it", "es", "pt", "nl", "be", "ch", "se", "no", "dk", "fi",
+    "pl", "ie", "at", "gr", "cz", "ro", "hu", "sk", "bg", "hr", "lt", "lv", "ee",
+    "ru", "ua", "tr", "by", "rs", "il",
+    "us", "ca", "mx", "ar", "cl", "co", "pe", "ec", "uy", "py", "bo", "ve", "do", "cr",
+    "ae", "sa", "qa", "kw", "om", "bh", "jo", "eg", "iq", "ng", "za",
+    "cn", "hk", "tw", "jp", "kr", "sg", "my", "th", "id", "ph", "vn", "in", "pk",
+    "au", "nz",
+}
+
+
+def _country_from_url(url: str) -> str:
+    """Pick a residential exit country from the URL's TLD (best-effort).
+    e.g. nortene.com.br → 'br'. Falls back to 'us' for gTLDs."""
+    try:
+        host = re.sub(r"^https?://", "", url, flags=re.IGNORECASE).split("/")[0]
+        host = host.split("@")[-1].split(":")[0].lower()
+        tld = host.rsplit(".", 1)[-1] if "." in host else ""
+        if tld in _CC_TLDS:
+            return tld
+    except Exception:
+        pass
+    return "us"
+
+# Sync JS — dismiss cookie/consent overlays before screenshot. Multi-strategy:
+# known selectors → text-matched buttons (EN/PT/ES/DE/FR) → nuke fixed/sticky
+# overlays whose id/class hints at consent. The Portuguese strings matter for
+# the nortene.com.br acceptance test (LGPD banner is "Aceitar todos").
+_CONSENT_DISMISS_JS = r"""
+() => {
+    const SELECTORS = [
+        '#onetrust-accept-btn-handler',
+        '#CybotCookiebotDialogBodyButtonAccept',
+        '#CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll',
+        '#didomi-notice-agree-button',
+        '.didomi-notice-agree-button',
+        '#axeptio_btn_acceptAll',
+        '.fc-cta-consent',
+        '.qc-cmp2-summary-buttons button[mode="primary"]',
+        '#truste-consent-button',
+        '.cc-allow', '.cc-dismiss',
+        'button[id*="accept" i][id*="cookie" i]',
+        'button[class*="accept" i][class*="cookie" i]',
+        'button[id*="cookie" i][id*="agree" i]',
+        '[aria-label*="accept" i][role="button"]',
+        '[data-testid*="accept" i]',
+        '[data-cookieconsent="accept"]',
+    ];
+    const TEXTS = [
+        'accept all', 'accept all cookies', 'accept cookies', 'accept', 'agree',
+        'i agree', 'ok', 'got it', 'allow all', 'allow cookies',
+        'aceitar todos', 'aceitar todos os cookies', 'aceitar', 'aceito', 'concordo',
+        'sim, aceito', 'permitir todos',
+        'aceptar', 'aceptar todo', 'aceptar todas', 'estoy de acuerdo',
+        'akzeptieren', 'alle akzeptieren', 'alle cookies akzeptieren',
+        'accepter', 'tout accepter', "j'accepte",
+        'accetta', 'accetta tutto',
+    ];
+    let clicked = 0;
+    for (const sel of SELECTORS) {
+        try {
+            document.querySelectorAll(sel).forEach(el => {
+                try { el.click(); clicked++; } catch (_) {}
+            });
+        } catch (_) {}
+    }
+    const candidates = document.querySelectorAll(
+        'button, a[role="button"], input[type="button"], input[type="submit"], [role="button"]'
+    );
+    candidates.forEach(el => {
+        const t = ((el.innerText || el.textContent || el.value) || '').trim().toLowerCase();
+        if (!t || t.length > 40) return;
+        for (const phrase of TEXTS) {
+            if (t === phrase || t.includes(phrase)) {
+                try { el.click(); clicked++; } catch (_) {}
+                break;
+            }
+        }
+    });
+    const KEYWORDS = ['cookie', 'consent', 'gdpr', 'lgpd', 'privacy', 'cmp'];
+    document.querySelectorAll('div, section, aside, dialog').forEach(el => {
+        try {
+            const cs = ((el.id || '') + ' ' + (el.className || '')).toLowerCase();
+            const style = window.getComputedStyle(el);
+            const fixed = style.position === 'fixed' || style.position === 'sticky';
+            if (fixed && KEYWORDS.some(k => cs.includes(k))) {
+                el.remove();
+            }
+        } catch (_) {}
+    });
+    return clicked;
+}
+"""
+
+_LAZY_SCROLL_JS = r"""
+async () => {
+    const sleep = ms => new Promise(r => setTimeout(r, ms));
+    let lastH = 0;
+    for (let i = 0; i < 40; i++) {
+        const h = document.body.scrollHeight;
+        const y = Math.min(i * 800, h);
+        window.scrollTo(0, y);
+        await sleep(120);
+        if (y >= h && h === lastH) break;
+        lastH = h;
+    }
+    window.scrollTo(0, 0);
+    await sleep(400);
+}
+"""
+
+
+def _screenshot_via_brightdata(url: str, full_page: bool, deadline: float) -> dict:
+    """Capture website screenshot via local Chromium + BD residential proxy.
+
+    Returns the response dict for the screenshot endpoint. Never raises —
+    on any failure returns {found: False, error: ...} so the API returns 200
+    and the GC client degrades gracefully (spec §"Required behavior" #5)."""
+    import base64
+    from playwright.sync_api import sync_playwright
+
+    country = _country_from_url(url)
+    session = _bd_next_session(f"scr{country}")
+    proxy_user = f"{_SCR_PROXY_USER_BASE}-country-{country}-session-{session}"
+
+    try:
+        with sync_playwright() as pw:
+            browser = pw.chromium.launch(
+                headless=True,
+                proxy={
+                    "server": _SCR_PROXY_SERVER,
+                    "username": proxy_user,
+                    "password": _BD_PASS,
+                },
+                args=["--no-sandbox", "--disable-dev-shm-usage"],
+            )
+            try:
+                ctx = browser.new_context(
+                    viewport={"width": 1280, "height": 900},
+                    ignore_https_errors=True,
+                    user_agent=_BD_UA,
+                    locale="en-US",
+                )
+                page = ctx.new_page()
+                page.set_default_navigation_timeout(45000)
+                page.set_default_timeout(15000)
+
+                nav_ok = False
+                try:
+                    page.goto(url, wait_until="domcontentloaded", timeout=45000)
+                    nav_ok = True
+                except Exception as e:
+                    log.warning("screenshot: domcontentloaded failed for %s: %s", url, e)
+                    if time.time() < deadline:
+                        try:
+                            page.goto(url, wait_until="load", timeout=15000)
+                            nav_ok = True
+                        except Exception:
+                            pass
+                if not nav_ok:
+                    return {"found": False, "error": "render_timeout"}
+
+                try:
+                    page.wait_for_load_state("networkidle", timeout=5000)
+                except Exception:
+                    pass
+
+                for _ in range(2):
+                    try:
+                        page.evaluate(_CONSENT_DISMISS_JS)
+                    except Exception:
+                        pass
+                    page.wait_for_timeout(400)
+
+                if full_page:
+                    try:
+                        page.evaluate(_LAZY_SCROLL_JS)
+                    except Exception:
+                        pass
+                    try:
+                        page.evaluate(_CONSENT_DISMISS_JS)
+                    except Exception:
+                        pass
+                    page.wait_for_timeout(400)
+
+                if time.time() > deadline:
+                    return {"found": False, "error": "render_timeout"}
+
+                png_bytes = page.screenshot(full_page=full_page, type="png")
+                try:
+                    size = page.evaluate(
+                        "() => ({w: document.documentElement.clientWidth, "
+                        "h: Math.max(document.body.scrollHeight, "
+                        "document.documentElement.scrollHeight)})"
+                    )
+                    width = int(size.get("w") or 1280)
+                    height = int(size.get("h") or 0)
+                except Exception:
+                    width, height = 1280, 0
+
+                return {
+                    "found": True,
+                    "screenshot_b64": base64.b64encode(png_bytes).decode("ascii"),
+                    "width": width,
+                    "height": height,
+                    "source": f"local Chromium via BrightData residential ({country})",
+                    "captured_at": datetime.now(timezone.utc).isoformat(),
+                }
+            finally:
+                try:
+                    browser.close()
+                except Exception:
+                    pass
+    except Exception as e:
+        log.warning("screenshot: BD capture failed for %s: %s", url, e)
+        return {"found": False, "error": (str(e)[:200] or "capture_failed")}
+
+
+@app.post("/api/v1/screenshot")
+async def screenshot_endpoint(request: Request, _key: str = Depends(verify_api_key)):
+    """Clean full-page website screenshot via Bright Data Scraping Browser.
+
+    Dismisses cookie/consent banners before capture so the image is usable in
+    CIR reports. Synchronous; ~15-40s typical, 60s hard cap. Timeout-safe:
+    returns {found:false, error:"render_timeout"} on failure (never 500) so
+    GC can degrade to no-image.
+
+    Body: {"url": "https://...", "full_page": true}
+    """
+    body = await request.json()
+    url = (body.get("url") or "").strip()
+    if not url:
+        raise HTTPException(status_code=422, detail="url required")
+    if not re.match(r"^https?://", url, re.IGNORECASE):
+        url = "https://" + url
+    full_page = bool(body.get("full_page", True))
+
+    log.info("screenshot: %s (full_page=%s)", url, full_page)
+    t0 = time.time()
+    deadline = t0 + 60.0
+    result = await asyncio.to_thread(
+        _screenshot_via_brightdata, url, full_page, deadline)
+    result["url"] = url
+    result["duration_ms"] = int((time.time() - t0) * 1000)
+    return result
+
+
 @app.post("/api/v1/verify-job")
 async def submit_verify_job(request: Request, _key: str = Depends(verify_api_key)):
     """
