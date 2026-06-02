@@ -4465,6 +4465,222 @@ async def linkedin_lookup(request: Request, _key: str = Depends(verify_api_key))
 
 
 # ---------------------------------------------------------------------------
+# /api/v1/person-photo — director/owner headshot with hard name-match gate
+# ---------------------------------------------------------------------------
+
+# Why this is its own endpoint: the existing linkedin/lookup returns a
+# `linkedin_url` for each requested person, but the URL came from a Google
+# SERP and is sometimes a wrong same-first-name profile (e.g. "Morris Negrin"
+# → returned a Maria-Caroline profile, 2026-06-02). For a bank CIR a wrong
+# face on a director is worse than no face. So this endpoint owns ONE job:
+# resolve the right person, gate hard on name match, return only when sure.
+
+# Tokens that don't disambiguate a name — common particles, generational
+# suffixes. Folded form (no diacritics). Used by _name_tokens().
+_NAME_STOPWORDS = {
+    "de", "da", "do", "das", "dos", "del", "della", "di", "von", "van",
+    "der", "den", "la", "le", "el", "al", "bin", "ben", "ibn", "mc", "mac",
+    "san", "saint", "st",
+    "jr", "sr", "junior", "senior", "filho", "neto", "ii", "iii", "iv",
+}
+
+
+def _fold_name(s: str) -> str:
+    """Lowercase + strip diacritics + collapse non-letter to whitespace."""
+    import unicodedata
+    s = unicodedata.normalize("NFKD", s or "")
+    s = "".join(c for c in s if not unicodedata.combining(c))
+    s = re.sub(r"[^A-Za-z\s'\-]", " ", s)
+    return re.sub(r"\s+", " ", s).strip().lower()
+
+
+def _name_tokens(name: str) -> list[str]:
+    """Distinctive name tokens. Drops particles, initials, generation suffixes."""
+    parts = re.split(r"[\s'\-]+", _fold_name(name))
+    out = []
+    for p in parts:
+        p = p.strip(".")
+        if len(p) < 2:
+            continue
+        if p in _NAME_STOPWORDS:
+            continue
+        out.append(p)
+    return out
+
+
+def _name_match_confidence(requested: str, got: str) -> str:
+    """Return 'high' | 'medium' | 'low'.
+
+    high:    every distinctive token of `requested` is present in `got`
+             (allows extra middle/last names on `got` side, e.g. requested
+             "Morris Negrin" → got "Morris Antonio Negrin" is high).
+    medium:  ≥2 distinctive tokens overlap (covers missing token cases).
+    low:     <2 distinctive tokens overlap → reject. First-name-only never
+             gets above low — that is the entire point of this gate.
+
+    Single-token requested names (e.g. "Madonna") cap at medium even on a
+    perfect token hit because they're inherently ambiguous; GC can decide
+    whether to surface them.
+    """
+    req = _name_tokens(requested)
+    got_t = _name_tokens(got)
+    if not req or not got_t:
+        return "low"
+    overlap = [t for t in req if t in got_t]
+    if len(req) == 1:
+        return "medium" if overlap else "low"
+    if len(overlap) == len(req):
+        return "high"
+    if len(overlap) >= 2:
+        return "medium"
+    return "low"
+
+
+def _fetch_avatar_bytes(photo_url: str, country: str) -> bytes:
+    """Download a LinkedIn avatar via BD residential proxy. Bytes or b''."""
+    if not photo_url:
+        return b""
+    session = _bd_next_session(f"pp{country}")
+    proxy_user = f"{_BD_USER}-country-{country}-session-{session}:{_BD_PASS}"
+    cert_args = ["--cacert", str(_BD_CERT)] if _BD_CERT.exists() else ["-k"]
+    try:
+        result = subprocess.run(
+            ["curl", "-sL", "--max-time", "20",
+             "--proxy", _BD_PROXY, "--proxy-user", proxy_user,
+             *cert_args,
+             "-H", f"User-Agent: {_BD_UA}",
+             "-H", "Accept: image/webp,image/jpeg,image/png,*/*",
+             photo_url],
+            capture_output=True, timeout=25, check=False,
+        )
+        return result.stdout or b""
+    except Exception:
+        return b""
+
+
+def _person_photo_lookup(person_name: str, company_name: str,
+                         country_code: str, linkedin_url: str) -> dict:
+    """Resolve person → name-match gate → avatar fetch. Never raises."""
+    import base64
+    try:
+        url = linkedin_url
+        if not url:
+            query = f'"{person_name}" "{company_name}" site:linkedin.com/in/'
+            url = _bd_serp_linkedin_search(query, "in")
+        if not url:
+            return {"found": False, "reason": "not_found",
+                    "note": "no LinkedIn profile found via search"}
+
+        snapshot_id = _brightdata_trigger(_BD_LINKEDIN_PEOPLE_ID, [{"url": url}])
+        if not snapshot_id:
+            return {"found": False, "reason": "not_found",
+                    "note": "BD trigger failed"}
+        status = _brightdata_poll(snapshot_id, timeout_s=120)
+        if status != "ready":
+            return {"found": False, "reason": "not_found",
+                    "note": f"BD poll: {status}"}
+        data = _brightdata_download(snapshot_id)
+        if not data:
+            return {"found": False, "reason": "not_found",
+                    "note": "BD returned no profile"}
+
+        profile = data[0]
+        matched_name = profile.get("name") or " ".join(filter(None, [
+            profile.get("first_name"), profile.get("last_name")])) or ""
+        confidence = _name_match_confidence(person_name, matched_name)
+
+        # Company match is defense-in-depth: lower confidence one notch when
+        # the profile's current employer doesn't match the requested company.
+        co_match = _person_matches_entity(profile, company_name)
+        if not co_match:
+            confidence = {"high": "medium", "medium": "low", "low": "low"}[confidence]
+
+        if confidence == "low":
+            return {"found": False, "reason": "name_mismatch",
+                    "matched_name": matched_name,
+                    "linkedin_url": profile.get("url") or url,
+                    "company_matched": co_match,
+                    "note": (f"name '{matched_name}' does not confidently match "
+                             f"'{person_name}'")}
+
+        photo_url = profile.get("avatar") or ""
+        if not photo_url or profile.get("default_avatar"):
+            return {"found": False, "reason": "no_photo",
+                    "matched_name": matched_name,
+                    "match_confidence": confidence,
+                    "linkedin_url": profile.get("url") or url,
+                    "company_matched": co_match,
+                    "note": "profile has no real avatar (placeholder or missing)"}
+
+        country = (country_code.lower() if country_code
+                   and country_code.lower() in _CC_TLDS else "us")
+        photo_bytes = _fetch_avatar_bytes(photo_url, country)
+        if not photo_bytes or len(photo_bytes) < 500:
+            return {"found": False, "reason": "no_photo",
+                    "matched_name": matched_name,
+                    "match_confidence": confidence,
+                    "linkedin_url": profile.get("url") or url,
+                    "company_matched": co_match,
+                    "note": "avatar fetch failed or returned tiny payload"}
+
+        ct = profile.get("current_company") or {}
+        return {
+            "found": True,
+            "matched_name": matched_name,
+            "match_confidence": confidence,
+            "photo_b64": base64.b64encode(photo_bytes).decode("ascii"),
+            "photo_bytes": len(photo_bytes),
+            "linkedin_url": profile.get("url") or url,
+            "title": ct.get("title") or profile.get("position"),
+            "current_company": ct.get("name") or profile.get("current_company_name"),
+            "company_matched": co_match,
+            "source": "LinkedIn via BrightData",
+        }
+    except Exception as e:
+        log.warning("person-photo lookup failed: %s", e)
+        return {"found": False, "reason": "not_found", "note": str(e)[:200]}
+
+
+@app.post("/api/v1/person-photo")
+async def person_photo_endpoint(request: Request, _key: str = Depends(verify_api_key)):
+    """Director/owner headshot with hard name-match gate.
+
+    Returns photo_b64 ONLY when the LinkedIn profile's displayed name confidently
+    matches the requested person_name AND (defense in depth) the profile's
+    current company matches company_name. Wrong-face protection is the entire
+    point — see header comment.
+
+    Body: {
+        "person_name":  "Morris Negrin",         // required
+        "company_name": "Nortene Plasticos Ltda", // required, for disambiguation
+        "country_code": "BR",                    // optional, biases proxy exit
+        "linkedin_url": ""                       // optional, skips SERP discovery
+    }
+    Failure (HTTP 200): {found:false, reason: name_mismatch|no_photo|not_found}
+    """
+    body = await request.json()
+    person_name = (body.get("person_name") or "").strip()
+    company_name = (body.get("company_name") or "").strip()
+    if not person_name:
+        raise HTTPException(status_code=422, detail="person_name required")
+    if not company_name:
+        raise HTTPException(status_code=422, detail="company_name required")
+    country_code = (body.get("country_code") or "").strip().upper()
+    linkedin_url = (body.get("linkedin_url") or "").strip()
+
+    log.info("person-photo: '%s' @ '%s' (country=%s, url=%s)",
+             person_name, company_name, country_code or "-",
+             "given" if linkedin_url else "search")
+
+    t0 = time.time()
+    result = await asyncio.to_thread(
+        _person_photo_lookup, person_name, company_name, country_code, linkedin_url)
+    result["person_name"] = person_name
+    result["duration_ms"] = int((time.time() - t0) * 1000)
+    return result
+
+
+# ---------------------------------------------------------------------------
 # /api/v1/screenshot — clean full-page website capture via BD Scraping Browser
 # ---------------------------------------------------------------------------
 
