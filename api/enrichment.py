@@ -416,18 +416,16 @@ async def enrich(
                 if value and not merged_profile.get(key):
                     merged_profile[key] = value
         else:
-            # Deep Lookup is primary — Crunchbase was unvalidated or missing
+            # Deep Lookup is primary — Crunchbase was unvalidated or missing.
+            # Do NOT backfill from cb_unvalidated: its profile belongs to a
+            # different entity (domain mismatch), so structural fields would
+            # cross-contaminate the DL result.
             merged_profile = dl_profile
-            # Only backfill from unvalidated Crunchbase for structural fields
-            if cb_unvalidated:
-                cb_prof = crunchbase_r["profile"]
-                for key in ["industries", "funding", "leadership", "financials", "social_media"]:
-                    if cb_prof.get(key) and not merged_profile.get(key):
-                        merged_profile[key] = cb_prof[key]
         citations = deep_lookup_r.get("citations", [])
     elif cb_unvalidated:
-        # Only Crunchbase (unvalidated) — use with warning
-        merged_profile = crunchbase_r["profile"]
+        # Domain mismatch — refuse rather than return wrong-company profile.
+        # match_warning is surfaced via providers.CRUNCHBASE below.
+        pass
 
     # Providers status
     providers = {}
@@ -440,6 +438,8 @@ async def enrich(
             entry["error"] = result["error"]
         if result.get("source_url"):
             entry["source_url"] = result["source_url"]
+        if result.get("match_warning"):
+            entry["match_warning"] = result["match_warning"]
         providers[name] = entry
 
     # Overall status
