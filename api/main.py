@@ -3213,7 +3213,7 @@ async def verify_entity(
             ) if result.get("found") else f"'{entity_name}' not found in SEC EDGAR",
         })
 
-    # --------------- SOUTH KOREA (DART/FSS) ---------------
+    # --------------- SOUTH KOREA (Naver + DART) ---------------
     if country_code == "KR":
         corp_code = body.get("corp_code", "").strip()
         brn = body.get("brn", "").strip()
@@ -3223,27 +3223,28 @@ async def verify_entity(
         now = datetime.now(timezone.utc).isoformat()
         return _persist_verify({
             "entity_name": entity_name, "country_code": "KR",
-            "verified": result.get("found", False),
-            "legal_name": result.get("entity_name"),
-            "entity_name_eng": result.get("entity_name_eng"),
-            "corp_code": result.get("corp_code"),
-            "status": result.get("status"),
-            "stock_code": result.get("stock_code"),
-            "market": result.get("market"),
+            "verified": result.get("verified", result.get("found", False)),
+            "legal_name": result.get("legal_name") or result.get("entity_name"),
+            "legal_name_en": result.get("legal_name_en"),
             "ceo": result.get("ceo"),
+            "headquarters": result.get("headquarters"),
             "business_registration_number": result.get("business_registration_number"),
-            "address": result.get("address"),
-            "industry_code": result.get("industry_code"),
-            "established_date": result.get("established_date"),
-            "fiscal_year_end_month": result.get("fiscal_year_end_month"),
+            "stock_code": result.get("stock_code"),
+            "founded_year": result.get("founded_year"),
+            "industry": result.get("industry"),
+            "ownership_structure": result.get("ownership_structure"),
+            "is_listed": result.get("is_listed", False),
             "homepage": result.get("homepage"),
             "phone": result.get("phone"),
+            "status": result.get("status"),
+            "source": result.get("source"),
             "validation_source": result.get("validation_source"),
             "timestamp": now,
-            "summary": (
-                f"{result.get('entity_name', entity_name)} — "
-                f"{result.get('market', '')} — {result.get('entity_name_eng', '')}"
-            ) if result.get("found") else f"'{entity_name}' not found in DART (FSS)",
+            "summary": result.get("summary") or (
+                f"{result.get('legal_name', entity_name)}"
+                + (f" ({result.get('legal_name_en')})" if result.get("legal_name_en") else "")
+                + (" — listed" if result.get("is_listed") else " — private/unlisted")
+            ) if result.get("verified", result.get("found")) else f"'{entity_name}' not found via Naver KR or DART",
         })
 
     # --------------- SAUDI ARABIA (Wathq/MCI) ---------------
