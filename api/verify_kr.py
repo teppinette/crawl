@@ -1,116 +1,70 @@
 """
-South Korea verification — Naver business search (primary, via Multilogin) +
-DART (FSS) enrichment for listed companies.
+South Korea verify — runs on the generic engine.
 
-Why this shape:
-- DART only indexes listed companies + large public filers. Private JVs
-  (e.g. Lotte INEOS Chemical) are invisible to DART by design.
-- Naver business search covers ALL Korean entities — private, JV, listed —
-  and returns structured business info (KR+EN name, HQ, CEO, founding year,
-  industry, ownership). Naver is JS-rendered + anti-bot, so we use Multilogin
-  with a KR exit IP.
-- DART is kept as ENRICHMENT for the subset that is publicly listed
-  (adds stock code, BRN, fiscal year detail, filing history).
+Primary:   Naver business search via Multilogin (KR exit IP)
+Enrichment: DART (FSS) OpenAPI for the listed subset
 """
 
 import logging
 import re
-import time
-import urllib.parse
 
-import mlx_http
+import verify_engine as eng
+from proxy_cfg import get_dc_proxy
+from curl_cffi import requests as cffi_requests
 
 log = logging.getLogger("verify-gateway")
 
-from curl_cffi import requests as cffi_requests
-from proxy_cfg import get_dc_proxy
-
-_DART_BASE = "https://opendart.fss.or.kr/api"
 _DART_KEY = None
 _DART_PROXY = None
-_NAVER_BASE = "https://search.naver.com/search.naver"
+_DART_BASE = "https://opendart.fss.or.kr/api"
 
 
 def init(get_secret):
     global _DART_KEY, _DART_PROXY
     _DART_KEY = get_secret("dart-api-key")
     _DART_PROXY = get_dc_proxy()
-    if _DART_KEY:
-        log.info("KR verify ready — Naver (Multilogin, primary) + DART (enrichment)")
-    else:
-        log.warning("KR verify ready — Naver only (DART key not configured)")
+    log.info("KR verify ready (engine) — Naver primary, DART enrichment %s",
+             "enabled" if _DART_KEY else "disabled (no key)")
 
 
-def kr_verify(entity_name: str, corp_code: str = "", brn: str = "") -> dict:
-    """
-    Verify a Korean entity.
+def _parse_kr(raw: dict, entity_name: str, ids: dict) -> dict:
+    """Extract structured fields from a Naver business-search page."""
+    src = (raw.get("body") or "") + "\n\n" + (raw.get("html") or "")
+    if not src.strip():
+        return {"found": False, "error": "empty_response"}
 
-    Primary: Naver business search via Multilogin (KR proxy) — covers private + public.
-    Enrichment: DART (FSS) for listed companies if corp_code provided OR if entity is in DART.
-    """
-    if not entity_name and not corp_code:
-        return {"found": False, "error": "entity_name or corp_code required"}
+    # English name — typical: "영어: Lotte INEOS Chemicals"
+    eng = re.search(r"영어\s*[:\-]\s*([A-Za-z][^,<\n)]{2,80})", src)
+    legal_name_en = eng.group(1).strip().rstrip(".,") if eng else None
 
-    naver = _naver_search(entity_name) if entity_name else {}
+    # Founding year
+    year = re.search(r"(19[5-9]\d|20[0-2]\d)\s*년", src)
+    founded_year = year.group(1) if year else None
 
-    dart = {}
-    if _DART_KEY and (corp_code or naver.get("found")):
-        dart = _dart_enrich(entity_name=entity_name, corp_code=corp_code)
-
-    return _merge(entity_name, naver, dart)
-
-
-def _naver_search(entity_name: str) -> dict:
-    try:
-        q = urllib.parse.quote(entity_name)
-        url = f"{_NAVER_BASE}?query={q}"
-        r = mlx_http.mlx_navigate(url=url, wait_s=5, country_code="KR", timeout=60)
-        html = r.get("html") or ""
-        body = r.get("body") or ""
-
-        if not html and not body:
-            return {"found": False, "note": "Naver returned empty"}
-
-        result = _parse_naver(html, body, entity_name)
-        result["naver_search_url"] = url
-        return result
-    except Exception as e:
-        log.warning("Naver KR search failed for %s: %s", entity_name, e)
-        return {"found": False, "error": f"naver_unreachable: {str(e)[:120]}"}
-
-
-def _parse_naver(html: str, body: str, entity_name: str) -> dict:
-    src = body + "\n\n" + html
-
-    eng_match = re.search(r"영어\s*[:\-]\s*([A-Za-z][^,<\n)]{2,80})", src)
-    english_name = eng_match.group(1).strip().rstrip(".,") if eng_match else None
-
-    year_match = re.search(r"(19[5-9]\d|20[0-2]\d)\s*년", src)
-    founded = year_match.group(1) if year_match else None
-
-    hq_match = re.search(
+    # Headquarters — Korean address
+    hq = re.search(
         r"본사[는은]?\s*"
         r"([가-힣]+(?:특별시|광역시|특별자치시|특별자치도|도)"
         r"\s*[가-힣]+(?:시|구|군)"
         r"\s*[가-힣0-9\-\s]{0,40}?\d+[\- ]?\d*)",
         src,
     )
-    if not hq_match:
-        hq_match = re.search(
+    if not hq:
+        hq = re.search(
             r"([가-힣]+(?:특별시|광역시|특별자치시|특별자치도)"
             r"\s*[가-힣]+(?:구|군)"
             r"\s*[가-힣]+(?:동|로|길|읍|면)"
             r"\s*[0-9\-]+)",
             src,
         )
-    headquarters = hq_match.group(1).strip().rstrip(".") if hq_match else None
+    headquarters = hq.group(1).strip().rstrip(".") if hq else None
 
+    # CEO — avoid capturing the literal "이사" or "대표"
     ceo = None
-    # "대표이사 NAME" or "대표이사 NAME 대표" — capture 2-4 char Korean name
     for pattern in (
         r"대표이사\s+([가-힣]{2,4})(?![가-힣])",
         r"CEO\s+([가-힣]{2,4})(?![가-힣])",
-        r"([가-힣]{2,4})\s+(?:롯데이네오스화학\s+)?대표(?:이사)?(?![가-힣])",
+        r"([가-힣]{2,4})\s+대표(?:이사)?(?![가-힣])",
     ):
         m = re.search(pattern, src)
         if m:
@@ -119,9 +73,11 @@ def _parse_naver(html: str, body: str, entity_name: str) -> dict:
                 ceo = cand
                 break
 
-    jv_match = re.search(r"(\d+\s*대\s*\d+)\s*(?:로\s*)?합작", src)
-    ownership = f"JV {jv_match.group(1)}" if jv_match else None
+    # JV / ownership
+    jv = re.search(r"(\d+\s*대\s*\d+)\s*(?:로\s*)?합작", src)
+    ownership_structure = f"JV {jv.group(1)}" if jv else None
 
+    # Industry from keyword presence in first 5K chars (search snippet area)
     industry = None
     for kw, label in [("화학", "Chemicals"), ("제약", "Pharmaceuticals"),
                       ("반도체", "Semiconductors"), ("금융", "Financial Services"),
@@ -132,110 +88,102 @@ def _parse_naver(html: str, body: str, entity_name: str) -> dict:
             industry = label
             break
 
-    found = (entity_name in src) or (entity_name.replace(" ", "") in src.replace(" ", ""))
+    # Did Naver's page mention the entity? (loose match — entity name embedded somewhere)
+    name_squashed = entity_name.replace(" ", "")
+    src_squashed = src.replace(" ", "")
+    found = (entity_name in src) or (name_squashed in src_squashed)
 
     return {
         "found": found,
-        "legal_name_kr": entity_name if found else None,
-        "legal_name_en": english_name,
+        "legal_name": entity_name if found else None,
+        "legal_name_en": legal_name_en,
         "ceo": ceo,
         "headquarters": headquarters,
-        "founded_year": founded,
+        "founded_year": founded_year,
         "industry": industry,
-        "ownership_structure": ownership,
-        "source": "Naver business search (Korea)",
+        "ownership_structure": ownership_structure,
     }
 
 
-def _dart_enrich(entity_name: str, corp_code: str = "") -> dict:
-    try:
-        if corp_code:
-            return _dart_company_profile(corp_code)
-        cc = _dart_find_corp_code(entity_name)
-        if cc:
-            return _dart_company_profile(cc)
+def _dart_enrich(entity_name: str, ids: dict, primary: dict) -> dict:
+    """Optional DART (FSS) enrichment for listed companies."""
+    if not _DART_KEY:
         return {}
+    corp_code = (ids.get("corp_code") or "").strip()
+    try:
+        if not corp_code:
+            corp_code = _dart_find_corp_code(entity_name)
+        if not corp_code:
+            return {}
+        profile = _dart_company_profile(corp_code)
+        if not profile:
+            return {}
+        out = {
+            "stock_code": profile.get("stock_code"),
+            "business_registration_number": profile.get("bizr_no"),
+            "homepage": profile.get("hm_url"),
+            "phone": profile.get("phn_no"),
+            "is_listed": bool(profile.get("stock_code")),
+            "enrichment_source": "DART (Financial Supervisory Service, Republic of Korea)",
+            "enrichment_url": f"https://dart.fss.or.kr/dsae001/main.do?corp_code={corp_code}",
+        }
+        # Prefer DART CEO if Naver missed it
+        if not primary.get("ceo") and profile.get("ceo_nm"):
+            out["ceo"] = profile["ceo_nm"]
+        return out
     except Exception as e:
-        log.debug("DART enrichment failed: %s", e)
+        log.debug("DART enrichment skipped: %s", e)
         return {}
 
 
 def _dart_find_corp_code(entity_name: str) -> str:
-    session = cffi_requests.Session(impersonate="chrome")
-    session.get("https://dart.fss.or.kr/", proxy=_DART_PROXY, timeout=15)
-    resp = session.post(
+    s = cffi_requests.Session(impersonate="chrome")
+    s.get("https://dart.fss.or.kr/", proxy=_DART_PROXY, timeout=15)
+    r = s.post(
         "https://dart.fss.or.kr/dsab001/search.ax",
         data={"textCrpNm": entity_name, "currentPage": "1", "maxResults": "5", "textCrpCik": ""},
         proxy=_DART_PROXY, timeout=15,
     )
-    if resp.status_code != 200:
+    if r.status_code != 200:
         return ""
-    m = re.findall(r"openCorpInfoNew\('(\d+)'", resp.text)
+    m = re.findall(r"openCorpInfoNew\('(\d+)'", r.text)
     return m[0] if m else ""
 
 
 def _dart_company_profile(corp_code: str) -> dict:
-    resp = cffi_requests.get(
+    r = cffi_requests.get(
         f"{_DART_BASE}/company.json",
         params={"crtfc_key": _DART_KEY, "corp_code": corp_code},
         impersonate="chrome", proxy=_DART_PROXY, timeout=15,
     )
-    if resp.status_code != 200:
+    if r.status_code != 200:
         return {}
-    d = resp.json()
+    d = r.json()
     if d.get("status") != "000":
         return {}
-    return {
-        "dart_corp_code": corp_code,
-        "dart_stock_code": (d.get("stock_code") or "").strip() or None,
-        "dart_brn": d.get("bizr_no") or None,
-        "dart_ceo": d.get("ceo_nm") or None,
-        "dart_address": d.get("adres") or None,
-        "dart_market": d.get("corp_cls"),
-        "dart_established_date": d.get("est_dt"),
-        "dart_homepage": d.get("hm_url") or None,
-        "dart_phone": d.get("phn_no") or None,
-    }
+    return d
 
 
-def _merge(entity_name: str, naver: dict, dart: dict) -> dict:
-    found = bool(naver.get("found")) or bool(dart.get("dart_corp_code"))
-    return {
-        "entity_name": entity_name,
-        "country_code": "KR",
-        "found": found,
-        "verified": found,
-        "legal_name": naver.get("legal_name_kr") or entity_name,
-        "legal_name_en": naver.get("legal_name_en"),
-        "ceo": dart.get("dart_ceo") or naver.get("ceo"),
-        "headquarters": dart.get("dart_address") or naver.get("headquarters"),
-        "business_registration_number": dart.get("dart_brn"),
-        "stock_code": dart.get("dart_stock_code"),
-        "founded_year": naver.get("founded_year"),
-        "industry": naver.get("industry"),
-        "ownership_structure": naver.get("ownership_structure"),
-        "homepage": dart.get("dart_homepage"),
-        "phone": dart.get("dart_phone"),
-        "is_listed": bool(dart.get("dart_stock_code")),
-        "source": "DART (FSS) + Naver business search" if dart else "Naver business search",
-        "validation_source": {
-            "primary": "Naver business search (Republic of Korea)",
-            "primary_url": naver.get("naver_search_url"),
-            "enrichment": "DART — Financial Supervisory Service" if dart else None,
-            "enrichment_url": f"https://dart.fss.or.kr/dsae001/main.do?corp_code={dart['dart_corp_code']}" if dart.get("dart_corp_code") else None,
-            "how_to_reproduce": (
-                f"Visit https://search.naver.com/search.naver?query={urllib.parse.quote(entity_name)} → "
-                f"View business panel. For listed entities cross-check via https://dart.fss.or.kr."
-            ),
-            "verified_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-        },
-        "status": "ACTIVE" if found else "NOT_FOUND",
-        "summary": (
-            f"'{entity_name}' verified via Naver (KR) — "
-            f"{'listed (DART confirmed)' if dart.get('dart_stock_code') else 'private/unlisted'}"
-        ) if found else f"'{entity_name}' not found in Naver KR or DART",
-    }
+KR_CONFIG = eng.CountryConfig(
+    country_code="KR",
+    source_name="Naver business search (Republic of Korea)",
+    transport=eng.T_MLX_NAVIGATE,
+    primary_url="https://search.naver.com/search.naver?query={q}",
+    wait_s=5,
+    timeout=60,
+    parser=_parse_kr,
+    enrichment=_dart_enrich,
+    how_to_reproduce_template=(
+        "Visit {url} → view the entity business panel. "
+        "For listed entities cross-check via https://dart.fss.or.kr."
+    ),
+)
 
 
-# Backward-compat: existing main.py calls dart_verify()
+def kr_verify(entity_name: str, corp_code: str = "", brn: str = "") -> dict:
+    """KR verify entry point — backward compat with main.py routing."""
+    return eng.run(KR_CONFIG, entity_name, {"corp_code": corp_code, "brn": brn})
+
+
+# Backward-compat alias (existing main.py calls dart_verify)
 dart_verify = kr_verify
