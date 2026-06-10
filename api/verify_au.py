@@ -1,162 +1,189 @@
 """
-Australia company verification via ABR (Australian Business Register).
+Australia verify — runs on the generic engine.
 
-Source: https://abr.business.gov.au/json/
-Free API — GUID auth (public), JSONP response.
+Source: ABR (Australian Business Register) JSONP API. Free, public GUID auth.
+Multilogin HTTP with AU exit IP.
 
-Input: entity_name (search by name) or abn (11 digits)
-Returns: legal_name, abn, acn, entity_type, status, state, gst_registered
+Two configs sharing parser:
+  AU_ABN_CONFIG  — exact ABN lookup
+  AU_NAME_CONFIG — name search
 """
 
-import logging
 import json
+import logging
 import re
-import time
 
-from mlx_http import mlx_get
+import verify_engine as eng
 
 log = logging.getLogger("verify-gateway")
 
-_ABN_URL = "https://abr.business.gov.au/json/AbnDetails.aspx"
+_ABN_URL  = "https://abr.business.gov.au/json/AbnDetails.aspx"
 _NAME_URL = "https://abr.business.gov.au/json/MatchingNames.aspx"
-_GUID = "3e7189e6-4743-4090-a8d1-348e58b498d6"  # Public GUID
+_GUID = "3e7189e6-4743-4090-a8d1-348e58b498d6"
+
+_STATE_MAP = {
+    "NSW": "New South Wales", "VIC": "Victoria", "QLD": "Queensland",
+    "WA": "Western Australia", "SA": "South Australia",
+    "TAS": "Tasmania", "ACT": "Australian Capital Territory",
+    "NT": "Northern Territory",
+}
 
 
 def init(get_secret=None):
-    log.info("AU ABR ready (Australian Business Register, free JSONP API)")
-
-
-def abr_verify(entity_name: str, abn: str = "") -> dict:
-    if not entity_name and not abn:
-        return {"found": False, "error": "entity_name or abn required"}
-
-    try:
-        if abn:
-            clean = re.sub(r"[\s\-]", "", abn.strip())
-            if not re.match(r"^\d{11}$", clean):
-                return {"abn": abn, "found": False, "error": "ABN must be 11 digits"}
-            return _lookup_abn(clean, entity_name)
-        return _search_name(entity_name)
-    except Exception as e:
-        log.error("AU ABR error for %s: %s", entity_name or abn, e)
-        return {"entity_name": entity_name, "found": False, "error": str(e)[:300]}
+    log.info("AU verify ready (engine) — ABR JSONP via Multilogin")
 
 
 def _unwrap_jsonp(text: str) -> dict:
-    m = re.search(r"callback\((.*)\)$", text.strip(), re.DOTALL)
+    text = (text or "").strip()
+    m = re.search(r"callback\((.*)\)$", text, re.DOTALL)
     if m:
         return json.loads(m.group(1))
     return json.loads(text)
 
 
-def _lookup_abn(abn: str, entity_name: str) -> dict:
-    result = mlx_get(
-        _ABN_URL,
-        params={"abn": abn, "callback": "callback", "guid": _GUID},
-        timeout=60, country_code="au",
-    )
-    if not result.get("ok"):
-        raise RuntimeError(f"HTTP {result.get('status_code')}: {result.get('body', '')[:200]}")
-    data = _unwrap_jsonp(result.get("body", ""))
+def _parse_au_abn(raw: dict, entity_name: str, ids: dict) -> dict:
+    body = raw.get("body") or ""
+    try:
+        data = _unwrap_jsonp(body)
+    except Exception as e:
+        return {"found": False, "error": f"jsonp_parse: {str(e)[:120]}"}
 
     if data.get("Message"):
-        return {
-            "entity_name": entity_name, "abn": abn,
-            "found": False, "status": "NOT_FOUND",
-            "note": data["Message"],
-            "validation_source": _source(abn),
-        }
+        return {"found": False, "note": data.get("Message")}
 
-    return _format_abn(data, entity_name, 1, [])
-
-
-def _search_name(entity_name: str) -> dict:
-    result = mlx_get(
-        _NAME_URL,
-        params={"name": entity_name, "callback": "callback", "guid": _GUID, "maxResults": 10},
-        timeout=60, country_code="au",
-    )
-    if not result.get("ok"):
-        raise RuntimeError(f"HTTP {result.get('status_code')}: {result.get('body', '')[:200]}")
-    data = _unwrap_jsonp(result.get("body", ""))
-
-    names = data.get("Names", [])
-    if not names:
-        return {
-            "entity_name": entity_name, "found": False,
-            "status": "NOT_FOUND",
-            "validation_source": _source(entity_name),
-        }
-
-    best = names[0]
-    best_abn = best.get("Abn", "")
-    if best_abn:
-        result = _lookup_abn(best_abn, entity_name)
-        if result.get("found"):
-            result["total_matches"] = len(names)
-            result["other_matches"] = [
-                {"name": n.get("Name", ""), "abn": n.get("Abn", ""),
-                 "score": n.get("Score", "")}
-                for n in names[1:5]
-            ] or None
-            return result
-        return result
-
-    return {
-        "entity_name": entity_name, "found": False,
-        "status": "NOT_FOUND",
-        "validation_source": _source(entity_name),
-    }
-
-
-def _format_abn(data: dict, query_name: str, total: int, others: list) -> dict:
+    name = data.get("EntityName", "")
     abn = data.get("Abn", "")
-    acn = data.get("Acn", "")
+    if not name and not abn:
+        return {"found": False}
 
-    # Entity name — business name or entity name
-    bn = data.get("BusinessName", [])
-    en = data.get("EntityName", "")
-    legal_name = en if en else (bn[0] if bn else "")
-
+    abn_status = data.get("AbnStatus", "")
     entity_type = data.get("EntityTypeName", "")
-    entity_code = data.get("EntityTypeCode", "")
-
-    status = data.get("AbnStatus", "")
-    status_date = data.get("AbnStatusEffectiveFrom", "")
-
-    gst = data.get("Gst", "")
     state = data.get("AddressState", "")
     postcode = data.get("AddressPostcode", "")
-    address = f"{state} {postcode}".strip() if state or postcode else None
+    gst = data.get("Gst", "")
+    acn = data.get("Acn", "")
+
+    business_names = []
+    bn = data.get("BusinessName")
+    if isinstance(bn, list):
+        business_names = [b for b in bn if b]
+    elif isinstance(bn, str) and bn:
+        business_names = [bn]
 
     return {
-        "entity_name": legal_name,
-        "query_name": query_name,
-        "country_code": "AU",
         "found": True,
+        "legal_name": name,
+        "business_registration_number": abn or None,
+        "headquarters": f"{_STATE_MAP.get(state, state)} {postcode}".strip() or None,
+        "industry": entity_type or None,
+        "is_listed": False,
+        # AU-specific extras
         "abn": abn or None,
         "acn": acn or None,
         "entity_type": entity_type or None,
-        "entity_type_code": entity_code or None,
-        "status": status.upper() if status else "UNKNOWN",
-        "status_effective_from": status_date or None,
-        "state": state or None,
+        "abn_status": abn_status or None,
+        "state": _STATE_MAP.get(state, state) or None,
+        "state_code": state or None,
         "postcode": postcode or None,
-        "registered_address": address,
-        "gst_registered": gst or None,
-        "business_names": bn or None,
-        "total_matches": total,
-        "other_matches": others or None,
-        "source": "ABR (Australian Business Register), Australian Government",
-        "validation_source": _source(query_name),
+        "gst_registered": bool(gst) if gst != "" else None,
+        "business_names": business_names or None,
+        "status": "ACTIVE" if abn_status == "Active" else (abn_status.upper() if abn_status else "UNKNOWN"),
+        "summary": (
+            f"{name} — ABN {abn} — {abn_status or 'unknown'}"
+            + (f" — {entity_type}" if entity_type else "")
+            + (f" ({_STATE_MAP.get(state, state)})" if state else "")
+        ),
     }
 
 
-def _source(query: str) -> dict:
+def _parse_au_name(raw: dict, entity_name: str, ids: dict) -> dict:
+    body = raw.get("body") or ""
+    try:
+        data = _unwrap_jsonp(body)
+    except Exception as e:
+        return {"found": False, "error": f"jsonp_parse: {str(e)[:120]}"}
+
+    names = data.get("Names") or []
+    if not names:
+        return {"found": False}
+
+    best = names[0]
+    abn = best.get("Abn", "")
+
+    matches = [
+        {
+            "name": n.get("Name", ""),
+            "abn": n.get("Abn", ""),
+            "abn_status": n.get("AbnStatus", ""),
+            "state": _STATE_MAP.get(n.get("State", ""), n.get("State", "")),
+            "postcode": n.get("Postcode", ""),
+            "is_current": n.get("IsCurrent", ""),
+            "score": n.get("Score", ""),
+        }
+        for n in names[:5]
+    ]
+
+    # Now fetch full detail for the best ABN match
+    if abn:
+        # Trigger a second engine call by mimicking the ABN parser on a direct fetch
+        from mlx_http import mlx_get
+        try:
+            r = mlx_get(
+                _ABN_URL,
+                params={"abn": abn, "callback": "callback", "guid": _GUID},
+                country_code="au", timeout=30,
+            )
+            if r.get("ok"):
+                detail = _parse_au_abn({"body": r.get("body", "")}, entity_name, ids)
+                if detail.get("found"):
+                    detail["total_matches"] = len(names)
+                    detail["alternative_matches"] = matches[1:] or None
+                    return detail
+        except Exception as e:
+            log.debug("AU detail fetch failed: %s", e)
+
+    # Fallback: return search-only data
     return {
-        "registry": "ABR — Australian Business Register, Australian Taxation Office",
-        "url": "https://abr.business.gov.au/",
-        "api": _ABN_URL,
-        "how_to_reproduce": f"Visit abr.business.gov.au → Search: {query}",
-        "verified_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        "found": True,
+        "legal_name": best.get("Name", "") or entity_name,
+        "business_registration_number": abn or None,
+        "is_listed": False,
+        "abn": abn or None,
+        "abn_status": best.get("AbnStatus", ""),
+        "state": _STATE_MAP.get(best.get("State", ""), best.get("State", "")) or None,
+        "postcode": best.get("Postcode", "") or None,
+        "status": best.get("AbnStatus", "").upper() or "UNKNOWN",
+        "total_matches": len(names),
+        "alternative_matches": matches[1:] or None,
+        "summary": f"{best.get('Name','')} — ABN {abn or 'N/A'} — {best.get('AbnStatus','unknown')}",
     }
+
+
+AU_ABN_CONFIG = eng.CountryConfig(
+    country_code="AU",
+    source_name="Australian Business Register (ABR)",
+    transport=eng.T_MLX_HTTP,
+    primary_url=_ABN_URL + "?abn={q}&callback=callback&guid=" + _GUID,
+    parser=_parse_au_abn,
+    timeout=30,
+    how_to_reproduce_template="Visit https://abr.business.gov.au → lookup ABN {entity}",
+)
+
+AU_NAME_CONFIG = eng.CountryConfig(
+    country_code="AU",
+    source_name="Australian Business Register (ABR)",
+    transport=eng.T_MLX_HTTP,
+    primary_url=_NAME_URL + "?name={q}&callback=callback&guid=" + _GUID,
+    parser=_parse_au_name,
+    timeout=30,
+    how_to_reproduce_template="Visit https://abr.business.gov.au → search '{entity}'",
+)
+
+
+def abr_verify(entity_name: str, abn: str = "") -> dict:
+    """AU verify entry point — backward compat with main.py routing."""
+    if abn:
+        clean = re.sub(r"[\s\-]", "", abn.strip())
+        if re.match(r"^\d{11}$", clean):
+            return eng.run(AU_ABN_CONFIG, clean, {"abn": clean})
+    return eng.run(AU_NAME_CONFIG, entity_name, {})

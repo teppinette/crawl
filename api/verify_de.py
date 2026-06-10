@@ -1,18 +1,17 @@
 """
-Germany company verification via EU VIES (VAT Information Exchange System).
+Germany verify — runs on the generic engine.
 
-Source: https://ec.europa.eu/taxation_customs/vies/rest-api/check-vat-number
-Free API — official EU tax validation, returns company name + address.
-
-Input: vat_id (USt-IdNr, 9 digits) or hrb (Handelsregister number)
-Returns: legal_name, vat_id, status (valid/invalid), address
+Source: EU VIES (VAT Information Exchange System).
+Returns legal name + address for valid VAT IDs (USt-IdNr).
+Multilogin POST with DE exit IP. VIES doesn't expose name search;
+USt-IdNr or HRB is required.
 """
 
 import logging
 import re
 import time
 
-from mlx_http import mlx_post
+import verify_engine as eng
 
 log = logging.getLogger("verify-gateway")
 
@@ -20,70 +19,76 @@ _VIES_URL = "https://ec.europa.eu/taxation_customs/vies/rest-api/check-vat-numbe
 
 
 def init(get_secret=None):
-    log.info("DE VIES ready (EU VAT validation for Germany)")
+    log.info("DE verify ready (engine) — VIES via Multilogin POST")
+
+
+def _de_body(entity_name: str, ids: dict) -> dict:
+    vat = ids.get("vat_clean") or ""
+    return {"countryCode": "DE", "vatNumber": vat}
+
+
+def _parse_de(raw: dict, entity_name: str, ids: dict) -> dict:
+    data = raw.get("json") or {}
+    valid = bool(data.get("valid"))
+    if not valid:
+        return {"found": False, "note": "VIES marked VAT ID invalid"}
+
+    name = (data.get("name") or "").strip().replace("---", "")
+    address = (data.get("address") or "").strip().replace("---", "")
+    vat = ids.get("vat_clean") or ""
+
+    return {
+        "found": True,
+        "legal_name": name or entity_name,
+        "business_registration_number": f"DE{vat}",
+        "headquarters": address or None,
+        "is_listed": False,
+        # DE-specific extras
+        "vat_id": f"DE{vat}",
+        "registered_address": address or None,
+        "request_date": data.get("requestDate", "") or None,
+        "status": "ACTIVE",
+        "summary": f"{name or entity_name} — VAT DE{vat} — VIES verified",
+    }
+
+
+DE_CONFIG = eng.CountryConfig(
+    country_code="DE",
+    source_name="VIES (EU VAT Information Exchange System)",
+    transport=eng.T_MLX_HTTP,
+    method="POST",
+    body_builder=_de_body,
+    primary_url=_VIES_URL,
+    parser=_parse_de,
+    timeout=60,
+    headers={"Accept": "application/json"},
+    how_to_reproduce_template=(
+        "Visit https://ec.europa.eu/taxation_customs/vies/ → "
+        "country DE → enter VAT {entity} → check"
+    ),
+)
 
 
 def handelsregister_verify(entity_name: str, hrb: str = "", vat_id: str = "") -> dict:
-    if not vat_id and not hrb:
+    """DE verify entry point — backward compat with main.py routing."""
+    if not vat_id:
         return {
             "entity_name": entity_name, "country_code": "DE",
-            "found": False,
-            "note": "USt-IdNr (VAT ID, 9 digits) or HRB number required for Germany verification. "
-                    "Name-only search not available via VIES.",
+            "found": False, "verified": False,
+            "note": ("USt-IdNr (VAT ID, 9 digits) required for Germany verification. "
+                     "VIES does not support name-only search. "
+                     "If only HRB provided, direct Handelsregister lookup not yet implemented."),
+            "hrb": hrb or None,
+            "source": "VIES (EU VAT Information Exchange System)",
         }
 
-    if vat_id:
-        clean = re.sub(r"[\s\-.]", "", vat_id.strip())
-        clean = re.sub(r"^DE", "", clean, flags=re.IGNORECASE)
-        if not re.match(r"^\d{9}$", clean):
-            return {"vat_id": vat_id, "found": False,
-                    "error": "USt-IdNr must be 9 digits (without DE prefix)"}
-        try:
-            return _check_vies("DE", clean, entity_name)
-        except Exception as e:
-            log.error("DE VIES error for %s: %s", vat_id, e)
-            return {"entity_name": entity_name, "found": False, "error": str(e)[:300]}
+    clean = re.sub(r"[\s\-.]", "", vat_id.strip())
+    clean = re.sub(r"^DE", "", clean, flags=re.IGNORECASE)
+    if not re.match(r"^\d{9}$", clean):
+        return {
+            "entity_name": entity_name, "country_code": "DE",
+            "vat_id": vat_id, "found": False, "verified": False,
+            "error": "USt-IdNr must be 9 digits (without DE prefix)",
+        }
 
-    # HRB only — can't use VIES without VAT ID
-    return {
-        "entity_name": entity_name, "country_code": "DE",
-        "hrb": hrb,
-        "found": False,
-        "note": f"HRB {hrb} provided but VIES requires a USt-IdNr (VAT ID) for verification. "
-                "Handelsregister direct lookup not yet implemented.",
-    }
-
-
-def _check_vies(country: str, vat: str, entity_name: str) -> dict:
-    result = mlx_post(
-        _VIES_URL,
-        json_body={"countryCode": country, "vatNumber": vat},
-        headers={"Accept": "application/json"},
-        timeout=60, country_code="de",
-    )
-    if not result.get("ok"):
-        raise RuntimeError(f"VIES returned HTTP {result.get('status_code')}: {result.get('body', '')[:200]}")
-    data = result.get("json") or {}
-
-    valid = data.get("valid", False)
-    name = data.get("name", "").strip().replace("---", "")
-    address = data.get("address", "").strip().replace("---", "")
-
-    return {
-        "entity_name": name or entity_name,
-        "query_name": entity_name,
-        "country_code": "DE",
-        "found": valid,
-        "vat_id": f"DE{vat}",
-        "status": "ACTIVE" if valid else "INVALID",
-        "registered_address": address or None,
-        "request_date": data.get("requestDate", ""),
-        "source": "VIES (EU VAT Information Exchange System)",
-        "validation_source": {
-            "registry": "VIES — EU VAT Information Exchange System (Bundeszentralamt für Steuern data)",
-            "url": "https://ec.europa.eu/taxation_customs/vies/",
-            "record_id": f"DE{vat}",
-            "how_to_reproduce": f"Visit VIES portal → Country: DE → VAT: {vat} → Verify",
-            "verified_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-        },
-    }
+    return eng.run(DE_CONFIG, entity_name or f"DE{clean}", {"vat_clean": clean})

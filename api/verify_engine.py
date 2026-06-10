@@ -43,6 +43,8 @@ class CountryConfig:
     transport: str                       # one of T_* constants above
     primary_url: str                     # URL template; {q} = url-encoded entity_name, {entity} = raw, **ids
     parser: Callable[[dict, str, dict], dict]  # parser(raw, entity_name, ids) -> extracted fields dict
+    method: str = "GET"                  # "GET" or "POST" — POST sends body_builder(entity_name, ids) as JSON
+    body_builder: Optional[Callable[[str, dict], dict]] = None  # POST body dict
     wait_s: int = 4                      # for mlx_navigate, post-load JS wait
     timeout: int = 60
     enrichment: Optional[Callable[[str, dict, dict], dict]] = None  # enrichment(entity_name, ids, primary_extracted) -> dict_to_merge
@@ -64,7 +66,7 @@ def run(config: CountryConfig, entity_name: str, ids: dict | None = None) -> dic
         return _empty(config, entity_name, f"missing template key: {e}")
 
     try:
-        raw = _fetch(config, primary_url)
+        raw = _fetch(config, primary_url, entity_name, ids)
     except Exception as e:
         log.warning("%s primary fetch failed: %s", config.country_code, e)
         return _empty(config, entity_name, f"primary_unreachable: {str(e)[:160]}", primary_url)
@@ -91,26 +93,43 @@ def run(config: CountryConfig, entity_name: str, ids: dict | None = None) -> dic
     return _wrap(config, entity_name, extracted, primary_url)
 
 
-def _fetch(config: CountryConfig, url: str) -> dict:
+def _fetch(config: CountryConfig, url: str, entity_name: str = "", ids: dict | None = None) -> dict:
     """Transport-specific fetch — returns {html, body, json, status}."""
     cc_lower = config.country_code.lower()
+    ids = ids or {}
+    body_data = config.body_builder(entity_name, ids) if config.body_builder else None
 
     if config.transport == T_MLX_NAVIGATE:
         r = mlx_http.mlx_navigate(url=url, wait_s=config.wait_s, country_code=cc_lower, timeout=config.timeout)
         return {"html": r.get("html", ""), "body": r.get("body", ""), "json": None, "status": 200}
 
     if config.transport == T_MLX_HTTP:
-        r = mlx_http.mlx_get(url=url, country_code=cc_lower, timeout=config.timeout, headers=config.headers or None)
+        if config.method == "POST":
+            r = mlx_http.mlx_post(url=url, json_body=body_data,
+                                  headers=config.headers or None,
+                                  country_code=cc_lower, timeout=config.timeout)
+        else:
+            r = mlx_http.mlx_get(url=url, country_code=cc_lower, timeout=config.timeout, headers=config.headers or None)
         body = r.get("body", "")
         return {"html": "", "body": body, "json": _try_json(body), "status": r.get("status", 200)}
 
     if config.transport == T_DIRECT_API:
-        r = cffi_requests.get(url, headers=config.headers or None, impersonate="chrome", timeout=config.timeout)
+        if config.method == "POST":
+            r = cffi_requests.post(url, json=body_data, headers=config.headers or None,
+                                   impersonate="chrome", timeout=config.timeout)
+        else:
+            r = cffi_requests.get(url, headers=config.headers or None,
+                                  impersonate="chrome", timeout=config.timeout)
         return {"html": "", "body": r.text, "json": _resp_json(r), "status": r.status_code}
 
     if config.transport == T_PROXY_API:
         proxy = config.proxy_provider() if config.proxy_provider else None
-        r = cffi_requests.get(url, headers=config.headers or None, proxy=proxy, impersonate="chrome", timeout=config.timeout)
+        if config.method == "POST":
+            r = cffi_requests.post(url, json=body_data, headers=config.headers or None,
+                                   proxy=proxy, impersonate="chrome", timeout=config.timeout)
+        else:
+            r = cffi_requests.get(url, headers=config.headers or None,
+                                  proxy=proxy, impersonate="chrome", timeout=config.timeout)
         return {"html": "", "body": r.text, "json": _resp_json(r), "status": r.status_code}
 
     raise ValueError(f"unknown transport: {config.transport}")
