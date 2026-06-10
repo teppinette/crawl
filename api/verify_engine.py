@@ -135,6 +135,12 @@ def _resp_json(r) -> Optional[Any]:
         return None
 
 
+_RESERVED = {
+    "found", "verified", "summary", "error",
+    "enrichment_source", "enrichment_url",
+}
+
+
 def _wrap(config: CountryConfig, entity_name: str, extracted: dict, primary_url: str) -> dict:
     """Build the uniform verify response from extracted fields."""
     found = bool(extracted.get("found"))
@@ -150,12 +156,20 @@ def _wrap(config: CountryConfig, entity_name: str, extracted: dict, primary_url:
     if extracted.get("enrichment_url"):
         validation_source["enrichment_url"] = extracted["enrichment_url"]
 
+    # Legacy contract: response `entity_name` is the legal name from the
+    # registry when found (matches the pre-engine adapter shape that the
+    # gateway projection in api/main.py expects). Original input preserved as
+    # `query_name` for traceability — useful when caller searched by an ID.
+    legal = extracted.get("legal_name")
+    canonical_name = legal if (legal and found) else entity_name
+
     base = {
-        "entity_name": entity_name,
+        "entity_name": canonical_name,
+        "query_name": entity_name if entity_name != canonical_name else None,
         "country_code": config.country_code,
         "found": found,
         "verified": found,
-        "legal_name": extracted.get("legal_name") or (entity_name if found else None),
+        "legal_name": legal or (entity_name if found else None),
         "legal_name_en": extracted.get("legal_name_en"),
         "ceo": extracted.get("ceo"),
         "headquarters": extracted.get("headquarters") or extracted.get("address"),
@@ -174,7 +188,19 @@ def _wrap(config: CountryConfig, entity_name: str, extracted: dict, primary_url:
         "summary": extracted.get("summary") or _default_summary(entity_name, extracted),
         "error": extracted.get("error"),
     }
-    # Strip None for compactness
+
+    # Pass through any country-specific extras the parser returned
+    # (e.g. CA's home_jurisdiction, JP's corp_kind, FR's siren).
+    # Parser-supplied keys never overwrite the engine's known shape — they only
+    # extend it. Reserved keys (found/verified/summary/error/enrichment_*) are
+    # handled above and never pass through verbatim.
+    for k, v in extracted.items():
+        if k in base or k in _RESERVED:
+            continue
+        if v in (None, "", []):
+            continue
+        base[k] = v
+
     return {k: v for k, v in base.items() if v is not None}
 
 
