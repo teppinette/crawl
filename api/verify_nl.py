@@ -1,160 +1,105 @@
 """
-Netherlands company verification via KvK (Kamer van Koophandel).
+Netherlands verify — runs on the generic engine.
 
-Source: https://zoeken.kvk.nl/ (public search)
-Free public search — no auth needed for basic data.
-KVK number is 8 digits.
-
-Input: entity_name (search by name) or kvk_number (8 digits)
-Returns: legal_name, kvk_number, status, legal_form, address
+Source: KvK (Kamer van Koophandel) public Handelsregister API.
+Multilogin HTTP with NL exit IP.
 """
 
 import logging
 import re
-import time
 
-from mlx_http import mlx_get
+import verify_engine as eng
 
 log = logging.getLogger("verify-gateway")
 
-_SEARCH_URL = "https://zoeken.kvk.nl/HandelRegisterAPI/api/handelsregister"
+_BASE = "https://zoeken.kvk.nl/HandelRegisterAPI/api/handelsregister"
+
+
 def init(get_secret=None):
-    log.info("NL KvK ready (Kamer van Koophandel, public search)")
+    log.info("NL verify ready (engine) — KvK Handelsregister via Multilogin")
 
 
-def kvk_verify(entity_name: str, kvk_number: str = "") -> dict:
-    if not entity_name and not kvk_number:
-        return {"found": False, "error": "entity_name or kvk_number required"}
-
-    try:
-        if kvk_number:
-            clean = re.sub(r"[\s\-.]", "", kvk_number.strip())
-            if not re.match(r"^\d{8}$", clean):
-                return {"kvk_number": kvk_number, "found": False,
-                        "error": "KVK number must be 8 digits"}
-            return _search(clean, entity_name, by_number=True)
-        return _search(entity_name, entity_name, by_number=False)
-    except Exception as e:
-        log.error("NL KvK error for %s: %s", entity_name or kvk_number, e)
-        return {"entity_name": entity_name, "found": False, "error": str(e)[:300]}
-
-
-def _search(query: str, entity_name: str, by_number: bool) -> dict:
-    """Search KvK public API."""
-    params = {
-        "kvknummer" if by_number else "handelsnaam": query,
-        "pagina": 1,
-        "start": 0,
-        "pagesize": 10,
-    }
-
-    result = mlx_get(
-        _SEARCH_URL,
-        params=params,
-        headers={
-            "Accept": "application/json",
-        },
-        timeout=60, country_code="nl",
-    )
-
-    if result.get("status_code") == 404:
-        return _not_found(entity_name, query if by_number else "")
-
-    if not result.get("ok"):
-        raise RuntimeError(f"HTTP {result.get('status_code')}: {result.get('body', '')[:200]}")
-
-    data = result.get("json")
-    if data is None:
-        # Try parsing HTML response for data
-        return _parse_html_search(result.get("body", ""), entity_name, query if by_number else "")
-
-    results = data.get("resultaten", [])
+def _parse_nl(raw: dict, entity_name: str, ids: dict) -> dict:
+    data = raw.get("json") or {}
+    results = data.get("resultaten") or []
     if not results:
-        return _not_found(entity_name, query if by_number else "")
+        return {"found": False}
 
     best = results[0]
-    others = []
-    for r in results[1:5]:
-        others.append({
+
+    name = best.get("handelsnaam", "")
+    kvk = best.get("kvkNummer", "")
+    status = (best.get("status") or "").upper() or "UNKNOWN"
+    legal_form = best.get("rechtsvorm", "")
+    place = best.get("plaats", "")
+    street = best.get("straat", "")
+    house_nr = best.get("huisnummer", "")
+    postcode = best.get("postcode", "")
+
+    addr_parts = [street, str(house_nr) if house_nr else "", postcode, place]
+    address = " ".join(p for p in addr_parts if p).strip() or None
+
+    trade_names = best.get("handelsnamen") or None
+    sbi = best.get("spiActiviteiten") or best.get("sbiActiviteiten") or None
+
+    others = [
+        {
             "name": r.get("handelsnaam", ""),
             "kvk_number": r.get("kvkNummer", ""),
             "status": r.get("status", ""),
             "place": r.get("plaats", ""),
-        })
-
-    return _format(best, entity_name, len(results), others)
-
-
-def _parse_html_search(html: str, entity_name: str, kvk_number: str) -> dict:
-    """Fallback: parse KvK HTML search results."""
-    # Try to extract KVK numbers and names from HTML
-    kvk_matches = re.findall(r'KVK(?:\s*nummer)?[:\s]*(\d{8})', html, re.IGNORECASE)
-    name_matches = re.findall(r'handelsnaam["\s:>]*([^<"]+)', html, re.IGNORECASE)
-
-    if kvk_matches and name_matches:
-        return {
-            "entity_name": name_matches[0].strip(),
-            "query_name": entity_name,
-            "country_code": "NL",
-            "found": True,
-            "kvk_number": kvk_matches[0],
-            "status": "UNKNOWN",
-            "note": "Parsed from HTML search results",
-            "validation_source": _source(entity_name or kvk_number),
         }
-
-    return _not_found(entity_name, kvk_number)
-
-
-def _format(record: dict, entity_name: str, total: int, others: list) -> dict:
-    name = record.get("handelsnaam", "")
-    kvk = record.get("kvkNummer", "")
-    status = record.get("status", "")
-    legal_form = record.get("rechtsvorm", "")
-    place = record.get("plaats", "")
-    street = record.get("straat", "")
-    house_nr = record.get("huisnummer", "")
-    postcode = record.get("postcode", "")
-
-    addr_parts = [street, str(house_nr) if house_nr else "", postcode, place]
-    address = " ".join(p for p in addr_parts if p).strip()
-
-    trade_names = record.get("handelsnamen", [])
-    sbi = record.get("spiActiviteiten", record.get("sbiActiviteiten", []))
+        for r in results[1:5]
+    ]
 
     return {
-        "entity_name": name,
-        "query_name": entity_name,
-        "country_code": "NL",
         "found": True,
+        "legal_name": name or entity_name,
+        "business_registration_number": kvk or None,
+        "headquarters": address,
+        "industry": None,
+        "is_listed": False,
+        # NL-specific extras
         "kvk_number": kvk or None,
-        "status": status.upper() if status else "UNKNOWN",
         "legal_form": legal_form or None,
-        "registered_address": address or None,
+        "registered_address": address,
         "city": place or None,
         "postal_code": postcode or None,
-        "trade_names": trade_names or None,
-        "sbi_codes": sbi or None,
-        "total_matches": total,
+        "trade_names": trade_names,
+        "sbi_codes": sbi,
+        "total_matches": len(results),
         "other_matches": others or None,
-        "source": "KvK (Kamer van Koophandel), Netherlands",
-        "validation_source": _source(entity_name or kvk),
+        "status": status,
+        "summary": (
+            f"{name or entity_name} — KvK {kvk or 'N/A'} — {status}"
+            + (f" — {legal_form}" if legal_form else "")
+            + (f" ({place})" if place else "")
+        ),
     }
 
 
-def _not_found(entity_name: str, kvk_number: str) -> dict:
-    return {
-        "entity_name": entity_name, "kvk_number": kvk_number or None,
-        "country_code": "NL",
-        "found": False, "status": "NOT_FOUND",
-        "validation_source": _source(entity_name or kvk_number),
-    }
+NL_CONFIG = eng.CountryConfig(
+    country_code="NL",
+    source_name="KvK (Kamer van Koophandel), Netherlands",
+    transport=eng.T_MLX_HTTP,
+    primary_url=_BASE + "?{searchparam}={q}&pagina=1&start=0&pagesize=10",
+    parser=_parse_nl,
+    timeout=60,
+    headers={"Accept": "application/json"},
+    how_to_reproduce_template=(
+        "Visit https://www.kvk.nl/zoeken/ → search '{entity}'"
+    ),
+)
 
 
-def _source(query: str) -> dict:
-    return {
-        "registry": "KvK — Kamer van Koophandel (Chamber of Commerce), Netherlands",
-        "url": "https://www.kvk.nl/zoeken/",
-        "how_to_reproduce": f"Visit kvk.nl/zoeken → Search: {query}",
-        "verified_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-    }
+def kvk_verify(entity_name: str, kvk_number: str = "") -> dict:
+    """NL verify entry point — backward compat with main.py routing."""
+    kvk_number = (kvk_number or "").strip()
+    if kvk_number:
+        clean = re.sub(r"[\s\-.]", "", kvk_number)
+        if not re.match(r"^\d{8}$", clean):
+            # Engine wrapper will surface the error cleanly
+            return eng.run(NL_CONFIG, entity_name or "[invalid KVK]",
+                           {"searchparam": "handelsnaam", "_error": "KVK must be 8 digits"})
+        return eng.run(NL_CONFIG, clean, {"searchparam": "kvknummer"})
+    return eng.run(NL_CONFIG, entity_name, {"searchparam": "handelsnaam"})
