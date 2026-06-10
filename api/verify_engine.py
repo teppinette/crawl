@@ -201,7 +201,9 @@ def _wrap(config: CountryConfig, entity_name: str, extracted: dict, primary_url:
         "homepage": extracted.get("homepage"),
         "phone": extracted.get("phone"),
         "directors": extracted.get("directors"),
-        "status": "ACTIVE" if found else "NOT_FOUND",
+        # Honor parser's status when set — captures DISSOLVED/INACTIVE/SUSPENDED/etc.
+        # Only fall back to ACTIVE/NOT_FOUND when parser didn't surface a status.
+        "status": extracted.get("status") or ("ACTIVE" if found else "NOT_FOUND"),
         "source": config.source_name,
         "validation_source": validation_source,
         "summary": extracted.get("summary") or _default_summary(entity_name, extracted),

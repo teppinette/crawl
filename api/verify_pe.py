@@ -1,20 +1,15 @@
 """
-Peru SUNAT RUC verification via Decolecta API (formerly apis.net.pe).
+Peru verify — runs on the generic engine.
 
-Source: https://api.decolecta.com/v1/sunat/ruc
-Free tier: 1000 requests/month, Bearer token auth.
-
-Input: 11-digit RUC number
-Returns: company name (razon social), status, condition,
-         address, branch locations, retention agent flag.
+Source: Decolecta API (SUNAT RUC lookup).
+Free tier 1K req/mo, Bearer token. Direct HTTP with PE residential proxy.
+RUC required (Decolecta does not support name search).
 """
 
 import logging
 import re
-import time
 
-from curl_cffi import requests as cffi_requests
-from proxy_cfg import get_proxy
+import verify_engine as eng
 
 log = logging.getLogger("verify-gateway")
 
@@ -22,141 +17,118 @@ _API_URL = "https://api.decolecta.com/v1/sunat/ruc"
 _API_TOKEN = ""
 _PROXY = None
 
-# RUC: 11 digits starting with 10 (persona natural) or 20 (empresa)
 _RUC_RE = re.compile(r"^(10|20)\d{9}$")
 
 
 def init(get_secret):
     global _API_TOKEN, _PROXY
     _API_TOKEN = get_secret("peru-apis-token") or ""
-    _PROXY = get_proxy("pe")
+    try:
+        from proxy_cfg import get_proxy
+        _PROXY = get_proxy("pe")
+    except Exception:
+        _PROXY = None
     if _API_TOKEN:
-        log.info("PE SUNAT RUC ready (Decolecta API token configured)")
+        log.info("PE verify ready (engine) — Decolecta SUNAT RUC")
     else:
-        log.warning("PE SUNAT RUC not configured — set peru-apis-token in Key Vault")
+        log.warning("PE verify token missing — set peru-apis-token")
+
+
+def _pe_proxy() -> dict:
+    return _PROXY
+
+
+def _parse_pe(raw: dict, entity_name: str, ids: dict) -> dict:
+    data = raw.get("json")
+    if not isinstance(data, dict) or raw.get("status") != 200:
+        if raw.get("status") == 404:
+            return {"found": False, "note": "RUC not found in SUNAT"}
+        return {"found": False, "error": f"Decolecta status {raw.get('status')}"}
+
+    razon = data.get("razon_social", "")
+    if not razon:
+        return {"found": False}
+
+    ruc = data.get("numero_documento") or ids.get("ruc") or ""
+    estado = data.get("estado", "")
+    condicion = data.get("condicion", "")
+    direccion = data.get("direccion", "")
+    departamento = data.get("departamento", "")
+    provincia = data.get("provincia", "")
+    distrito = data.get("distrito", "")
+
+    full_address_parts = [direccion, distrito, provincia, departamento]
+    headquarters = ", ".join(p for p in full_address_parts if p and p != "-") or None
+
+    # Status mapping
+    status_map = {
+        "ACTIVO": "ACTIVE", "BAJA DEFINITIVA": "DISSOLVED",
+        "BAJA PROVISIONAL": "INACTIVE", "SUSPENSION TEMPORAL": "SUSPENDED",
+    }
+    status = status_map.get((estado or "").upper(), (estado or "UNKNOWN").upper())
+
+    return {
+        "found": True,
+        "legal_name": razon,
+        "business_registration_number": ruc or None,
+        "headquarters": headquarters,
+        "is_listed": False,
+        # PE-specific extras
+        "ruc": ruc or None,
+        "estado": estado or None,
+        "condicion": condicion or None,
+        "direccion": direccion or None,
+        "departamento": departamento or None,
+        "provincia": provincia or None,
+        "distrito": distrito or None,
+        "is_retention_agent": data.get("es_agente_retencion") if "es_agente_retencion" in data else None,
+        "status": status,
+        "summary": (
+            f"{razon} — RUC {ruc} — {estado or 'unknown'}"
+            + (f" / {condicion}" if condicion and condicion != estado else "")
+        ),
+    }
+
+
+PE_CONFIG = eng.CountryConfig(
+    country_code="PE",
+    source_name="SUNAT RUC (via Decolecta), Peru",
+    transport=eng.T_PROXY_API,
+    primary_url=_API_URL + "?numero={ruc}",
+    parser=_parse_pe,
+    timeout=20,
+    headers={"Content-Type": "application/json"},  # Authorization added at runtime below
+    proxy_provider=_pe_proxy,
+    how_to_reproduce_template=(
+        "Visit SUNAT consulta RUC → enter RUC {entity}"
+    ),
+)
 
 
 def sunat_ruc_verify(entity_name: str, ruc: str = "") -> dict:
-    """
-    Verify a Peruvian company via SUNAT RUC lookup.
-
-    RUC: 11 digits (20XXXXXXXXX for companies, 10XXXXXXXXX for individuals).
-    """
-    if not ruc and not entity_name:
-        return {"found": False, "error": "ruc or entity_name required"}
-
+    """PE verify entry point — backward compat with main.py routing."""
+    if not _API_TOKEN:
+        return {
+            "entity_name": entity_name, "country_code": "PE",
+            "ruc": ruc or None, "found": False, "verified": False,
+            "error": "Peru SUNAT API token not configured — set peru-apis-token in Key Vault",
+        }
     if not ruc:
         return {
-            "entity_name": entity_name,
-            "found": False,
-            "note": "RUC number is required for Peru verification. "
-                    "SUNAT does not support name search via this API — only RUC lookup.",
+            "entity_name": entity_name, "country_code": "PE",
+            "found": False, "verified": False,
+            "note": "RUC required — Decolecta API does not support name search",
         }
-
     clean = re.sub(r"[.\s-]", "", ruc.strip())
     if not _RUC_RE.match(clean):
-        return {"ruc": ruc, "found": False, "error": "RUC must be 11 digits starting with 10 or 20"}
-
-    try:
-        if _API_TOKEN:
-            return _try_decolecta(clean, entity_name)
         return {
-            "ruc": clean, "found": False,
-            "error": "Peru SUNAT API token not configured — register at decolecta.com for free token",
+            "entity_name": entity_name, "country_code": "PE",
+            "ruc": ruc, "found": False, "verified": False,
+            "error": "RUC must be 11 digits starting with 10 or 20",
         }
-    except Exception as e:
-        log.error("PE SUNAT error for RUC %s: %s", ruc, e)
-        return {"ruc": clean, "found": False, "error": str(e)[:300]}
-
-
-def _try_decolecta(ruc: str, entity_name: str) -> dict:
-    """Lookup via Decolecta API (formerly apis.net.pe)."""
-    resp = cffi_requests.get(
-        _API_URL,
-        params={"numero": ruc},
-        headers={
-            "Content-Type": "application/json",
-            "Authorization": f"Bearer {_API_TOKEN}",
-        },
-        impersonate="chrome",
-        proxy=_PROXY,
-        timeout=15,
-    )
-
-    if resp.status_code == 404 or resp.status_code == 422:
-        return {
-            "ruc": ruc, "found": False,
-            "status": "NOT_FOUND",
-            "source": "SUNAT (via Decolecta), Peru",
-        }
-    if resp.status_code == 401:
-        return {"ruc": ruc, "found": False, "error": "Decolecta API token invalid or expired"}
-    if resp.status_code == 429:
-        return {"ruc": ruc, "found": False, "error": "Decolecta API rate limit exceeded"}
-
-    resp.raise_for_status()
-    data = resp.json()
-
-    if not data or data.get("message"):
-        return {
-            "ruc": ruc, "found": False,
-            "status": "NOT_FOUND",
-            "note": data.get("message", "No data returned"),
-            "source": "SUNAT (via Decolecta), Peru",
-        }
-
-    return _format_result(data, ruc)
-
-
-def _format_result(data: dict, ruc: str) -> dict:
-    """Format Decolecta API response (snake_case fields)."""
-    name = data.get("razon_social", data.get("nombre", ""))
-    status = data.get("estado", "unknown")
-    condition = data.get("condicion", "")
-
-    # Address
-    addr_parts = [
-        data.get("direccion", ""),
-        data.get("distrito", ""),
-        data.get("provincia", ""),
-        data.get("departamento", ""),
-    ]
-    address = ", ".join(p for p in addr_parts if p)
-
-    # Branch locations
-    branches = []
-    for loc in (data.get("locales_anexos") or []):
-        branches.append({
-            "address": loc.get("direccion", ""),
-            "district": loc.get("distrito", ""),
-            "province": loc.get("provincia", ""),
-            "department": loc.get("departamento", ""),
-        })
-
-    result = {
-        "entity_name": name,
-        "ruc": ruc,
-        "found": True,
-        "status": status.upper() if status else "UNKNOWN",
-        "condition": condition.upper() if condition else None,
-        "registered_address": address or None,
-        "district": data.get("distrito", None),
-        "province": data.get("provincia", None),
-        "department": data.get("departamento", None),
-        "is_retention_agent": data.get("es_agente_retencion", None),
-        "is_good_taxpayer": data.get("es_buen_contribuyente", None),
-        "branch_count": len(branches) if branches else 0,
-        "branches": branches[:10] if branches else None,
-        "source": "SUNAT (Superintendencia Nacional de Aduanas y de Administración Tributaria), Peru",
-        "validation_source": {
-            "registry": "SUNAT — Superintendencia Nacional de Aduanas y de Administración Tributaria, Peru",
-            "url": "https://e-consultaruc.sunat.gob.pe/cl-ti-itmrconsruc/frameCriterioBusqueda.jsp",
-            "record_id": ruc,
-            "how_to_reproduce": (
-                f"Visit e-consultaruc.sunat.gob.pe → "
-                f"Enter RUC: {ruc} → Solve CAPTCHA → View registration"
-            ),
-            "verified_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-        },
+    # Inject auth header for this call only — engine respects config.headers
+    PE_CONFIG.headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {_API_TOKEN}",
     }
-    return result
+    return eng.run(PE_CONFIG, entity_name or clean, {"ruc": clean})
