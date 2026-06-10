@@ -1,0 +1,26 @@
+diff --git a/app/config.py b/app/config.py
+index 3058707..435090c 100644
+--- a/app/config.py
++++ b/app/config.py
+@@ -30,6 +30,21 @@ class Settings(BaseSettings):
+     companies_house_api_key: Optional[str] = None
+     csl_api_key: Optional[str] = None
+ 
++    # ---------------------------------------------------------------
++    # Crawl Verify Gateway (one-verify-server consolidation)
++    # When a country code is listed in crawl_verify_allowlist AND
++    # crawl_verify_api_key is set, RegistryDispatcher routes that
++    # country's lookups to POST /api/v1/verify on the Crawl Research
++    # Gateway instead of the local per-country adapter.
++    # ---------------------------------------------------------------
++    crawl_verify_base_url: str = (
++        "https://crawldevvm.eastus2.cloudapp.azure.com:8443"
++    )
++    crawl_verify_api_key: Optional[str] = None
++    # Comma-separated ISO codes, e.g. "KR,CA,GB,FR,TW,BR,US,IL,PE".
++    # Empty / unset = legacy behavior (no cutover).
++    crawl_verify_allowlist: str = ""
++
+     # API Keys - Tier 2
+     bridger_api_key: Optional[str] = None
+     bridger_mock_mode: bool = Field(default=False)

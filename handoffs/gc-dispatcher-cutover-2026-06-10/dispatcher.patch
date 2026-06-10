@@ -1,0 +1,50 @@
+diff --git a/app/integrations/registry_dispatcher.py b/app/integrations/registry_dispatcher.py
+index 569d6bb..d004743 100644
+--- a/app/integrations/registry_dispatcher.py
++++ b/app/integrations/registry_dispatcher.py
+@@ -87,6 +87,7 @@ from app.integrations.registries.ro import ROAggregatorClient
+ from app.integrations.registries.lt import LTAggregatorClient
+ from app.integrations.registries.bg import BGAggregatorClient
+ from app.integrations.registries.bd import BDAggregatorClient
++from app.integrations.registries.crawl_verify import CrawlVerifyClient
+ # EU long-tail (added 2026-04-27 pt3)
+ from app.integrations.registries.se import SEAggregatorClient
+ from app.integrations.registries.fi import FIAggregatorClient
+@@ -286,6 +287,37 @@ class RegistryDispatcher:
+         if country_code in self._clients:
+             return self._clients[country_code]
+ 
++        # ---------------------------------------------------------------
++        # Crawl Verify Gateway cutover (one-verify-server consolidation).
++        # When a country is in crawl_verify_allowlist AND the API key is
++        # set, route to crawl-verify instead of the legacy per-country
++        # adapter. Allowlist is a comma-separated env var
++        # (CRAWL_VERIFY_ALLOWLIST) so flipping a country in/out is a
++        # restart, not a code change. If the allowlist is empty or the
++        # API key is missing, this branch falls through and the legacy
++        # branches run unchanged.
++        # ---------------------------------------------------------------
++        crawl_allowlist = {
++            cc.strip().upper()
++            for cc in (self._settings.crawl_verify_allowlist or "").split(",")
++            if cc.strip()
++        }
++        if country_code in crawl_allowlist:
++            if not self._settings.crawl_verify_api_key:
++                logger.warning(
++                    "CRAWL_VERIFY_API_KEY not set -- %s falls back to legacy adapter",
++                    country_code,
++                )
++            else:
++                client = CrawlVerifyClient(
++                    country_code=country_code,
++                    base_url=self._settings.crawl_verify_base_url,
++                    api_key=self._settings.crawl_verify_api_key,
++                )
++                logger.info("Routing %s through Crawl Verify Gateway", country_code)
++                self._clients[country_code] = client
++                return client
++
+         client: Optional[BaseRegistryClient] = None
+ 
+         if country_code == "GB":
