@@ -1,0 +1,78 @@
+diff --git a/app/counterparties/scan/runners.py b/app/counterparties/scan/runners.py
+index f28bc75..6296f6d 100644
+--- a/app/counterparties/scan/runners.py
++++ b/app/counterparties/scan/runners.py
+@@ -20,6 +20,7 @@ from dataclasses import dataclass
+ from typing import Optional
+ 
+ from .catalog import SourceResult, register_runner
++from ._crawl_verify_runner import call_crawl_verify, crawl_verify_enabled_for
+ 
+ logger = logging.getLogger(__name__)
+ 
+@@ -70,6 +71,10 @@ def _not_implemented(source_name: str):
+ # ---------------------------------------------------------------------------
+ 
+ def run_gleif(ctx: EntityContext) -> SourceResult:
++    # Cutover to Crawl /api/v1/verify when this country is allowlisted.
++    # Falls through to legacy body when allowlist empty or API key missing.
++    if crawl_verify_enabled_for("GLEIF"):
++        return call_crawl_verify("GLEIF", ctx)
+     try:
+         from ..public_company import gleif_client
+         if ctx.lei:
+@@ -338,6 +343,10 @@ def run_brasilapi_cnpj(ctx: EntityContext) -> SourceResult:
+ # ---------------------------------------------------------------------------
+ 
+ def run_norway_brreg(ctx: EntityContext) -> SourceResult:
++    # Cutover to Crawl /api/v1/verify when this country is allowlisted.
++    # Falls through to legacy body when allowlist empty or API key missing.
++    if crawl_verify_enabled_for("NO"):
++        return call_crawl_verify("NO", ctx)
+     try:
+         import requests
+         org = _normalize_cnpj(ctx.reg_number)  # reuses digit-strip logic
+@@ -386,6 +395,10 @@ def run_norway_brreg(ctx: EntityContext) -> SourceResult:
+ # ---------------------------------------------------------------------------
+ 
+ def run_nz_companies(ctx: EntityContext) -> SourceResult:
++    # Cutover to Crawl /api/v1/verify when this country is allowlisted.
++    # Falls through to legacy body when allowlist empty or API key missing.
++    if crawl_verify_enabled_for("NZ"):
++        return call_crawl_verify("NZ", ctx)
+     try:
+         import requests
+         q = ctx.legal_name
+@@ -488,6 +501,10 @@ def run_denmark_cvr(ctx: EntityContext) -> SourceResult:
+ # ---------------------------------------------------------------------------
+ 
+ def run_uk_companies_house(ctx: EntityContext) -> SourceResult:
++    # Cutover to Crawl /api/v1/verify when this country is allowlisted.
++    # Falls through to legacy body when allowlist empty or API key missing.
++    if crawl_verify_enabled_for("GB"):
++        return call_crawl_verify("GB", ctx)
+     try:
+         import os, base64, requests
+         key = (os.environ.get('COMPANIES_HOUSE_API_KEY', '')
+@@ -554,6 +571,10 @@ def run_uk_companies_house(ctx: EntityContext) -> SourceResult:
+ # ---------------------------------------------------------------------------
+ 
+ def run_australia_abr(ctx: EntityContext) -> SourceResult:
++    # Cutover to Crawl /api/v1/verify when this country is allowlisted.
++    # Falls through to legacy body when allowlist empty or API key missing.
++    if crawl_verify_enabled_for("AU"):
++        return call_crawl_verify("AU", ctx)
+     try:
+         import requests
+         if not ctx.legal_name:
+@@ -594,6 +615,10 @@ def run_australia_abr(ctx: EntityContext) -> SourceResult:
+ # ---------------------------------------------------------------------------
+ 
+ def run_bc_orgbook(ctx: EntityContext) -> SourceResult:
++    # Cutover to Crawl /api/v1/verify when this country is allowlisted.
++    # Falls through to legacy body when allowlist empty or API key missing.
++    if crawl_verify_enabled_for("CA"):
++        return call_crawl_verify("CA", ctx)
+     try:
+         import requests
+         if not ctx.legal_name:
