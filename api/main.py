@@ -2804,6 +2804,9 @@ _VERIFY_SOURCES = {
     "MX": "DENUE (INEGI) — establishment name, legal name, activity, address, employee size (free API)",
     "IL": "ICA (data.gov.il) — company name (HE+EN), number, type, status, address (free CKAN API)",
     "CA": "BC OrgBook — entity name, BN, status, type, registration date, jurisdiction (free API)",
+    "NO": "Brønnøysundregistrene (Enhetsregisteret) — org-nr, legal name, status, address, industry (free JSON API)",
+    "NZ": "NZ Companies Office — NZBN, legal name, status, entity type, registered address (free public search)",
+    "DK": "cvrapi.dk (Danish CVR wrapper) — CVR, legal name, status, address, industry (free public API)",
     "FR": "Registre National des Entreprises (INSEE/INPI) — SIREN, directors, legal form, activity, address (free API)",
     "TW": "GCIS Open Data (MOEA) — UBN, company name, status, capital, address, responsible person (free JSON API)",
     "BE": "VIES (EU VAT) + KBO/BCE — CBE number, legal name, status, legal form, address (free REST API)",
@@ -3463,6 +3466,92 @@ async def verify_entity(
                 f"BN {result.get('business_number', 'N/A')} — {result.get('status', 'Unknown')} — "
                 f"{result.get('home_jurisdiction', '')}"
             ) if result.get("found") else f"{entity_name} not found in BC OrgBook",
+        })
+
+    # ── NO (Norway) — Brønnøysundregistrene ────────────
+    if country_code == "NO":
+        org_number = body.get("org_number", body.get("organisasjonsnummer", "")).strip()
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call,
+            {"entity_name": entity_name, "country_code": "NO", "org_number": org_number}
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        return _persist_verify({
+            "entity_name": entity_name, "country_code": "NO",
+            "verified": result.get("found", False),
+            "legal_name": result.get("legal_name") or result.get("entity_name"),
+            "organisasjonsnummer": result.get("organisasjonsnummer"),
+            "business_registration_number": result.get("business_registration_number"),
+            "organisasjonsform": result.get("organisasjonsform"),
+            "registreringsdato": result.get("registreringsdato"),
+            "headquarters": result.get("headquarters"),
+            "homepage": result.get("homepage"),
+            "naeringskode": result.get("naeringskode"),
+            "industry": result.get("industry"),
+            "antall_ansatte": result.get("antall_ansatte"),
+            "konkurs": result.get("konkurs"),
+            "under_avvikling": result.get("under_avvikling"),
+            "slettet": result.get("slettet"),
+            "status": result.get("status"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+            "summary": result.get("summary") or f"{entity_name} (NO) not found in BRREG",
+        })
+
+    # ── NZ (New Zealand) — NZ Companies Office ─────────
+    if country_code == "NZ":
+        nzbn = body.get("nzbn", body.get("company_number", "")).strip()
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call,
+            {"entity_name": entity_name, "country_code": "NZ", "nzbn": nzbn}
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        return _persist_verify({
+            "entity_name": entity_name, "country_code": "NZ",
+            "verified": result.get("found", False),
+            "legal_name": result.get("legal_name") or result.get("entity_name"),
+            "nzbn": result.get("nzbn"),
+            "business_registration_number": result.get("business_registration_number"),
+            "entity_type": result.get("entity_type"),
+            "incorporation_date": result.get("incorporation_date"),
+            "registered_office_address": result.get("registered_office_address"),
+            "headquarters": result.get("headquarters"),
+            "total_matches": result.get("total_matches"),
+            "other_matches": result.get("other_matches"),
+            "status": result.get("status"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+            "summary": result.get("summary") or f"{entity_name} (NZ) not found in NZ Companies Office",
+        })
+
+    # ── DK (Denmark) — CVR via cvrapi.dk ───────────
+    if country_code == "DK":
+        cvr = body.get("cvr", body.get("vat", "")).strip()
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call,
+            {"entity_name": entity_name, "country_code": "DK", "cvr": cvr}
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        return _persist_verify({
+            "entity_name": entity_name, "country_code": "DK",
+            "verified": result.get("found", False),
+            "legal_name": result.get("legal_name") or result.get("entity_name"),
+            "cvr": result.get("cvr"),
+            "vat": result.get("vat"),
+            "business_registration_number": result.get("business_registration_number"),
+            "company_type": result.get("company_type"),
+            "industry_code": result.get("industry_code"),
+            "industry": result.get("industry"),
+            "phone": result.get("phone"),
+            "email": result.get("email"),
+            "homepage": result.get("homepage"),
+            "employees": result.get("employees"),
+            "start_date": result.get("start_date"),
+            "headquarters": result.get("headquarters"),
+            "status": result.get("status"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+            "summary": result.get("summary") or f"{entity_name} (DK) not found in CVR",
         })
 
     # ── FR (France) — Registre National des Entreprises ────────
