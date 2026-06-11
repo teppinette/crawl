@@ -102,7 +102,7 @@ def _format_no(data: dict, entity_name: str) -> dict:
 NO_DIRECT_CONFIG = eng.CountryConfig(
     country_code="NO",
     source_name="Brønnøysundregistrene (Enhetsregisteret), Norway",
-    transport=eng.T_DIRECT_API,
+    transport=eng.T_MLX_HTTP,
     primary_url=_BASE + "/{org_nr}",
     parser=_parse_no_direct,
     timeout=15,
@@ -115,7 +115,7 @@ NO_DIRECT_CONFIG = eng.CountryConfig(
 NO_NAME_CONFIG = eng.CountryConfig(
     country_code="NO",
     source_name="Brønnøysundregistrene (Enhetsregisteret), Norway",
-    transport=eng.T_DIRECT_API,
+    transport=eng.T_MLX_HTTP,
     primary_url=_BASE + "?navn={q}&size=5",
     parser=_parse_no_search,
     timeout=15,

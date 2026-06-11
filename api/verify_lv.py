@@ -125,7 +125,7 @@ def _parse_lv(raw: dict, entity_name: str, ids: dict) -> dict:
 LV_REGCODE_CONFIG = eng.CountryConfig(
     country_code="LV",
     source_name="Latvian Register of Enterprises (via data.gov.lv)",
-    transport=eng.T_DIRECT_API,
+    transport=eng.T_MLX_HTTP,
     primary_url=(
         _BASE + "?resource_id=" + _RESOURCE_ID
         + "&filters=" + urllib.parse.quote('{"regcode": ') + "{q}" + urllib.parse.quote("}")
@@ -142,7 +142,7 @@ LV_REGCODE_CONFIG = eng.CountryConfig(
 LV_NAME_CONFIG = eng.CountryConfig(
     country_code="LV",
     source_name="Latvian Register of Enterprises (via data.gov.lv)",
-    transport=eng.T_DIRECT_API,
+    transport=eng.T_MLX_HTTP,
     primary_url=(
         _BASE + "?resource_id=" + _RESOURCE_ID
         + "&q={q}&limit=10"

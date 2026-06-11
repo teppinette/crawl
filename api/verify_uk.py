@@ -166,7 +166,7 @@ def _parse_uk_detail(raw: dict, entity_name: str, ids: dict) -> dict:
 UK_SEARCH_CONFIG = eng.CountryConfig(
     country_code="GB",
     source_name="Companies House, United Kingdom (Gov.UK)",
-    transport=eng.T_DIRECT_API,
+    transport=eng.T_MLX_HTTP,
     primary_url=f"{_BASE}/search/companies?q={{q}}",
     parser=_parse_uk_search,
     timeout=20,
@@ -178,7 +178,7 @@ UK_SEARCH_CONFIG = eng.CountryConfig(
 UK_DETAIL_CONFIG = eng.CountryConfig(
     country_code="GB",
     source_name="Companies House, United Kingdom (Gov.UK)",
-    transport=eng.T_DIRECT_API,
+    transport=eng.T_MLX_HTTP,
     primary_url=f"{_BASE}/company/{{company_number}}",
     parser=_parse_uk_detail,
     timeout=20,

@@ -124,7 +124,7 @@ def _parse_ca(raw: dict, entity_name: str, ids: dict) -> dict:
 CA_CONFIG = eng.CountryConfig(
     country_code="CA",
     source_name="BC OrgBook (BC Registries & Online Services), Canada",
-    transport=eng.T_DIRECT_API,
+    transport=eng.T_MLX_HTTP,
     primary_url="https://orgbook.gov.bc.ca/api/v4/search/topic?q={q}&page_size=10",
     parser=_parse_ca,
     timeout=20,

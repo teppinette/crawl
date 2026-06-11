@@ -168,7 +168,7 @@ def _cik_from_ticker(ticker: str) -> str:
 US_CIK_CONFIG = eng.CountryConfig(
     country_code="US",
     source_name="SEC EDGAR — U.S. Securities and Exchange Commission",
-    transport=eng.T_DIRECT_API,
+    transport=eng.T_MLX_HTTP,
     primary_url=_SUBMISSIONS + "/CIK{cik}.json",
     parser=_parse_us_cik,
     timeout=15,
@@ -181,7 +181,7 @@ US_CIK_CONFIG = eng.CountryConfig(
 US_NAME_CONFIG = eng.CountryConfig(
     country_code="US",
     source_name="SEC EDGAR — U.S. Securities and Exchange Commission",
-    transport=eng.T_DIRECT_API,
+    transport=eng.T_MLX_HTTP,
     primary_url=_SEARCH + "?q=%22{q}%22&forms=10-K,10-Q,20-F,8-K&dateRange=custom&startdt=2024-01-01&enddt=2026-12-31",
     parser=_parse_us_name,
     timeout=15,

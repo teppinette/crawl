@@ -124,7 +124,7 @@ def _parse_fi(raw: dict, entity_name: str, ids: dict) -> dict:
 FI_BID_CONFIG = eng.CountryConfig(
     country_code="FI",
     source_name="PRH Avoindata (Patentti- ja rekisterihallitus), Finland",
-    transport=eng.T_DIRECT_API,
+    transport=eng.T_MLX_HTTP,
     primary_url=_BASE + "?businessId={bid}",
     parser=_parse_fi,
     timeout=15,
@@ -137,7 +137,7 @@ FI_BID_CONFIG = eng.CountryConfig(
 FI_NAME_CONFIG = eng.CountryConfig(
     country_code="FI",
     source_name="PRH Avoindata (Patentti- ja rekisterihallitus), Finland",
-    transport=eng.T_DIRECT_API,
+    transport=eng.T_MLX_HTTP,
     primary_url=_BASE + "?name={q}",
     parser=_parse_fi,
     timeout=15,

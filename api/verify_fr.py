@@ -142,7 +142,7 @@ def _parse_fr(raw: dict, entity_name: str, ids: dict) -> dict:
 FR_CONFIG = eng.CountryConfig(
     country_code="FR",
     source_name="Registre National des Entreprises (INSEE/INPI), France",
-    transport=eng.T_DIRECT_API,
+    transport=eng.T_MLX_HTTP,
     primary_url="https://recherche-entreprises.api.gouv.fr/search?q={q}&page=1&per_page=10",
     parser=_parse_fr,
     timeout=20,

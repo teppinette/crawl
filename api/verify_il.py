@@ -124,7 +124,7 @@ def _parse_il(raw: dict, entity_name: str, ids: dict) -> dict:
 IL_NAME_CONFIG = eng.CountryConfig(
     country_code="IL",
     source_name="ICA (Israel Companies Authority), Israel",
-    transport=eng.T_DIRECT_API,
+    transport=eng.T_MLX_HTTP,
     primary_url=_API_URL + "?resource_id=" + _RESOURCE_ID + "&q={q}&limit=10",
     parser=_parse_il,
     timeout=20,
@@ -137,7 +137,7 @@ IL_NAME_CONFIG = eng.CountryConfig(
 IL_NUMBER_CONFIG = eng.CountryConfig(
     country_code="IL",
     source_name="ICA (Israel Companies Authority), Israel",
-    transport=eng.T_DIRECT_API,
+    transport=eng.T_MLX_HTTP,
     primary_url=(
         _API_URL + "?resource_id=" + _RESOURCE_ID +
         "&filters=" + urllib.parse.quote('{"מספר חברה": ') + "{q}" +

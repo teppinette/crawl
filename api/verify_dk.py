@@ -72,7 +72,7 @@ def _parse_dk(raw: dict, entity_name: str, ids: dict) -> dict:
 DK_DIRECT_CONFIG = eng.CountryConfig(
     country_code="DK",
     source_name="cvrapi.dk (Danish CVR wrapper)",
-    transport=eng.T_DIRECT_API,
+    transport=eng.T_MLX_HTTP,
     primary_url=_API + "?vat={cvr}&country=dk",
     parser=_parse_dk,
     timeout=12,
@@ -85,7 +85,7 @@ DK_DIRECT_CONFIG = eng.CountryConfig(
 DK_NAME_CONFIG = eng.CountryConfig(
     country_code="DK",
     source_name="cvrapi.dk (Danish CVR wrapper)",
-    transport=eng.T_DIRECT_API,
+    transport=eng.T_MLX_HTTP,
     primary_url=_API + "?search={q}&country=dk",
     parser=_parse_dk,
     timeout=12,

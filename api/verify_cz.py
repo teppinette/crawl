@@ -137,7 +137,7 @@ def _parse_cz_search(raw: dict, entity_name: str, ids: dict) -> dict:
 CZ_ICO_CONFIG = eng.CountryConfig(
     country_code="CZ",
     source_name="ARES (Justice/Finance Ministry), Czech Republic",
-    transport=eng.T_DIRECT_API,
+    transport=eng.T_MLX_HTTP,
     primary_url=_BASE + "/{ico}",
     parser=_parse_cz_direct,
     timeout=15,
@@ -150,7 +150,7 @@ CZ_ICO_CONFIG = eng.CountryConfig(
 CZ_NAME_CONFIG = eng.CountryConfig(
     country_code="CZ",
     source_name="ARES (Justice/Finance Ministry), Czech Republic",
-    transport=eng.T_DIRECT_API,
+    transport=eng.T_MLX_HTTP,
     method="POST",
     body_builder=lambda entity, ids: {"obchodniJmeno": entity, "start": 0, "pocet": 10},
     primary_url=_BASE + "/vyhledat",
