@@ -2809,6 +2809,7 @@ _VERIFY_SOURCES = {
     "DK": "cvrapi.dk (Danish CVR wrapper) — CVR, legal name, status, address, industry (free public API)",
     "CZ": "ARES (Justice/Finance Ministry) — IČO, legal name, legal form, NACE, address, status (free JSON API)",
     "FI": "PRH Avoindata (Patentti- ja rekisterihallitus) — Business ID, legal name, legal form, industry, address (free JSON API)",
+    "LV": "Latvian Register of Enterprises (data.gov.lv) — regcode, legal name, type, address, status (free JSON API)",
     "FR": "Registre National des Entreprises (INSEE/INPI) — SIREN, directors, legal form, activity, address (free API)",
     "TW": "GCIS Open Data (MOEA) — UBN, company name, status, capital, address, responsible person (free JSON API)",
     "BE": "VIES (EU VAT) + KBO/BCE — CBE number, legal name, status, legal form, address (free REST API)",
@@ -3618,6 +3619,41 @@ async def verify_entity(
             "validation_source": result.get("validation_source"),
             "timestamp": now,
             "summary": result.get("summary") or f"{entity_name} (FI) not found in PRH",
+        })
+
+    # ── LV (Latvia) — Register of Enterprises ───────────
+    if country_code == "LV":
+        regcode = body.get("regcode", "").strip()
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call,
+            {"entity_name": entity_name, "country_code": "LV", "regcode": regcode}
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        return _persist_verify({
+            "entity_name": entity_name, "country_code": "LV",
+            "verified": result.get("found", False),
+            "legal_name": result.get("legal_name") or result.get("entity_name"),
+            "regcode": result.get("regcode"),
+            "business_registration_number": result.get("business_registration_number"),
+            "sepa": result.get("sepa"),
+            "name_in_quotes": result.get("name_in_quotes"),
+            "regtype": result.get("regtype"),
+            "regtype_text": result.get("regtype_text"),
+            "type_code": result.get("type_code"),
+            "type": result.get("type"),
+            "registered": result.get("registered"),
+            "terminated": result.get("terminated"),
+            "closed": result.get("closed"),
+            "address": result.get("address"),
+            "postal_code": result.get("postal_code"),
+            "is_branch": result.get("is_branch"),
+            "headquarters": result.get("headquarters"),
+            "alternatives": result.get("alternatives"),
+            "total_matches": result.get("total_matches"),
+            "status": result.get("status"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+            "summary": result.get("summary") or f"{entity_name} (LV) not found",
         })
 
     # ── FR (France) — Registre National des Entreprises ────────
