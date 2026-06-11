@@ -2807,6 +2807,8 @@ _VERIFY_SOURCES = {
     "NO": "Brønnøysundregistrene (Enhetsregisteret) — org-nr, legal name, status, address, industry (free JSON API)",
     "NZ": "NZ Companies Office — NZBN, legal name, status, entity type, registered address (free public search)",
     "DK": "cvrapi.dk (Danish CVR wrapper) — CVR, legal name, status, address, industry (free public API)",
+    "CZ": "ARES (Justice/Finance Ministry) — IČO, legal name, legal form, NACE, address, status (free JSON API)",
+    "FI": "PRH Avoindata (Patentti- ja rekisterihallitus) — Business ID, legal name, legal form, industry, address (free JSON API)",
     "FR": "Registre National des Entreprises (INSEE/INPI) — SIREN, directors, legal form, activity, address (free API)",
     "TW": "GCIS Open Data (MOEA) — UBN, company name, status, capital, address, responsible person (free JSON API)",
     "BE": "VIES (EU VAT) + KBO/BCE — CBE number, legal name, status, legal form, address (free REST API)",
@@ -3552,6 +3554,70 @@ async def verify_entity(
             "validation_source": result.get("validation_source"),
             "timestamp": now,
             "summary": result.get("summary") or f"{entity_name} (DK) not found in CVR",
+        })
+
+    # ── CZ (Czech Republic) — ARES ────────────
+    if country_code == "CZ":
+        ico = body.get("ico", "").strip()
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call,
+            {"entity_name": entity_name, "country_code": "CZ", "ico": ico}
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        return _persist_verify({
+            "entity_name": entity_name, "country_code": "CZ",
+            "verified": result.get("found", False),
+            "legal_name": result.get("legal_name") or result.get("entity_name"),
+            "ico": result.get("ico"),
+            "business_registration_number": result.get("business_registration_number"),
+            "dic": result.get("dic"),
+            "legal_form": result.get("legal_form"),
+            "legal_form_code": result.get("legal_form_code"),
+            "industry": result.get("industry"),
+            "nace_code": result.get("nace_code"),
+            "datum_vzniku": result.get("datum_vzniku"),
+            "datum_zaniku": result.get("datum_zaniku"),
+            "headquarters": result.get("headquarters"),
+            "city": result.get("city"),
+            "region": result.get("region"),
+            "postal_code": result.get("postal_code"),
+            "alternatives": result.get("alternatives"),
+            "total_matches": result.get("total_matches"),
+            "status": result.get("status"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+            "summary": result.get("summary") or f"{entity_name} (CZ) not found in ARES",
+        })
+
+    # ── FI (Finland) — PRH Avoindata ───────────
+    if country_code == "FI":
+        business_id = body.get("business_id", body.get("y_tunnus", "")).strip()
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call,
+            {"entity_name": entity_name, "country_code": "FI", "business_id": business_id}
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        return _persist_verify({
+            "entity_name": entity_name, "country_code": "FI",
+            "verified": result.get("found", False),
+            "legal_name": result.get("legal_name") or result.get("entity_name"),
+            "business_id": result.get("business_id"),
+            "business_registration_number": result.get("business_registration_number"),
+            "eu_id": result.get("eu_id"),
+            "legal_form": result.get("legal_form"),
+            "industry": result.get("industry"),
+            "industry_code": result.get("industry_code"),
+            "registration_date": result.get("registration_date"),
+            "end_date": result.get("end_date"),
+            "headquarters": result.get("headquarters"),
+            "parallel_names": result.get("parallel_names"),
+            "auxiliary_names": result.get("auxiliary_names"),
+            "other_matches": result.get("other_matches"),
+            "total_matches": result.get("total_matches"),
+            "status": result.get("status"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+            "summary": result.get("summary") or f"{entity_name} (FI) not found in PRH",
         })
 
     # ── FR (France) — Registre National des Entreprises ────────
