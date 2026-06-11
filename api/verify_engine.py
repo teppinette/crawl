@@ -29,9 +29,10 @@ from curl_cffi import requests as cffi_requests
 log = logging.getLogger("verify-gateway.engine")
 
 # Transport modes
-T_MLX_NAVIGATE = "mlx_navigate"   # Multilogin browser, JS-rendered pages
+T_MLX_NAVIGATE = "mlx_navigate"   # Multilogin browser, JS-rendered pages (load + parse)
+T_MLX_FORM     = "mlx_form"       # Multilogin browser: load page, fill form, submit, parse results
 T_MLX_HTTP     = "mlx_http_get"   # Multilogin HTTP (proxy + impersonation, no browser)
-T_DIRECT_API   = "direct_api"     # Plain HTTP, no proxy — for clean public APIs
+T_DIRECT_API   = "direct_api"     # DEPRECATED for verify — see feedback_multilogin_for_all_verify
 T_PROXY_API    = "proxy_api"      # HTTP via residential/datacenter proxy
 
 
@@ -45,6 +46,10 @@ class CountryConfig:
     parser: Callable[[dict, str, dict], dict]  # parser(raw, entity_name, ids) -> extracted fields dict
     method: str = "GET"                  # "GET" or "POST" — POST sends body_builder(entity_name, ids) as JSON
     body_builder: Optional[Callable[[str, dict], dict]] = None  # POST body dict
+    # For T_MLX_FORM:
+    form_fields_builder: Optional[Callable[[str, dict], dict]] = None  # builds {css_selector: value}
+    submit_selector: str = "input[type=submit]"  # CSS selector for the submit button
+    wait_after_submit_s: int = 3         # post-submit wait for results to render
     wait_s: int = 4                      # for mlx_navigate, post-load JS wait
     timeout: int = 60
     enrichment: Optional[Callable[[str, dict, dict], dict]] = None  # enrichment(entity_name, ids, primary_extracted) -> dict_to_merge
@@ -102,6 +107,17 @@ def _fetch(config: CountryConfig, url: str, entity_name: str = "", ids: dict | N
     if config.transport == T_MLX_NAVIGATE:
         r = mlx_http.mlx_navigate(url=url, wait_s=config.wait_s, country_code=cc_lower, timeout=config.timeout)
         return {"html": r.get("html", ""), "body": r.get("body", ""), "json": None, "status": 200}
+
+    if config.transport == T_MLX_FORM:
+        form_fields = config.form_fields_builder(entity_name, ids) if config.form_fields_builder else {}
+        r = mlx_http.mlx_form_submit(
+            url=url, form_fields=form_fields,
+            submit_selector=config.submit_selector,
+            wait_after_s=config.wait_after_submit_s,
+            timeout=config.timeout, country_code=cc_lower,
+        )
+        return {"html": r.get("html", ""), "body": r.get("body", ""),
+                "json": None, "status": 200, "final_url": r.get("final_url", "")}
 
     if config.transport == T_MLX_HTTP:
         if config.method == "POST":

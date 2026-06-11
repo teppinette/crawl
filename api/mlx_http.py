@@ -385,3 +385,115 @@ def mlx_navigate(url: str, wait_s: int = 3, timeout: int = 30,
     Returns dict with: body (inner text), html (full HTML)
     """
     return _with_profile(_do_navigate, url, wait_s, timeout, country_code)
+
+
+# ---------------------------------------------------------------------------
+# Form-submit transport — for gov sites with HTML <form> entry points that
+# can't be hit with a direct URL query. Pattern: load form page, fill named
+# inputs, click submit, wait for results page, return rendered HTML+text.
+# Added 2026-06-11 to unlock LT JADIS / AT Firmenbuch / IS RSK / BG TR etc.
+# ---------------------------------------------------------------------------
+
+def _do_form_submit(port: int, url: str, form_fields: dict,
+                    submit_selector: str, wait_after_s: int,
+                    timeout_s: int, country_code: str,
+                    profile_id: str) -> dict:
+    """Navigate, fill form fields, submit, return result page."""
+    proxy_info = _get_country_proxy(country_code) if country_code else None
+    result = {"body": "", "html": "", "final_url": ""}
+    error = None
+
+    def _run():
+        nonlocal result, error
+        try:
+            from playwright.sync_api import sync_playwright
+            with sync_playwright() as pw:
+                browser = pw.chromium.connect_over_cdp(f"http://127.0.0.1:{port}")
+                ctx_kwargs = {"ignore_https_errors": True}
+                if proxy_info:
+                    ctx_kwargs["proxy"] = proxy_info
+                context = browser.new_context(**ctx_kwargs)
+                page = context.new_page()
+                try:
+                    page.goto(url, timeout=timeout_s * 1000, wait_until="domcontentloaded")
+                    # Fill each field — selector → value
+                    for selector, value in (form_fields or {}).items():
+                        try:
+                            page.fill(selector, str(value), timeout=10_000)
+                        except Exception as fill_exc:
+                            log.warning("form fill failed for %s: %s",
+                                        selector, str(fill_exc)[:120])
+                    # Submit — try click on selector; fall back to JS form.submit()
+                    # when no selector / selector missing / click fails. Many gov sites
+                    # (e.g. LT JADIS) submit via JS rather than a real submit button.
+                    submitted = False
+                    if submit_selector:
+                        try:
+                            with page.expect_navigation(timeout=timeout_s * 1000,
+                                                       wait_until="domcontentloaded"):
+                                page.click(submit_selector, timeout=5_000)
+                            submitted = True
+                        except Exception:
+                            # Maybe AJAX submit (no navigation). Just click + wait.
+                            try:
+                                page.click(submit_selector, timeout=5_000)
+                                submitted = True
+                            except Exception:
+                                pass
+                    if not submitted:
+                        # Fall back to triggering the first form's submit() in JS.
+                        try:
+                            with page.expect_navigation(timeout=timeout_s * 1000,
+                                                       wait_until="domcontentloaded"):
+                                page.evaluate("document.querySelector('form').submit()")
+                            submitted = True
+                        except Exception as form_exc:
+                            error = form_exc
+                            return
+                    if wait_after_s > 0:
+                        time.sleep(wait_after_s)
+                    result["body"] = page.inner_text("body")
+                    result["html"] = page.content()
+                    result["final_url"] = page.url
+                finally:
+                    page.close()
+                    context.close()
+                    browser.close()
+        except Exception as e:
+            error = e
+
+    t = threading.Thread(target=_run, daemon=True)
+    t.start()
+    t.join(timeout=timeout_s + 30)
+
+    if t.is_alive():
+        log.error("mlx_http form_submit HUNG for %s — force-stopping profile %s",
+                  url[:60], profile_id[:8])
+        _stop_profile(profile_id)
+        t.join(timeout=10)
+        raise RuntimeError(f"mlx_http form_submit timed out ({timeout_s}s)")
+    if error:
+        raise error
+    return result
+
+
+def mlx_form_submit(url: str, form_fields: dict,
+                    submit_selector: str = "input[type=submit]",
+                    wait_after_s: int = 3, timeout: int = 60,
+                    country_code: str = "") -> dict:
+    """
+    Load an HTML form page, fill named inputs, click submit, return results page.
+
+    url:              the form page URL
+    form_fields:      dict of CSS-selector → value (e.g. {"input[name='pav']": "Maxima"})
+    submit_selector:  selector for the submit button (defaults to input[type=submit])
+    wait_after_s:     seconds to wait after submit (for results to render)
+    country_code:     2-letter ISO code for country-targeted exit IP
+    timeout:          per-step navigation timeout
+
+    Returns dict with: body (inner text), html (full HTML), final_url.
+    """
+    return _with_profile(
+        _do_form_submit, url, form_fields, submit_selector,
+        wait_after_s, timeout, country_code,
+    )

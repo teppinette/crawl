@@ -2810,6 +2810,7 @@ _VERIFY_SOURCES = {
     "CZ": "ARES (Justice/Finance Ministry) — IČO, legal name, legal form, NACE, address, status (free JSON API)",
     "FI": "PRH Avoindata (Patentti- ja rekisterihallitus) — Business ID, legal name, legal form, industry, address (free JSON API)",
     "LV": "Latvian Register of Enterprises (data.gov.lv) — regcode, legal name, type, address, status (free JSON API)",
+    "LT": "JADIS (Registry Center) — LT company code, legal name, status (form-based search via Multilogin)",
     "FR": "Registre National des Entreprises (INSEE/INPI) — SIREN, directors, legal form, activity, address (free API)",
     "TW": "GCIS Open Data (MOEA) — UBN, company name, status, capital, address, responsible person (free JSON API)",
     "BE": "VIES (EU VAT) + KBO/BCE — CBE number, legal name, status, legal form, address (free REST API)",
@@ -3654,6 +3655,26 @@ async def verify_entity(
             "validation_source": result.get("validation_source"),
             "timestamp": now,
             "summary": result.get("summary") or f"{entity_name} (LV) not found",
+        })
+
+    # ── LT (Lithuania) — JADIS form-submit ──────────
+    if country_code == "LT":
+        company_code = body.get("company_code", body.get("imones_kodas", "")).strip()
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call,
+            {"entity_name": entity_name, "country_code": "LT", "company_code": company_code}
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        return _persist_verify({
+            "entity_name": entity_name, "country_code": "LT",
+            "verified": result.get("found", False),
+            "legal_name": result.get("legal_name") or result.get("entity_name"),
+            "company_code": result.get("company_code"),
+            "business_registration_number": result.get("business_registration_number"),
+            "status": result.get("status"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+            "summary": result.get("summary") or f"{entity_name} (LT) not found",
         })
 
     # ── FR (France) — Registre National des Entreprises ────────
