@@ -16,16 +16,18 @@ without an explicit ask. When unsure, recommend leaving it alone —
 **THIS IS crawldevvm (20.94.45.219)** — the dev/control VM that hosts
 the Crawl Research Gateway API and SSH-coordinates all regional crawl VMs.
 
-**NAMING RULE:** Never use the word "openclaw" in any Azure resource name,
-VM name, VNet, NSG, command alias, or directory on VMs. Use "crawl" only.
-The underlying tool is installed via npm but all our naming is "crawl-*".
+**NAMING RULE:** Use "crawl-*" for all Azure resource names, VM names,
+VNet, NSG, command aliases, and directories on VMs. (Legacy: the original
+research agents were "openclaw" — that vendor is retired; naming convention
+held.)
 
 **HARD RULE — DATA SANITIZATION:**
 The word "COPAP" and ANY customer/supplier names must NEVER appear in:
-- Any prompt sent to OpenClaw
+- Any prompt sent to the centralized LLM endpoint (today: Foundry/Mistral —
+  copapfoundry-resource — see `reference_foundry_endpoint` memory)
 - Any skill file deployed to regional VMs
-- Any data visible to the research agents
-OpenClaw must never know who is requesting the research or why.
+- Any data visible to any downstream research agent
+The downstream LLM must never know who is requesting the research or why.
 The API enforces this with a sanitization layer that HARD FAILS on violations.
 
 **CRITICAL ISOLATION RULES:**
@@ -33,15 +35,15 @@ The API enforces this with a sanitization layer that HARD FAILS on violations.
 2. The ONLY bridge to production is the `osint-staging` blob container (human review required)
 3. Seed data (entity names + countries) is plain text only -- no EntityIDs, no financial data
 4. API keys for LLM providers are separate from production keys
-5. NEVER send customer/supplier names or any COPAP identifier to OpenClaw
+5. NEVER send customer/supplier names or any COPAP identifier to the centralized LLM endpoint
 6. Regional VMs are reachable ONLY from crawldevvm (NSG enforced)
 
 > **2026-06-01:** the "NO VNet peering between COPAPCrawl and production COPAP AI"
-> rule was retired. Rationale: OpenClaw is being removed; CIR is consolidating
-> onto the centralized Foundry/Mistral endpoint, which requires routed
-> connectivity rather than per-host public IP + NSG ACLs. Data isolation
-> (rule 2, ex-rule 3) still holds — the only DATA path to production remains
-> the osint-staging blob with human review.
+> rule was retired. Rationale: the old per-regional-VM agent stack is being
+> removed; CIR is consolidating onto the centralized Foundry/Mistral endpoint,
+> which requires routed connectivity rather than per-host public IP + NSG ACLs.
+> Data isolation (rule 2, ex-rule 3) still holds — the only DATA path to
+> production remains the osint-staging blob with human review.
 
 ---
 ## *** 2026-05-29 MIGRATION -- ANTHROPIC DISABLED -> SELF-HOSTED Qwen + SearXNG ***
@@ -75,9 +77,10 @@ NETWORK (public IP + NSG today; VNet peering option opened 2026-06-01 after the 
 OPS:
 - copapai-llm is an H100 (~$7/hr) that deallocates when idle. If Qwen is
   unreachable, START copapai-llm (az vm start) -- NEVER fall back to Anthropic.
-- Restart an agent: as owner of ~/.openclaw (copapadmin),
-  `systemctl --user restart openclaw-gateway` (some VMs also have swarmclaw.service).
-- Config backups on each VM: ~/.openclaw/openclaw.json.{qwenbak,pluginbak,noanthropicbak}.<ts>
+- Regional-VM research agents are deprecated; CIR is migrating to direct
+  Foundry/Mistral calls from the gateway. Where regional agents still run,
+  their config + restart procedure lives in the LEGACY section at the
+  bottom of this file.
 
 ---
 ## Architecture
@@ -111,7 +114,7 @@ crawldevvm (20.94.45.219) — Crawl Research Gateway v3.0 (port 8400 / 8443 TLS)
   +-- crawl-gulf      (20.233.46.58)  — AE/EG/PK/IQ/SA/QA/BH/KW/OM/JO  [user: copadmin]
   +-- crawl-china     (10.0.0.4)       — CN/HK/VN/MM/TW/KR/JP/SG/TH/MY/PH/ID
   +-- crawl-india     (20.193.150.43)  — IN
-  +-- crawl-darkweb   (20.86.161.6)    — Tor research (Netherlands) [no OpenClaw]
+  +-- crawl-darkweb   (20.86.161.6)    — Tor research (Netherlands) [standalone, no research agent]
   |     darkweb-gateway.service (port 8450, 37 sources via Tor)
   |     Free: Ahmia, Torch, DDG-Tor, DDG-adverse, HudsonRock, LeakIX,
   |           LeakCheck, BreachDirectory, Ransomlook, OCCRP Aleph,
@@ -120,14 +123,16 @@ crawldevvm (20.94.45.219) — Crawl Research Gateway v3.0 (port 8400 / 8443 TLS)
   |           Greynoise, IntelX (free tier)
   |     Paid: Dehashed ($15/mo — breach records with passwords/emails)
 
-Each regional VM:
-  OpenClaw Gateway (port 18789)
+Each regional VM (LEGACY — being retired):
+  Research-agent gateway (port 18789)
   Skills: counterparty_research, product_intel + region sources
-  Model: anthropic/claude-sonnet-4-6 (china: deepseek-chat)
+  Model: was anthropic/claude-sonnet-4-6 (china: deepseek-chat); since the
+    2026-05-29 migration → self-hosted Qwen; now migrating again →
+    centralized Foundry/Mistral (copapfoundry-resource).
   Output -> ~/crawl/output/
-  NEVER sees: COPAP name, customer/supplier names, internal refs
+  NEVER sees: COPAP name, customer/supplier names, internal refs.
 
-crawl-darkweb VM (NO OpenClaw):
+crawl-darkweb VM (standalone, no research agent):
   Tor daemon (SOCKS5 127.0.0.1:9050) + privoxy (HTTP 127.0.0.1:8118)
   darkweb_gateway.py (FastAPI, port 8450)
   API key: dwk_crawl_2026Q2_f8a3b7e1d9c4
@@ -215,8 +220,8 @@ Blocked terms list is in `_BLOCKED_TERMS` in main.py. Add new terms as needed.
 > **TEMP 2026-05-22:** step 3 was downgraded from hard-fail to silent redact
 > while we triage which GC field/term combo trips false positives (was
 > killing throughput with HTTP 400s). The `[REDACTED]` substitution still
-> prevents leakage to OpenClaw, but we lose the loud backstop. Revert
-> conditions in `memory/project_sanitizer_softened.md`. Grep
+> prevents leakage to the centralized LLM endpoint, but we lose the loud
+> backstop. Revert conditions in `memory/project_sanitizer_softened.md`. Grep
 > `journalctl --user -u copap-cir-api` for `sanitize_payload redacted:` to
 > see what's firing.
 
@@ -318,9 +323,9 @@ sudo systemctl status xvfb              # virtual display
 - Rate limiting: 30 req/60s per IP via middleware
 - Blob upload centralized on crawldevvm (SFTP from VM, then az upload via SAS)
 - Blob paths: `<scenario>/<region>/<entity>_<date>.json`
-- Dark-web VM has NO OpenClaw — standalone Tor gateway with its own API
+- Dark-web VM is a standalone Tor gateway with its own API (no research agent on board)
 - Dark-web enrichment is automatic for CIR — no extra API call needed
-- OpenClaw agents NEVER know who requested the research
+- Downstream LLM endpoints NEVER know who requested the research (per sanitization layer)
 - ALL verification traffic via Multilogin anti-detect browser with country-targeted proxy
 - Shared `mlx_http.py` module for simple API calls; bespoke modules for CAPTCHA sites
 
@@ -344,7 +349,9 @@ sudo systemctl status nginx              # TLS proxy status
 ## GC App Integration
 
 The Global Compliance app (172.20.0.11) connects to this API via:
-- `openclaw_bridge.py` — API client (submit, poll, read blob, format)
+- `crawl_bridge.py` (formerly `openclaw_bridge.py` — same module, kept under old
+  name in GC repo for backward compat; rename as part of next GC release)
+  — API client (submit, poll, read blob, format)
 - `deepdive.py` — wired to submit -> poll -> read blob -> inject into synthesis
 - Env vars on GC app:
   - `CIR_API_KEY=cpk_cir_2026Q2_a7f3e9d1b4c8`
@@ -436,7 +443,7 @@ Three databases on the same server, segmented by purpose:
 |-------|---------|--------|
 | `job_events` | Job lifecycle (submitted/dispatched/completed/failed) | main.py via event_log.py |
 | `api_access_log` | Every HTTP request (IP, path, status, duration) | main.py middleware |
-| `pipeline_events` | Infrastructure health (SSH, OpenClaw, SAS) | health_check.py (every 15m) |
+| `pipeline_events` | Infrastructure health (SSH, regional agents, SAS) | health_check.py (every 15m) |
 | `api_usage_daily` | Daily API spend per provider | usage_monitor.py (daily) |
 | `daily_prices` | Petrochem daily spot prices | petrochem scraper (daily cron) |
 | `futures_prices` | Petrochem futures/contracts | petrochem scraper (daily cron) |
@@ -497,20 +504,20 @@ SELECT client_ip, count(*), min(event_time) FROM api_access_log WHERE status_cod
 | crawl-gulf | 20.233.46.58 | **copadmin** | claude-sonnet-4-6 | JAFZA/DMCC/ADGM, Dubai DED, SECP, Iran front-co patterns, CBUAE sanctions, DIFC Courts |
 | crawl-china | 10.0.0.4 | copapadmin | deepseek-chat | Qichacha, Tianyancha, NECIPS/GSXT, UFLPA Entity List, BIS MEU, wenshu.court.gov.cn |
 | crawl-india | 20.193.150.43 | copapadmin | claude-sonnet-4-6 | MCA21, Zauba Corp, DIN cross-ref, GST Portal, DGFT IEC, eCourts, Indian Kanoon, NCLT, SEBI, RBI |
-| crawl-darkweb | 20.86.161.6 | copapadmin | N/A (no OpenClaw) | 37 sources via Tor: Ahmia, Torch, Haystak, DDG-Tor, DDG-adverse, Onion.live, Dehashed($15/mo), HIBP, LeakCheck, BreachDirectory, Psbdmp, JustPaste.it, LeakIX, HudsonRock, GitHub, Ransomlook, OCCRP, ICIJ, OpenSanctions, OpenCorporates, Interpol Red Notices, World Bank Debarment, WikiLeaks, Telegram, Web Archive, Court records, Reddit, PulseDive, FullHunt, Greynoise, Shodan, VirusTotal, AlienVault OTX, AbuseIPDB, crt.sh, URLScan.io, IntelX |
-| crawl-verify | 180.20.0.4 | copapadmin | N/A (API host) | 34 countries: PK,IN,SG,TR,AE,CN,GB,BR,US,KR,SA,CL,CO,PE,MX,IL,CA,FR,TW,EC,HK,CH,AU,JP,NL,IT,AR,EG,ES,DE,BE,PT,ZA,PL + GLEIF LEI. Multilogin anti-detect browser + Bright Data residential proxy. Port 8460. |
+| crawl-darkweb | 20.86.161.6 | copapadmin | N/A (no research agent) | 37 sources via Tor: Ahmia, Torch, Haystak, DDG-Tor, DDG-adverse, Onion.live, Dehashed($15/mo), HIBP, LeakCheck, BreachDirectory, Psbdmp, JustPaste.it, LeakIX, HudsonRock, GitHub, Ransomlook, OCCRP, ICIJ, OpenSanctions, OpenCorporates, Interpol Red Notices, World Bank Debarment, WikiLeaks, Telegram, Web Archive, Court records, Reddit, PulseDive, FullHunt, Greynoise, Shodan, VirusTotal, AlienVault OTX, AbuseIPDB, crt.sh, URLScan.io, IntelX |
+| crawl-verify | 180.20.0.4 | copapadmin | N/A (API host) | 41 countries: PK,IN,SG,TR,AE,CN,GB,BR,US,KR,SA,CL,CO,PE,MX,IL,CA,FR,TW,EC,HK,CH,AU,JP,NL,IT,AR,EG,ES,DE,BE,PT,ZA,PL,NO,NZ,DK,CZ,FI,LV,LT + GLEIF LEI. Multilogin anti-detect browser + Bright Data residential proxy. Port 8460. |
 
 **IMPORTANT:** Gulf VM uses `copadmin` not `copapadmin` (typo during VM creation).
-**IMPORTANT:** Dark web VM has NO OpenClaw — standalone Tor gateway (port 8450).
-**IMPORTANT:** crawl-verify runs verify-gateway (port 8460), NOT OpenClaw. Multilogin agent + xcli at `/home/copapadmin/mlx/deps/cli/xcli`.
+**IMPORTANT:** Dark web VM is standalone — no research-agent stack (port 8450).
+**IMPORTANT:** crawl-verify runs verify-gateway (port 8460) — pure verification platform, no research agent. Multilogin agent + xcli at `/home/copapadmin/mlx/deps/cli/xcli`.
 
 SSH key for all VMs: `~/.ssh/crawldevvm_key.pem`
 SSH alias: `ssh crawl-darkweb` (configured in ~/.ssh/config)
-Regional gateways on port 18789. Tokens in `~/.openclaw/openclaw.json`.
+Regional research-agent gateways (LEGACY) run on port 18789.
 Dark web gateway on port 8450. API key: `dwk_crawl_2026Q2_f8a3b7e1d9c4`.
 
 **Standard regional VM hardening (audited 2026-05-22 — all 5 VMs):**
-- 2GB `/swapfile` enabled and persisted in `/etc/fstab` (prevents OpenClaw
+- 2GB `/swapfile` enabled and persisted in `/etc/fstab` (prevents research-agent
   OOM crashes that surface as "Report file not found on remote VM"; americas
   was hit hardest at 3.8 GiB RAM, others have 7.7 GiB)
 - sshd `MaxStartups 100:30:200` (default `10:30:100` lets the gateway's
@@ -525,7 +532,7 @@ Dark web gateway on port 8450. API key: `dwk_crawl_2026Q2_f8a3b7e1d9c4`.
    common culprit
 4. Nuclear: `az vm deallocate` then `az vm start` (IPs are static — won't
    change). Clean boot, ~3 min total
-5. After boot, verify swap survived (`free -h`) and OpenClaw is listening
+5. After boot, verify swap survived (`free -h`) and research-agent gateway is listening
    (`ss -tln | grep 18789`)
 6. Restart gateway: `systemctl --user start copap-cir-api`
 
@@ -585,19 +592,26 @@ Swap file at `/swapfile` (2GB) enabled on crawl-americas for this purpose.
     dark-web/SKILL.md               -- dark web intelligence skill
     region-{americas,europe,gulf,china,india}/SKILL.md
   scripts/               -- Operational helpers
-  plugins/               -- OpenClaw plugins (deployed to VMs)
+  plugins/               -- LEGACY research-agent plugins (regional VM stack, being retired)
     crawl-gateway/       -- Gateway tools plugin (dark web, cross-region, status)
 ```
 
-## OpenClaw Gateway Plugin (crawl-gateway)
+## LEGACY: Regional-VM Research-Agent Plugin (crawl-gateway)
 
-**Installed on:** All 5 regional VMs (americas, europe, gulf, china, india)
+> **Retired direction:** the platform is migrating CIR off regional research
+> agents and onto direct calls from the gateway to Foundry/Mistral
+> (copapfoundry-resource). The plugin below still exists on the regional VMs
+> for the not-yet-migrated CIR flow; treat this whole section as transitional.
+
+**Installed on (still):** All 5 regional VMs (americas, europe, gulf, china, india)
 **Source:** `~/crawl/plugins/crawl-gateway/` (on crawldevvm)
-**Deployed to:** `~/.openclaw/extensions/crawl-gateway/` (on each VM)
+**Deployed to:** `~/.<agent-dir>/extensions/crawl-gateway/` on each VM (vendor-
+specific extensions directory — see the regional VM directly for current path)
 **NSG rule:** `AllowAPI-RegionalVMs` (priority 220) — allows regional VM IPs to crawldevvm:8400
 
-The plugin registers 5 agent tools that let OpenClaw agents interact with the
-full Crawl platform when users chat with them directly (e.g. via Tailscale):
+The plugin registers 5 agent tools that let the regional research-agent
+interact with the full Crawl platform when users chat with it directly
+(e.g. via Tailscale):
 
 | Tool | Description |
 |------|-------------|
@@ -607,29 +621,20 @@ full Crawl platform when users chat with them directly (e.g. via Tailscale):
 | `report_search` | Search existing reports by scenario |
 | `platform_health` | Check gateway health, scenarios, regions |
 
-**Updating the plugin:**
-```bash
-# Edit source on crawldevvm
-vim ~/crawl/plugins/crawl-gateway/index.js
+Treat these tools as legacy alongside the regional-VM agents themselves.
+Once CIR cuts over to direct Foundry/Mistral calls, plugin + tools retire
+together. No new plugin development on this path.
 
-# Deploy to a VM (repeat for each)
-scp -i ~/.ssh/crawldevvm_key.pem ~/crawl/plugins/crawl-gateway/index.js \
-  copapadmin@<VM_IP>:~/.openclaw/extensions/crawl-gateway/index.js
-
-# Restart OpenClaw on that VM
-ssh -i ~/.ssh/crawldevvm_key.pem copapadmin@<VM_IP> "openclaw gateway restart"
-```
-
-## Directory Structure (each regional VM)
+## Directory Structure (each regional VM — LEGACY)
 
 ```
 ~/crawl/
   config/blob_sas_token          -- SAS token (deployed from crawldevvm)
-  output/                        -- Research JSON (written by OpenClaw agent)
+  output/                        -- Research JSON (written by regional agent)
   skills/counterparty-research/  -- core DD skill + region sources
 
-~/.openclaw/
-  openclaw.json                  -- gateway config (model, token, plugins)
+~/.<agent-dir>/                  -- vendor-specific research-agent home
+  <agent>.json                   -- gateway config (model, token, plugins)
   workspace/                     -- AGENTS.md, SOUL.md, IDENTITY.md, skills/
   agents/main/                   -- agent sessions
 ```
@@ -667,7 +672,7 @@ ssh -i ~/.ssh/crawldevvm_key.pem copapadmin@<VM_IP> "openclaw gateway restart"
 ### Network Isolation (NSG Hardening — audited 2026-05-03)
 - Regional VMs: SSH allowed ONLY from crawldevvm (20.94.45.219)
 - China VM: also allows crawldevvm private IP (180.20.0.5) via VNet peering
-- Regional VMs: OpenClaw gateway (18789) VNet-internal only
+- Regional VMs: research-agent gateway (18789) VNet-internal only (LEGACY path)
 - crawl-darkweb: SSH allowed ONLY from crawldevvm, all other inbound denied
 - crawldevvm: API (8400/8443) allowed from GC App + VPN + regional VMs only
 - crawldevvm: SSH allowed ONLY from VPN (108.41.234.102)
@@ -692,7 +697,7 @@ ssh -i ~/.ssh/crawldevvm_key.pem copapadmin@<VM_IP> "openclaw gateway restart"
 - **Log rotation**: logrotate weekly, journald capped at 500MB/30d
 
 ### Data Rules
-- NEVER send COPAP name, customer/supplier names to OpenClaw
+- NEVER send COPAP name, customer/supplier names to the centralized LLM endpoint (today: Foundry/Mistral) or any downstream research agent
 - API sanitization layer HARD FAILS on blocked terms (no silent redaction)
 - No production DB credentials on any VM
 - Only custom skills -- NO community/third-party skills
