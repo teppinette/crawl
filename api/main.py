@@ -2879,10 +2879,14 @@ async def verify_entity(
                     log.info("Verify (aggregator empty, trying Deep Lookup fallback): %s (%s)",
                              entity_name, country_code)
                     try:
-                        # Call Deep Lookup directly (not full enrich — skip Crunchbase to save time)
+                        # Call Deep Lookup directly (not full enrich — skip Crunchbase to save time).
+                        # Cap at 15s: callers timed out at <75s saw empty bodies before this cap
+                        # (e.g. AT/Erste Group took 75s total → curl --max-time 60 returned empty).
+                        # If DL doesn't return in 15s, the aggregator's verified=false result is
+                        # still returned with sources_consulted + validation_source intact.
                         dl = await asyncio.wait_for(
                             enrichment._query_deep_lookup(entity_name, country_code),
-                            timeout=75,
+                            timeout=15,
                         )
                         if dl.get("status") == "ok" and dl.get("profile"):
                             p = dl["profile"]

@@ -86,6 +86,6 @@ India is a high-volume counterparty region. Key patterns to check:
 
 ### Indian Name Handling
 - Store names in both English and Devanagari when available
-- For court records in Hindi, use Sarvam AI model for translation
+- For court records, MCA21 filings, GST notices, or any text in Hindi, Tamil, Telugu, Bengali, Gujarati, Marathi, Kannada, Malayalam, Punjabi, or Urdu, use the `translate_to_english` tool (Sarvam AI). For longer Indic-language documents where you only need facts extracted (not full translation), use `summarize_indic_document`. These are cheaper and more accurate on Indic languages than letting the primary model attempt to read them directly.
 - Common suffixes: Pvt Ltd, LLP, OPC, Partnership (not limited company types)
 - PAN-based matching: 4th character indicates entity type (C=company, P=person, F=firm)
