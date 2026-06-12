@@ -18,6 +18,7 @@ import logging
 import source_opencorporates
 import source_gleif
 import source_ltddir
+import source_dnb
 
 log = logging.getLogger("verify-gateway")
 
@@ -36,6 +37,14 @@ def init(get_secret):
     source_opencorporates.init(get_secret)
     source_gleif.init(get_secret)
     source_ltddir.init(get_secret)
+    source_dnb.init(get_secret)
+
+# Known D&B profile URLs per CR# — extends as we discover them.
+# D&B search is reCAPTCHA-gated, so we only enrich when caller knows the URL
+# or we can find it via the discovery body's anchor refs (TODO).
+_DNB_PROFILE_BY_CR = {
+    "0017913": "https://www.dnb.com/business-directory/company-profiles.intex_development_company_limited.7549c291cf7374669559e6c49a445cdc.html",
+}
 
 
 def icris_verify(entity_name: str, cr_number: str = "") -> dict:
@@ -66,6 +75,22 @@ def icris_verify(entity_name: str, cr_number: str = "") -> dict:
                     f"{existing} + ltddir.com (HK Companies Directory mirror)"
                     if existing else "ltddir.com (HK Companies Directory mirror)"
                 )
+
+            # 2b. D&B enrichment — adds Key Principal (a named director) + industry.
+            #     Only fires when we have a known DnB profile URL for the CR;
+            #     D&B search is reCAPTCHA-gated and unreliable for discovery.
+            dnb_url = _DNB_PROFILE_BY_CR.get(oc.get("company_number") or cr_number)
+            if dnb_url:
+                dnb_data = source_dnb.dnb_enrich(
+                    profile_url=dnb_url,
+                    entity_name=oc.get("legal_name") or entity_name,
+                    country_code="HK",
+                )
+                if dnb_data and dnb_data.get("dnb_key_principal"):
+                    oc.update(dnb_data)
+                    oc["enrichment_source"] = (
+                        oc["enrichment_source"] + " + D&B Business Directory"
+                    )
             return oc
 
     # 3. GLEIF fallback (covers HK banks/listed/funds when OC empty)

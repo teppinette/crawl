@@ -54,23 +54,41 @@ def ltddir_enrich(entity_name: str, cr_number: str = "") -> dict:
     text = re.sub(r"<[^>]+>", " ", html)
     text = re.sub(r"\s+", " ", text)
 
-    def _extract(label: str, pattern_suffix: str = r"[:\s]+([^|.\r\n]{2,200}?)\s+(?=[A-Z][a-z]+(?:\s[A-Z][a-z]+)*:)") -> str | None:
-        """Pull the value after a labeled field, stopping at the next labeled field."""
-        m = re.search(rf"{re.escape(label)}{pattern_suffix}", text)
+    # The page lays out fields in fixed order — use the NEXT label as the stop
+    # boundary so each value is captured cleanly without bleeding into the next.
+    _LABELS_IN_ORDER = [
+        ("Company Name:", "Chinese Company Name:"),
+        ("Chinese Company Name:", "CR No."),
+        ("CR No.", "Business Registration No."),
+        ("Business Registration No.", "Date of Incorporation:"),
+        ("Date of Incorporation:", "Company Type:"),
+        ("Company Type:", "Company Status:"),
+        ("Company Status:", "Date of Annual Examination:"),
+        ("Date of Annual Examination:", "Last Annual Return Filed (NAR1):"),
+        ("Last Annual Return Filed (NAR1):", "Register of Charges:"),
+        ("Register of Charges:", "Name History:"),
+    ]
+
+    def _between(start: str, end: str) -> str | None:
+        m = re.search(re.escape(start) + r"\s*(.+?)\s*" + re.escape(end), text)
         return m.group(1).strip() if m else None
 
-    # Targeted extractions — ltddir's layout is "Label: Value Label: Value..."
+    # CR No. has a parenthesised form in the page header that confuses the
+    # generic between-labels approach. Pin it directly: 7-8 digit number after
+    # "CR No.".
+    cr_match = re.search(r"CR No\.\s+(\d{7,8})\b", text)
+
     extracted = {
-        "ltddir_company_name": _extract("Company Name"),
-        "ltddir_chinese_name": _extract("Chinese Company Name"),
-        "ltddir_cr_no": _extract("CR No."),
-        "ltddir_br_no": _extract("Business Registration No."),
-        "ltddir_incorporation_date": _extract("Date of Incorporation"),
-        "ltddir_company_type": _extract("Company Type"),
-        "ltddir_company_status": _extract("Company Status"),
-        "ltddir_annual_exam_window": _extract("Date of Annual Examination"),
-        "ltddir_last_nar1_filed": _extract("Last Annual Return Filed (NAR1)"),
-        "ltddir_register_of_charges": _extract("Register of Charges"),
+        "ltddir_company_name": _between(*_LABELS_IN_ORDER[0]),
+        "ltddir_chinese_name": _between(*_LABELS_IN_ORDER[1]),
+        "ltddir_cr_no": cr_match.group(1) if cr_match else None,
+        "ltddir_br_no": _between(*_LABELS_IN_ORDER[3]),
+        "ltddir_incorporation_date": _between(*_LABELS_IN_ORDER[4]),
+        "ltddir_company_type": _between(*_LABELS_IN_ORDER[5]),
+        "ltddir_company_status": _between(*_LABELS_IN_ORDER[6]),
+        "ltddir_annual_exam_window": _between(*_LABELS_IN_ORDER[7]),
+        "ltddir_last_nar1_filed": _between(*_LABELS_IN_ORDER[8]),
+        "ltddir_register_of_charges": _between(*_LABELS_IN_ORDER[9]),
     }
 
     # Registered office address — multiline-ish, special pattern

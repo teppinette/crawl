@@ -3827,41 +3827,25 @@ async def verify_entity(
             _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "HK", "cr_number": cr_number}
         )
         now = datetime.now(timezone.utc).isoformat()
-        return _persist_verify({
+        # Spread the entire engine response — captures OC, ltddir.com, GLEIF,
+        # DnB enrichment fields without whitelisting each.
+        out = dict(result or {})
+        out.update({
             "entity_name": entity_name, "country_code": "HK",
             "verified": result.get("verified", result.get("found", False)),
             "legal_name": result.get("legal_name") or result.get("entity_name"),
             "cr_number": result.get("company_number") or result.get("cr_number"),
-            "company_number": result.get("company_number"),
-            "business_registration_number": result.get("business_registration_number"),
-            "company_type": result.get("company_type"),
-            "current_status": result.get("current_status"),
-            "incorporation_date": result.get("incorporation_date"),
-            "founded_year": result.get("founded_year"),
-            "dissolution_date": result.get("dissolution_date"),
-            "headquarters": result.get("headquarters") or result.get("registered_address"),
-            "registered_address": result.get("registered_address"),
-            "industry": result.get("industry"),
-            "directors": result.get("directors"),
-            "previous_names": result.get("previous_names"),
-            "other_matches": result.get("other_matches"),
-            "total_matches": result.get("total_matches"),
-            "opencorporates_url": result.get("opencorporates_url"),
-            "lei": result.get("lei"),
-            "registered_as": result.get("registered_as"),
-            "enrichment_source": result.get("enrichment_source"),
-            "status": result.get("status"),
-            "source": result.get("source"),
-            "validation_source": result.get("validation_source"),
+            "headquarters": result.get("headquarters") or result.get("registered_address") or result.get("ltddir_registered_office"),
             "timestamp": now,
-            "summary": result.get("summary") or (
-                (f"{result.get('legal_name', entity_name)} — "
-                 f"CR# {result.get('company_number') or result.get('cr_number') or 'N/A'} — "
-                 f"{result.get('status', 'Unknown')}")
-                if result.get("verified", result.get("found"))
-                else f"{entity_name} not found in HK (OpenCorporates + GLEIF checked)"
-            ),
         })
+        out.setdefault("summary", (
+            (f"{result.get('legal_name', entity_name)} — "
+             f"CR# {result.get('company_number') or result.get('cr_number') or 'N/A'} — "
+             f"{result.get('status', 'Unknown')}")
+            if result.get("verified", result.get("found"))
+            else f"{entity_name} not found in HK (OpenCorporates + GLEIF checked)"
+        ))
+        return _persist_verify(out)
 
     # --------------- SWITZERLAND (Zefix) ---------------
     if country_code == "CH":
