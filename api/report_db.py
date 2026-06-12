@@ -204,7 +204,9 @@ def save_verification(resp: dict):
                     (
                         resp.get("entity_name", "")[:500],
                         resp.get("country_code", "")[:10],
-                        (resp.get("validation_source", {}) or {}).get("registry", "")[:200],
+                        (((resp.get("validation_source", {}) or {}).get("primary") or
+                          (resp.get("validation_source", {}) or {}).get("registry") or
+                          "")[:200]),
                         "completed" if not resp.get("error") else "error",
                         resp.get("verified", False),
                         (resp.get("registration_number") or resp.get("cin") or
