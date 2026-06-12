@@ -6455,3 +6455,27 @@ async def v2_raw_get(response_id: str, _key: str = Depends(verify_api_key)):
     if record is None:
         raise HTTPException(status_code=404, detail="Raw response not found")
     return record
+
+
+@app.post("/api/v1/verify/officers")
+async def verify_officers_proxy(
+    request: Request,
+    _key: str = Depends(verify_api_key),
+):
+    """Proxy paid HK officers lookup to crawl-verify VM (cache-first)."""
+    body = await request.json()
+    loop = asyncio.get_event_loop()
+    def _call():
+        import requests as _req
+        try:
+            r = _req.post(
+                f"{VERIFY_VM_URL}/verify/officers",
+                json=body,
+                headers={"X-API-Key": API_KEY, "Content-Type": "application/json"},
+                timeout=360,
+            )
+            r.raise_for_status()
+            return r.json()
+        except Exception as e:
+            return {"error": f"verify-vm proxy failed: {str(e)[:200]}"}
+    return await loop.run_in_executor(_ssh_pool, _call)
