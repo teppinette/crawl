@@ -227,8 +227,12 @@ async def _query_deep_lookup(entity_name: str, country_code: str = None) -> dict
 
     try:
         # Step 1: Create preview (free, returns sample data)
+        # BD's preview-create endpoint regularly takes 15-20s before returning
+        # a preview_id (it triggers the upstream lookup synchronously); 30s
+        # cushion avoids spurious ReadTimeouts that get surfaced to callers
+        # as "DEEP_LOOKUP error" even though the lookup itself works.
         preview_url = f"{_BD_DEEP_LOOKUP_URL}/preview"
-        async with httpx.AsyncClient(timeout=15) as client:
+        async with httpx.AsyncClient(timeout=30) as client:
             resp = await client.post(
                 preview_url, headers=headers,
                 json={"query": query},
@@ -253,9 +257,13 @@ async def _query_deep_lookup(entity_name: str, country_code: str = None) -> dict
             preview_data = resp.json()
             preview_id = preview_data.get("preview_id")
 
-        # Step 2: Poll for preview results (max 60s, 3s intervals)
+        # Step 2: Poll for preview results (max ~120s, 3s intervals).
+        # CN entities in particular take 100-120s for BD to finish enrichment
+        # (entity match arrives at ~10s, revenue/employees/CEO at ~115s).
+        # Tail-heavy distribution — extending the budget surfaces real data
+        # for the long tail instead of just timing out into a null profile.
         result_data = None
-        for _ in range(20):
+        for _ in range(40):
             await asyncio.sleep(3)
             async with httpx.AsyncClient(timeout=10) as client:
                 resp = await client.get(
@@ -376,7 +384,7 @@ async def enrich(
     """
     t0 = time.monotonic()
 
-    _PROVIDER_TIMEOUT = 75  # Deep Lookup polls up to 60s + network overhead
+    _PROVIDER_TIMEOUT = 140  # Deep Lookup polls up to ~120s + network overhead (CN tail)
 
     async def _safe(coro, name):
         try:

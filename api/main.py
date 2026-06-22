@@ -6421,7 +6421,7 @@ async def v2_metrics(_key: str = Depends(verify_api_key)):
             "/api/v2/verify/lei": {"p95_target_ms": 5000},
             "/api/v2/screening": {"p95_target_ms": 10000, "note": "7 sources in parallel"},
             "/api/v2/media": {"p95_target_ms": 30000, "note": "GDELT rate-limited, 6s stagger"},
-            "/api/v2/enrich": {"p95_target_ms": 75000, "note": "Deep Lookup polls up to 60s"},
+            "/api/v2/enrich": {"p95_target_ms": 140000, "note": "Deep Lookup polls up to ~120s; CN tail is slowest"},
             "/api/v2/lookup": {"p95_target_ms": 75000, "note": "Fan-out, bounded by slowest source"},
         },
         "timestamp": datetime.now(timezone.utc).isoformat(),
