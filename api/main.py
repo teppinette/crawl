@@ -2688,7 +2688,21 @@ def _bd_unlocker_fetch(url: str, country: str = "in") -> str:
 # ---------------------------------------------------------------------------
 
 def _india_tofler_lookup(entity_name: str, cin: str = "") -> dict:
-    """Look up Indian company on Tofler via Bright Data Unlocker (non-gov, no policy block)."""
+    """Look up Indian company on Tofler (MCA21 republished data) via crawl-verify
+    using Multilogin + IN residential exit. Replaced the dead Bright Data
+    Unlocker `pakistan` zone path 2026-06-22."""
+    if cin:
+        try:
+            return _verify_vm_call({
+                "entity_name": entity_name,
+                "country_code": "IN",
+                "cin": cin,
+            })
+        except Exception as e:
+            log.warning("crawl-verify IN delegate failed for %s/%s: %s", entity_name, cin, e)
+            return {"found": False, "error": f"crawl-verify delegate failed: {str(e)[:200]}"}
+    # No CIN → fall through to the legacy BD path below (will return
+    # 'Could not find company on Tofler.in' until we have a name-only IN lookup).
     tofler_url = None
     if cin:
         slug = re.sub(r'[^a-z0-9\-]', '', entity_name.strip().lower().replace(" ", "-").replace(".", ""))
@@ -2858,8 +2872,11 @@ async def verify_entity(
     body = await request.json()
     entity_name = body.get("entity_name", "").strip()
     country_code = body.get("country_code", "").strip().upper()
-    ntn = body.get("ntn", "").strip()
-    cin = body.get("cin", "").strip().upper()
+    # reg_number is the generic registry-id field GC/Onboarding pass; map it
+    # onto the country-specific slot so callers don't need to know which is which.
+    reg_number = (body.get("reg_number") or "").strip().upper()
+    ntn = (body.get("ntn") or reg_number).strip()
+    cin = (body.get("cin") or reg_number).strip().upper()
     iec = body.get("iec", "").strip().upper()  # IEC = PAN for Indian companies
 
     _verify_start = time.monotonic()
