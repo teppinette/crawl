@@ -51,6 +51,7 @@ import screening
 import aggregator
 import raw_store
 import sandbox_india
+from evidence_routes import router as evidence_router
 # Multilogin modules now run on crawl-verify VM (180.20.0.4:8460)
 # import multilogin_fbr
 # import multilogin_dgft
@@ -532,6 +533,11 @@ async def _start_reaper():
     the regional VM side stay in "running" forever and eventually exhaust
     _MAX_QUEUED_JOBS, causing all new submissions to 503."""
     asyncio.create_task(_reaper_loop())
+
+
+# Evidence-collection surface (CIR-as-render architecture).
+# Auth wired here so evidence_routes.py stays import-cycle-free.
+app.include_router(evidence_router, dependencies=[Depends(verify_api_key)])
 
 
 # ---------------------------------------------------------------------------
