@@ -10,7 +10,8 @@
 --         dbname=crawl_reports user=crawladmin sslmode=require" \
 --        -f api/sql/2026-06-22_evidence_schema.sql
 
-CREATE EXTENSION IF NOT EXISTS pgcrypto;
+-- pgcrypto extension is NOT enabled — Azure-managed Postgres restricts it.
+-- Postgres 16+ provides gen_random_uuid() in core, no extension required.
 
 -- --------------------------------------------------------------------------
 -- Source catalog: every source we collect from, tiered for bank audit
