@@ -1,0 +1,111 @@
+openapi: 3.0.3
+info:
+  title: UK Companies House Search
+  version: "1.0.0"
+  description: >
+    Search the UK Companies House registry by entity name. Free, primary-
+    government tier. Returns matching companies with their company_number
+    so subsequent calls can fetch profile / PSC by number. Backed by the
+    crawl-verify VM's GB adapter; proxies to find-and-update.company-
+    information.service.gov.uk via Companies House free REST API.
+
+    All sources hosted on the gateway behind X-API-Key — agents authenticate
+    once at the Foundry tool-level and the gateway handles upstream auth.
+
+servers:
+  - url: https://crawldevvm:8443/api/v1
+  - url: http://crawldevvm:8400/api/v1
+
+security:
+  - ApiKeyAuth: []
+
+paths:
+  /sources/gb_companies_house/search:
+    post:
+      operationId: gb_companies_house_search
+      summary: Search UK Companies House by entity name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CHSearchRequest'
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CHSearchResponse'
+        '429':
+          description: Companies House rate limit hit — retry with backoff
+        '502':
+          description: Upstream source unavailable
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+
+  schemas:
+    CHSearchRequest:
+      type: object
+      required: [entity_name]
+      properties:
+        entity_name:
+          type: string
+          example: TESCO PLC
+        items_per_page:
+          type: integer
+          default: 5
+          minimum: 1
+          maximum: 50
+
+    CHSearchResponse:
+      type: object
+      required: [source_id, source_url, fetched_at, results]
+      properties:
+        source_id:
+          type: string
+          description: For the agent to pass straight back into evidence_add.
+          example: gb_companies_house
+        source_url:
+          type: string
+          description: Exact URL hit upstream — agent passes into evidence_add.
+        fetched_at:
+          type: string
+          format: date-time
+        total_results:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/CHMatch'
+
+    CHMatch:
+      type: object
+      properties:
+        company_number:
+          type: string
+          example: "00445790"
+        title:
+          type: string
+          example: TESCO PLC
+        company_status:
+          type: string
+          enum: [active, dissolved, liquidation, receivership,
+                 administration, voluntary-arrangement, converted-closed,
+                 insolvency-proceedings]
+        company_type:
+          type: string
+          example: plc
+        date_of_creation:
+          type: string
+          format: date
+        address_snippet:
+          type: string
+        sic_codes:
+          type: array
+          items: { type: string }

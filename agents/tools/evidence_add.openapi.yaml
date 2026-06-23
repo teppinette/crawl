@@ -1,0 +1,128 @@
+openapi: 3.0.3
+info:
+  title: Evidence Add
+  version: "1.0.0"
+  description: >
+    Persist a single evidence row for a collection run. Every collector
+    agent calls this once per source it queries. Writes to
+    crawl_reports.evidence (also bumps cir_runs.evidence_count). Append-only;
+    SHA256 hash of raw_content is computed server-side for tamper detection.
+
+servers:
+  - url: https://crawldevvm:8443/api/v1
+    description: Crawl Research Gateway (TLS)
+  - url: http://crawldevvm:8400/api/v1
+    description: Crawl Research Gateway (plain)
+
+security:
+  - ApiKeyAuth: []
+
+paths:
+  /evidence/runs/{run_id}/evidence:
+    post:
+      operationId: evidence_add
+      summary: Add one evidence row to a run
+      parameters:
+        - in: path
+          name: run_id
+          required: true
+          schema: { type: string, format: uuid }
+          description: The cir_runs.id this evidence belongs to.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EvidenceAddRequest'
+      responses:
+        '200':
+          description: Persisted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EvidenceAddResponse'
+        '400':
+          description: Invalid source_id (must exist in sources_catalog) or malformed payload
+        '404':
+          description: run_id not found in cir_runs
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+
+  schemas:
+    EvidenceAddRequest:
+      type: object
+      required: [source_id, source_url, parser_version]
+      properties:
+        source_id:
+          type: string
+          description: FK to sources_catalog.id (e.g. gb_companies_house, gleif_lei).
+          example: gb_companies_house
+        source_url:
+          type: string
+          description: Exact URL the tool fetched.
+          example: https://api.company-information.service.gov.uk/company/00445790
+        source_query:
+          type: string
+          description: Exact identifier or search string used (company number, name).
+        status_code:
+          type: integer
+          description: HTTP status returned by the source.
+          example: 200
+        raw_content:
+          type: string
+          description: >
+            Verbatim raw bytes/text from the source. Either raw_content OR
+            raw_blob_path must be provided. Server-side computes SHA256
+            and uploads to osint-staging if raw_content is given.
+        raw_blob_path:
+          type: string
+          description: >
+            Path in osint-staging if the caller already uploaded the raw.
+        extracted:
+          type: object
+          description: >
+            Normalized fields parsed out of raw_content. Per-source schema;
+            e.g. for gb_companies_house — {company_number, status, type,
+            registered_office_address, sic_codes, officers}.
+          additionalProperties: true
+        language_original:
+          type: string
+          description: ISO-639 code (e.g. ar, zh-Hans, ja).
+          example: en
+        extraction_confidence:
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 1.0
+        parser_version:
+          type: string
+          description: Version tag of the parser that produced extracted.
+          example: gb_companies_house_v1
+        error:
+          type: string
+          description: >
+            If the fetch failed but we want to record the attempt — pass an
+            empty extracted={} and the error string here. The row is still
+            persisted so the audit trail is complete.
+
+    EvidenceAddResponse:
+      type: object
+      required: [evidence_id, run_id, evidence_count]
+      properties:
+        evidence_id:
+          type: string
+          format: uuid
+        run_id:
+          type: string
+          format: uuid
+        evidence_count:
+          type: integer
+          description: Updated count of evidence rows for this run.
+        raw_content_hash:
+          type: string
+          description: SHA256 of raw_content as stored.

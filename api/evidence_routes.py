@@ -61,6 +61,20 @@ class RenderRequest(BaseModel):
     payload: Optional[dict] = None
 
 
+class EvidenceAddRequest(BaseModel):
+    source_id: str = Field(..., description="FK to sources_catalog.id")
+    source_url: str
+    source_query: Optional[str] = None
+    status_code: Optional[int] = None
+    raw_content: Optional[str] = Field(None, description="Verbatim raw — server SHA256s it")
+    raw_blob_path: Optional[str] = Field(None, description="osint-staging path if already uploaded")
+    extracted: Optional[dict] = None
+    language_original: Optional[str] = None
+    extraction_confidence: Optional[float] = Field(None, ge=0.0, le=1.0)
+    parser_version: str
+    error: Optional[str] = None
+
+
 _RENDER_TYPES = {"cir_markdown", "sanctions_screening", "ubo_map", "banker_audit_pack"}
 
 
@@ -97,6 +111,45 @@ async def list_run_evidence(run_id: str):
     if not run:
         raise HTTPException(status_code=404, detail="run not found")
     return {"run_id": run_id, "evidence": evidence_db.list_evidence(run_id)}
+
+
+@router.post("/evidence/runs/{run_id}/evidence")
+async def add_run_evidence(run_id: str, req: EvidenceAddRequest):
+    """Write one evidence row. Called by collector agents once per source.
+    Matches agents/tools/evidence_add.openapi.yaml."""
+    run = evidence_db.get_run(run_id)
+    if not run:
+        raise HTTPException(status_code=404, detail="run not found")
+    try:
+        ev_id = evidence_db.add_evidence(
+            run_id,
+            source_id=req.source_id,
+            source_url=req.source_url,
+            source_query=req.source_query,
+            status_code=req.status_code,
+            raw_content=req.raw_content,
+            raw_blob_path=req.raw_blob_path,
+            extracted=req.extracted,
+            language_original=req.language_original,
+            extraction_confidence=req.extraction_confidence,
+            parser_version=req.parser_version,
+            error=req.error,
+        )
+    except Exception as e:
+        # ForeignKeyViolation on source_id is the most likely caller error
+        msg = str(e)
+        if "sources_catalog" in msg or "foreign key" in msg.lower():
+            raise HTTPException(
+                status_code=400,
+                detail=f"unknown source_id '{req.source_id}' — must exist in sources_catalog",
+            )
+        raise
+    run_after = evidence_db.get_run(run_id)
+    return {
+        "evidence_id": ev_id,
+        "run_id": run_id,
+        "evidence_count": run_after["evidence_count"] if run_after else None,
+    }
 
 
 @router.get("/evidence/runs/{run_id}/claims")
