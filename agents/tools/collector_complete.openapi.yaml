@@ -1,0 +1,39 @@
+openapi: 3.0.3
+info:
+  title: Collector Complete
+  version: "1.0.0"
+  description: >
+    Mark a collector run done. Called by the collector agent once all sources
+    have been queried (success or failure recorded as evidence rows). Sets
+    cir_runs.status = 'extracting' so the claim_extractor agent can pick it up.
+servers:
+  - url: https://crawldevvm:8443/api/v1
+  - url: http://crawldevvm:8400/api/v1
+security:
+  - ApiKeyAuth: []
+paths:
+  /evidence/runs/{run_id}/complete:
+    post:
+      operationId: collector_complete
+      summary: Mark collector run done
+      parameters:
+        - in: path
+          name: run_id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '200':
+          description: Status transitioned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  run_id: { type: string, format: uuid }
+                  status: { type: string, example: extracting }
+                  evidence_count: { type: integer }
+        '404':
+          description: run_id not found
+components:
+  securitySchemes:
+    ApiKeyAuth: { type: apiKey, in: header, name: X-API-Key }

@@ -1,0 +1,64 @@
+openapi: 3.0.3
+info:
+  title: OpenSanctions Search
+  version: "1.0.0"
+  description: >
+    Search OpenSanctions (aggregates 350+ sanctions/PEP lists worldwide).
+    Returns matched entities with the underlying source lists and dataset.
+servers:
+  - url: https://crawldevvm:8443/api/v1
+  - url: http://crawldevvm:8400/api/v1
+security:
+  - ApiKeyAuth: []
+paths:
+  /sources/opensanctions/search:
+    post:
+      operationId: opensanctions_search
+      summary: Search OpenSanctions by entity name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [entity_name]
+              properties:
+                entity_name: { type: string, example: TESCO PLC }
+                country: { type: string, description: ISO-2 country hint }
+                schema:
+                  type: string
+                  enum: [Thing, Person, Organization, Company, LegalEntity]
+                  default: LegalEntity
+                limit: { type: integer, default: 10, minimum: 1, maximum: 50 }
+      responses:
+        '200':
+          description: Search hits
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [source_id, source_url, fetched_at, results]
+                properties:
+                  source_id: { type: string, example: opensanctions }
+                  source_url: { type: string }
+                  fetched_at: { type: string, format: date-time }
+                  total: { type: integer }
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id: { type: string }
+                        caption: { type: string }
+                        schema: { type: string }
+                        datasets:
+                          type: array
+                          items: { type: string }
+                        score: { type: number, format: float }
+                        topics:
+                          type: array
+                          items: { type: string }
+                          description: e.g. sanction, role.pep, crime.terror
+components:
+  securitySchemes:
+    ApiKeyAuth: { type: apiKey, in: header, name: X-API-Key }

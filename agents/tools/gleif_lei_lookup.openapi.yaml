@@ -1,0 +1,54 @@
+openapi: 3.0.3
+info:
+  title: GLEIF LEI Lookup
+  version: "1.0.0"
+  description: >
+    Global LEI Foundation (api.gleif.org). Returns LEI records matching the
+    entity name, including ultimate parent / direct parent for corporate
+    hierarchy resolution. OFFICIAL_LIST tier — coverage is listed entities,
+    banks, large corporates with derivatives reporting obligations.
+servers:
+  - url: https://crawldevvm:8443/api/v1
+  - url: http://crawldevvm:8400/api/v1
+security:
+  - ApiKeyAuth: []
+paths:
+  /sources/gleif_lei/lookup:
+    post:
+      operationId: gleif_lei_lookup
+      summary: Lookup LEI record by entity name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [entity_name]
+              properties:
+                entity_name: { type: string, example: TESCO PLC }
+                country: { type: string, description: ISO-2 country hint (e.g. GB) }
+      responses:
+        '200':
+          description: LEI record (may be empty if no LEI exists for this entity)
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [source_id, source_url, fetched_at]
+                properties:
+                  source_id: { type: string, example: gleif_lei }
+                  source_url: { type: string }
+                  fetched_at: { type: string, format: date-time }
+                  found: { type: boolean }
+                  lei: { type: string }
+                  legal_name: { type: string }
+                  status: { type: string }
+                  legal_address:
+                    type: object
+                    additionalProperties: true
+                  direct_parent: { type: string, description: parent LEI if disclosed }
+                  ultimate_parent: { type: string, description: ultimate parent LEI if disclosed }
+                  note: { type: string, description: e.g. "no LEI registered for this entity" }
+components:
+  securitySchemes:
+    ApiKeyAuth: { type: apiKey, in: header, name: X-API-Key }

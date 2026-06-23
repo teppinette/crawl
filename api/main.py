@@ -52,6 +52,7 @@ import aggregator
 import raw_store
 import sandbox_india
 from evidence_routes import router as evidence_router
+from source_routes import router as source_router
 # Multilogin modules now run on crawl-verify VM (180.20.0.4:8460)
 # import multilogin_fbr
 # import multilogin_dgft
@@ -536,8 +537,9 @@ async def _start_reaper():
 
 
 # Evidence-collection surface (CIR-as-render architecture).
-# Auth wired here so evidence_routes.py stays import-cycle-free.
+# Auth wired here so evidence_routes.py / source_routes.py stay import-cycle-free.
 app.include_router(evidence_router, dependencies=[Depends(verify_api_key)])
+app.include_router(source_router, dependencies=[Depends(verify_api_key)])
 
 
 # ---------------------------------------------------------------------------

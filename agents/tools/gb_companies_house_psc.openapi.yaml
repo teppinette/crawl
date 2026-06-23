@@ -1,0 +1,59 @@
+openapi: 3.0.3
+info:
+  title: UK Companies House PSC
+  version: "1.0.0"
+  description: Fetch the People with Significant Control (PSC) list for a UK company.
+servers:
+  - url: https://crawldevvm:8443/api/v1
+  - url: http://crawldevvm:8400/api/v1
+security:
+  - ApiKeyAuth: []
+paths:
+  /sources/gb_companies_house/psc:
+    post:
+      operationId: gb_companies_house_psc
+      summary: Fetch UK company PSC list by number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [company_number]
+              properties:
+                company_number: { type: string, example: "00445790" }
+      responses:
+        '200':
+          description: PSC list
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [source_id, source_url, fetched_at]
+                properties:
+                  source_id: { type: string, example: gb_companies_house }
+                  source_url: { type: string }
+                  fetched_at: { type: string, format: date-time }
+                  total_results: { type: integer }
+                  psc:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name: { type: string }
+                        kind: { type: string }
+                        natures_of_control:
+                          type: array
+                          items: { type: string }
+                        notified_on: { type: string, format: date }
+                        ceased_on: { type: string, format: date }
+                        nationality: { type: string }
+                        country_of_residence: { type: string }
+                        date_of_birth:
+                          type: object
+                          properties:
+                            month: { type: integer }
+                            year: { type: integer }
+components:
+  securitySchemes:
+    ApiKeyAuth: { type: apiKey, in: header, name: X-API-Key }

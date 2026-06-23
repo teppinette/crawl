@@ -1,0 +1,58 @@
+openapi: 3.0.3
+info:
+  title: UK OFSI Consolidated Sanctions Search
+  version: "1.0.0"
+  description: >
+    Search HM Treasury OFSI Consolidated List of Asset Freeze Targets.
+    PRIMARY_GOVERNMENT tier — direct UK Treasury sanctions register.
+servers:
+  - url: https://crawldevvm:8443/api/v1
+  - url: http://crawldevvm:8400/api/v1
+security:
+  - ApiKeyAuth: []
+paths:
+  /sources/ofsi_consolidated/search:
+    post:
+      operationId: ofsi_consolidated_search
+      summary: Search UK OFSI consolidated list
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [entity_name]
+              properties:
+                entity_name: { type: string, example: TESCO PLC }
+                entity_type:
+                  type: string
+                  enum: [individual, entity, ship, aircraft]
+                  default: entity
+      responses:
+        '200':
+          description: Search hits
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [source_id, source_url, fetched_at, results]
+                properties:
+                  source_id: { type: string, example: ofsi_consolidated }
+                  source_url: { type: string }
+                  fetched_at: { type: string, format: date-time }
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name: { type: string }
+                        group_id: { type: string }
+                        regime: { type: string }
+                        listed_on: { type: string, format: date }
+                        last_updated: { type: string, format: date }
+                        aliases:
+                          type: array
+                          items: { type: string }
+components:
+  securitySchemes:
+    ApiKeyAuth: { type: apiKey, in: header, name: X-API-Key }
