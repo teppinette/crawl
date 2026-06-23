@@ -1,0 +1,89 @@
+name: verify_uk_collector
+description: >
+  Collects evidence for a UK entity from Companies House (PRIMARY_GOVERNMENT),
+  OpenSanctions, OFSI Consolidated, and GLEIF LEI. Writes raw responses +
+  extracted fields to the evidence table. Does not synthesize narrative or
+  emit claims — that is the extractor / synthesizer's job.
+
+metadata:
+  tier: collector
+  country: GB
+  schema_version: 1
+  sources:
+    - gb_companies_house     # PRIMARY_GOVERNMENT, free API key
+    - opensanctions          # OFFICIAL_LIST, aggregates 350+ lists
+    - ofsi_consolidated      # PRIMARY_GOVERNMENT, UK Treasury sanctions
+    - gleif_lei              # OFFICIAL_LIST, corporate hierarchy
+  auditable_for_banks: true
+  cost_tier: free
+  est_latency_seconds: 8
+
+runtime:
+  service: azure_ai_foundry_agents
+  resource: copapfoundry-resource
+  region: eastus2
+
+model:
+  # Collectors are cheap — they do not synthesize, they orchestrate tool calls.
+  # Synthesizer agents (cir_markdown.yaml etc.) use a stronger model.
+  name: mistral-small-2503
+  temperature: 0.0
+  max_tokens: 4096
+
+inputs:
+  - name: run_id
+    type: uuid
+    required: true
+    description: cir_runs.id — every evidence row written must reference this.
+  - name: entity_name
+    type: string
+    required: true
+  - name: registration_number
+    type: string
+    required: false
+    description: UK company number if already known (skip search step).
+
+system_prompt: |
+  You are the UK evidence collector. Your only job is to query sources and
+  persist what they return. You do not write narrative. You do not synthesize.
+  You do not invent fields. If a source returns nothing, still record it as
+  an evidence row with extracted={} so the audit trail is complete.
+
+  For the given entity_name and run_id, execute these steps in order:
+
+    1. If registration_number is empty, call gb_companies_house_search(name).
+       Otherwise skip to step 2 with the supplied number.
+       Persist via evidence_add(source_id="gb_companies_house", ...).
+
+    2. With the resolved company_number, call gb_companies_house_profile and
+       gb_companies_house_psc. Persist each as a separate evidence row,
+       same source_id, source_query=<company_number>.
+
+    3. Call opensanctions_search(name). Persist with
+       source_id="opensanctions".
+
+    4. Call ofsi_consolidated_search(name). Persist with
+       source_id="ofsi_consolidated".
+
+    5. Call gleif_lei_lookup(name). Persist with source_id="gleif_lei".
+
+  Always pass run_id to evidence_add. Always pass the exact source_url
+  the tool returned. Always pass language_original. Never modify or
+  paraphrase raw responses — store them verbatim via raw_blob_path.
+
+  When all five steps are done, call collector_complete(run_id) and stop.
+
+tools:
+  - $ref: ../tools/gb_companies_house_search.openapi.yaml
+  - $ref: ../tools/gb_companies_house_profile.openapi.yaml
+  - $ref: ../tools/gb_companies_house_psc.openapi.yaml
+  - $ref: ../tools/opensanctions_search.openapi.yaml
+  - $ref: ../tools/ofsi_consolidated_search.openapi.yaml
+  - $ref: ../tools/gleif_lei_lookup.openapi.yaml
+  - $ref: ../tools/evidence_add.openapi.yaml
+  - $ref: ../tools/collector_complete.openapi.yaml
+
+output:
+  description: >
+    Side effect only — N evidence rows written to crawl_reports.evidence,
+    one per source step. No structured return payload.
