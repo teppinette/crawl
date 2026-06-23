@@ -91,5 +91,5 @@ output:
     one per source step. No structured return payload.
 
 deployed:
-  foundry_agent_id: asst_4ybP82hUVCSPXoP052AXfCg4
+  foundry_agent_id: asst_2jqDH1z2ePpMt6WfLI5aE3zY
   project_endpoint: https://copapfoundry-resource.services.ai.azure.com/api/projects/copapfoundry

@@ -537,9 +537,12 @@ async def _start_reaper():
 
 
 # Evidence-collection surface (CIR-as-render architecture).
-# Auth wired here so evidence_routes.py / source_routes.py stay import-cycle-free.
-app.include_router(evidence_router, dependencies=[Depends(verify_api_key)])
-app.include_router(source_router, dependencies=[Depends(verify_api_key)])
+# Agent-callable routes (evidence write, source proxies) deliberately mounted
+# WITHOUT X-API-Key — Foundry Agents OpenAPI tools use anonymous auth and the
+# NSG is the security boundary (inbound 8400 allowed only from Microsoft
+# AzureCloud.eastus2 service tag + GC App + VPN + regional VMs).
+app.include_router(evidence_router)
+app.include_router(source_router)
 
 
 # ---------------------------------------------------------------------------

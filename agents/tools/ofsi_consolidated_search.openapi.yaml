@@ -6,8 +6,8 @@ info:
     Search HM Treasury OFSI Consolidated List of Asset Freeze Targets.
     PRIMARY_GOVERNMENT tier — direct UK Treasury sanctions register.
 servers:
-  - url: https://crawldevvm:8443/api/v1
-  - url: http://crawldevvm:8400/api/v1
+  - url: http://20.94.45.219:8400/api/v1
+  - url: http://20.94.45.219:8400/api/v1
 security:
   - ApiKeyAuth: []
 paths:

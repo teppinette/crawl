@@ -10,8 +10,8 @@ info:
     /sources/opensanctions/search for tool-spec compatibility with the
     collector agent YAML.
 servers:
-  - url: https://crawldevvm:8443/api/v1
-  - url: http://crawldevvm:8400/api/v1
+  - url: http://20.94.45.219:8400/api/v1
+  - url: http://20.94.45.219:8400/api/v1
 security:
   - ApiKeyAuth: []
 paths:

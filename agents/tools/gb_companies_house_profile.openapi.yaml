@@ -4,8 +4,8 @@ info:
   version: "1.0.0"
   description: Fetch the full Companies House profile for a UK company by company_number.
 servers:
-  - url: https://crawldevvm:8443/api/v1
-  - url: http://crawldevvm:8400/api/v1
+  - url: http://20.94.45.219:8400/api/v1
+  - url: http://20.94.45.219:8400/api/v1
 security:
   - ApiKeyAuth: []
 paths:

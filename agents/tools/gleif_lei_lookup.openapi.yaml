@@ -8,8 +8,8 @@ info:
     hierarchy resolution. OFFICIAL_LIST tier — coverage is listed entities,
     banks, large corporates with derivatives reporting obligations.
 servers:
-  - url: https://crawldevvm:8443/api/v1
-  - url: http://crawldevvm:8400/api/v1
+  - url: http://20.94.45.219:8400/api/v1
+  - url: http://20.94.45.219:8400/api/v1
 security:
   - ApiKeyAuth: []
 paths:
