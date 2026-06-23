@@ -1,10 +1,14 @@
 openapi: 3.0.3
 info:
-  title: OpenSanctions Search
-  version: "1.0.0"
+  title: Sanctions Screening Search
+  version: "1.1.0"
   description: >
-    Search OpenSanctions (aggregates 350+ sanctions/PEP lists worldwide).
-    Returns matched entities with the underlying source lists and dataset.
+    Search sanctions / restricted-party lists by entity name. Backed by the
+    US Consolidated Screening List (CSL, api.trade.gov) — aggregates OFAC
+    SDN, BIS Denied Persons / Entity List / MEU, State ITAR + AECA, etc.
+    Returns source_id="csl_screening" in the response. Route name kept as
+    /sources/opensanctions/search for tool-spec compatibility with the
+    collector agent YAML.
 servers:
   - url: https://crawldevvm:8443/api/v1
   - url: http://crawldevvm:8400/api/v1

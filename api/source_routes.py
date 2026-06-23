@@ -183,34 +183,39 @@ class OSSearchRequest(BaseModel):
 
 @router.post("/sources/opensanctions/search")
 async def opensanctions_search(req: OSSearchRequest):
-    """Search OpenSanctions. /match is now paywalled — use the free /search
-    endpoint (less precise, no scoring, but no key required)."""
-    params = {"q": req.entity_name, "limit": req.limit}
+    """Sanctions screening via US Consolidated Screening List (CSL) — the
+    keyed alternative to OpenSanctions /match. CSL aggregates OFAC SDN,
+    BIS Denied Persons / Entity List / MEU, State ITAR + AECA debarred,
+    plus selected EU/UN/UK records. Free API, US Trade Department
+    (api.trade.gov). Auth via the csl-subscription-key in crawlkeyvault.
+
+    Returns source_id="csl_screening" so the evidence row points at the
+    actual upstream (not OpenSanctions). Route name kept as
+    /sources/opensanctions/search for tool-spec compatibility with the
+    existing agent YAML."""
+    key = get_secret("csl-subscription-key") or ""
+    url = "https://data.trade.gov/consolidated_screening_list/v1/search"
+    if not key:
+        return {
+            "source_id": "csl_screening",
+            "source_url": url,
+            "fetched_at": _now_iso(),
+            "total": 0, "results": [],
+            "error": "csl-subscription-key missing from crawlkeyvault",
+        }
+    params = {"name": req.entity_name, "size": req.limit}
     if req.country:
-        params["countries"] = req.country.lower()
-    if req.schema_:
-        params["schema"] = req.schema_
-    url = "https://api.opensanctions.org/search/sanctions"
-    api_key = get_secret("opensanctions-api-key") or ""
-    headers = {"User-Agent": _UA, "Accept": "application/json"}
-    if api_key:
-        headers["Authorization"] = f"ApiKey {api_key}"
+        params["countries"] = req.country.upper()
+    headers = {"User-Agent": _UA, "Accept": "application/json",
+               "subscription-key": key}
     try:
         r = requests.get(url, params=params, headers=headers, timeout=20)
-        if r.status_code == 401:
-            return {
-                "source_id": "opensanctions",
-                "source_url": url,
-                "fetched_at": _now_iso(),
-                "total": 0, "results": [],
-                "error": "OpenSanctions requires API key — set 'opensanctions-api-key' in crawlkeyvault",
-            }
         r.raise_for_status()
         data = r.json()
     except Exception as e:
-        log.warning("opensanctions search failed: %s", e)
+        log.warning("csl search failed: %s", e)
         return {
-            "source_id": "opensanctions",
+            "source_id": "csl_screening",
             "source_url": url,
             "fetched_at": _now_iso(),
             "total": 0, "results": [],
@@ -220,19 +225,21 @@ async def opensanctions_search(req: OSSearchRequest):
     hits = data.get("results") or []
     results = []
     for h in hits:
-        props = h.get("properties") or {}
         results.append({
-            "id": h.get("id"),
-            "caption": h.get("caption"),
-            "schema": h.get("schema"),
-            "datasets": h.get("datasets") or [],
-            "topics": props.get("topics") or [],
+            "id": h.get("id") or h.get("source_id"),
+            "caption": h.get("name"),
+            "schema": h.get("type"),  # Individual / Entity / Vessel / Aircraft
+            "datasets": [h.get("source")] if h.get("source") else [],
+            "topics": h.get("federal_register_notice") and ["sanction"] or [],
+            "programs": h.get("programs") or [],
+            "addresses": h.get("addresses") or [],
+            "score": h.get("score"),
         })
     return {
-        "source_id": "opensanctions",
-        "source_url": f"https://www.opensanctions.org/search/?q={req.entity_name}",
+        "source_id": "csl_screening",
+        "source_url": f"https://search.api.trade.gov/consolidated_screening_list?name={req.entity_name}",
         "fetched_at": _now_iso(),
-        "total": data.get("total", {}).get("value") if isinstance(data.get("total"), dict) else len(results),
+        "total": data.get("total") or len(results),
         "results": results,
     }
 
@@ -246,56 +253,106 @@ class OFSISearchRequest(BaseModel):
     entity_type: str = Field("entity", pattern=r"^(individual|entity|ship|aircraft)$")
 
 
+# OFSI list cache: download once per process, refresh hourly. ~3-5 MB.
+_OFSI_CACHE = {"fetched_at": 0, "entries": []}
+_OFSI_TTL = 3600  # 1 hour
+_OFSI_XML = "https://ofsistorage.blob.core.windows.net/publishlive/ConList.xml"
+
+
+def _ofsi_refresh():
+    """Download OFSI ConList.xml from HMG. PRIMARY_GOVERNMENT source — no
+    intermediary. Returns list of {name, aliases, listed_on, regime}."""
+    import xml.etree.ElementTree as ET
+    try:
+        r = requests.get(_OFSI_XML, headers={"User-Agent": _UA}, timeout=30)
+        r.raise_for_status()
+        root = ET.fromstring(r.content)
+    except Exception as e:
+        log.warning("ofsi xml fetch failed: %s", e)
+        return []
+
+    entries = []
+    # OFSI XML: each <FinancialSanctionsTarget> has Names, Type, GroupTypeDescription,
+    # plus a parent <DesignationDetails> with regime + listed_on.
+    for tgt in root.iter():
+        if not tgt.tag.endswith("FinancialSanctionsTarget"):
+            continue
+        names = []
+        ttype = None
+        regime = None
+        listed_on = None
+        last_upd = None
+        for child in tgt.iter():
+            tag = child.tag.rsplit("}", 1)[-1]
+            if tag in ("Name6", "Name1", "Name2", "FullName"):
+                if child.text and child.text.strip():
+                    names.append(child.text.strip())
+            elif tag == "AliasTypeName" and child.text:
+                names.append(child.text.strip())
+            elif tag == "GroupTypeDescription" and child.text:
+                ttype = child.text.strip()
+            elif tag == "RegimeName" and child.text:
+                regime = child.text.strip()
+            elif tag == "ListedOn" and child.text:
+                listed_on = child.text.strip()
+            elif tag == "LastUpdated" and child.text:
+                last_upd = child.text.strip()
+        if names:
+            entries.append({
+                "name": names[0],
+                "aliases": names[1:],
+                "type": ttype,
+                "regime": regime,
+                "listed_on": listed_on,
+                "last_updated": last_upd,
+            })
+    return entries
+
+
+def _ofsi_entries():
+    now = time.time() if (time := __import__("time")) else 0
+    if now - _OFSI_CACHE["fetched_at"] > _OFSI_TTL:
+        entries = _ofsi_refresh()
+        if entries:
+            _OFSI_CACHE["entries"] = entries
+            _OFSI_CACHE["fetched_at"] = now
+    return _OFSI_CACHE["entries"]
+
+
 @router.post("/sources/ofsi_consolidated/search")
 async def ofsi_consolidated_search(req: OFSISearchRequest):
-    """OFSI consolidated list via OpenSanctions gb_hmt_sanctions dataset
-    (OS pulls it daily from HMG). Uses free /search endpoint."""
-    schema = "LegalEntity" if req.entity_type == "entity" else "Person"
-    url = "https://api.opensanctions.org/search/gb_hmt_sanctions"
-    api_key = get_secret("opensanctions-api-key") or ""
-    headers = {"User-Agent": _UA, "Accept": "application/json"}
-    if api_key:
-        headers["Authorization"] = f"ApiKey {api_key}"
-    try:
-        r = requests.get(url,
-                         params={"q": req.entity_name, "limit": 10, "schema": schema},
-                         headers=headers, timeout=20)
-        if r.status_code == 401:
-            return {
-                "source_id": "ofsi_consolidated",
-                "source_url": url,
-                "fetched_at": _now_iso(),
-                "results": [],
-                "error": "OpenSanctions requires API key — set 'opensanctions-api-key' in crawlkeyvault",
-            }
-        r.raise_for_status()
-        data = r.json()
-    except Exception as e:
-        log.warning("ofsi search failed: %s", e)
-        return {
-            "source_id": "ofsi_consolidated",
-            "source_url": url,
-            "fetched_at": _now_iso(),
-            "results": [],
-            "error": str(e)[:200],
-        }
-
-    hits = data.get("results") or []
+    """OFSI Consolidated List — direct download from HMG (PRIMARY_GOVERNMENT).
+    Cached per process for 1 hour. Case-insensitive substring match on name
+    + aliases. No API key required — primary source, free."""
+    q = (req.entity_name or "").strip().lower()
+    if not q:
+        return {"source_id": "ofsi_consolidated", "source_url": _OFSI_XML,
+                "fetched_at": _now_iso(), "results": [],
+                "error": "entity_name required"}
+    entries = _ofsi_entries()
+    if not entries:
+        return {"source_id": "ofsi_consolidated", "source_url": _OFSI_XML,
+                "fetched_at": _now_iso(), "results": [],
+                "error": "OFSI XML fetch failed or empty"}
     results = []
-    for h in hits:
-        props = h.get("properties") or {}
-        results.append({
-            "name": h.get("caption"),
-            "group_id": h.get("id"),
-            "regime": (props.get("program") or [None])[0],
-            "listed_on": (props.get("listingDate") or [None])[0],
-            "last_updated": (props.get("modifiedAt") or [None])[0],
-            "aliases": props.get("alias") or [],
-        })
+    for e in entries:
+        candidates = [e["name"]] + (e.get("aliases") or [])
+        if any(q in c.lower() for c in candidates if c):
+            results.append({
+                "name": e["name"],
+                "aliases": (e.get("aliases") or [])[:10],
+                "type": e.get("type"),
+                "regime": e.get("regime"),
+                "listed_on": e.get("listed_on"),
+                "last_updated": e.get("last_updated"),
+            })
+            if len(results) >= 25:
+                break
     return {
         "source_id": "ofsi_consolidated",
-        "source_url": "https://www.gov.uk/government/publications/financial-sanctions-consolidated-list-of-targets",
+        "source_url": _OFSI_XML,
         "fetched_at": _now_iso(),
+        "total_targets_scanned": len(entries),
         "results": results,
     }
 
