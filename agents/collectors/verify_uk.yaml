@@ -89,3 +89,7 @@ output:
   description: >
     Side effect only — N evidence rows written to crawl_reports.evidence,
     one per source step. No structured return payload.
+
+deployed:
+  foundry_agent_id: asst_4ybP82hUVCSPXoP052AXfCg4
+  project_endpoint: https://copapfoundry-resource.services.ai.azure.com/api/projects/copapfoundry
