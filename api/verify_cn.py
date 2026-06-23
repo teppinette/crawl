@@ -54,7 +54,7 @@ def init(get_secret):
     try:
         result = subprocess.run(
             [str(_CLI_PATH), "proxy-get", "--country-code", "cn",
-             "--protocol", "http", "--type", "rotating"],
+             "--protocol", "http", "--type", "sticky"],
             capture_output=True, text=True, timeout=15,
         )
         if result.stdout.strip():
@@ -191,6 +191,97 @@ def _navigate_and_extract(page, entity_name: str, uscc: str) -> dict:
     return _parse_tianyancha_result(entity_name, uscc, body)
 
 
+_CN_CORP_SUFFIXES = [
+    "集团股份有限公司", "集团控股有限公司", "股份有限公司",
+    "有限责任公司", "集团有限公司", "控股有限公司", "有限公司",
+    "(集团)", "（集团）",
+]
+
+_CN_PROVINCES = [
+    # National prefix used by SOEs ("中国" + brand + industry). Strip so the
+    # brand is the discriminator, not the shared 中国 prefix.
+    "中国",
+    "北京", "上海", "天津", "重庆",
+    "河北", "山西", "辽宁", "吉林", "黑龙江", "江苏", "浙江", "安徽",
+    "福建", "江西", "山东", "河南", "湖北", "湖南", "广东", "海南",
+    "四川", "贵州", "云南", "陕西", "甘肃", "青海",
+    "内蒙古", "广西", "西藏", "宁夏", "新疆",
+]
+
+
+def _normalize_cn_name(name: str) -> str:
+    """Strip corporate suffixes, parens, and leading geography to expose brand."""
+    if not name:
+        return ""
+    n = name
+    # Strip parens and contents (handles half-width + full-width)
+    n = re.sub(r"[(（][^()（）]*[)）]", "", n)
+    # Strip corporate suffixes (longest first — already ordered)
+    for s in _CN_CORP_SUFFIXES:
+        n = n.replace(s, "")
+    # Strip leading province
+    for p in _CN_PROVINCES:
+        if n.startswith(p):
+            n = n[len(p):]
+            n = re.sub(r"^(?:省|市|自治区|自治州|地区)", "", n)
+            break
+    # Strip leading "XX市" (2-3 char prefecture city)
+    n = re.sub(r"^[一-鿿]{2,3}市", "", n)
+    return n.strip()
+
+
+def _cn_brand(normalized: str) -> str:
+    """First 2-4 CJK chars of a normalized name. This is typically the brand;
+    industry descriptors (科技/集团/贸易/...) follow."""
+    chars = [c for c in normalized if "一" <= c <= "鿿"]
+    return "".join(chars[:4])
+
+
+def _name_match_cn(query: str, returned: str) -> tuple[float, str]:
+    """Match a queried entity name against what Tianyancha returned.
+    Returns (score 0.0-1.0, reason). Score >= _CN_NAME_MATCH_THRESHOLD = accept.
+
+    Conservative on purpose: better to return verified=false on a related-but-
+    distinct match (e.g. Alibaba/Ant Group, CNPC/Sinopec, or a sibling sub
+    inside the same group) than to confidently surface the wrong entity."""
+    if not query or not returned:
+        return 0.0, "empty"
+    q = _normalize_cn_name(query)
+    r = _normalize_cn_name(returned)
+    if not q or not r:
+        return 0.0, "empty after normalize"
+    # Strongest: one normalized name is a substring of the other.
+    # Handles "腾讯" → "腾讯计算机系统", "阿里巴巴(中国)" → "阿里巴巴集团控股", etc.
+    if q in r or r in q:
+        return 1.0, "substring"
+    # Otherwise brand-prefix check. The first 2 CJK chars after normalization
+    # are the brand discriminator (阿里 / 蚂蚁 / 腾讯 / 华为). If those don't
+    # match exactly, it's a different company even if the rest looks similar.
+    qb, rb = _cn_brand(q), _cn_brand(r)
+    if not qb or not rb:
+        return 0.0, "no brand"
+    if qb[:2] != rb[:2]:
+        return 0.0, f"brand prefix differs ({qb[:2]} vs {rb[:2]})"
+    # Brand prefix matches — also require strong overlap on the full brand
+    # window to catch SOE-prefix collisions (CNPC 中国石油天然气 vs
+    # Sinopec 中国石油化工 — both start 石油 after stripping 中国, but
+    # the rest diverges).
+    qs, rs = set(qb), set(rb)
+    overlap = len(qs & rs)
+    smaller = min(len(qs), len(rs))
+    ratio = overlap / smaller
+    return ratio, f"brand overlap {overlap}/{smaller}"
+
+
+# Threshold below which Tianyancha's first-result match is treated as a wrong
+# entity. Tianyancha sometimes returns related-but-distinct companies
+# (e.g. Alibaba → Ant Group). Better to return verified=false than to
+# confidently surface the wrong entity to a banker. 0.75 means brand-prefix
+# matches AND ≥3 of 4 brand-window chars overlap — strict enough to reject
+# SOE-prefix collisions (CNPC vs Sinopec) and intra-group sibling subs.
+_CN_NAME_MATCH_THRESHOLD = 0.75
+
+
 def _parse_tianyancha_result(entity_name: str, uscc: str, body: str) -> dict:
     """Parse Tianyancha search results page."""
     result = {
@@ -255,7 +346,24 @@ def _parse_tianyancha_result(entity_name: str, uscc: str, body: str) -> dict:
         if flag in body:
             flags.append(flag)
 
-    if name or found_uscc or legal_rep:
+    # Name-match gate. Tianyancha can return a related-but-distinct entity as
+    # the first search hit (e.g. searching Alibaba returns Ant Group). If the
+    # query was a Chinese name and the returned legal_name is too different,
+    # reject the match rather than confidently surfacing the wrong entity.
+    # A queried USCC that matches what Tianyancha returned bypasses the gate
+    # (USCC is the unique identifier — trust it over name similarity).
+    name_match_score = None
+    name_match_reason = None
+    name_mismatch = False
+    has_cjk_query = bool(re.search(r"[一-鿿]", entity_name or ""))
+    query_uscc_matches = bool(uscc) and (found_uscc == uscc)
+
+    if name and has_cjk_query and not query_uscc_matches:
+        name_match_score, name_match_reason = _name_match_cn(entity_name, name)
+        if name_match_score < _CN_NAME_MATCH_THRESHOLD:
+            name_mismatch = True
+
+    if (name or found_uscc or legal_rep) and not name_mismatch:
         result["found"] = True
         result["legal_name"] = name
         result["uscc"] = found_uscc
@@ -267,12 +375,33 @@ def _parse_tianyancha_result(entity_name: str, uscc: str, body: str) -> dict:
         result["email"] = email
         result["address"] = address
         result["flags"] = flags if flags else None
+        if name_match_score is not None:
+            result["name_match_score"] = round(name_match_score, 2)
         result["validation_source"] = {
             "registry": "State Administration for Market Regulation (SAMR), People's Republic of China",
             "url": "https://www.tianyancha.com",
             "record_id": found_uscc or entity_name,
             "how_to_reproduce": f"Visit tianyancha.com → Search for '{entity_name}'",
             "verified_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        }
+    elif name_mismatch:
+        # Tianyancha had a candidate but it doesn't match the searched entity.
+        # Return the candidate so the operator can inspect, but verified=false.
+        result["found"] = False
+        result["verified"] = False
+        result["note"] = (
+            f"Tianyancha returned a candidate that does not match '{entity_name}': "
+            f"'{name}' (similarity={name_match_score:.2f}, threshold={_CN_NAME_MATCH_THRESHOLD}). "
+            "Likely a different entity — Tianyancha's first search hit can be a "
+            "related but distinct company. Re-query with the exact registered "
+            "name or a USCC to confirm."
+        )
+        result["candidate"] = {
+            "legal_name": name,
+            "uscc": found_uscc,
+            "legal_representative": legal_rep,
+            "status": status,
+            "name_match_score": round(name_match_score, 2),
         }
     else:
         result["found"] = False
