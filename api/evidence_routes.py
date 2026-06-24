@@ -160,6 +160,77 @@ async def list_run_claims(run_id: str):
     return {"run_id": run_id, "claims": evidence_db.list_claims(run_id)}
 
 
+class AddClaimRequest(BaseModel):
+    claim_type: str
+    subject: str = Field(..., max_length=500)
+    predicate: str
+    object: dict = Field(..., description="Typed payload, shape varies by claim_type")
+    evidence_ids: list[str] = Field(..., min_items=1)
+    confidence: Optional[str] = "medium"
+    rationale: Optional[str] = None
+    support: Optional[str] = "primary"
+    quoted_values: Optional[dict] = None
+
+
+@router.post("/evidence/runs/{run_id}/claims")
+async def add_run_claim(run_id: str, req: AddClaimRequest):
+    """Persist one claim with linked evidence. Called by claim_extractor."""
+    run = evidence_db.get_run(run_id)
+    if not run:
+        raise HTTPException(status_code=404, detail="run not found")
+    try:
+        claim_id = evidence_db.add_claim(
+            run_id,
+            claim_type=req.claim_type,
+            subject=req.subject,
+            predicate=req.predicate,
+            object_=req.object,
+            evidence_ids=req.evidence_ids,
+            confidence=req.confidence or "medium",
+            rationale=req.rationale,
+            support=req.support or "primary",
+            quoted_values=req.quoted_values or {},
+        )
+    except Exception as e:
+        msg = str(e)
+        if "evidence" in msg.lower() and "foreign" in msg.lower():
+            raise HTTPException(status_code=400,
+                                detail="one or more evidence_ids do not belong to this run")
+        raise
+    run_after = evidence_db.get_run(run_id)
+    return {
+        "claim_id": claim_id,
+        "run_id": run_id,
+        "claim_count": run_after["claim_count"] if run_after else None,
+    }
+
+
+@router.post("/evidence/runs/{run_id}/extractor_complete")
+async def extractor_complete(run_id: str):
+    """Mark extractor done — transitions cir_runs.status to 'synthesizing'."""
+    run = evidence_db.get_run(run_id)
+    if not run:
+        raise HTTPException(status_code=404, detail="run not found")
+    evidence_db.update_run_status(run_id, "synthesizing")
+    run_after = evidence_db.get_run(run_id)
+    return {
+        "run_id": run_id,
+        "status": run_after["status"] if run_after else "synthesizing",
+        "claim_count": run_after["claim_count"] if run_after else None,
+    }
+
+
+@router.post("/evidence/runs/{run_id}/synthesizer_complete")
+async def synthesizer_complete(run_id: str):
+    """Mark synthesizer done — transitions cir_runs.status to 'complete'."""
+    run = evidence_db.get_run(run_id)
+    if not run:
+        raise HTTPException(status_code=404, detail="run not found")
+    evidence_db.update_run_status(run_id, "complete")
+    run_after = evidence_db.get_run(run_id)
+    return {"run_id": run_id, "status": run_after["status"] if run_after else "complete"}
+
+
 @router.get("/evidence/runs/{run_id}/renders")
 async def list_run_renders(run_id: str):
     run = evidence_db.get_run(run_id)

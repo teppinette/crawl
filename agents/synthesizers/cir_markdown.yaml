@@ -29,12 +29,15 @@ runtime:
   region: eastus2
 
 model:
-  # Opus-class — synthesis needs depth + reliability for banker-facing
-  # output. 200K TPM provisioned, ~8% utilization at deploy time so plenty
-  # of headroom for parallel CIR renders.
-  deployment: claude-opus-4-8
+  # gpt-4.1 (full size, not mini) — strong reasoning for banker prose.
+  # Foundry Agents service does NOT currently support Claude models as
+  # the agent's underlying model — "invalid_deployment: Requested API is
+  # currently not supported" if you try claude-opus-4-8 here. Claude
+  # remains usable for direct chat-completion calls but not via Agents.
+  # If/when Foundry adds Claude-via-Agents support, switch back here.
+  deployment: gpt-4.1-746118
   resource: copapfoundry-resource
-  region: global
+  region: eastus2
   temperature: 0.2
   max_tokens: 16384
 
@@ -100,8 +103,11 @@ system_prompt: |
             every sentence that asserts a fact.
 
     Step 4: Call save_render(run_id, render_type="cir_markdown",
-            payload={"markdown": <text>, "model": "claude-opus-4-8",
-            "evidence_ids_cited": [<list>]}). Done.
+            payload={"markdown": <text>, "model": "gpt-4.1-746118",
+            "evidence_ids_cited": [<list>]}).
+
+    Step 5: Call synthesizer_complete(run_id) to transition the run to
+            'complete'. Then stop.
 
   Do not call any other tools. Do not search the web. Do not invoke other
   agents. The evidence pool is the only source of truth.
@@ -110,6 +116,7 @@ tools:
   - $ref: ../tools/list_run_evidence.openapi.yaml
   - $ref: ../tools/list_run_claims.openapi.yaml
   - $ref: ../tools/save_render.openapi.yaml
+  - $ref: ../tools/synthesizer_complete.openapi.yaml
 
 output:
   description: >
@@ -117,3 +124,7 @@ output:
     payload.markdown containing the report. One row in synthesis_runs
     capturing the full prompt + response + tokens + cost + uncited_claims
     (rejected assertions caught by the validator).
+
+deployed:
+  foundry_agent_id: asst_g8FUKKDB9yHl9aglW2esu0z0
+  project_endpoint: https://copapfoundry-resource.services.ai.azure.com/api/projects/copapfoundry

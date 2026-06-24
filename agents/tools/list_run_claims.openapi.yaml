@@ -1,0 +1,47 @@
+openapi: 3.0.3
+info:
+  title: List Run Claims
+  version: "1.0.0"
+  description: >
+    List every typed claim already extracted from a run's evidence pool.
+    Used by the synthesizer to load claims with their citations before
+    drafting the narrative.
+servers:
+  - url: http://20.94.45.219:8400/api/v1
+paths:
+  /evidence/runs/{run_id}/claims:
+    get:
+      operationId: list_run_claims
+      summary: List all claims for a run
+      parameters:
+        - in: path
+          name: run_id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '200':
+          description: Claims with linked evidence
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  run_id: { type: string, format: uuid }
+                  claims:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id: { type: string, format: uuid }
+                        claim_type: { type: string }
+                        subject: { type: string }
+                        predicate: { type: string }
+                        object: { type: object, additionalProperties: true }
+                        confidence: { type: string, enum: [high, medium, low] }
+                        rationale: { type: string }
+                        evidence_ids:
+                          type: array
+                          items: { type: string, format: uuid }
+                        quoted_values:
+                          type: array
+                          items: { type: string }

@@ -1,0 +1,58 @@
+openapi: 3.0.3
+info:
+  title: Save Render
+  version: "1.0.0"
+  description: >
+    Persist a render (CIR markdown, sanctions screening, UBO map, banker
+    audit pack) produced by a synthesizer agent. Stores in renders table
+    keyed to run_id; one run can have many renders of different types.
+servers:
+  - url: http://20.94.45.219:8400/api/v1
+paths:
+  /evidence/runs/{run_id}/render/{render_type}:
+    post:
+      operationId: save_render
+      summary: Persist a render produced from the evidence pool
+      parameters:
+        - in: path
+          name: run_id
+          required: true
+          schema: { type: string, format: uuid }
+        - in: path
+          name: render_type
+          required: true
+          schema:
+            type: string
+            enum: [cir_markdown, sanctions_screening, ubo_map, banker_audit_pack]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                model:
+                  type: string
+                  description: LLM deployment used for the render (e.g. claude-opus-4-8)
+                payload:
+                  type: object
+                  description: The rendered content + metadata
+                  properties:
+                    markdown: { type: string }
+                    model: { type: string }
+                    evidence_ids_cited:
+                      type: array
+                      items: { type: string, format: uuid }
+                  additionalProperties: true
+      responses:
+        '200':
+          description: Render persisted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  render_id: { type: string, format: uuid }
+                  run_id: { type: string, format: uuid }
+                  render_type: { type: string }
+                  status: { type: string }

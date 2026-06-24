@@ -1,0 +1,74 @@
+openapi: 3.0.3
+info:
+  title: Add Claim
+  version: "1.0.0"
+  description: >
+    Persist a typed claim with linked evidence. Called by the claim
+    extractor agent once per assertion it identifies in the evidence pool.
+    Each claim names its subject + predicate + object, points at the
+    evidence rows that support it, and optionally a per-evidence
+    quoted_value (the exact substring that supports the claim).
+servers:
+  - url: http://20.94.45.219:8400/api/v1
+paths:
+  /evidence/runs/{run_id}/claims:
+    post:
+      operationId: add_claim
+      summary: Persist one claim with linked evidence
+      parameters:
+        - in: path
+          name: run_id
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [claim_type, subject, predicate, object, evidence_ids]
+              properties:
+                claim_type:
+                  type: string
+                  enum: [director, ubo, shareholder, sanction, adverse_media,
+                         dark_web_finding, registration, address, financial, relationship]
+                subject:
+                  type: string
+                  description: Entity or person the claim is about
+                predicate:
+                  type: string
+                  description: e.g. 'is_director_of', 'beneficially_owns_pct', 'is_sanctioned_by', 'has_lei'
+                object:
+                  type: object
+                  description: Typed payload (shape varies by claim_type)
+                  additionalProperties: true
+                evidence_ids:
+                  type: array
+                  items: { type: string, format: uuid }
+                  description: UUIDs of evidence rows that support this claim
+                confidence:
+                  type: string
+                  enum: [high, medium, low]
+                  default: medium
+                rationale:
+                  type: string
+                  description: Short reason for grouping the evidence
+                support:
+                  type: string
+                  enum: [primary, corroborating, contradicting]
+                  default: primary
+                quoted_values:
+                  type: object
+                  description: Per-evidence-id quoted substring map (key = evidence_id, value = quoted span)
+                  additionalProperties: { type: string }
+      responses:
+        '200':
+          description: Claim persisted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  claim_id: { type: string, format: uuid }
+                  run_id: { type: string, format: uuid }
+                  claim_count: { type: integer }

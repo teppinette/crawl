@@ -1,0 +1,42 @@
+openapi: 3.0.3
+info:
+  title: List Run Evidence
+  version: "1.0.0"
+  description: >
+    List every evidence row collected for a run. Used by extractor and
+    synthesizer agents to load the evidence pool before reasoning over it.
+servers:
+  - url: http://20.94.45.219:8400/api/v1
+paths:
+  /evidence/runs/{run_id}/evidence:
+    get:
+      operationId: list_run_evidence
+      summary: List all evidence rows for a run
+      parameters:
+        - in: path
+          name: run_id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '200':
+          description: Evidence rows
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  run_id: { type: string, format: uuid }
+                  evidence:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id: { type: string, format: uuid }
+                        source_id: { type: string }
+                        source_name: { type: string }
+                        source_tier: { type: string }
+                        auditable_for_banks: { type: boolean }
+                        source_url: { type: string }
+                        fetched_at: { type: string, format: date-time }
+                        extracted: { type: object, additionalProperties: true }
+                        error: { type: string }

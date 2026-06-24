@@ -1,0 +1,29 @@
+openapi: 3.0.3
+info:
+  title: Synthesizer Complete
+  version: "1.0.0"
+  description: >
+    Mark synthesis done. Transitions cir_runs.status from 'synthesizing'
+    to 'complete'. Sets completed_at timestamp.
+servers:
+  - url: http://20.94.45.219:8400/api/v1
+paths:
+  /evidence/runs/{run_id}/synthesizer_complete:
+    post:
+      operationId: synthesizer_complete
+      summary: Mark synthesizer run done
+      parameters:
+        - in: path
+          name: run_id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '200':
+          description: Status transitioned to complete
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  run_id: { type: string, format: uuid }
+                  status: { type: string, example: complete }
