@@ -2850,6 +2850,7 @@ _VERIFY_SOURCES = {
     "IT": "VIES (EU VAT) — P.IVA, legal name, status, address (free EU tax validation)",
     "AR": "AFIP (CUIT) — CUIT, legal name, tax status, address, economic activities (free API)",
     "EG": "GLEIF LEI Registry — LEI, legal name (AR+EN), status, commercial reg, address (free API, ~322 entities)",
+    "MA": "GLEIF LEI Registry — LEI, legal name, status, address (~250 entities). Smaller MA entities not in GLEIF.",
     "ES": "VIES (EU VAT) — CIF, legal name, status, address (free EU tax validation)",
     "DE": "VIES (EU VAT) — USt-IdNr, legal name, status, address (free EU tax validation)",
     "PT": "VIES (EU VAT) — NIPC/NIF, legal name, status, address (free EU tax validation)",
@@ -4154,6 +4155,28 @@ async def verify_entity(
                 f"LEI {result.get('lei', 'N/A')} — {result.get('status', 'Unknown')}"
             ) if result.get("found") else f"{entity_name} not found in GLEIF (EG)",
         })
+
+    # --------------- MOROCCO (GLEIF + OC) ---------------
+    if country_code == "MA":
+        ompic_number = (body.get("ompic_number") or body.get("reg_number") or "").strip()
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call,
+            {"entity_name": entity_name, "country_code": "MA", "ompic_number": ompic_number}
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        out = dict(result or {})
+        out.update({
+            "entity_name": entity_name, "country_code": "MA",
+            "verified": result.get("verified", result.get("found", False)),
+            "legal_name": result.get("legal_name") or result.get("entity_name"),
+            "timestamp": now,
+        })
+        out.setdefault("summary",
+            (f"{result.get('legal_name', entity_name)} — "
+             f"LEI {result.get('lei', 'N/A')} — {result.get('status', 'Unknown')}")
+            if result.get("verified", result.get("found"))
+            else f"{entity_name} not found in GLEIF (MA)")
+        return _persist_verify(out)
 
     # --------------- SPAIN (VIES) ---------------
     if country_code == "ES":
