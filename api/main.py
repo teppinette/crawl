@@ -3207,23 +3207,48 @@ async def verify_entity(
         # Auto-inject agent-pipeline escalation hint when verified=False
         # AND the country has a deployed Foundry agent collector AND a
         # dispatcher hasn't already populated an `escalation` block.
-        # This is the "tier 2" productizable path: free/fast deterministic
-        # verify path missed; the Foundry agent can hit registry portals
-        # via Multilogin that the bespoke adapter can't reach.
+        #
+        # 2026-06-24 VALIDATION FINDING: of 42 deployed collectors, only GB
+        # has bespoke registry tools (gb_companies_house_*). For the other
+        # 41, the collector's only identity-lookup tool is
+        # `country_registry_lookup` which loops back to /api/v1/verify
+        # internally — i.e. the same Tier-1 path. So Tier-2 today adds
+        # value via screening tools (gleif_lei_lookup, opensanctions_search,
+        # ofsi_consolidated_search, darkweb_scan) but does NOT bring new
+        # identity sources for non-GB countries. The escalation copy below
+        # reflects that honestly. Building real per-country registry tools
+        # (SECP, MERSIS, DcciInfo, SAMR direct, etc.) is tracked separately;
+        # those are what would make the escalation an identity-coverage
+        # upgrade rather than a sanctions/screening upgrade.
         if not resp.get("verified") and not resp.get("escalation"):
             cc_lower = (resp.get("country_code") or "").lower()
             if cc_lower and _agent_collector_exists(cc_lower):
+                if cc_lower == "uk" or resp.get("country_code") == "GB":
+                    rationale = ("GB collector has bespoke Companies House "
+                                 "tools (search/profile/PSC). Agent can do "
+                                 "name-fuzzy resolution + retrieve PSC "
+                                 "ownership records that /verify doesn't "
+                                 "return today.")
+                    fields_value = ["psc_records", "officers",
+                                    "previous_names", "filings_history"]
+                else:
+                    rationale = ("Agent pipeline adds sanctions/screening "
+                                 "evidence (OpenSanctions, OFSI, GLEIF, "
+                                 "dark-web) and LLM-based fuzzy "
+                                 "resolution, but for identity sources it "
+                                 "queries the same /verify path Tier 1 "
+                                 "already tried. Useful for the audit "
+                                 "trail and sanctions context; NOT a new "
+                                 "identity source for this country today.")
+                    fields_value = ["sanctions_screening", "darkweb_scan",
+                                    "audit_evidence_pool"]
                 resp["escalation"] = {
                     "tier": "agent_pipeline",
                     "endpoint": "POST /api/v1/cir/run",
                     "payload": {"country_code": resp.get("country_code"),
                                 "entity_name": resp.get("entity_name")},
-                    "rationale": (f"Bespoke {resp.get('country_code')} verify "
-                                  f"path (GLEIF / aggregator / direct registry) "
-                                  f"did not resolve. The Foundry agent pipeline "
-                                  f"can hit the in-country registry portal "
-                                  f"(SECP / MERSIS / DcciInfo / SAMR / etc.) "
-                                  f"via Multilogin country-exit IP."),
+                    "rationale": rationale,
+                    "delivers": fields_value,
                     "expected_latency_seconds": 180,
                 }
 
@@ -3525,41 +3550,28 @@ async def verify_entity(
             "timestamp": now,
             "summary": result.get("legal_name", entity_name) if found else f"'{entity_name}' not verified",
         }
-        # Escalation hint: Baidu fallback path returns legal_name (and often
-        # address/business_scope) but USCC + established_date are missing
-        # whenever Baidu's knowledge card is partial. Onboarding's 2026-06-24
-        # sweep flagged 18 entities in this state ("verified=True / founding=
-        # null"). The agent pipeline (verify_cn_collector via Multilogin CN)
-        # can fetch the Tianyancha/SAMR detail record by Chinese legal_name
-        # and fill USCC + established_date + officers. This is the "tier 2"
-        # productizable path — adds ~2 min latency but fills the field set.
+        # CN-specific notes when verified=True but partial:
+        # 2026-06-24 finding — verify_cn_collector's only identity tool is
+        # country_registry_lookup, which loops back here. So the agent
+        # cannot today recover USCC/established_date that Baidu didn't
+        # surface. Marking the gap as a `data_limitation` rather than an
+        # actionable escalation so callers see the real story; the agent
+        # path still adds sanctions/dark-web context via _persist_verify's
+        # generic escalation injection on verified=False.
         if found and not has_full and result.get("legal_name"):
-            resp["escalation"] = {
-                "tier": "agent_pipeline",
-                "endpoint": "POST /api/v1/cir/run",
-                "payload": {"country_code": "CN", "entity_name": entity_name},
-                "rationale": ("Baidu fallback returned the Chinese legal name "
-                              "but the SAMR detail record (USCC + "
-                              "established_date + officers) is not in the "
-                              "Baidu knowledge card. The Foundry agent "
-                              "pipeline fetches the Tianyancha/SAMR detail "
-                              "page directly via Multilogin CN exit."),
-                "expected_latency_seconds": 120,
-                "fields_recoverable": ["uscc", "established_date",
-                                       "founding_year", "officers",
-                                       "shareholders", "industry"],
-            }
-        elif not found:
-            resp["escalation"] = {
-                "tier": "agent_pipeline",
-                "endpoint": "POST /api/v1/cir/run",
-                "payload": {"country_code": "CN", "entity_name": entity_name},
-                "rationale": ("CN gateway path (Baidu + Tianyancha) could "
-                              "not resolve the entity. The agent pipeline "
-                              "can try the Chinese-name variant search on "
-                              "Qichacha/Aiqicha which Baidu sometimes "
-                              "misses for foreign-name registrations."),
-                "expected_latency_seconds": 120,
+            resp["data_limitation"] = {
+                "kind": "partial_baidu_record",
+                "missing_fields": ["uscc", "established_date",
+                                   "founding_year", "officers"],
+                "available_fields": [k for k in ("legal_name", "address",
+                                                  "business_scope")
+                                       if resp.get(k)],
+                "note": ("Baidu knowledge card returned the Chinese legal "
+                         "name + address but not the SAMR detail record. "
+                         "The agent pipeline does NOT today have direct "
+                         "Tianyancha/SAMR scraping tools — Tier-2 cannot "
+                         "fill this gap until those tools are built. "
+                         "Tracked as a future-build item."),
             }
         return _persist_verify(resp)
 
@@ -4440,22 +4452,12 @@ async def verify_entity(
             "timestamp": now,
             "summary": summary,
         }
-        # Structural-gap hint: AR SMEs not in GLEIF/OC are recoverable via
-        # the Foundry agent pipeline (verify_ar_collector hits AFIP padron
-        # and BCRA via Multilogin AR exit). Surface as `escalation` so
-        # callers can decide whether to spend the agent budget.
-        if not found:
-            resp["escalation"] = {
-                "tier": "agent_pipeline",
-                "endpoint": "POST /api/v1/cir/run",
-                "payload": {"country_code": "AR", "entity_name": entity_name,
-                            "registration_id": cuit or None},
-                "rationale": ("AR registry coverage via free APIs (GLEIF + "
-                              "OpenCorporates) is LEI/listed-co biased. "
-                              "Smaller AR entities resolve via the agent "
-                              "pipeline which hits AFIP/IGJ via Multilogin AR."),
-                "expected_latency_seconds": 120,
-            }
+        # Don't set an explicit escalation block here — the generic
+        # injection in _persist_verify (honest copy as of 2026-06-24 PM)
+        # will run on verified=False AND surface the same agent path with
+        # accurate "delivers" description (sanctions/dark-web evidence,
+        # NOT new AR identity sources). AFIP/IGJ direct scraping tools
+        # are tracked as a future build item.
         return _persist_verify(resp)
 
     # --------------- EGYPT (GLEIF) ---------------
