@@ -2751,6 +2751,40 @@ def _india_tofler_lookup(entity_name: str, cin: str = "") -> dict:
     if name_match:
         result["legal_name"] = name_match.group(1).strip()
 
+    # Name-match gate (added 2026-06-24): Google's #1 site:tofler.in result for an
+    # arbitrary name often returns an UNRELATED Tofler page (Onboarding hit this:
+    # 5 different IN entities all came back as TWS SYSTEMS PVT LTD because Google
+    # picked the same wrong URL). If the queried entity_name and the returned
+    # legal_name don't share at least one meaningful word, reject the match.
+    if result.get("found") and result.get("legal_name") and entity_name:
+        def _meaningful_words(s: str) -> set:
+            stop = {"the", "and", "of", "a", "an", "ltd", "limited", "pvt",
+                    "private", "public", "llp", "company", "co", "corp",
+                    "corporation", "industries", "international", "group",
+                    "holdings", "global", "india"}
+            words = re.findall(r"[A-Za-z]{3,}", s.lower())
+            return {w for w in words if w not in stop}
+        q_words = _meaningful_words(entity_name)
+        r_words = _meaningful_words(result["legal_name"])
+        if q_words and r_words and not (q_words & r_words):
+            log.warning("India verify: name mismatch — queried '%s', got '%s' "
+                        "(no shared meaningful words); rejecting",
+                        entity_name, result["legal_name"])
+            return {
+                "found": False,
+                "verified": False,
+                "source": "Tofler.in (MCA21 data) — rejected by name-match gate",
+                "source_url": tofler_url,
+                "note": (f"Tofler returned an unrelated entity ('{result['legal_name']}') "
+                         f"for '{entity_name}'. Common when Google's site:tofler.in "
+                         f"first-hit doesn't match the queried name. Pass a CIN or "
+                         f"GSTIN for a deterministic lookup instead."),
+                "rejected_candidate": {
+                    "legal_name": result.get("legal_name"),
+                    "cin": result.get("cin"),
+                },
+            }
+
     if re.search(r'\bActive\b', body):
         result["status"] = "Active"
     elif re.search(r'\bStruck Off\b', body, re.IGNORECASE):
