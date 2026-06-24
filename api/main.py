@@ -2488,7 +2488,14 @@ _SECP_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 def _secp_query_via_ssh(entity_name: str) -> dict:
     """
     Query SECP eServices from Gulf VM via SSH.
+
     Tries collapsed name first (AGROCHINA) then original (AGRO CHINA).
+    Each variant is tried with searchOption=Beginning+With (strict, SECP
+    default) and then Containing (broader) — catches registered names
+    that have a leading prefix or a different word order than the
+    supplied name. Returns `tried_variants` in the response so callers
+    can see exactly which queries were attempted.
+
     Uses both NameSearch and CTC endpoints for richest data.
     """
     vm = VM_CONFIG["gulf"]
@@ -2503,6 +2510,9 @@ def _secp_query_via_ssh(entity_name: str) -> dict:
         # "AGROCHINA PAKISTAN" not "AGRO CHINA PAKISTAN"
         # Try: full collapsed, partial collapses, and original with spaces
         original = entity_name.strip().upper()
+        # Strip "M/S", "M/s.", "MESSRS." prefixes — common Pakistani
+        # correspondence form that the registered name never carries
+        original = re.sub(r'^(M\s*/\s*S\.?|MESSRS\.?)\s+', '', original).strip()
         full_collapsed = re.sub(r'\s+', '', original)
         words = original.split()
         variants = []
@@ -2524,83 +2534,127 @@ def _secp_query_via_ssh(entity_name: str) -> dict:
         ).strip()
         if stripped and stripped not in variants:
             variants.append(stripped)
+        # First content word — for short names ("PACKAGES" of "PACKAGES LIMITED")
+        # that registered with a different suffix or fuller form
+        content_words = [w for w in original.split() if w not in
+                        ("PVT", "PRIVATE", "LTD", "LIMITED", "INC", "CORP",
+                         "LLC", "PLC", "COMPANY", "CO", "THE", "AND", "OF")]
+        if content_words and len(content_words[0]) >= 4:
+            head = content_words[0]
+            if head not in variants:
+                variants.append(head)
 
+        tried_variants = []
         for name in variants:
             safe = name.replace("'", "'\\''").replace('"', '')
 
-            # --- NameSearch (gives reg date + form filing) ---
-            ns_cmd = (
-                f"source ~/crawl/config/proxy.env 2>/dev/null; "
-                f"curl -s --max-time 25 -X POST '{_SECP_URL}' "
-                f"-d 'request_id=SEARCH_NAME&searchName={safe}"
-                f"&searchOption=Beginning+With&requesterProcess=' "
-                f"-H 'Referer: {_SECP_REFERER}' "
-                f"-H 'User-Agent: {_SECP_UA}' "
-                f"-H 'Content-Type: application/x-www-form-urlencoded'"
-            )
-            _, stdout, _ = ssh.exec_command(ns_cmd, timeout=35)
-            ns_html = stdout.read().decode("utf-8", errors="replace")
-
-            if "were found according to given criteria" not in ns_html:
-                continue
-
-            # Parse NameSearch table (8 cols: idx, name, status, CRO, reg_no, reg_date, form_ab, mandatory)
-            ns_cells = re.findall(r'<TD class="tableText">([^<]*)', ns_html)
-            if not ns_cells:
-                continue
-
-            # --- CTC search (gives company type + ACTIVE status + internal ref) ---
-            ctc_cmd = (
-                f"source ~/crawl/config/proxy.env 2>/dev/null; "
-                f"curl -s --max-time 25 -X POST '{_SECP_URL}' "
-                f"-d 'request_id=CTC_SEARCH_COMPANY&searchName={safe}"
-                f"&searchOption=Beginning+With&requesterProcess=null' "
-                f"-H 'Referer: https://eservices.secp.gov.pk/eServices/CTC_CompanySearch.jsp' "
-                f"-H 'User-Agent: {_SECP_UA}' "
-                f"-H 'Content-Type: application/x-www-form-urlencoded'"
-            )
-            _, stdout2, _ = ssh.exec_command(ctc_cmd, timeout=35)
-            ctc_html = stdout2.read().decode("utf-8", errors="replace")
-
-            # Parse CTC onclick for company_type
-            ctc_type = None
-            ctc_match = re.search(
-                r'onclick="opener\.setGridCellValue\(&quot;([^"]+)&quot;\)', ctc_html
-            )
-            if ctc_match:
-                parts = ctc_match.group(1).split("~")
-                # format: name~~reg_no~filing~company_type~status~internal~CRO
-                for p in parts:
-                    p = p.strip()
-                    if p in ("Private Limited Company", "Public Unlisted Company",
-                             "Public Listed Company", "Single Member Company",
-                             "Limited Liability Partnership", "Not For Profit Association",
-                             "Foreign Company", "Trade Organization"):
-                        ctc_type = p
-                        break
-
-            # Build results from NameSearch rows
-            results = []
-            row_size = 8
-            for i in range(0, len(ns_cells), row_size):
-                row = ns_cells[i:i + row_size]
-                if len(row) < 6:
-                    continue
-                results.append({
-                    "legal_name": row[1].strip(),
-                    "status": row[2].strip(),
-                    "cro": row[3].strip(),
-                    "registration_number": row[4].strip(),
-                    "registration_date": row[5].strip(),
-                    "form_ab_filed_upto": row[6].strip() if len(row) > 6 else None,
-                    "mandatory_filing": row[7].strip() if len(row) > 7 else None,
-                    "company_type": ctc_type,
+            # Try Beginning+With first (strict, SECP default).
+            # If no hit, try Containing (broader, catches prefix mismatches).
+            for search_option in ("Beginning+With", "Containing"):
+                tried_variants.append({
+                    "query": name,
+                    "search_option": search_option.replace("+", " "),
                 })
 
-            if results:
-                return {"found": True, "query": name, "results": results}
+                # --- NameSearch (gives reg date + form filing) ---
+                ns_cmd = (
+                    f"source ~/crawl/config/proxy.env 2>/dev/null; "
+                    f"curl -s --max-time 25 -X POST '{_SECP_URL}' "
+                    f"-d 'request_id=SEARCH_NAME&searchName={safe}"
+                    f"&searchOption={search_option}&requesterProcess=' "
+                    f"-H 'Referer: {_SECP_REFERER}' "
+                    f"-H 'User-Agent: {_SECP_UA}' "
+                    f"-H 'Content-Type: application/x-www-form-urlencoded'"
+                )
+                _, stdout, _ = ssh.exec_command(ns_cmd, timeout=35)
+                ns_html = stdout.read().decode("utf-8", errors="replace")
 
-        return {"found": False, "query": entity_name, "results": []}
+                if "were found according to given criteria" not in ns_html:
+                    continue
+
+                # Parse NameSearch table (8 cols: idx, name, status, CRO, reg_no, reg_date, form_ab, mandatory)
+                ns_cells = re.findall(r'<TD class="tableText">([^<]*)', ns_html)
+                if not ns_cells:
+                    continue
+
+                # --- CTC search (gives company type + ACTIVE status + internal ref) ---
+                ctc_cmd = (
+                    f"source ~/crawl/config/proxy.env 2>/dev/null; "
+                    f"curl -s --max-time 25 -X POST '{_SECP_URL}' "
+                    f"-d 'request_id=CTC_SEARCH_COMPANY&searchName={safe}"
+                    f"&searchOption={search_option}&requesterProcess=null' "
+                    f"-H 'Referer: https://eservices.secp.gov.pk/eServices/CTC_CompanySearch.jsp' "
+                    f"-H 'User-Agent: {_SECP_UA}' "
+                    f"-H 'Content-Type: application/x-www-form-urlencoded'"
+                )
+                _, stdout2, _ = ssh.exec_command(ctc_cmd, timeout=35)
+                ctc_html = stdout2.read().decode("utf-8", errors="replace")
+
+                # Parse CTC onclick for company_type
+                ctc_type = None
+                ctc_match = re.search(
+                    r'onclick="opener\.setGridCellValue\(&quot;([^"]+)&quot;\)', ctc_html
+                )
+                if ctc_match:
+                    parts = ctc_match.group(1).split("~")
+                    # format: name~~reg_no~filing~company_type~status~internal~CRO
+                    for p in parts:
+                        p = p.strip()
+                        if p in ("Private Limited Company", "Public Unlisted Company",
+                                 "Public Listed Company", "Single Member Company",
+                                 "Limited Liability Partnership", "Not For Profit Association",
+                                 "Foreign Company", "Trade Organization"):
+                            ctc_type = p
+                            break
+
+                # Build results from NameSearch rows
+                results = []
+                row_size = 8
+                for i in range(0, len(ns_cells), row_size):
+                    row = ns_cells[i:i + row_size]
+                    if len(row) < 6:
+                        continue
+                    results.append({
+                        "legal_name": row[1].strip(),
+                        "status": row[2].strip(),
+                        "cro": row[3].strip(),
+                        "registration_number": row[4].strip(),
+                        "registration_date": row[5].strip(),
+                        "form_ab_filed_upto": row[6].strip() if len(row) > 6 else None,
+                        "mandatory_filing": row[7].strip() if len(row) > 7 else None,
+                        "company_type": ctc_type,
+                    })
+
+                if results:
+                    # Containing can return many irrelevant rows — apply a
+                    # word-overlap filter so we don't return e.g.
+                    # "PAKISTAN HOLDINGS" for a query of "AGRO CHINA PAKISTAN"
+                    if search_option == "Containing":
+                        def _meaningful(s: str) -> set:
+                            stop = {"PVT", "PRIVATE", "LTD", "LIMITED",
+                                    "COMPANY", "CO", "THE", "AND", "OF",
+                                    "PAKISTAN"}
+                            ws = re.findall(r"[A-Z]{3,}", (s or "").upper())
+                            return {w for w in ws if w not in stop}
+                        q_words = _meaningful(entity_name)
+                        results = [r for r in results
+                                   if _meaningful(r["legal_name"]) & q_words]
+
+                    if results:
+                        return {
+                            "found": True,
+                            "query": name,
+                            "search_option": search_option.replace("+", " "),
+                            "results": results,
+                            "tried_variants": tried_variants,
+                        }
+
+        return {
+            "found": False,
+            "query": entity_name,
+            "results": [],
+            "tried_variants": tried_variants,
+        }
 
     except Exception as e:
         log.warning("SECP lookup failed: %s", e)
@@ -2702,17 +2756,65 @@ def _bd_unlocker_fetch(url: str, country: str = "in") -> str:
 # Country-specific registry lookups via Bright Data residential proxy
 # ---------------------------------------------------------------------------
 
+def _in_name_match_words(s: str) -> set:
+    """Meaningful-word extractor for IN name-match gate. Stopwords drop
+    English corporate forms + ultra-common geographic/industry filler so
+    'KLJ PLASTICIZERS LIMITED' vs 'KLJ INDUSTRIES PVT LTD' still match."""
+    stop = {"the", "and", "of", "a", "an", "ltd", "limited", "pvt",
+            "private", "public", "llp", "company", "co", "corp",
+            "corporation", "industries", "international", "group",
+            "holdings", "global", "india"}
+    words = re.findall(r"[A-Za-z]{3,}", (s or "").lower())
+    return {w for w in words if w not in stop}
+
+
 def _india_tofler_lookup(entity_name: str, cin: str = "") -> dict:
     """Look up Indian company on Tofler (MCA21 republished data) via crawl-verify
     using Multilogin + IN residential exit. Replaced the dead Bright Data
-    Unlocker `pakistan` zone path 2026-06-22."""
+    Unlocker `pakistan` zone path 2026-06-22.
+
+    Applies a name-match gate on BOTH paths (CIN-supplied delegate AND
+    name-search fallback): if entity_name and returned legal_name share
+    zero meaningful words, surface a NAME_MISMATCH warning. The CIN-path
+    gate catches Onboarding's case where the supplied CIN belongs to a
+    different entity than the supplied name (e.g. CIN was wrong in their
+    source data, or Tofler 302s unknown CINs to a default page).
+    """
     if cin:
         try:
-            return _verify_vm_call({
+            vm_resp = _verify_vm_call({
                 "entity_name": entity_name,
                 "country_code": "IN",
                 "cin": cin,
             })
+            # Name-match gate on the CIN path. If entity_name and returned
+            # legal_name don't share a meaningful word, surface a clear
+            # NAME_MISMATCH warning. We DON'T flip verified→false because
+            # the registry record IS real (just for a different entity);
+            # we annotate so the caller can decide whether to accept it.
+            if (vm_resp.get("found") or vm_resp.get("verified")) and entity_name:
+                returned_name = vm_resp.get("legal_name") or ""
+                q_words = _in_name_match_words(entity_name)
+                r_words = _in_name_match_words(returned_name)
+                if q_words and r_words and not (q_words & r_words):
+                    log.warning("India verify CIN-path name mismatch: queried "
+                                "'%s' got '%s' for CIN %s",
+                                entity_name, returned_name, cin)
+                    vm_resp["name_mismatch"] = {
+                        "queried_name": entity_name,
+                        "returned_legal_name": returned_name,
+                        "cin": cin,
+                        "note": (
+                            f"CIN {cin} is registered to '{returned_name}' "
+                            f"at MCA21, not '{entity_name}'. The CIN supplied "
+                            f"likely belongs to a different entity than the "
+                            f"queried name. Re-confirm the CIN in your source "
+                            f"data or look up by name instead."
+                        ),
+                    }
+                    vm_resp["verified"] = False
+                    vm_resp["status"] = vm_resp.get("status") or "NAME_MISMATCH"
+            return vm_resp
         except Exception as e:
             log.warning("crawl-verify IN delegate failed for %s/%s: %s", entity_name, cin, e)
             return {"found": False, "error": f"crawl-verify delegate failed: {str(e)[:200]}"}
@@ -2757,15 +2859,8 @@ def _india_tofler_lookup(entity_name: str, cin: str = "") -> dict:
     # picked the same wrong URL). If the queried entity_name and the returned
     # legal_name don't share at least one meaningful word, reject the match.
     if result.get("found") and result.get("legal_name") and entity_name:
-        def _meaningful_words(s: str) -> set:
-            stop = {"the", "and", "of", "a", "an", "ltd", "limited", "pvt",
-                    "private", "public", "llp", "company", "co", "corp",
-                    "corporation", "industries", "international", "group",
-                    "holdings", "global", "india"}
-            words = re.findall(r"[A-Za-z]{3,}", s.lower())
-            return {w for w in words if w not in stop}
-        q_words = _meaningful_words(entity_name)
-        r_words = _meaningful_words(result["legal_name"])
+        q_words = _in_name_match_words(entity_name)
+        r_words = _in_name_match_words(result["legal_name"])
         if q_words and r_words and not (q_words & r_words):
             log.warning("India verify: name mismatch — queried '%s', got '%s' "
                         "(no shared meaningful words); rejecting",
@@ -3224,7 +3319,9 @@ async def verify_entity(
         pan_result = (await pan_fut) if pan_fut else None
         gstin_result = (await gstin_fut) if gstin_fut else None
 
-        verified = result.get("found", False)
+        # _india_tofler_lookup may have already set verified=False when a
+        # CIN-supplied name-mismatch is detected — honor that.
+        verified = result.get("verified") if "verified" in result else result.get("found", False)
         now = datetime.now(timezone.utc).isoformat()
         resp = {
             "entity_name": entity_name, "country_code": "IN", "verified": verified,
@@ -3235,6 +3332,10 @@ async def verify_entity(
             "directors": result.get("directors"),
             "authorized_capital": result.get("authorized_capital"),
             "paidup_capital": result.get("paidup_capital"),
+            # Surface CIN-path name-mismatch warnings (set in _india_tofler_lookup
+            # when supplied CIN belongs to a different entity than supplied name).
+            "name_mismatch": result.get("name_mismatch"),
+            "rejected_candidate": result.get("rejected_candidate"),
             "dgft": dgft,
             "pan": pan_result,
             "gstin": gstin_result,
