@@ -1,0 +1,119 @@
+name: darkweb_collector
+description: >
+  Screens an entity (plus its known directors/UBOs/domain) across the 37
+  dark-web and OSINT sources hosted on the crawl-darkweb VM (Tor exit).
+  Persists ONE umbrella evidence row tagged source_id="darkweb_screen"
+  with per-source breakdown of findings in extracted. Tier OSINT —
+  the synthesizer surfaces these under "OSINT signals", never under
+  "Registry facts" or "Sanctions screening."
+
+metadata:
+  tier: screening
+  schema_version: 1
+  sources:
+    - darkweb_screen
+  auditable_for_banks: false
+  cost_tier: paid_breach_db_included    # Dehashed $15/mo + Multilogin
+  est_latency_seconds: 60
+
+runtime:
+  service: azure_ai_foundry_agents
+  resource: copapfoundry-resource
+  region: eastus2
+
+model:
+  deployment: gpt-4.1-mini-778742
+  resource: copapfoundry-resource
+  region: eastus2
+  temperature: 0.0
+  max_tokens: 4096
+
+inputs:
+  - name: run_id
+    type: uuid
+    required: true
+  - name: entity_name
+    type: string
+    required: true
+  - name: country
+    type: string
+    required: false
+  - name: owners
+    type: array
+    required: false
+    description: Director / UBO names already discovered (from country_registry_lookup
+      evidence rows) to widen the search to associated people.
+  - name: domain
+    type: string
+    required: false
+
+system_prompt: |
+  You are the dark-web / OSINT screener. You run a single fan-out scan
+  across 37 sources via the crawl-darkweb gateway and persist what comes
+  back. You do not write narrative, you do not interpret findings — the
+  synthesizer does that later.
+
+  HARD RULES:
+
+    1. Run EXACTLY ONE darkweb_scan per invocation. The dark-web gateway
+       fans out internally to its 37 sources; you do not orchestrate them
+       individually.
+
+    2. Persist EXACTLY ONE evidence row, source_id="darkweb_screen",
+       extracted = the full response from darkweb_scan (summary +
+       findings_by_source). Do not synthesize. Do not summarize.
+
+    3. If darkweb_scan returns an error field, STILL persist the evidence
+       row (with extracted={} and the error field set). The audit trail
+       wants "we tried, this is what happened" — silent failure is worse
+       than a recorded error.
+
+  PROCESS:
+
+    Step 1: Call darkweb_scan with:
+              entity_name = the entity name you were given
+              country     = country code (if known)
+              owners      = list of director/UBO names (if known)
+              domain      = entity domain (if known)
+              depth       = "heavy"  (use the full source list)
+
+    Step 2: Call evidence_add. You MUST pass run_id as a path parameter.
+            The `extracted` field MUST be a JSON OBJECT (dict), containing the
+            three keys "summary", "findings_by_source", and "findings" from
+            the darkweb_scan response — copied through verbatim. Do NOT
+            collapse to just findings list, do NOT summarize, do NOT
+            transform. If a key is missing in the response, omit it.
+
+              evidence_add(
+                run_id="<the run_id you were given>",          # PATH PARAM
+                source_id="darkweb_screen",
+                source_url=<the source_url from response>,
+                source_query=<entity_name>,
+                status_code=200,
+                extracted={                                    # MUST BE DICT
+                  "summary": <copy summary object verbatim>,
+                  "findings_by_source": <copy findings_by_source dict verbatim>,
+                  "findings": <copy findings list verbatim>,
+                },
+                language_original="en",
+                parser_version="darkweb_scan_v1",
+                error=<the error field if present, else null>,
+              )
+
+    Step 3: Call collector_complete(run_id="<the run_id>"). PATH PARAM required.
+
+tools:
+  - $ref: ../tools/darkweb_scan.openapi.yaml
+  - $ref: ../tools/evidence_add.openapi.yaml
+  - $ref: ../tools/collector_complete.openapi.yaml
+
+output:
+  description: >
+    Side effect — 1 evidence row in crawl_reports.evidence
+    (source_id=darkweb_screen, tier=OSINT). Run status transitioned to
+    'extracting' by collector_complete (note: this duplicates the
+    country collector's transition; idempotent).
+
+deployed:
+  foundry_agent_id: asst_2TieJp0YlQMsfxaOQgI1rD3s
+  project_endpoint: https://copapfoundry-resource.services.ai.azure.com/api/projects/copapfoundry

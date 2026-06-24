@@ -1,0 +1,76 @@
+openapi: 3.0.3
+info:
+  title: Dark-Web Multi-Source Scan
+  version: "1.0.0"
+  description: >
+    Fan-out search across the 37 dark-web / OSINT sources hosted on the
+    crawl-darkweb VM (Tor exit, NL): Ahmia, Torch, Haystak, DuckDuckGo-Tor,
+    DDG-adverse, HudsonRock Cavalier, LeakIX, LeakCheck, BreachDirectory,
+    Ransomlook, OCCRP Aleph, ICIJ Offshore Leaks, OpenSanctions, WikiLeaks,
+    Telegram, Psbdmp, Web Archive, court records, PulseDive, FullHunt,
+    Greynoise, IntelX, Dehashed ($15/mo paid breach DB), and ~14 more.
+
+    Synchronous — blocks up to 300s while the gateway submits to the
+    darkweb gateway and polls for completion. Returns per-source
+    findings + summary. Agent should persist ONE evidence row per scan
+    with source_id="darkweb_screen" and extracted containing
+    findings_by_source.
+
+servers:
+  - url: http://20.94.45.219:8400/api/v1
+
+paths:
+  /sources/darkweb/scan:
+    post:
+      operationId: darkweb_scan
+      summary: Fan-out dark-web / OSINT screening across 37 sources
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [entity_name]
+              properties:
+                entity_name: { type: string, maxLength: 500 }
+                country: { type: string, maxLength: 10 }
+                owners:
+                  type: array
+                  items: { type: string }
+                  description: Director / UBO names to also search
+                domain: { type: string, description: Optional company domain to scan }
+                depth:
+                  type: string
+                  enum: [light, medium, heavy]
+                  default: heavy
+      responses:
+        '200':
+          description: Per-source breakdown + summary
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  source_id: { type: string, example: darkweb_screen }
+                  source_url: { type: string }
+                  fetched_at: { type: string, format: date-time }
+                  summary:
+                    type: object
+                    properties:
+                      total_findings: { type: integer }
+                      sources_searched: { type: integer }
+                      sources_with_results: { type: integer }
+                      alert_level: { type: string, enum: [CLEAN, LOW, MEDIUM, HIGH, CRITICAL] }
+                  findings_by_source:
+                    type: object
+                    additionalProperties:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          type: { type: string }
+                          title: { type: string }
+                          url: { type: string }
+                          summary: { type: string }
+                          risk_level: { type: string }
+                  error: { type: string }

@@ -441,6 +441,97 @@ async def country_registry_lookup(req: CountryRegRequest, country: str):
 
 
 # ---------------------------------------------------------------------------
+# Dark-web umbrella scan — proxies to crawl-darkweb gateway (37 Tor sources)
+# ---------------------------------------------------------------------------
+
+_DARKWEB_BASE = "http://20.86.161.6:8450"
+
+
+class DarkwebScanRequest(BaseModel):
+    entity_name: str = Field(..., max_length=500)
+    country: Optional[str] = Field("", max_length=10)
+    owners: Optional[list[str]] = Field(default_factory=list)
+    domain: Optional[str] = Field("")
+    depth: Optional[str] = Field("heavy")
+
+
+@router.post("/sources/darkweb/scan")
+async def darkweb_scan(req: DarkwebScanRequest):
+    """Fan-out scan across the 37 dark-web/OSINT sources hosted on the
+    crawl-darkweb VM (Tor exit, NL). Synchronous wrapper — submits to
+    the darkweb gateway, waits for completion, returns per-source
+    findings + summary. Single evidence row per scan, source_id='darkweb_screen'."""
+    dw_key = get_secret("darkweb-api-key") or "dwk_crawl_2026Q2_f8a3b7e1d9c4"
+    payload = {
+        "entity_name": req.entity_name,
+        "country": req.country or "",
+        "owners": req.owners or [],
+        "domain": req.domain or "",
+        "depth": req.depth or "heavy",
+    }
+    url = f"{_DARKWEB_BASE}/api/v1/research"
+    try:
+        r = requests.post(url, json=payload,
+                          headers={"X-API-Key": dw_key, "Content-Type": "application/json"},
+                          timeout=300)
+    except Exception as e:
+        log.warning("darkweb scan failed: %s", e)
+        return {"source_id": "darkweb_screen", "source_url": url,
+                "fetched_at": _now_iso(), "summary": {}, "findings": [],
+                "error": f"darkweb gateway unreachable: {str(e)[:200]}"}
+    if r.status_code != 200:
+        return {"source_id": "darkweb_screen", "source_url": url,
+                "fetched_at": _now_iso(), "summary": {}, "findings": [],
+                "error": f"darkweb gateway returned {r.status_code}"}
+
+    data = r.json()
+    summary = data.get("summary", {}) or {}
+    findings = data.get("findings", []) or []
+    blob_path = data.get("blob_path", "")
+
+    # If full results sit in the blob, try to fetch them for richer evidence
+    if blob_path:
+        try:
+            sas = get_secret("blob-sas-token") or ""
+            clean = blob_path.replace("osint-staging/", "", 1)
+            blob_url = f"https://stcrawlosint.blob.core.windows.net/osint-staging/{clean}?{sas}"
+            br = requests.get(blob_url, timeout=30)
+            if br.status_code == 200 and br.text.strip():
+                full = br.json()
+                summary = full.get("summary", summary)
+                findings = full.get("findings", findings)
+        except Exception:
+            pass
+
+    # Group findings by source for an audit-friendly breakdown
+    findings_by_source = {}
+    for f in findings:
+        src = f.get("source") or "unknown"
+        findings_by_source.setdefault(src, []).append({
+            "type": f.get("type"),
+            "title": (f.get("title") or "")[:300],
+            "url": f.get("url"),
+            "summary": (f.get("summary") or "")[:400],
+            "risk_level": f.get("risk_level"),
+        })
+
+    return {
+        "source_id": "darkweb_screen",
+        "source_url": url,
+        "fetched_at": _now_iso(),
+        "summary": {
+            "total_findings": summary.get("total_findings") or len(findings),
+            "sources_searched": summary.get("sources_searched"),
+            "sources_with_results": summary.get("sources_with_results") or len(findings_by_source),
+            "alert_level": summary.get("alert_level"),
+            "tor_exit_ip": summary.get("tor_exit_ip"),
+        },
+        "findings_by_source": findings_by_source,
+        "findings": findings[:50],  # cap for evidence row size
+    }
+
+
+# ---------------------------------------------------------------------------
 # Collector lifecycle
 # ---------------------------------------------------------------------------
 
