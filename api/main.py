@@ -3018,6 +3018,26 @@ async def verify_entity(
                     resp["founding_year"] = int(ym.group(1))
                 except ValueError:
                     pass
+        # Fallback: extract founding_year from embedded year in registration_number
+        # patterns. India CIN format encodes year at positions 8-11:
+        #   U72502DL2013PTC261372  ← 2013
+        #   L24112MH1995PLC093749  ← 1995
+        # Pattern: [UL]\d{5}[A-Z]{2}(\d{4})[A-Z]{3}\d{6}
+        if not resp.get("founding_year"):
+            for k in ("cin", "registration_number"):
+                rid = str(resp.get(k) or "").upper().strip()
+                cin_m = re.match(r"^[UL]\d{5}[A-Z]{2}(\d{4})[A-Z]{3}\d{6}$", rid)
+                if cin_m:
+                    try:
+                        y = int(cin_m.group(1))
+                        if 1800 <= y <= 2100:  # sanity bound
+                            resp["founding_year"] = y
+                            # Also surface as incorporation_date if completely absent
+                            if not resp.get("incorporation_date"):
+                                resp["incorporation_date"] = f"{y} (derived from CIN)"
+                            break
+                    except ValueError:
+                        pass
         # Normalize: registration_number — generic alias for any country's
         # registry ID (CIN / USCC / SECP-No / CRO / KvK / UEN / BRN / etc.)
         if not resp.get("registration_number"):
