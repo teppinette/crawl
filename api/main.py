@@ -3138,7 +3138,10 @@ async def verify_entity(
 
     # --------------- CHINA ---------------
     if country_code == "CN":
-        uscc = body.get("uscc", "").strip()
+        # Accept USCC via 'uscc' (canonical) or 'reg_number' (generic alias used
+        # by GC/Onboarding for all countries) — deterministic exact-record path
+        # that bypasses the English-name → Chinese-registry mismatch problem.
+        uscc = (body.get("uscc") or body.get("reg_number") or "").strip().upper()
         result = await loop.run_in_executor(
             _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "CN", "uscc": uscc}
         )
@@ -3148,10 +3151,24 @@ async def verify_entity(
             "verified": result.get("found", False),
             "legal_name": result.get("legal_name"),
             "uscc": result.get("uscc"),
+            "registration_number": result.get("uscc"),  # generic alias for tier engines
             "legal_representative": result.get("legal_representative"),
             "status": result.get("status"),
             "registered_capital": result.get("registered_capital"),
             "address": result.get("address"),
+            # Fields from Tianyancha detail page (added 2026-06-24 per GC feedback)
+            "established_date": result.get("established_date"),
+            "incorporation_date": result.get("established_date"),  # generic alias
+            "business_scope": result.get("business_scope"),
+            "industry": result.get("industry"),
+            "officers": result.get("officers"),
+            "directors": result.get("officers"),  # generic alias
+            "shareholders": result.get("shareholders"),
+            "adverse_flags": result.get("adverse_flags"),
+            "former_names": result.get("former_names"),
+            "actual_controller": result.get("actual_controller"),
+            "name_match_score": result.get("name_match_score"),
+            "candidate": result.get("candidate"),  # populated on name_mismatch rejections
             "validation_source": result.get("validation_source"),
             "timestamp": now,
             "summary": result.get("legal_name", entity_name) if result.get("found") else f"'{entity_name}' not verified",

@@ -170,7 +170,8 @@ def _do_cn_lookup(port: int, entity_name: str, uscc: str, profile_id: str) -> di
 
 
 def _navigate_and_extract(page, entity_name: str, uscc: str) -> dict:
-    """Search Tianyancha for company. Falls back to Baidu if Tianyancha fails."""
+    """Search Tianyancha for company, then enrich with detail page if name matches.
+    Falls back to Baidu if Tianyancha blocks the search results."""
     search_term = uscc if uscc else entity_name
 
     # Tianyancha works with CN proxy, no login needed for search results
@@ -188,7 +189,179 @@ def _navigate_and_extract(page, entity_name: str, uscc: str) -> dict:
         body = page.inner_text("body")
         return _parse_baidu_result(entity_name, uscc, body)
 
-    return _parse_tianyancha_result(entity_name, uscc, body)
+    result = _parse_tianyancha_result(entity_name, uscc, body)
+
+    # If snippet match succeeded, navigate to the company detail page for richer
+    # KYC fields (founding date if missing from snippet, full directors/officers,
+    # shareholders, business scope, adverse flags). Skipped on name_mismatch or
+    # not_found — no point fetching the wrong company's detail.
+    if result.get("found") and not result.get("name_match_failed"):
+        try:
+            detail_url = _find_tianyancha_detail_url(page, result.get("uscc"))
+            if detail_url:
+                log.info("Tianyancha: fetching detail page %s", detail_url)
+                page.goto(detail_url, timeout=60000, wait_until="domcontentloaded")
+                time.sleep(8)
+                detail_body = page.inner_text("body")
+                detail_html = page.content()
+                _enrich_from_detail_page(result, detail_body, detail_html, detail_url)
+        except Exception as e:
+            log.warning("Tianyancha detail enrichment failed: %s — returning snippet record", e)
+
+    return result
+
+
+def _find_tianyancha_detail_url(page, uscc: str = "") -> str | None:
+    """Find the first company detail URL on a Tianyancha search results page.
+    Detail URLs look like '/company/<id>' or '/firm/<hash>.html'. Prefer the
+    one whose surrounding text shows our USCC if we have one."""
+    try:
+        candidates = page.locator("a[href^='/company/'], a[href^='/firm/']").all()
+        if not candidates:
+            return None
+        # If we have a USCC, look for the link near the USCC text
+        if uscc:
+            for a in candidates[:30]:
+                href = a.get_attribute("href") or ""
+                # Walk up to a containing block and check for the USCC
+                try:
+                    parent = a.locator("xpath=ancestor::*[self::div or self::li][1]")
+                    txt = parent.inner_text(timeout=2000) or ""
+                    if uscc in txt:
+                        return f"https://www.tianyancha.com{href}"
+                except Exception:
+                    pass
+        # Otherwise just take the first candidate
+        href = candidates[0].get_attribute("href") or ""
+        return f"https://www.tianyancha.com{href}" if href else None
+    except Exception:
+        return None
+
+
+def _enrich_from_detail_page(result: dict, body: str, html: str, source_url: str):
+    """Pull richer KYC fields from a Tianyancha company detail page.
+    Mutates result in place. Best-effort — missing fields stay absent."""
+
+    # Founding date — multiple format variants seen on detail pages
+    if not result.get("established_date"):
+        for pat in (
+            r"成立日期[：:]\s*(\d{4}-\d{2}-\d{2})",
+            r"成立日期[：:]\s*(\d{4}年\d{1,2}月\d{1,2}日)",
+            r"成立[：:]\s*(\d{4}-\d{2}-\d{2})",
+        ):
+            m = re.search(pat, body)
+            if m:
+                result["established_date"] = m.group(1).strip()
+                break
+
+    # Business scope (经营范围) — typically followed by text until 注册资本 or 工商信息
+    scope_m = re.search(r"经营范围[：:]\s*([^\n]{10,2000}?)(?=\n\s*(?:注册资本|工商信息|登记机关|股东|主要人员|经营异常|$))", body, re.DOTALL)
+    if scope_m:
+        scope = re.sub(r"\s+", " ", scope_m.group(1)).strip().rstrip("。.,，")
+        if len(scope) > 20:
+            result["business_scope"] = scope[:1500]
+
+    # Industry / 行业 line if present
+    industry_m = re.search(r"行业[：:]\s*([^\n]{2,200})", body)
+    if industry_m:
+        result["industry"] = industry_m.group(1).strip()
+
+    # Officers (主要人员) — capture name + role pairs
+    # Pattern on the detail page is typically a stack:
+    #   <name>\n<role>\n<name>\n<role>\n...
+    officers = []
+    officers_block = re.search(r"主要人员[^\n]{0,30}\n(.+?)(?=\n\s*(?:股东信息|股东与出资|对外投资|分支机构|经营异常|工商信息|$))",
+                               body, re.DOTALL)
+    if officers_block:
+        block = officers_block.group(1)
+        # Cleaner: walk pairs of (Chinese name 2-4 chars, role on next line)
+        lines = [l.strip() for l in block.split("\n") if l.strip()]
+        for i, ln in enumerate(lines[:-1]):
+            # Chinese name candidate (2-6 CJK chars, optional middle dot for hyphenated)
+            if re.match(r"^[一-鿿·]{2,6}$", ln):
+                role = lines[i+1] if i+1 < len(lines) else ""
+                if role and len(role) < 30 and re.search(r"[一-鿿]", role):
+                    officers.append({"name": ln, "role": role})
+                    if len(officers) >= 30:
+                        break
+    if officers:
+        result["officers"] = officers
+        # Promote first 法定代表人 if not already set
+        if not result.get("legal_representative"):
+            for o in officers:
+                if "法定代表人" in o.get("role", "") or "法人" in o.get("role", ""):
+                    result["legal_representative"] = o["name"]
+                    break
+
+    # Shareholders (股东信息) — capture name + percentage if present
+    shareholders = []
+    sh_block = re.search(r"股东(?:信息|与出资)[^\n]{0,30}\n(.+?)(?=\n\s*(?:对外投资|分支机构|经营异常|工商信息|主要人员|$))",
+                         body, re.DOTALL)
+    if sh_block:
+        block = sh_block.group(1)
+        # Lines like: <名称>\n<出资比例>%\n<出资额>
+        # Or:         <名称>  <比例>  <出资额>
+        lines = [l.strip() for l in block.split("\n") if l.strip()]
+        for i, ln in enumerate(lines):
+            if re.search(r"[一-鿿]{3,}", ln) and len(ln) < 80 and "出资" not in ln and "%" not in ln:
+                # Look for a % on the next 1-2 lines
+                pct = None
+                for j in range(i+1, min(i+3, len(lines))):
+                    pm = re.search(r"(\d+(?:\.\d+)?)\s*%", lines[j])
+                    if pm:
+                        pct = float(pm.group(1)); break
+                if any(s["name"] == ln for s in shareholders):
+                    continue
+                shareholders.append({"name": ln, "ownership_pct": pct})
+                if len(shareholders) >= 30:
+                    break
+    if shareholders:
+        result["shareholders"] = shareholders
+
+    # Adverse-status flags as dedicated booleans (banker auditors want these explicit)
+    adverse_flags = {}
+    for label, key in [
+        ("经营异常", "operation_anomaly"),
+        ("严重违法", "severe_violation"),
+        ("失信被执行人", "judgment_debtor"),
+        ("被执行人", "enforcement_target"),
+        ("吊销", "license_revoked"),
+        ("注销", "deregistered"),
+        ("行政处罚", "admin_penalty"),
+        ("司法案件", "court_case"),
+    ]:
+        # Only flag if the label appears AND there's a count or detail nearby (not just the section heading)
+        if label in body:
+            cm = re.search(rf"{label}[^\n]{{0,20}}?(\d+)\s*条", body)
+            if cm:
+                adverse_flags[key] = {"flagged": True, "count": int(cm.group(1))}
+            elif f"暂未发现{label}" in body or f"没有{label}" in body or f"无{label}" in body:
+                adverse_flags[key] = {"flagged": False}
+            else:
+                adverse_flags[key] = {"flagged": True}
+    if adverse_flags:
+        result["adverse_flags"] = adverse_flags
+
+    # Former names
+    former_m = re.search(r"曾用名[：:]\s*([^\n]{2,500})", body)
+    if former_m:
+        names = [n.strip() for n in re.split(r"[、,，]", former_m.group(1)) if n.strip()]
+        if names:
+            result["former_names"] = names[:10]
+
+    # Actual controller / UBO (实际控制人)
+    ac_m = re.search(r"实际控制人[：:\s]+([^\n]{2,200})", body)
+    if ac_m:
+        ac = ac_m.group(1).strip()
+        if 1 < len(ac) < 100:
+            result["actual_controller"] = ac
+
+    # Strengthen validation_source — point at the actual detail page
+    vs = result.get("validation_source") or {}
+    vs["url"] = source_url
+    vs["how_to_reproduce"] = f"Visit {source_url}"
+    vs["detail_page_fetched"] = True
+    result["validation_source"] = vs
 
 
 _CN_CORP_SUFFIXES = [
@@ -427,35 +600,96 @@ def _parse_baidu_result(entity_name: str, uscc: str, body: str) -> dict:
     capital_match = re.search(r"注册资本[：:为]\s*([^\s,，]+)", body)
     capital = capital_match.group(1).strip() if capital_match else None
 
+    # Clean UI artifacts Baidu appends to field values (复制 = "copy" button text)
+    def _clean(v):
+        if not v:
+            return None
+        v = v.strip()
+        for junk in ("复制", "查看更多", "展开", "收起", "更多"):
+            if v.endswith(junk):
+                v = v[:-len(junk)].strip()
+        return v.rstrip("。.，,；;") or None
+
     name = None
-    names = re.findall(r"([\u4e00-\u9fff][\u4e00-\u9fff\w()（）]{4,}(?:有限公司|股份有限公司))", body)
+    names = re.findall(r"([\u4e00-\u9fff][\u4e00-\u9fff\w()（）]{4,}(?:有限公司|股份有限公司|集团有限公司|有限责任公司))", body)
     if names:
         name = names[0]
 
-    scope_match = re.search(r"经营范围[：:为]\s*([^\n]+?)(?:\n|\.\.\.)", body)
-    scope = scope_match.group(1).strip() if scope_match else None
+    # Founding date — multiple format variants seen in Baidu cards
+    est_date = None
+    for pat in (
+        r"成立(?:日期|时间)[：:为]?\s*(\d{4}-\d{1,2}-\d{1,2})",
+        r"成立(?:日期|时间)[：:为]?\s*(\d{4}年\d{1,2}月\d{1,2}日)",
+        r"成立(?:日期|时间)[：:为]?\s*(\d{4}年\d{1,2}月)",
+        r"成立[：:为]?\s*(\d{4}-\d{1,2}-\d{1,2})",
+        r"(\d{4}年\d{1,2}月\d{1,2}日)\s*成立",
+    ):
+        m = re.search(pat, body)
+        if m:
+            est_date = m.group(1).strip()
+            break
 
-    if name or found_uscc or legal_rep:
+    status = None
+    for s_label in ("存续", "在业", "注销", "吊销", "迁出", "停业"):
+        if s_label in body:
+            status = s_label
+            break
+
+    addr_match = re.search(r"(?:注册地址|住所)[：:为]?\s*([^\n]{8,200}?)(?=\n|$|经营|电话|法定)", body)
+    address = _clean(addr_match.group(1)) if addr_match else None
+
+    scope_match = re.search(r"经营范围[：:为]?\s*([^\n]{10,1500}?)(?=\n|\.\.\.|查看更多|$)", body)
+    scope = _clean(scope_match.group(1)) if scope_match else None
+
+    industry_m = re.search(r"行业[：:为]?\s*([^\n]{2,80})", body)
+    industry = _clean(industry_m.group(1)) if industry_m else None
+
+    adverse_flags = {}
+    for label, key in [
+        ("经营异常", "operation_anomaly"),
+        ("严重违法", "severe_violation"),
+        ("失信被执行人", "judgment_debtor"),
+        ("被执行人", "enforcement_target"),
+        ("吊销", "license_revoked"),
+        ("行政处罚", "admin_penalty"),
+    ]:
+        if label in body:
+            adverse_flags[key] = {"flagged": True}
+
+    legal_rep = _clean(legal_rep) if legal_rep else None
+    capital = _clean(capital) if capital else None
+
+    if name or found_uscc or legal_rep or est_date:
         result["found"] = True
         result["legal_name"] = name
         result["uscc"] = found_uscc
         result["legal_representative"] = legal_rep
         result["registered_capital"] = capital
+        result["established_date"] = est_date
+        result["status"] = status
+        result["address"] = address
         result["business_scope"] = scope
+        result["industry"] = industry
+        if adverse_flags:
+            result["adverse_flags"] = adverse_flags
         result["validation_source"] = {
-            "registry": "SAMR (via Baidu aggregated data)",
-            "url": "https://www.baidu.com",
+            "registry": "国家市场监督管理总局 (SAMR), retrieved via Baidu aggregator "
+                        "(fallback path — Tianyancha session currently unavailable)",
+            "url": f"https://www.baidu.com/s?wd={entity_name}",
             "record_id": found_uscc or entity_name,
-            "how_to_reproduce": f"Search baidu.com for '{entity_name}'",
+            "how_to_reproduce": (f"Search baidu.com for '{entity_name}' — look for the SAMR "
+                                 "business knowledge card. For higher-confidence direct "
+                                 "registry record, query Tianyancha when available."),
             "verified_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "confidence": "medium",
+            "fallback_path": True,
         }
     else:
         result["found"] = False
-        result["note"] = f"'{entity_name}' not found via Baidu search"
+        result["note"] = f"'{entity_name}' not found via Baidu aggregator card"
         result["raw_snippet"] = body[:500]
 
     return result
-
 
 def cn_verify(entity_name: str, uscc: str = "", max_retries: int = 2) -> dict:
     if not _MLX_PASSWORD or not _POOL_PROFILE_IDS or not _MLX_PROXY_USER_CN:
