@@ -139,6 +139,21 @@ curl -X POST https://crawldevvm:8443/api/v1/lookup \
   -H "X-API-Key: $CIR_API_KEY" -H "Content-Type: application/json" \
   -d '{"country_code":"CN","registration_id":"91440300192317458F"}'
 # returns same shape as /verify with incorporation_date + founding_year + all fields
+
+# /cir/run — single-call full CIR pipeline (collector → extractor → synthesizer).
+# Returns run_id IMMEDIATELY (~100ms); pipeline runs in background ~2-3 min.
+# Poll status via /evidence/runs/{run_id}; fetch rendered CIR via /evidence/runs/{run_id}/renders.
+curl -X POST https://crawldevvm:8443/api/v1/cir/run \
+  -H "X-API-Key: $CIR_API_KEY" -H "Content-Type: application/json" \
+  -d '{"country_code":"GB","entity_name":"TESCO PLC"}'
+# response: {run_id, next_steps:{poll_status, fetch_renders, expected_completion_seconds:180}}
+# Then poll:
+curl -sS -H "X-API-Key: $CIR_API_KEY" \
+  https://crawldevvm:8443/api/v1/evidence/runs/<RUN_ID>
+# When status="complete", fetch the rendered CIR:
+curl -sS -H "X-API-Key: $CIR_API_KEY" \
+  https://crawldevvm:8443/api/v1/evidence/runs/<RUN_ID>/renders
+# render.payload.markdown contains the full banker-cited CIR
 ```
 
 ## Field-name guide (after cross-country normalization)

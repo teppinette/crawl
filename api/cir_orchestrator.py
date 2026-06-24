@@ -94,13 +94,17 @@ async def _orchestrate(run_id: str, country_code: str, entity_name: str,
     cc = country_code.upper()
     loop = asyncio.get_event_loop()
 
-    # PHASE 1: country collector
-    collector_name = f"verify_{cc.lower()}_collector"
+    # PHASE 1: country collector. ISO-2 normally maps to verify_<cc>_collector.
+    # Historical exception: GB collector was created as verify_uk_collector
+    # (United Kingdom) before the ISO-2 convention was settled.
+    _cc_alias = {"GB": "uk"}
+    base = _cc_alias.get(cc, cc.lower())
+    collector_name = f"verify_{base}_collector"
     collector_id = _load_agent_id(collector_name)
     if not collector_id:
-        log.warning("orchestrator: no collector for %s, aborting", cc)
+        log.warning("orchestrator: no collector for %s (name=%s), aborting", cc, collector_name)
         evidence_db.update_run_status(run_id, "failed",
-                                      error=f"no deployed collector for country {cc}")
+                                      error=f"no deployed collector for country {cc} (looked for {collector_name})")
         return
 
     client = _agents_client()
