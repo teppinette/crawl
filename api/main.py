@@ -2943,6 +2943,27 @@ def _verify_vm_call(payload: dict) -> dict:
         return {"found": False, "error": str(e)[:200], "note": "Verify VM unreachable"}
 
 
+# Deployed Foundry agent collectors — populated once at import from
+# agents/collectors/*.yaml so the verify escalation hint can know which
+# countries have an agent-pipeline fallback available. (Cheap one-time
+# scan; agent set changes rarely and process restart picks up additions.)
+_AGENT_COLLECTORS_CACHE: set[str] | None = None
+
+
+def _agent_collector_exists(cc_lower: str) -> bool:
+    global _AGENT_COLLECTORS_CACHE
+    if _AGENT_COLLECTORS_CACHE is None:
+        agents_dir = Path(__file__).resolve().parents[1] / "agents" / "collectors"
+        try:
+            _AGENT_COLLECTORS_CACHE = {
+                p.stem.removeprefix("verify_")
+                for p in agents_dir.glob("verify_*.yaml")
+            }
+        except Exception:
+            _AGENT_COLLECTORS_CACHE = set()
+    return cc_lower in _AGENT_COLLECTORS_CACHE
+
+
 # Which countries are supported and what registries we check
 _VERIFY_SOURCES = {
     "PK": "SECP eServices (direct) + FBR IRIS ATL (via crawl-verify VM)",
@@ -3182,6 +3203,29 @@ async def verify_entity(
                 if resp.get(k):
                     resp["directors"] = resp[k]
                     break
+
+        # Auto-inject agent-pipeline escalation hint when verified=False
+        # AND the country has a deployed Foundry agent collector AND a
+        # dispatcher hasn't already populated an `escalation` block.
+        # This is the "tier 2" productizable path: free/fast deterministic
+        # verify path missed; the Foundry agent can hit registry portals
+        # via Multilogin that the bespoke adapter can't reach.
+        if not resp.get("verified") and not resp.get("escalation"):
+            cc_lower = (resp.get("country_code") or "").lower()
+            if cc_lower and _agent_collector_exists(cc_lower):
+                resp["escalation"] = {
+                    "tier": "agent_pipeline",
+                    "endpoint": "POST /api/v1/cir/run",
+                    "payload": {"country_code": resp.get("country_code"),
+                                "entity_name": resp.get("entity_name")},
+                    "rationale": (f"Bespoke {resp.get('country_code')} verify "
+                                  f"path (GLEIF / aggregator / direct registry) "
+                                  f"did not resolve. The Foundry agent pipeline "
+                                  f"can hit the in-country registry portal "
+                                  f"(SECP / MERSIS / DcciInfo / SAMR / etc.) "
+                                  f"via Multilogin country-exit IP."),
+                    "expected_latency_seconds": 180,
+                }
 
         resp["duration_ms"] = int((time.monotonic() - _verify_start) * 1000)
         save_verification(resp)
@@ -3450,9 +3494,11 @@ async def verify_entity(
             _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "CN", "uscc": uscc}
         )
         now = datetime.now(timezone.utc).isoformat()
-        return _persist_verify({
+        found = result.get("found", False)
+        has_full = bool(result.get("established_date") and result.get("uscc"))
+        resp = {
             "entity_name": entity_name, "country_code": "CN",
-            "verified": result.get("found", False),
+            "verified": found,
             "legal_name": result.get("legal_name"),
             "uscc": result.get("uscc"),
             "registration_number": result.get("uscc"),  # generic alias for tier engines
@@ -3477,8 +3523,45 @@ async def verify_entity(
             "candidate": result.get("candidate"),  # populated on name_mismatch rejections
             "validation_source": result.get("validation_source"),
             "timestamp": now,
-            "summary": result.get("legal_name", entity_name) if result.get("found") else f"'{entity_name}' not verified",
-        })
+            "summary": result.get("legal_name", entity_name) if found else f"'{entity_name}' not verified",
+        }
+        # Escalation hint: Baidu fallback path returns legal_name (and often
+        # address/business_scope) but USCC + established_date are missing
+        # whenever Baidu's knowledge card is partial. Onboarding's 2026-06-24
+        # sweep flagged 18 entities in this state ("verified=True / founding=
+        # null"). The agent pipeline (verify_cn_collector via Multilogin CN)
+        # can fetch the Tianyancha/SAMR detail record by Chinese legal_name
+        # and fill USCC + established_date + officers. This is the "tier 2"
+        # productizable path — adds ~2 min latency but fills the field set.
+        if found and not has_full and result.get("legal_name"):
+            resp["escalation"] = {
+                "tier": "agent_pipeline",
+                "endpoint": "POST /api/v1/cir/run",
+                "payload": {"country_code": "CN", "entity_name": entity_name},
+                "rationale": ("Baidu fallback returned the Chinese legal name "
+                              "but the SAMR detail record (USCC + "
+                              "established_date + officers) is not in the "
+                              "Baidu knowledge card. The Foundry agent "
+                              "pipeline fetches the Tianyancha/SAMR detail "
+                              "page directly via Multilogin CN exit."),
+                "expected_latency_seconds": 120,
+                "fields_recoverable": ["uscc", "established_date",
+                                       "founding_year", "officers",
+                                       "shareholders", "industry"],
+            }
+        elif not found:
+            resp["escalation"] = {
+                "tier": "agent_pipeline",
+                "endpoint": "POST /api/v1/cir/run",
+                "payload": {"country_code": "CN", "entity_name": entity_name},
+                "rationale": ("CN gateway path (Baidu + Tianyancha) could "
+                              "not resolve the entity. The agent pipeline "
+                              "can try the Chinese-name variant search on "
+                              "Qichacha/Aiqicha which Baidu sometimes "
+                              "misses for foreign-name registrations."),
+                "expected_latency_seconds": 120,
+            }
+        return _persist_verify(resp)
 
     # --------------- UK ---------------
     if country_code == "GB":
@@ -4322,25 +4405,58 @@ async def verify_entity(
 
     # --------------- ARGENTINA (AFIP) ---------------
     if country_code == "AR":
-        cuit = body.get("cuit", "").strip()
+        # CUIT can arrive via dedicated 'cuit' slot or via the generic
+        # /lookup id-keyed path (reg_number alias). Honor both.
+        cuit = (body.get("cuit") or body.get("reg_number") or "").strip()
         result = await loop.run_in_executor(
             _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "AR", "cuit": cuit}
         )
         now = datetime.now(timezone.utc).isoformat()
-        return _persist_verify({
+        found = result.get("found", False)
+        # Honest summary: distinguish (a) CUIT supplied + found, (b) CUIT
+        # supplied + not found, (c) no CUIT + found-via-name, (d) no CUIT +
+        # not found. The previous string lied about case (b) — it said
+        # "CUIT required" even when CUIT was supplied but GLEIF+OC missed.
+        if found:
+            summary = (f"{result.get('entity_name', entity_name)} — "
+                       f"CUIT {result.get('cuit', cuit or 'N/A')} — "
+                       f"{result.get('status', 'Unknown')}")
+        elif cuit:
+            summary = (f"{entity_name} — CUIT {cuit} not found in GLEIF or "
+                       f"OpenCorporates AR. AFIP/ARCA is auth-walled from "
+                       f"non-AR origins; many AR SMEs are not in GLEIF.")
+        else:
+            summary = (f"{entity_name} — not found by name in GLEIF or "
+                       f"OpenCorporates AR. Pass a CUIT for a deterministic "
+                       f"lookup, or use the agent-pipeline escalation.")
+        resp = {
             "entity_name": entity_name, "country_code": "AR",
-            "verified": result.get("found", False),
-            "legal_name": result.get("entity_name"),
-            "cuit": result.get("cuit"),
+            "verified": found,
+            "legal_name": result.get("entity_name") or result.get("legal_name"),
+            "cuit": result.get("cuit") or (cuit if cuit else None),
             "status": result.get("status"),
             "registered_address": result.get("registered_address"),
             "validation_source": result.get("validation_source"),
             "timestamp": now,
-            "summary": (
-                f"{result.get('entity_name', entity_name)} — "
-                f"CUIT {result.get('cuit', 'N/A')} — {result.get('status', 'Unknown')}"
-            ) if result.get("found") else f"{entity_name} — CUIT required for Argentina verification",
-        })
+            "summary": summary,
+        }
+        # Structural-gap hint: AR SMEs not in GLEIF/OC are recoverable via
+        # the Foundry agent pipeline (verify_ar_collector hits AFIP padron
+        # and BCRA via Multilogin AR exit). Surface as `escalation` so
+        # callers can decide whether to spend the agent budget.
+        if not found:
+            resp["escalation"] = {
+                "tier": "agent_pipeline",
+                "endpoint": "POST /api/v1/cir/run",
+                "payload": {"country_code": "AR", "entity_name": entity_name,
+                            "registration_id": cuit or None},
+                "rationale": ("AR registry coverage via free APIs (GLEIF + "
+                              "OpenCorporates) is LEI/listed-co biased. "
+                              "Smaller AR entities resolve via the agent "
+                              "pipeline which hits AFIP/IGJ via Multilogin AR."),
+                "expected_latency_seconds": 120,
+            }
+        return _persist_verify(resp)
 
     # --------------- EGYPT (GLEIF) ---------------
     if country_code == "EG":
