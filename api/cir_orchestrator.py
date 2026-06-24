@@ -144,25 +144,84 @@ async def _orchestrate(run_id: str, country_code: str, entity_name: str,
                                       error=f"extractor {status}: {err or ''}")
         return
 
-    # PHASE 3: CIR markdown synthesizer
-    synth_id = _load_agent_id("cir_markdown_synthesizer")
-    if not synth_id:
+    # PHASE 3: Run all 4 synthesizers in parallel. Same evidence pool, 4
+    # different render_types. Each call is fully independent — synthesizer
+    # threads don't share state. Parallel execution because Foundry's
+    # synthesis is the slowest phase (~30-60s each); serial would be
+    # ~2-4 min for 4 synthesizers vs ~30-60s for parallel.
+    synth_specs = [
+        ("cir_markdown_synthesizer", "cir_markdown",
+         f"Generate the CIR markdown for run_id='{run_id}'. Load evidence + "
+         f"claims, write the banker narrative with [E<id>] citations, then "
+         f"call save_render(run_id='{run_id}', render_type='cir_markdown', ...) "
+         f"and synthesizer_complete(run_id='{run_id}')."),
+        ("sanctions_screening_synthesizer", "sanctions_screening",
+         f"Produce sanctions screening for run_id='{run_id}'. Filter the "
+         f"evidence pool to sanctions-tier sources only; emit HIT|CLEAN|ERROR "
+         f"structured payload with hits/clean_sources/errors arrays. Call "
+         f"save_render(run_id='{run_id}', render_type='sanctions_screening', ...) "
+         f"then synthesizer_complete(run_id='{run_id}')."),
+        ("ubo_map_synthesizer", "ubo_map",
+         f"Build the UBO map for run_id='{run_id}'. Load evidence + claims, "
+         f"identify nodes (entities + people) and edges (ownership/director "
+         f"relationships) with strength weighted by source tier. Handle "
+         f"ownership_undisclosed cases (e.g. PSC exempt). Call "
+         f"save_render(run_id='{run_id}', render_type='ubo_map', ...) "
+         f"then synthesizer_complete(run_id='{run_id}')."),
+        ("banker_audit_pack_synthesizer", "banker_audit_pack",
+         f"Produce the banker audit pack for run_id='{run_id}'. Filter "
+         f"evidence to PRIMARY_GOVERNMENT and OFFICIAL_LIST tiers ONLY — drop "
+         f"all other tiers. Emit structured pack (identity / ownership / "
+         f"officers / sanctions / source_coverage). Call "
+         f"save_render(run_id='{run_id}', render_type='banker_audit_pack', ...) "
+         f"then synthesizer_complete(run_id='{run_id}')."),
+    ]
+
+    # Resolve agent IDs; skip any not yet deployed
+    synth_tasks = []
+    for name, rtype, instr in synth_specs:
+        aid = _load_agent_id(name)
+        if not aid:
+            log.warning("orchestrator: %s not deployed, skipping its render", name)
+            continue
+        # Each synthesizer needs its own client (the AgentsClient is not
+        # known to be thread-safe; cheap to construct)
+        synth_tasks.append((rtype, aid, instr))
+
+    if not synth_tasks:
         evidence_db.update_run_status(run_id, "failed",
-                                      error="no deployed cir_markdown_synthesizer")
-        return
-    instr_synth = (
-        f"Generate the CIR markdown for run_id='{run_id}'. Load evidence + "
-        f"claims, write the banker narrative with [E<id>] citations, then "
-        f"call save_render(run_id='{run_id}', render_type='cir_markdown', ...) "
-        f"and synthesizer_complete(run_id='{run_id}')."
-    )
-    status, err = await loop.run_in_executor(None, _run_agent_sync, client, synth_id, instr_synth, 600)
-    if not status.endswith("COMPLETED"):
-        evidence_db.update_run_status(run_id, "failed",
-                                      error=f"synthesizer {status}: {err or ''}")
+                                      error="no deployed synthesizers")
         return
 
-    log.info("orchestrator: run %s complete", run_id[:8])
+    async def _run_one(rtype: str, aid: str, instr: str):
+        try:
+            local_client = _agents_client()
+            status, err = await loop.run_in_executor(
+                None, _run_agent_sync, local_client, aid, instr, 600,
+            )
+            return (rtype, status, err)
+        except Exception as e:
+            return (rtype, "EXCEPTION", str(e)[:200])
+
+    results = await asyncio.gather(*[_run_one(rt, aid, instr)
+                                     for rt, aid, instr in synth_tasks])
+    failed = [(rt, s, e) for rt, s, e in results if not s.endswith("COMPLETED")]
+    if len(failed) == len(results):
+        # All synthesizers failed — mark whole run failed
+        evidence_db.update_run_status(run_id, "failed",
+            error=f"all synthesizers failed: {failed}")
+        return
+    if failed:
+        # Partial failure — log but don't fail the run; cir_markdown completing
+        # is enough for the banker-facing output
+        log.warning("orchestrator: %d synthesizer(s) failed: %s",
+                    len(failed), failed)
+
+    # synthesizer_complete (called by each successful synthesizer) already
+    # transitioned run to 'complete'. Belt-and-suspenders:
+    evidence_db.update_run_status(run_id, "complete")
+    log.info("orchestrator: run %s complete, %d of %d synthesizers succeeded",
+             run_id[:8], len(results) - len(failed), len(results))
 
 
 class CIRRunRequest(BaseModel):
