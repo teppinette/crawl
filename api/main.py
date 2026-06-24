@@ -2856,6 +2856,47 @@ _VERIFY_SOURCES = {
 }
 
 
+# /verify response cache — 24h TTL keyed by (country, normalized_name, reg_number).
+# Solves the "re-verifying the same entity returns different results minutes apart"
+# issue called out in GC/Onboarding feedback 2026-06-24. In-memory only;
+# lost on gateway restart (acceptable — registry data refreshes daily at most).
+_VERIFY_CACHE: dict[str, tuple[float, dict]] = {}
+_VERIFY_CACHE_TTL = 24 * 3600  # seconds
+_VERIFY_CACHE_MAX = 5000       # bounded — drop oldest if exceeded
+
+
+def _verify_cache_key(country: str, name: str, reg: str) -> str:
+    norm_name = re.sub(r"\s+", " ", (name or "").lower().strip())
+    norm_reg = (reg or "").strip().upper().replace(" ", "")
+    return f"{country.upper()}|{norm_reg}|{norm_name}"
+
+
+def _verify_cache_get(key: str) -> dict | None:
+    entry = _VERIFY_CACHE.get(key)
+    if not entry:
+        return None
+    ts, resp = entry
+    if time.time() - ts > _VERIFY_CACHE_TTL:
+        _VERIFY_CACHE.pop(key, None)
+        return None
+    # Clone + tag so consumers can tell it was a cache hit (auditability)
+    out = dict(resp)
+    out["_cache_hit"] = True
+    out["_cache_age_seconds"] = int(time.time() - ts)
+    return out
+
+
+def _verify_cache_put(key: str, resp: dict):
+    if len(_VERIFY_CACHE) >= _VERIFY_CACHE_MAX:
+        # Evict oldest 10% to keep the cache bounded
+        cutoff = sorted(_VERIFY_CACHE.items(), key=lambda x: x[1][0])[: _VERIFY_CACHE_MAX // 10]
+        for k, _ in cutoff:
+            _VERIFY_CACHE.pop(k, None)
+    # Strip cache markers before storing, in case the response was itself a cache hit
+    clean = {k: v for k, v in resp.items() if not k.startswith("_cache_")}
+    _VERIFY_CACHE[key] = (time.time(), clean)
+
+
 @app.post("/api/v1/verify")
 async def verify_entity(
     request: Request,
@@ -2864,14 +2905,18 @@ async def verify_entity(
     """
     Real-time entity verification against government registries.
     No OpenClaw, no agent — direct registry queries via regional proxies.
-    Response in ~5-15 seconds.
+    Response in ~5-15 seconds (or <100ms on cache hit).
 
     Body: {
         "entity_name": "Agro China Pakistan",
         "country_code": "PK",              // PK, IN, TR, AE, CN, GB, BR, US, KR
         "ntn": "4334750-9",                 // optional, Pakistan NTN
-        "cin": "U24110MH2008PTC186710"      // optional, India CIN
+        "cin": "U24110MH2008PTC186710",     // optional, India CIN
+        "reg_number": "...",                // optional, generic alias for any country
+        "nocache": true                     // optional, force fresh lookup
     }
+
+    Response includes _cache_hit + _cache_age_seconds when served from cache.
 
     Supported registries:
         PK — SECP (direct), FBR (residential proxy)
@@ -2889,13 +2934,27 @@ async def verify_entity(
     ntn = (body.get("ntn") or reg_number).strip()
     cin = (body.get("cin") or reg_number).strip().upper()
     iec = body.get("iec", "").strip().upper()  # IEC = PAN for Indian companies
+    nocache = bool(body.get("nocache"))
+
+    # Cache lookup — bypass on explicit nocache=true or empty body
+    if entity_name and country_code and not nocache:
+        cache_key = _verify_cache_key(country_code, entity_name, reg_number or ntn or cin or iec)
+        cached = _verify_cache_get(cache_key)
+        if cached:
+            return JSONResponse(cached)
+    else:
+        cache_key = None
 
     _verify_start = time.monotonic()
 
     def _persist_verify(resp):
-        """Fire-and-forget: persist to crawl_verification DB."""
+        """Fire-and-forget: persist to crawl_verification DB + populate the
+        verify response cache so a same-day re-query is deterministic."""
         resp["duration_ms"] = int((time.monotonic() - _verify_start) * 1000)
         save_verification(resp)
+        # Cache successful + clean responses only; never cache errors/timeouts
+        if cache_key and not resp.get("error"):
+            _verify_cache_put(cache_key, resp)
         return resp
 
     # US allows lookup by CIK or ticker without entity_name
