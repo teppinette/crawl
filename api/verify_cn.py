@@ -382,6 +382,92 @@ _CN_PROVINCES = [
 ]
 
 
+def _parse_cn_address(address: str) -> dict | None:
+    """Parse a Chinese registered address into structured components.
+
+    Input shapes seen:
+      浙江省宁波市宁海县强蛟镇长山西路98号（自主申报）
+      上海市浦东新区张江高科技园区博云路2号
+      广东省深圳市南山区科技园路9号
+
+    Output (best-effort, fields omitted if not extractable):
+      {province, city, district, street, notes}
+    """
+    if not address:
+        return None
+    out = {}
+    s = address.strip()
+
+    # Strip + capture parenthesized notes (full + half width)
+    n_match = re.search(r"[（(]([^）)]{1,80})[）)]", s)
+    if n_match:
+        out["notes"] = n_match.group(1).strip()
+        s = re.sub(r"[（(][^）)]{1,80}[）)]", "", s).strip()
+
+    # Province — direct-administered municipalities (北京/上海/天津/重庆) double
+    # as province AND city in CN admin code, so handle them specially
+    for p in _CN_PROVINCES:
+        if p == "中国":
+            continue
+        if s.startswith(p):
+            out["province"] = p
+            s = s[len(p):]
+            s = re.sub(r"^(?:省|市|自治区|自治州|特别行政区)", "", s)
+            break
+
+    # City — match "XX市" prefix (1-4 chars before 市)
+    city_m = re.match(r"^([一-鿿]{2,5})市", s)
+    if city_m:
+        out["city"] = city_m.group(1)
+        s = s[city_m.end():]
+
+    # District — 区 / 县 / 自治县 / 旗 / 新区. Longer suffixes first so
+    # 大鹏新区 → 大鹏 + 新区, not 大鹏新 + 区.
+    district_m = re.match(r"^([一-鿿]{2,5}?)(?:新区|高新区|开发区|自治县|自治旗|区|县|旗)", s)
+    if district_m:
+        out["district"] = district_m.group(1)
+        s = s[district_m.end():]
+
+    # Whatever remains is the street + number
+    s = s.strip().lstrip("，,、")
+    if s:
+        out["street"] = s
+
+    return out or None
+
+
+def _parse_cn_capital(capital_str: str) -> dict | None:
+    """Parse a Chinese registered-capital string into structured fields.
+
+    Examples:
+      2000万人民币               -> {value: 2000, unit: 万, currency: CNY, ...}
+      911719.7565万人民币        -> {value: 911719.7565, unit: 万, currency: CNY}
+      1亿美元                    -> {value: 1, unit: 亿, currency: USD}
+    """
+    if not capital_str:
+        return None
+    raw = capital_str.strip()
+    m = re.search(r"([\d,\.]+)\s*(万|亿)?\s*(人民币|美元|港币|欧元|英镑|日元)?", raw)
+    if not m:
+        return {"raw": raw}
+    val_s = m.group(1).replace(",", "")
+    try:
+        val = float(val_s)
+    except ValueError:
+        return {"raw": raw}
+    unit = m.group(2) or None
+    cur_cn = m.group(3) or "人民币"
+    cur_map = {"人民币": "CNY", "美元": "USD", "港币": "HKD",
+               "欧元": "EUR", "英镑": "GBP", "日元": "JPY"}
+    return {
+        "raw": raw,
+        "value": val,
+        "unit": unit,
+        "unit_multiplier": {"万": 10000, "亿": 100_000_000}.get(unit, 1),
+        "currency": cur_map.get(cur_cn, cur_cn),
+    }
+
+
 def _normalize_cn_name(name: str) -> str:
     """Strip corporate suffixes, parens, and leading geography to expose brand."""
     if not name:
@@ -543,10 +629,12 @@ def _parse_tianyancha_result(entity_name: str, uscc: str, body: str) -> dict:
         result["legal_representative"] = legal_rep
         result["status"] = status
         result["registered_capital"] = capital
+        result["registered_capital_parsed"] = _parse_cn_capital(capital)
         result["established_date"] = est_date
         result["phone"] = phone
         result["email"] = email
         result["address"] = address
+        result["address_parts"] = _parse_cn_address(address)
         result["flags"] = flags if flags else None
         if name_match_score is not None:
             result["name_match_score"] = round(name_match_score, 2)
@@ -665,9 +753,11 @@ def _parse_baidu_result(entity_name: str, uscc: str, body: str) -> dict:
         result["uscc"] = found_uscc
         result["legal_representative"] = legal_rep
         result["registered_capital"] = capital
+        result["registered_capital_parsed"] = _parse_cn_capital(capital)
         result["established_date"] = est_date
         result["status"] = status
         result["address"] = address
+        result["address_parts"] = _parse_cn_address(address)
         result["business_scope"] = scope
         result["industry"] = industry
         if adverse_flags:

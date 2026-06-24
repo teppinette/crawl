@@ -3214,7 +3214,9 @@ async def verify_entity(
             "legal_representative": result.get("legal_representative"),
             "status": result.get("status"),
             "registered_capital": result.get("registered_capital"),
+            "registered_capital_parsed": result.get("registered_capital_parsed"),
             "address": result.get("address"),
+            "address_parts": result.get("address_parts"),  # province/city/district/street/notes
             # Fields from Tianyancha detail page (added 2026-06-24 per GC feedback)
             "established_date": result.get("established_date"),
             "incorporation_date": result.get("established_date"),  # generic alias
