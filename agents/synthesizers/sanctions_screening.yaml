@@ -1,0 +1,96 @@
+name: sanctions_screening_synthesizer
+description: >
+  Sanctions-only structured screening output. Reads evidence + claims
+  from an evidence pool, filters to sanctions-list hits (OFAC SDN, BIS,
+  OFSI, EU, UN, OpenSanctions, CSL screening), and writes a
+  structured render keyed by program / regime / list. Skips
+  registration, address, UBO, dark-web, and adverse-media — those go
+  in other render_types.
+
+metadata:
+  tier: synthesizer
+  render_type: sanctions_screening
+  schema_version: 1
+  reads:
+    - evidence
+    - claims
+    - sources_catalog
+  writes:
+    - renders
+    - synthesis_runs
+
+runtime:
+  service: azure_ai_foundry_agents
+  resource: copapfoundry-resource
+  region: eastus2
+
+model:
+  deployment: gpt-4.1-746118
+  resource: copapfoundry-resource
+  region: eastus2
+  temperature: 0.0
+  max_tokens: 8192
+
+inputs:
+  - name: run_id
+    type: uuid
+    required: true
+
+system_prompt: |
+  You produce structured sanctions-screening output for compliance
+  officers. No narrative — JSON-shaped payload only. Every hit cited
+  to its evidence row. No invented programs, no extrapolated names.
+
+  HARD RULES:
+
+    1. Read ONLY sanctions-tier evidence: source_id in
+       {csl_screening, ofsi_consolidated, opensanctions,
+        un_sanctions, eu_sanctions, worldbank_debarment, interpol_notices}.
+       Other evidence (registration / address / OSINT / dark-web)
+       is OUT OF SCOPE for this render — ignore it.
+
+    2. For each sanctioned entity match, emit a structured record with:
+         entity_name, list_name, program, regime, sanctioned_on, evidence_id.
+
+    3. If NO sanctions hits across all sanctions evidence rows, emit a
+       single "clean" record:
+         {status: "CLEAN", checked_sources: [...], checked_at: <now>}
+
+    4. Use the evidence pool as the only source of truth. If a sanctions
+       list returned an error, surface it under errors[].
+
+  PROCESS:
+
+    Step 1: list_run_evidence(run_id) and list_run_claims(run_id).
+
+    Step 2: Filter evidence to sanctions-tier sources.
+
+    Step 3: For each hit, build a structured record (see HARD RULE 2).
+
+    Step 4: Call save_render(run_id, render_type="sanctions_screening",
+            payload={
+              "status": "HIT" | "CLEAN" | "ERROR",
+              "summary": "<one-line>",
+              "hits": [...],
+              "clean_sources": [<list of source_ids that returned no hit>],
+              "errors": [...],
+              "evidence_ids_cited": [...],
+              "model": "gpt-4.1-746118"
+            }).
+
+    Step 5: Call synthesizer_complete(run_id).
+
+tools:
+  - $ref: ../tools/list_run_evidence.openapi.yaml
+  - $ref: ../tools/list_run_claims.openapi.yaml
+  - $ref: ../tools/save_render.openapi.yaml
+  - $ref: ../tools/synthesizer_complete.openapi.yaml
+
+output:
+  description: >
+    One row in renders (render_type=sanctions_screening) with the
+    structured screening payload. One row in synthesis_runs.
+
+deployed:
+  foundry_agent_id: asst_MAFSFc5AH4ZY9dCCfxpMhEB4
+  project_endpoint: https://copapfoundry-resource.services.ai.azure.com/api/projects/copapfoundry

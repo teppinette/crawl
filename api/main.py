@@ -53,6 +53,7 @@ import raw_store
 import sandbox_india
 from evidence_routes import router as evidence_router
 from source_routes import router as source_router
+from cir_orchestrator import router as cir_orch_router
 # Multilogin modules now run on crawl-verify VM (180.20.0.4:8460)
 # import multilogin_fbr
 # import multilogin_dgft
@@ -543,6 +544,9 @@ async def _start_reaper():
 # AzureCloud.eastus2 service tag + GC App + VPN + regional VMs).
 app.include_router(evidence_router)
 app.include_router(source_router)
+# CIR orchestrator — POST /api/v1/cir/run kicks off the full agent-mesh
+# pipeline (collector -> extractor -> synthesizer) for one entity.
+app.include_router(cir_orch_router, dependencies=[Depends(verify_api_key)])
 
 
 # ---------------------------------------------------------------------------

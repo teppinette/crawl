@@ -82,8 +82,15 @@ system_prompt: |
   For the given entity_name and run_id, execute these steps in order:
 
     1. Call country_registry_lookup with country="{cc}" and the entity_name
-       (pass registration_number if provided). Persist via evidence_add
-       with source_id="{cc.lower()}_registry".
+       (pass registration_number if provided). The response now contains
+       a "primary" block (always present) AND optionally an "aggregator"
+       block (OpenCorporates, when available). Persist:
+         - Always: evidence_add(source_id="{cc.lower()}_registry",
+                                extracted=<the primary block>)
+         - Only if response.aggregator is NOT null:
+                   evidence_add(source_id="opencorporates",
+                                extracted=<the aggregator block>)
+       This yields a banker-friendly dual-source comparison per entity.
 
     2. Call opensanctions_search with the entity name (country="{cc.lower()}").
        Persist via evidence_add with source_id="csl_screening".

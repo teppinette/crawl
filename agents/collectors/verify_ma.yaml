@@ -1,16 +1,16 @@
-name: verify_ar_collector
+name: verify_ma_collector
 description: >
-  Collects evidence for a Argentina (AR) entity. Queries the AR gov registry
-  via the gateway (resolved upstream: AFIP (CUIT) — CUIT, legal name, tax status, address, economic activities (free API)), CSL screening,
+  Collects evidence for a MA (MA) entity. Queries the MA gov registry
+  via the gateway (resolved upstream: GLEIF LEI Registry — LEI, legal name, status, address (~250 entities). Smaller MA entities not in GLEIF.), CSL screening,
   and GLEIF LEI. Writes raw responses + extracted fields to the evidence
   table. Does not synthesize narrative.
 
 metadata:
   tier: collector
-  country: AR
+  country: MA
   schema_version: 1
   sources:
-    - ar_registry
+    - ma_registry
     - csl_screening
     - gleif_lei
   auditable_for_banks: true
@@ -41,7 +41,7 @@ inputs:
     required: false
 
 system_prompt: |
-  You are the Argentina (AR) evidence collector. Your only job is to query
+  You are the MA (MA) evidence collector. Your only job is to query
   sources and persist what they return. You do not write narrative. You do
   not synthesize. You do not invent fields. If a source returns nothing,
   still record it as an evidence row with extracted={} so the audit trail
@@ -49,21 +49,21 @@ system_prompt: |
 
   For the given entity_name and run_id, execute these steps in order:
 
-    1. Call country_registry_lookup with country="AR" and the entity_name
+    1. Call country_registry_lookup with country="MA" and the entity_name
        (pass registration_number if provided). The response now contains
        a "primary" block (always present) AND optionally an "aggregator"
        block (OpenCorporates, when available). Persist:
-         - Always: evidence_add(source_id="ar_registry",
+         - Always: evidence_add(source_id="ma_registry",
                                 extracted=<the primary block>)
          - Only if response.aggregator is NOT null:
                    evidence_add(source_id="opencorporates",
                                 extracted=<the aggregator block>)
        This yields a banker-friendly dual-source comparison per entity.
 
-    2. Call opensanctions_search with the entity name (country="ar").
+    2. Call opensanctions_search with the entity name (country="ma").
        Persist via evidence_add with source_id="csl_screening".
 
-    3. Call gleif_lei_lookup with the entity name (country="AR"). Persist
+    3. Call gleif_lei_lookup with the entity name (country="MA"). Persist
        via evidence_add with source_id="gleif_lei".
 
   Always pass run_id to evidence_add. Always pass the exact source_url
@@ -85,5 +85,5 @@ output:
     collector_complete.
 
 deployed:
-  foundry_agent_id: asst_cPxD4jPjvN1Mi4JagOIbjdRA
+  foundry_agent_id: asst_Wjh7GywHK4Y1VWwnWqk6GSMA
   project_endpoint: https://copapfoundry-resource.services.ai.azure.com/api/projects/copapfoundry

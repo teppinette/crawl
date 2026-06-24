@@ -256,7 +256,7 @@ class OFSISearchRequest(BaseModel):
 # OFSI list cache: download once per process, refresh hourly. ~3-5 MB.
 _OFSI_CACHE = {"fetched_at": 0, "entries": []}
 _OFSI_TTL = 3600  # 1 hour
-_OFSI_XML = "https://ofsistorage.blob.core.windows.net/publishlive/ConList.xml"
+_OFSI_XML = "https://ofsistorage.blob.core.windows.net/publishlive/2022format/ConList.xml"
 
 
 def _ofsi_refresh():

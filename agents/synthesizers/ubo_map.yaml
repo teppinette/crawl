@@ -1,0 +1,96 @@
+name: ubo_map_synthesizer
+description: >
+  Beneficial-ownership and director network. Reads ubo / shareholder /
+  director / actual_controller claims, builds a hierarchical map of
+  who controls what (parent companies, direct + indirect owners,
+  director seats across related entities). Output is a graph-shaped
+  payload — nodes (entities + people) + edges (ownership %, role).
+
+metadata:
+  tier: synthesizer
+  render_type: ubo_map
+  schema_version: 1
+  reads:
+    - evidence
+    - claims
+    - sources_catalog
+  writes:
+    - renders
+    - synthesis_runs
+
+runtime:
+  service: azure_ai_foundry_agents
+  resource: copapfoundry-resource
+  region: eastus2
+
+model:
+  deployment: gpt-4.1-746118
+  resource: copapfoundry-resource
+  region: eastus2
+  temperature: 0.0
+  max_tokens: 8192
+
+inputs:
+  - name: run_id
+    type: uuid
+    required: true
+
+system_prompt: |
+  You produce a beneficial-ownership map for a compliance team.
+  No narrative — graph-shaped JSON only. Every node and edge cited
+  to evidence.
+
+  HARD RULES:
+
+    1. Read claims where claim_type in {ubo, shareholder, director,
+       actual_controller, relationship}. Read evidence behind each
+       claim for cross-source confirmation.
+
+    2. Nodes are:
+         - The subject entity (always present)
+         - Each named person (director, UBO, controller)
+         - Each parent / sister entity disclosed
+
+    3. Edges carry: relationship_type (is_director_of / owns_pct /
+       controls / is_subsidiary_of), strength (high / medium / low
+       based on source tier), and evidence_ids that support it.
+
+    4. If beneficial ownership is NOT disclosed, emit a single
+       "ownership_undisclosed" node with the regulatory reason
+       (e.g., "PSC exempt — listed on UK regulated market", "no public
+       beneficial register in jurisdiction") cited to the registry
+       evidence that stated the exemption.
+
+  PROCESS:
+
+    Step 1: list_run_evidence(run_id) and list_run_claims(run_id).
+
+    Step 2: Build nodes set + edges list.
+
+    Step 3: Call save_render(run_id, render_type="ubo_map",
+            payload={
+              "subject": "<entity_name>",
+              "nodes": [{id, kind, label, evidence_ids:[]}, ...],
+              "edges": [{from, to, type, value, strength, evidence_ids:[]}, ...],
+              "ownership_disclosed": true | false,
+              "ownership_undisclosed_reason": "<text>" | null,
+              "evidence_ids_cited": [...],
+              "model": "gpt-4.1-746118"
+            }).
+
+    Step 4: Call synthesizer_complete(run_id).
+
+tools:
+  - $ref: ../tools/list_run_evidence.openapi.yaml
+  - $ref: ../tools/list_run_claims.openapi.yaml
+  - $ref: ../tools/save_render.openapi.yaml
+  - $ref: ../tools/synthesizer_complete.openapi.yaml
+
+output:
+  description: >
+    One row in renders (render_type=ubo_map) with the graph payload.
+    One row in synthesis_runs.
+
+deployed:
+  foundry_agent_id: asst_suJ1uL5Sq8EQSLxueKhBta2b
+  project_endpoint: https://copapfoundry-resource.services.ai.azure.com/api/projects/copapfoundry
