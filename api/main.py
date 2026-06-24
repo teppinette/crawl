@@ -3261,9 +3261,9 @@ async def verify_entity(
 
     # --------------- TURKEY ---------------
     if country_code == "TR":
-        vkn = body.get("vkn", "").strip()
-        if not vkn:
-            raise HTTPException(status_code=422, detail="vkn (10-digit tax ID) required for TR verification")
+        # VKN preferred (GIB e-Fatura portal). When absent, crawl-verify's TR
+        # handler falls back to GLEIF + OpenCorporates name search.
+        vkn = (body.get("vkn") or body.get("reg_number") or "").strip()
         result = await loop.run_in_executor(
             _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "TR", "vkn": vkn}
         )
@@ -3282,22 +3282,28 @@ async def verify_entity(
 
     # --------------- UAE ---------------
     if country_code == "AE":
-        trn = body.get("trn", "").strip()
-        if not trn:
-            raise HTTPException(status_code=422, detail="trn (15-digit TRN) required for AE verification")
+        # TRN preferred (Multilogin + FTA portal). When absent, the
+        # crawl-verify AE handler now falls back to GLEIF + OpenCorporates
+        # name-search automatically — no 422 anymore (closes Onboarding's
+        # 11 missing AE entities, none of which had held TRNs).
+        trn = (body.get("trn") or body.get("reg_number") or "").strip()
         result = await loop.run_in_executor(
             _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "AE", "trn": trn}
         )
         now = datetime.now(timezone.utc).isoformat()
-        return _persist_verify({
+        out = dict(result or {})
+        out.update({
             "entity_name": entity_name, "country_code": "AE",
-            "verified": result.get("found", False),
-            "legal_name": result.get("legal_name"),
-            "trn": result.get("trn"),
-            "validation_source": result.get("validation_source"),
+            "verified": result.get("verified", result.get("found", False)),
+            "legal_name": result.get("legal_name") or result.get("entity_name"),
             "timestamp": now,
-            "summary": result.get("legal_name", f"TRN {trn}") if result.get("found") else f"TRN {trn} not verified",
         })
+        out.setdefault("summary",
+            (f"{result.get('legal_name', entity_name)} — "
+             f"TRN {result.get('trn', 'N/A')} — {result.get('status', '?')}")
+            if result.get("verified", result.get("found"))
+            else f"{entity_name} — no match via TRN/GLEIF/OC for AE")
+        return _persist_verify(out)
 
     # --------------- CHINA ---------------
     if country_code == "CN":
