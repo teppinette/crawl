@@ -2949,7 +2949,42 @@ async def verify_entity(
 
     def _persist_verify(resp):
         """Fire-and-forget: persist to crawl_verification DB + populate the
-        verify response cache so a same-day re-query is deterministic."""
+        verify response cache + normalize cross-country generic aliases so
+        tier engines can key on consistent field names across all 41 country
+        adapters."""
+        # Normalize: incorporation_date — every country dispatcher uses a
+        # slightly different field name; alias them all to a single generic.
+        if not resp.get("incorporation_date"):
+            for k in ("registration_date", "established_date", "incorporated_on",
+                      "founding_date", "date_of_incorporation", "date_opened",
+                      "issue_date", "activity_start_date"):
+                if resp.get(k):
+                    resp["incorporation_date"] = resp[k]
+                    break
+        # Derive founding_year (int) from incorporation_date for tier factors
+        if not resp.get("founding_year") and resp.get("incorporation_date"):
+            ym = re.search(r"(\d{4})", str(resp["incorporation_date"]))
+            if ym:
+                try:
+                    resp["founding_year"] = int(ym.group(1))
+                except ValueError:
+                    pass
+        # Normalize: registration_number — generic alias for any country's
+        # registry ID (CIN / USCC / SECP-No / CRO / KvK / UEN / BRN / etc.)
+        if not resp.get("registration_number"):
+            for k in ("cin", "uscc", "company_number", "uen", "vkn", "trn",
+                      "corp_code", "cr_number", "rut", "nit", "ruc",
+                      "cnpj", "cik", "kvk", "ico", "abn", "siren", "krs"):
+                if resp.get(k):
+                    resp["registration_number"] = resp[k]
+                    break
+        # Normalize: directors — collapse various name conventions
+        if not resp.get("directors"):
+            for k in ("officers", "partners", "owners", "managers", "representatives"):
+                if resp.get(k):
+                    resp["directors"] = resp[k]
+                    break
+
         resp["duration_ms"] = int((time.monotonic() - _verify_start) * 1000)
         save_verification(resp)
         # Cache successful + clean responses only; never cache errors/timeouts
