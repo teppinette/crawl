@@ -96,7 +96,10 @@ what's live, what's queued, and how to use the new fields.
 |---|---|---|
 | A2 shareholders + ownership %, A3 full officers roster, A6 former names (CN) | Tianyancha detail-page enrichment code is written and deployed, but the CN residential proxy market is dry today (Multilogin + Bright Data both giving non-CN IPs). Code lights up automatically when CN proxy recovers. | when CN proxy market recovers |
 | A7 branch/parent relationships | not started — separate design | TBD |
-| `/api/v1/lookup`, `/api/v1/raw` | endpoints don't exist — separate design work | TBD |
+| `/api/v1/lookup` | ✅ **shipped 2026-06-24 evening** — deterministic id-keyed wrapper |
+| `/api/v1/raw` | not started — every adapter would need to surface verbatim upstream response | TBD |
+| **MA (Morocco) adapter** | ✅ **shipped 2026-06-24 evening** — GLEIF primary + OpenCorporates secondary. Banque Centrale Populaire returned `verified=true`, LEI 54930083GPEJRQSDDR70, ACTIVE. |
+| **Cross-country generic-alias normalization** | ✅ shipped — every /verify response now carries `incorporation_date`, `founding_year`, `registration_number`, `directors` as aliases for the country-specific field names. Tier engine can key on consistent names across all 41+ countries. |
 | PK 17, AE 11, EG 8, TR 7, IL 5, MA 5 adapter enhancements | each ~30–60 min of work; prioritized by Onboarding's 160-row CSV | needs CSV from Onboarding |
 | Onboarding's `/verify/officers` HK regex tuning | regex patterns I added are based on standard HK Companies Registry format; may need real-data tuning if HK ICRIS3EP renders differently | when first paid HK call comes back |
 
@@ -129,4 +132,24 @@ curl --max-time 180 -X POST https://crawldevvm:8443/api/v2/enrich \
 curl -X POST https://crawldevvm:8443/api/v1/verify/officers \
   -H "X-API-Key: $CIR_API_KEY" -H "Content-Type: application/json" \
   -d '{"country_code":"HK","brn":"<BRN>"}'
+
+# /lookup — deterministic id-keyed lookup (recommended over /verify when
+# you have a registry ID: USCC, CIN, CIK, BRN, CNPJ, KvK, SIREN, etc.)
+curl -X POST https://crawldevvm:8443/api/v1/lookup \
+  -H "X-API-Key: $CIR_API_KEY" -H "Content-Type: application/json" \
+  -d '{"country_code":"CN","registration_id":"91440300192317458F"}'
+# returns same shape as /verify with incorporation_date + founding_year + all fields
 ```
+
+## Field-name guide (after cross-country normalization)
+
+Every /verify and /lookup response now carries these CROSS-COUNTRY generic aliases:
+
+| Generic field | Country-specific source |
+|---|---|
+| `incorporation_date` | aliased from registration_date, established_date, incorporated_on, founding_date, date_of_incorporation, date_opened, issue_date, activity_start_date |
+| `founding_year` (int) | 4-digit year extracted from incorporation_date |
+| `registration_number` | aliased from cin, uscc, company_number, uen, vkn, trn, corp_code, cr_number, rut, nit, ruc, cnpj, cik, kvk, ico, abn, siren, krs |
+| `directors` | aliased from officers, partners, owners, managers, representatives |
+
+**Recommendation for your tier engine:** key on `incorporation_date` / `founding_year` / `registration_number` / `directors` consistently. The country-specific field names (cin, uscc, etc.) are still present for backward compat.

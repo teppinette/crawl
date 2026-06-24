@@ -2898,6 +2898,50 @@ def _verify_cache_put(key: str, resp: dict):
     _VERIFY_CACHE[key] = (time.time(), clean)
 
 
+@app.post("/api/v1/lookup")
+async def lookup_entity(
+    request: Request,
+    _key: str = Depends(verify_api_key),
+):
+    """Deterministic id-keyed entity lookup. Use when you have a registry ID
+    (USCC for CN, CIN for IN, CIK for US, BRN for HK, CNPJ for BR, KvK
+    for NL, etc.) — bypasses name-resolution fragility entirely.
+
+    Body: {
+        "country_code": "CN",
+        "registration_id": "91440300192317458F"
+    }
+
+    Returns the same response shape as /api/v1/verify (full record with
+    incorporation_date, founding_year, registration_number, address_parts,
+    adverse_flags, etc.). Faster + more deterministic than /verify when
+    you already hold the registry ID.
+    """
+    body = await request.json()
+    cc = body.get("country_code", "").strip().upper()
+    rid = (body.get("registration_id") or body.get("reg_number") or "").strip()
+    if not cc or not rid:
+        raise HTTPException(status_code=422,
+                            detail="country_code and registration_id (or reg_number) required")
+    # Build a /verify-shaped body that forces id-based lookup. We alias rid
+    # into every country-specific id slot so the dispatcher picks it up
+    # regardless of which adapter is invoked.
+    new_body = {
+        "entity_name": body.get("entity_name") or rid,  # use id as name if none supplied
+        "country_code": cc,
+        "reg_number": rid,
+        "uscc": rid, "cin": rid, "cik": rid, "brn": rid, "uen": rid,
+        "ntn": rid, "cnpj": rid, "kvk": rid, "siren": rid, "krs": rid,
+        "ompic_number": rid, "commercial_reg": rid, "cuit": rid,
+        "cr_number": rid, "abn": rid,
+        "nocache": body.get("nocache", False),
+    }
+    class _StubReq:
+        async def json(self):
+            return new_body
+    return await verify_entity(_StubReq(), _key=_key)
+
+
 @app.post("/api/v1/verify")
 async def verify_entity(
     request: Request,
