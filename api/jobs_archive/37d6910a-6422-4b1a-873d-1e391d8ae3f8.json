@@ -1,0 +1,58 @@
+{
+  "job_id": "37d6910a-6422-4b1a-873d-1e391d8ae3f8",
+  "scenario": "cir",
+  "status": "failed",
+  "region": "india",
+  "entity_name": "CRESCENT ORGANICS PVT LTD",
+  "country": "IN",
+  "created_at": "2026-05-20T17:36:45.399855+00:00",
+  "updated_at": "2026-05-21T18:05:45.576250+00:00",
+  "blob_path": null,
+  "report_summary": null,
+  "error": "orphan_timeout (stale 1469min, reaped 2026-05-21)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "CRESCENT ORGANICS PVT LTD",
+    "entity_trade_names": "Crescent Organics Pvt Ltd",
+    "entity_country": "IN",
+    "entity_address": "WINDSOR, 2ND FLOOR, CST ROAD, KALINA, SANTACRUZ (EAST), MUMBAI MH 400098, Maharashtra, India",
+    "entity_website": "https://crescentindia.com",
+    "entity_type": "Chemical Trading Industry",
+    "entity_industry": "Chemical Trading Industry",
+    "entity_tax_id": "060197",
+    "key_individuals": [
+      {
+        "name": "G. D. Shah",
+        "title": "Director"
+      },
+      {
+        "name": "A. G. Shah",
+        "title": "Director"
+      },
+      {
+        "name": "GUNVANTRAI DIPCHAND SHAH"
+      },
+      {
+        "name": "ASHITKUMAR GUNVANTRAI SHAH"
+      },
+      {
+        "name": "DILIP PRANLAL SHETH"
+      },
+      {
+        "name": "ADITYA ASHIT SHAH"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "copap_products": "Chemicals",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "running",
+      "error": null
+    }
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "job_id": "126d1616-436d-4684-b91f-bcf3a88dc124",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "PRASOL CHEMICALS LIMITED",
+  "country_code": "IN",
+  "created_at": "2026-05-04T16:20:46.337915+00:00",
+  "updated_at": "2026-05-04T16:22:21.434223+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:20:53.398885+00:00",
+      "verified": true,
+      "legal_name": "PRASOL CHEMICALS LIMITED",
+      "cin": "U99999MH1992PLC065026",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "24 January, 1992",
+      "directors": [
+        "Gaurang Natwarlal Parikh",
+        "Ramakrishnan Gopalkrishnan",
+        "others"
+      ],
+      "registered_address": "PRASOL HOUSE, PLOT NO A - 17/2/3, T. T. C. INDUSTRIAL AREA, KHAIRNE M.I.D., C., Thane, NAVI MUMBAI, Maharashtra, India, 400710",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:20:53.222725+00:00",
+      "found": true,
+      "name": "Prasol Chemicals Limited",
+      "linkedin_url": "https://in.linkedin.com/company/prasol-chem-pvt-ltd",
+      "industry": "Chemical Manufacturing",
+      "company_size": "501-1,000 employees",
+      "locations": [
+        "Khairane Gaon Road Plot A-17/2/3, TTC Industrial Area Navi Mumbai, Headquarters 400710, IN"
+      ],
+      "about": "Founded in 1992 by industry stalwart \u2013 Mr. Nishith Shah, Prasol Chemicals Limited is one of India\u2019s leading specialty chemical manufacturers. Prasol is known for providing innovative solutions to a diverse range of sectors which include Agrochemicals, Pharmaceuticals, Home & Personal Care, Paints & Coatings/Inks/Construction/Adhesives and Performance Chemicals ranging from Lubricant Additives, Mining Chemicals to Oilfield & Refineries, Construction Chemicals. We are a growing team of 600+ dynami",
+      "followers": 12772,
+      "employees_on_linkedin": 438,
+      "organization_type": "Public Company",
+      "website": "https://www.prasolchem.com/",
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "Pankil Dharia",
+          "link": "https://in.linkedin.com/in/pankildharia?trk=org-employees"
+        },
+        {
+          "name": "Gaurang Parikh",
+          "link": "https://in.linkedin.com/in/gaurang-parikh-5529a110?trk=org-employees"
+        },
+        {
+          "name": "KIRAN AGRAWAL",
+          "link": "https://in.linkedin.com/in/kiran-agrawal-b567b518?trk=org-employees"
+        },
+        {
+          "name": "Rahul Shroff",
+          "link": "https://in.linkedin.com/in/rahulshroff?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:22:21.433540+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 61,
+      "sources_searched": 37,
+      "sources_with_results": 3,
+      "by_type": {
+        "web_mention": 10,
+        "adverse_media": 1,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "PRASOL CHEMICALS LIMITED",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

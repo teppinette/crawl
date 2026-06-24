@@ -1,0 +1,141 @@
+{
+  "job_id": "1475d083-3a97-4eae-b059-7b69415c2a06",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "RAMNIKLAL S. GOSALIA AND COMPANY",
+  "country_code": "IN",
+  "created_at": "2026-05-04T14:18:38.158710+00:00",
+  "updated_at": "2026-05-04T14:20:20.364002+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:18:48.251467+00:00",
+      "verified": true,
+      "legal_name": "SHAGOYA PRIVATE LIMITED",
+      "cin": "U29299MH1980PTC023415",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "05 November, 1980",
+      "directors": [
+        "Hiren Ramniklal Gosalia",
+        "Yojit Ramniklal Gosalia",
+        "Nihar Hiren Gosalia"
+      ],
+      "registered_address": "NATIONAL HOUSE608 BAPURAO JAGTAP MARG, JACOB CIRCLE, MUMBAI, Maharashtra - 400011",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:18:45.463488+00:00",
+      "found": true,
+      "name": "Rupal Plastics Private Limited",
+      "linkedin_url": "https://gt.linkedin.com/company/rupal-plastics-private-limited",
+      "industry": "Plastics Manufacturing",
+      "company_size": "11-50 employees",
+      "locations": [
+        "Office.: 307-309, Neelkanth Commercial Centre, Sahar Road, Vile Parle (East) Mumbai , Maharashtra 400099, IN"
+      ],
+      "about": "Rupal Plastics played a key role in introducing a wide range of engineering and specialty polymers sources from overseas manufacturers. Their efforts have contributed significantly towards enlarging the market. Be it metal to plastics or any such transformation from conventional material to plastics, the company has taken a lead to educate and inform users about the versatile use of thermoplastic. In this endeavor Rupal Plastics acknowledges the influential role played by their principal supplie",
+      "followers": 389,
+      "employees_on_linkedin": 17,
+      "organization_type": "Privately Held",
+      "website": "https://www.rupalplastics.in/",
+      "specialties": "Importing specialty polymers as per customer\u2019s demand and After sales support by virtue of principal\u2019s technical task force",
+      "notable_employees": [
+        {
+          "name": "Harshad Karmarkar",
+          "link": "https://in.linkedin.com/in/harshad-karmarkar-8a216b31?trk=org-employees"
+        },
+        {
+          "name": "Vicky Prajapati",
+          "link": "https://in.linkedin.com/in/vicky-prajapati-9b772467?trk=org-employees"
+        },
+        {
+          "name": "prasad Bhatlawande",
+          "link": "https://in.linkedin.com/in/prasad-bhatlawande-0530866b?trk=org-employees"
+        },
+        {
+          "name": "KAHAN MEHTA",
+          "link": "https://in.linkedin.com/in/kahan-mehta-4a87ab120?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:20:20.363369+00:00",
+      "risk_level": "MEDIUM",
+      "total_findings": 12,
+      "sources_searched": 37,
+      "sources_with_results": 2,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 2
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "RAMNIKLAL S. GOSALIA AND COMPANY",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

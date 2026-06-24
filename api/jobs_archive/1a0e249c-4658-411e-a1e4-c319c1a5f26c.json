@@ -1,0 +1,41 @@
+{
+  "job_id": "1a0e249c-4658-411e-a1e4-c319c1a5f26c",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "SALWAN PAPERS PVT LTD",
+  "country": "IN",
+  "created_at": "2026-05-21T12:37:05.241543+00:00",
+  "updated_at": "2026-05-21T12:41:48.918516+00:00",
+  "blob_path": "osint-staging/cir/india/salwan_papers_pvt_ltd_IN_20260521.json",
+  "report_summary": "**DONE: Salwan Papers Private Limited, India \u2014 Risk: 2 CLEAR \u2014 19-year Delhi Chawri Bazar paper trader; CIN U21014DL2007PTC160520; Revenue \u20b9181 Cr FY25; AGM Sep 30, 2025 (current); Vijay Garg + Ashish Garg (both promoters)**\n\n`~/crawl/output/salwan_papers_pvt_ltd_IN_20260521.json` \u2014 6.7 KB, valid, research date 2026-05-21, all 8 workstreams complete.\n\n\u26a0\ufe0f Minor: ZaubaCorp shows an alternate Chawri Bazar address (3983/8 Jitendra Paper Market vs subject block's 907/219 Maharaja Agarsian Market) \u2014 likely an old address; confirm current operating location. Related entity **Salwan International Paper Pvt Ltd** (CIN U51396DL2004PTC124987, 2004) is the older sibling company under same promoters.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 2/45 sources via Tor (Netherlands exit node) (23 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 45 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | You Can Sell a Pvt Ltd Company Even If the Business Failed; Today I became an Employed Jobless Programmer.; Registered a Pvt Ltd company in full Josh\u2026 now I\u2019m stuck. Ne (+12 more) |\n| duckduckgo_tor | 10 | SALWAN PAPERS Pvt. Ltd. in Chennai - Manufacturer of Folding; Salwan Papers Pvt. Ltd. in Bhiwandi, Maharashtra, India - Co; Salwan Papers Pvt Ltd - \u0b9c\u0bb8\u0bcd\u0b9f\u0bcd \u0b9f\u0bc8\u0baf\u0bb2\u0bcd (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- SALWAN PAPERS Pvt. Ltd. in Chennai - Manufacturer of Folding Box Board \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.exportersindia.com%2Fsalwan%2Dpapers%2F&rut=fc5bb8b88]\n- Salwan Papers Pvt. Ltd. in Bhiwandi, Maharashtra, India - Company Profile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tradeindia.com%2Fsalwan%2Dpapers%2Dpvt%2Dltd%2D401693]\n- Salwan Papers Pvt Ltd - \u0b9c\u0bb8\u0bcd\u0b9f\u0bcd \u0b9f\u0bc8\u0baf\u0bb2\u0bcd \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.justdial.com%2FChennai%2FSalwan%2DPapers%2DPvt%2DLtd%]\n- SALWAN PAPERS PRIVATE LIMITED - ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2Fcompany%2FSALWAN%2DPAPERS%2DPRIVATE%2]\n- Salwan Papers Pvt. Ltd. from Bhiwandi, India | About Us \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Fsalwan%2Dpapers%2Dpvt%2Dltd%2Dbhiwand]\n- SALWAN PAPERS PRIVATE LIMITED Details | Company Profile | Directors ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.companydetails.in%2Fcompany%2Fsalwan%2Dpapers%2Dpriva]\n- SALWAN PAPERS PRIVATE LIMITED - Dun & Bradstreet \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.s]\n- Salwan Papers Private Limited - 2026 Insights - The Company Check \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fcompany%2Fsalwan%2Dpapers%2Dpri]\n- SALWAN PAPERS PRIVATE LIMITED - Company Profile - Tracxn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Fsalwan%2Dpape]\n- Salwan Papers Private Limited Company Profile - India - EMIS \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FIN%2FSalwan_Pape]\n\n**SOCIAL MENTION** (13)\n- You Can Sell a Pvt Ltd Company Even If the Business Failed \u2014 *reddit* [https://reddit.com/r/StartUpIndia/comments/1t7vj69/you_can_sell_a_pvt_ltd_compan]\n- Today I became an Employed Jobless Programmer. \u2014 *reddit* [https://reddit.com/r/ProgrammerHumor/comments/ypbtax/today_i_became_an_employed_]\n- Registered a Pvt Ltd company in full Josh\u2026 now I\u2019m stuck. Need guidance. \u2014 *reddit* [https://reddit.com/r/IndianStockMarket/comments/1t00ysr/registered_a_pvt_ltd_com]\n- My experience at CodeTrade India Pvt Ltd: read this before you join \u2014 *reddit* [https://reddit.com/r/amdavadcompanyreviews/comments/1smul88/my_experience_at_cod]\n- LLP \u2192 Pvt Ltd for fundraising: convert vs dissolve &amp; restart? \u2014 *reddit* [https://reddit.com/r/indianstartups/comments/1qbsk0e/llp_pvt_ltd_for_fundraising]\n- Anyone went back to proprietorship from Pvt Ltd or LLP? \u2014 *reddit* [https://reddit.com/r/IndiaBusiness/comments/1o6cn2w/anyone_went_back_to_propriet]\n- Thinking of Joining Elevate Services India Pvt Ltd (Elevate)? Read This First. \u2014 *reddit* [https://reddit.com/r/remotework/comments/1pczpxt/thinking_of_joining_elevate_ser]\n- A failed startup founder here. We built a cheaper, better pharmacy software\u2026 and nobody cared \u2014 *reddit* [https://reddit.com/r/StartUpIndia/comments/1mfkzwb/a_failed_startup_founder_here]\n- Takeover offer ( Kolkata, Women-Owned; India Recognized StartUp Pvt Ltd Entity ) - Paper deal ( equi \u2014 *reddit* [https://reddit.com/r/StartupIdeasIndia/comments/1pesoa5/takeover_offer_kolkata_w]\n- Echobooom solutions pvt ltd fraud \u2014 *reddit* [https://reddit.com/r/IndianWorkplace/comments/1lmjk3x/echobooom_solutions_pvt_lt]\n- Hiring: Secretary to Chairman at PDA VENTURES PVT LTD \u2014 *reddit* [https://reddit.com/r/RedditJobBoard/comments/1pfzxgl/hiring_secretary_to_chairma]\n- Knaye is a MUSLIM? An Investigative Deep Dive into 'The Hidden Faith' from a leaked research paper f \u2014 *reddit* [https://reddit.com/r/Kanye/comments/1k7o9j8/knaye_is_a_muslim_an_investigative_d]\n- For all the students relying only on online coaching ....how true is this ?  \u2014 *reddit* [https://reddit.com/r/JEENEETards/comments/1hkl67f/for_all_the_students_relying_o]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "SALWAN PAPERS PVT LTD",
+    "entity_country": "IN",
+    "entity_address": "907/219, 2ND FLOOR, MAHARAJA AGARSIAN MARKET, CHHOTA CHHIPIWARA, CHAWRI BAZAR, DELHI, Delhi 110006, India",
+    "entity_tax_id": "160520",
+    "key_individuals": [
+      {
+        "name": "VIJAY GARG"
+      },
+      {
+        "name": "ASHISH GARG"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 45
+}

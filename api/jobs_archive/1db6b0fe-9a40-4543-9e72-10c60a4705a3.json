@@ -1,0 +1,34 @@
+{
+  "job_id": "1db6b0fe-9a40-4543-9e72-10c60a4705a3",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "HIMANI PAPERS",
+  "country": "IN",
+  "created_at": "2026-05-21T14:05:07.670212+00:00",
+  "updated_at": "2026-05-21T14:07:14.595558+00:00",
+  "blob_path": "osint-staging/cir/india/himani_papers_IN_20260521.json",
+  "report_summary": "**DONE: Himani Papers, India \u2014 Risk: 2 CLEAR \u2014 Delhi proprietorship; GSTIN 07AAVPM3407E1ZN Active; \u2705 GSTR3B filed May 8, 2026 (April FY27); Kraft paper/photocopier paper wholesale; Chander Nagar HO + Chawri Bazar sales office**\n\n`~/crawl/output/himani_papers_IN_20260521.json` \u2014 7.4 KB, valid, research date 2026-05-21, all 8 workstreams complete.\n\n\u26a0\ufe0f **Action required**: Proprietor's full name not in subject block \u2014 PAN `AAVPM3407E` indicates surname starts with **M**. Request GSTIN certificate or entity confirmation to identify proprietor for KYC.\n\n\ud83d\udccd Interesting co-location: Himani Papers' Chawri Bazar sales office (906-912/125) is in the same Maharaja Aggarsain Market complex as **Salwan Papers Pvt Ltd** (907/219) \u2014 both Delhi paper traders in India's paper wholesale hub. No common ownership confirmed.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 2/37 sources via Tor (Netherlands exit node) (12 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 37 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | Himani Papers; Himani Papers | Delhi - The Company Check; Himani Papers - Wholesaler / Distributor of Kraft Paper ...  (+7 more) |\n| reddit | 3 | The Dark Side Of The Nation Cultural Studies Essay; Industrial Hemp Market Key Players, Share, Trend, Segmentati; Industrial Valves Market Key Players, Share, Trend, Segmenta |\n\n### All findings detail\n\n**WEB MENTION** (9)\n- Himani Papers \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fhimanipapers.com%2F&rut=d1aafb9f871e5ca9d2f88dd234b714b27]\n- Himani Papers | Delhi - The Company Check \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Forg%2Fhimani%2Dpapers%2Fc9d1a0f]\n- Himani Papers - Wholesaler / Distributor of Kraft Paper ... - IndiaMART \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Fhimani%2Dpapers%2F&rut=2de8dc3cfa7e41]\n- Himani Papers, Chandar Nagar, Delhi - Justdial \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.justdial.com%2FDelhi%2FHimani%2DPapers%2DChandar%2DNa]\n- Himani Enterprises - Manufacturer of Paper Bags & Paper Pouch from Indore \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.himanipaperbag.com%2F&rut=99277484a919863a1286e9d3b64]\n- Himani Papers (@himanipapers_official) - Instagram \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.instagram.com%2Fhimanipapers_official%2F&rut=02708e8a]\n- Himani Paper in Chandni Chowk, Delhi-110006 - Sulekha \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.sulekha.com%2Fhimani%2Dpaper%2Dchandni%2Dchowk%2Ddelh]\n- Yellow Paper Carry Bag Manufacturer, Brown Kraft Paper Bag Supplier ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.himanipaperbag.in%2F&rut=d8e6d107ff48ce7bd2d28cffa60a]\n- Himani Papers Reviews | Rating 3 out of 5 stars - trustfeed.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.trustfeed.com%2Fdelhi%2Dhimani%2Dpapers%2Dreviews%2D3]\n\n**SOCIAL MENTION** (3)\n- The Dark Side Of The Nation Cultural Studies Essay \u2014 *reddit* [https://reddit.com/r/u_Hot_Hair_5091/comments/tm06hu/the_dark_side_of_the_nation]\n- Industrial Hemp Market Key Players, Share, Trend, Segmentation and Forecast to 2026 \u2014 *reddit* [https://reddit.com/r/u_rickysheikh92/comments/g4qozu/industrial_hemp_market_key_]\n- Industrial Valves Market Key Players, Share, Trend, Segmentation and Forecast to 2026 \u2014 *reddit* [https://reddit.com/r/u_rickysheikh92/comments/g4qfqa/industrial_valves_market_ke]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "HIMANI PAPERS",
+    "entity_country": "IN",
+    "entity_address": "F-24, Bhagat Singh Road, Chander Nagar, Delhi-110051, India",
+    "entity_tax_id": "07AAVPM3407E1ZN (GSTIN)",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 37
+}

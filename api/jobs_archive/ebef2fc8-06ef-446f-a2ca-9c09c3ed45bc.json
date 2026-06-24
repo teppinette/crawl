@@ -1,0 +1,34 @@
+{
+  "job_id": "ebef2fc8-06ef-446f-a2ca-9c09c3ed45bc",
+  "scenario": "cir",
+  "status": "failed",
+  "region": "americas",
+  "entity_name": "EMPAQUES INDUSTRIALES DE COLOMBIA S.A.S",
+  "country": "CO",
+  "created_at": "2026-05-22T21:31:50.400631+00:00",
+  "updated_at": "2026-05-22T21:32:30.445017+00:00",
+  "blob_path": null,
+  "report_summary": null,
+  "error": "americas: No existing session",
+  "retry_count": 1,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "EMPAQUES INDUSTRIALES DE COLOMBIA S.A.S",
+    "entity_country": "CO",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "failed",
+      "error": "No existing session"
+    }
+  },
+  "errors": [
+    "americas: No existing session",
+    "americas: No existing session"
+  ]
+}

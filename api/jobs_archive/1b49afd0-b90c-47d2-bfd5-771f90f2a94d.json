@@ -1,0 +1,42 @@
+{
+  "job_id": "1b49afd0-b90c-47d2-bfd5-771f90f2a94d",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "europe",
+  "entity_name": "ORGANIK KIMYA SANAYI VE TICARET ANONIM SIRKETI",
+  "country": "TR",
+  "created_at": "2026-05-22T18:34:50.586315+00:00",
+  "updated_at": "2026-05-22T18:48:59.845068+00:00",
+  "blob_path": null,
+  "report_summary": "**DONE: Organik Kimya Sanayi ve Ticaret A.\u015e., TR \u2014 Risk: 3 MONITOR**\n\nFile: `~/crawl/output/organik_kimya_sanayi_TR_20260522.json` \u2705\nBlob: `europe/organik_kimya_sanayi_TR_20260522.json` \u2705 (18:47 UTC)\n\n---\n\n## \ud83d\udccb Research Summary\n\n| Workstream | Finding |\n|---|---|\n| **1A Registry** | \u26a0\ufe0f MERSIS inaccessible (e-signature required); company website unreachable across 4 tested domains |\n| **2A Ownership** | Kaslowski family (probable) \u2014 Sephardic Jewish Istanbul industrial family; single individual named |\n| **3A Sanctions** | \u2705 **ALL CLEAN** \u2014 OFAC, OpenSanctions (1.27M), UN SC: no hits on entity, \"Kaslowski\", \"Simone Kaslowski\" |\n| **4A Media** | \u2705 haberler.com: **zero Turkish news articles** for entity \u2014 no adverse coverage |\n| **5A Litigation** | Not accessed (UYAP not public) |\n| **6A PEP** | Simone Kaslowski \u2014 **NOT A PEP** |\n| **7A KAP/BIST** | \u26a0\ufe0f KAP blocked from research IP \u2014 BIST listing status unconfirmed; retry via Turkish IP |\n| **8A Trade Risk** | Product line unknown; Turkey standard EDD applies |\n\n**Score 3 vs 2:** The rating reflects tooling gaps \u2014 website unreachable, MERSIS gated, KAP IP-blocked, Brave API absent. With MERSIS extract confirming legal status + KAP check confirming or denying listing, this likely reduces to **2 CLEAR**. Priority actions: MERSIS tasdikname, KAP listing check, full director/shareholder list from counterparty.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 2/41 sources via Tor (Netherlands exit node) (25 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 41 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Reddit T\u00fcrkiye\u2019de \u015eirket Kurdu; organik kimya ve OSYM; Bug\u00fcn organik kimya \u00f6devlerimi bitirip full integral tekrar  (+12 more) |\n| duckduckgo_tor | 10 | Organik Kimya | Chemistry Between Us; ORGANIK KIMYA SANAYI VE TICARET ANONIM SIRKETI Company Profi; Locations | Organik Holding A.\u015e. (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- Organik Kimya | Chemistry Between Us \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Forganikkimya.com%2Ftr&rut=74795f783b42af6c216039ebc0773a3]\n- ORGANIK KIMYA SANAYI VE TICARET ANONIM SIRKETI Company Profile ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.o]\n- Locations | Organik Holding A.\u015e. \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.organikholding.com%2Fen%2Flocations.aspx&rut=39fbd478]\n- Organik Kimya - LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftr.linkedin.com%2Fcompany%2Forganik%2Dkimya&rut=f897f9651]\n- Organik Kimya A.S. Company Profile - Turkiye | Financials & Key ... - EMIS \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FTR%2FOrganik_Kim]\n- Organik Kimya San. Tic. A.S. - Ey\u00fcp, Turkey \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.chemeurope.com%2Fen%2Fcompanies%2F1044346%2Forganik%2]\n- Organik Kimya San. Ve Tic. A.S. T\u00fcrkiye - T\u00fcrkiye \u015eirketleri \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.turkishexporter.com.tr%2Ftr%2Ffirmalar%2Forganik%2Dki]\n- ORGANIK KIMYA SANAYI VE TICARET ANONIM SIRKETI in Istanbul \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.info%2Dclipper.com%2Fen%2Fcompany%2Fturkey%2Forganik%]\n- Organik Kimya San. Ve Tic. A.S. - Afera \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fafera.com%2Ffind%2Da%2Dmember%2Ffind%2Da%2Dmember%2Forgan]\n- Organik Kimya Sanayi Ve Ticaret AS - Company Profile and News \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.bloomberg.com%2Fprofile%2Fcompany%2F6124407Z%3ATI&rut]\n\n**SOCIAL MENTION** (15)\n- Reddit T\u00fcrkiye\u2019de \u015eirket Kurdu \u2014 *reddit* [https://reddit.com/r/Turkey/comments/1qxp3ee/reddit_t\u00fcrkiyede_\u015firket_kurdu/]\n- organik kimya ve OSYM \u2014 *reddit* [https://reddit.com/r/liseliler/comments/1thk88m/organik_kimya_ve_osym/]\n- Bug\u00fcn organik kimya \u00f6devlerimi bitirip full integral tekrar etcem (bu sabah denemeye girdim biraz k\u00f6 \u2014 *reddit* [https://reddit.com/r/derscalismamlazim/comments/1sp13cr/bug\u00fcn_organik_kimya_\u00f6dev]\n- Milli E\u011fitim Bakan\u0131 Yusuf Tekin, sanayi ve ticaret alanlar\u0131ndan gelen nitelikli i\u015f g\u00fcc\u00fc talebi \u00fczeri \u2014 *reddit* [https://reddit.com/r/WorldPanorama/comments/1kipkph/milli_e\u011fitim_bakan\u0131_yusuf_te]\n- Almanya'da ekonomik tart\u0131\u015fmalar genellikle otomotiv, kimya ve makina gibi geleneksel sanayi sekt\u00f6rle \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1t0bne6/almanyada_ekonomik_tart\u0131\u015fmalar_]\n- ULUUN \u2022 ULUSOY UN SANAY\u0130 VE T\u0130CARET A.\u015e. bilan\u00e7osunu a\u00e7\u0131klad\u0131. \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1su9orz/uluun_ulusoy_un_sanayi_ve_ticar]\n- T.C. Ticaret Bakan\u0131 \u00d6mer Bolat, T\u00fcrkiye'de \u00fcretilen ve G\u00fcmr\u00fck Birli\u011fi kurallar\u0131na uygun sanayi \u00fcr\u00fcnl \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1rkz0b3/tc_ticaret_bakan\u0131_\u00f6mer_bolat_t\u00fc]\n- T.C. Sanayi ve Teknoloji Bakanl\u0131\u011f\u0131, Ticaret Bakanl\u0131\u011f\u0131 ve Merkez Bankas\u0131 i\u015f birli\u011fiyle T\u00dcB\u0130TAK taraf\u0131 \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1r8e13t/tc_sanayi_ve_teknoloji_bakanl\u0131\u011f]\n- GMTAS, Gimat Magazacilik Sanayi ve Ticaret A.S. \u2014 *reddit* [https://reddit.com/r/Compoundingcapital/comments/1rzebvb/gmtas_gimat_magazacilik]\n- Katar'\u0131n enerji \u015firketi QatarEnergy, s\u0131v\u0131la\u015ft\u0131r\u0131lm\u0131\u015f do\u011fal gaz \u00fcretimini durdurmas\u0131n\u0131n ard\u0131ndan bug\u00fc \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1rjqfq3/katar\u0131n_enerji_\u015firketi_qatarene]\n- \"Bu saatten sonra s\u0131k\u0131 para politikas\u0131yla, kemer s\u0131kmakla, finansman\u0131 daraltmakla sonu\u00e7 al\u0131namaz. \u00c7\u00fc \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1r6gbal/bu_saatten_sonra_s\u0131k\u0131_para_poli]\n- ASELS \u2022 ASELSAN ELEKTRON\u0130K SANAY\u0130 VE T\u0130CARET A.\u015e. bilan\u00e7osunu a\u00e7\u0131klad\u0131. \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1rdl086/asels_aselsan_elektronik_sanayi]\n- ALCAR \u2022 ALARKO CARRIER SANAY\u0130 VE T\u0130CARET A.\u015e. bilan\u00e7osunu a\u00e7\u0131klad\u0131. \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1rh7225/alcar_alarko_carrier_sanayi_ve_]\n- TABGD \u2022 TAB GIDA SANAY\u0130 VE T\u0130CARET A.\u015e. bilan\u00e7osunu a\u00e7\u0131klad\u0131. \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1rgnhqc/tabgd_tab_gida_sanayi_ve_ticare]\n- KCAER \u2022 KOCAER \u00c7EL\u0130K SANAY\u0130 VE T\u0130CARET A.\u015e. bilan\u00e7osunu a\u00e7\u0131klad\u0131. \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1rfnt69/kcaer_kocaer_\u00e7elik_sanayi_ve_ti]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "europe: Report file not found on remote VM (europe)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "ORGANIK KIMYA SANAYI VE TICARET ANONIM SIRKETI",
+    "entity_country": "TR",
+    "entity_type": "Supplier",
+    "entity_industry": "Supplier",
+    "entity_tax_id": "unknown \u2014 MERSIS portal (mersis.ticaret.gov.tr) requires e-signature login for exact 16-digit MERSIS number",
+    "key_individuals": [
+      {
+        "name": "Simone Kaslowski"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "europe": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (europe)"
+    }
+  },
+  "errors": [
+    "europe: Report file not found on remote VM (europe)"
+  ],
+  "dark_web_findings": 0,
+  "dark_web_sources": 41
+}

@@ -1,0 +1,63 @@
+{
+  "job_id": "128e809a-2dcd-4518-af75-9feba1a0716c",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "AGA PUBLICATIONS LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-21T14:54:18.198859+00:00",
+  "updated_at": "2026-05-21T14:58:58.369036+00:00",
+  "blob_path": "osint-staging/cir/india/aga_publications_limited_IN_20260521.json",
+  "report_summary": "**DONE: AGA Publications Limited, India \u2014 Risk: 2 CLEAR \u2014 33-year Hyderabad Telugu publisher; CIN U22110TG1992PLC015149; \u20b915 Cr paid-up capital; AGM Sep 30, 2024 current; no charges; Sanghi family (3 DINs confirmed)**\n\n`~/crawl/output/aga_publications_limited_IN_20260521.json` \u2014 8 KB, valid, research date 2026-05-21.\n\n\u26a0\ufe0f Admin note: Subject block has address at **\"Vaartha\"** building (Vaartha = one Telugu newspaper brand) but website is **sakshi.com** (Sakshi = a different Telugu publication). Verify which publication(s) AGA actually operates \u2014 both may be published from the same building, or the website entry could be a data error.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**3 actionable findings** from 5/57 sources via Tor (Netherlands exit node) (29 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Breach records | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 14 |\n| Website scans (URLScan) | 5 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: www.sakshi.com\n- BREACH RECORD: \n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | \u201cAge limits on social media are a dead end\u201d: public authorit; Breezula Phase III 12-Month Data Released by Cosmo Pharma; People Pakistan Forgot: The Educational Founders Who Built t (+12 more) |\n| urlscan | 11 | www.sakshi.com; Sakshi: Telugu News | Latest Telugu News | \u0c24\u0c46\u0c32\u0c41\u0c17\u0c41 \u0c35\u0c3e\u0c30\u0c4d\u0c24\u0c32\u0c41 | ; Telugu States Latest News, Breaking News, News Headlines, Li (+8 more) |\n| duckduckgo_tor | 10 | Aga Publications Limited Company Profile - India - EMIS; AGA PUBLICATIONS LIMITED - ZaubaCorp; AGA PUBLICATIONS LIMITED | CIN U22110TG1992PLC015149 Company (+7 more) |\n| leakcheck | 1 | breach_record |\n| hudsonrock_cavalier | 1 | www.sakshi.com |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- www.sakshi.com \u2014 *hudsonrock_cavalier*\n\n**BREACH RECORD** (1)\n-  \u2014 *leakcheck*\n\n**WEB MENTION** (10)\n- Aga Publications Limited Company Profile - India - EMIS \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FIN%2FAga_Publica]\n- AGA PUBLICATIONS LIMITED - ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2FAGA%2DPUBLICATIONS%2DLIMITED%2DU22110]\n- AGA PUBLICATIONS LIMITED | CIN U22110TG1992PLC015149 Company Details \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiafilings.com%2Fsearch%2Faga%2Dpublications%2Dlimi]\n- AGA Publications Ltd | LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fin.linkedin.com%2Fcompany%2Faga%2Dpublications%2Dltd&rut=]\n- Aga Publications Limited / U22110tg1992plc015149 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.falconebiz.com%2Fcompany%2FAGA%2DPUBLICATIONS%2DLIMIT]\n- Aga Publications Limited - 2026 Insights - The Company Check \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fcompany%2Faga%2Dpublications%2D]\n- Aga Publications Limited - Company Profile - Tracxn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Faga%2Dpublica]\n- AGA PUBLICATIONS LIMITED Details | Company Profile | Directors Profile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.companydetails.in%2Fcompany%2Faga%2Dpublications%2Dli]\n- Aga Publications Limited Financials | Company Details - Tofler \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tofler.in%2Faga%2Dpublications%2Dlimited%2Fcompany%2F]\n- Aga publications limited - U22110TG1992PLC015149 - InstaFinancials \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.instafinancials.com%2Fcompany%2Faga%2Dpublications%2D]\n\n**SOCIAL MENTION** (14)\n- \u201cAge limits on social media are a dead end\u201d: public authorities should focus on regulating algorithm \u2014 *reddit* [https://reddit.com/r/technology/comments/1sva7qv/age_limits_on_social_media_are_]\n- Breezula Phase III 12-Month Data Released by Cosmo Pharma \u2014 *reddit* [https://reddit.com/r/HairlossResearch/comments/1smes36/breezula_phase_iii_12mont]\n- People Pakistan Forgot: The Educational Founders Who Built the Nation\u2019s Mind but no one remembers \u2014 *reddit* [https://reddit.com/r/Ancient_Pak/comments/1rlilbp/people_pakistan_forgot_the_edu]\n- The Atlas Program is spreading in our community and I'm worried about it. Please read this before yo \u2014 *reddit* [https://reddit.com/r/ismailis/comments/1sv0zfs/the_atlas_program_is_spreading_in]\n- Did the Ismaili Leader Karim Aga Khan IV cheat on his wife? \u2014 *reddit* [https://reddit.com/r/ExIsmailis/comments/1iz5hej/did_the_ismaili_leader_karim_ag]\n- This public library restroom has a 5 minute limit \u2014 *reddit* [https://reddit.com/r/notinteresting/comments/1sjs43f/this_public_library_restroo]\n- Project OpenCaldera: Exploring adding (unofficial) support for RTX 3000 &amp; RX 6000 GPUs in the Al \u2014 *reddit* [https://reddit.com/r/Alienware/comments/jxvnga/project_opencaldera_exploring_add]\n- KX-826\u2019s ~10 hairs/cm\u00b2 placebo-adjusted, in context \u2014 putting it next to fin/dut/oral minox \u2014 *reddit* [https://reddit.com/r/HairlossResearch/comments/1t7zmpe/kx826s_10_hairscm\u00b2_placeb]\n- Ismailis in Tajikistan are facing a major crackdown. What\u2019s actually going on? \u2014 *reddit* [https://reddit.com/r/ismailis/comments/1p1gol6/ismailis_in_tajikistan_are_facing]\n- KX-826 1% Phase II Results from China Just Dropped \u2014 *reddit* [https://reddit.com/r/tressless/comments/1me9ddl/kx826_1_phase_ii_results_from_ch]\n- Trump to sign Executive Order limiting Public Service Loan Forgiveness program \u2014 *reddit* [https://reddit.com/r/news/comments/1j5yumb/trump_to_sign_executive_order_limitin]\n- Elon Musk says Americans are \"too retarded\" for skilled jobs. Musk is calling for mass layoffs in bo \u2014 *reddit* [https://reddit.com/r/WorkReform/comments/1hrvhf5/elon_musk_says_americans_are_to]\n- Affordable Universities for Bachelor's in Ireland for International Students \u2014 *reddit* [https://reddit.com/r/GlobalEducationHub/comments/1syxhat/affordable_universities]\n- [ROLEPLAY] The Rubio Presidency \u2014 *reddit* [https://reddit.com/r/worldpowers/comments/1sjc03m/roleplay_the_rubio_presidency/]\n\n**DOMAIN SCAN SUMMARY** (1)\n- www.sakshi.com \u2014 *urlscan*\n\n**WEBSITE SCAN** (5)\n- Sakshi: Telugu News | Latest Telugu News | \u0c24\u0c46\u0c32\u0c41\u0c17\u0c41 \u0c35\u0c3e\u0c30\u0c4d\u0c24\u0c32\u0c41 | Online Telugu Breaking News Today \u2014 *urlscan* [https://www.sakshi.com/]\n- Telugu States Latest News, Breaking News, News Headlines, Live Updates, Today Top News | Sakshi Post \u2014 *urlscan* [https://www.sakshipost.com/]\n- Human Verification \u2014 *urlscan* [https://www.sakshi.com/]\n- Over nine million people in Afghanistan face acute food insecurity: UN \u2014 *urlscan* [https://www.sakshipost.com/news/over-nine-million-people-afghanistan-face-acute-]\n- Sri Lanka launches task force to strengthen forest, wildlife protection \u2014 *urlscan* [https://www.sakshipost.com/news/sri-lanka-launches-task-force-strengthen-forest-]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "AGA PUBLICATIONS LIMITED",
+    "entity_country": "IN",
+    "entity_address": "396 VAARTHA LOWER TANK BUND ROAD, HYDERABAD, Telangana, 500080, IN",
+    "entity_website": "https://www.sakshi.com/",
+    "entity_tax_id": "015149",
+    "key_individuals": [
+      {
+        "name": "GAURAV SANGHI"
+      },
+      {
+        "name": "ALKA GIRISH SANGHI"
+      },
+      {
+        "name": "GIREESH KUMAR SANGHI"
+      },
+      {
+        "name": "AASHISH SANGHI"
+      },
+      {
+        "name": "AARTI GUPTA"
+      },
+      {
+        "name": "UPADHYAYULA KARUNA GAYATHRI"
+      },
+      {
+        "name": "SRINIVASARAO BITRAGUNTA"
+      },
+      {
+        "name": "YERRAPREGADA VENKATA NARAYANA SARMA"
+      },
+      {
+        "name": "HIMANI CHOUDHARY"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 3,
+  "dark_web_sources": 57
+}

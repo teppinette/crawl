@@ -1,0 +1,19 @@
+{
+  "job_id": "8638fb17-3380-4bc1-ae6f-02162c1d8c41",
+  "scenario": "dark-web",
+  "status": "completed",
+  "region": "darkweb",
+  "entity_name": "Cartocor Chile SA corrugado Arcor",
+  "country": "",
+  "created_at": "2026-05-22T19:36:02.676941+00:00",
+  "updated_at": "2026-05-22T19:37:17.102337+00:00",
+  "blob_path": "osint-staging/dark-web/cartocor_chile_sa_corrugado_arcor_20260522.json",
+  "report_summary": "10 findings from dark web sources",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_name": "Cartocor Chile SA corrugado Arcor",
+    "country_code": "CL"
+  }
+}

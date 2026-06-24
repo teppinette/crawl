@@ -1,0 +1,138 @@
+{
+  "job_id": "f4650488-6d5e-4787-b464-df759a8f9880",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "POWER CHEMICALS INDUSTRIES LTD.",
+  "country_code": "PK",
+  "created_at": "2026-05-04T15:46:50.146540+00:00",
+  "updated_at": "2026-05-04T15:47:29.927748+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:46:56.827140+00:00",
+      "verified": false,
+      "legal_name": null,
+      "registration_number": null,
+      "entity_status": null,
+      "company_type": null,
+      "cro": null,
+      "registration_date": null,
+      "fbr": null,
+      "all_matches": null,
+      "source": "SECP eServices (direct gov query)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:46:56.906210+00:00",
+      "found": true,
+      "name": "Power Chemical Industries Ltd",
+      "linkedin_url": "https://pk.linkedin.com/company/power-chemical-industries-ltd",
+      "industry": "Chemical Manufacturing",
+      "company_size": "501-1,000 employees",
+      "locations": [
+        "1447-B, Peoples Colony # 1, Faisalabad, Punjab 38000, PK"
+      ],
+      "about": "POWER CHEMICAL INDUSTRIES IS THE LEADING SUPPLIER OF VARIOUS CHEMICAL PRODUCTS TO INDUSTRIES LIKE PAINTS, TEXTILE, PAPER, WOOD, LEATHER AND CONSTRUCTION. BESIDES MANUFACTURING, WE ARE ALSO THE LEADING IMPORTER OF RAW MATERIAL IN PAKISTAN FROM THE TOP LINE CHEMICAL SUPPLIERS OF THE WORLD.\u201d",
+      "followers": 9218,
+      "employees_on_linkedin": 174,
+      "organization_type": "Public Company",
+      "website": "https://www.powci.com/",
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "Nadeem Shahzad",
+          "link": "https://pk.linkedin.com/in/nadeem-shahzad-b156651a?trk=org-employees"
+        },
+        {
+          "name": "Ghulam Mustafa Baig",
+          "link": "https://pk.linkedin.com/in/ghulam-mustafa-baig-140aa129?trk=org-employees"
+        },
+        {
+          "name": "Talha Omar",
+          "link": "https://pk.linkedin.com/in/talha-omar-2237a830?trk=org-employees"
+        },
+        {
+          "name": "Sarfraz Ali",
+          "link": "https://pk.linkedin.com/in/sarfraz-ali-540b6b32?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:47:29.927071+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 60,
+      "sources_searched": 37,
+      "sources_with_results": 2,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "POWER CHEMICALS INDUSTRIES LTD.",
+    "country_code": "PK",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

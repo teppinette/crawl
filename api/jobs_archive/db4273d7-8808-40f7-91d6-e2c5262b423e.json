@@ -1,0 +1,144 @@
+{
+  "job_id": "db4273d7-8808-40f7-91d6-e2c5262b423e",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "VINATI ORGANICS LIMITED",
+  "country_code": "IN",
+  "created_at": "2026-05-04T14:29:10.383418+00:00",
+  "updated_at": "2026-05-04T14:29:45.378996+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:29:16.562442+00:00",
+      "verified": true,
+      "legal_name": "VINATI ORGANICS LIMITED",
+      "cin": "L24116MH1989PLC052224",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "15 June, 1989",
+      "directors": [
+        "Viral Saraf Mittal",
+        "Vinati Saraf Mutreja",
+        "others"
+      ],
+      "registered_address": "B-12 & B-13 MIDC AREAMAHAD, DIST-RAIGAD, Maharashtra, India, 402309",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:29:17.114656+00:00",
+      "found": true,
+      "name": "Vinati Organics Limited",
+      "linkedin_url": "https://in.linkedin.com/company/vinati-organics-limited",
+      "industry": "Chemical Manufacturing",
+      "company_size": "1,001-5,000 employees",
+      "locations": [
+        "Parinee Crescenzo, 11th Floor, 1102 \"G\" Block, Plot no. C-38 & C-39, Bandra-Kurla Complex, Bandra (East) Mumbai, Maharashtra 400051, IN",
+        "B-12 & B-13/1, MIDC Industrial Area, Dist. Raigad, Mahad, Maharashtra 402 301, IN",
+        "Plot No. A-20, MIDC, Industrial Area, Tal. Khed, Dist. Ratnagiri, Lote Parashuram, Maharashtra 415722, IN"
+      ],
+      "about": "Established in 1989, Vinati Organics Limited (VOL) is a specialty chemical company, focusing on manufacturing specialty chemicals and organic intermediaries. We combine innovation with chemistry to deliver value-added products to our customers. We follow the highest quality standards and our products meet diverse customer expectations. At Vinati Organics Limited, we have two plants, both situated in Maharashtra at Mahad (Raigad) and Lote Parashuram (Ratnagiri). Our plants are ISO 14001:2015, ISO",
+      "followers": 28407,
+      "employees_on_linkedin": 748,
+      "organization_type": "Public Company",
+      "website": "https://www.vinatiorganics.com/",
+      "specialties": "We are the world\u2019s largest in both Isobutyl Benzene (IBB) and 2-Acrylamido 2 Methylpropane Sulfonic Acid (ATBS)",
+      "notable_employees": [
+        {
+          "name": "Sagar Desai",
+          "link": "https://in.linkedin.com/in/sagar-desai-8191b15?trk=org-employees"
+        },
+        {
+          "name": "Matteo Vinati",
+          "link": "https://it.linkedin.com/in/vinaticrane?trk=org-employees"
+        },
+        {
+          "name": "Abhay Joshi",
+          "link": "https://in.linkedin.com/in/abhay-joshi-a681637?trk=org-employees"
+        },
+        {
+          "name": "Mona Bhide",
+          "link": "https://in.linkedin.com/in/mona-bhide-58a8349?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:29:45.378347+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 64,
+      "sources_searched": 37,
+      "sources_with_results": 3,
+      "by_type": {
+        "web_mention": 10,
+        "adverse_media": 4,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "VINATI ORGANICS LIMITED",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

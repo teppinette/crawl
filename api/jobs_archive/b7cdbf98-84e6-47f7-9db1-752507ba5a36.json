@@ -1,0 +1,32 @@
+{
+  "job_id": "b7cdbf98-84e6-47f7-9db1-752507ba5a36",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "china",
+  "entity_name": "JIANGSU HUALUN GALAXY CHEMICAL COMMERCIAL HOLDING CO., LTD",
+  "country": "CN",
+  "created_at": "2026-05-04T17:11:28.939211+00:00",
+  "updated_at": "2026-05-04T17:15:11.605202+00:00",
+  "blob_path": "osint-staging/cir/china/jiangsu_hualun_galaxy_chemical_commercial_holding_co_ltd_cn_20260430.json",
+  "report_summary": "Already updated with today's date and all country-specific checks just moments ago. Report is current.\n\n**DONE:** `/home/copapadmin/crawl/output/jiangsu_hualun_galaxy_chemical_commercial_holding_co_ltd_cn_20260430.json` \u2014 updated 2026-05-04, all 8 workstreams + 4 China-specific checks complete.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**60 findings** from 2/37 sources via Tor (Netherlands exit node)\n\n| Category | Count |\n|----------|-------|\n| Breach records | 50 |\n| Web mentions (Tor-routed) | 10 |\n\n**Key findings:**\n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "JIANGSU HUALUN GALAXY CHEMICAL COMMERCIAL HOLDING CO., LTD",
+    "entity_country": "CN",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "china": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 60,
+  "dark_web_sources": 37
+}

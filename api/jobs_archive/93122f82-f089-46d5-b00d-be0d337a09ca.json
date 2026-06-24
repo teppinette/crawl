@@ -1,0 +1,53 @@
+{
+  "job_id": "93122f82-f089-46d5-b00d-be0d337a09ca",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "Royce Pack Private Limited",
+  "country": "IN",
+  "created_at": "2026-04-28T22:12:47.966302+00:00",
+  "updated_at": "2026-04-28T22:13:39.543778+00:00",
+  "blob_path": "osint-staging/cir/india/royce_pack_private_limited_IN_20260428.json",
+  "report_summary": "**DONE: Royce Pack Private Limited, India \u2014 Risk: 3 MONITOR \u2014 Financially stressed packaging SME (D/E 41.51, negative EBITDA FY2024, revenue \u221233.56%); no sanctions, no litigation, no adverse media; 100% Tantia family-owned; output already on file from earlier same-day run**\n\n---\n\nThis research was completed at 19:39 UTC today. The output file is already at:\n**`~/crawl/output/royce_pack_private_limited_IN_20260428.json`** (valid, 20,113 chars)\n\n### All Workstreams \u2014 Summary\n\n| WS | Finding |\n|---|---|\n| **1A Entity** | CIN U74999DL2020PTC362678 \u00b7 Active \u00b7 Inc. 11 Mar 2020 \u00b7 ROC Delhi \u00b7 GSTIN 09AAKCR1269F1Z6 (Ghaziabad, UP operations) \u00b7 Revenue \u20b925\u201350 Cr |\n| **2A Individuals** | Piyush Tantia (DIN 02300471) \u2014 UBO/founder, 5 active companies, 17 years governance \u00b7 Shubham Tantia (DIN 10548721) \u2014 director from Mar 2024, younger generation \u00b7 Sushil Kumar Tantia (DIN 00973670) \u2014 family patriarch, not a Royce Pack director |\n| **2B Ownership** | 100% Tantia family. Transparent structure. Piyush Tantia declared UBO 100%. No offshore structures. 5 affiliated entities all share same Nehru Place address. |\n| **3A Sanctions** | **CLEAR (OSINT)** \u2014 No OFAC/EU/UN hits. OpenSanctions: zero results. \u26a0\ufe0f Browser-based OFAC SSAN manual check still recommended. |\n| **3B 50% Rule** | N/A \u2014 No SDN-listed entities in ownership chain |\n| **4A Litigation** | **None found** \u2014 IndianKanoon: no results. No NCLT, SEBI, or MCA enforcement. |\n| **5A Adverse Media** | **None found** \u2014 English-language clean. Hindi search not completed (manual recommended). |\n| **6 PEP** | **CLEAR** \u2014 All principals are private-sector only |\n| **7 Trade Risk** | **Low** \u2014 Standard commercial packaging materials. No dual-use, no sanctioned-country exposure. |\n| **8A Risk** | **3/5 MONITOR** \u2014 Primary flag is **financial distress**: D/E ratio 41.51, negative EBITDA, margins, net profit; revenue declining \u221233.56% FY2024; pattern suggests over-leverage during FY2022 packaging boom. |",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "Royce Pack Private Limited",
+    "entity_country": "IN",
+    "entity_address": "Flat No-507/72, Laxmi Bhawan, Nehru Place, South Delhi, New Delhi, Delhi, India 110019",
+    "entity_tax_id": "AAKCR1269F",
+    "key_individuals": [
+      {
+        "name": "Mr. Shubham Tantia",
+        "title": "Director"
+      },
+      {
+        "name": "Piyush Tantia",
+        "title": "Director"
+      },
+      {
+        "name": "Shubham Tantia",
+        "title": "Director"
+      },
+      {
+        "name": "Mr. Piyush Tantia",
+        "title": "UBO (100.00%)"
+      },
+      {
+        "name": "Mr. Shubham Tantia",
+        "title": "UBO"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  }
+}

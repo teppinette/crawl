@@ -1,0 +1,72 @@
+{
+  "job_id": "a9cdab5f-e71f-4225-a6c1-90da691abefa",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "AARTI DRUGS LTD",
+  "country": "IN",
+  "created_at": "2026-04-30T20:04:32.593391+00:00",
+  "updated_at": "2026-04-30T20:06:45.893132+00:00",
+  "blob_path": "osint-staging/cir/india/aarti_drugs_ltd_IN_20260430.json",
+  "report_summary": "All workstreams are complete and the output file covers the same entity (CIN now provided as Tax ID \u2014 confirmed match). No re-research needed.\n\n**DONE: Aarti Drugs Limited, India \u2014 Risk: 2 CLEAR \u2014 41-year listed pharma API manufacturer (BSE 524348 / NSE AARTIDRUGS); CIN L37060MH1984PLC055433; \u20b92,387 Cr revenue FY25; SEBI Administrative Warning March 2025 (procedural, no penalty); no sanctions hits**\n\n---\n\nOutput file: **`~/crawl/output/aarti_drugs_ltd_IN_20260430.json`** (29 KB, valid JSON, 8 sources)\n\n### Summary \u2014 All Workstreams\n\n| WS | Finding |\n|---|---|\n| **1A** | CIN L37060MH1984PLC055433 confirmed \u00b7 Active 41 years \u00b7 BSE 524348, NSE AARTIDRUGS \u00b7 Tarapur MIDC, Palghar \u00b7 Revenue \u20b92,387 Cr \u00b7 1,012 employees \u00b7 Compliant |\n| **2A** | All 11 listed key individuals profiled: Uday Patil (DIN 01186406), Prakash Patil, Harshit Savla, Harit Shah, Rashesh Gogri, + 6 KMPs/independent directors. **Zero PEP or SDN hits** |\n| **2B** | Publicly listed \u00b7 Promoter 16.59% (Aarti Group / Gogri + Patil + Savla families) \u00b7 83.42% public/institutional \u00b7 Full SEBI disclosure |\n| **3A** | **CLEAR** \u2014 No OFAC/UN/EU/UK/BIS hits for company or any individual |\n| **4A** | 5 cases: customs tariff WP dismissed (Jul 2025); ITAT income tax (2017); CESTAT excise (2001\u20132015). All routine commercial litigation |\n| **5A** | 2 items: SEBI Administrative Warning (Mar 2025, **no penalty**, procedural PIT compliance gap); SEBI Release Order Nov 2025 (2015 investor case now closed, Aarti was victim not respondent) |\n| **6** | **CLEAR** \u2014 All principals are private-sector pharma professionals |\n| **7** | LOW \u2014 Standard API/chemical manufacturing; no sanctioned-country exposure |\n| **8A** | **2/5 CLEAR** \u2014 Solid, regulated, listed counterparty |\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**65 findings** from 3/41 sources via Tor (Netherlands exit node)\n\n| Category | Count |\n|----------|-------|\n| Adverse media | 5 |\n| Web mentions (Tor-routed) | 10 |\n\n**Key findings:**\n- ADVERSE MEDIA: Aarti Drugs Ltd share price | About Aarti Drugs - Screener\n- ADVERSE MEDIA: Aarti Drugs Share Price - The Financial Express\n- ADVERSE MEDIA: Aarti Drugs Share Price, Aarti Drugs Stock Price, Aarti Drugs Ltd ...\n- ADVERSE MEDIA: Aarti Drugs Ltd. shareholding: Promoter, FII, DII and mutual fund\n- ADVERSE MEDIA: Aarti Drugs Ltd (AARTIDRUGS) Stock, Price, News, Quotes, Forecast ... - MSN\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "AARTI DRUGS LTD",
+    "entity_country": "IN",
+    "entity_address": "Plot No 198, MIDC Tarapur, Tal. Palghar Village Pamtermbhi, Dist Thane, 401506, Maharashtra",
+    "entity_tax_id": "L37060MH1984PLC055433",
+    "key_individuals": [
+      {
+        "name": "Patil",
+        "title": "Director (DIN: 01186406)"
+      },
+      {
+        "name": "PRAKASH MORESHWAR PATIL"
+      },
+      {
+        "name": "HARSHIT MANILAL SAVLA"
+      },
+      {
+        "name": "HARIT PRAGJI SHAH"
+      },
+      {
+        "name": "RASHESH CHANDRAKANT GOGRI"
+      },
+      {
+        "name": "UDAY MORESHWAR PATIL"
+      },
+      {
+        "name": "AJIT ELEDATH VENUGOPALAN"
+      },
+      {
+        "name": "NARENDRA JAGANNATH SALVI"
+      },
+      {
+        "name": "NEHA RAJEN GADA"
+      },
+      {
+        "name": "ANKIT VIKRAM PALEJA"
+      },
+      {
+        "name": "SANDEEP MADHUSUDAN JOSHI"
+      },
+      {
+        "name": "BHASKAR NARAYAN THORAT"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 65,
+  "dark_web_sources": 41
+}

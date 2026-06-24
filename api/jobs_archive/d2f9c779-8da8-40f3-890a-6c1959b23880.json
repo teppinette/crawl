@@ -1,0 +1,52 @@
+{
+  "job_id": "d2f9c779-8da8-40f3-890a-6c1959b23880",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "china",
+  "entity_name": "TIANJIN RED TRIANGLE INTERNATIONAL TRADING CO.,LTD.",
+  "country": "CN",
+  "created_at": "2026-05-08T17:00:50.071704+00:00",
+  "updated_at": "2026-05-08T17:03:08.362081+00:00",
+  "blob_path": null,
+  "report_summary": "Already completed 9 minutes ago at 16:52 UTC. Report saved with all workstreams and all China-specific checks.\n\n**DONE:** `/home/copapadmin/crawl/output/tianjin_red_triangle_international_trading_co_ltd_cn_20260508.json` \u2014 Risk: 1 LOW RISK\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**64 findings** from 4/45 sources via Tor (Netherlands exit node)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Breach records | 50 |\n| Web mentions (Tor-routed) | 10 |\n| Website scans (URLScan) | 2 |\n\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "china: Report file not found on remote VM (china)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "TIANJIN RED TRIANGLE INTERNATIONAL TRADING CO.,LTD.",
+    "entity_country": "CN",
+    "entity_address": "\u5929\u6d25\u81ea\u8d38\u8bd5\u9a8c\u533a\uff08\u5929\u6d25\u6e2f\u4fdd\u7a0e\u533a\uff09\u6d77\u6ee8\u4e5d\u8def66\u53f7505\u5ba4 (Room 505, No. 66 Haibin 9th Road, Tianjin Free Trade Zone, Tianjin Port Bonded Area)",
+    "entity_website": "https://www.tjsoda.com/",
+    "entity_industry": "Corporation",
+    "entity_tax_id": "91120116797292337E",
+    "key_individuals": [
+      {
+        "name": "Du Daosheng",
+        "title": "DIRECTOR"
+      },
+      {
+        "name": "Ding Aihu",
+        "title": "GENERAL MANAGER"
+      },
+      {
+        "name": "Du Daosheng",
+        "title": "UBO"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "china": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (china)"
+    }
+  },
+  "errors": [
+    "china: Report file not found on remote VM (china)"
+  ],
+  "dark_web_findings": 64,
+  "dark_web_sources": 45
+}

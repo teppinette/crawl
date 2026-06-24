@@ -1,0 +1,141 @@
+{
+  "job_id": "6e936705-0a76-459f-bfa3-dd8c54e3c931",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "PAYAL POLYPLAST PRIVATE LIMITED",
+  "country_code": "IN",
+  "created_at": "2026-05-04T14:20:58.656390+00:00",
+  "updated_at": "2026-05-04T14:21:34.442504+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:21:05.564547+00:00",
+      "verified": true,
+      "legal_name": "PAYAL POLYPLAST PRIVATE LIMITED",
+      "cin": "U24100DL2010PTC202156",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "29 April, 2010",
+      "directors": [
+        "Surendra Singh Negi",
+        "Nikhil Chandra Gupta",
+        "Subikash Jena"
+      ],
+      "registered_address": "E-24, 1ST FLOOR NETAJI SUBHASH MARG, DARYA GANJ, NEW DELHI, Delhi, India, 110002",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:21:05.010183+00:00",
+      "found": true,
+      "name": "Payal Group",
+      "linkedin_url": "https://in.linkedin.com/company/payalgroup",
+      "industry": "Chemical Manufacturing",
+      "company_size": "201-500 employees",
+      "locations": [
+        "Film City Road Plot no. 19A, 9th floor, Sector 16 A Noida, Uttar Pradesh 201301, IN"
+      ],
+      "about": "Established in 1986, Payal Group is India\u2019s 2nd largest manufacturer of plasticizers and chlorinated paraffins, with expertise in producing high-quality PVC compounds as well. Our products cater to diverse industries, including wires & cables, vinyl leather, footwear, automotive, PVC flex, films, flexible pipes, medical equipment, adhesives, and sealants. With India\u2019s largest single-location integrated plant for plasticizers, we operate 3 state-of-the-art manufacturing facilities located in Dama",
+      "followers": 5982,
+      "employees_on_linkedin": 460,
+      "organization_type": "Privately Held",
+      "website": "https://www.payalgroup.com/",
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "Dinesh Dua",
+          "link": "https://in.linkedin.com/in/dinesh-dua-50b8b011?trk=org-employees"
+        },
+        {
+          "name": "Manish Mantri",
+          "link": "https://in.linkedin.com/in/manish-mantri-a3013413?trk=org-employees"
+        },
+        {
+          "name": "Dharmaraj Selvakrishnan",
+          "link": "https://in.linkedin.com/in/dharmarajselvakrishnan?trk=org-employees"
+        },
+        {
+          "name": "Chandra Shekhar",
+          "link": "https://in.linkedin.com/in/chandra-shekhar-9390a822?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:21:34.441863+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 60,
+      "sources_searched": 37,
+      "sources_with_results": 2,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "PAYAL POLYPLAST PRIVATE LIMITED",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

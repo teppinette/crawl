@@ -1,0 +1,65 @@
+{
+  "job_id": "fda6fdce-f962-4e7e-a1c6-bc160b382219",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "Ajay Industrial Corporation Ltd",
+  "country": "IN",
+  "created_at": "2026-05-21T14:56:24.688226+00:00",
+  "updated_at": "2026-05-21T15:00:12.713625+00:00",
+  "blob_path": "osint-staging/cir/india/ajay_industrial_corporation_ltd_IN_20260521.json",
+  "report_summary": "**DONE: Ajay Industrial Corporation Limited, India \u2014 Risk: 2 CLEAR \u2014 Delhi personal care/skincare products; CIN U51909DL2008PLC180573; Revenue \u20b9346 Cr FY25; \u2705 3 Star Export House; \u2705 17 GSTINs/15 states; \u2705 ISO 9001:2015; AGM Sep 30, 2025 current**\n\n`~/crawl/output/ajay_industrial_corporation_ltd_IN_20260521.json` \u2014 8.9 KB, valid, research date 2026-05-21.\n\nStrong counterparty \u2014 3 Star Export House (Government of India recognition typically requires \u20b9250 Cr+ annual exports), ISO certified, 17-state distribution network. Two minor admin items: add CFO Naresh Goel to subject block; confirm Shanker Lal Goel status.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**3 actionable findings** from 5/57 sources via Tor (Netherlands exit node) (24 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| SSL certificates (crt.sh) | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 12 |\n| Website scans (URLScan) | 1 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: ajayindustrial.com\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | 05-23 15:04 - 'Global Database Encryption Market- Industry A; 05-23 12:14 - 'Global Intelligent Lighting Controls Market :; 05-23 11:54 - 'Global IoT Chip Market \u2013 Industry Analysis an (+12 more) |\n| duckduckgo_tor | 10 | Ajay Industrial - Manufacturer of Water & Disaster Relief Pr; AJAY INDUSTRIAL CORPORATION LTD - LinkedIn; AJAY INDUSTRIAL CORPORATION LIMITED. | ZaubaCorp (+7 more) |\n| crtsh | 3 | ajayindustrial.com; certificate_transparency (+1 more) |\n| urlscan | 2 | ajayindustrial.com; Ajay Industrial \u2013 Manufacturer of Water & Disaster Relief Pr |\n| hudsonrock_cavalier | 1 | ajayindustrial.com |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- ajayindustrial.com \u2014 *hudsonrock_cavalier*\n\n**WEB MENTION** (10)\n- Ajay Industrial - Manufacturer of Water & Disaster Relief Products \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fajayindustrial.com%2F&rut=2530cdbf8b4cde8a0f7da959b0064dd]\n- AJAY INDUSTRIAL CORPORATION LTD - LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fin.linkedin.com%2Fcompany%2Fajay%2Dindustrial%2Dcorporati]\n- AJAY INDUSTRIAL CORPORATION LIMITED. | ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2FAJAY%2DINDUSTRIAL%2DCORPORATION%2DLIM]\n- AJAY INDUSTRIAL CORPORATION LIMITED. - 2025 Company Profile ... - Tracxn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Fajay%2Dindust]\n- Ajay Industrial Corporation Ltd. - Manufacturer from Shirwal, India ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Fajay%2Dpipes%2Fprofile.html&rut=f95ac]\n- AJAY INDUSTRIAL CORPORATION LIMITED Company Profile | New Delhi, Delhi ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.a]\n- Company Overview - AJAY INDUSTRIAL CORPORATION LIMITED \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fin19072168348hrat.trustpass.alibaba.com%2F&rut=18ee92a317]\n- Ajay Industrial Corporation Ltd. - 20 11, Maharajpur, Sahibabad ... - Cybo \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.cybo.com%2FIN%2Dbiz%2Fajay%2Dindustrial%2Dcorporation]\n- Ajay Industrial Pvt Ltd. \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fgo.famuse.co%2Fajayindustrial&rut=e5701f6934ffa817f69138d]\n- Ajay Industrial Corporation Limited. - The Economic Times \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Feconomictimes.indiatimes.com%2Fcompany%2Fajay%2Dindustria]\n\n**SOCIAL MENTION** (12)\n- 05-23 15:04 - 'Global Database Encryption Market- Industry Analysis and forecast 2026' (self.Bitcoin \u2014 *reddit* [https://reddit.com/r/removalbot/comments/gp6eyd/0523_1504_global_database_encryp]\n- 05-23 12:14 - 'Global Intelligent Lighting Controls Market : Industry Analysis and Forecast (2019-20 \u2014 *reddit* [https://reddit.com/r/removalbot/comments/gp3wxu/0523_1214_global_intelligent_lig]\n- 05-23 11:54 - 'Global IoT Chip Market \u2013 Industry Analysis and Forecast (2019-2026)' (self.Bitcoin) b \u2014 *reddit* [https://reddit.com/r/removalbot/comments/gp3ndx/0523_1154_global_iot_chip_market]\n- 05-23 11:34 - 'Global Industrial Sensors Market \u2013 Industry Analysis and Forecast (2019-2026)' (self. \u2014 *reddit* [https://reddit.com/r/removalbot/comments/gp3et5/0523_1134_global_industrial_sens]\n- *India Daybook \u2013 Stocks in News* \u2014 *reddit* [https://reddit.com/r/UpdateINDIA/comments/1jdwq2v/india_daybook_stocks_in_news/]\n- *\ud83c\uddee\ud83c\uddf3India Daybook \u2013 Stocks in News* \u2014 *reddit* [https://reddit.com/r/UpdateINDIA/comments/1fsnhbg/india_daybook_stocks_in_news/]\n- HDFC Bank DD \u2014 *reddit* [https://reddit.com/r/IndianStreetBets/comments/fpm3ux/hdfc_bank_dd/]\n- Why was GOI consulting Anjuman Islam, Darul Uloom Deoband, Catholic Bishops Conference, Aga Khan Fou \u2014 *reddit* [https://reddit.com/r/IndiaSpeaks/comments/sep46p/why_was_goi_consulting_anjuman_]\n- Market Updates  \u2014 *reddit* [https://reddit.com/r/IndianStreetBets/comments/1arzf04/market_updates/]\n- INDIA today stocks in news* *MARCH 2, 2024* \u2014 *reddit* [https://reddit.com/r/UpdateINDIA/comments/1b5c3dt/india_today_stocks_in_news_mar]\n- Round 2: Here you go for FREE - My Book on Cyber Insurance and Cybersecurity Law \u2014 *reddit* [https://reddit.com/r/msp/comments/mn195i/round_2_here_you_go_for_free_my_book_on]\n- #StandWithFarmers: Hold the Agriculture Ministry and Microsoft India accountable \u2014 *reddit* [https://reddit.com/r/india/comments/n62z9r/standwithfarmers_hold_the_agriculture]\n\n**CERTIFICATE SUMMARY** (1)\n- ajayindustrial.com \u2014 *crtsh*\n\n**SSL CERTIFICATE** (1)\n-  \u2014 *crtsh*\n\n**DOMAIN SCAN SUMMARY** (1)\n- ajayindustrial.com \u2014 *urlscan*\n\n**WEBSITE SCAN** (1)\n- Ajay Industrial \u2013 Manufacturer of Water & Disaster Relief Products \u2014 *urlscan* [https://ajayindustrial.com/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "Ajay Industrial Corporation Ltd",
+    "entity_country": "IN",
+    "entity_address": "B-II/29 MOHAN CO-OPERATIVE, INDUSTRIAL AREA MATHURA ROAD, BADARPUR, NEW DELHI, Delhi, 110044",
+    "entity_tax_id": "180573",
+    "key_individuals": [
+      {
+        "name": "SHARAT CHAND JAIN"
+      },
+      {
+        "name": "AKHIL JAIN"
+      },
+      {
+        "name": "ANUJ JAIN"
+      },
+      {
+        "name": "ASHA JAIN"
+      },
+      {
+        "name": "LATA JAIN"
+      },
+      {
+        "name": "PRIYANKA JAIN"
+      },
+      {
+        "name": "ARUN AHUJA"
+      },
+      {
+        "name": "HUNNY WADHWA"
+      },
+      {
+        "name": "JYOTI BANSAL"
+      },
+      {
+        "name": "SHANKER LAL GOEL"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 3,
+  "dark_web_sources": 57
+}

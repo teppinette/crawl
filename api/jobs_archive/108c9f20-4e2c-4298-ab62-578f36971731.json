@@ -1,0 +1,51 @@
+{
+  "job_id": "108c9f20-4e2c-4298-ab62-578f36971731",
+  "scenario": "product-intel",
+  "status": "completed",
+  "regions": [
+    "china"
+  ],
+  "product_name": "PVC resin",
+  "target_markets": [
+    "SG",
+    "TH",
+    "MY",
+    "VN",
+    "PH",
+    "ID",
+    "MM"
+  ],
+  "request_id": "pi-test-003-s6706",
+  "created_at": "2026-04-20T14:47:19.986439+00:00",
+  "updated_at": "2026-04-20T14:54:12.796620+00:00",
+  "blob_paths": [
+    "osint-staging/product-intel/china/pvc_resin_s6706_southeast_asia_20260420_v2.json"
+  ],
+  "report_summary": "Perfect! I have successfully completed the comprehensive product intelligence research for PVC resin (grade S6706) across Southeast Asian markets. Here's a summary of what I found and delivered:\n\n## Research Summary\n\n**Product:** PVC Resin Grade S6706  \n**Target Markets:** Singapore (SG), Thailand (TH), Malaysia (MY), Vietnam (VN), Philippines (PH), Indonesia (ID), Myanmar (MM)  \n**Lookback Period:** 90 days (January - March 2026)  \n**Requested Signal Types:** All 5 types fully covered (price_index, freight, supply_disruption, geopolitical, news)\n\n## Key Findings:\n\n### 1. **Price Index Information:**\n- **Southeast Asia CFR:** $850-1,060/MT (March 2026), up to 24% increase\n- **China FOB Export:** $680-710/MT (March 2026)\n- **Price drivers:** Benzene cost increases, feedstock supply disruptions\n- **Multiple value types:** Level, delta, and percentage changes included\n\n### 2. **Supply Disruptions:**\n- **Force majeure declarations** across Southeast Asia due to Middle East conflict\n- **Inovyn (Europe)** declared force majeure on PVC (March 5, 2026)\n- **Chinese ethylene-based PVC output** reduced by 15% by March 12\n- **Ethylene plants** operating at as low as 60% capacity\n\n### 3. **Freight Rates:**\n- **Intra-Asia container rates:** $616-676 per 40ft container (March 2026)\n- **Weekly fluctuations:** 5% declines followed by 5% increases\n- **Year-over-year:** Approximately 7% above March 2025 levels\n- **Covered 18 major intra-Asia trade routes** including key Southeast Asian ports\n\n### 4. **Geopolitical Factors:**\n- **China export tax rebate cancellation** effective April 1, 2026 (5-8% cost increase)\n- **Strait of Hormuz closure** (Feb 28, 2026) disrupting feedstock supplies\n- **Emergency bunker surcharges** implemented due to Iran conflict\n- **Impact:** Significant supply chain disruptions and price volatility\n\n### 5. **Market News:**\n- **Southeast Asia PVC compound market** projected to reach 429,400 tons by 2026\n- **Fastest growing markets:** Vietnam (7.1% CAGR) and Singapore (7.0% CAGR)\n- **Operating rates** in low 50s percentage range due to weak demand\n- **Upward price pressure** continuing from January-February 2026\n\n## Critical Compliance:\n\u2705 **All signals within 90-day lookback window** (Jan-Mar 2026)  \n\u2705 **Every signal has a real URL** (no empty URLs)  \n\u2705 **Unique signal_id generated** for each signal using format: `<type>-<YYYYMMDD>-<8char hash>`  \n\u2705 **Price signals properly categorized** with value_type (level/delta/pct)  \n\u2705 **Freight signals include sub_type** (base_rate)  \n\u2705 **Coverage score:** 100% (all requested signal types with data found)\n\n## Output Delivered:\n\u2705 **Complete JSON report** saved to: `/home/copapadmin/crawl/output/pvc_resin_s6706_southeast_asia_20260420_v2.json`  \n\u2705 **Data sources:** Multiple industry reports, shipping data, geopolitical news, market research  \n\u2705 **Time period:** January-March 2026 (90-day lookback as requested)\n\nThe research reveals a complex market environment with multiple overlapping challenges: geopolitical tensions disrupting feedstock supplies, force majeure declarations reducing production, policy changes increasing export costs, and fluctuating freight rates - all contributing to significant price volatility in Southeast Asia's PVC market.",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "request_id": "pi-test-003-s6706",
+    "product": {
+      "generic_name": "PVC resin",
+      "grade_code": "S6706",
+      "commodity_family": "polymer"
+    },
+    "region_hint": "SE Asia",
+    "lookback_days": 90,
+    "signal_types": [
+      "price_index",
+      "freight",
+      "supply_disruption",
+      "geopolitical",
+      "news"
+    ]
+  },
+  "region_status": {
+    "china": {
+      "status": "completed",
+      "error": null
+    }
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "job_id": "9ec17a2d-630a-4ca1-aa14-5567df5d1f22",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "KUTCH CHEMICAL INDUSTRIES LIMITED",
+  "country_code": "IN",
+  "created_at": "2026-05-04T14:21:38.861361+00:00",
+  "updated_at": "2026-05-04T14:23:40.195862+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:21:48.232506+00:00",
+      "verified": true,
+      "legal_name": "KUTCH CHEMICAL INDUSTRIES LIMITED",
+      "cin": "U24114DL2002PLC115757",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "10 June, 2002",
+      "directors": [
+        "Jai Prakash",
+        "Kailash Chander Goyal",
+        "others"
+      ],
+      "registered_address": "IIND FLOOR MPL NO.8750, PLOT NO.3, BLOCK NO.4 D B GUPTA ROAD, PAHARGANJ, NEW DELHI, Delhi, India, 110055",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:21:45.329570+00:00",
+      "found": true,
+      "name": "KUTCH CHEMICAL INDUSTRIES LTD",
+      "linkedin_url": "https://cr.linkedin.com/company/kutch-chemical-industries-ltd",
+      "industry": "Chemical Manufacturing",
+      "company_size": "1,001-5,000 employees",
+      "locations": [
+        "20-21 Sara Niwas, Gotri Road, near Iscon Temple, Hari Nagar vadodara, Gujarat 390007, IN",
+        "403/404 ATP ARCADE NR NATIONAL HANDLOOM C G ROAD AHMEDABAD, GUJARAT 380007, IN"
+      ],
+      "about": "GOYAL GROUP OF INDUSTRIES was born in the chemical belt of Gujarat in 1977. It is emerging on the chemicals horizon as a market leader and engaged in manufacturing and export of dyes intermediates, chlorinated Aromatic compounds and Nitro chloro Aromatic compounds. It has an annual turnover of more than USD 150 million. PANOLI INTERMEDIATES (INDIA) PVT. LTD. went on stream in 1999 in Jhagadia, to manufacture chlorinated Aromatic compounds, to take proximity advantage of chloro-alkali plants. In ",
+      "followers": 12996,
+      "employees_on_linkedin": 653,
+      "organization_type": "Privately Held",
+      "website": "https://www.kcil.co.in/",
+      "specialties": "DYES INTERMEDIATES, CHLORINATED PARAFFIN, BENZENE BASED DERIVATIVES, and TOLUENE BASED DERIVATIVES",
+      "notable_employees": [
+        {
+          "name": "Surya Prakaash Luharuka",
+          "link": "https://in.linkedin.com/in/suryaparkashluharuka?trk=org-employees"
+        },
+        {
+          "name": "Ajit Ganu",
+          "link": "https://in.linkedin.com/in/ajit-ganu-51941518?trk=org-employees"
+        },
+        {
+          "name": "Prashant Upadhyay",
+          "link": "https://in.linkedin.com/in/prashant-upadhyay-28b0231a?trk=org-employees"
+        },
+        {
+          "name": "Ashok Gangani",
+          "link": "https://in.linkedin.com/in/ashok-gangani-2b05a321?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:23:40.195243+00:00",
+      "risk_level": "CLEAN",
+      "total_findings": 0,
+      "sources_searched": 0,
+      "sources_with_results": 0,
+      "by_type": {},
+      "key_findings": [],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "KUTCH CHEMICAL INDUSTRIES LIMITED",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

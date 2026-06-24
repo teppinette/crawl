@@ -1,0 +1,76 @@
+{
+  "job_id": "306a6f1a-4822-4c67-aad7-89ccf0578b0b",
+  "scenario": "cir",
+  "status": "failed",
+  "region": "india",
+  "entity_name": "AARTI IND. LTD.",
+  "country": "IN",
+  "created_at": "2026-05-20T18:30:03.221021+00:00",
+  "updated_at": "2026-05-21T18:05:45.576736+00:00",
+  "blob_path": null,
+  "report_summary": "**DONE (updated file): Aarti Industries Limited, India \u2014 Risk: 2 CLEAR \u2014 CIN L24110GJ1984PLC007301; now 19 individuals profiled across all submissions today**\n\n`~/crawl/output/aarti_industries_ltd_IN_20260520.json` \u2014 29.8 KB, valid, updated.\n\n---\n\n### New Individuals Added (this submission)\n\n| Name | DIN | Role | Note |\n|---|---|---|---|\n| **KVS Shyamsunder Rammurthy** | **00502621** | Independent Director; Audit Committee Chairman | Confirmed Tracxn/Aarti reports |\n| **Bhavesh Rasiklal Vora** | **00267604** | Independent Director | Verify if still serving |\n| **Premchandra Amolak Sethi** | **00004038** | Independent Director | Low DIN = long-tenured; verify term |\n| **Parimal Hasmukhlal Desai** | TBC | Director / Audit Committee member | Confirmed in Audit Committee records |\n\n### Summary of All Aarti Industries Individuals Across Today's 7 Submissions\nRunning total: **19 individuals profiled** from 7 subject block variants. The \"AmpVolts Narendrabhai Chauhan (DIN 01241021)\" data artifact remains the only entry requiring removal.",
+  "error": "orphan_timeout (stale 1415min, reaped 2026-05-21)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "AARTI IND. LTD.",
+    "entity_country": "IN",
+    "entity_address": "Plot No 801/23 GIDC Estate, Phase III, Vapi, Gujarat, 396195, India",
+    "entity_tax_id": "007301",
+    "key_individuals": [
+      {
+        "name": "AmpVolts Narendrabhai Chauhan",
+        "title": "Director (DIN: 01241021)"
+      },
+      {
+        "name": "RAJENDRA VALLABHAJI GOGRI"
+      },
+      {
+        "name": "RASHESH CHANDRAKANT GOGRI"
+      },
+      {
+        "name": "HETAL GOGRI GALA"
+      },
+      {
+        "name": "RENIL RAJENDRA GOGRI"
+      },
+      {
+        "name": "MANOJ MULJI CHHEDA"
+      },
+      {
+        "name": "PARIMAL HASMUKHLAL DESAI"
+      },
+      {
+        "name": "BHAVESH RASIKLAL VORA"
+      },
+      {
+        "name": "KVS SHYAMSUNDER RAMMURTHY"
+      },
+      {
+        "name": "PREMCHANDRA AMOLAK SETHI"
+      },
+      {
+        "name": "LALITKUMAR SHANTARAM NAIK"
+      },
+      {
+        "name": "AJAY KUMAR GUPTA"
+      },
+      {
+        "name": "BELUR KRISHNA MURTHY SETHURAM"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (india)"
+    }
+  },
+  "errors": [
+    "india: Report file not found on remote VM (india)"
+  ]
+}

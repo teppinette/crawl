@@ -1,0 +1,20 @@
+{
+  "job_id": "c4c01a8c-2e8d-4f50-962a-7e5e35bb0fc8",
+  "scenario": "dark-web",
+  "status": "failed",
+  "region": "darkweb",
+  "entity_name": "Convertidora del Pacifico EIRL",
+  "country": "",
+  "created_at": "2026-05-22T16:33:18.208122+00:00",
+  "updated_at": "2026-05-22T16:33:22.233261+00:00",
+  "blob_path": "osint-staging/dark-web/convertidora_del_pacifico_eirl_20260522.json",
+  "report_summary": "0 findings from dark web sources",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_name": "Convertidora del Pacifico EIRL",
+    "owners": "Jorge Fiestas Sarmiento, Jade Fiestas Sarmiento",
+    "country_code": "PE"
+  }
+}

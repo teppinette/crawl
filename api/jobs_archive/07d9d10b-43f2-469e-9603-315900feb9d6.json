@@ -1,0 +1,59 @@
+{
+  "job_id": "07d9d10b-43f2-469e-9603-315900feb9d6",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "PRASOL CHEMICALS LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-21T11:42:18.471139+00:00",
+  "updated_at": "2026-05-21T11:45:15.707607+00:00",
+  "blob_path": "osint-staging/cir/india/prasol_chemicals_limited_IN_20260520.json",
+  "report_summary": "Near-duplicate of 21:11 UTC yesterday. Today's version has 8 individuals vs yesterday's 10 (missing Rakesh Jadhav and Lakshmi Mannepalli). Existing file covers all individuals.\n\n**DONE (existing file): Prasol Chemicals Limited \u2014 Risk: 2 CLEAR \u2014 Navi Mumbai specialty chemicals; Revenue \u20b91,020 Cr FY25 (+14%); zero debt; Lakshmi Mannepalli (DIN 07831607) cross-confirmed at Vinati Organics**\n\n`~/crawl/output/prasol_chemicals_limited_IN_20260520.json` \u2014 9.6 KB, valid, research date 2026-05-20.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**3 actionable findings** from 5/57 sources via Tor (Netherlands exit node) (24 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Adverse media | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 12 |\n| Website scans (URLScan) | 2 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: prasolchem.com\n- ADVERSE MEDIA: Prasol Chemicals Limited Import Trade Database | TradeInt\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Trump officials plan to repeal limits on \u2018forever chemicals\u2019; Scientists solved longstanding mystery of origin of PFAS \u201cfo; US government and chemical makers have claimed up to 20% of  (+12 more) |\n| duckduckgo_tor | 10 | Leading Chemical Manufacturer & Exporter | Prasol Chemicals; PRASOL CHEMICALS LIMITED - Company Profile - Tracxn; Prasol Chemicals Limited | LinkedIn (+7 more) |\n| urlscan | 3 | prasolchem.com; Diacetone Alcohol - Diethyl Thiophosphoryl Chloride (DETC); www.bhaktichemicals.com |\n| duckduckgo_adverse | 1 | Prasol Chemicals Limited Import Trade Database | TradeInt |\n| hudsonrock_cavalier | 1 | prasolchem.com |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- prasolchem.com \u2014 *hudsonrock_cavalier*\n\n**ADVERSE MEDIA** (1)\n- Prasol Chemicals Limited Import Trade Database | TradeInt \u2014 *duckduckgo_adverse* [/l/?uddg=https%3A%2F%2Fwww.tradeint.com%2Fsearch%2Fglobal%2Fimport%2Fcompany%2Fp]\n\n**WEB MENTION** (10)\n- Leading Chemical Manufacturer & Exporter | Prasol Chemicals \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.prasolchem.com%2F&rut=4de39513174ac71a1e31a07b86cb7f3]\n- PRASOL CHEMICALS LIMITED - Company Profile - Tracxn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Fprasol%2Dchem]\n- Prasol Chemicals Limited | LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fin.linkedin.com%2Fcompany%2Fprasol%2Dchem%2Dpvt%2Dltd&rut]\n- Prasol Chemicals Limited - Manufacturer from Navi Mumbai, India | About Us \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Fprasolchemicalslimited%2Fprofile.html]\n- Sebi | Prasol Chemicals Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.sebi.gov.in%2Ffilings%2Fpublic%2Dissues%2Foct%2D2025%]\n- Prasol Chemicals Limited - The Economic Times \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Feconomictimes.indiatimes.com%2Fcompany%2Fprasol%2Dchemica]\n- Prasol Chemicals - Overview, News & Similar companies - ZoomInfo \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zoominfo.com%2Fc%2Fprasol%2Dchemicals%2Dltd%2F3538534]\n- Company Profile - Prasol Chemicals Ltd - ChemDmart \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fchemdmart.com%2Fcompany%2Dprofile%2Fprasol%2Dchemicals%2D]\n- Prasol Chemicals Ltd - Tmia \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftmia.in%2FDirectoryDetails.asp%3Fid%3D5&rut=493d2f7208345]\n- PRASOL CHEMICALS LIMITED - ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2FPRASOL%2DCHEMICALS%2DLIMITED%2DU99999]\n\n**SOCIAL MENTION** (12)\n- Trump officials plan to repeal limits on \u2018forever chemicals\u2019 in drinking water \u2014 *reddit* [https://reddit.com/r/politics/comments/1th47f6/trump_officials_plan_to_repeal_li]\n- Scientists solved longstanding mystery of origin of PFAS \u201cforever chemicals\u201d contaminating water in  \u2014 *reddit* [https://reddit.com/r/science/comments/1p52d6k/scientists_solved_longstanding_mys]\n- US government and chemical makers have claimed up to 20% of wildfire suppressants\u2019 contents are \u201ctra \u2014 *reddit* [https://reddit.com/r/science/comments/1ir20zt/us_government_and_chemical_makers_]\n- E.P.A. to End Some Limits on \u2018Forever Chemicals\u2019 in Drinking Water \u2014 *reddit* [https://reddit.com/r/politics/comments/1th0aix/epa_to_end_some_limits_on_forever]\n- Chemical pollution has passed safe limit for humanity, say scientists \u2014 *reddit* [https://reddit.com/r/science/comments/s6v3su/chemical_pollution_has_passed_safe_]\n- A new study found PFAS \u201cforever chemicals\u201d in 95% of the American beers they tested. These include P \u2014 *reddit* [https://reddit.com/r/science/comments/1ksoy05/a_new_study_found_pfas_forever_che]\n- These are children working in a slaughterhouse. The Labor Department found 100+ children working in  \u2014 *reddit* [https://reddit.com/r/economy/comments/13b91an/these_are_children_working_in_a_sl]\n- California limits on \u2018forever chemicals\u2019 PFAS in products are effective, study says. Levels in peopl \u2014 *reddit* [https://reddit.com/r/science/comments/1gxitol/california_limits_on_forever_chemi]\n- EPA puts limits on \"forever chemicals\" in drinking water \u2014 *reddit* [https://reddit.com/r/news/comments/1c0k19c/epa_puts_limits_on_forever_chemicals_]\n- Ocean acidification from climate change damages shark scales and potentially limits their ability to \u2014 *reddit* [https://reddit.com/r/science/comments/ened9s/ocean_acidification_from_climate_ch]\n- President Donald Trump has withdrawn a Biden administration plan to set new limits on chemical disch \u2014 *reddit* [https://reddit.com/r/longisland/comments/1i9vtlj/president_donald_trump_has_with]\n- The EPA Is Beginning To Roll Back An Obama-Era Rule Limiting How Much Toxic Waste Power Plants Relea \u2014 *reddit* [https://reddit.com/r/environment/comments/6u1ow4/the_epa_is_beginning_to_roll_ba]\n\n**DOMAIN SCAN SUMMARY** (1)\n- prasolchem.com \u2014 *urlscan*\n\n**WEBSITE SCAN** (2)\n- Diacetone Alcohol - Diethyl Thiophosphoryl Chloride (DETC) \u2014 *urlscan* [https://prasolchem.com/]\n- www.bhaktichemicals.com \u2014 *urlscan* [https://www.bhaktichemicals.com/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "PRASOL CHEMICALS LIMITED",
+    "entity_country": "IN",
+    "entity_address": "PRASOL HOUSE, PLOT NO A - 17/2/3, T. T. C. INDUSTRIAL AREA, KHAIRNE M.I.D.C., NAVI MUMBAI, THANE, MAHARASHTRA 400710",
+    "entity_tax_id": "U99999MH1992PLC065026",
+    "key_individuals": [
+      {
+        "name": "NISHITH RAJNIKANT SHAH"
+      },
+      {
+        "name": "GAURANG NATWARLAL PARIKH"
+      },
+      {
+        "name": "DHAVAL NALIN PARIKH"
+      },
+      {
+        "name": "RAHUL ASHIT SHROFF"
+      },
+      {
+        "name": "RAMAKRISHNAN GOPALKRISHNAN"
+      },
+      {
+        "name": "PANKIL NISHITH DHARIA"
+      },
+      {
+        "name": "SRINIVASAN SUBRAMANIAN"
+      },
+      {
+        "name": "KIRAN RAJENDRA AGRAWAL"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 3,
+  "dark_web_sources": 57
+}

@@ -1,0 +1,138 @@
+{
+  "job_id": "6c4e4425-27b9-42a1-9720-bca6af6f32cd",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "WINNER CHEMICAL WORKS",
+  "country_code": "PK",
+  "created_at": "2026-05-04T15:56:11.422743+00:00",
+  "updated_at": "2026-05-04T15:56:51.530738+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:56:18.036081+00:00",
+      "verified": true,
+      "legal_name": "WINNER CHEMICAL WORKS (PRIVATE) LIMITED",
+      "registration_number": "0326903",
+      "entity_status": "Incorporated",
+      "company_type": "Private Limited Company",
+      "cro": "CRO Quetta",
+      "registration_date": "16/02/2026",
+      "fbr": null,
+      "all_matches": null,
+      "source": "SECP eServices (direct gov query)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:56:18.199610+00:00",
+      "found": true,
+      "name": "Henan Winner Vibrating Equipment Co., Ltd.",
+      "linkedin_url": "https://www.linkedin.com/company/winnergroup",
+      "industry": "Machinery Manufacturing",
+      "company_size": "501-1,000 employees",
+      "locations": [
+        "No.1, Gongye Road, Xinxiang County, Henan Province, China Xinxiang, Henan 453700, CN"
+      ],
+      "about": "Winner Vibrating Equipment Co.,Ltd, focuses on researching and designing of high efficiency, energy saving, environmental friendly vibration equipments from 1954. Now we have 60 years professional experience in the production of vibration equipment, including research and development, design, manufacture, sales and installation of the equipment for screening and sorting. Our continuous development motivation is \"To be the first-class screening expert in the world, to return our world green\". Hen",
+      "followers": 215,
+      "employees_on_linkedin": 25,
+      "organization_type": "Public Company",
+      "website": "https://winnermanufacturing.com/",
+      "specialties": "Mining Vibrating Screen, Light Vibrating Screen, Crusher Equipment, Vibrating Feeder, Complete Solutions, Construction & Demolition Recycling, Municipal Solid Waste Recycling, Sand & Stone Production Line, Slurry Separation System, and Wastewater Treatment System",
+      "notable_employees": [
+        {
+          "name": "jason wu",
+          "link": "https://cn.linkedin.com/in/jason-wu-4779203b?trk=org-employees"
+        },
+        {
+          "name": "Cecilia Liu",
+          "link": "https://cn.linkedin.com/in/cecilia-liu-54808653?trk=org-employees"
+        },
+        {
+          "name": "ANNA ZHAO",
+          "link": "https://cn.linkedin.com/in/anna-zhao-943473b2?trk=org-employees"
+        },
+        {
+          "name": "Bruce Zhu",
+          "link": "https://cn.linkedin.com/in/bruce-zhu-092b24b4?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:56:51.530208+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 60,
+      "sources_searched": 37,
+      "sources_with_results": 2,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "WINNER CHEMICAL WORKS",
+    "country_code": "PK",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

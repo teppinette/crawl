@@ -1,0 +1,53 @@
+{
+  "job_id": "97ed458b-b7a2-4608-9ed9-83d5fa4f7bac",
+  "scenario": "cir",
+  "status": "failed",
+  "region": "americas",
+  "entity_name": "PLASCHEM COMERCIO DE RESINAS TERMOPLASTICAS LTDA",
+  "country": "BR",
+  "created_at": "2026-05-22T21:18:28.829700+00:00",
+  "updated_at": "2026-05-22T21:19:08.863443+00:00",
+  "blob_path": null,
+  "report_summary": null,
+  "error": "americas: No existing session",
+  "retry_count": 1,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "PLASCHEM COMERCIO DE RESINAS TERMOPLASTICAS LTDA",
+    "entity_trade_names": "PLASCHEM COMERCIO DE RESINAS TERMOPLASTICAS LTDA",
+    "entity_country": "BR",
+    "entity_address": "Rodovia Ant\u00f4nio Heil 3000, Galp\u00e3o M\u00f3dulo M6, Itaja\u00ed, SC, CEP 88316-000, Brazil",
+    "entity_website": "https://plaschem.com.br/",
+    "entity_type": "Thermoplastic resin trading / import (Sociedade Empresarial Limitada)",
+    "entity_industry": "Thermoplastic resins trading / import",
+    "entity_tax_id": "35.222.724/0001-64",
+    "key_individuals": [
+      {
+        "name": "RODRIGO BUZETTI TEN\u00d3RIO",
+        "title": "Director"
+      },
+      {
+        "name": "JAIR KASPROWICZ",
+        "title": "Shareholder"
+      },
+      {
+        "name": "FLORIAL TENORIO JUNIOR"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "copap_products": "Thermoplastic resins (Resinas Termoplasticas)",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "failed",
+      "error": "No existing session"
+    }
+  },
+  "errors": [
+    "americas: No existing session",
+    "americas: No existing session"
+  ]
+}

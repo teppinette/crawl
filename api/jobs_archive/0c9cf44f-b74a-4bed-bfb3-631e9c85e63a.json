@@ -1,0 +1,142 @@
+{
+  "job_id": "0c9cf44f-b74a-4bed-bfb3-631e9c85e63a",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "PON PURE CHEMICAL INDIA PRIVATE LIMITED",
+  "country_code": "IN",
+  "created_at": "2026-05-04T14:43:13.136817+00:00",
+  "updated_at": "2026-05-04T14:43:47.366218+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:43:20.539131+00:00",
+      "verified": true,
+      "legal_name": "PON PURE CHEMICAL INDIA PRIVATE LIMITED",
+      "cin": "U24111TN1998PTC040872",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "24 July, 1998",
+      "directors": [
+        "Muthusamy Ponnuswami",
+        "Ponnuswami Manaoranjitham",
+        "others"
+      ],
+      "registered_address": "NO. 32, H-BLOCK, 15TH MAIN ROAD, ANNA NAGAR, Chennai, CHENNAI, Tamil Nadu, India, 600040",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:43:25.229762+00:00",
+      "found": true,
+      "name": "PON PURE CHEMICAL INDIA PRIVATE LIMITED",
+      "linkedin_url": "https://in.linkedin.com/company/pon-pure-chemical-india-private-limited",
+      "industry": "Mining",
+      "company_size": null,
+      "locations": [
+        "NO. 32, H-BLOCK, 15TH MAIN ROAD, ANNA NAGAR CHENNAI, Tamil Nadu 600040, IN"
+      ],
+      "about": "PON PURE CHEMICAL INDIA PRIVATE LIMITED is a mining & metals company based out of NO. 32, H-BLOCK, 15TH MAIN ROAD, ANNA NAGAR, CHENNAI, Tamil Nadu, India.",
+      "followers": 1762,
+      "employees_on_linkedin": 167,
+      "organization_type": null,
+      "website": null,
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "SANDEEP S SHETTY",
+          "link": "https://in.linkedin.com/in/sandeep-s-shetty-a5601422?trk=org-employees"
+        },
+        {
+          "name": "Reddy Putta",
+          "link": "https://in.linkedin.com/in/reddy-putta-5a215323?trk=org-employees"
+        },
+        {
+          "name": "Subbalakshmi Jayaraman",
+          "link": "https://in.linkedin.com/in/subbalakshmi-jayaraman-604a5945?trk=org-employees"
+        },
+        {
+          "name": "Mahantesh HM",
+          "link": "https://in.linkedin.com/in/mahantesh-hm-4987914b?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:43:47.365607+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 61,
+      "sources_searched": 37,
+      "sources_with_results": 3,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50,
+        "debarment_record": 1
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "PON PURE CHEMICAL INDIA PRIVATE LIMITED",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

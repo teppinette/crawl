@@ -1,0 +1,85 @@
+{
+  "job_id": "8ff62538-dacc-4382-aebf-7025cd9b7daa",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "PACHEM  GLOBAL PVT LTD",
+  "country_code": "PK",
+  "created_at": "2026-05-04T16:03:32.948707+00:00",
+  "updated_at": "2026-05-04T16:05:34.282099+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:03:39.907161+00:00",
+      "verified": false,
+      "legal_name": null,
+      "registration_number": null,
+      "entity_status": null,
+      "company_type": null,
+      "cro": null,
+      "registration_date": null,
+      "fbr": null,
+      "all_matches": null,
+      "source": "SECP eServices (direct gov query)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:03:44.441474+00:00",
+      "found": true,
+      "name": "Pachem Global Pvt Limited",
+      "linkedin_url": "https://pk.linkedin.com/company/pachem-global-pvt-limited",
+      "industry": "Chemical Manufacturing",
+      "company_size": "51-200 employees",
+      "locations": [
+        "Faisalabad , PK",
+        "Lahore , PK"
+      ],
+      "about": "Pachem Global PVT is a renowned market leader in Phthalic Anhydride with a firm global market share and world class production facility.",
+      "followers": 7433,
+      "employees_on_linkedin": 97,
+      "organization_type": "Privately Held",
+      "website": "https://www.pachemglobal.com/",
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "Muhammad Junaid Rashid",
+          "link": "https://pk.linkedin.com/in/muhammad-junaid-rashid-8b182016?trk=org-employees"
+        },
+        {
+          "name": "Muhammad Imran",
+          "link": "https://pk.linkedin.com/in/muhammad-imran-4308b841?trk=org-employees"
+        },
+        {
+          "name": "Habib Ahmed",
+          "link": "https://pk.linkedin.com/in/habib-ahmed-a42b9443?trk=org-employees"
+        },
+        {
+          "name": "Muhammad Hayat Solangi",
+          "link": "https://pk.linkedin.com/in/muhammad-hayat-solangi-a503625a?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:05:34.281535+00:00",
+      "risk_level": "CLEAN",
+      "total_findings": 0,
+      "sources_searched": 0,
+      "sources_with_results": 0,
+      "by_type": {},
+      "key_findings": [],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "PACHEM  GLOBAL PVT LTD",
+    "country_code": "PK",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

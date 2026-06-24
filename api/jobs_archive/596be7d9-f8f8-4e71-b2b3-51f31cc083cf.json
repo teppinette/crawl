@@ -1,0 +1,35 @@
+{
+  "job_id": "596be7d9-f8f8-4e71-b2b3-51f31cc083cf",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "europe",
+  "entity_name": "PLASTCHEM B.V.",
+  "country": "NL",
+  "created_at": "2026-05-22T16:13:22.483109+00:00",
+  "updated_at": "2026-05-22T16:18:57.496382+00:00",
+  "blob_path": "osint-staging/cir/europe/plastchem_bv_NL_20260522.json",
+  "report_summary": "**DONE: PLASTCHEM B.V., NL \u2014 Risk: 2 CLEAR \u2014 All sanctions clean; KvK 08072948; 30-year Dutch PVC compound manufacturer (100+ employees, Hardenberg); ISCC certified; CEO Onno-Pieter Sonnega \u2014 clean; \u26a0\ufe0f MATERIAL: Parcom PE acquisition completed ~April 17, 2026 \u2014 KvK UBO register not yet updated; request post-close KvK extract.**\n\n---\n\n## \ud83d\udccb Research Summary\n\n| Field | Finding |\n|---|---|\n| **KvK** | **08072948** |\n| **Address** | Frankrijkweg 18, 7772 TJ Hardenberg, Netherlands |\n| **Founded** | April 1, 1994 |\n| **Employees** | 100+ |\n| **CEO** | Onno-Pieter Sonnega |\n| **Products** | Hard PVC compounds, Soft PVC compounds, **Vinyl record compounds** (worldwide) |\n| **Factory** | New ultra-modern facility built 2021, Broeklanden industrial estate |\n| **Certifications** | ISCC (bio-compounds/bio-vinyl); targeting CO2-neutral production |\n\n---\n\n### \ud83d\udee1\ufe0f All 8 Workstreams\n\n**1A \u2013 Registry:** Active Dutch B.V., KvK 08072948. Founded 1994. 30+ year family-founded PVC compounder. Modern 2021 factory. ISCC certified.\n\n**2A \u2013 Ownership:** \u26a0\ufe0f **MATERIAL CHANGE**: Parcom (Dutch mid-market PE) acquired Plastchem ~**April 17, 2026** \u2014 5 weeks ago. KvK UBO register likely not yet updated. Previous director: Venextra Plastics Holding B.V. (from 2012). Parcom: mainstream Dutch PE, no adverse findings.\n\n**3A \u2013 Sanctions: ALL CLEAN** \u2014 OFAC, OpenSanctions, UN SC: NO HITS on entity, Sonnega, Venextra, Parcom.\n\n**4A \u2013 Adverse Media:** Only news is the Parcom acquisition (positive M&A). No violations, incidents, or enforcement.\n\n**5A \u2013 Litigation:** None found.\n\n**6A \u2013 PEP:** Onno-Pieter Sonnega \u2014 NOT a PEP. Parcom \u2014 NOT a PEP.\n\n**7A \u2013 Trade Risk:** PVC compounds \u2014 standard industrial materials, no dual-use or sanctions concerns. ISCC certification signals compliant sourcing.\n\n**8A \u2013 Priority Actions:**\n1. Updated KvK UBO extract post-acquisition\n2. Identify the \"3 additional persons/entities\" alongside Venextra\n3. Parcom Capital Management B.V. profile confirmation\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**5 actionable findings** from 2/53 sources via Tor (Netherlands exit node) (10 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Adverse media | 4 |\n| Web mentions (Tor-routed) | 10 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: www.plastchem.nl\n- ADVERSE MEDIA: Venextra Plastics Holding B.V. full company profile on Creditsafe (Venextra Plastics Holding B.V.)\n- ADVERSE MEDIA: Venextra Plastics Holding B.V. Company Profile | Hardenberg, Overijssel ... (Venextra Plastics Holding B.V.)\n- ADVERSE MEDIA: Venextra Plastics Holding B.V., Hardenberg, (Netherlands), Verif (Venextra Plastics Holding B.V.)\n- ADVERSE MEDIA: Venextra Plastics Holding BV - Company Profile and News (Venextra Plastics Holding B.V.)\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | Europa's modernste producent van PVC Compounds | PlastChem; PlastChem B.V. | LinkedIn; Plastchem B.V. | Company.info (+7 more) |\n| duckduckgo_adverse | 4 | Venextra Plastics Holding B.V. full company profile on Credi; Venextra Plastics Holding B.V. Company Profile | Hardenberg,; Venextra Plastics Holding B.V., Hardenberg, (Netherlands), V (+1 more) |\n| hudsonrock_cavalier | 1 | www.plastchem.nl |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- www.plastchem.nl \u2014 *hudsonrock_cavalier*\n\n**ADVERSE MEDIA** (4)\n- Venextra Plastics Holding B.V. full company profile on Creditsafe \u2014 *duckduckgo_adverse* (searched: Venextra Plastics Holding B.V.) [/l/?uddg=https%3A%2F%2Fwww.creditsafe.com%2Fbusiness%2Dindex%2Fen%2Dgb%2Fcompany]\n- Venextra Plastics Holding B.V. Company Profile | Hardenberg, Overijssel ... \u2014 *duckduckgo_adverse* (searched: Venextra Plastics Holding B.V.) [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.v]\n- Venextra Plastics Holding B.V., Hardenberg, (Netherlands), Verif \u2014 *duckduckgo_adverse* (searched: Venextra Plastics Holding B.V.) [/l/?uddg=https%3A%2F%2Fwww.verif.com%2Fen%2Fcompany%2FVenextra%2DPlastics%2DHold]\n- Venextra Plastics Holding BV - Company Profile and News \u2014 *duckduckgo_adverse* (searched: Venextra Plastics Holding B.V.) [/l/?uddg=https%3A%2F%2Fwww.bloomberg.com%2Fprofile%2Fcompany%2F2386967D%3ANA&rut]\n\n**WEB MENTION** (10)\n- Europa's modernste producent van PVC Compounds | PlastChem \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fplastchem.nl%2F&rut=0d541b753b289f2a9a6ac4772e33f87f5d14f]\n- PlastChem B.V. | LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fnl.linkedin.com%2Fcompany%2Fplastchem&rut=ce9fff763443fd2]\n- Plastchem B.V. | Company.info \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fcompanyinfo.nl%2Forganisatieprofiel%2Fgroothandel%2Din%2D]\n- PlastChem - Parcom \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fparcom.com%2Fen%2Fpartner%2Dcompanies%2Fplastchem%2F&rut=]\n- PlastChem: Company Profile & Ownership | Mergr \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fmergr.com%2Fcompany%2Fplastchem&rut=aedada40871058e49573a]\n- PlastChem - Overview, News & Similar companies | ZoomInfo.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zoominfo.com%2Fc%2Fplastchem%2F509388340&rut=2b794b62]\n- PlastChem | Hardenberg - Facebook \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.facebook.com%2FPlastchemb.v%2F&rut=7221b2ea33c615579c]\n- Plastchem BV - Company Profile and News - Bloomberg Markets \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.bloomberg.com%2Fprofile%2Fcompany%2F2373088D%3ANA&rut]\n- Plastchem 2.0 B.V. Company Profile | Hardenberg, Overijssel ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.p]\n- PlastChem, Frankrijkweg 18, Hardenberg (2026) - Find Local Businesses \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.findglocal.com%2FNL%2FHardenberg%2F109591580771435%2F]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "PLASTCHEM B.V.",
+    "entity_trade_names": "Plastchem",
+    "entity_country": "NL",
+    "entity_type": "Private company",
+    "entity_industry": "Private company",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "europe": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 5,
+  "dark_web_sources": 53
+}

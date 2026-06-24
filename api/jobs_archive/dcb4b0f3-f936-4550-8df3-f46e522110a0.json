@@ -1,0 +1,20 @@
+{
+  "job_id": "dcb4b0f3-f936-4550-8df3-f46e522110a0",
+  "scenario": "dark-web",
+  "status": "failed",
+  "region": "darkweb",
+  "entity_name": "Instituto Hondure\u00f1o de Educacion por Radio IHER",
+  "country": "",
+  "created_at": "2026-05-22T16:21:56.860028+00:00",
+  "updated_at": "2026-05-22T16:22:00.949450+00:00",
+  "blob_path": "osint-staging/dark-web/instituto_hondureo_de_educacion_por_radio_iher_20260522.json",
+  "report_summary": "0 findings from dark web sources",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_name": "Instituto Hondure\u00f1o de Educacion por Radio IHER",
+    "owners": "Nancy Janneth Andino, Javier Diaz Cuadra",
+    "country_code": "HN"
+  }
+}

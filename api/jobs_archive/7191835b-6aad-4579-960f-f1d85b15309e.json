@@ -1,0 +1,19 @@
+{
+  "job_id": "7191835b-6aad-4579-960f-f1d85b15309e",
+  "scenario": "dark-web",
+  "status": "completed",
+  "region": "darkweb",
+  "entity_name": "Distribuidora de Papel Jurado Torres SAS Colombia papeleria",
+  "country": "",
+  "created_at": "2026-05-22T20:26:41.896936+00:00",
+  "updated_at": "2026-05-22T20:27:27.224728+00:00",
+  "blob_path": "osint-staging/dark-web/distribuidora_de_papel_jurado_torres_sas_colombia_papeleria_20260522.json",
+  "report_summary": "25 findings from dark web sources",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_name": "Distribuidora de Papel Jurado Torres SAS Colombia papeleria",
+    "country_code": "CO"
+  }
+}

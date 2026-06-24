@@ -1,0 +1,142 @@
+{
+  "job_id": "7df8af38-8e95-4dfe-958c-201af8e308b8",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "PRIMO CHEMICALS LTD.,",
+  "country_code": "IN",
+  "created_at": "2026-05-04T15:18:28.997482+00:00",
+  "updated_at": "2026-05-04T15:19:09.461232+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:18:35.661532+00:00",
+      "verified": true,
+      "legal_name": "PRIMO CHEMICALS LIMITED",
+      "cin": "L24119CH1975PLC003607",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "01 December, 1975",
+      "directors": [
+        "Sukhbir Singh Dahiya",
+        "Jagbir Singh Ahlawat",
+        "others"
+      ],
+      "registered_address": "S C O 125-127SECTOR 17 B CHANDIGARH NA, U T, Chandigarh - 160017",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:18:35.811266+00:00",
+      "found": true,
+      "name": "PRIMO CHEMICALS LIMITED",
+      "linkedin_url": "https://in.linkedin.com/company/punjab-alkalies-chemicals-ltd",
+      "industry": "Chemical Manufacturing",
+      "company_size": "201-500 employees",
+      "locations": [
+        "SCO 125-127 Sector 17-B Chandigarh, Chandigarh 160017, IN",
+        "Works, Nangal Una Road Naya Nangal, Distt Ropar, Punjab, IN"
+      ],
+      "about": "The Company was incorporated as a Public Limited Company on 1st December 1975 under the name Punjab Alkalies Limited. The name of the Company was subsequently changed to Punjab Alkalies & Chemicals Limited and a Fresh Certificate of Incorporation consequent on change of name dated 19th April 1983 was obtained from the Registrar of Companies, Punjab, HP & Chandigarh, Jalandhar. Further, the name of the Company has been changed to Primo Chemicals Limited. The company\u2019s main product is Caustic Soda",
+      "followers": 2185,
+      "employees_on_linkedin": 91,
+      "organization_type": "Public Company",
+      "website": "https://www.primochemicals.in/",
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "Munish Aggarwal",
+          "link": "https://in.linkedin.com/in/munish-aggarwal-34984a16?trk=org-employees"
+        },
+        {
+          "name": "Atul Bharti",
+          "link": "https://in.linkedin.com/in/atul-bharti-35057a20?trk=org-employees"
+        },
+        {
+          "name": "Sanjeev Sama",
+          "link": "https://in.linkedin.com/in/sanjeev-sama?trk=org-employees"
+        },
+        {
+          "name": "jitendra kumar verma",
+          "link": "https://in.linkedin.com/in/jitendra-kumar-verma-93ab1154?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:19:09.460605+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 60,
+      "sources_searched": 37,
+      "sources_with_results": 2,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "PRIMO CHEMICALS LTD.,",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

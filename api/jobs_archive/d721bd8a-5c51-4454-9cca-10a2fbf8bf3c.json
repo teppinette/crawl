@@ -1,0 +1,61 @@
+{
+  "job_id": "d721bd8a-5c51-4454-9cca-10a2fbf8bf3c",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "KLJ PETROPLAST LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-21T11:58:52.577503+00:00",
+  "updated_at": "2026-05-21T12:01:51.429847+00:00",
+  "blob_path": "osint-staging/cir/india/klj_petroplast_limited_IN_20260520.json",
+  "report_summary": "Second KLJ Petroplast submission \u2014 identical to 21:20 UTC yesterday. File is complete.\n\n**DONE (existing file): KLJ Petroplast Limited \u2014 Risk: 3 MONITOR \u2014 CIN U24290DL2020PLC371244; Revenue \u20b92,510 Cr FY25 (+12.3%); \u26a0\ufe0f \u20b91,249.50 Cr 'Others' charge (likely group related-party)**\n\n`~/crawl/output/klj_petroplast_limited_IN_20260520.json` \u2014 10.4 KB, valid.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**2 actionable findings** from 4/57 sources via Tor (Netherlands exit node) (26 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| SSL certificates (crt.sh) | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: kljindia.com\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Hello, miguel cividanes rodriguez has invited you to send mo; Apex Legends: S25 Prodigy Patch Notes; Who would win? (+12 more) |\n| duckduckgo_tor | 10 | KLJ Group; Klj Petroplast Limited; KLJ PETROPLAST LIMITED - ZaubaCorp (+7 more) |\n| crtsh | 2 | kljindia.com; certificate_transparency |\n| hudsonrock_cavalier | 1 | kljindia.com |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- kljindia.com \u2014 *hudsonrock_cavalier*\n\n**WEB MENTION** (10)\n- KLJ Group \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fkljgroup.com%2F&rut=8e5c960316659897e643ef0678020c8df37b6]\n- Klj Petroplast Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.k]\n- KLJ PETROPLAST LIMITED - ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2FKLJ%2DPETROPLAST%2DLIMITED%2DU24290DL]\n- KLJ PETROPLAST LIMITED - Company Profile - Tracxn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Fklj%2Dpetropl]\n- KLJ PETROPLAST LIMITED - Indian Company & Director Details \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.companydetails.in%2Fcompany%2Fklj%2Dpetroplast%2Dlimi]\n- Klj Petroplast Limited - 2026 Insights | The Company Check \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fcompany%2Fklj%2Dpetroplast%2Dli]\n- Klj Petroplast Limited Company Profile - India - EMIS \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FIN%2FKlj_Petropl]\n- KLJ Petroplast Limited - IndiaMART \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Fklj%2Dpetroplast%2Dlimited%2F&rut=33f]\n- Company Profile - Klj Petroplast Ltd - chemdmart.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fchemdmart.com%2Fcompany%2Dprofile%2Fklj%2Dpetroplast%2Dlt]\n- KLJ Group - India | LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2Fklj%2Dgroup%2Dindia&rut=3fcb]\n\n**SOCIAL MENTION** (15)\n- Hello, miguel cividanes rodriguez has invited you to send money to your loved ones overseas with Rem \u2014 *reddit* [https://reddit.com/r/ReferalCodes/comments/1qsywep/hello_miguel_cividanes_rodrig]\n- Apex Legends: S25 Prodigy Patch Notes \u2014 *reddit* [https://reddit.com/r/apexlegends/comments/1kff2d0/apex_legends_s25_prodigy_patch]\n- Who would win? \u2014 *reddit* [https://reddit.com/r/NonCredibleDefense/comments/1t11syy/who_would_win/]\n- They fixed almost every top BR jet\u2019s radar except China\u2019s \u2014 *reddit* [https://reddit.com/r/Warthunder/comments/1q5571i/they_fixed_almost_every_top_br_]\n- NSW Government Petition - Conduct a Feasibility Study for a Northern Beaches Metro Line \u2014 *reddit* [https://reddit.com/r/sydney/comments/1jtbnjw/nsw_government_petition_conduct_a_f]\n- 2.49.0.10 -&gt; 2.49.0.17 \u2014 *reddit* [https://reddit.com/r/Warthunder/comments/1no9fjh/249010_249017/]\n- 2.54.0.29 -&gt; 2.54.0.31 \u2014 *reddit* [https://reddit.com/r/Warthunder/comments/1rqxynk/254029_254031/]\n- Racial preferences at elite American universities \u2014 *reddit* [https://reddit.com/r/samharris/comments/qyvf3m/racial_preferences_at_elite_ameri]\n- 2.52.0.49 -&gt; 2.52.0.52 \u2014 *reddit* [https://reddit.com/r/Warthunder/comments/1pkuh5e/252049_252052/]\n- 2.52.0.34 -&gt; 2.52.0.36 \u2014 *reddit* [https://reddit.com/r/Warthunder/comments/1pi920b/252034_252036/]\n- 2.53.0.109 -&gt; 2.54.0.20 (2026-03-02) Part 8 \u2014 *reddit* [https://reddit.com/r/Warthunder/comments/1rl0oni/2530109_254020_20260302_part_8/]\n- 2.54.0.21 -&gt; 2.54.0.23 (2026-03-04) Part 2 \u2014 *reddit* [https://reddit.com/r/Warthunder/comments/1ro4p8c/254021_254023_20260304_part_2/]\n- 2.52.0.52 -&gt; 2.52.0.57 Part 1 \u2014 *reddit* [https://reddit.com/r/Warthunder/comments/1pls29o/252052_252057_part_1/]\n- 2.52.0.58 -&gt; 2.53.0.6 \u2014 *reddit* [https://reddit.com/r/Warthunder/comments/1pnxgfa/252058_25306/]\n- JF-17B for the Royal Brunei Air Force? \u2014 *reddit* [https://reddit.com/r/Brunei/comments/1e2566b/jf17b_for_the_royal_brunei_air_forc]\n\n**CERTIFICATE SUMMARY** (1)\n- kljindia.com \u2014 *crtsh*\n\n**SSL CERTIFICATE** (1)\n-  \u2014 *crtsh*\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "KLJ PETROPLAST LIMITED",
+    "entity_trade_names": "KLJ PETROPLAST LIMITED",
+    "entity_country": "IN",
+    "entity_address": "KLJ HOUSE, 8A, 8TH FLOOR, SHIVAJI MARG, NAJAFGARH ROAD, NEW DELHI, Delhi, 110015",
+    "entity_website": "https://kljindia.com",
+    "entity_type": "Manufacturer",
+    "entity_industry": "Manufacturer",
+    "entity_tax_id": "371244",
+    "key_individuals": [
+      {
+        "name": "KANHAIYA LAL JAIN"
+      },
+      {
+        "name": "MANGI LAL SETHIA"
+      },
+      {
+        "name": "PUSHP JAIN"
+      },
+      {
+        "name": "GNANA VADIVEL KANDASAMY"
+      },
+      {
+        "name": "SONALI JAIN"
+      },
+      {
+        "name": "PRAVEEN SHARMA"
+      },
+      {
+        "name": "JITENDRA KUMAR BEGANI"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "copap_products": "Petroplast / Petrochemicals (Plastics Manufacturing)",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 2,
+  "dark_web_sources": 57
+}

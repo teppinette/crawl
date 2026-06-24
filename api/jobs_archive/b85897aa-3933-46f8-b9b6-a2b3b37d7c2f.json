@@ -1,0 +1,141 @@
+{
+  "job_id": "b85897aa-3933-46f8-b9b6-a2b3b37d7c2f",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "CRESCENT ORGANICS PVT LTD",
+  "country_code": "IN",
+  "created_at": "2026-05-04T14:20:28.478713+00:00",
+  "updated_at": "2026-05-04T14:20:56.670033+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:20:35.147648+00:00",
+      "verified": true,
+      "legal_name": "CRESCENT ORGANICS PRIVATE LIMITED",
+      "cin": "U99999MH1991PTC060197",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "08 February, 1991",
+      "directors": [
+        "Gunvantrai Dipchand Shah",
+        "Ashitkumar Gunvantrai Shah",
+        "others"
+      ],
+      "registered_address": "WINDSOR, 2ND FLOOR, CST ROAD, KALINA, SANTACRUZ (EAST), MUMBAI, Maharashtra - 400098",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:20:35.888683+00:00",
+      "found": true,
+      "name": "Crescent Organics Pvt Ltd",
+      "linkedin_url": "https://in.linkedin.com/company/the-crescent-group",
+      "industry": "Chemical Manufacturing",
+      "company_size": "201-500 employees",
+      "locations": [
+        "Mumbai, Maharashtra 400098, IN"
+      ],
+      "about": "Crescent Chemicals, the flagship company of The Crescent Group was established in 1964 in Mumbai as a trader in Industrial Chemicals, Solvents & Polymer Products. With the expansion of business, in trading and related activities keeping in view of the objective of concentrating on market development of agency products, enlarging the range of trading items and strengthening the import, export & indenting facility an associate company was incorporated in Feb., 1991 in the name of Crescent Organics",
+      "followers": 2970,
+      "employees_on_linkedin": 78,
+      "organization_type": "Privately Held",
+      "website": "https://www.crescentindia.com/",
+      "specialties": "Petrochemicals, Packaging, Polymers, Imports, Indenting, Exports, Logistics, AdProtex Bags, AD proTex Bags, Block Bottom PP Laminated Bags, Bottom Welded PP Laminated Bags, Solar Energy, Solar EPC, Energy Saving Products, UV Lamps, and GeoTextile Fabric",
+      "notable_employees": [
+        {
+          "name": "Periasamy .S",
+          "link": "https://in.linkedin.com/in/periasamy-s-243b5516?trk=org-employees"
+        },
+        {
+          "name": "Manish Vejani",
+          "link": "https://in.linkedin.com/in/manish-vejani-4b801332?trk=org-employees"
+        },
+        {
+          "name": "Rajesh Padia",
+          "link": "https://in.linkedin.com/in/rajesh-padia-70606a40?trk=org-employees"
+        },
+        {
+          "name": "Ketan Tanna",
+          "link": "https://in.linkedin.com/in/ketan-tanna-82728440?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:20:56.669393+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 60,
+      "sources_searched": 37,
+      "sources_with_results": 2,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "CRESCENT ORGANICS PVT LTD",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

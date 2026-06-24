@@ -1,0 +1,37 @@
+{
+  "job_id": "7004b3dd-ff56-46c7-a791-527feabd77bc",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "china",
+  "entity_name": "TRAFIGURA PTE LTD",
+  "country": "SG",
+  "created_at": "2026-04-27T16:40:56.642766+00:00",
+  "updated_at": "2026-04-27T16:41:26.328988+00:00",
+  "blob_path": "osint-staging/cir/china/trafigura_pte_ltd_sg_20260427.json",
+  "report_summary": "**DONE:** TRAFIGURA PTE LTD, SG -- Risk: 4 REVIEW -- Research completed and saved at **15:51 UTC** (~50 minutes ago)\n\n**Risk Assessment: Score 4 (REVIEW)** \u2014 Enhanced Due Diligence required\n\nKey highlights from completed report:\n- **$127M DOJ FCPA settlement** (Mar 2024, Petrobras bribes)\n- **$49M Brazil resolution** (Mar 2025)\n- **Swiss conviction** (Jan 2025, Angola corruption \u2014 under appeal)\n- **OFAC-licensed** Venezuela oil trading (Jan 2026) \u2014 congressional scrutiny ongoing\n- **CEO Richard Holtum**: Clean, not PEP, British ex-Army, clean sanctions screening\n- **Ownership**: 100% employee-owned via ~1,400 shareholders, Farringford Foundation (Panama) voting control\n\n\u2705 Output at: `/home/copapadmin/crawl/output/trafigura_pte_ltd_sg_20260427.json` (16,444 bytes)",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "TRAFIGURA PTE LTD",
+    "entity_country": "SG",
+    "entity_address": "10 Collyer Quay, #29-01/05, Ocean Financial Centre, Singapore 049315",
+    "entity_website": "WWW.TRAFIGURA.COM",
+    "entity_tax_id": "199601595D",
+    "key_individuals": [
+      {
+        "name": "Richard Holtum"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "china": {
+      "status": "completed",
+      "error": null
+    }
+  }
+}

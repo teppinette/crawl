@@ -1,0 +1,29 @@
+{
+  "job_id": "702f08f7-844f-4f3e-8668-221d75aae703",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "gulf",
+  "entity_name": "Agro China Pakistan",
+  "country": "PK",
+  "created_at": "2026-05-01T11:15:10.025517+00:00",
+  "updated_at": "2026-05-01T11:16:39.643688+00:00",
+  "blob_path": "osint-staging/cir/gulf/agro_china_pakistan_PK_20260429.json",
+  "report_summary": "Already complete \u2014 researched 2 days ago, all workstreams executed, blob live.\n\n**DONE: Agro China Pakistan Pvt Ltd, PK \u2014 Risk: 3 MONITOR \u2014 All 5 sanctions lists CLEAR; MONITOR for complete UBO opacity (SECP unavailable), new entity (est. 2021), 60 unscreened Chinese suppliers, Pakistan jurisdiction**\n\n| Item | Status |\n|---|---|\n| All workstreams (1A\u20138A) | \u2705 Completed 2026-04-29 16:06 UTC |\n| JSON | \u2705 `~/crawl/output/agro_china_pakistan_PK_20260429.json` (15 KB) |\n| Blob | \u2705 `gulf/agro_china_pakistan_PK_20260429.json` \u2014 live since 16:06:30 UTC |\n| OFAC SDN / Consolidated / UK OFSI / BIS CSL / UN UNSC | \u2705 ALL CLEAR |\n| CEO: Muhammad Usman Ali / COO: Muhammad Farooq Hasnain | \u2705 CLEAR on all lists |\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**60 findings** from 2/29 sources via Tor (Netherlands exit node)\n\n| Category | Count |\n|----------|-------|\n| Web mentions (Tor-routed) | 10 |\n\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "Agro China Pakistan",
+    "entity_country": "PK",
+    "registration_number": "4334750-9",
+    "research_focus": "Verify tax registration NTN 4334750-9 with FBR, confirm company registration with SECP, check directors and UBOs, corporate history, and any adverse findings"
+  },
+  "region_status": {
+    "gulf": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 60,
+  "dark_web_sources": 29
+}

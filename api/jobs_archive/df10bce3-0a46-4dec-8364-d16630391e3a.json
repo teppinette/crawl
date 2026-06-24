@@ -1,0 +1,46 @@
+{
+  "job_id": "df10bce3-0a46-4dec-8364-d16630391e3a",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "gulf",
+  "entity_name": "NATIONAL PLASTIC & BUILDING MATERIAL INDUSTRIES L.L.C.",
+  "country": "AE",
+  "created_at": "2026-05-22T19:11:35.835805+00:00",
+  "updated_at": "2026-05-22T19:18:46.430907+00:00",
+  "blob_path": "osint-staging/cir/gulf/national_plastic_building_material_industries_llc_AE_20260522.json",
+  "report_summary": "Blob uploaded (HTTP 201). Research complete.\n\n---\n\n**DONE: NATIONAL PLASTIC & BUILDING MATERIAL INDUSTRIES L.L.C., AE \u2014 Risk: 2 CLEAR \u2705**\n\n---\n\n## Summary\n\n**50-year UAE manufacturing pioneer** (founded 1975 by Dr. Antoun Kronfli). One of the most established entities researched today.\n\n| Check | Result |\n|---|---|\n| **Entity type** | \u2705 Sharjah mainland LLC \u2014 Industrial Area 1 |\n| **Founded** | 1975 \u2014 50 years operation |\n| **Web history** | \u2705 9,072 days (since 2001) \u2014 definitively not a shell |\n| **Production** | \u2705 20,000 sq m facility, 200 staff |\n| **ISO** | \u2705 ISO 9001:2000 (2004), ISO 9002 (1997) |\n| **BSI Kitemark** | \u2705 Multiple licences (1\u00bc\"\u201316\") |\n| **UL 651** | \u2705 Listed conduits |\n| **US licence** | \u2705 Corzan cPVC from Lubrizol/Noveon |\n| **Project refs** | \u2705 Dubai Airport, Emirates Palace, Palm Islands |\n| **Exports** | \u2705 35+ countries (UK, Germany, Australia, GCC) |\n| **Founder (Kronfli)** | \u2705 Lebanese Christian \u2014 no Iran nexus |\n| **David Bray (AMD)** | \u2705 30+ year industry veteran, clean profile |\n| **Bassam Kronfli** | \u26a0\ufe0f Historical FITCO/Sudan connection (~2013, separate entity, no OFAC action) \u2014 note only |\n| **Michael Robinson** | \u2753 No background found \u2014 standard KYC required |\n| **Sanctions** | \u2705 No match (OFAC/UN/EU/UK) |\n| **DIFC Courts** | \u2705 No judgments |\n| **Dark Web** | \u2705 0 findings |\n| **Adverse media** | \u2705 None entity-specific (OFAC building materials case = different NJ company) |\n\n**Standard KYC only** \u2014 trade licence, passports for all four directors, clarify Michael Robinson role, FITCO status context. No EDD required.\n---\n\n## DARK WEB SCREENING \u2014 MEDIUM\n**1 actionable findings** from 3/53 sources via Tor (Netherlands exit node) (24 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Adverse media | 1 |\n| Web mentions (Tor-routed) | 9 |\n| Social media mentions | 15 |\n\n**Key findings:**\n- ADVERSE MEDIA: Radnor Middle School employee Michael Robinson arrested by US Marshals ... (Michael Robinson)\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | The Oregon Department of Justice submitted multiple video ex; **Satya N. Atluri: Architect of Modern Computational Mechani; Reality 11 (+12 more) |\n| duckduckgo_tor | 10 | National Plastic & Building Materials Industries LLC - AEC O; Contact Us | National Plastic; NATIONAL PLASTIC & BUILDING MATERIAL INDUSTRIES L.L.C Compan (+7 more) |\n| duckduckgo_adverse | 1 | Radnor Middle School employee Michael Robinson arrested by U |\n\n### All findings detail\n\n**ADVERSE MEDIA** (1)\n- Radnor Middle School employee Michael Robinson arrested by US Marshals ... \u2014 *duckduckgo_adverse* (searched: Michael Robinson) [/l/?uddg=https%3A%2F%2F6abc.com%2Fpost%2Fradnor%2Dmiddle%2Dschool%2Demployee%2Dm]\n\n**WEB MENTION** (9)\n- National Plastic & Building Materials Industries LLC - AEC Online \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.aeconline.ae%2Fnational%2Dplastic%2Dbuilding%2Dmateri]\n- Contact Us | National Plastic \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.national%2Dplastic.com%2Fcontact%2Dus%2F&rut=2f0f1a46]\n- NATIONAL PLASTIC & BUILDING MATERIAL INDUSTRIES L.L.C Company Profile ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.n]\n- National Plastic and Building Material Industries LLC \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.yellowpages%2Duae.com%2Fnational%2Dplastic%2Dand%2Dbu]\n- National Plastic & Building Material Industries LLC - Cybo \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.cybo.com%2FAE%2Dbiz%2Fnational%2Dplastic%2Dbuilding%2]\n- National Plastic & Building Material Industries LLC \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fae.kompass.com%2Fc%2Fnational%2Dplastic%2Dbuilding%2Dmate]\n- National Plastic & Building Materials Industries - maps.urbi.ae \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fmaps.urbi.ae%2Fdubai%2Ffirm%2F70000001037939699&rut=2e833]\n- National Plastic & Building Material Industries Llc \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fuaecsd.com%2Fdirectory%2Dlisting%2Fnational%2Dplastic%2Db]\n- NATIONAL PLASTIC AND BUILDING MATERIAL INDUSTRIES LLC in UAE - ReachUAE ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.reachuae.com%2Fdubai%2Fnational%2Dplastic%2Dand%2Dbui]\n\n**SOCIAL MENTION** (15)\n- The Oregon Department of Justice submitted multiple video exhibits showing federal officers using ex \u2014 *reddit* [https://reddit.com/r/law/comments/1omjj6i/the_oregon_department_of_justice_submi]\n- **Satya N. Atluri: Architect of Modern Computational Mechanics and Guardian of Aerospace Structural  \u2014 *reddit* [https://reddit.com/r/IndicKnowledgeSystems/comments/1sfwhqg/satya_n_atluri_archi]\n- Reality 11 \u2014 *reddit* [https://reddit.com/r/Himadri10/comments/1t53leo/reality_11/]\n- Last Week in Collapse: April 6-12, 2025 \u2014 *reddit* [https://reddit.com/r/collapse/comments/1jy4ed1/last_week_in_collapse_april_612_2]\n- Official Poster for \u2018Thoughts &amp; Prayers\u2019 - As gun violence becomes normalized, a $3 billion indu \u2014 *reddit* [https://reddit.com/r/movies/comments/1osqwyt/official_poster_for_thoughts_prayer]\n- Last Week in Collapse: May 11-17, 2025 \u2014 *reddit* [https://reddit.com/r/collapse/comments/1kpg7m0/last_week_in_collapse_may_1117_20]\n- JB Pritzker holds a press conference, he believes the feds &amp; National Guard build up will be com \u2014 *reddit* [https://reddit.com/r/illinois/comments/1n7qrq2/jb_pritzker_holds_a_press_confere]\n- List of Albany, NY businesses that got a PPP loan of &gt;$150k \u2014 *reddit* [https://reddit.com/r/Albany/comments/hnk4h8/list_of_albany_ny_businesses_that_go]\n- The Year 2666, and How We Got Here \u2014 *reddit* [https://reddit.com/r/AfterTheEndFanFork/comments/gm94rc/the_year_2666_and_how_we]\n- China's most senior semiconductor executives issued a public call this week for a consolidated natio \u2014 *reddit* [https://reddit.com/r/technology/comments/1rm5kjd/chinas_most_senior_semiconducto]\n- Complete list of all 1,217 stock holdings worth $1 Million or more. \u2014 *reddit* [https://reddit.com/r/exmormon/comments/8nmjqb/complete_list_of_all_1217_stock_ho]\n- Freebies Win Votes, Education &amp; Healthcare builds Nation \u2014 *reddit* [https://reddit.com/r/CriticalThinkingIndia/comments/1qjlxp8/freebies_win_votes_e]\n- The powerful greenhouse gases tetrafluoromethane &amp; hexafluoroethane have been building up in the \u2014 *reddit* [https://reddit.com/r/science/comments/p7m0rz/the_powerful_greenhouse_gases_tetra]\n- Tinker, Arms Dealer, Soldier, Spy: The Story of Mitchell L. WerBell III \u2014 *reddit* [https://reddit.com/r/clandestineoperations/comments/1kyr4xa/tinker_arms_dealer_s]\n- DOJ building case against Live Nation &amp; Ticketmaster \u2014 *reddit* [https://reddit.com/r/news/comments/15en5ut/doj_building_case_against_live_nation]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "NATIONAL PLASTIC & BUILDING MATERIAL INDUSTRIES L.L.C.",
+    "entity_country": "AE",
+    "entity_address": "Sharjah, No. 6, 23 Street, Al Wahadah Street, Industrial Area 1, P.O. Box 1943, Sharjah",
+    "key_individuals": [
+      {
+        "name": "Michael Robinson"
+      },
+      {
+        "name": "David Bray"
+      },
+      {
+        "name": "Bassam Kronfli"
+      },
+      {
+        "name": "Maha Kronfli"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "gulf": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 1,
+  "dark_web_sources": 53
+}

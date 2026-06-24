@@ -1,0 +1,84 @@
+{
+  "job_id": "df7700e4-da05-4906-80af-b5ad7cb12d1c",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "ASIA CROPSCIENCES (PRIVATE) LIMITED",
+  "country_code": "PK",
+  "created_at": "2026-05-04T15:20:39.482514+00:00",
+  "updated_at": "2026-05-04T15:22:40.816812+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:20:46.950954+00:00",
+      "verified": true,
+      "legal_name": "ASIA CROPSCIENCES (PRIVATE) LIMITED",
+      "registration_number": "0214856",
+      "entity_status": "Incorporated",
+      "company_type": "Private Limited Company",
+      "cro": "CRO Lahore",
+      "registration_date": "03/11/2022",
+      "fbr": null,
+      "all_matches": null,
+      "source": "SECP eServices (direct gov query)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:20:46.246369+00:00",
+      "found": true,
+      "name": "Asia CropSciences",
+      "linkedin_url": "https://pk.linkedin.com/company/asia-crop-sciences",
+      "industry": "Agricultural Chemical Manufacturing",
+      "company_size": "501-1,000 employees",
+      "locations": [
+        "49-B, Phase 1, Johar Town Lahore, Punjab 54600, PK"
+      ],
+      "about": "Asia Cropsciences deals with Crop Protection & Crop Nutrients in order to help farmers improve their livelihood offering quality keeping inputs economical. Founded by a team of industry-transforming individuals with over 30 years of expertise in the multinational agrochemicals industry, Asia Cropsciences is poised to revolutionize the agricultural landscape. Our company offers a handpicked comprehensive portfolio comprising of Seeds, Agrochemicals and specialty nutrition aligned with current and",
+      "followers": 703,
+      "employees_on_linkedin": 26,
+      "organization_type": "Self-Employed",
+      "website": "https://asiacropsciences.com/",
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "P V HOODA",
+          "link": "https://in.linkedin.com/in/p-v-hooda-a3374b38?trk=org-employees"
+        },
+        {
+          "name": "Muhammad Qasim",
+          "link": "https://pk.linkedin.com/in/muhammad-qasim-4493ba94?trk=org-employees"
+        },
+        {
+          "name": "Saqib Imran",
+          "link": "https://pk.linkedin.com/in/saqib-imran-86334097?trk=org-employees"
+        },
+        {
+          "name": "Haider Ali Khokhar",
+          "link": "https://pk.linkedin.com/in/haider-ali-khokhar-694958b7?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:22:40.816129+00:00",
+      "risk_level": "CLEAN",
+      "total_findings": 0,
+      "sources_searched": 0,
+      "sources_with_results": 0,
+      "by_type": {},
+      "key_findings": [],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "ASIA CROPSCIENCES (PRIVATE) LIMITED",
+    "country_code": "PK",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

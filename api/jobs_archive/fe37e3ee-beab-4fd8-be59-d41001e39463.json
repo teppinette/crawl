@@ -1,0 +1,137 @@
+{
+  "job_id": "fe37e3ee-beab-4fd8-be59-d41001e39463",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "Lords Chloro Alkali Ltd.",
+  "country_code": "IN",
+  "created_at": "2026-05-04T14:32:11.074161+00:00",
+  "updated_at": "2026-05-04T14:33:02.224008+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:32:18.268612+00:00",
+      "verified": true,
+      "legal_name": "LORDS CHLORO ALKALI LIMITED",
+      "cin": "L24117RJ1979PLC002099",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "01 March, 1979",
+      "directors": [
+        "Ajay Virmani",
+        "Deepak Mathur",
+        "others"
+      ],
+      "registered_address": "SP-460, MATSYA INDUSTRIAL AREA, ALWAR, Rajasthan, India, 301030",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:32:17.527931+00:00",
+      "found": true,
+      "name": "SRG Chemical Industries",
+      "linkedin_url": "https://in.linkedin.com/company/srg-chemical-industries",
+      "industry": "Chemical Raw Materials Manufacturing",
+      "company_size": "11-50 employees",
+      "locations": [
+        "ETAH CHUNGI, GREEN APARTMENTS, QUARSI BYPASS Aligarh, Uttar Pradesh 202002, IN"
+      ],
+      "about": "\ud83c\udf3f Leading Manufacturers & Exporters of Organic & Inorganic Chemicals \u2713 Partnered with industry giants such as DCM Shriram Vinyl & Chemical Ltd, Gujarat Alkali Chloro Ltd, Lords Chloro Alkali Plant, Grasim Industries Ltd, Orient Micro Adassives Ltd, TGV Srrac Ltd, Bodal Chemical Ltd. \u2713 Nationwide Service Coverage - Delivering Excellence Across India \u2713 Established Since 1984 - Over Three Decades of Trusted Expertise in Chemical Solutions",
+      "followers": 29,
+      "employees_on_linkedin": 5,
+      "organization_type": "Self-Owned",
+      "website": "https://srgchemicalindustries.business.site/",
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "SRG CHEMICAL INDUSTRIES .",
+          "link": "https://in.linkedin.com/in/srg-chemical-industries-281978214?trk=org-employees"
+        },
+        {
+          "name": "Uday Surya",
+          "link": "https://in.linkedin.com/in/uday-surya-40a07729a?trk=org-employees"
+        },
+        {
+          "name": "Bharath Kumar",
+          "link": "https://in.linkedin.com/in/bharath-kumar-935a10311?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:33:02.223396+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 60,
+      "sources_searched": 37,
+      "sources_with_results": 2,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "Lords Chloro Alkali Ltd.",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

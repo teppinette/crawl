@@ -1,0 +1,137 @@
+{
+  "job_id": "c2aed7d8-3687-4323-b5a8-0b9e30103508",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "AJANTA POLYMERS PRIVATE LIMITED",
+  "country_code": "IN",
+  "created_at": "2026-05-04T15:05:16.933775+00:00",
+  "updated_at": "2026-05-04T15:07:06.800381+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:05:25.487992+00:00",
+      "verified": true,
+      "legal_name": "AJANTA POLYMERS PRIVATE LIMITED",
+      "cin": "U24110DL2009PTC188479",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "17 March, 2009",
+      "directors": [
+        "Naresh Agarwal",
+        "Sajjan Agarwal",
+        "others"
+      ],
+      "registered_address": "1001, 10TH FLOOR, AGGARWAL CORPORATE HEIGHTS, PLOT NO.A-7, NETAJI SUBHASH PLACE, PITAM, PURA, NEW DELHI, Delhi, India, 110034",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:05:24.565726+00:00",
+      "found": true,
+      "name": "Ajanta Polymers",
+      "linkedin_url": "https://in.linkedin.com/company/ajantapolymers",
+      "industry": "Manufacturing",
+      "company_size": "11-50 employees",
+      "locations": [
+        "G-31, MIDC Waluj Aurangabad , Maharashtra 431136, IN"
+      ],
+      "about": "With a humble beginning in 1994, Ajanta Polymers started as a manufacturer of latex rubber foam, before expanding into the production of high-quality PU foam. Today, we are proud to offer a comprehensive range of foam products, all produced under one roof at our facility in Aurangabad, Maharashtra. Our product portfolio is diverse and caters to a variety of industries, including automotive, furnishings, and healthcare. We manufacture a range of products for various sectors including: core manufa",
+      "followers": 17,
+      "employees_on_linkedin": 7,
+      "organization_type": "Self-Owned",
+      "website": null,
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "Visarg Changela",
+          "link": "https://in.linkedin.com/in/visarg-changela-948aa1233?trk=org-employees"
+        },
+        {
+          "name": "\u0936\u0941\u0932\u092d \u0930\u093e\u091c\u092a\u0942\u0924",
+          "link": "https://in.linkedin.com/in/%E0%A4%B6%E0%A5%81%E0%A4%B2%E0%A4%AD-%E0%A4%B0%E0%A4%BE%E0%A4%9C%E0%A4%AA%E0%A5%82%E0%A4%A4-8819a027b?trk=org-employees"
+        },
+        {
+          "name": "Piyush Shirsath",
+          "link": "https://in.linkedin.com/in/piyush-shirsath-8699b8347?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:07:06.799735+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 60,
+      "sources_searched": 37,
+      "sources_with_results": 2,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "AJANTA POLYMERS PRIVATE LIMITED",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

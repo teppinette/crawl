@@ -1,0 +1,75 @@
+{
+  "job_id": "1bd7de80-8dd3-4c7e-ae25-b6c8d903fc2c",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "europe",
+  "entity_name": "FAR EAST COMMODITIES SA",
+  "country": "CH",
+  "created_at": "2026-05-05T21:02:21.575732+00:00",
+  "updated_at": "2026-05-05T21:11:58.938293+00:00",
+  "blob_path": "osint-staging/cir/europe/far_east_commodities_sa_CH_20260505.json",
+  "report_summary": "**DONE: Far East Commodities SA, CH \u2014 Risk: 4 REVIEW** (same entity, same research completed at 21:08 UTC today)\n\nFile: `~/crawl/output/far_east_commodities_sa_CH_20260505.json` | Blob: `europe/far_east_commodities_sa_CH_20260505.json`\n\n---\n\nSame report as above. Key findings remain:\n\n### \ud83d\udea8 Risk: 4 REVIEW \u2014 Escalate to Senior Compliance\n\n**UBO Structure:**\n- Gabriele Murroni \u2014 **70%** (Italian, Monaco) \u2014 trader, no adverse personal findings\n- Gianfranco Spallarossa \u2014 **20%** (Italian, Monaco) \u2014 CFO, coal commodity background\n- **Trafigura Pte Ltd \u2014 10%** (Singapore) \u2190 **DETERMINATIVE RISK FACTOR**\n\n**Trafigura Group Enforcement Flags:**\n| | |\n|---|---|\n| **DOJ FCPA \u2014 GUILTY PLEA** | Trafigura Beheer B.V.: $126M+ / bribery of Petrobras officials (March 2024) |\n| **CFTC \u2014 Civil Settlement** | Trafigura Trading LLC: $55M / market fraud, manipulation, whistleblower obstruction (June 2024) |\n| **UANI Iran Registry** | Trafigura (CH) listed April 2026 \u2014 non-governmental, but signals potential Iran exposure |\n\n**Additional Flags:** Nominee director (Nuredini/BCorpo), both individual UBOs resident in Monaco, minimal website presence, Murroni's UK company dissolved Dec 2024.\n\n**Mitigating:** No direct SDN/EU/UN hits on entity or individuals; CHF 5M capital; PwC Lugano auditor since April 2022.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 findings** from 0/0 sources via Tor (Netherlands exit node)\n\nNo dark web exposure detected. Entity and owners clean across all 0 sources.\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "FAR EAST COMMODITIES SA",
+    "entity_country": "CH",
+    "entity_address": "Rue de la Croix D'Or 17A, Geneva, Switzerland",
+    "entity_website": "https://fareastcommodities.com",
+    "entity_tax_id": "CHE-353.596.432",
+    "key_individuals": [
+      {
+        "name": "Murroni Gabriele",
+        "title": "Chairman of the Board (adm. pr\u00e9sident)"
+      },
+      {
+        "name": "Nuredini Ardian",
+        "title": "Secretary of the Board (adm. secr\u00e9taire)"
+      },
+      {
+        "name": "Grandjean Thomas Dominique",
+        "title": "Board Member (adm.)"
+      },
+      {
+        "name": "Spallarossa Gianfranco",
+        "title": "Board Member (adm.)"
+      },
+      {
+        "name": "GABRIELE MURRONI"
+      },
+      {
+        "name": "Ardian Nuredini",
+        "title": "Identity Document Holder"
+      },
+      {
+        "name": "Thomas Dominique Grandjean",
+        "title": "Passport Holder / Individual"
+      },
+      {
+        "name": "Gabriele Murroni",
+        "title": "UBO (70.00%)"
+      },
+      {
+        "name": "Gianfranco Spallarossa",
+        "title": "UBO (20.00%)"
+      },
+      {
+        "name": "Trafigura Pte Ltd",
+        "title": "UBO (10.00%)"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "europe": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 0
+}

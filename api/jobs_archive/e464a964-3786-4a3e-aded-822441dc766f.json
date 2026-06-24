@@ -1,0 +1,48 @@
+{
+  "job_id": "e464a964-3786-4a3e-aded-822441dc766f",
+  "scenario": "product-intel",
+  "status": "completed",
+  "regions": [
+    "americas",
+    "europe",
+    "gulf",
+    "china",
+    "india"
+  ],
+  "product_name": "Kraft linerboard",
+  "target_markets": [
+    "US",
+    "DE",
+    "AE",
+    "CN",
+    "IN"
+  ],
+  "request_id": "pi-test-002-kraft",
+  "created_at": "2026-04-20T14:05:56.661270+00:00",
+  "updated_at": "2026-04-20T14:11:15.092966+00:00",
+  "blob_paths": [
+    "osint-staging/product-intel/gulf/kraft_linerboard_KLB_AE_20260419.json",
+    "osint-staging/product-intel/europe/product_intelligence_kraft_linerboard_DE_20260419.json"
+  ],
+  "report_summary": "All checks pass. Here's the full report:\n\n---\n\n## \ud83d\udce6 KLB / DE \u2014 Product Intelligence Report\n**`~/crawl/output/product_intelligence_kraft_linerboard_DE_20260420.json`**\n**16 signals | 17 sources | Coverage: 90% | All in-window \u2705 | All URLs populated \u2705**\n\n---\n\n### \ud83d\udcb6 PRICE INDEX (5 signals)\n\n| Signal ID | Type | Market | Value | Unit |\n|---|---|---|---|---|\n| `33e91ec3` | **level** | Europe (DE) | \u20ac755\u2013780 mid ~**\u20ac760/t** | EUR/t \u2014 FOEX PIX via ChAI (Apr 15) |\n| `a194aa78` | **delta** | Europe (DE) | **+\u20ac100/t** | SCA list price, all grades, eff. Apr 1 |\n| `949b1438` | **pct** | Europe (DE) | **+7\u20138%** | Sappi Fusion Liner, eff. Apr 1 |\n| `0d2e8d7c` | **delta** | North America | **+$40/short ton** | Fastmarkets RISI, March 2026 (+$40) |\n| `3354159a` | **delta** | North America | **\u2212$20/short ton** | Fastmarkets RISI, February 2026 (dip) |\n\n---\n\n### \ud83d\udea2 FREIGHT (3 signals)\n\n| Signal ID | Sub-type | Route | Rate | Unit |\n|---|---|---|---|---|\n| `3afd3176` | base_rate | Global WCI composite | **$2,287** | USD/40ft |\n| `8716c856` | base_rate | Shanghai \u2192 Rotterdam | **$2,543** (+10% YoY) | USD/40ft |\n| `e39ba84f` | **surcharge** | Global (Maersk EBS) | **$200\u2013400** per 40ft | USD/40ft \u2014 eff. Mar 25 |\n\n*Maersk also introduced Emergency Gulf Freight: $3,000/40ft for Gulf-port cargo.*\n\n---\n\n### \u26a0\ufe0f SUPPLY DISRUPTION (1 signal)\n\n| Signal ID | Producer | Event | Status |\n|---|---|---|---|\n| `e069a98f` / `2925c4b7` | **KCPM** (Kyiv, UA \u2014 Pulp Mill Holding AT) | Attack 1: Mar 14 (missile) \u2192 Attack 2: Apr 3 (Shahed drone, 500-drone strike) | **Production halted** \u2014 testliner + fluting machines down; ~355\u2013360M m\u00b2/yr corrugated capacity offline |\n\n*Limited direct DE supply impact (KCPM serves Ukrainian domestic market), but signals regional infrastructure vulnerability.*\n\n---\n\n### \ud83c\udf0d GEOPOLITICAL (2 signals)\n\n| Signal ID | Event | Key Fact |\n|---|---|---|\n| `ed5667e5` | **Iran War / Hormuz closure** (Feb 28 \u2013) | Brent peaked **$126/bbl**; 21 vessel attacks; largest energy disruption since 1970s |\n| `79db945e` | **Ceasefire Apr 8 + US Naval Blockade Apr 13** | Iran charging **$1M+ tolls/ship**; minesweeping ongoing; months to normalise (Wood Mackenzie) |\n\n---\n\n### \ud83d\udcf0 NEWS (5 signals)\n- **SCA +\u20ac100/t** (Mar 12) \u2014 world's largest KLB machine at Obbola reaching full 720k tpy capacity\n- **Sappi +7\u20138%** (Mar 3) \u2014 Fusion Liner, \"initial step\"\n- **March +$40/ton** (Mar 22) \u2014 first NA increase in 13 months, Iran war fuel costs cited\n- **February \u2212$20/ton** (Feb 22) \u2014 European exports to US cited as factor\n- **Maersk April Europe Update** (Apr 1) \u2014 fuel surcharges, Rotterdam congestion, Germany Easter disruption",
+  "error": "Failed to parse response from americas: ",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "request_id": "pi-test-002-kraft",
+    "product": {
+      "generic_name": "Kraft linerboard",
+      "grade_code": "KLB",
+      "commodity_family": "paper"
+    },
+    "region_hint": "global",
+    "lookback_days": 60,
+    "signal_types": [
+      "price_index",
+      "news",
+      "geopolitical",
+      "freight",
+      "supply_disruption"
+    ]
+  }
+}

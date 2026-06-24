@@ -1,0 +1,19 @@
+{
+  "job_id": "cc0fc1e1-6551-4bb8-8a34-cbe912c81aa5",
+  "scenario": "dark-web",
+  "status": "completed",
+  "region": "darkweb",
+  "entity_name": "Electroplast Trading DMCC Dubai UAE",
+  "country": "",
+  "created_at": "2026-05-22T22:22:26.372373+00:00",
+  "updated_at": "2026-05-22T22:23:00.635095+00:00",
+  "blob_path": "osint-staging/dark-web/electroplast_trading_dmcc_dubai_uae_20260522.json",
+  "report_summary": "25 findings from dark web sources",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_name": "Electroplast Trading DMCC Dubai UAE",
+    "country_code": "AE"
+  }
+}

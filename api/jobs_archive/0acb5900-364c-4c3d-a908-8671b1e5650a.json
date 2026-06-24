@@ -1,0 +1,31 @@
+{
+  "job_id": "0acb5900-364c-4c3d-a908-8671b1e5650a",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "gulf",
+  "entity_name": "Super Save General Trading LLC",
+  "country": "AE",
+  "created_at": "2026-05-07T12:42:34.960363+00:00",
+  "updated_at": "2026-05-07T12:53:13.877594+00:00",
+  "blob_path": "osint-staging/cir/gulf/super_save_general_trading_llc_AE_20260507.json",
+  "report_summary": "Blob uploaded (HTTP 201). Research complete.\n\n---\n\n**DONE: Super Save General Trading LLC, AE \u2014 Risk: 3 MONITOR \u2014 Active Dubai DED mainland LLC since Sept 2015; no sanctions/adverse media hits; UBO identity unknown (Single Owner LLC); website contains materially inflated metrics**\n\n---\n\n## Research Summary\n\n### Entity Confirmed\n**SUPER SAVE GENERAL TRADING L.L.C** \u2014 Dubai DED mainland LLC (not free zone). Two registration numbers: **333430** (primary, Sept 2015) and 2212315. Arabic: \u0633\u0648\u0628\u0631 \u0633\u064a\u0641 \u0644\u0644\u062a\u062c\u0627\u0631\u0629 \u0627\u0644\u0639\u0627\u0645\u0629 \u0634.\u0630.\u0645.\u0645. Activity: General Trading / Paper products. Revenue <$5M. Status: **ACTIVE** (Feb 2026).\n\n---\n\n### Key Findings\n\n| Check | Status | Detail |\n|---|---|---|\n| **Emirates/Zone** | \u2705 Dubai DED mainland | NOT RAK/Ajman FZ \u2014 lower opacity risk |\n| **Incorporation** | \u2705 Sept 2, 2015 | 10+ years; not recently incorporated |\n| **DED Status** | \u2705 ACTIVE | Confirmed active Feb 2026 |\n| **OFAC/UN/EU/UK Sanctions** | \u2705 NO HITS | All lists searched; clean |\n| **DIFC Courts** | \u2705 NO HITS | No litigation found |\n| **Gulf Media** | \u2705 NO HITS | Gulf News, Khaleej Times, The National |\n| **CBUAE** | \u2705 Not financial | Not a licensed financial institution |\n| **Dark Web** | \u2705 CLEAN | 0 stealer infections; no illicit mentions |\n| **Iran evasion patterns** | \u2705 None detected | No RAK FZ, no recent incorporation, no shared addresses with sanctioned entities |\n| **UBO Identity** | \u26a0\ufe0f UNKNOWN | Single Owner LLC \u2014 100% owner not identified in any public source |\n\n---\n\n### Registry Profile\n| Field | Value |\n|---|---|\n| DED License | 333430 / Registry 741663 / CBLS 10929584 |\n| Incorporation | 02 September 2015 |\n| Capital | AED 300,000 (USD ~81.7K \u2014 minimum) |\n| Legal form | LLC \u2013 Single Owner (SMC) |\n| DED Activity | #521904 General Trading |\n| Registered address | Deira Port Saeed, Dubai |\n| Actual office | Abu Hail, Dubai (per website) |\n\n---\n\n### \u26a0\ufe0f Yellow Flags (non-blocking)\n\n1. **UBO gap** \u2014 Single Owner LLC; owner's name not publicly disclosed. Full sanctions screening requires UBO identification.\n2. **Website inflation** \u2014 Claims 200+ employees; actual count is 11\u201350 per ZoomInfo. Contains fake testimonials (\"State Hill Associates\", \"Brown Brook Funds\"). Products page is broken (404).\n3. **Address inconsistency** \u2014 4 different addresses across sources (Deira Port Saeed, Al Khabeesi, Abu Hail, Umm Hurair). Deira Port Saeed is a known virtual-office hub.\n4. **Minimum capital** \u2014 AED 300K is the bare regulatory minimum for a Dubai LLC.\n\n---\n\n### Risk: **3 \u2013 MONITOR**\nNo direct adverse findings. Legitimate registered entity, clean on all primary checks. Monitoring warranted for UBO opacity and website credibility concerns.\n\n**Required EDD steps:**\n- Obtain DED trade license copy \u2192 reveals owner name\n- Screen owner against all sanctions lists\n- Verify physical office presence at Abu Hail\n- Request proof of paper trading activity\n\n**Output saved:** `~/crawl/output/super_save_general_trading_llc_AE_20260507.json` \u2705\n**Blob uploaded:** `crawl-gulf/super_save_general_trading_llc_AE_20260507.json` \u2192 stcrawlosint/osint-staging \u2705\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**63 findings** from 3/49 sources via Tor (Netherlands exit node)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Breach records | 52 |\n| Web mentions (Tor-routed) | 10 |\n\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "Super Save General Trading LLC",
+    "entity_country": "AE",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "priority": "standard"
+  },
+  "region_status": {
+    "gulf": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 63,
+  "dark_web_sources": 49
+}

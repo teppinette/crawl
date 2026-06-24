@@ -1,0 +1,53 @@
+{
+  "job_id": "768b6ae3-9304-48b7-93e8-dcf32b6e98c7",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "SPECIALITY CHEMICAL INDUSTRIES (PVT) LTD",
+  "country_code": "PK",
+  "created_at": "2026-05-04T15:44:39.894963+00:00",
+  "updated_at": "2026-05-04T15:46:40.919562+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:44:46.727071+00:00",
+      "verified": false,
+      "legal_name": null,
+      "registration_number": null,
+      "entity_status": null,
+      "company_type": null,
+      "cro": null,
+      "registration_date": null,
+      "fbr": null,
+      "all_matches": null,
+      "source": "SECP eServices (direct gov query)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:44:43.027664+00:00",
+      "found": false,
+      "note": "LinkedIn company page not found via search"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:46:40.919025+00:00",
+      "risk_level": "CLEAN",
+      "total_findings": 0,
+      "sources_searched": 0,
+      "sources_with_results": 0,
+      "by_type": {},
+      "key_findings": [],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "SPECIALITY CHEMICAL INDUSTRIES (PVT) LTD",
+    "country_code": "PK",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

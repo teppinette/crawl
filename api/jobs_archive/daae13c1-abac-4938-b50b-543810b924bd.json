@@ -1,0 +1,32 @@
+{
+  "job_id": "daae13c1-abac-4938-b50b-543810b924bd",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "china",
+  "entity_name": "SHANGHAI YIWU GLOBAL IMPORT EXPORT CO. LIMITED",
+  "country": "HK",
+  "created_at": "2026-05-22T19:07:26.783385+00:00",
+  "updated_at": "2026-05-22T19:09:34.246159+00:00",
+  "blob_path": "osint-staging/cir/china/shanghai_yiwu_global_import_export_co_limited_hk_20260522.json",
+  "report_summary": "Completed 6 minutes ago. Report is current.\n\n**DONE:** `/home/copapadmin/crawl/output/shanghai_yiwu_global_import_export_co_limited_hk_20260522.json` \u2014 Risk: 4 REVIEW (ELEVATED)\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 2/37 sources via Tor (Netherlands exit node) (23 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 37 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Canada will retaliate with 25% tariffs on US imports and lim; Megathread: Supreme Court strikes down President Donald Trum; Trump Announces New 10% Global Tariff (+12 more) |\n| duckduckgo_tor | 10 | Shanghai Yiwu Global Import And Export Co., Limited; Shanghai Yiwu Global Import And Export Co., Limited - \u4f01\u67e5\u67e5; Shanghai Yiwu Global Import And Export Co., Limited\uff08Company  (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (8)\n- Shanghai Yiwu Global Import And Export Co., Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.ltddir.com%2Fcompanies%2Fshanghai%2Dyiwu%2Dglobal%2Di]\n- Shanghai Yiwu Global Import And Export Co., Limited - \u4f01\u67e5\u67e5 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.qcc.com%2Ffirm%2Fh59ec0cde725c8a3e3051447de740467.htm]\n- Shanghai Yiwu Global Import And Export Co., Limited\uff08Company Register ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fhkg.databasesets.com%2Fen%2Fgongsimingdan%2Fnumber%2F3222]\n- YIWU GLOBAL IMPORT AND EXPORT CO., LIMITED (2621741) - Hong Kong ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.hkgbusiness.com%2Fcompany%2FYiwu%2DGlobal%2DImport%2D]\n- Yiwu Global Import and Export Co Ltd \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fyiwu%2Dglobal.com%2F&rut=fb20287732cf48cbd3ff786b295ff74d]\n- Yiwu Global Import And Export Co., Ltd - cnverify.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.cnverify.com%2Fcompany%2FYiwu%2DGlobal%2DImport%2DAnd]\n- YIWU GLOBAL IMPORT AND EXPORT CO., LIMITED | Hong Kong Companies ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.hkcorporationsearch.com%2Fcompanies%2F2621741%2F&rut=]\n- Shanghai Yiwu Import And Export Co., Limited - companieshouse.hk \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fcompanieshouse.hk%2Fshanghai%2Dyiwu%2Dimport%2Dand%2Dexpo]\n\n**SOCIAL MENTION** (15)\n- Canada will retaliate with 25% tariffs on US imports and limit export of rare minerals as response t \u2014 *reddit* [https://reddit.com/r/stocks/comments/1ifna8h/canada_will_retaliate_with_25_tarif]\n- Megathread: Supreme Court strikes down President Donald Trump's Tariff Policy \u2014 *reddit* [https://reddit.com/r/politics/comments/1r9y3hw/megathread_supreme_court_strikes_]\n- Trump Announces New 10% Global Tariff \u2014 *reddit* [https://reddit.com/r/wallstreetbets/comments/1ra3ptw/trump_announces_new_10_glob]\n- Trump tells Norwegian PM Greenland Conquest Is Revenge for Losing Nobel Peace Prize - r/Conservative \u2014 *reddit* [https://reddit.com/r/SubredditDrama/comments/1qhlfzx/trump_tells_norwegian_pm_gr]\n- Whoops \u2014 *reddit* [https://reddit.com/r/funny/comments/1ow5k1r/whoops/]\n- [GIVEAWAY] 64 Gigabytes of Holiday Cheer! \u2014 *reddit* [https://reddit.com/r/pcmasterrace/comments/1pg7l5y/giveaway_64_gigabytes_of_holi]\n- Help, big problem with solar. \u2014 *reddit* [https://reddit.com/r/SolarPH/comments/1sshhz1/help_big_problem_with_solar/]\n- MI6 chief: Tech giants are closer to running the world than politicians \u2014 *reddit* [https://reddit.com/r/Futurology/comments/1pnwe1u/mi6_chief_tech_giants_are_close]\n- Gold -8% below $5,000 and silver -17% to $95 after Trump nominates Kevin Warsh as Fed chair, dollar  \u2014 *reddit* [https://reddit.com/r/wallstreetbets/comments/1qr49bf/gold_8_below_5000_and_silve]\n- My job is to psychologically manipulate gamers: As I'm leaving the game industry after 10 years, my  \u2014 *reddit* [https://reddit.com/r/gaming/comments/1m86pfb/my_job_is_to_psychologically_manipu]\n- I'm an Australian Wholesale Fuel Trader - AMA \u2014 *reddit* [https://reddit.com/r/australia/comments/1rt3kyh/im_an_australian_wholesale_fuel_]\n- The worst energy crisis in history is on the horizon [very long post] \u2014 *reddit* [https://reddit.com/r/oil/comments/1rmufbq/the_worst_energy_crisis_in_history_is_]\n- TikTok's most popular influencer sold his company for $975m... to a sketchy Chinese \"printing\" compa \u2014 *reddit* [https://reddit.com/r/wallstreetbets/comments/1qtig67/tiktoks_most_popular_influe]\n- Bernie finally weighs in on H1B visas. \u2014 *reddit* [https://reddit.com/r/antiwork/comments/1hs496q/bernie_finally_weighs_in_on_h1b_v]\n- Does moving THAAD from South Korea show US missile-defence stocks are more limited than assumed? \u2014 *reddit* [https://reddit.com/r/NewsfangledUnfiltered/comments/1rsxdal/does_moving_thaad_fr]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "SHANGHAI YIWU GLOBAL IMPORT EXPORT CO. LIMITED",
+    "entity_country": "HK",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "china": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 37
+}

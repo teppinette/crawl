@@ -1,0 +1,32 @@
+{
+  "job_id": "9ac59fe4-051c-4034-8a9e-3b9bdd56d65e",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "Papelera A y D Spa",
+  "country": "CL",
+  "created_at": "2026-04-22T15:59:17.230973+00:00",
+  "updated_at": "2026-04-22T16:06:16.598930+00:00",
+  "blob_path": "osint-staging/cir/americas/papelera_a_y_d_spa_CL_20260422.json",
+  "report_summary": "Upload confirmed.\n\n**DONE: Papelera A y D SpA, CL \u2014 Risk: 2 CLEAR \u2014 Active Chilean stationery SpA; formerly Papelera Manquehue SpA; sole UBO Alberto Jos\u00e9 Arriagada Edwards; no sanctions, no adverse media, no PEP; research gaps in Poder Judicial and UAF (portals inaccessible)**\n\n---\n\n## \ud83d\udccb Counterparty Research: Papelera A y D SpA\n`~/crawl/output/papelera_a_y_d_spa_CL_20260422.json` \u2192 uploaded to `stcrawlosint/osint-staging/americas/`\n\n---\n\n### \ud83c\udfe2 Corporate Registry (Workstream 1A)\n| Field | Value |\n|---|---|\n| RUT (Tax ID) | **77.542.298-K** |\n| Status | **ACTIVO** \u2014 SII-confirmed via chilepymes.com aggregator |\n| Legal form | SpA (Sociedad por Acciones) \u2014 simplified joint-stock; single shareholder permitted |\n| SII Ref | 01490156 |\n| Registered address | Providencia, Santiago, Regi\u00f3n Metropolitana |\n| Operations address | Volc\u00e1n Licancabur 425, Bodegas 4 y 5, **Pudahuel** (warehouse/distribution, near SCL Airport) |\n| Former name | **Papelera Manquehue SpA** (same RUT; renamed March 10, 2022) |\n| Name change | Public deed, 27th Notar\u00eda de Santiago (Mar\u00eda Patricia Donoso Gomien), published Diario Oficial **March 24, 2022**, Folio 2103486 |\n| Primary CIIU | 476103 \u2014 Retail sale of stationery & office supplies (specialized stores) |\n| Size | **Mediana empresa** \u2014 50,000\u2013100,000 UF/year (~USD 2.3M\u20134.5M) |\n| Patrimony | Positive \u2014 2,000\u201310,000 UF range (~USD 91K\u2013454K) |\n\n---\n\n### \ud83d\udd17 Beneficial Ownership (Workstream 2A)\n```\nPapelera A y D SpA (Chile, RUT 77.542.298-K)\n  \u2514\u2500 Alberto Jos\u00e9 Arriagada Edwards (100%, inferred sole UBO)\n       RUT: 3.838.273-K | Address: Volc\u00e1n Licancabur 425, Bodegas 4-5, Pudahuel\n```\n- Single natural-person ownership. No intermediate corporate holding. No nominees.\n- \u26a0\ufe0f **Verification gap**: Formal SpA shareholder register from Conservador de Bienes Ra\u00edces y Comercio not retrieved (portal inaccessible). Recommend Registro de Comercio lookup.\n\n---\n\n### \ud83d\uded1 Sanctions Screening (Workstream 3A)\n| List | Result |\n|---|---|\n| OFAC SDN | **No hits identified** (API DNS-unreachable; manual cross-check of known CL designations \u2014 none found) |\n| EU Consolidated | **No hits** (Chile not covered by any EU sanctions regime) |\n| UK FCDO | **No hits** |\n| UN Security Council | **No hits** (no Chile-specific sanctions committee) |\n| OFAC 50% Rule | **Not triggered** |\n\n> Chile is an OECD/FATF member; no country-level sanctions. OFAC Kingpin Act designates some Chilean narcotraffickers (Valpara\u00edso, Antofagasta) \u2014 no match to this entity or individual.\n\n---\n\n### \ud83d\udcf0 Adverse Media (Workstream 4A)\n**None identified.** No press coverage in La Tercera, El Mercurio, BioBioChile, El Mostrador, or international sources for either the company or Alberto Jos\u00e9 Arriagada Edwards. Only hits are administrative registry sources (Diario Oficial extract and SII data aggregator).\n\n---\n\n### \u2696\ufe0f Litigation (Workstream 5A)\n| Venue | Result |\n|---|---|\n| Chile Poder Judicial | **INACCESSIBLE** \u2014 pjud.cl portal HTTP 404; causas.cl search not completed. Manual lookup recommended. |\n| UAF Chile (AML enforcement) | **INACCESSIBLE** \u2014 uaf.cl DNS non-resolving. Manual lookup recommended. |\n| US PACER | Not applicable (no US presence) |\n\n---\n\n### \ud83e\uddd1\u200d\ud83d\udcbc PEP Connections (Workstream 6A)\n**None identified.** Alberto Jos\u00e9 Arriagada Edwards does not appear in any public official role, government appointment, or political party affiliation in accessible records. No PEP.\n\n---\n\n### \ud83c\udf0d Trade Risk (Workstream 7A)\n- **Products**: Paper goods, notebooks, stationery, office supplies \u2014 standard retail category\n- **Not dual-use.** Not scheduled under CWC, EAR, EU Dual-Use Regulation, or Chilean export controls\n- **No sanctioned country exposure**\n- **Pudahuel warehouse** is consistent with import/distribution logistics (near Arturo Merino Ben\u00edtez International Airport)\n- Chile has broad FTAs (US-Chile, EU-Chile, Pacific Alliance) \u2014 stationery imports entirely unrestricted\n\n---\n\n### \ud83c\udfaf Risk Assessment\n| Score | Label | Rationale |\n|---|---|---|\n| **2** | **CLEAR** | Active OECD-country SME in a low-risk sector; no adverse media; no sanctions hits; simple single-person ownership; no PEP; no dual-use goods. Three supplementary verifications recommended to close research gaps: (1) Registro de Comercio shareholder register, (2) Poder Judicial causas search, (3) UAF listados check. |",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "Papelera A y D Spa",
+    "entity_country": "CL",
+    "entity_address": "Providencia, Santiago, Regi\u00f3n Metropolitana, Chile",
+    "entity_tax_id": "77.542.298-K",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": null
+    }
+  }
+}

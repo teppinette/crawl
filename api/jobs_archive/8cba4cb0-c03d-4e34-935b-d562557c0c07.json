@@ -1,0 +1,74 @@
+{
+  "job_id": "8cba4cb0-c03d-4e34-935b-d562557c0c07",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "COCREATE GLOBAL TECHNOLOGIES PRIVATE LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-21T11:18:04.023897+00:00",
+  "updated_at": "2026-05-21T11:26:30.234993+00:00",
+  "blob_path": null,
+  "report_summary": "**DONE: Cocreate Global Technologies Private Limited (SCIMPLIFY), India \u2014 Risk: 2 CLEAR \u2014 Bangalore specialty chemicals platform; CIN U21009KA2023PTC179006; \u2705 Backed by Accel India, 3one4, Bertelsmann, Beenext, Omnivore; 3,000+ chemical products; 250+ manufacturing plants; Great Place to Work certified; zero debt**\n\n`~/crawl/output/cocreate_global_technologies_pvt_ltd_IN_20260520.json` \u2014 8.6 KB, valid, research date 2026-05-21.\n\n---\n\n## Key Findings\n\n### \"Scimplify\" \u2014 Science-First Specialty Chemicals Platform\n\n**What it does:** Full-stack platform for R&D, sourcing and manufacturing of specialty chemicals \u2014 3,000+ products across Agrochemicals, Pharma, Flavours & Fragrances, Industrial. Network of 250+ manufacturing plants, 40+ in-house scientists, 20+ countries.\n\n**Why it appears in chemicals research batch:** Scimplify IS a chemicals company \u2014 it helps chemical buyers identify, develop, source and manufacture chemicals. A counterparty likely uses their platform for specialty chemical procurement.\n\n### Tier-1 VC Backing\n| Investor | Origin | Notable Portfolio |\n|---|---|---|\n| **Accel India VII** | Mauritius (Accel Partners) | Flipkart, Freshworks, BrowserStack |\n| **3one4 Capital Fund IV** | India | Darwinbox, Licious |\n| **Bertelsmann Nederland B.V.** | Netherlands | Bertelsmann Group ventures |\n| **Omnivore Fund 3** | India | Agri-tech/climate focus |\n| **Beenext Asia Fund2** | Singapore | Pan-Asian VC |\n\n**Sanctions CLEAR \u00b7 No PEP \u00b7 Zero debt \u00b7 Great Place to Work certified \u00b7 1.5-year-old but exceptionally well-funded**\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 0/0 sources via Tor (Netherlands exit node)\n\nNo dark web exposure detected. Entity and owners clean across all 0 sources.\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "india: Report file not found on remote VM (india)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "COCREATE GLOBAL TECHNOLOGIES PRIVATE LIMITED",
+    "entity_country": "IN",
+    "entity_address": "#445, BBMP Katha No. 344/445 IV Sector HSR Layout, Ward No.174 Bommanahalli Zone, HSR Layout, Bangalore, Karnataka 560102, India",
+    "entity_tax_id": "U21009KA2023PTC179006",
+    "key_individuals": [
+      {
+        "name": "Srivastava Salil Kumar",
+        "title": "Director"
+      },
+      {
+        "name": "Sachin Santhosh",
+        "title": "Director"
+      },
+      {
+        "name": "Srivastava Salil Kumar",
+        "title": "UBO"
+      },
+      {
+        "name": "Sachin Santhosh",
+        "title": "UBO"
+      },
+      {
+        "name": "3one4 Capital - Fund IV",
+        "title": "UBO"
+      },
+      {
+        "name": "Beenext Asia Fund2 Pte Ltd",
+        "title": "UBO"
+      },
+      {
+        "name": "Omnivore Agritech & Climate Sustainability Fund 3",
+        "title": "UBO"
+      },
+      {
+        "name": "Bertelsmann Nederland B.V.",
+        "title": "UBO"
+      },
+      {
+        "name": "Accel India VII (Mauritius) Ltd.",
+        "title": "UBO"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (india)"
+    }
+  },
+  "errors": [
+    "india: Report file not found on remote VM (india)"
+  ],
+  "dark_web_findings": 0,
+  "dark_web_sources": 0
+}

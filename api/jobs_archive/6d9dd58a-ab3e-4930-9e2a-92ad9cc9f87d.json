@@ -1,0 +1,74 @@
+{
+  "job_id": "6d9dd58a-ab3e-4930-9e2a-92ad9cc9f87d",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "COCREATE GLOBAL TECHNOLOGIES PRIVATE LIMITED",
+  "country_code": "IN",
+  "created_at": "2026-05-04T16:22:26.680848+00:00",
+  "updated_at": "2026-05-04T16:24:27.986924+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:22:34.547422+00:00",
+      "verified": true,
+      "legal_name": "COCREATE GLOBAL TECHNOLOGIES PRIVATE LIMITED",
+      "cin": "U21009KA2023PTC179006",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "22 September, 2023",
+      "directors": [
+        "Sachin Santhosh",
+        "Srivastava Salil Kumar"
+      ],
+      "registered_address": "#445, BBMP Katha No. 344/445 IV Sector HSR layout, Ward No.174 Bommanahalli Zone Bangalore 560102",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:22:33.434267+00:00",
+      "found": true,
+      "name": "CoCreate",
+      "linkedin_url": "https://uk.linkedin.com/company/cocreate-the-future-of-work",
+      "industry": "Software Development",
+      "company_size": "2-10 employees",
+      "locations": [
+        "74 Back Church Lane London, England E1 1, GB"
+      ],
+      "about": "The enterprise workplace is going through unprecedented shifts. A changing global workforce, new technologies, and new ideas of the physical workplace bring new challenges for effective collaboration. CoCreate unlocks the potential in your teams and makes collaboration easy. Built for enterprise customers it is simple, secure, and scalable. It connects your staff and allows real-time collaboration from anywhere in the world with all of you data and content in one place.",
+      "followers": 124,
+      "employees_on_linkedin": 1,
+      "organization_type": "Privately Held",
+      "website": "https://www.cocreate.software/",
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "Mari Morisawa",
+          "link": "https://uk.linkedin.com/in/mari-morisawa-088b5a2a?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:24:27.986357+00:00",
+      "risk_level": "CLEAN",
+      "total_findings": 0,
+      "sources_searched": 0,
+      "sources_with_results": 0,
+      "by_type": {},
+      "key_findings": [],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "COCREATE GLOBAL TECHNOLOGIES PRIVATE LIMITED",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

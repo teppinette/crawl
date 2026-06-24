@@ -1,0 +1,43 @@
+{
+  "job_id": "0b0f8ff6-d70f-4684-acfa-7dd68f522145",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "KEMPLAST INDUSTRIES",
+  "country": "IN",
+  "created_at": "2026-05-21T17:16:35.100334+00:00",
+  "updated_at": "2026-05-21T17:19:29.273621+00:00",
+  "blob_path": "osint-staging/cir/india/kemplast_industries_IN_20260520.json",
+  "report_summary": "Fourth Kemplast submission. File is complete. Both data artifacts in subject block remain unchanged (\"India Infoline\" prefix and \"Reappointment of\" prefix).\n\n**DONE (existing file): Kemplast Industries \u2014 Risk: 3 MONITOR \u2014 Gujarat partnership; GSTIN 24AABFK9083C1ZI Active; \u26a0\ufe0f both DINs are data artifacts; actual owner = Ravi Rambhai Patel; 2015 Gujarat HC criminal case SCA 14466/2015**\n\n`~/crawl/output/kemplast_industries_IN_20260520.json` \u2014 valid, filed May 20, 2026.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 1/45 sources via Tor (Netherlands exit node) (10 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 45 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | Kemplast Process Solutions | #1 Authorized Dealer for Siemen; Kemplast; Home - Kemplast Systems | Plastic Flexible Packaging & Biode (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- Kemplast Process Solutions | #1 Authorized Dealer for Siemens, WIKA ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.kemplast.in%2F&rut=a6f71045332c03514ca7f4253bb50ad423]\n- Kemplast \u2014 *duckduckgo_tor* [/l/?uddg=http%3A%2F%2Fkemplastindia.com%2F&rut=cda28a29963b29548cdc07c2351350b5c]\n- Home - Kemplast Systems | Plastic Flexible Packaging & Biodegradable ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.kemplast.net%2F&rut=8706aec49967176454655f5e0c5522493]\n- Kemplast Industries - Manufacturer from Chhatral, India | About Us \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Fkemplast%2Dindustries%2Fprofile.html&]\n- Kemplast Industries - LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2Fkemplast%2Dindustries&rut=5b]\n- Kemplast Inc Information - RocketReach \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Frocketreach.co%2Fkemplast%2Dinc%2Dprofile_b43b15a5c1907e1]\n- Kemplast - Overview, News & Similar companies | ZoomInfo.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zoominfo.com%2Fc%2Fkemplast%2Dinc%2F1309793164&rut=c3]\n- Kemplast Industries in Gandhinagar, Gujarat, India - Company Profile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tradeindia.com%2Fkemplast%2Dindustries%2D5153834%2F&r]\n- Kemplast Industries \u00b7 M/S Kemplast Industries \u00b7 Survey No. 1462 (Old Sr ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fopencorpdata.com%2Flei%2F984500E7DD5641B4AE64&rut=0ec05fa]\n- Kemplast - News, Locations, Executives and Competitors - Usearch \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fusearch.com%2Fcompany%2Fkemplast%2Foverview&rut=e4dca0922]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "KEMPLAST INDUSTRIES",
+    "entity_country": "IN",
+    "entity_address": "Survey No. 1462 (Old Sr. 1067/B), Kadi Road, GIDC Chhatral, Taluka Kalol, District Gandhinagar, Gujarat 382729, India",
+    "entity_tax_id": "24AABFK9083C1ZI (GSTIN)",
+    "key_individuals": [
+      {
+        "name": "India Infoline Mr Sumit Maheshwari",
+        "title": "Director (DIN: 06920646)"
+      },
+      {
+        "name": "Reappointment of Mr Ramkumar Shankar",
+        "title": "Director (DIN: 00018391)"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 45
+}

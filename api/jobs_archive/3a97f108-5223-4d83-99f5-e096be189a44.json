@@ -1,0 +1,36 @@
+{
+  "job_id": "3a97f108-5223-4d83-99f5-e096be189a44",
+  "status": "completed",
+  "region": "gulf",
+  "entity_name": "Non-Blocking Test",
+  "country": "AE",
+  "created_at": "2026-04-13T19:55:14.983508+00:00",
+  "updated_at": "2026-04-13T19:55:46.262253+00:00",
+  "blob_path": "osint-staging/gulf/non-blocking_test_ae_20260413.json",
+  "report_summary": "**DONE: Non-Blocking Test, AE \u2014 Risk: 0 CLEAR \u2014 test payload uploaded successfully**\n\n| Item | Status |\n|---|---|\n| JSON file | \u2705 `~/crawl/output/non_blocking_test_AE_20260413.json` |\n| Blob upload | \u2705 `gulf/non_blocking_test_AE_20260413.json` \u2014 19:55:37 UTC |\n\nSAS token auth confirmed working again.",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "Non-Blocking Test",
+    "entity_trade_names": null,
+    "entity_country": "AE",
+    "entity_jurisdiction": null,
+    "entity_address": null,
+    "entity_website": null,
+    "entity_type": null,
+    "entity_industry": "Testing",
+    "entity_tax_id": null,
+    "copap_relationship": null,
+    "copap_products": null,
+    "copap_incoterms": null,
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "source_report": null,
+    "workstreams": [
+      "1A"
+    ],
+    "priority": "standard"
+  }
+}

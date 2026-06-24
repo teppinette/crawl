@@ -1,0 +1,138 @@
+{
+  "job_id": "65fe8166-61cb-4f85-b284-983c39f305e3",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "MALCOLM INDUSTRIES",
+  "country_code": "PK",
+  "created_at": "2026-05-04T14:48:24.155597+00:00",
+  "updated_at": "2026-05-04T14:49:43.350341+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:48:28.906419+00:00",
+      "verified": true,
+      "legal_name": "MALCOLM INDUSTRIES (SMC-PRIVATE) LIMITED",
+      "registration_number": "0200972",
+      "entity_status": "Incorporated",
+      "company_type": "Single Member Company",
+      "cro": "CRO Karachi",
+      "registration_date": "27-04-2022 14:51:18",
+      "fbr": null,
+      "all_matches": null,
+      "source": "SECP eServices (direct gov query)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:48:30.725023+00:00",
+      "found": true,
+      "name": "Malcolm Industries",
+      "linkedin_url": "https://pk.linkedin.com/company/malcolm-industries",
+      "industry": "Chemical Manufacturing",
+      "company_size": "51-200 employees",
+      "locations": [
+        "Plot no8 sector 12a north Karachi industrial Area Karachi, PK"
+      ],
+      "about": "Malcolm Industries is a professionally managed Company. It was incorporated in year 1986 to manufacture synthetic adhesives and specialty chemicals. Today it is one of the largest manufacturers of wood,packaging,textile and paint emulsion amongst both consumer and industrial segments. Malcolm\u2019s large distribution network of dealers, retail outlets and sales spread throughout the country, makes it amongst the top Synthetic adhesives manufacturers of Pakistan.",
+      "followers": 3347,
+      "employees_on_linkedin": 36,
+      "organization_type": "Self-Employed",
+      "website": "https://www.malcolmindustries.com/",
+      "specialties": "Adhesives, Textile auxilaries, Paint binders(Vinyl and acrylics), Construction chemicals, Chemical Importer, and Glue Binders Bond adhesives",
+      "notable_employees": [
+        {
+          "name": "Zeeshan Ayub",
+          "link": "https://pk.linkedin.com/in/zeeshan-ayub-355b5951?trk=org-employees"
+        },
+        {
+          "name": "Tariq Ahmed Saeed",
+          "link": "https://pk.linkedin.com/in/tariq-ahmed-saeed-37471b54?trk=org-employees"
+        },
+        {
+          "name": "Ziaullah Khan",
+          "link": "https://pk.linkedin.com/in/ziaullah-khan-a46b258b?trk=org-employees"
+        },
+        {
+          "name": "M. Hashmani",
+          "link": "https://pk.linkedin.com/in/m-hashmani-103b8892?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:49:43.349661+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 60,
+      "sources_searched": 37,
+      "sources_with_results": 2,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "MALCOLM INDUSTRIES",
+    "country_code": "PK",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

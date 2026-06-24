@@ -1,0 +1,32 @@
+{
+  "job_id": "082b2ebf-3d3d-49cd-bf8b-63599889ccf2",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "china",
+  "entity_name": "KOSOKU INVESTMENT (CHINA) LIMITED",
+  "country": "HK",
+  "created_at": "2026-05-22T19:38:52.858459+00:00",
+  "updated_at": "2026-05-22T19:44:30.328410+00:00",
+  "blob_path": "osint-staging/cir/china/kosoku_investment_china_limited_hk_20260522.json",
+  "report_summary": "**DONE:** KOSOKU INVESTMENT (CHINA) LIMITED, HK \u2014 **Risk: 1 LOW RISK**\n\n## Research Summary\n\n**Entity:** KOSOKU INVESTMENT (CHINA) LIMITED (\u9ad8\u901f\u6295\u8cc7(\u4e2d\u570b)\u6709\u9650\u516c\u53f8)  \n**CR No:** 0353426 | **BRN:** 15895527 | **Incorporated:** 15 Apr 1992  \n**Status:** Active | **Age:** 34+ years\n\n### Ownership Chain (Fully Transparent SOE):\n```\nShenzhen SASAC (\u6df1\u5733\u5e02\u56fd\u8d44\u59d4)\n  \u2192 Shenzhen International Holdings (00152.HK) ~49%\n    \u2192 Shenzhen Expressway Co. Ltd (00548.HK / 600548.SZ)\n      \u2192 KOSOKU INVESTMENT (CHINA) LIMITED (100% owned)\n```\n\n### Key Individuals (SOE-appointed Directors):\n\n| Person | Role | Notes |\n|--------|------|-------|\n| **XU ENLI (\u5f90\u6069\u5229)** | Chairman | Appointed Jan 2025 |\n| **LIAO XIANGWEN (\u5ed6\u6e58\u6587)** | President | |\n| **JIN ZHENYUAN (\u91d1\u8d1e\u5a9b)** | CFO, Exec Director | |\n| **CHEN YUNJIANG, WU YANLING, YAO HAI, ZHANG JIAN** | Directors | |\n\n### Workstream Summary:\n\n| # | Workstream | Status | Observations |\n|---|-----------|--------|-------------|\n| 1A | Registry | \u2705 | 34 years active. Clean. Wholly-owned by listed SOE. |\n| 2A | UBO | \u2705 **Shenzhen SASAC** \u2014 fully transparent. No opacity. |\n| 3A | Sanctions | \u2705 Clean across all lists | OFAC SDN, BIS, NS-CMIC, EU, UK \u2014 all clean. |\n| 4A | Adverse Media | \u2705 None | |\n| 5A | Litigation | \u2705 None | |\n| 6A | PEP | \u26a0\ufe0f De facto SOE PEP | Standard for Chinese SOE directors. |\n| 7A | Trade Risk | \u2705 LOW | Civil infrastructure investment only. |\n| 8A | Risk Score | \u2705 **Score: 1 (LOW RISK)** | Low-risk SOE investment vehicle. |\n\n### Notes:\n- **\"Kosoku\"** = Japanese reading of **\u9ad8\u901f** (expressway/high speed). Likely historical branding for Shenzhen Expressway's HK investment platform.\n- Functions as an overseas investment/financing vehicle for the Shenzhen Expressway Group.\n- Parent company has RMB 9.26B revenue (2024), 500+ km toll roads, and is a dividend/income stock on HKSE/SZSE.\n\n**Output:** `/home/copapadmin/crawl/output/kosoku_investment_china_limited_hk_20260522.json` (9,503 bytes)\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 1/37 sources via Tor (Netherlands exit node) (10 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 37 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | KOSOKU INVESTMENT (CHINA) LIMITED - Dun & Bradstreet; KOSOKU INVESTMENT (CHINA) LIMITED | Hong Kong Companies Dire; Kosoku Investment China Ltd - Company Profile and News (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- KOSOKU INVESTMENT (CHINA) LIMITED - Dun & Bradstreet \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.k]\n- KOSOKU INVESTMENT (CHINA) LIMITED | Hong Kong Companies Directory \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.ltddir.com%2Fcompanies%2Fkosoku%2Dinvestment%2Dchina%]\n- Kosoku Investment China Ltd - Company Profile and News \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.bloomberg.com%2Fprofile%2Fcompany%2FKOSOKZ%3AHK&rut=6]\n- KOSOKU INVESTMENT (CHINA) LIMITED/\u9ad8\u901f\u6295\u8cc7\uff08\u4e2d\u570b\uff09\u6709\u9650\u516c\u53f8\uff08Company Register Number ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fhkg.databasesets.com%2Fen%2Fgongsimingdan%2Fnumber%2F0353]\n- \u9ad8\u901f\u6295\u8cc7\uff08\u4e2d\u570b\uff09\u6709\u9650\u516c\u53f8 - \u4f01\u67e5\u67e5 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.qcc.com%2Ffirm%2Fheaec6057efb6da5dd1f5b163df96e59.htm]\n- KOSOKU INVESTMENT (CHINA) LIMITED \u9ad8\u901f\u6295\u8cc7 (\u4e2d\u570b)\u6709\u9650\u516c\u53f8 - Hong Kong Company \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fhongkong%2Dcorp.com%2Fco%2Fkosoku%2Dinvestment%2Dchina%2D]\n- \u9ad8\u901f\u6295\u8cc7 (\u4e2d\u570b)\u6709\u9650\u516c\u53f8 Kosoku Investment (China) Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tempb.com%2Fcompanies%2Fkosoku%2Dinvestment%2Dchina%2]\n- Verified HK Business Data | Companies House Registry Search \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fcompanieshouse.hk%2F&rut=5843d535e29aac944eab2c5e29afa59d]\n- Hong Kong Exchanges and Clearing Limited - di.hkex.com.hk \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fdi.hkex.com.hk%2Fdi%2FNSSelectCorp.aspx%3Fsrc%3DMAIN%26la]\n- Kosoku Investment (China) Ltd - ImportGenius \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.importgenius.com%2Fimporters%2Fkosoku%2Dinvestment%2D]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "KOSOKU INVESTMENT (CHINA) LIMITED",
+    "entity_country": "HK",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "china": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 37
+}

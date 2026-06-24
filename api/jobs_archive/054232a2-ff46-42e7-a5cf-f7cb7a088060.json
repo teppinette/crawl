@@ -1,0 +1,39 @@
+{
+  "job_id": "054232a2-ff46-42e7-a5cf-f7cb7a088060",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "SRIRAM ENTERPRISES",
+  "country": "IN",
+  "created_at": "2026-05-21T12:08:27.588013+00:00",
+  "updated_at": "2026-05-21T12:11:23.786556+00:00",
+  "blob_path": "osint-staging/cir/india/sriram_enterprises_IN_20260520.json",
+  "report_summary": "**DONE: Shriram Enterprises Private Limited (Tamil Nadu), India \u2014 Risk: 3 MONITOR \u2014 CIN U24100TN2012PTC085563; Chennai basic chemicals; Revenue \u20b912.5 Cr; \ud83d\udea8 Subject block has 100% data artifact; \ud83d\udea8 K Venkataraman (DIN 02443410) = former KVB (Karur Vysya Bank) CEO \u2014 NOT a director here**\n\n`~/crawl/output/shriram_enterprises_tn_pvt_ltd_IN_20260521.json` \u2014 7.9 KB, valid, research date 2026-05-21\n\n---\n\n## \ud83d\udea8 Critical Data Quality Alert\n\n| Issue | Detail |\n|---|---|\n| **Wrong entity name** | Subject block says \"SRIRAM\"; MCA says \"SHRIRAM ENTERPRISES PRIVATE LIMITED\" |\n| **Wrong person in subject block** | K Venkataraman (DIN 02443410) = Krishnamoorthy Venkataraman, former **MD & CEO of Karur Vysya Bank** \u2014 confirmed NOT a director of this company |\n| **\"COASTAL BANK\" prefix** | \"COASTAL\" refers to KVB banking context, not this chemicals company |\n| **All actual directors missing** | Sankaran Baskaran, Chandrasekaran Ramaswamy, Chandrasekaran Gowri \u2014 **none in subject block** |\n\n**Note:** This is DIFFERENT from yesterday's \"Sriram Enterprises\" (West Bengal GSTIN 19AARFS8853J1Z6 \u2014 partnership firm). That file is at `sriram_enterprises_IN_20260520.json`.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 2/41 sources via Tor (Netherlands exit node) (24 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 41 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Final Ledger; We\u2019re offering our enterprise AI agent platform free for ear; Top 8 SaaS Development Companies in India to Look out for in (+12 more) |\n| duckduckgo_tor | 10 | Sriram Enterprises - Innovative Machine Manufacturing Soluti; Shriram Enterprises - Experts in Industrial EPC Services & T; Sriram Enterprises - Wholesaler / Distributor of Polycarbona (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- Sriram Enterprises - Innovative Machine Manufacturing Solutions ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.sriraam.net%2Fabout%2Dus&rut=52ad596b6932530675334e25]\n- Shriram Enterprises - Experts in Industrial EPC Services & Turnkey ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.shriram%2Denterprises.in%2F&rut=5b7db35c7de19161bb013]\n- Sriram Enterprises - Wholesaler / Distributor of Polycarbonate Sheet ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.sriramenterprises.net.in%2F&rut=3ef91f5a3252d563ded0c]\n- Shreeram Enterprises - Trader - Wholesaler / Distributor of Material ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.shreeram%2Denterprises.in%2F&rut=4769226f67e5d87e3772]\n- Shriram Enterprises: Lab Equipment, Chemicals & Research Solutions \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.shrientpl.com%2F&rut=64c28d4f7cf4d3d14a0e27c068756e16]\n- Home - Sriram Enterprises \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.sriramenterprisessre.com%2F&rut=1fbc7ea45d9b545612e64]\n- Shriram Enterprises - Best Third Party Payroll Services in Delhi ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.shriramjobs.in%2F&rut=25a9ba022bd8a7289c30b7fd4796761]\n- Shriram enterprises \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fshriramenterprises.in%2F&rut=0d0b6516975d5fdbef4968091510]\n- Sriram Enterprises - Manufacturer from Chennai, India | About Us \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Fsriram%2Dentps%2Dchennai%2Faboutus.ht]\n- Sriram Enterprises Polycarbonate Sheets Coimbatore,Avinashi,Erode,Tiruppur \u2014 *duckduckgo_tor* [/l/?uddg=http%3A%2F%2Fsriramenterprises.net%2F&rut=69858ada719639284c8212c1e3b3c]\n\n**SOCIAL MENTION** (14)\n- Final Ledger \u2014 *reddit* [https://reddit.com/r/u_TreyinHada/comments/1t6005x/final_ledger/]\n- We\u2019re offering our enterprise AI agent platform free for early design partners \u2014 *reddit* [https://reddit.com/r/SaaSMarketing/comments/1t909cn/were_offering_our_enterprise]\n- Top 8 SaaS Development Companies in India to Look out for in 2026 \u2014 *reddit* [https://reddit.com/r/AIaskandtalk/comments/1sxv01e/top_8_saas_development_compan]\n- Top 7 Software Companies in Chennai (2026 List) \u2014 *reddit* [https://reddit.com/r/AISaaSTalks/comments/1smvger/top_7_software_companies_in_ch]\n- Netran\u0101r\u0101ya\u1e47a: Patron, Context, and Legacy in the Kerala Mathematical Tradition \u2014 *reddit* [https://reddit.com/r/IndicKnowledgeSystems/comments/1smt26n/netran\u0101r\u0101ya\u1e47a_patron]\n- Indian-Origin ACM Fellows (1993\u20132025): A Complete Record \u2014 *reddit* [https://reddit.com/r/IndicKnowledgeSystems/comments/1rjf42h/indianorigin_acm_fel]\n- CRWV + NVDA = BLACKGOLD -- CoreWeave BRINGS THOUSANDS OF Nvidia Grace (the expensive big boys) Black \u2014 *reddit* [https://reddit.com/r/CRWV/comments/1mrw6sp/crwv_nvda_blackgold_coreweave_brings_]\n- I wanted to share my little contraption... The Giliakind. I call it the \"kingdom of the gaps\". \u2014 *reddit* [https://reddit.com/r/SubSimGPT2Interactive/comments/1og5ok9/i_wanted_to_share_my]\n- AST SPACEMOBILE - The Starlink of Smartphones \u2014 *reddit* [https://reddit.com/r/ASTSpaceMobile/comments/q6tqw8/ast_spacemobile_the_starlink]\n- I wanted to use the pixel pack for something, so i created a schedule tracker \u2014 *reddit* [https://reddit.com/r/SubSimGPT2Interactive/comments/1oj2j8l/i_wanted_to_use_the_]\n- Device Trust from Android Enterprise | Securing access for modern enterprises \u2014 *reddit* [https://reddit.com/r/MDM_solution/comments/1oi3r9f/device_trust_from_android_ent]\n- Still relying on passwords and identity checks alone? | Webinar \u2014 *reddit* [https://reddit.com/r/SysAdminBlogs/comments/1oi3fuh/still_relying_on_passwords_a]\n- Passwords aren\u2019t enough anymore \u2014 *reddit* [https://reddit.com/r/Techmotion/comments/1ohbw4z/passwords_arent_enough_anymore/]\n- HCTI I'm expecting some bulish news today \u2014 *reddit* [https://reddit.com/r/hctistock/comments/1m7z59y/hcti_im_expecting_some_bulish_ne]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "SRIRAM ENTERPRISES",
+    "entity_country": "IN",
+    "entity_address": "P.NO 32, SABTHAGIRI NAGAR PUZHUTHIVAKKAM, Chennai, Tamil Nadu, India, 600091",
+    "entity_tax_id": "U24100TN2012PTC085563",
+    "key_individuals": [
+      {
+        "name": "COASTAL BANK K Venkataraman",
+        "title": "Director (DIN: 02443410)"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 41
+}

@@ -1,0 +1,31 @@
+{
+  "job_id": "6782297d-d50f-4e0b-88f9-c93d43daa675",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "gulf",
+  "entity_name": "COPAP MIDDLE EAST GENERAL TRADING CO. LLC",
+  "country": "AE",
+  "created_at": "2026-05-15T12:05:44.614892+00:00",
+  "updated_at": "2026-05-15T12:11:25.637293+00:00",
+  "blob_path": "osint-staging/cir/gulf/copap_middle_east_general_trading_co_llc_AE_20260515.json",
+  "report_summary": "Blob uploaded (HTTP 201). Research complete.\n\n---\n\n**DONE: COPAP Middle East General Trading Co. LLC, AE \u2014 Risk: 3 MONITOR \u2014 UAE entity of COPAP Inc. (Canada, est. 1989); 35-yr parent with EPCA membership; no sanctions/adverse media; UAE DED registry details unconfirmed; director identities for UAE entity not verified**\n\n---\n\n## Research Summary\n\n### Entity Identified\n**COPAP MIDDLE EAST GENERAL TRADING CO. LLC** is the UAE legal entity of **COPAP Inc.**, a privately held Canadian trading house founded in 1989, headquartered in Montreal. COPAP explicitly lists **Dubai as one of its six global personnel hubs** (alongside New York, S\u00e3o Paulo, Bogot\u00e1, Hong Kong, Paris).\n\n---\n\n### Parent Company \u2014 COPAP Inc. (Canada)\n\n| Field | Value |\n|---|---|\n| Founded | 1989 |\n| HQ | Montreal, Quebec, Canada |\n| Industries | Forest Products, Petrochemicals, Chemicals, Polymers |\n| Industry body | EPCA (European Petrochemical Association) \u2705 |\n| CEO/Founder | David Sela (Pointe-Claire, QC) |\n| Petrochem President | Naveen Chandra (Wharton MBA; 40+ years industry; ex-NECA President) |\n| Advisory board | Ex-CEO Export Development Canada; ex-CEO Sappi Europe; Founder Altavia |\n| Clients | 1,000+ companies across 100+ countries |\n\n### Key Checks\n\n| Check | Result |\n|---|---|\n| **Sanctions (OFAC/UN/EU/UK)** | \u2705 NO HITS |\n| **DIFC Courts** | \u2705 NO CASES |\n| **Gulf Media** | \u2705 NO ADVERSE (GDELT 0 results; BD_SERP 0 results) |\n| **CBUAE** | \u2705 Not a financial institution |\n| **RAK/Ajman free zone** | \u2705 NOT applicable \u2014 mainland LLC |\n| **Iran evasion patterns** | \u2705 NONE \u2014 35-year Canadian company |\n| **COPAP Corp/SEC/SPAC** | \u2705 Legitimate advisory relationship; no adverse implications |\n| **Dark web** | \u26a0\ufe0f Scan failed; 0 findings |\n\n### \u26a0\ufe0f Three Gaps Driving MONITOR Rating\n\n1. **UAE DED registry unconfirmed** \u2014 DED registration number, incorporation date, address not found in B2BHint or any public aggregator. Trade license copy required from counterparty.\n2. **UAE entity directors unknown** \u2014 Specific directors of the LLC not identified. Cannot screen against sanctions lists until identified.\n3. **Chlorinated solvents in product portfolio** \u2014 Chloroform (CWC Schedule 3), EDC, carbon tetrachloride. Legal to trade commercially, but end-use/destination verification recommended per standard compliance practice.\n\n### Required EDD Documents\n- UAE Trade License copy (DED)\n- Memorandum of Association (shareholders + directors)\n- Emirates IDs of local directors\n\n**Output saved:** `~/crawl/output/copap_middle_east_general_trading_co_llc_AE_20260515.json` \u2705\n**Blob uploaded:** `crawl-gulf/copap_middle_east_general_trading_co_llc_AE_20260515.json` \u2192 stcrawlosint/osint-staging \u2705\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 0/0 sources via Tor (Netherlands exit node)\n\nNo dark web exposure detected. Entity and owners clean across all 0 sources.\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "COPAP MIDDLE EAST GENERAL TRADING CO. LLC",
+    "entity_country": "AE",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "priority": "standard"
+  },
+  "region_status": {
+    "gulf": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 0
+}

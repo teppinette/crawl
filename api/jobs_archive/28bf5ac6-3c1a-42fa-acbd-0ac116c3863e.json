@@ -1,0 +1,65 @@
+{
+  "job_id": "28bf5ac6-3c1a-42fa-acbd-0ac116c3863e",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "VINATI ORGANICS LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-20T20:01:15.748730+00:00",
+  "updated_at": "2026-05-20T20:04:03.034263+00:00",
+  "blob_path": "osint-staging/cir/india/vinati_organics_limited_IN_20260520.json",
+  "report_summary": "Exact duplicate of 18:10 UTC. File is complete.\n\n**DONE (existing file): Vinati Organics Limited \u2014 Risk: 1 CLEAR \u2014 World's largest IBB & ATBS manufacturer; \u26a0\ufe0f Amit Thanawala (WTD Dec 2024) and Gulshan Sakhuja (CFO Nov 2025) missing from subject block**\n\n`~/crawl/output/vinati_organics_limited_IN_20260520.json` \u2014 14.5 KB, valid.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**4 actionable findings** from 6/57 sources via Tor (Netherlands exit node) (25 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Adverse media | 2 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 14 |\n| Website scans (URLScan) | 1 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: www.vinatiorganics.com\n- ADVERSE MEDIA: Vinati Organics Ltd Share Price Today, 1,323.00, Vinati Organics Ltd ...\n- ADVERSE MEDIA: Vinod Banwarilal Saraf - MarketScreener (Vinod Banwarilal Saraf)\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Vinati Organics Share Price Target 2025,2030,2035,2040; FCL - Fineotex Chemical Limited  a deep dive - 26 - Fundamen; First Attempt at DD - Deepak Nitrite (+12 more) |\n| duckduckgo_tor | 10 | Organic and Specialty Chemical Manufacturers India | Vinati ; Vinati Organics Limited | LinkedIn; VINATI ORGANICS LIMITED - Company Profile - Tracxn (+7 more) |\n| urlscan | 3 | www.vinatiorganics.com; Organic and Specialty Chemical Manufacturers India | Vinati  (+1 more) |\n| duckduckgo_adverse | 2 | Vinati Organics Ltd Share Price Today, 1,323.00, Vinati Orga; Vinod Banwarilal Saraf - MarketScreener |\n| hudsonrock_cavalier | 1 | www.vinatiorganics.com |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- www.vinatiorganics.com \u2014 *hudsonrock_cavalier*\n\n**ADVERSE MEDIA** (2)\n- Vinati Organics Ltd Share Price Today, 1,323.00, Vinati Organics Ltd ... \u2014 *duckduckgo_adverse* [/l/?uddg=https%3A%2F%2Fwww.business%2Dstandard.com%2Fmarkets%2Fvinati%2Dorganics]\n- Vinod Banwarilal Saraf - MarketScreener \u2014 *duckduckgo_adverse* (searched: Vinod Banwarilal Saraf) [/l/?uddg=https%3A%2F%2Fwww.marketscreener.com%2Finsider%2FVINOD%2DBANWARILAL%2DS]\n\n**WEB MENTION** (10)\n- Organic and Specialty Chemical Manufacturers India | Vinati Organics \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fvinatiorganics.com%2F&rut=34c1ff591a21bac4c6b4d6a4c71c4a7]\n- Vinati Organics Limited | LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fin.linkedin.com%2Fcompany%2Fvinati%2Dorganics%2Dlimited&r]\n- VINATI ORGANICS LIMITED - Company Profile - Tracxn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Fvinati%2Dorga]\n- Vinati Organics Limited (VINATIORGA.NS) - Yahoo Finance \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ffinance.yahoo.com%2Fquote%2FVINATIORGA.NS%2Fprofile%2F&ru]\n- Vinati Organics Invests \u20b919.88 Crore in Wholly Owned Subsidiary Veeral ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fscanx.trade%2Fstock%2Dmarket%2Dnews%2Fcompanies%2Fvinati%]\n- Vinati Organics Limited Audited Financial Results and Final Dividend ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.investywise.com%2Fvinati%2Dorganics%2Dlimited%2Dfy26%]\n- Vinati Organics Ltd Q4 FY26: Profit Jumps 17% YoY as ATBS Dominance ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Feduinvesting.in%2Fvinati%2Dorganics%2D20260514%2F&rut=75b]\n- Vinati Organics Limited Financials | Company Details - Tofler \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tofler.in%2Fvinati%2Dorganics%2Dlimited%2Fcompany%2FL]\n- Vinati Organics Ltd. Share Price Today | Vinati Organics Live NSE/BSE \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.valueresearchonline.com%2Fstocks%2F45121%2Fvinati%2Do]\n- Vinati Organics Infuses \u20b919.88 Crore into Veeral Organics Boosting ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.sahi.com%2Fnews%2Fvinati%2Dorganics%2Dinfuses%2D19%2D]\n\n**SOCIAL MENTION** (14)\n- Vinati Organics Share Price Target 2025,2030,2035,2040 \u2014 *reddit* [https://reddit.com/r/StockMarketIndia/comments/1ioch0e/vinati_organics_share_pri]\n- FCL - Fineotex Chemical Limited  a deep dive - 26 - Fundamental analysis - Chemical Sector \u2014 *reddit* [https://reddit.com/r/stock_trading_India/comments/1oriyqg/fcl_fineotex_chemical_]\n- First Attempt at DD - Deepak Nitrite \u2014 *reddit* [https://reddit.com/r/IndianStreetBets/comments/og92g5/first_attempt_at_dd_deepak]\n- [Raanan] Man, the Baker Mayfield slander needs to stop! He went to organization that was all-time ba \u2014 *reddit* [https://reddit.com/r/nfl/comments/uhffoz/raanan_man_the_baker_mayfield_slander_n]\n- India Daybook \u2013 Stocks in News* \u2014 *reddit* [https://reddit.com/r/UpdateINDIA/comments/1jqde2c/india_daybook_stocks_in_news/]\n- Screener' Market Data Section: we can find Results, Concalls, Upcoming IPOs, Bonus/Splits, Dividend, \u2014 *reddit* [https://reddit.com/r/InvestmentsTrading/comments/1icvus5/screener_market_data_se]\n- 'Trump in 2028': GOP-aligned organization calls for abolition of presidential term limits \u2014 *reddit* [https://reddit.com/r/NewsOfTheStupid/comments/1bs033r/trump_in_2028_gopaligned_o]\n- Pedro Pascal wore a t-shirt on \u2018Jimmy Kimmel Live\u2019 that features a slogan by prominent trans artist  \u2014 *reddit* [https://reddit.com/r/Fauxmoi/comments/1jjonio/pedro_pascal_wore_a_tshirt_on_jimm]\n- \ud83c\uddee\ud83c\uddf3India Daybook \u2013 Stocks in News* \u2014 *reddit* [https://reddit.com/r/IndianStreetBets/comments/1bhkvsg/india_daybook_stocks_in_n]\n- Shares of Indian companies in Forbes Asia's 200 Best Under A Billion grew by 9.8% against 7.6% growt \u2014 *reddit* [https://reddit.com/r/IndianStreetBets/comments/17uvlr6/shares_of_indian_companie]\n- Paragon Fine and Speciality chemicals IPO Analysis \u2014 *reddit* [https://reddit.com/r/IndianStockMarket/comments/17cy06a/paragon_fine_and_special]\n- Scientists just recorded a blue whale's heart beat for the first time, according to a new study. On  \u2014 *reddit* [https://reddit.com/r/science/comments/e2g5ya/scientists_just_recorded_a_blue_wha]\n- Canara Group Portfolio holdings \u2014 *reddit* [https://reddit.com/r/IndiaSpeaks/comments/12csx9p/canara_group_portfolio_holding]\n- Aether Industries IPO - Analysis and Review \u2014 *reddit* [https://reddit.com/r/DalalStreetTalks/comments/uwec5x/aether_industries_ipo_anal]\n\n**DOMAIN SCAN SUMMARY** (1)\n- www.vinatiorganics.com \u2014 *urlscan*\n\n**WEBSITE SCAN** (1)\n- Organic and Specialty Chemical Manufacturers India | Vinati Organics \u2014 *urlscan* [https://vinatiorganics.com/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "VINATI ORGANICS LIMITED",
+    "entity_country": "IN",
+    "entity_address": "B-12 & B-13 MIDC Area, Mahad, Dist-Raigad, Maharashtra 402309, India",
+    "entity_tax_id": "052224",
+    "key_individuals": [
+      {
+        "name": "Vinod Banwarilal Saraf"
+      },
+      {
+        "name": "Vinati Saraf Mutreja"
+      },
+      {
+        "name": "Viral Saraf Mittal"
+      },
+      {
+        "name": "Jagdish Chandra Laddha"
+      },
+      {
+        "name": "Mona Mukund Bhide"
+      },
+      {
+        "name": "Lakshmi Kantam Mannepalli"
+      },
+      {
+        "name": "Jayesh Ajitkumar Ashar"
+      },
+      {
+        "name": "Prashant Purushottam Barve"
+      },
+      {
+        "name": "Milind Arvind Wagh"
+      },
+      {
+        "name": "Nandkishor Goyal"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 4,
+  "dark_web_sources": 57
+}

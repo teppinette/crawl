@@ -1,0 +1,38 @@
+{
+  "job_id": "138f3b9f-aae7-4090-95f4-fca2f4277234",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "URMI CHEMICALS",
+  "country": "IN",
+  "created_at": "2026-05-21T12:59:21.233959+00:00",
+  "updated_at": "2026-05-21T13:01:38.326510+00:00",
+  "blob_path": "osint-staging/cir/india/urmi_chemicals_IN_20260521.json",
+  "report_summary": "Second Urmi Chemicals submission \u2014 file complete from 12:53 UTC. This version adds **PAN: AAAFU2434Q** (consistent with GSTIN) and only lists Vinod P. Shah \u2014 Miten V. Bhayani is also covered in the existing report.\n\n**DONE (existing file): Urmi Chemicals \u2014 Risk: 2 CLEAR \u2014 GSTIN 27AAAFU2434Q1ZT Active; PAN AAAFU2434Q confirmed; 39-year Sion Mumbai specialty esters partnership; GSTR3B filed May 11, 2026; Ethyl Chloroacetate exporter; Partners: Miten V. Bhayani + Vinod P. Shah**\n\n`~/crawl/output/urmi_chemicals_IN_20260521.json` \u2014 7.7 KB, valid.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 2/41 sources via Tor (Netherlands exit node) (11 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 41 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | Urmi Chemicals | Ethyl Chloroacetate manufacturer, supplier,; Urmi Chemicals - India | LinkedIn; Urmi Chemicals - Manufacturer from Thane, India | About Us (+7 more) |\n| reddit | 1 | Circuit sushi-based mall for any items unlocked trough green |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- Urmi Chemicals | Ethyl Chloroacetate manufacturer, supplier, and ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.urmichemicals.com%2F&rut=ab324190866930a98a459883a40b]\n- Urmi Chemicals - India | LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2Furmi%2Dchemicals%2D%2D%2Dind]\n- Urmi Chemicals - Manufacturer from Thane, India | About Us \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Furmi%2Dchemicals%2Fprofile.html&rut=a]\n- Urmi Chemicals - Contact - ChemicalBook India \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.chemicalbook.in%2Fmanufacturer%2Furmi%2Dchemicals%2Fc]\n- Urmi Chemicals - Sourceready Supplier \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.sourceready.com%2Fsupplier%2Fdetail%2Furmi%2Dchemical]\n- Urmi Chemicals \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.u]\n- Urmit Chemicals - A Government Recognized Star Export House. \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Furmitchem.com%2F&rut=51116710c5a8684424fb11f2648cfea1bb7c]\n- Urmi Chemicals - Overview, News & Similar companies - ZoomInfo \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zoominfo.com%2Fc%2Furmi%2Dchemicals%2F365411854&rut=8]\n- Urmi Chemicals Company Profile | Management and Employees List - Datanyze \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.datanyze.com%2Fcompanies%2Furmi%2Dchemicals%2F3654118]\n- Urmi Chemicals in Mumbai \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fmumbai.idbf.in%2F4313985%2Furmi%2Dchemicals&rut=415b216f0]\n\n**SOCIAL MENTION** (1)\n- Circuit sushi-based mall for any items unlocked trough green science  \u2014 *reddit* [https://reddit.com/r/factorio/comments/1gr71hq/circuit_sushibased_mall_for_any_i]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "URMI CHEMICALS",
+    "entity_country": "IN",
+    "entity_address": "1st Floor, 113, Champaklal Industrial Estate, Road Number 29, Next to Sion Telephone Exchange, Sion East, Mumbai, Mumbai Suburban, Maharashtra 400022",
+    "entity_tax_id": "27AAAFU2434Q1ZT (GSTIN); PAN: AAAFU2434Q",
+    "key_individuals": [
+      {
+        "name": "Vinod P. Shah"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 41
+}

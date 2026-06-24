@@ -1,0 +1,44 @@
+{
+  "job_id": "64dbc2f7-c67e-4fb4-9207-bb304122bf1b",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "SURESH PAPER PVT. LTD.",
+  "country": "IN",
+  "created_at": "2026-05-22T13:02:08.737790+00:00",
+  "updated_at": "2026-05-22T13:09:53.557218+00:00",
+  "blob_path": "osint-staging/cir/india/suresh_paper_pvt_ltd_IN_20260522.json",
+  "report_summary": "This research was already completed as part of the batch in my previous response. The file is saved and uploaded.\n\n**SURESH PAPER PVT. LTD. `IN` \u2014 Risk: 4 / REVIEW**\n\n- \u2705 `~/crawl/output/suresh_paper_pvt_ltd_IN_20260522.json` \u2014 saved & uploaded to `stcrawlosint/osint-staging/crawl-india/`\n\n**Summary of findings (full detail in prior response):**\n\n| Check | Result |\n|---|---|\n| CIN | U74899DL1988PTC031722 \u2014 Active |\n| Incorporated | 16 May 1988 \u00b7 Delhi |\n| Directors | Yogender Mittal (DIN 00046468, 29 yrs) \u00b7 Ankush Mittal (DIN 09132759) \u00b7 Poonam Mittal (DIN 09448372) |\n| Capital | Auth \u20b91.0 Cr \u00b7 **Paid-up \u20b923.7L** (2.4% \u2014 shell indicator) |\n| Bank charges | **None registered** |\n| GST/IEC | Not verified (portal access limitations) |\n| Sanctions | No hits |\n| PEP | No hits |\n| Litigation | **3\u00d7 Delhi HC writ petitions** \u2014 W.P.(C) 12377/2009 (15+ yr customs case, still pending), W.P.(C) 154/2024, W.P.(C) 7242/2024 |\n\n`DONE: Suresh Paper Pvt Ltd, IN -- Risk: 4 REVIEW -- Shell indicators + 15-year chronic customs dispute + 3 new HC writ petitions in 2024`\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 2/49 sources via Tor (Netherlands exit node) (21 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 49 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | What is a business plan?; How do I assess a person for a business partnership?; What is wrong with the culture of architecture? (+12 more) |\n| duckduckgo_tor | 10 | SURESH PAPER PVT. LTD. | A Paper Trading Company; SURESH PAPER PRIVATE LTD - ZaubaCorp; Suresh Paper Pvt Ltd in Chatta Shahji Road, Delhi - Best Pap (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- SURESH PAPER PVT. LTD. | A Paper Trading Company \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.sureshpaper.com%2Fabout&rut=2994fbe9587e2207d279f9e28]\n- SURESH PAPER PRIVATE LTD - ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2Fcompany%2FSURESH%2DPAPER%2DPRIVATE%2D]\n- Suresh Paper Pvt Ltd in Chatta Shahji Road, Delhi - Best Paper ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.justdial.com%2FDelhi%2FSuresh%2DPaper%2DPvt%2DLtd%2DN]\n- SURESH PAPER PRIVATE LTD - Company Profile - Tracxn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Fsuresh%2Dpape]\n- Suresh Paper Private Limited / U74899dl1988ptc031722 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.falconebiz.com%2Fcompany%2FSURESH%2DPAPER%2DPRIVATE%2]\n- Suresh Paper Private Ltd Financials | Company Details - Tofler \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tofler.in%2Fsuresh%2Dpaper%2Dprivate%2Dltd%2Fcompany%]\n- SURESH PAPER PRIVATE LTD Details | Company Profile | Directors Profile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.companydetails.in%2Fcompany%2Fsuresh%2Dpaper%2Dprivat]\n- Suresh Paper Private Ltd Company Profile - India - EMIS \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FIN%2FSuresh_Pape]\n- SURESH PAPER PVT. LTD. | Import Data | Export Data | Customs Data | NBD ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fen.nbd.ltd%2Ftrader%2Finfo%2F26IN0595038492&rut=6ec182b18]\n- SURESH PAPER PRIVATE LTD - The Economic Times \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Feconomictimes.indiatimes.com%2Fcompany%2Fsuresh%2Dpaper%2]\n\n**SOCIAL MENTION** (11)\n- What is a business plan? \u2014 *reddit* [https://reddit.com/r/designstartup/comments/om3lp3/what_is_a_business_plan/]\n- How do I assess a person for a business partnership? \u2014 *reddit* [https://reddit.com/r/zeyka/comments/ogtula/how_do_i_assess_a_person_for_a_busine]\n- What is wrong with the culture of architecture? \u2014 *reddit* [https://reddit.com/r/AgencyOfArchitecture/comments/ogtsos/what_is_wrong_with_the]\n- You Can Sell a Pvt Ltd Company Even If the Business Failed \u2014 *reddit* [https://reddit.com/r/StartUpIndia/comments/1t7vj69/you_can_sell_a_pvt_ltd_compan]\n- Today I became an Employed Jobless Programmer. \u2014 *reddit* [https://reddit.com/r/ProgrammerHumor/comments/ypbtax/today_i_became_an_employed_]\n- Registered a Pvt Ltd company in full Josh\u2026 now I\u2019m stuck. Need guidance. \u2014 *reddit* [https://reddit.com/r/IndianStockMarket/comments/1t00ysr/registered_a_pvt_ltd_com]\n- Why is Prestige Golden Grove rera against\n\"Aspire Spaces Pvt. Ltd.\" \u2014 *reddit* [https://reddit.com/r/Hyderabad_highrises/comments/1sapa4r/why_is_prestige_golden]\n- [Karnataka] Pvt Ltd registered office at founder's rented flat rent agreement in founder's name + NO \u2014 *reddit* [https://reddit.com/r/CharteredAccountants/comments/1tkc6z7/karnataka_pvt_ltd_reg]\n- Two A-listers, amazing songs\u2026 and still a forgettable film? \u2014 *reddit* [https://reddit.com/r/bollywood/comments/1srra2t/two_alisters_amazing_songs_and_s]\n- My experience at CodeTrade India Pvt Ltd: read this before you join \u2014 *reddit* [https://reddit.com/r/amdavadcompanyreviews/comments/1smul88/my_experience_at_cod]\n- LLP \u2192 Pvt Ltd for fundraising: convert vs dissolve &amp; restart? \u2014 *reddit* [https://reddit.com/r/indianstartups/comments/1qbsk0e/llp_pvt_ltd_for_fundraising]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "SURESH PAPER PVT. LTD.",
+    "entity_country": "IN",
+    "entity_address": "F-24, Gali No 10, Parwana Road, Jagatpuri, Delhi 110051, Delhi",
+    "entity_tax_id": "U74899DL1988PTC031722",
+    "key_individuals": [
+      {
+        "name": "Yogender Mittal"
+      },
+      {
+        "name": "Ankush Mittal"
+      },
+      {
+        "name": "Poonam Mittal"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 49
+}

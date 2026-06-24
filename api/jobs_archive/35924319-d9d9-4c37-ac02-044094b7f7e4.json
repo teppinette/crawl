@@ -1,0 +1,35 @@
+{
+  "job_id": "35924319-d9d9-4c37-ac02-044094b7f7e4",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "WEBFORMA DE PANAMA, S.A.",
+  "country": "PA",
+  "created_at": "2026-04-24T11:47:42.105264+00:00",
+  "updated_at": "2026-04-24T11:54:23.121598+00:00",
+  "blob_path": "osint-staging/cir/americas/webforma_de_panama_PA_20260424.json",
+  "report_summary": "Upload confirmed.\n\n**DONE: WEBFORMA DE PANAMA S.A., PA \u2014 Risk: 3 MONITOR \u2014 Legitimate 57-year-old paper manufacturer, active importer (1,735 shipments), FESA Group; no sanctions/adverse media/PEP; UBO opaque (Panama SA) requires EDD**\n\n---\n\n## \ud83d\udccb Counterparty Research: WEBFORMA DE PANAMA, S.A.\n`~/crawl/output/webforma_de_panama_PA_20260424.json` \u2192 uploaded to `stcrawlosint/osint-staging/americas/`\n\n---\n\n### \ud83c\udfe2 Corporate Registry (Workstream 1A)\n\n| Field | Value |\n|---|---|\n| RUC | 666-18-105292 / DV 36 |\n| Folio | **12259 MERCANTIL** |\n| Incorporated | **March 6, 1969** (57 years old) |\n| Operations started | August 1, 1972 |\n| Status | **VIGENTE** / Validity: PERPETUA |\n| Capital social | **USD 2,300,000** |\n| Registered address | Aquilino De La Guardia 8 (IGA law firm) |\n| Operational address | V\u00eda Jos\u00e9 Domingo D\u00edaz, **Edificio FESA**, Tocumen Comercial Park |\n| Last registry update | **2018-08-17** (7 years stale) \u26a0\ufe0f |\n| Resident agent | **ICAZA, GONZALEZ-RUIZ & ALEM\u00c1N** (IGA \u2014 top Panama law firm) |\n\n---\n\n### \ud83d\udc64 Directors & Officers (Workstream 1A)\n\n| Name | Role | Background |\n|---|---|---|\n| **Ra\u00fal Orillac** | President/Director | VP Finance, **Banco General** (Panama's largest private bank); MBA Virginia Darden; Director Suplente at UNESA |\n| **Edgardo Alberto Averza Colamarco** | Director/Secretary/Apoderado | RUT 8-340-758; Legal Rep for FESA Group; Secretary at Formas Eficientes S.A. |\n| **Edgar Omar C\u00e1ceres Rinc\u00f3n** | Director/Apoderado | 8 company links; Director at FESA Card Panama S.A. |\n| Vivian B. de Holmes | Subscriber | 1 company link \u2014 **nominal incorporator** |\n| ICAZA, GONZALEZ-RUIZ & ALEM\u00c1N | Resident Agent | ~20,570 Panama company links |\n\n---\n\n### \ud83d\udd17 FESA Corporate Group (Workstream 2A)\n\nAll three entities share the **identical board** (Orillac/Averza/C\u00e1ceres/IGA):\n\n| Entity | RUC | Founded | Business |\n|---|---|---|---|\n| **Webforma de Panama S.A.** | 666-18-105292 | **1969** | Paper manufacturing, carbonless forms, NCR paper imports |\n| **Formas Eficientes S.A. (FESA)** | 12657-192-125369 | Unknown | Business forms, government contracts (PanamaCompra) |\n| **FESA Card Panama S.A.** | 2481754-1-816329 | ~2014 | Financial card personalization, SIM cards, security documents \u26a0\ufe0f |\n\n> \u26a0\ufe0f FESA Card (financial card/PIN printing) is adjacent to sensitive financial services; standard EDD applies for that entity specifically.\n\n---\n\n### \ud83d\uded1 Sanctions Screening (Workstream 3A)\n\n| List | Result |\n|---|---|\n| OFAC SDN | **No hits** |\n| EU Consolidated | **No hits** |\n| UK FCDO | **No hits** |\n| UN Security Council | **No hits** |\n| ICIJ Offshore Leaks | **INACCESSIBLE** (JavaScript-rendered) \u2014 manual search required |\n| OFAC 50% Rule | **Not triggered** |\n\n---\n\n### \ud83d\udcf0 Adverse Media (Workstream 4A)\n**None found** \u2014 no press coverage, enforcement actions, corruption allegations, or compliance-adverse content for Webforma, its directors, or FESA Group.\n\n---\n\n### \ud83d\udea2 Trade Profile (Workstream 7A)\n\n| Metric | Value |\n|---|---|\n| **Total shipments** | **1,735** (2007\u20132026) |\n| Active to | **April 2, 2026** |\n| Top supplier | **PEREZ TRADING COMPANY** (US) |\n| Top origins | US \u2192 UK \u2192 Canada \u2192 Brazil \u2192 China |\n| Latest product | Carbonless copy paper in rolls (HS **480920100000**) |\n| Latest CIF | $5,018.75 USD (Feb 24, 2026) |\n\n---\n\n### \u2696\ufe0f Panama Papers / PEP (Workstreams 4A, 6A)\n\n- **ICIJ Offshore Leaks**: Not accessible \u2014 manual search at offshoreleaks.icij.org required\n- **Ra\u00fal Orillac**: Private sector only (Banco General, UNESA) \u2014 **NOT a PEP**\n- **Edgardo Averza / Edgar C\u00e1ceres**: Business executives \u2014 **Not PEPs**\n- **2002 FUSI\u00d3N (Merger)**: Merger counterparty not identified \u2014 recommend investigation\n\n---\n\n### \ud83c\udfaf Risk Assessment: **3 \u2014 MONITOR**\n\n| Factor | Finding |\n|---|---|\n| Business legitimacy | \u2705 57-year operating history, 1,735 active shipments |\n| Sanctions | \u2705 Clean across all lists |\n| Adverse media | \u2705 None |\n| PEP | \u2705 None |\n| Products | \u2705 Standard paper/forms \u2014 no dual-use |\n| **UBO** | \u26a0\ufe0f **Unknown** \u2014 Panama SA with nominees |\n| **Jurisdiction** | \u26a0\ufe0f Panama (removed FATF grey list Jan 2024, but residual risk) |\n| **Registry freshness** | \u26a0\ufe0f Last updated 2018 \u2014 7 years stale |\n| **2002 Merger** | \u26a0\ufe0f Counterparty unidentified |\n| **ICIJ check** | \u26a0\ufe0f Incomplete (portal inaccessible) |\n\n### \ud83d\udccb EDD Recommended:\n1. **IGA resident agent UBO certificate** \u2014 confirm beneficial owner under Panama Law 52/2016\n2. **Certified registry extract** (Registro P\u00fablico) \u2014 current share register and board\n3. **Manual ICIJ Offshore Leaks search** \u2014 all four entity/director names\n4. **2002 merger counterparty identification** \u2014 datocapital full filing review\n5. **Poder Judicial Panama** \u2014 court record search against RUC 666-18-105292",
+  "error": "americas: Report file not found on remote VM (americas)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "WEBFORMA DE PANAMA, S.A.",
+    "entity_country": "PA",
+    "entity_jurisdiction": "Panama",
+    "entity_type": "Private / Sociedad Anonima",
+    "entity_tax_id": "RUC 666-18-105292",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (americas)"
+    }
+  },
+  "errors": [
+    "americas: Report file not found on remote VM (americas)"
+  ]
+}

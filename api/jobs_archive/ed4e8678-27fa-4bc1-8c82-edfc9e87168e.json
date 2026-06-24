@@ -1,0 +1,130 @@
+{
+  "job_id": "ed4e8678-27fa-4bc1-8c82-edfc9e87168e",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "SHAH INTERNATIONAL PAPER PVT. LTD.",
+  "country_code": "IN",
+  "created_at": "2026-05-04T15:57:01.709743+00:00",
+  "updated_at": "2026-05-04T15:57:29.494854+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:57:07.826991+00:00",
+      "verified": true,
+      "legal_name": "SHAH INTERNATIONAL PAPER PRIVATE LIMITED",
+      "cin": "U21098MH2012PTC230313",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "27 April, 2012",
+      "directors": [
+        "Ami Rakesh Shah",
+        "Rakesh Kanaiyalal Shah"
+      ],
+      "registered_address": "505-A Wing, Neelkanth Business Park, Nathani Road, Near Vidhyvhiar Station, Vidhyvhiar (W), Mumbai, Maharashtra - 400086",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:57:08.528210+00:00",
+      "found": true,
+      "name": "Shah International",
+      "linkedin_url": "https://www.linkedin.com/company/shah-international-india",
+      "industry": "Furniture and Home Furnishings Manufacturing",
+      "company_size": "201-500 employees",
+      "locations": [],
+      "about": "",
+      "followers": 28,
+      "employees_on_linkedin": 2,
+      "organization_type": "Privately Held",
+      "website": "https://shahinternational.in/",
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "gnanamoorthy A",
+          "link": "https://in.linkedin.com/in/gnanamoorthy-a-906330305?trk=org-employees"
+        },
+        {
+          "name": "Virag Shah",
+          "link": "https://in.linkedin.com/in/virag-shah-2746bb361?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:57:29.494241+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 60,
+      "sources_searched": 37,
+      "sources_with_results": 2,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "SHAH INTERNATIONAL PAPER PVT. LTD.",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "job_id": "46a8e398-111c-4ab0-a237-9b0f7b1204f3",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "PON PURE CHEMICAL INDIA PRIVATE LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-20T19:11:21.476862+00:00",
+  "updated_at": "2026-05-20T19:13:28.502373+00:00",
+  "blob_path": null,
+  "report_summary": "Eighth submission \u2014 identical to 19:09. File is complete.\n\n**DONE (existing file): Pon Pure Chemical India Private Limited \u2014 Risk: 2 CLEAR**\n\n`~/crawl/output/pon_pure_chemical_india_pvt_ltd_IN_20260520.json` \u2014 23 KB, valid.\n---\n\n## DARK WEB SCREENING \u2014 MEDIUM\n**4 actionable findings** from 4/53 sources via Tor (Netherlands exit node) (25 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Breach records | 1 |\n| Adverse media | 3 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n\n**Key findings:**\n- ADVERSE MEDIA: PON PURE CHEMICAL INDIA PRIVATE LIMITED - Company Profile\n- ADVERSE MEDIA: PON PURE CHEMICAL INDIA PRIVATE LIMITED - LinkedIn\n- ADVERSE MEDIA: Pon Pure Chemical India Private Limited shareholding Company Profile ...\n- BREACH RECORD: \n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | AITA if I back out of being maid of honor at my best friends; On being o the same page; Had to report a coworker for filling our work ChatGPT with p (+12 more) |\n| duckduckgo_tor | 10 | Trader - Wholesaler / Distributor of Industrial Chemicals by; PON PURE CHEMICAL INDIA PRIVATE LIMITED | ZaubaCorp; PON PURE CHEMICAL INDIA PRIVATE LIMITED | LinkedIn (+7 more) |\n| duckduckgo_adverse | 3 | PON PURE CHEMICAL INDIA PRIVATE LIMITED - Company Profile; PON PURE CHEMICAL INDIA PRIVATE LIMITED - LinkedIn; Pon Pure Chemical India Private Limited shareholding Company |\n| dehashed | 1 | breach_record |\n\n### All findings detail\n\n**ADVERSE MEDIA** (3)\n- PON PURE CHEMICAL INDIA PRIVATE LIMITED - Company Profile \u2014 *duckduckgo_adverse* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Fpon%2Dpure%2D]\n- PON PURE CHEMICAL INDIA PRIVATE LIMITED - LinkedIn \u2014 *duckduckgo_adverse* [/l/?uddg=https%3A%2F%2Fin.linkedin.com%2Fcompany%2Fpon%2Dpure%2Dchemical%2Dindia]\n- Pon Pure Chemical India Private Limited shareholding Company Profile ... \u2014 *duckduckgo_adverse* [/l/?uddg=https%3A%2F%2Finfo.edgeinsights.in%2Fcompany%2Fshareholding%2FPon%2DPur]\n\n**BREACH RECORD** (1)\n-  \u2014 *dehashed*\n\n**WEB MENTION** (10)\n- Trader - Wholesaler / Distributor of Industrial Chemicals by Pon Pure ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.purechemicalsco.in%2F&rut=0bde7d4717c907097362e23019e]\n- PON PURE CHEMICAL INDIA PRIVATE LIMITED | ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2FPON%2DPURE%2DCHEMICAL%2DINDIA%2DPRIVA]\n- PON PURE CHEMICAL INDIA PRIVATE LIMITED | LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fin.linkedin.com%2Fcompany%2Fpon%2Dpure%2Dchemical%2Dindia]\n- Pure Chemicals Co is the leading chemical supplier and distributor \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.pure%2Dchemical.com%2F&rut=5ab4f968f48e29f437a4f8af8d]\n- PON PURE CHEMICAL INDIA PRIVATE LIMITED - 2026 Company Profile ... - Tracxn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Fpon%2Dpure%2D]\n- Pon Pure Chemical India Private Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.p]\n- Pon Pure Chemical India Private Limited - 2026 Insights \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fcompany%2Fpon%2Dpure%2Dchemical]\n- Pon Pure Chemical India Private Limited - IndiaMART \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Fpon%2Dpure%2Dchemical%2Dindia%2Dpriva]\n- PON PURE CHEMICAL INDIA PRIVATE LIMITED - ClearTax \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fcleartax.in%2Ff%2Fcompany%2Fpon%2Dpure%2Dchemical%2Dindia]\n- Pon Pure Chemical India Private Limited (India) \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FIN%2FPon_Pure_Ch]\n\n**SOCIAL MENTION** (15)\n- AITA if I back out of being maid of honor at my best friends wedding next weekend? Best man is my ex \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1tgbboh/aita_if_i_back_out_o]\n- On being o the same page \u2014 *reddit* [https://reddit.com/r/CuratedTumblr/comments/1pnjp5d/on_being_o_the_same_page/]\n- Had to report a coworker for filling our work ChatGPT with porn. \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1ovt5yv/had_to_report_a_cowo]\n- AITA for yelling at my friend about her B.O. after literally throwing up? \u2014 *reddit* [https://reddit.com/r/AmItheAsshole/comments/1p2sicn/aita_for_yelling_at_my_frien]\n- [Final New Update]: TIFU by importing bees to Uruguay + 4-Year Update \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1t9s6kl/final_new_update_tif]\n- Warum das System f\u00fcr uns Normalverdiener kaputt ist \u2013 und warum sich die Politik gerade ihr eigenes  \u2014 *reddit* [https://reddit.com/r/Normalverdiener/comments/1rktn53/warum_das_system_f\u00fcr_uns_n]\n- TikTok's most popular influencer sold his company for $975m... to a sketchy Chinese \"printing\" compa \u2014 *reddit* [https://reddit.com/r/wallstreetbets/comments/1qtig67/tiktoks_most_popular_influe]\n- Michael Burry - Foundations: The Big Short Squeeze \u2014 *reddit* [https://reddit.com/r/Superstonk/comments/1pntmak/michael_burry_foundations_the_b]\n- It has begun, Ohio's next \u2014 *reddit* [https://reddit.com/r/Ohio/comments/1l6eb1k/it_has_begun_ohios_next/]\n- AITA for secretly paying off my girlfriends debt? \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1p589bz/aita_for_secretly_pa]\n- AITAH: For telling my husband to not bring his sick ex to our house and not get personally involved  \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1oqll97/aitah_for_telling_my]\n- hyundai outside india \u2014 *reddit* [https://reddit.com/r/CarsIndia/comments/1t44usu/hyundai_outside_india/]\n- The Darkest Alien Theory and Why They\u2019re Desperately Hiding It \u2014 *reddit* [https://reddit.com/r/aliens/comments/1mmdgw7/the_darkest_alien_theory_and_why_th]\n- UPDATE 2 [\u20b93L RTX 5090]: Amazon faked a refund to silence me, and the data trail I\u2019ve uncovered is i \u2014 *reddit* [https://reddit.com/r/TwentiesIndia/comments/1sdage8/update_2_3l_rtx_5090_amazon_]\n- My [24M] mom [67F] went through my girlfriend\u2019s [22F] wallet and took photos of her National ID. It\u2019 \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1qqw959/my_24m_mom_67f_went_]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "india: Report file not found on remote VM (india)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "PON PURE CHEMICAL INDIA PRIVATE LIMITED",
+    "entity_country": "IN",
+    "entity_address": "No. 32, H-Block, 15th Main Road, Anna Nagar, Chennai, Tamil Nadu 600040",
+    "entity_tax_id": "040872",
+    "key_individuals": [
+      {
+        "name": "MUTHUSAMY PONNUSWAMI"
+      },
+      {
+        "name": "PONNUSWAMI MANAORANJITHAM"
+      },
+      {
+        "name": "SAMBANDAM SRINIVASAN"
+      },
+      {
+        "name": "MUTHUSAMY PONNUSAMI SURYAPRAKAS"
+      },
+      {
+        "name": "MUTHUSAMY PONNUSWAMI LAKSHMIPATHY"
+      },
+      {
+        "name": "MANIVANNAN KAMALANATHAN"
+      },
+      {
+        "name": "VINOTH KUMAR"
+      },
+      {
+        "name": "M. Ponnuswami"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (india)"
+    }
+  },
+  "errors": [
+    "india: Report file not found on remote VM (india)"
+  ],
+  "dark_web_findings": 4,
+  "dark_web_sources": 53
+}

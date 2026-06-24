@@ -1,0 +1,138 @@
+{
+  "job_id": "9f43be0b-3a7a-4923-b892-f1eb637cff47",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "SPECIALITY CHEMICAL INDUSTRIES (PVT) LTD",
+  "country_code": "PK",
+  "created_at": "2026-05-04T14:46:53.884397+00:00",
+  "updated_at": "2026-05-04T14:47:17.401737+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:47:01.984584+00:00",
+      "verified": false,
+      "legal_name": null,
+      "registration_number": null,
+      "entity_status": null,
+      "company_type": null,
+      "cro": null,
+      "registration_date": null,
+      "fbr": null,
+      "all_matches": null,
+      "source": "SECP eServices (direct gov query)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:47:06.214293+00:00",
+      "found": true,
+      "name": ".",
+      "linkedin_url": "https://in.linkedin.com/company/universal-speciality-chemical-pvt-ltd-",
+      "industry": "Chemical Manufacturing",
+      "company_size": "11-50 employees",
+      "locations": [
+        "FLAT N.-502 \"A\" WING, BEZZOLA COMPLEX, TROMBAY ROAD, CHEMBUR, ABOVE VIJAY SALES SHOWROOM Mumbai, Maharashtra 400071, IN"
+      ],
+      "about": "UNIVERSAL SPECIALITY CHEMICAL PVT. LTD. is a chemicals company based out of FLAT N.-502 \"A\" WING, BEZZOLA COMPLEX, TROMBAY ROAD, CHEMBUR, ABOVE VIJAY SALES SHOWROOM, Mumbai, Maharashtra, India.",
+      "followers": 235,
+      "employees_on_linkedin": 9,
+      "organization_type": null,
+      "website": "https://www.uscpl.net/",
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "KAUSHIK DWIVEDI",
+          "link": "https://in.linkedin.com/in/kaushik-dwivedi-25807775?trk=org-employees"
+        },
+        {
+          "name": "vijay chemate",
+          "link": "https://in.linkedin.com/in/vijay-chemate-68a651125?trk=org-employees"
+        },
+        {
+          "name": "Mayuri Mestri",
+          "link": "https://in.linkedin.com/in/mayuri-mestri-a716a713a?trk=org-employees"
+        },
+        {
+          "name": "Ankita Bagwe",
+          "link": "https://in.linkedin.com/in/ankita-bagwe-b87735144?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:47:17.401177+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 60,
+      "sources_searched": 37,
+      "sources_with_results": 2,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "SPECIALITY CHEMICAL INDUSTRIES (PVT) LTD",
+    "country_code": "PK",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

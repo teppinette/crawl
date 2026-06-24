@@ -1,0 +1,62 @@
+{
+  "job_id": "6d8d2c61-3c25-4664-8e6b-dbe4bcdd3b49",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "C J SHAH & CO.",
+  "country": "IN",
+  "created_at": "2026-05-21T19:55:44.044861+00:00",
+  "updated_at": "2026-05-21T19:58:29.537042+00:00",
+  "blob_path": null,
+  "report_summary": "Sixth C J Shah & Co. submission (OFAC SDN ID no longer in this version's identifiers, but the entity is the same).\n\n## \ud83d\udea8\ud83d\udea8\ud83d\udea8 SANCTIONS ALERT \u2014 SIXTH WARNING\n\n**DONE (existing file): C J Shah & Co. \u2014 Risk: 5/5 HIGH RISK \u2014 CONFIRMED OFAC SDN LIST \u2014 SDN ID 55874 \u2014 Iran-related petrochemical sanctions \u2014 Maharashtra (27AAAFC5600N1ZJ) + Tamil Nadu (33AAAFC5600N1ZQ) operations**\n\n`~/crawl/output/cj_shah_and_co_IN_20260521.json` \u2014 updated with TN GSTIN, valid.\n\n**STOP ALL TRANSACTIONS. DO NOT ENGAGE UNDER ANY CIRCUMSTANCES. The OFAC SDN designation applies regardless of which GSTIN or address is used.**\n---\n\n## DARK WEB SCREENING \u2014 CRITICAL\n**3 actionable findings** from 5/45 sources via Tor (Netherlands exit node) (25 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| World Bank Debarment | 1 |\n| Leaked documents | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n\n**Key findings:**\n- WORLD BANK DEBARMENT: \n- LEAKED DOCUMENT: SHAH ON CO-PRODUCTION OF DEFENSE SYSTEMS\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | A guy patenting sending AI emails! This definitely belongs h; The 1852 States\u2019 Rights &amp; Know-Nothing Conventions | Pea; 500+ Books for Sale (+12 more) |\n| duckduckgo_tor | 10 | C J Shah & Co. | LinkedIn; Company Profile - Cj Shah And Co - ChemDmart; C J Shah & Co. - Wholesaler / Distributor from Nariman ... - (+7 more) |\n| wikileaks | 3 | SHAH ON CO-PRODUCTION OF DEFENSE SYSTEMS (+2 more) |\n| adb_sanctions | 1 | debarment_record |\n| intelx | 1 | Researcher200 Lookups/dayPriority email support |\n\n### All findings detail\n\n**WORLD BANK DEBARMENT** (1)\n-  \u2014 *adb_sanctions* [https://www.adb.org/who-we-are/integrity/sanctions]\n\n**LEAKED DOCUMENT** (1)\n- SHAH ON CO-PRODUCTION OF DEFENSE SYSTEMS \u2014 *wikileaks* [https://wikileaks.org/plusd/cables/1974TEHRAN07607_b.html]\n\n**WEB MENTION** (10)\n- C J Shah & Co. | LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fin.linkedin.com%2Fcompany%2Fc%2Dj%2Dshah%2Dco&rut=30f9eea]\n- Company Profile - Cj Shah And Co - ChemDmart \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fchemdmart.com%2Fcompany%2Dprofile%2Fcj%2Dshah%2Dand%2Dco&]\n- C J Shah & Co. - Wholesaler / Distributor from Nariman ... - IndiaMART \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Fcompany%2F761597%2Faboutus.html&rut=8]\n- Sanctioning Entities Trading in Iranian Petroleum and Petrochemicals ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.state.gov%2Freleases%2Foffice%2Dof%2Dthe%2Dspokespers]\n- C.j. Shah and Co. \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.c]\n- C J Shah & Co. Information - RocketReach \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Frocketreach.co%2Fc%2Dj%2Dshah%2Dco%2Dprofile_b781195fc256]\n- IMCD India to acquire two business lines from CJ Shah & Company \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.imcdgroup.com%2Fmedia%2Dcentre%2Fpress%2Dreleases%2Fi]\n- CJ Shah Group - Products, Competitors, Financials, Employees ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.cbinsights.com%2Fcompany%2Fcj%2Dshah%2Dgroup&rut=8c30]\n- CJ Shah & Co Pvt Ltd - Company Profile and News - Bloomberg Markets \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.bloomberg.com%2Fprofile%2Fcompany%2F2322888D%3AIN&rut]\n- C.j. Shah & Company Private Limited to Mumbai , India | Kompass \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fin.kompass.com%2Fc%2Fc%2Dj%2Dshah%2Dcompany%2Dprivate%2Dl]\n\n**SOCIAL MENTION** (15)\n- A guy patenting sending AI emails! This definitely belongs here \u2014 *reddit* [https://reddit.com/r/LinkedInLunatics/comments/1rrgtjd/a_guy_patenting_sending_a]\n- The 1852 States\u2019 Rights &amp; Know-Nothing Conventions | Peacock-Shah Alternate Elections \u2014 *reddit* [https://reddit.com/r/Presidentialpoll/comments/njaswu/the_1852_states_rights_kno]\n- 500+ Books for Sale \u2014 *reddit* [https://reddit.com/r/BooksForSaleIndia/comments/1sj5i6u/500_books_for_sale/]\n- Can you spot your favourite book ? \u2014 *reddit* [https://reddit.com/r/Indianbooks/comments/1qtvxpu/can_you_spot_your_favourite_bo]\n- New Squad Numbers - 25/26 Season \u2014 *reddit* [https://reddit.com/r/reddevils/comments/1mexbzv/new_squad_numbers_2526_season/]\n- 99\u00a2 Queer Indie Book Promo \u2014 182 Books \u2014 10-12 March 2026 \u2014 *reddit* [https://reddit.com/r/MM_RomanceBooks/comments/1rr4neq/99_queer_indie_book_promo_]\n- DreamHack Masters Las Vegas 2017 - Information, Schedule &amp; Discussion \u2014 *reddit* [https://reddit.com/r/GlobalOffensive/comments/5u1rlp/dreamhack_masters_las_vegas]\n- Help me identify this map \u2014 *reddit* [https://reddit.com/r/MapPorn/comments/1nrwvp3/help_me_identify_this_map/]\n- Last Week in Collapse: January 11-17, 2026 \u2014 *reddit* [https://reddit.com/r/collapse/comments/1qgdqgb/last_week_in_collapse_january_111]\n- New Releases, Sales, &amp; Freebies March 17 \u2014 *reddit* [https://reddit.com/r/MM_RomanceBooks/comments/1rwuikf/new_releases_sales_freebie]\n- What Year is this Map From? \u2014 *reddit* [https://reddit.com/r/Maps/comments/1nqeawp/what_year_is_this_map_from/]\n- Out and about on Whiteladies... \u2014 *reddit* [https://reddit.com/r/bristol/comments/1qa4vy4/out_and_about_on_whiteladies/]\n- Movies released on Jan 14. Which is your Fav?(may have missed some, do add if you know them) \u2014 *reddit* [https://reddit.com/r/kollywood/comments/1qc7l2b/movies_released_on_jan_14_which_]\n- Decluttering makeup \u2014 *reddit* [https://reddit.com/r/IndianBeautyDeclutter/comments/1qld76q/decluttering_makeup/]\n- decluttering \u2014 *reddit* [https://reddit.com/r/IndianBeautyDeclutter/comments/1rsioyo/decluttering/]\n\n**LEAK ARCHIVE** (1)\n- Researcher200 Lookups/dayPriority email support \u2014 *intelx*\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "india: Report file not found on remote VM (india)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "C J SHAH & CO.",
+    "entity_country": "IN",
+    "entity_address": "105, Bajaj Bhavan, 10th Floor, Nariman Point, Mumbai, Maharashtra 400021, India",
+    "entity_tax_id": "AAAFC5600N (PAN); GSTIN 27AAAFC5600N1ZJ (Maharashtra); GSTIN 33AAAFC5600N1ZQ (Tamil Nadu)",
+    "key_individuals": [
+      {
+        "name": "Apurva Mahesh Shah",
+        "title": "Partner"
+      },
+      {
+        "name": "Shital Apurva Shah",
+        "title": "Partner"
+      },
+      {
+        "name": "Apurva Mahesh Shah",
+        "title": "UBO"
+      },
+      {
+        "name": "Shital Apurva Shah",
+        "title": "UBO"
+      },
+      {
+        "name": "Apurva Mahesh Shah",
+        "title": "UBO"
+      },
+      {
+        "name": "Shital Apurva Shah",
+        "title": "UBO"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (india)"
+    }
+  },
+  "errors": [
+    "india: Report file not found on remote VM (india)"
+  ],
+  "dark_web_findings": 3,
+  "dark_web_sources": 45
+}

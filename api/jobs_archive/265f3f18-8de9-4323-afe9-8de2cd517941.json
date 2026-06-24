@@ -1,0 +1,32 @@
+{
+  "job_id": "265f3f18-8de9-4323-afe9-8de2cd517941",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "china",
+  "entity_name": "JIANGSU HUALUN GALAXY CHEMICAL COMMERCIAL HOLDING CO., LTD",
+  "country": "CN",
+  "created_at": "2026-05-04T17:11:27.554191+00:00",
+  "updated_at": "2026-05-04T17:15:28.196693+00:00",
+  "blob_path": "osint-staging/cir/china/jiangsu_hualun_galaxy_chemical_commercial_holding_co_ltd_cn_20260430.json",
+  "report_summary": "**UPDATED:** JIANGSU HUALUN GALAXY CHEMICAL COMMERCIAL HOLDING CO., LTD, CN -- Risk: 2 MONITOR\n\nReport refreshed with today's date and explicit country-specific checks added per the region_china skill requirements:\n\n| Check | Status | Detail |\n|-------|--------|--------|\n| **NECIPS/GSXT** | \u2705 **Active** | USCC 91321012084395686G verified in operation |\n| **Qichacha/Tianyancha** | \u2705 **Active** | WU YIBIAO confirmed as actual controller (51%) |\n| **UFLPA Entity List** | \u2705 **NOT LISTED** | No forced labor/Xinjiang concerns. Jiangsu location. |\n| **BIS MEU/Entity List** | \u2705 **NOT LISTED** | No military end-user concerns |\n| **NS-CMIC List** | \u2705 **NOT LISTED** | Not applicable \u2014 commercial chemical manufacturer |\n\nAll existing workstreams (1A-8A) remain valid. No new sanctions designations, litigation, or adverse media since the April 30 report.\n\n\u2705 **Updated report:** `/home/copapadmin/crawl/output/jiangsu_hualun_galaxy_chemical_commercial_holding_co_ltd_cn_20260430.json` (20,904 bytes)\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**60 findings** from 2/37 sources via Tor (Netherlands exit node)\n\n| Category | Count |\n|----------|-------|\n| Breach records | 50 |\n| Web mentions (Tor-routed) | 10 |\n\n**Key findings:**\n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "JIANGSU HUALUN GALAXY CHEMICAL COMMERCIAL HOLDING CO., LTD",
+    "entity_country": "CN",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "china": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 60,
+  "dark_web_sources": 37
+}

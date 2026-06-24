@@ -1,0 +1,70 @@
+{
+  "job_id": "6fa53279-08ff-4945-a0de-3b455b26df01",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "TRITEC RESINAS LTDA",
+  "country": "BR",
+  "created_at": "2026-05-22T16:59:00.759593+00:00",
+  "updated_at": "2026-05-22T17:08:06.093648+00:00",
+  "blob_path": "osint-staging/cir/americas/tritec_resinas_ltda_BR_20260522.json",
+  "report_summary": "Duplicate \u2014 `americas/tritec_resinas_ltda_BR_20260522.json` uploaded today at 16:58 UTC.\n\n| | |\n|---|---|\n| **File** | `americas/tritec_resinas_ltda_BR_20260522.json` |\n| **Risk** | **2 / CLEAR** |\n| **Entity** | Tritec Pl\u00e1sticos \u2014 34-year plastic products manufacturer, Jaragu\u00e1 do Sul, SC |\n| **Employees** | 201-500 \u00b7 9,573 LinkedIn followers |\n| **\ud83d\udd34 HIGH** | CNPJ not retrieved \u00b7 Pedro Y.M. Gatti vs Pedro A.M. Gatti \u2014 identity clarification needed |\n\nNo re-research warranted.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**2 actionable findings** from 4/57 sources via Tor (Netherlands exit node) (12 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Web mentions (Tor-routed) | 9 |\n| Social media mentions | 2 |\n| Website scans (URLScan) | 1 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: www.tritec.ind.br\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 9 | Tritec Resinas | Importa\u00e7\u00e3o e Distribui\u00e7\u00e3o de Resinas Termop; TRITEC RESINAS LTDA. Company Profile | JARAGUA DO SUL, SANTA; Company Profile - Tritec Resinas Ltda - chemdmart.com (+6 more) |\n| reddit | 2 | Found this little guy in my local Daiso; Da lamparina de azeite \u00e0 Enel: a hist\u00f3ria da energia em S\u00e3o  |\n| urlscan | 2 | www.tritec.ind.br; Tritec: Nosso prop\u00f3sito \u00e9 transformar pl\u00e1stico em experi\u00eanci |\n| hudsonrock_cavalier | 1 | www.tritec.ind.br |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- www.tritec.ind.br \u2014 *hudsonrock_cavalier*\n\n**WEB MENTION** (9)\n- Tritec Resinas | Importa\u00e7\u00e3o e Distribui\u00e7\u00e3o de Resinas Termopl\u00e1sticas \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tritec.ind.br%2Fa%2Dtritec%2Fresinas&rut=21eadf2cd4a8]\n- TRITEC RESINAS LTDA. Company Profile | JARAGUA DO SUL, SANTA CATARINA ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.t]\n- Company Profile - Tritec Resinas Ltda - chemdmart.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fchemdmart.com%2Fcompany%2Dprofile%2Ftritec%2Dresinas%2Dlt]\n- Tritec Resinas Ltda. - Cnpj 81.632.648/0009-30 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.consultacnpjfacil.com.br%2Fempresa%2F81632648000930%2]\n- Tritec Resinas Ltda, Brazil | Supplier Report \u2014 Panjiva \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fpanjiva.com%2FTritec%2DResinas%2DLtda%2F33966298&rut=0233]\n- Tritec Resinas Ltda. - 81632648000182 Jaragu\u00e1 do Sul \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fcnpj.biz%2F81632648000182&rut=797f4ad2ac60cf0d16e6b4f98e9]\n- Tritec Resinas Ltda - Dunsguide \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dunsguide.com%2Fcompany%2F0744d2b7a42524b4356ad8a426b]\n- Tritec Resinas Ltda. CNPJ 81632648000930 - Consultas CNPJ \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.consultascnpj.com%2Ftritec%2Dresinas%2Dltda%2F8163264]\n- Tritec Resinas Ltda. | Cnpj\u00e1 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fcnpja.com%2Foffice%2F81632648000182&rut=cbe1e08e05d0f1d89]\n\n**SOCIAL MENTION** (2)\n- Found this little guy in my local Daiso \u2014 *reddit* [https://reddit.com/r/tamagotchi/comments/1sul43z/found_this_little_guy_in_my_loc]\n- Da lamparina de azeite \u00e0 Enel: a hist\u00f3ria da energia em S\u00e3o Paulo \u2014 *reddit* [https://reddit.com/r/saopaulo/comments/1pkdiky/da_lamparina_de_azeite_\u00e0_enel_a_h]\n\n**DOMAIN SCAN SUMMARY** (1)\n- www.tritec.ind.br \u2014 *urlscan*\n\n**WEBSITE SCAN** (1)\n- Tritec: Nosso prop\u00f3sito \u00e9 transformar pl\u00e1stico em experi\u00eancias \u2014 *urlscan* [https://www.tritec.ind.br/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "TRITEC RESINAS LTDA",
+    "entity_country": "BR",
+    "entity_website": "http://www.tritec.ind.br/en/tritec/",
+    "key_individuals": [
+      {
+        "name": "PEDRO A. M. GATTI",
+        "title": "Director"
+      },
+      {
+        "name": "Dilson Porath",
+        "title": "Officer"
+      },
+      {
+        "name": "PEDRO ARMANDO MARTINS GATTI",
+        "title": "Director"
+      },
+      {
+        "name": "MAURICIO BANDEIRA VILLAMIL",
+        "title": "Director"
+      },
+      {
+        "name": "LUIZ AUGUSTO ROBINSON DE CAMPOS MORAIS",
+        "title": "Shareholder"
+      },
+      {
+        "name": "ERACI FERNANDES",
+        "title": "Shareholder"
+      },
+      {
+        "name": "Pedro Ami. Gatti",
+        "title": "Officer"
+      },
+      {
+        "name": "Dilma Pont",
+        "title": "Officer"
+      },
+      {
+        "name": "Pedro Y.M. Gatti",
+        "title": "Authorized Signer"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 2,
+  "dark_web_sources": 57
+}

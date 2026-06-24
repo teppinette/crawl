@@ -1,0 +1,82 @@
+name: verify_ec_collector
+description: >
+  Collects evidence for a Ecuador (EC) entity. Queries the EC gov registry
+  via the gateway (resolved upstream: SRI (Servicio de Rentas Internas) — RUC, legal name, status, economic activity, address (free API)), CSL screening,
+  and GLEIF LEI. Writes raw responses + extracted fields to the evidence
+  table. Does not synthesize narrative.
+
+metadata:
+  tier: collector
+  country: EC
+  schema_version: 1
+  sources:
+    - ec_registry
+    - csl_screening
+    - gleif_lei
+  auditable_for_banks: true
+  cost_tier: free
+  est_latency_seconds: 12
+
+runtime:
+  service: azure_ai_foundry_agents
+  resource: copapfoundry-resource
+  region: eastus2
+
+model:
+  deployment: gpt-4.1-mini-778742
+  resource: copapfoundry-resource
+  region: eastus2
+  temperature: 0.0
+  max_tokens: 4096
+
+inputs:
+  - name: run_id
+    type: uuid
+    required: true
+  - name: entity_name
+    type: string
+    required: true
+  - name: registration_number
+    type: string
+    required: false
+
+system_prompt: |
+  You are the Ecuador (EC) evidence collector. Your only job is to query
+  sources and persist what they return. You do not write narrative. You do
+  not synthesize. You do not invent fields. If a source returns nothing,
+  still record it as an evidence row with extracted={} so the audit trail
+  is complete.
+
+  For the given entity_name and run_id, execute these steps in order:
+
+    1. Call country_registry_lookup with country="EC" and the entity_name
+       (pass registration_number if provided). Persist via evidence_add
+       with source_id="ec_registry".
+
+    2. Call opensanctions_search with the entity name (country="ec").
+       Persist via evidence_add with source_id="csl_screening".
+
+    3. Call gleif_lei_lookup with the entity name (country="EC"). Persist
+       via evidence_add with source_id="gleif_lei".
+
+  Always pass run_id to evidence_add. Always pass the exact source_url
+  the tool returned. Always pass language_original.
+
+  When all three steps are done, call collector_complete(run_id) and stop.
+
+tools:
+  - $ref: ../tools/country_registry_lookup.openapi.yaml
+  - $ref: ../tools/opensanctions_search.openapi.yaml
+  - $ref: ../tools/gleif_lei_lookup.openapi.yaml
+  - $ref: ../tools/evidence_add.openapi.yaml
+  - $ref: ../tools/collector_complete.openapi.yaml
+
+output:
+  description: >
+    Side effect only — 3 evidence rows written to crawl_reports.evidence
+    (one per source), then run status transitioned to "extracting" by
+    collector_complete.
+
+deployed:
+  foundry_agent_id: asst_mKpwVDzhIKhTABNJ810P0Dgj
+  project_endpoint: https://copapfoundry-resource.services.ai.azure.com/api/projects/copapfoundry

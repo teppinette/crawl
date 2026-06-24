@@ -1,0 +1,141 @@
+{
+  "job_id": "0fd560b2-a928-4b80-8301-47c6623ff4a3",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "VISEN INDUSTRIES LIMITED",
+  "country_code": "IN",
+  "created_at": "2026-05-04T14:29:50.571505+00:00",
+  "updated_at": "2026-05-04T14:30:54.623628+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:29:57.616249+00:00",
+      "verified": true,
+      "legal_name": "VISEN INDUSTRIES LIMITED",
+      "cin": "U24100MH1985PLC037350",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "03 September, 1985",
+      "directors": [
+        "Louis Zacharias",
+        "Cherry Vijay Nair",
+        "others"
+      ],
+      "registered_address": "501,Stanford,Plot no.554, Junction of S V Road & Juhu Lane, Andher, i (W), Mumbai, Maharashtra, India, 400058",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:30:02.563908+00:00",
+      "found": true,
+      "name": "VISEN INDUSTRIES LTD.",
+      "linkedin_url": "https://kr.linkedin.com/company/visen-industries-ltd-",
+      "industry": "Chemical Manufacturing",
+      "company_size": "201-500 employees",
+      "locations": [
+        "501,Stanford,Plot No 554,Junction of S.V. Road & Juhu Lane Andheri Wes,Mumbai MUMBAI, MAHARASTRA 400058, IN"
+      ],
+      "about": "Close to four decades, Visen has established itself as a leading water-based emulsion manufacturer, driven by innovation, quality and ethics. Our products are the invisible bind that brings families together, fostering strong bonds and weaving stories across homes, offices and beyond. It's not just about product, it's about creating enduring connections and timeless narratives. Visen Industries Limited embodies the entrepreneurial spirit of its founder, Mr. Vijay Nair, a farmer turned entreprene",
+      "followers": 4972,
+      "employees_on_linkedin": 311,
+      "organization_type": "Public Company",
+      "website": "https://www.visen.net/",
+      "specialties": "producing and marketing water based polymer emulsions",
+      "notable_employees": [
+        {
+          "name": "SUNIL MALGEKAR",
+          "link": "https://in.linkedin.com/in/sunil-malgekar-26447b10?trk=org-employees"
+        },
+        {
+          "name": "Dr. Ashis Kumar K",
+          "link": "https://in.linkedin.com/in/dr-ashis-kumar-k-2398871b?trk=org-employees"
+        },
+        {
+          "name": "Atul Daddemal",
+          "link": "https://ae.linkedin.com/in/atul-daddemal-395a6a1b?trk=org-employees"
+        },
+        {
+          "name": "Ganesan N",
+          "link": "https://in.linkedin.com/in/ganesan-n-80748120?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:30:54.623047+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 60,
+      "sources_searched": 37,
+      "sources_with_results": 2,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "VISEN INDUSTRIES LIMITED",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

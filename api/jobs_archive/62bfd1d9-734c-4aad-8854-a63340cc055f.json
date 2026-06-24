@@ -1,0 +1,37 @@
+{
+  "job_id": "62bfd1d9-734c-4aad-8854-a63340cc055f",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "ABHISHEK NARAYAN",
+  "country": "IN",
+  "created_at": "2026-05-21T14:43:49.661575+00:00",
+  "updated_at": "2026-05-21T14:45:17.172312+00:00",
+  "blob_path": "osint-staging/cir/india/abhishek_narayan_IN_20260521.json",
+  "report_summary": "**DONE: Abhishek Narayan \u2014 Risk: INCOMPLETE (CANNOT ASSESS) \u2014 only 1 of 9 identifiers provided (name only); all 13 workstreams blocked; no address/DIN/PAN/GSTIN/company name provided**\n\n`~/crawl/output/abhishek_narayan_IN_20260521.json` \u2014 3.4 KB, valid.\n\n\u26a0\ufe0f **Action required from requester**: This subject block is empty except for a personal name. To proceed, provide at least one of:\n- **DIN** (Director Identification Number)\n- **Company name / CIN** (which company is he a director of?)\n- **PAN or GSTIN**\n- **Full address**\n\nIf Abhishek Narayan is a director of a company already researched in this batch, simply cross-reference that company's report.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 2/41 sources via Tor (Netherlands exit node) (25 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 41 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Was 2007 the greatest year in the history of Bollywood?; An unconstitutional ban!; YouTuber who called judiciary \"taanashahi, manmarzi' sentenc (+12 more) |\n| duckduckgo_tor | 10 | 200+ \"Abhishek Narayan\" profiles | LinkedIn; Abhishek Narayan Singh - LinkedIn; Abhishek Narayan Singh - Life Sciences Voice (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- 200+ \"Abhishek Narayan\" profiles | LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.linkedin.com%2Fpub%2Fdir%2Fabhishek%2Fnarayan&rut=106]\n- Abhishek Narayan Singh - LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fme.sh%2Fprofile%2Fabhishek%2Dnarayan%2Dsingh&rut=9c226ea5]\n- Abhishek Narayan Singh - Life Sciences Voice \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Flifescivoice.com%2Ftop%2Dindustry%2Dleaders%2Daward%2Dwin]\n- Abhishek Narayan - The Visionary Who Turns Curiosity into Global ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.eatmy.news%2F2025%2F07%2FAbhishek%2520Narayan%2520Int]\n- Abhishek Narayan | Global Positioning, How Elite CEOs Scale With ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DNNIJhwycZFM&rut=040b1bf5650]\n- Why Leaders Need To Prioritize Mental Health\u2014And How AI Is ... - Forbes \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.forbes.com%2Fcouncils%2Fforbesbusinesscouncil%2F2025%]\n- Abhishek Narayan Profiles - Facebook \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.facebook.com%2Fpublic%2FAbhishek%2DNarayan%2F&rut=798]\n- Abhishek Narayan - IMDb \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.imdb.com%2Fname%2Fnm4786232%2F&rut=079bf82384234daecb]\n- Visual Artist and Printmaker | Abhishek Narayan Verma \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.abhisheknarayanverma.com%2F&rut=90dc4040c9d642744367b]\n- Abhishek Narayan (@mabhisheknarayan) - Instagram \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.instagram.com%2Fmabhisheknarayan%2F&rut=8168d54bbbe76]\n\n**SOCIAL MENTION** (15)\n- Was 2007 the greatest year in the history of Bollywood? \u2014 *reddit* [https://reddit.com/r/bollywood/comments/1np5yb9/was_2007_the_greatest_year_in_th]\n- An unconstitutional ban! \u2014 *reddit* [https://reddit.com/r/kolkata/comments/1n8z6ly/an_unconstitutional_ban/]\n- YouTuber who called judiciary \"taanashahi, manmarzi' sentenced to 6 months jail by Delhi High Court \u2014 *reddit* [https://reddit.com/r/IndiaSpeaks/comments/1tiej3t/youtuber_who_called_judiciary_]\n- BJP RELEASES LIST OF SEVERAL PROPERTIES ALLEGEDLY OWNED BY MAMATA'S NEPHEW AND SUCCESSOR ABHISHEK BA \u2014 *reddit* [https://reddit.com/r/kolkata/comments/1tidhns/bjp_releases_list_of_several_prope]\n- \ud83d\udfe2 LIVE: Nepal Election 2082 \ud83c\uddf3\ud83c\uddf5 \u2013 Live Poll Updates (Updated Every 2 Minutes) \u2014 *reddit* [https://reddit.com/r/NepalSocial/comments/1rlxszq/live_nepal_election_2082_live_]\n- The director was right for what he showed in this movie, seeing the video of Dipu Chandra Das remind \u2014 *reddit* [https://reddit.com/r/bengaluru_speaks/comments/1pt0go6/the_director_was_right_fo]\n- The director was right for what he showed in this movie \u2014 *reddit* [https://reddit.com/r/KeralaDesham/comments/1pr83e8/the_director_was_right_for_wh]\n- Dhanush In and As Kalam | Om Raut | Abhishek Agarwal | Anil Sunkara | Bhushan Kumar | Krishan Kumar \u2014 *reddit* [https://reddit.com/r/kollywood/comments/1ks190l/dhanush_in_and_as_kalam_om_raut_]\n- IPL Retention Megathread \u2014 *reddit* [https://reddit.com/r/Cricket/comments/yvvumz/ipl_retention_megathread/]\n- IPL 2021 RETENTION AND RELEASES THREAD \u2014 *reddit* [https://reddit.com/r/Cricket/comments/l15nyz/ipl_2021_retention_and_releases_thr]\n- Bengal has a different constitution? \u2014 *reddit* [https://reddit.com/r/PurbaIndia/comments/1n9677k/bengal_has_a_different_constitu]\n- Match Thread: IPL Player Auction 2020 \u2014 *reddit* [https://reddit.com/r/Cricket/comments/eco55l/match_thread_ipl_player_auction_202]\n- 70th Filmfare Awards - Megathread \u2014 *reddit* [https://reddit.com/r/bollywood/comments/1o4a4fz/70th_filmfare_awards_megathread/]\n- In light of recent events in Bangladesh, the director was brave in directing this \u2014 *reddit* [https://reddit.com/r/IndiaSpeaks/comments/1pt22z1/in_light_of_recent_events_in_b]\n- Beautiful Kareena, Intense Abhishek &amp; melodious Udit Narayan \u2014 *reddit* [https://reddit.com/r/BollyBlindsNGossip/comments/o92ax6/beautiful_kareena_intens]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "ABHISHEK NARAYAN",
+    "entity_country": "IN",
+    "key_individuals": [
+      {
+        "name": "ABHISHEK NARAYAN",
+        "title": "Director"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 41
+}

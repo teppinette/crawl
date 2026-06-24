@@ -1,0 +1,142 @@
+{
+  "job_id": "602bf905-3ae3-41a5-8f64-f7ef2fe071de",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "MAKWELL PLASTISIZERS PRIVATE LIMITED",
+  "country_code": "IN",
+  "created_at": "2026-05-04T14:23:49.233982+00:00",
+  "updated_at": "2026-05-04T14:24:34.326427+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:23:56.539838+00:00",
+      "verified": true,
+      "legal_name": "MAKWELL PLASTISIZERS PRIVATE LIMITED",
+      "cin": "U25209MH1992PTC070204",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "29 December, 1992",
+      "directors": [
+        "Indumati Kishor Thakker",
+        "Hiren Shashikant Thakker",
+        "others"
+      ],
+      "registered_address": "522/523, 5th Floor,D Wing, Neelkanth Business Park Kirol Village,Vidhyavihar (W), Mumbai City, Mumbai, Maharashtra, India, 400086",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:23:55.559123+00:00",
+      "found": true,
+      "name": "Makwell Plastisizers Pvt. Ltd.",
+      "linkedin_url": "https://in.linkedin.com/company/makwell-plastisizers-pvt-ltd-",
+      "industry": "Chemical Manufacturing",
+      "company_size": "11-50 employees",
+      "locations": [
+        "No. A - 506, Bhaveshwar Plaza L. B. S. Marg, Opposite Shreyas Cinema, Ghatkopar West Mumbai,, Maharashtra - 400 004, India, IN"
+      ],
+      "about": "Makwell started its operations in 1965 and since then never looked back. Today Makwell is one of the leading players in Plasticizers and Additives. Makwell has bench marked itself for high standards and quality. Today it is a preferred business partner for World Class Companies such as Arkema, Kronos to name a few. Makwell believes in servicing its customers well, this is made possible by its Qualified people, Quality Infrastructure in manufacturing, Research & Development and information System",
+      "followers": 112,
+      "employees_on_linkedin": 23,
+      "organization_type": "Privately Held",
+      "website": "https://www.makwellplastisizers.com/",
+      "specialties": "Eco-friendly, High Efficiency, Easy to Operate, and Good Products",
+      "notable_employees": [
+        {
+          "name": "jigar parikh",
+          "link": "https://in.linkedin.com/in/jigar-parikh-42b39723?trk=org-employees"
+        },
+        {
+          "name": "NANCY SHAH",
+          "link": "https://in.linkedin.com/in/nancy-shah-242438b3?trk=org-employees"
+        },
+        {
+          "name": "Nora Rayford",
+          "link": "https://de.linkedin.com/in/nora-rayford-92a161153?trk=org-employees"
+        },
+        {
+          "name": "Vijay Watere",
+          "link": "https://in.linkedin.com/in/vijay-watere-a98339175?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:24:34.325847+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 65,
+      "sources_searched": 37,
+      "sources_with_results": 3,
+      "by_type": {
+        "web_mention": 10,
+        "adverse_media": 5,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "MAKWELL PLASTISIZERS PRIVATE LIMITED",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "job_id": "1c96da19-bf10-4538-ac9c-f380cba5748d",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "AK PAPER CO",
+  "country": "IN",
+  "created_at": "2026-05-20T21:09:01.875726+00:00",
+  "updated_at": "2026-05-20T21:12:05.281251+00:00",
+  "blob_path": "osint-staging/cir/india/ak_paper_co_IN_20260520.json",
+  "report_summary": "**DONE: AK Paper Co, India \u2014 Risk: 2 CLEAR \u2014 Mumbai paper wholesaler/distributor; GSTIN 27AAOFA7944B1ZD Active; Partnership (Anish + Paresh Kalyanji Shah); Fort, Mumbai; zero sanctions / zero adverse media**\n\n`~/crawl/output/ak_paper_co_IN_20260520.json` \u2014 7.3 KB, valid JSON, 10 sources, all 8 workstreams complete.\n\n**Key:** AK = Anish Kalyanji. CEO: Paresh Kalyanji Shah (brother). Both their wives also listed as UBOs. Paper/packaging wholesaler from Fort Mumbai's Bora Bazar trading district.\n---\n\n## DARK WEB SCREENING \u2014 CRITICAL\n**1 actionable findings** from 3/53 sources via Tor (Netherlands exit node) (25 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| World Bank Debarment | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n\n**Key findings:**\n- WORLD BANK DEBARMENT: \n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | [UPDATE] Found a paper towel covering my webcam twice coming; American Road Trip, Rifle Paper Co, 500 pieces; Android Games Recommendation List (+12 more) |\n| duckduckgo_tor | 10 | A. K. Paper Co. - Wholesaler / Distributor of Kraft Paper ..; A.K. Paper co. - LinkedIn; A.K.PAPER CO. \u00b7 203 BORA BAZAR STREET, 1ST FLOOR FORT, Mumba (+7 more) |\n| adb_sanctions | 1 | debarment_record |\n\n### All findings detail\n\n**WORLD BANK DEBARMENT** (1)\n-  \u2014 *adb_sanctions* [https://www.adb.org/who-we-are/integrity/sanctions]\n\n**WEB MENTION** (10)\n- A. K. Paper Co. - Wholesaler / Distributor of Kraft Paper ... - IndiaMART \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Fak%2Dpaper%2F&rut=85d083914fc640000b6]\n- A.K. Paper co. - LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2Fakpaper%2Dco&rut=f4c659d3d2f]\n- A.K.PAPER CO. \u00b7 203 BORA BAZAR STREET, 1ST FLOOR FORT, Mumbai, IN-MH ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fopencorpdata.com%2Flei%2F254900O57RZEOH7SD133&rut=1dd5df1]\n- A.K.PAPER PRODUCTS PRIVATE LIMITED Company Profile | Hyderabad ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.a]\n- AK Paper Manufacturing - Manufacturer, Exporter & Supplier from Kurnool ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.akpapers.in%2Fabout%2Dus.htm&rut=99d191578b24a42efe6a]\n- AK Paper Products Pvt Ltd | LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fin.linkedin.com%2Fcompany%2Fak%2Dpaper%2Dproducts%2Dpvt%2]\n- A. K. Paper Co., Mumbai - Wholesale Supplier / Wholesaler ... - Dial4Trade \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dial4trade.com%2Fa%2Dk%2Dpaper%2Dco%2F&rut=f9d6f7e282]\n- A. K. Paper Co. - Wholesaler / Distributor from Mumbai, India | About Us \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Fak%2Dpaper%2Faboutus.html&rut=96f38ec]\n- Kraft Paper - Paper Manufacturer from Mumbai - IndiaMART \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Fak%2Dpaper%2Fkraft%2Dpaper.html&rut=8]\n- PDFA. K. Paper Co. - IndiaMART \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Fak%2Dpaper%2Fa%2Dk%2Dpaper%2Dco.pdf&r]\n\n**SOCIAL MENTION** (15)\n- [UPDATE] Found a paper towel covering my webcam twice coming home from work \u2014 *reddit* [https://reddit.com/r/Weird/comments/1q762xv/update_found_a_paper_towel_covering_]\n- American Road Trip, Rifle Paper Co, 500 pieces \u2014 *reddit* [https://reddit.com/r/Jigsawpuzzles/comments/1fg9ta0/american_road_trip_rifle_pap]\n- Android Games Recommendation List \u2014 *reddit* [https://reddit.com/r/AndroidGaming/comments/1sqhkq3/android_games_recommendation]\n- Ships in World of Warships Named after U.S. States &amp; Territories \u2014 *reddit* [https://reddit.com/r/WorldOfWarships/comments/1ss4myj/ships_in_world_of_warships]\n- #Anonymous is Preparing A Video Release. WE As The COLLECTIVE Are HERE To Push DISCLOSURE of Daniel  \u2014 *reddit* [https://reddit.com/r/UFOs/comments/14wun8v/anonymous_is_preparing_a_video_releas]\n- There is no convincing evidence that nasal sprays prevent COVID-19 \u2014 *reddit* [https://reddit.com/r/ZeroCovidCommunity/comments/1iv64oi/there_is_no_convincing_]\n- American Road Trip, 500 pieces, Rifle Paper Co \u2014 *reddit* [https://reddit.com/r/Jigsawpuzzles/comments/1bidwj2/american_road_trip_500_piece]\n- We need to have a discussion about the state of this sub \u2014 *reddit* [https://reddit.com/r/FortNiteBR/comments/y3fnnh/we_need_to_have_a_discussion_abo]\n- Web UI for exploring papers posted on huggingface.co/papers \u2014 *reddit* [https://reddit.com/r/deeplearning/comments/1c74l4z/web_ui_for_exploring_papers_p]\n- Arena Breakout Infinite Season 4 Mission Guide (3x3 Case) \u2014 *reddit* [https://reddit.com/r/ArenaBreakoutInfinite/comments/1q7dylx/arena_breakout_infin]\n- Call of Duty: Mobile - April 16th Community Update \u2014 *reddit* [https://reddit.com/r/CallOfDutyMobile/comments/msfu6x/call_of_duty_mobile_april_]\n- From My Great Grandma\u2019s Pantry, She Passed Away 12 Years Ago, At The Age Of 91 \u2014 *reddit* [https://reddit.com/r/GrandmasPantry/comments/1o50ea0/from_my_great_grandmas_pant]\n- Imagine a spy themed Assassin's Creed based in Berlin during the Cold War \u2014 *reddit* [https://reddit.com/r/assassinscreed/comments/d8b2u4/imagine_a_spy_themed_assassi]\n- I suppose this was inevitable \u2014 *reddit* [https://reddit.com/r/fastfood/comments/1tivktm/i_suppose_this_was_inevitable/]\n- TIL that as a research chemist at Oxford University, Margaret Thatcher co-authored a 1951 paper on t \u2014 *reddit* [https://reddit.com/r/todayilearned/comments/1t2iu7x/til_that_as_a_research_chemi]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "AK PAPER CO",
+    "entity_country": "IN",
+    "entity_address": "1ST FLOOR, ROOM NO 29, RITA MANSION, BORA BAZAR STREET, FORT, MUMBAI, MAHARASHTRA 400001, INDIA",
+    "entity_tax_id": "27AAOFA7944B1ZD",
+    "key_individuals": [
+      {
+        "name": "ANISH KALYANJI SHAH",
+        "title": "UBO"
+      },
+      {
+        "name": "PARESH KALYANJI SHAH",
+        "title": "UBO"
+      },
+      {
+        "name": "KAJAL ANISH SHAH",
+        "title": "UBO"
+      },
+      {
+        "name": "RESHMA PARESH SHAH",
+        "title": "UBO"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 1,
+  "dark_web_sources": 53
+}

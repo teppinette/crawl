@@ -1,0 +1,35 @@
+{
+  "job_id": "fc70a6b7-8dad-4fff-bd01-edb65a7bf3f4",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "WEBFORMA DE PANAMA SA",
+  "country": "PA",
+  "created_at": "2026-04-24T15:34:57.075172+00:00",
+  "updated_at": "2026-04-24T15:41:02.669360+00:00",
+  "blob_path": null,
+  "report_summary": "**DONE: WEBFORMA DE PANAMA S.A., PA (v2) \u2014 Risk: 3 MONITOR \u2014 Supply chain verified to Entreprises Rolland Inc. (Canada), Formy Flex (US), Grapho Service (US), Luminescence (UK) via CMA CGM; resident agent is IGA not Mossack Fonseca; ICIJ returns zero hits; all sanctions clear; UBO unknown (Panama SA) requires EDD**\n\n---\n\n## \ud83d\udccb Counterparty Research v2: WEBFORMA DE PANAMA, S.A.\n**Edificio FESA, V\u00eda Jos\u00e9 Domingo D\u00edaz, Tocumen Commercial Park | Folio 12259 (S)**\n`~/crawl/output/webforma_de_panama_PA_20260424_v2.json` \u2192 uploaded to `stcrawlosint/osint-staging/americas/`\n\n---\n\n### \ud83c\udd95 New Intelligence Added in v2\n\n#### \u2705 Supply Chain Fully Verified to Bill-of-Lading Level\n\n| Supplier | Country | Product | Route | Risk |\n|---|---|---|---|---|\n| **Entreprises Rolland Inc.** | \ud83c\udde8\ud83c\udde6 Canada | Rolls printing paper (HTS 4810.13) | Montreal \u2192 Saint John NB \u2192 Newark \u2192 Panama via **CMA CGM** | LOW |\n| Formy Flex / Tinta Industries | \ud83c\uddfa\ud83c\uddf8 US/China | Specialty carbonless paper | US | LOW |\n| Grapho Service | \ud83c\uddfa\ud83c\uddf8 US | Printing graphic supplies | US | LOW |\n| Luminescence | \ud83c\uddec\ud83c\udde7 UK | Specialty printing materials | UK | LOW |\n| Mona Industries | \ud83c\uddfa\ud83c\uddf8 US | Paper/printing supplies | US | LOW |\n| **Perez Trading Company** | \ud83c\uddf5\ud83c\udde6 Panama | Brazil-origin goods | via Panama | **MEDIUM \u2014 needs KYC** |\n\nSample bill of lading (Feb 25, 2025): Montreal \u2192 Saint John NB \u2192 New York/Newark \u2192 **EDIF. FESA VIA JOSE DOMINGO DIAZ, TOCUMEN COMMERCIAL PARK PANAMA CITY, 32401 PANAMA**\n\n#### \u2705 ICIJ Panama Papers \u2014 Confirmed Negative\nSite-search of `offshoreleaks.icij.org` returned **zero results** for Webforma, Orillac, Averza, or any FESA Group entity. **Critically: Resident agent is IGA, NOT Mossack Fonseca** \u2014 materially reduces Panama Papers exposure risk.\n\n#### \u2705 Address Confirmed from 4+ Independent Sources\n- Panama Emprende government portal\n- Panjiva bill-of-lading notify party\n- ImportKey database\n- datocapital.com.pa\n\n---\n\n### \ud83d\udcca Full Corporate Picture\n\n```\nFESA GROUP \u2014 Panama Paper/Printing/Cards Conglomerate\n\u251c\u2500\u2500 Webforma de Panama S.A. (1969, Folio 12259)\n\u2502   \u2514\u2500\u2500 Imports: Canada, US, UK, Brazil, China\n\u2502   \u2514\u2500\u2500 1,735 shipments via CMA CGM (2007\u20132026)\n\u2502   \u2514\u2500\u2500 Operational: Edificio FESA, Tocumen Commercial Park\n\u251c\u2500\u2500 Formas Eficientes S.A. / FESA (Folio unknown)\n\u2502   \u2514\u2500\u2500 Supplies Panama government (PanamaCompra)\n\u2502   \u2514\u2500\u2500 Same location: Lote #19, Tocumen Commercial Park\n\u2514\u2500\u2500 FESA Card Panama S.A. (~2014, Folio 816329)\n    \u2514\u2500\u2500 Financial cards, SIM, security documents \u26a0\ufe0f\n    \u2514\u2500\u2500 Costa del Este, Business Park (premium district)\n\nManagement (all three entities):\nRa\u00fal Orillac (President) \u2014 VP Finance, Banco General\nEdgardo Averza Colamarco (Dir/Sec) \u2014 RUT 8-340-758\nEdgar Omar C\u00e1ceres (Director) \u2014 8 company links\nIGA (Resident Agent) \u2014 20,570+ Panama companies\n```\n\n---\n\n### \ud83c\udfaf Risk Scorecard\n\n| Factor | v1 | **v2** |\n|---|---|---|\n| Sanctions | \u2705 Clean | \u2705 Clean |\n| ICIJ/Panama Papers | \u26a0\ufe0f Not searched | **\u2705 Zero results** |\n| Resident agent | IGA \u2705 | **IGA \u2260 Mossack Fonseca \u2705\u2705** |\n| Supply chain | 1 sample shipment | **\u2705 6 named suppliers, BOL-level detail** |\n| Trade volume | 1,735 shipments noted | **\u2705 Pattern consistent, Canada/US/UK** |\n| No PEP | \u2705 | \u2705 |\n| No adverse media | \u2705 | \u2705 |\n| UBO | \u26a0\ufe0f Unknown | \u26a0\ufe0f Unknown (unchanged) |\n| Registry staleness | \u26a0\ufe0f 2018 | \u26a0\ufe0f 2018 (unchanged) |\n| 2002 Merger | \u26a0\ufe0f Unresolved | \u26a0\ufe0f Unresolved |\n\n### 7 EDD Actions Remain (4 can be completed now by any analyst with portal access):\n\n| Priority | Action |\n|---|---|\n| \ud83d\udd34 HIGH | IGA: UBO beneficial ownership certificate |\n| \ud83d\udd34 HIGH | Registro P\u00fablico Folio 12259: full extract + 2002 Fusi\u00f3n document |\n| \ud83d\udd34 HIGH | ICIJ manual search at offshoreleaks.icij.org |\n| \ud83d\udfe1 MEDIUM | Poder Judicial Panama: court record search |\n| \ud83d\udfe1 MEDIUM | Panadata.net paid report: judicial files + government payments |\n| \ud83d\udfe1 MEDIUM | Perez Trading Company: KYC on top trading partner |\n| \ud83d\udfe2 LOW | OFAC SDN interactive batch search |",
+  "error": "americas: Report file not found on remote VM (americas)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "WEBFORMA DE PANAMA SA",
+    "entity_country": "PA",
+    "entity_address": "Edificio FESA, Via Jose Domingo Diaz, Tocumen Comercial Park, Las Ma\u00f1anitas, Panama City, Panama",
+    "entity_tax_id": "Folio No. 12259 (S)",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (americas)"
+    }
+  },
+  "errors": [
+    "americas: Report file not found on remote VM (americas)"
+  ]
+}

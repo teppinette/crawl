@@ -1,0 +1,140 @@
+{
+  "job_id": "4d53b3e7-3452-44b2-85e9-90cfc647ef5c",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "CHANDRA PRABHA PUBLICATIONS PRIVATE LIMITED",
+  "country_code": "IN",
+  "created_at": "2026-05-04T16:12:14.637325+00:00",
+  "updated_at": "2026-05-04T16:12:44.607436+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:12:24.885608+00:00",
+      "verified": true,
+      "legal_name": "CHANDRA PRABHA PUBLICATIONS PRIVATE LIMITED",
+      "cin": "U02221DL1996PTC080453",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "18 July, 1996",
+      "directors": [
+        "Chander Prabha Goel",
+        "Saloni Zutshi"
+      ],
+      "registered_address": "T - 5 AKARSHAN BHAWAN23 ANSARI ROAD, DARYA GANJ, NEW DELHI, Delhi - 110002",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:12:21.102622+00:00",
+      "found": true,
+      "name": "Institute for What Works to Advance Gender Equality",
+      "linkedin_url": "https://in.linkedin.com/company/iwwageifmr",
+      "industry": "Public Policy Offices",
+      "company_size": "11-50 employees",
+      "locations": [
+        "Hauz Khas Road New Delhi, Delhi 110016, IN"
+      ],
+      "about": "Institite for What Works to Advance Gender Equality (IWWAGE) is an evidence-generation to action-use program that aims at building on existing research and generating new evidence on women\u2019s economic empowerment. IWWAGE is an initiative of LEAD, an action-oriented research centre of IFMR Society (a not for profit society registered under the Societies Act). LEAD has strategic oversight and brand support from Krea University (sponsored by IFMR Society) to enable synergies between academia and the",
+      "followers": 2427,
+      "employees_on_linkedin": 19,
+      "organization_type": "Nonprofit",
+      "website": "https://iwwage.org/",
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "Moumita Sarkar",
+          "link": "https://in.linkedin.com/in/moumita-sarkar-a2931424?trk=org-employees"
+        },
+        {
+          "name": "Rachita Malik",
+          "link": "https://in.linkedin.com/in/rachita-malik-55106730?trk=org-employees"
+        },
+        {
+          "name": "Mridusmita Bordoloi",
+          "link": "https://in.linkedin.com/in/mridusmita-bordoloi-73716635?trk=org-employees"
+        },
+        {
+          "name": "Shashi Kumar",
+          "link": "https://in.linkedin.com/in/theyoungtale?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:12:44.606822+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 60,
+      "sources_searched": 37,
+      "sources_with_results": 2,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "CHANDRA PRABHA PUBLICATIONS PRIVATE LIMITED",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

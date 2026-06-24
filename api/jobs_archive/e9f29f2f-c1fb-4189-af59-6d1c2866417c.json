@@ -1,0 +1,32 @@
+{
+  "job_id": "e9f29f2f-c1fb-4189-af59-6d1c2866417c",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "europe",
+  "entity_name": "ORGANIK KIMYA NETHERLANDS BV",
+  "country": "NL",
+  "created_at": "2026-05-22T19:54:16.502321+00:00",
+  "updated_at": "2026-05-22T19:55:42.551727+00:00",
+  "blob_path": "osint-staging/cir/europe/organik_kimya_netherlands_bv_NL_20260522.json",
+  "report_summary": "Duplicate \u2014 report complete at 19:52 UTC.\n\n**DONE: Organik Kimya Netherlands B.V., NL \u2014 Risk: 3 MONITOR**\n\nFile: `~/crawl/output/organik_kimya_netherlands_bv_NL_20260522.json` \u2705\nBlob: `europe/organik_kimya_netherlands_bv_NL_20260522.json` \u2705\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 0/0 sources via Tor (Netherlands exit node)\n\nNo dark web exposure detected. Entity and owners clean across all 0 sources.\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "ORGANIK KIMYA NETHERLANDS BV",
+    "entity_country": "NL",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "europe": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 0
+}

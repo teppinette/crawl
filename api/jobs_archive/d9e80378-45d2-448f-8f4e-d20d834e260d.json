@@ -1,0 +1,53 @@
+{
+  "job_id": "d9e80378-45d2-448f-8f4e-d20d834e260d",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "china",
+  "entity_name": "SINOCHEM INTERNATIONAL OIL (SINGAPORE) PTE LTD",
+  "country": "SG",
+  "created_at": "2026-04-22T12:29:03.871170+00:00",
+  "updated_at": "2026-04-22T12:39:30.066510+00:00",
+  "blob_path": "osint-staging/cir/china/sinochem_international_oil_(singapore)_pte_ltd_20260422.json",
+  "report_summary": "Perfect! I have successfully completed the comprehensive counterparty research for SINOCHEM INTERNATIONAL OIL (SINGAPORE) PTE LTD. Here's a summary of the findings:\n\n## Research Summary\n\n**Entity:** SINOCHEM INTERNATIONAL OIL (SINGAPORE) PTE LTD  \n**Country:** Singapore (SG)  \n**UEN:** 199002584N  \n**Incorporation Date:** May 29, 1990  \n**Status:** Live Company  \n\n## Key Findings:\n\n### 1. **Corporate Structure:**\n- **Direct Parent:** Sinochem Energy Hong Kong Co., Limited (100% ownership)\n- **Ultimate Parent:** Sinochem Holdings Corporation Ltd. (Chinese state-owned enterprise)\n- **Ultimate Beneficial Owner:** State-owned Assets Supervision and Administration Commission (SASAC) of China\n- **Directors:** LI QING, ZHAO ZHIQIANG, WU WENLONG, TEO CHIN KEE (Secretary)\n\n### 2. **Sanctions Screening Results:**\n- **Parent Company Status:** Sinochem Group Co Ltd is listed on OFAC's **NS-CCMC (Non-SDN Chinese Military-Industrial Complex Companies) List** (Entity ID: 1001Z CN)\n- **OFAC 50% Rule Implication:** Subsidiary may be subject to same restrictions as sanctioned parent\n- **No direct SDN designations** for the Singapore entity or its directors\n\n### 3. **Adverse Media & Litigation:**\n- **Major Corruption Scandal:** Named in Indonesia's Pertamina oil corruption case (2018-2023) with estimated state losses of Rp 285 trillion (~US$18.5 billion)\n- **Sinochem Profit:** Allegedly profited US$1,394,988.19 from corrupt RON 90 gasoline procurement\n- **Related Case:** Former Sinochem executive Feng Zhibin prosecuted in China for bribery and abuse of power (April 2026)\n\n### 4. **PEP Connections:**\n- All directors classified as **de facto PEPs** due to senior positions in Chinese state-owned enterprise\n- Enhanced due diligence required under AML/CFT frameworks\n\n### 5. **Trade Risk Assessment:**\n- **Sanctions Compliance:** Historically conservative approach - explicitly avoided transactions with Russia, Iran, Venezuela, Syria (as of March 2020)\n- **Dual-Use Indicators:** Trades petroleum products with potential dual-use applications\n- **No evidence** of current trade with sanctioned jurisdictions\n\n## Risk Assessment:\n**Risk Score:** 4 (REVIEW)  \n**Rationale:** High-risk entity due to parent company's NS-CCMC listing, involvement in major corruption scandal, state ownership with PEP connections, and OFAC 50% rule implications. However, company demonstrates conservative sanctions compliance approach.\n\n## Output Delivered:\n\u2705 **Complete JSON report** saved to: `/home/copapadmin/crawl/output/sinochem_international_oil_singapore_pte_ltd_sg_20260422.json`  \n\u2705 **All 7 research steps completed** per counterparty_research skill requirements  \n\u2705 **Comprehensive coverage** of corporate registry, ownership chain, sanctions screening, adverse media, litigation, PEP checks, and trade risk\n\n**DONE:** SINOCHEM INTERNATIONAL OIL (SINGAPORE) PTE LTD, SG -- Risk: 4 REVIEW -- Parent on OFAC NS-CCMC list, involved in Pertamina corruption scandal, state-owned with PEP connections",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "SINOCHEM INTERNATIONAL OIL (SINGAPORE) PTE LTD",
+    "entity_country": "SG",
+    "entity_address": "9 TEMASEK BOULEVARD #18-03 SUNTEC TOWER TWO SINGAPORE 038989",
+    "entity_tax_id": "199002584N",
+    "key_individuals": [
+      {
+        "name": "LI QING",
+        "title": "DIRECTOR"
+      },
+      {
+        "name": "ZHAO ZHIQIANG",
+        "title": "DIRECTOR"
+      },
+      {
+        "name": "WU WENLONG",
+        "title": "DIRECTOR"
+      },
+      {
+        "name": "TEO CHIN KEE",
+        "title": "SECRETARY"
+      },
+      {
+        "name": "SINOCHEM ENERGY HONG KONG CO., LIMITED",
+        "title": "UBO (100.00%)"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "china": {
+      "status": "completed",
+      "error": null
+    }
+  }
+}

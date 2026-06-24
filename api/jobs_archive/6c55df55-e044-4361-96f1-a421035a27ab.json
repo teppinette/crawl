@@ -1,0 +1,78 @@
+{
+  "job_id": "6c55df55-e044-4361-96f1-a421035a27ab",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "AARTI IND. LTD.",
+  "country": "IN",
+  "created_at": "2026-05-20T15:24:04.147625+00:00",
+  "updated_at": "2026-05-20T15:36:36.414437+00:00",
+  "blob_path": null,
+  "report_summary": "**DONE: Aarti Industries Limited, India \u2014 Risk: 2 CLEAR \u2014 Leading listed specialty chemicals company (BSE 524208 / NSE AARTIIND); CIN L24110GJ1984PLC007301; Revenue \u20b99,018 Cr FY26 (+12%); PAT \u20b9419 Cr (+27%); net worth \u20b95,292 Cr; zero sanctions; \u26a0\ufe0f CRITICAL DATA ERROR in subject block**\n\n---\n\n`~/crawl/output/aarti_industries_ltd_IN_20260520.json` \u2014 27.3 KB, valid JSON, 10 sources, all 8 workstreams + 5 India-specific requirements complete\n\n---\n\n## \ud83d\udea8 Critical Data Alert \u2014 Subject Block\n\n**Entry #1 is corrupted data and must be corrected:**\n\n| Field | Subject Block | Reality |\n|---|---|---|\n| Name | \"AmpVolts Narendrabhai Chauhan\" | Vipul Narendrabhai Chauhan |\n| DIN | 01241021 | Correct DIN, wrong person/entity |\n| Role at Aarti Industries | \"Director\" | **NOT a director** \u2014 associated with Bhaktinandan Consultancy LLP, BSEL Algo Ltd, AV AC DC RENEW Pvt Ltd \u2014 unrelated small entities |\n| \"AmpVolts\" prefix | Data corruption | Likely parsed from \"AV AC DC RENEW Private Limited\" (one of his companies) |\n\n**Action required: Remove entry #1 from subject block entirely.** Also add **Ashok Kumar Barat (DIN 00492930)** \u2014 current director since Sep 2024, missing from subject block.\n\n---\n\n## Key Findings\n\n### Entity\n- **CIN:** L24110GJ1984PLC007301 \u00b7 Incorporated September 28, 1984 \u00b7 41 years\n- **BSE:** 524208 | **NSE:** AARTIIND \u00b7 Market Cap ~\u20b915,000 Cr\n- **Status:** Active \u00b7 Compliant \u00b7 Full SEBI-regulated listed company\n- **Former names:** Aarti Organics Pvt Ltd \u2192 Surfactant Specialties Limited (via merger) \u2192 Aarti Industries\n- **Employees:** 5,563 \u00b7 **Subsidiaries:** 8\n\n### FY2026 Financials \u2014 Strong Recovery (results filed May 4, 2026)\n| Metric | FY2026 | YoY |\n|---|---|---|\n| Revenue | **\u20b99,018 Cr** | **+12%** |\n| EBITDA | **\u20b91,172 Cr** | **+15%** |\n| PAT | **\u20b9419 Cr** | **+27%** |\n| Q4 PAT | \u20b9137 Cr | +42.71% YoY |\n| Dividend | Re.1/share | \u2014 |\n\nTwo major long-term contracts announced: 15-year backward integration (\u20b9200-250 Cr CAPEX) + $150M agrochemical supply agreement to March 2030.\n\n### 13 ESG/Quality Certifications\nCDP Climate A \u00b7 CDP Water A- \u00b7 EcoVadis Gold \u00b7 S&P Sustainability Yearbook \u00b7 Responsible Care \u00b7 ISO 9001/14001/45001/50001/27001 \u00b7 **Gallup Exceptional Workplace Award 2026** (first Indian manufacturer)\n\n### Directors Confirmed\n| Name | DIN | Role |\n|---|---|---|\n| Rajendra Vallabhaji Gogri | TBC | **Chairman & MD** \u2014 founder, 41 yrs |\n| Rashesh Chandrakant Gogri | 00066291 | MD (29 yrs) |\n| Renil Rajendra Gogri | 01582147 | Vice Chairman & ED |\n| Hetal Gogri Gala | 00005499 | Director (19 yrs) |\n| Suyog Kalyanji Kotecha | TBC | **CEO & ED** \u2014 confirmed Q4 press release |\n| Ajay Kumar Gupta | 08619902 | Director |\n| Shekhar Shreedhar Khanolkar | 02202839 | Director |\n| Ashok Kumar Barat \u26a0\ufe0f | 00492930 | Director \u2014 **not in subject block** |\n\n**Sanctions CLEAR \u00b7 No SEBI enforcement on Aarti Industries \u00b7 Litigation is routine tax/customs \u00b7 West Asia macro risk noted but being managed**\n---\n\n## DARK WEB SCREENING \u2014 LOW\n**1 actionable findings** from 3/57 sources via Tor (Netherlands exit node) (20 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Breach records | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 10 |\n\n**Key findings:**\n- BREACH RECORD: \n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Aarti Ind: Bullish momentum will continue.; AartiInd #Nifty #BankNifty #Nifty50; *\ud83c\uddee\ud83c\uddf3 India Daybook ~ Stocks in News* (+12 more) |\n| duckduckgo_tor | 10 | Aarti Industries | Leading Speciality Chemical Manufacturer ; Aarti Industries Ltd - Fortune India; Aarti Industries (NSE:AARTIIND) Company Profile & Descriptio (+7 more) |\n| dehashed | 1 | breach_record |\n\n### All findings detail\n\n**BREACH RECORD** (1)\n-  \u2014 *dehashed*\n\n**WEB MENTION** (10)\n- Aarti Industries | Leading Speciality Chemical Manufacturer in India \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.aarti%2Dindustries.com%2F&rut=9e999b7ae7492113b6c09c8]\n- Aarti Industries Ltd - Fortune India \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.fortuneindia.com%2Fcompanies%2Faarti%2Dindustries%2Dl]\n- Aarti Industries (NSE:AARTIIND) Company Profile & Description \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fstockanalysis.com%2Fquote%2Fnse%2FAARTIIND%2Fcompany%2F&r]\n- AARTIIND Stock Price | Aarti Industries Ltd. Stock Quote (India: NSE ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.marketwatch.com%2Finvesting%2Fstock%2Faartiind%3Fcoun]\n- Aarti Industries Ltd. - LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2Faarti%2Dindustries&rut=6393c]\n- Aarti Industries Ltd share price | About Aarti Industries | Key ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.screener.in%2Fcompany%2FAARTIIND%2Fconsolidated%2F&ru]\n- Aarti Ind Share Price, Aarti Ind Stock Price, Aarti Industries Ltd ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.moneycontrol.com%2Findia%2Fstockpricequote%2Fchemical]\n- Aarti Industries Ltd Summary | IIFL Capital - IndiaInfoline \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiainfoline.com%2Fcompany%2Faarti%2Dindustries%2Dlt]\n- Aarti Industries 2026 Company Profile: Stock Performance ... - PitchBook \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fpitchbook.com%2Fprofiles%2Fcompany%2F165231%2D28&rut=f74e]\n- Aarti Industries Ltd Company Profile - Overview - GlobalData \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.globaldata.com%2Fcompany%2Dprofile%2Faarti%2Dindustri]\n\n**SOCIAL MENTION** (10)\n- Aarti Ind: Bullish momentum will continue. \u2014 *reddit* [https://reddit.com/r/IndianStreetBets/comments/1bvfabj/aarti_ind_bullish_momentu]\n- AartiInd #Nifty #BankNifty #Nifty50 \u2014 *reddit* [https://reddit.com/r/stock_trading_India/comments/169nrh6/aartiind_nifty_banknif]\n- *\ud83c\uddee\ud83c\uddf3 India Daybook ~ Stocks in News* \u2014 *reddit* [https://reddit.com/r/IndianStocks/comments/1r3f2d7/india_daybook_stocks_in_news/]\n- *\ud83c\udf39\ud83c\uddee\ud83c\uddf3India Daybook \u2013 Stocks in News* \u2014 *reddit* [https://reddit.com/r/NSEbets/comments/1r3f2pg/india_daybook_stocks_in_news/]\n- India Daybook \u2013 Stocks in News* \u2014 *reddit* [https://reddit.com/r/UpdateINDIA/comments/1oqn53q/india_daybook_stocks_in_news/]\n- \ud83c\uddee\ud83c\uddf3India Daybook \u2013 Stocks in News* \u2014 *reddit* [https://reddit.com/r/UpdateINDIA/comments/1nhbiyr/india_daybook_stocks_in_news/]\n- Top Trending on Stocktwits right now \u2014 *reddit* [https://reddit.com/r/StocktwitsIndia/comments/1n78aev/top_trending_on_stocktwits]\n- *\ud83c\uddee\ud83c\uddf3India Daybook \u2013 Stocks in News* \u2014 *reddit* [https://reddit.com/r/DalalStreetTalks/comments/1kgnuy5/india_daybook_stocks_in_n]\n- NSE launches new index \u2014 *reddit* [https://reddit.com/r/StockMarketIndia/comments/1j9b8fa/nse_launches_new_index/]\n- Book profit as soon as company declares merger or demerger \u2014 *reddit* [https://reddit.com/r/IndianStreetBets/comments/1cttc9q/book_profit_as_soon_as_co]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "india: Report file not found on remote VM (india)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "AARTI IND. LTD.",
+    "entity_country": "IN",
+    "entity_address": "PLOT NO 801/23 GIDC ESTATE, PHASE III, VAPI, Gujarat - 396195",
+    "entity_tax_id": "L24110GJ1984PLC007301",
+    "key_individuals": [
+      {
+        "name": "AmpVolts Narendrabhai Chauhan",
+        "title": "Director (DIN: 01241021)"
+      },
+      {
+        "name": "RAJENDRA VALLABHAJI GOGRI"
+      },
+      {
+        "name": "RASHESH CHANDRAKANT GOGRI"
+      },
+      {
+        "name": "MANOJ MULJI CHHEDA"
+      },
+      {
+        "name": "HETAL GOGRI GALA"
+      },
+      {
+        "name": "RENIL RAJENDRA GOGRI"
+      },
+      {
+        "name": "AJAY KUMAR GUPTA"
+      },
+      {
+        "name": "LALITKUMAR SHANTARAM NAIK"
+      },
+      {
+        "name": "ANNIRUDDHA BHALCHANDRA PANDIT"
+      },
+      {
+        "name": "SHEKHAR SHREEDHAR KHANOLKAR"
+      },
+      {
+        "name": "BELUR KRISHNA MURTHY SETHURAM"
+      },
+      {
+        "name": "SUYOG KALYANJI KOTECHA"
+      },
+      {
+        "name": "RUPA DEVI SINGH"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (india)"
+    }
+  },
+  "errors": [
+    "india: Report file not found on remote VM (india)"
+  ],
+  "dark_web_findings": 1,
+  "dark_web_sources": 57
+}

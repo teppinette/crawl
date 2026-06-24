@@ -1,0 +1,78 @@
+{
+  "job_id": "16dac3de-f056-4929-8d70-01fd291e9885",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "AARTI IND. LTD.",
+  "country": "IN",
+  "created_at": "2026-05-20T17:25:18.122530+00:00",
+  "updated_at": "2026-05-20T17:27:29.703322+00:00",
+  "blob_path": null,
+  "report_summary": "Sixth submission of this entity today \u2014 identical to the 17:20 UTC submission processed 5 minutes ago. File already updated with Nikhil Jaysinh Bhatia (DIN 00414281) in that run.\n\n**DONE (existing file): Aarti Industries Limited, India \u2014 Risk: 2 CLEAR \u2014 CIN L24110GJ1984PLC007301; BSE 524208 / NSE AARTIIND; Revenue \u20b99,018 Cr FY26 (+12%); 15 individuals profiled including Nikhil Jaysinh Bhatia (DIN 00414281, Sep 2024)**\n\n`~/crawl/output/aarti_industries_ltd_IN_20260520.json` \u2014 28.3 KB, valid, updated 2026-05-20 17:20 UTC.\n---\n\n## DARK WEB SCREENING \u2014 LOW\n**1 actionable findings** from 3/57 sources via Tor (Netherlands exit node) (20 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Breach records | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 10 |\n\n**Key findings:**\n- BREACH RECORD: \n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Aarti Ind: Bullish momentum will continue.; AartiInd #Nifty #BankNifty #Nifty50; *\ud83c\uddee\ud83c\uddf3 India Daybook ~ Stocks in News* (+12 more) |\n| duckduckgo_tor | 10 | Aarti Industries | Leading Speciality Chemical Manufacturer ; Aarti Industries Ltd - Fortune India; Aarti Industries (NSE:AARTIIND) Company Profile & Descriptio (+7 more) |\n| dehashed | 1 | breach_record |\n\n### All findings detail\n\n**BREACH RECORD** (1)\n-  \u2014 *dehashed*\n\n**WEB MENTION** (10)\n- Aarti Industries | Leading Speciality Chemical Manufacturer in India \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.aarti%2Dindustries.com%2F&rut=9e999b7ae7492113b6c09c8]\n- Aarti Industries Ltd - Fortune India \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.fortuneindia.com%2Fcompanies%2Faarti%2Dindustries%2Dl]\n- Aarti Industries (NSE:AARTIIND) Company Profile & Description \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fstockanalysis.com%2Fquote%2Fnse%2FAARTIIND%2Fcompany%2F&r]\n- Aarti Industries Ltd share price | About Aarti Industries | Key ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.screener.in%2Fcompany%2FAARTIIND%2Fconsolidated%2F&ru]\n- Aarti Industries Ltd | Speciality Chemicals - IndianCompanies.in \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Findiancompanies.in%2Faarti%2Dindustries%2Dltd%2Dspecialit]\n- Aarti Industries Ltd Summary | IIFL Capital - IndiaInfoline \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiainfoline.com%2Fcompany%2Faarti%2Dindustries%2Dlt]\n- Aarti Industries Ltd Quarterly Results - Business Standard \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.business%2Dstandard.com%2Fcompanies%2Fquarterly%2Dres]\n- Aarti Industries Ltd. | LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fin.linkedin.com%2Fcompany%2Faarti%2Dindustries&rut=8666f9]\n- AARTI Industries Ltd \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fin.tradingview.com%2Fsymbols%2FNSE%2DAARTIIND%2F&rut=1c27]\n- Aarti Industries Ltd - INDmoney \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indmoney.com%2Fstocks%2Faarti%2Dindustries%2Dltd%2Dsh]\n\n**SOCIAL MENTION** (10)\n- Aarti Ind: Bullish momentum will continue. \u2014 *reddit* [https://reddit.com/r/IndianStreetBets/comments/1bvfabj/aarti_ind_bullish_momentu]\n- AartiInd #Nifty #BankNifty #Nifty50 \u2014 *reddit* [https://reddit.com/r/stock_trading_India/comments/169nrh6/aartiind_nifty_banknif]\n- *\ud83c\uddee\ud83c\uddf3 India Daybook ~ Stocks in News* \u2014 *reddit* [https://reddit.com/r/IndianStocks/comments/1r3f2d7/india_daybook_stocks_in_news/]\n- *\ud83c\udf39\ud83c\uddee\ud83c\uddf3India Daybook \u2013 Stocks in News* \u2014 *reddit* [https://reddit.com/r/NSEbets/comments/1r3f2pg/india_daybook_stocks_in_news/]\n- India Daybook \u2013 Stocks in News* \u2014 *reddit* [https://reddit.com/r/UpdateINDIA/comments/1oqn53q/india_daybook_stocks_in_news/]\n- \ud83c\uddee\ud83c\uddf3India Daybook \u2013 Stocks in News* \u2014 *reddit* [https://reddit.com/r/UpdateINDIA/comments/1nhbiyr/india_daybook_stocks_in_news/]\n- Top Trending on Stocktwits right now \u2014 *reddit* [https://reddit.com/r/StocktwitsIndia/comments/1n78aev/top_trending_on_stocktwits]\n- *\ud83c\uddee\ud83c\uddf3India Daybook \u2013 Stocks in News* \u2014 *reddit* [https://reddit.com/r/DalalStreetTalks/comments/1kgnuy5/india_daybook_stocks_in_n]\n- NSE launches new index \u2014 *reddit* [https://reddit.com/r/StockMarketIndia/comments/1j9b8fa/nse_launches_new_index/]\n- Book profit as soon as company declares merger or demerger \u2014 *reddit* [https://reddit.com/r/IndianStreetBets/comments/1cttc9q/book_profit_as_soon_as_co]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "india: Report file not found on remote VM (india)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "AARTI IND. LTD.",
+    "entity_country": "IN",
+    "entity_address": "Plot No. 801/23, GIDC Estate, Phase III, Vapi, Gujarat, 396195, India",
+    "entity_tax_id": "007301",
+    "key_individuals": [
+      {
+        "name": "AmpVolts Narendrabhai Chauhan",
+        "title": "Director (DIN: 01241021)"
+      },
+      {
+        "name": "RAJENDRA VALLABHAJI GOGRI"
+      },
+      {
+        "name": "RASHESH CHANDRAKANT GOGRI"
+      },
+      {
+        "name": "RENIL RAJENDRA GOGRI"
+      },
+      {
+        "name": "HETAL GOGRI GALA"
+      },
+      {
+        "name": "SUYOG KALYANJI KOTECHA"
+      },
+      {
+        "name": "AJAY KUMAR GUPTA"
+      },
+      {
+        "name": "MANOJ MULJI CHHEDA"
+      },
+      {
+        "name": "LALITKUMAR SHANTARAM NAIK"
+      },
+      {
+        "name": "SHEKHAR SHREEDHAR KHANOLKAR"
+      },
+      {
+        "name": "ASHOK KUMAR BARAT"
+      },
+      {
+        "name": "RUPA DEVI SINGH"
+      },
+      {
+        "name": "NIKHIL JAYSINH BHATIA"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (india)"
+    }
+  },
+  "errors": [
+    "india: Report file not found on remote VM (india)"
+  ],
+  "dark_web_findings": 1,
+  "dark_web_sources": 57
+}

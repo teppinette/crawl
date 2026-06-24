@@ -1,0 +1,50 @@
+{
+  "job_id": "cc07b8ba-439f-4e5d-a704-a8d5cbd1506c",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "SANDHYA ORGANIC CHEMICALS PVT. LTD.",
+  "country": "IN",
+  "created_at": "2026-05-21T13:59:40.050432+00:00",
+  "updated_at": "2026-05-21T14:06:17.409128+00:00",
+  "blob_path": "osint-staging/cir/india/sandhya_organic_chemicals_pvt_ltd_IN_20260521.json",
+  "report_summary": "**DONE: Sandhya Organic Chemicals Private Limited, India \u2014 Risk: 2 CLEAR \u2014 33-year Vapi GIDC organic chemicals manufacturer; CIN U24110GJ1992PTC017399; Revenue \u20b9653 Cr FY25; 63 employees; AGM Sep 30, 2024 current; all 5 directors confirmed**\n\n`~/crawl/output/sandhya_organic_chemicals_pvt_ltd_IN_20260521.json` \u2014 8 KB, valid, research date 2026-05-21, all 8 workstreams complete.\n\nKey notes:\n- **Koli/Patel surname duality**: Kantilal + Sandhya = KOLI; sons Smit + Snehal = PATEL \u2014 normal Gujarati convention where Koli community members adopt \"Patel\" as formal surname\n- **Company named after founder's wife** Sandhya Kantilal Koli (DIN 02265576)\n- **Related entity**: S.M. Chemical Vapi Pvt Ltd (CIN U24302GJ2016PTC091649) \u2014 cross-KYC recommended\n- **EC application** on MoEFCC portal confirms active chemical manufacturing with regulatory oversight\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 2/57 sources via Tor (Netherlands exit node) (25 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 57 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | i guess women cant do chemistry any more; Today I became an Employed Jobless Programmer.; Is your team's owner a Nepo Baby? An Analysis of Current NFL (+12 more) |\n| duckduckgo_tor | 10 | Sandhya Organic Chem; Sandhya Group; Sandhya Organic Chemicals Private Limited - IndiaMART (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- Sandhya Organic Chem \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.sandhyaorganicchem.com%2F&rut=d07ec42f11a71d9a0d6449d]\n- Sandhya Group \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fsandhya%2Dgroup.com%2F&rut=6f6ab2b9e34529fe2ff4e3b3357db1]\n- Sandhya Organic Chemicals Private Limited - IndiaMART \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Fsandhya%2Dorganic%2Faboutus.html&rut=]\n- SANDHYA ORGANIC CHEMICALS PVT LTD - Indian Company & Director Details \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.companydetails.in%2Fcompany%2Fsandhya%2Dorganic%2Dche]\n- SANDHYA ORGANIC CHEMICALS PVT LTD - ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2FSANDHYA%2DORGANIC%2DCHEMICALS%2DPVT%2]\n- SANDHYA ORGANIC CHEMICALS PVT LTD - Company Profile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Fsandhya%2Dorg]\n- Sandhya Organic Chemicals Pvt Ltd - TradeIndia \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tradeindia.com%2Fsandhya%2Dorganic%2Dchemicals%2Dpvt%]\n- Sandhya Organic Chemicals Private Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.s]\n- Company Profile - Sandhya Organic Chemicals Pvt Ltd - ChemDmart \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fchemdmart.com%2Fcompany%2Dprofile%2Fsandhya%2Dorganic%2Dc]\n- Sandhya Group | LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fin.linkedin.com%2Fcompany%2Fsandhya%2Dgroup&rut=11fc3febe]\n\n**SOCIAL MENTION** (15)\n- i guess women cant do chemistry any more \u2014 *reddit* [https://reddit.com/r/recruitinghell/comments/1taxtvl/i_guess_women_cant_do_chemi]\n- Today I became an Employed Jobless Programmer. \u2014 *reddit* [https://reddit.com/r/ProgrammerHumor/comments/ypbtax/today_i_became_an_employed_]\n- Is your team's owner a Nepo Baby? An Analysis of Current NFL Head Coach Searches \u2014 *reddit* [https://reddit.com/r/nfl/comments/1qhzxtv/is_your_teams_owner_a_nepo_baby_an_ana]\n- Filed an RTI against NHAI about the Devanahalli toll plaza. Here's why more of us should be doing th \u2014 *reddit* [https://reddit.com/r/bangalore/comments/1tdwdov/filed_an_rti_against_nhai_about_]\n- Does it matter if company is not registered as Pvt Ltd? \u2014 *reddit* [https://reddit.com/r/developersIndia/comments/1t6ur1f/does_it_matter_if_company_]\n- Workex as a director of a pvt ltd \u2014 *reddit* [https://reddit.com/r/CATpreparation/comments/1t479ah/workex_as_a_director_of_a_p]\n- DGCA Ranking of FTOs updated. Avyanna Aviation Pvt Ltd receives Category 'A'. \u2014 *reddit* [https://reddit.com/r/indianaviation/comments/1sug5el/dgca_ranking_of_ftos_update]\n- Affordable Kailash Mansarovar Tour Packages by Himalayan Asia Treks and Expedition Pvt Ltd \u2014 *reddit* [https://reddit.com/r/Kailashyatrafromnepal/comments/1thfhfj/affordable_kailash_m]\n- Manchester Organics Ltd, a horror story.  \u2014 *reddit* [https://reddit.com/r/chemistry/comments/1hni6h0/manchester_organics_ltd_a_horror]\n- Zoetic BPO Service Pvt Ltd Real or Fake \u2013 Complete Review (2026) \u2014 *reddit* [https://reddit.com/r/BPO_Opportunities/comments/1t9xrip/zoetic_bpo_service_pvt_l]\n- Reviews for Tramping Himalaya Adventures Pvt. Ltd? \u2014 *reddit* [https://reddit.com/r/everestbasecamphike/comments/1sip90c/reviews_for_tramping_h]\n- Cops bust two Bengaluru based companies Ethical Infotech Pvt Ltd &amp; Gayathri Tech Park in Whitefi \u2014 *reddit* [https://reddit.com/r/bangalore/comments/vucwxh/cops_bust_two_bengaluru_based_com]\n- The Question Your \u20b96,999 Registration Platform Will Never Ask: Is Pvt Ltd Even Right for You? \u2014 *reddit* [https://reddit.com/r/StartUpIndia/comments/1ofkoag/the_question_your_6999_regist]\n- The Hashgraph Group\nWe are delighted to announce that #Hashgraph Labs India Pvt. Ltd. - the India-do \u2014 *reddit* [https://reddit.com/r/Hedera/comments/1qd65j6/the_hashgraph_group_we_are_delighte]\n- The Journey of India's Organic Chemical Industry: Struggles, Innovations, and Triumphs \u2014 *reddit* [https://reddit.com/r/IndicKnowledgeSystems/comments/1qsxbv5/the_journey_of_india]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "SANDHYA ORGANIC CHEMICALS PVT. LTD.",
+    "entity_country": "IN",
+    "entity_address": "PLOT O 808/A/2/III RD PHASE, G I D C BULSAR, VAPI, Gujarat 396195",
+    "entity_tax_id": "017399",
+    "key_individuals": [
+      {
+        "name": "Kantilal Mohanlal Koli"
+      },
+      {
+        "name": "Smit Kantilal Patel"
+      },
+      {
+        "name": "Snehal Kantilal Patel"
+      },
+      {
+        "name": "Sandhya Kantilal Koli"
+      },
+      {
+        "name": "Swapnil Subhaschandra Desai"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 57
+}

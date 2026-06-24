@@ -1,0 +1,63 @@
+{
+  "job_id": "0b61d1a6-020a-4ba9-8559-078bee4fc7ab",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "BRENNTAG INGREDIENTS (INDIA) PVT LTD",
+  "country": "IN",
+  "created_at": "2026-05-20T19:24:20.135724+00:00",
+  "updated_at": "2026-05-20T19:26:26.783571+00:00",
+  "blob_path": "osint-staging/cir/india/brenntag_ingredients_india_pvt_ltd_IN_20260520.json",
+  "report_summary": "Third Brenntag submission \u2014 this version includes Juhi Akhil Shah (CS), matching the original 16:50 UTC submission. File is complete.\n\n**DONE (existing file): Brenntag Ingredients (India) Private Limited \u2014 Risk: 1 CLEAR**\n\n`~/crawl/output/brenntag_ingredients_india_pvt_ltd_IN_20260520.json` \u2014 18.2 KB, valid.\n---\n\n## DARK WEB SCREENING \u2014 MEDIUM\n**3 actionable findings** from 2/57 sources via Tor (Netherlands exit node) (10 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Breach records | 3 |\n| Web mentions (Tor-routed) | 10 |\n\n**Key findings:**\n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | Chemical Distribution in India | Brenntag; Brenntag Ingredients (India) Private Limited - IndiaMART; BRENNTAG INGREDIENTS (INDIA) PRIVATE LIMITED - Company Profi (+7 more) |\n| dehashed | 3 | breach_record; breach_record; breach_record |\n\n### All findings detail\n\n**BREACH RECORD** (3)\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n\n**WEB MENTION** (10)\n- Chemical Distribution in India | Brenntag \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.brenntag.com%2Fen%2Din%2F&rut=bb4ee373cf6207c933e8bc1]\n- Brenntag Ingredients (India) Private Limited - IndiaMART \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Fbrenntagingredients%2Fprofile.html&ru]\n- BRENNTAG INGREDIENTS (INDIA) PRIVATE LIMITED - Company Profile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Fbrenntag%2Din]\n- BRENNTAG INGREDIENTS (INDIA) PVT.LTD. Details | Company Profile ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.companydetails.in%2Fcompany%2Fbrenntag%2Dingredients%]\n- BRENNTAG INGREDIENTS (INDIA) PRIVATE LIMITED | ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2FBRENNTAG%2DINGREDIENTS%2D(INDIA)%2DPR]\n- Brenntag Ingredients India Pvt Ltd - TradeIndia \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tradeindia.com%2Fbrenntag%2Dingredients%2Dindia%2Dpvt]\n- Company Profile - Brenntag Ingredients India Pvt Ltd \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fchemdmart.com%2Fcompany%2Dprofile%2Fbrenntag%2Dingredient]\n- About Brenntag Ingredients (India) Private Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.ingredientsnetwork.com%2Fbrenntag%2Dingredients%2Dind]\n- BRENNTAG INGREDIENTS (INDIA) PRIVATE LIMITED - Dun & Bradstreet \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.b]\n- Brenntag Ingredients (India) Private Limited - 2026 Insights \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fcompany%2Fbrenntag%2Dingredient]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "BRENNTAG INGREDIENTS (INDIA) PVT LTD",
+    "entity_country": "IN",
+    "entity_address": "ACKRUTI CENTER POINT, 301, 3RD FLOOR, MIDC CENTRAL ROAD, ANDHERI EAST, MUMBAI, Maharashtra 400093",
+    "entity_tax_id": "U24117MH2005PTC215980",
+    "key_individuals": [
+      {
+        "name": "Huan Yong",
+        "title": "Director"
+      },
+      {
+        "name": "Alok Sharman",
+        "title": "Director"
+      },
+      {
+        "name": "Vikas Shaw",
+        "title": "Officer"
+      },
+      {
+        "name": "Mayank Vijay Jain",
+        "title": "Officer"
+      },
+      {
+        "name": "Chan Huan Yong"
+      },
+      {
+        "name": "Francois Didier Bleger"
+      },
+      {
+        "name": "Ronnie Fali Titina"
+      },
+      {
+        "name": "Juhi Akhil Shah"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 3,
+  "dark_web_sources": 57
+}

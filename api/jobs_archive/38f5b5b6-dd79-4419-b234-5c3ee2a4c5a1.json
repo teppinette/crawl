@@ -1,0 +1,32 @@
+{
+  "job_id": "38f5b5b6-dd79-4419-b234-5c3ee2a4c5a1",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "europe",
+  "entity_name": "FAR EAST COMMODITIES SA",
+  "country": "CH",
+  "created_at": "2026-05-06T03:10:34.066059+00:00",
+  "updated_at": "2026-05-06T03:14:21.287498+00:00",
+  "blob_path": "osint-staging/cir/europe/far_east_commodities_sa_CH_20260505.json",
+  "report_summary": "Same entity, tenth submission.\n\n**DONE: Far East Commodities SA, CH \u2014 Risk: 4 REVIEW**\n\nFile: `~/crawl/output/far_east_commodities_sa_CH_20260505.json` \u2705 (Rev 2, complete)\nBlob: `europe/far_east_commodities_sa_CH_20260505.json` \u2705\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**111 findings** from 3/57 sources via Tor (Netherlands exit node)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Breach records | 100 |\n| Web mentions (Tor-routed) | 10 |\n\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "FAR EAST COMMODITIES SA",
+    "entity_country": "CH",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "europe": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 111,
+  "dark_web_sources": 57
+}

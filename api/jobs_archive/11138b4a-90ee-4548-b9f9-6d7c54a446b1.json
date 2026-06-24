@@ -1,0 +1,20 @@
+{
+  "job_id": "11138b4a-90ee-4548-b9f9-6d7c54a446b1",
+  "scenario": "dark-web",
+  "status": "failed",
+  "region": "darkweb",
+  "entity_name": "National Plastic Building Material Industries LLC Sharjah UAE",
+  "country": "",
+  "created_at": "2026-05-22T19:12:14.239130+00:00",
+  "updated_at": "2026-05-22T19:12:18.470557+00:00",
+  "blob_path": "osint-staging/dark-web/national_plastic_building_material_industries_llc_sharjah_uae_20260522.json",
+  "report_summary": "0 findings from dark web sources",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_name": "National Plastic Building Material Industries LLC Sharjah UAE",
+    "owners": "Bassam Kronfli, Maha Kronfli, Michael Robinson, David Bray",
+    "country_code": "AE"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "job_id": "17bd21f8-70c1-4f57-a40b-fb7516bf78b7",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "china",
+  "entity_name": "TRAFIGURA PTE LTD",
+  "country": "SG",
+  "created_at": "2026-04-27T15:45:08.999773+00:00",
+  "updated_at": "2026-04-27T15:51:13.848557+00:00",
+  "blob_path": "osint-staging/cir/china/trafigura_pte_ltd_sg_20260427.json",
+  "report_summary": "**DONE:** TRAFIGURA PTE LTD, SG -- Risk: 4 REVIEW -- $127M DOJ settlement, $49M Brazil corruption resolution, Swiss conviction (appealed), OFAC-licensed Venezuela oil trading, complex employee-owned structure via Panama foundation\n\n## Research Summary\n\n**Entity:** TRAFIGURA PTE LTD (UEN 199601595D)  \n**Singapore Operations HQ of:** Trafigura Group (global commodity trading giant)  \n**CEO:** Richard Holtum (CEO since Jan 2025)\n\n### Key Findings by Workstream:\n\n| # | Workstream | Status | Key Observations |\n|---|-----------|--------|-----------------|\n| 1A | Corporate Registry | \u2705 | Live since 07 Mar 1996. Paid-up SGD 6.1M. Principal: Wholesale of fuels. PwC auditor. |\n| 2A | Beneficial Ownership | \u2705 | 100% employee-owned (~1,400 shareholders). Farringford Foundation (Panama) holds voting control. No outside investors. |\n| 3A | Sanctions Screening | \u2705 **No SDN hits** | **OFAC-licensed** for Venezuela (Jan 2026). Voluntarily ceased Russia trade (May 2022). |\n| 4A | Adverse Media | \u26a0\ufe0f **HIGH** | $127M DOJ FCPA settlement (Mar 2024). $49M Brazil resolution (Mar 2025). Swiss Angola conviction (Jan 2025, appealed). |\n| 5A | Litigation | \u26a0\ufe0f Active | Won $500M nickel fraud case (Jan 2026). **Active:** Helms-Burton Cuba claim in Delaware. |\n| 6A | PEP Check | \u2705 **Richard Holtum: NOT PEP** | Former British Army Captain (retired). Private sector exec. Clean background. |\n| 7A | Trade Risk | \u26a0\ufe0f **HIGH** | Operates in sanctioned jurisdictions (Venezuela via OFAC license). Significant corruption history. Post-2019 compliance reforms. |\n| 8A | Risk Assessment | \u2705 **Score: 4 (REVIEW)** | Major counterparty with sophisticated compliance but significant adverse media and active litigation. |\n\n### Key Individuals:\n| Person | Role | PEP? | Sanctions Hit? | Notes |\n|--------|------|------|---------------|-------|\n| **Richard Holtum** | CEO | \u274c No | \u274c No | British, ex-Army Captain, Sandhurst & St Andrews, Glencore alum, 10yr at Trafigura |\n\n### Risk Summary:\n**Score: 4 (REVIEW)** \u2014 Enhanced Due Diligence required. Trafigura's corruption history (3 settlements in 2 years) combined with OFAC-licensed Venezuela operations and active Helms-Burton litigation elevate this above standard MONITOR level. Mitigated by strong compliance framework, clean CEO, and demonstrated Russia sanctions compliance.\n\n\u2705 **JSON report saved to:** `/home/copapadmin/crawl/output/trafigura_pte_ltd_sg_20260427.json` (16,382 bytes)",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "TRAFIGURA PTE LTD",
+    "entity_country": "SG",
+    "entity_address": "10 Collyer Quay, #29-01/05 Ocean Financial Centre, Singapore 049315",
+    "entity_website": "WWW.TRAFIGURA.COM",
+    "entity_tax_id": "199601595D",
+    "key_individuals": [
+      {
+        "name": "Richard Holtum"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "china": {
+      "status": "completed",
+      "error": null
+    }
+  }
+}

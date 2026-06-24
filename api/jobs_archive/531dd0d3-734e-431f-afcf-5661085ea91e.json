@@ -1,0 +1,43 @@
+{
+  "job_id": "531dd0d3-734e-431f-afcf-5661085ea91e",
+  "scenario": "cir",
+  "status": "failed",
+  "region": "gulf",
+  "entity_name": "Agro China Pakistan Pvt Ltd",
+  "country": "PK",
+  "created_at": "2026-05-01T13:54:11.916910+00:00",
+  "updated_at": "2026-05-21T18:05:45.575315+00:00",
+  "blob_path": null,
+  "report_summary": null,
+  "error": "orphan_timeout (stale 29049min, reaped 2026-05-21)",
+  "retry_count": 1,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "Agro China Pakistan Pvt Ltd",
+    "entity_country": "PK",
+    "registration_number": "4334750-9",
+    "entity_tax_id": "4334750-9",
+    "entity_website": "https://topsungroup.pk",
+    "key_individuals": [
+      {
+        "name": "Muhammad Usman Ali",
+        "role": "CEO"
+      },
+      {
+        "name": "Muhammad Farooq Hasnain",
+        "role": "COO"
+      }
+    ],
+    "research_focus": "Verify NTN 4334750-9 on FBR. Verify SECP registration. Check NAB. Search Pakistani courts and media."
+  },
+  "region_status": {
+    "gulf": {
+      "status": "failed",
+      "error": "gulf: agent returned empty response (stderr: Config was last written by a newer OpenClaw (2026.4.29); current version is 2026.4.9.\nConfig was last written by a newer OpenClaw (2026.4.29); current version is 2026.4.9.\n[plugins] plugins.allow is empty; discovered non-bundled plugins may auto-load: crawl-gateway (/home/copadmin/.openclaw/extensio)"
+    }
+  },
+  "errors": [
+    "gulf: agent returned empty response (stderr: Config was last written by a newer OpenClaw (2026.4.29); current version is 2026.4.9.\nConfig was last written by a newer OpenClaw (2026.4.29); current version is 2026.4.9.\n[plugins] plugins.allow is empty; discovered non-bundled plugins may auto-load: crawl-gateway (/home/copadmin/.openclaw/extensio)",
+    "gulf: agent returned empty response (stderr: Config was last written by a newer OpenClaw (2026.4.29); current version is 2026.4.9.\nConfig was last written by a newer OpenClaw (2026.4.29); current version is 2026.4.9.\n[plugins] plugins.allow is empty; discovered non-bundled plugins may auto-load: crawl-gateway (/home/copadmin/.openclaw/extensio)"
+  ]
+}

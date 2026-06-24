@@ -1,0 +1,129 @@
+{
+  "job_id": "a85c9d06-ae57-4097-b62b-9497b98f9284",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "CHEM CONNECT",
+  "country_code": "IN",
+  "created_at": "2026-05-04T16:18:25.787972+00:00",
+  "updated_at": "2026-05-04T16:19:03.124065+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:18:32.557383+00:00",
+      "verified": true,
+      "legal_name": "CONNECT CHEMICALS INDIA PRIVATE LIMITED.",
+      "cin": "U51496MH2008FTC182258",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "16 May, 2008",
+      "directors": [
+        "Dirk Otmar",
+        "Ahmet Basar Karaca",
+        "Suresh Bramhaji Manjrekar"
+      ],
+      "registered_address": "702, Centre Point ,J.B. Nagar, Andheri-Kurla Road, Andheri-East, Mumbai, Maharashtra - 400059",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:18:32.702956+00:00",
+      "found": true,
+      "name": "chemconnect",
+      "linkedin_url": "https://www.linkedin.com/company/chem-connect/",
+      "industry": "Chemical Manufacturing",
+      "company_size": "2-10 employees",
+      "locations": [
+        "Vladimir-Prelog-Weg 10 Z\u00fcrich, Z\u00fcrich 8093, CH"
+      ],
+      "about": "chemconnect is a job platform with the goal of providing the students and PhDs at the Department of Chemistry and Applied Biosciences of ETH Zurich with means to find and offer opportunities for semester projects, theses and more. In addition, it allows companies from the chemical industry to advertise their job offers to the students directly.",
+      "followers": 67,
+      "employees_on_linkedin": 2,
+      "organization_type": "Nonprofit",
+      "website": "https://chemconnect.ethz.ch/",
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "Rc Sekar",
+          "link": "https://in.linkedin.com/in/rc-sekar-9583531bb?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:19:03.123436+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 60,
+      "sources_searched": 37,
+      "sources_with_results": 2,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "CHEM CONNECT",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

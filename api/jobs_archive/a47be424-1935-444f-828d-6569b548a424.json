@@ -1,0 +1,139 @@
+{
+  "job_id": "a47be424-1935-444f-828d-6569b548a424",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "ANM TRADERS",
+  "country_code": "PK",
+  "created_at": "2026-05-04T15:41:09.452957+00:00",
+  "updated_at": "2026-05-04T15:42:02.587798+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:41:13.594276+00:00",
+      "verified": false,
+      "legal_name": null,
+      "registration_number": null,
+      "entity_status": null,
+      "company_type": null,
+      "cro": null,
+      "registration_date": null,
+      "fbr": null,
+      "all_matches": null,
+      "source": "SECP eServices (direct gov query)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:41:21.778170+00:00",
+      "found": true,
+      "name": "Al-Noor Global Trading",
+      "linkedin_url": "https://www.linkedin.com/company/alnoorglobaltrading",
+      "industry": "Wholesale Import and Export",
+      "company_size": "11-50 employees",
+      "locations": [
+        "150,Motiheel C/A Nahar mansion 3rd Floor Building-2 Dhaka, Dhaka 1000, BD"
+      ],
+      "about": "Al-Noor Global Trading is a Place where the Creator's get chances to show their hidden power..........!!!!",
+      "followers": 61,
+      "employees_on_linkedin": 10,
+      "organization_type": "Self-Owned",
+      "website": "https://www.al-noorglobaltrading.com/",
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "Jamil Salim",
+          "link": "https://om.linkedin.com/in/jamil-salim-0ba59824?trk=org-employees"
+        },
+        {
+          "name": "adeel salam",
+          "link": "https://pk.linkedin.com/in/adeel-salam-48ba022a?trk=org-employees"
+        },
+        {
+          "name": "Fady Kurdiah",
+          "link": "https://eg.linkedin.com/in/fady-kurdiah-651b5a2a?trk=org-employees"
+        },
+        {
+          "name": "Md.Aminul Islam",
+          "link": "https://bd.linkedin.com/in/alnoorglobaltrading?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:42:02.587196+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 61,
+      "sources_searched": 37,
+      "sources_with_results": 3,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50,
+        "debarment_record": 1
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "ANM TRADERS",
+    "country_code": "PK",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

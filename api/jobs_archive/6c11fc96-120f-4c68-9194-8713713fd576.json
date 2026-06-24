@@ -1,0 +1,50 @@
+{
+  "job_id": "6c11fc96-120f-4c68-9194-8713713fd576",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "ABHIMAANI PUBLICATIONS LTD.",
+  "country": "IN",
+  "created_at": "2026-05-21T14:29:15.314321+00:00",
+  "updated_at": "2026-05-21T14:32:44.642616+00:00",
+  "blob_path": "osint-staging/cir/india/abhimaani_publications_ltd_IN_20260521.json",
+  "report_summary": "**DONE: Abhimaani Publications Limited, India \u2014 Risk: 2 CLEAR \u2014 37-year Kannada newspaper publisher; CIN U22121KA1988PLC008978; Revenue \u20b945.1 Cr FY25; 57 employees; AGM Sep 30, 2024 current; 5 directors confirmed**\n\n`~/crawl/output/abhimaani_publications_ltd_IN_20260521.json` \u2014 6.8 KB, valid, research date 2026-05-21, all 8 workstreams complete.\n\nCultural context: \"Abhimaani\" (\u0c85\u0cad\u0cbf\u0cae\u0cbe\u0ca8\u0cbf = fan/devotee) is a Kannada newspaper culturally linked to the Dr. Rajkumar fan ecosystem \u2014 the company is literally at 2/4, **Dr. Rajkumar Road**, Rajajinagar, Bangalore. Venkatesh Thimmaiah (DIN 01836926) is the founding director since 1988.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 2/57 sources via Tor (Netherlands exit node) (25 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 57 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Public Image Ltd and The Clash guitarist Keith Levene has di; Nintendo &amp; The Pokemon Company\u2019s new patents are vile.; News Ltd piles on to \"public servant fat cats\" (+12 more) |\n| duckduckgo_tor | 10 | ABHIMAANI PUBLICATIONS LIMITED - ZaubaCorp; Abhimaani Publications Limited; Abhimaani Industries (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- ABHIMAANI PUBLICATIONS LIMITED - ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2Fcompany%2FABHIMAANI%2DPUBLICATIONS%2D]\n- Abhimaani Publications Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.a]\n- Abhimaani Industries \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.abhimaanigroup.com%2F&rut=967b270b8434faf4e7137803aed]\n- Abhimaani Publications Limited - 2026 Insights - The Company Check \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fcompany%2Fabhimaani%2Dpublicati]\n- Abhimaani publications limited - U22121KA1988PLC008978 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.instafinancials.com%2Fcompany%2Fabhimaani%2Dpublicati]\n- Abhimaani Publications Limited Financials | Company Details - Tofler \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tofler.in%2Fabhimaani%2Dpublications%2Dlimited%2Fcomp]\n- ABHIMAANI PUBLICATIONS LIMITED - Company Profile - Tracxn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Fabhimaani%2Dp]\n- ABHIMAANI PUBLICATIONS LIMITED Details | Company Profile | Directors ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.companydetails.in%2Fcompany%2Fabhimaani%2Dpublication]\n- ABHIMAANI PUBLICATIONS LIMITED - The Economic Times \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Feconomictimes.indiatimes.com%2Fcompany%2Fabhimaani%2Dpubl]\n- ABHIMAANI PUBLICATIONS LIMITED - exportalindia.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.exportalindia.com%2Findian%2Dmsme%2Dkarnataka%2F36816]\n\n**SOCIAL MENTION** (15)\n- Public Image Ltd and The Clash guitarist Keith Levene has died aged 65 \u2014 *reddit* [https://reddit.com/r/Music/comments/ytewmq/public_image_ltd_and_the_clash_guitar]\n- Nintendo &amp; The Pokemon Company\u2019s new patents are vile. \u2014 *reddit* [https://reddit.com/r/gaming/comments/1ndw6gp/nintendo_the_pokemon_companys_new_p]\n- News Ltd piles on to \"public servant fat cats\" \u2014 *reddit* [https://reddit.com/r/AusPublicService/comments/1snj00s/news_ltd_piles_on_to_publ]\n- Whitehouse v Lemon was the last successful blasphemy trial in the UK, held in 1976. It was initiated \u2014 *reddit* [https://reddit.com/r/wikipedia/comments/1n66j2i/whitehouse_v_lemon_was_the_last_]\n- My grandfather left this for me. What is it worth? \u2014 *reddit* [https://reddit.com/r/papermoney/comments/1p4us4j/my_grandfather_left_this_for_me]\n- Public Image Ltd - Order Of Death (Hardware MV) \u2014 *reddit* [https://reddit.com/r/industrialmusic/comments/1rpcyzu/public_image_ltd_order_of_]\n- THE OVERLORDS: Who Was Jeffrey Epstein Really Working For? Four hypotheses. 237,000 documents. 5.37  \u2014 *reddit* [https://reddit.com/r/Epstein/comments/1rfy0tj/the_overlords_who_was_jeffrey_epst]\n- Public Image Ltd announce North American Tour. Have you seen them? How are their shows? \u2014 *reddit* [https://reddit.com/r/postpunk/comments/1rx2cok/public_image_ltd_announce_north_a]\n- In 1994, a body was pulled from the North Sea. He was 6'5\", wearing British shoes and a French suit. \u2014 *reddit* [https://reddit.com/r/mystery/comments/1sqnso2/in_1994_a_body_was_pulled_from_the]\n- Found in a wooden chest bought at a secondhand shop \u2014 *reddit* [https://reddit.com/r/Weird/comments/1pisr9v/found_in_a_wooden_chest_bought_at_a_]\n- Been listening to a lot of Public Image Ltd. lately, specifically First Issue, Metal Box and The Flo \u2014 *reddit* [https://reddit.com/r/postpunk/comments/1p7gcvq/been_listening_to_a_lot_of_public]\n- Update: I spent a quarter million dollars on rocks.  \u2014 *reddit* [https://reddit.com/r/wallstreetbets/comments/1ema5ue/update_i_spent_a_quarter_mi]\n- Public Image Ltd, but where in London was this taken ? \u2014 *reddit* [https://reddit.com/r/wherewasthistaken/comments/1t24ts3/public_image_ltd_but_whe]\n- How a pack of condoms in my friend\u2019s room led me to a 33x stock return \ud83d\ude01 \u2014 *reddit* [https://reddit.com/r/IndianStockMarket/comments/1pjm1l4/how_a_pack_of_condoms_in]\n- Is your team's owner a Nepo Baby? An Analysis of Current NFL Head Coach Searches \u2014 *reddit* [https://reddit.com/r/nfl/comments/1qhzxtv/is_your_teams_owner_a_nepo_baby_an_ana]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "ABHIMAANI PUBLICATIONS LTD.",
+    "entity_country": "IN",
+    "entity_address": "2/4, DR. RAJKUMAR ROAD, RAJAJINAGAR, BANGALORE, Karnataka, 560010, India",
+    "entity_tax_id": "U22121KA1988PLC008978",
+    "key_individuals": [
+      {
+        "name": "VENKATESH SRINIVAS"
+      },
+      {
+        "name": "VENKATESH THIMMAIAH"
+      },
+      {
+        "name": "SHIMOGA GANGAIAH VIJAYALAXMI"
+      },
+      {
+        "name": "VENKATESH PURUSHOTHAM"
+      },
+      {
+        "name": "VENKATESH DIVAKAR"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 57
+}

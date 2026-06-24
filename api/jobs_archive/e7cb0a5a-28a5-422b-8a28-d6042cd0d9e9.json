@@ -1,0 +1,20 @@
+{
+  "job_id": "e7cb0a5a-28a5-422b-8a28-d6042cd0d9e9",
+  "scenario": "dark-web",
+  "status": "failed",
+  "region": "darkweb",
+  "entity_name": "Sigma Trade Finance Inc Commerce Finance Sigma",
+  "country": "",
+  "created_at": "2026-05-14T16:27:01.023365+00:00",
+  "updated_at": "2026-05-14T16:27:04.583733+00:00",
+  "blob_path": "osint-staging/dark-web/sigma_trade_finance_inc_commerce_finance_sigma_20260514.json",
+  "report_summary": "0 findings from dark web sources",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_name": "Sigma Trade Finance Inc Commerce Finance Sigma",
+    "owners": "David Sela, Laurent Barbe, Denys Lamarre",
+    "country_code": "CA"
+  }
+}

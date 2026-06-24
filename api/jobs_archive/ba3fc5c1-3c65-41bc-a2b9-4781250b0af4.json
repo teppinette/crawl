@@ -1,0 +1,140 @@
+{
+  "job_id": "ba3fc5c1-3c65-41bc-a2b9-4781250b0af4",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "SARVODAYA INDUSTRIES PACKAGING PRIVATE LIMITED",
+  "country_code": "IN",
+  "created_at": "2026-05-04T15:29:40.931170+00:00",
+  "updated_at": "2026-05-04T15:30:38.303502+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:29:54.092683+00:00",
+      "verified": true,
+      "legal_name": "SARVODAYA INDUSTRIES PACKAGING PRIVATE LIMITED",
+      "cin": "U25209MH2022PTC374508",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "05 January, 2022",
+      "directors": [
+        "Ashish Mangalchand Jhaveri",
+        "Darshit Ashish Jhaveri"
+      ],
+      "registered_address": "1206, 12th Floor, Hubtown Solaris, N. S. Phadke Marg, Andheri East, Mumbai City, Mumbai, Maharashtra, India, 400069",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:29:47.279401+00:00",
+      "found": true,
+      "name": "Sarvodaya Industries Packaging Private Limited",
+      "linkedin_url": "https://in.linkedin.com/company/sarvodaya-industries-packaging-private-limited",
+      "industry": "Packaging and Containers Manufacturing",
+      "company_size": "51-200 employees",
+      "locations": [
+        "NS Phadake Road 1206, Hubtown Solaris Mumbai, Maharashtra 400069, IN"
+      ],
+      "about": "SIPPL is India\u2019s leading tape manufacturer and exporter. SIPPL has 4 high speed coating lines and has coating production capacity of 1.5million square meter a day.",
+      "followers": 60,
+      "employees_on_linkedin": 9,
+      "organization_type": "Privately Held",
+      "website": "https://www.sarvodayaind.com/",
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "Darshit Jhaveri",
+          "link": "https://in.linkedin.com/in/darshit-jhaveri-4a7314124?trk=org-employees"
+        },
+        {
+          "name": "Renuka Jadhav",
+          "link": "https://in.linkedin.com/in/renuka-jadhav-61689516a?trk=org-employees"
+        },
+        {
+          "name": "Anil Yadav",
+          "link": "https://in.linkedin.com/in/anil-yadav-a99693193?trk=org-employees"
+        },
+        {
+          "name": "Kundan Pandey",
+          "link": "https://in.linkedin.com/in/kundan-pandey-1556aa30b?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:30:38.302914+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 60,
+      "sources_searched": 37,
+      "sources_with_results": 2,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "SARVODAYA INDUSTRIES PACKAGING PRIVATE LIMITED",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

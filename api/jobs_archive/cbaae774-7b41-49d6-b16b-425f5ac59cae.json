@@ -1,0 +1,36 @@
+{
+  "job_id": "cbaae774-7b41-49d6-b16b-425f5ac59cae",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "ENGEN PETROLEUM (Pty) LIMITED",
+  "country": "ZA",
+  "created_at": "2026-05-22T16:42:33.873297+00:00",
+  "updated_at": "2026-05-22T16:50:43.843851+00:00",
+  "blob_path": null,
+  "report_summary": "Uploaded. Done.\n\n---\n\n**DONE: Engen Petroleum (Pty) Limited, ZA \u2014 Risk: 3 MONITOR \u2014 Major SA fuel retailer (R156B revenue, 1,040 stations, 8 African countries); \u2b06\ufe0f risk elevated due to Vitol Group (ultimate parent) FCPA settlement $164M (2020); DRC/Zimbabwe operations; no direct Engen sanctions**\n\n---\n\n## \ud83d\udccb CIR: ENGEN PETROLEUM (Pty) LIMITED\n`engen_petroleum_pty_ltd_ZA_20260522.json` \u2192 `osint-staging/americas/`\n\n---\n\n### \ud83c\udfe2 Workstream 1A \u2014 Corporate Profile\n\n| Field | Value |\n|---|---|\n| Founded | **1881** (The Natal Oil Company \u2192 Engen 1990) |\n| Address | Engen Centre, 56 Shortmarket St, Cape Town 8001 |\n| Regulator | **NERSA** (National Energy Regulator of South Africa) |\n| Revenue (2022) | **R156 billion (~USD 8.7B)** |\n| Net income | R2.4 billion \u00b7 Total assets: R52 billion |\n| Employees | 2,523 (2022) |\n| Stations | **~1,040** in South Africa + 7 other countries |\n| Market share | **~25% SA petroleum retail** |\n| Countries | SA, Zimbabwe, Botswana, Namibia, Eswatini, Mauritius, Lesotho, DRC |\n\n---\n\n### \ud83d\udc65 Workstream 2A \u2014 Ownership Chain\n\n```\nENGEN PETROLEUM (Pty) Ltd (ZA)\n\u251c\u2500\u2500 VIVO ENERGY plc (UK) \u2014 74% [acquired from Petronas, May 2024]\n\u2502   \u2514\u2500\u2500 VITOL GROUP (NL/CH) \u2014 100% of Vivo Energy [Taken private July 2022]\n\u2502       \u2514\u2500\u2500 \u26a0\ufe0f FCPA settlement $164M (2020) \u2014 see adverse media\n\u2514\u2500\u2500 PHEMBANI GROUP (ZA BBBEE) \u2014 21% [held since 1999]\n    \u2514\u2500\u2500 Phuthuma Nhleko (founder) \u2014 prominent SA businessman\n```\n\n| Person | Role | PEP | Sanctions |\n|---|---|---|---|\n| **Seelan Naidoo** | CEO/MD | NOT PEP | \u2705 CLEAR |\n| **Ahmad Adly Alias** | Chairman | NOT PEP | \u2705 CLEAR |\n| **Phuthuma Nhleko** | Phembani founder | Prominent figure | \u2705 CLEAR |\n\n---\n\n### \ud83d\udea8 Workstream 3A \u2014 Sanctions: ALL CLEAR (direct)\n\nOFAC \u00b7 UN \u00b7 EU \u00b7 OpenSanctions: **NO HIT** for Engen, Vivo Energy, or Vitol Group.\n\n> \ud83d\udfe1 **Zimbabwe + DRC operations** \u2014 targeted individual sanctions in both countries; Engen fuel retail NOT directly sanctioned; screen payment flows if applicable.\n\n---\n\n### \u26a0\ufe0f Workstream 4A \u2014 Adverse Media\n\n**AM-001 (MEDIUM-HIGH): Vitol Group FCPA \u2014 $164M Settlement (December 2020)**\n- **Vitol Inc.** (US subsidiary of Vitol Group \u2014 ultimate parent via Vivo Energy \u2192 Engen) agreed to pay:\n  - **~$135M to US DOJ** + **~$29M to CFTC** = ~$164M total\n  - FCPA: Bribing government officials in **Brazil, Ecuador, Mexico** for oil contracts\n  - Resolved via Deferred Prosecution Agreement (DPA) \u2014 no criminal conviction\n  - No OFAC sanctions on Vitol\n- **Caveats:** (a) Engen not implicated; (b) Violations in Latin America, unrelated to Engen's African operations; (c) Violations occurred 2011\u20132018, **BEFORE Vitol acquired Engen** (May 2024); (d) Engen was Petronas-owned during violation period\n\n**AM-002 (LOW/Informational):** Competition Tribunal approved Vivo Energy/Engen acquisition from Petronas \u2014 April 2024. Not adverse.\n\n---\n\n### \ud83d\udcbb Dark Web: 43 findings \u2014 low significance\n\nHudsonRock Cavalier infostealer (engen.co.za) \u00b7 0 breach records \u00b7 11 URLscans (normal) \u00b7 6 SSL certs \u00b7 15 Reddit false positives\n\n---\n\n### \ud83d\udccc Open Items\n\n| Priority | Item |\n|---|---|\n| \ud83d\udd34 **HIGH** | EDD on Vitol/Vivo Energy chain \u2014 confirm Engen's own anti-bribery compliance program; confirm DPA completion |\n| \ud83d\udfe1 MEDIUM | Zimbabwe/DRC operations \u2014 sanctions screening if those markets are relevant |\n| \ud83d\udfe1 MEDIUM | Obtain CIPC registration number |\n| \ud83d\udfe2 LOW | Competition Tribunal merger conditions (May 2024) |\n| \ud83d\udfe2 LOW | Clarify exact legal name: \"(Pty) Limited\" vs \"Limited\" |\n\n**Recommendation: PROCEED WITH ENHANCED DUE DILIGENCE.** Engen itself is a major, legitimate, regulated company. The MONITOR flag is driven by Vitol Group's FCPA history (parent chain) \u2014 manageable through EDD and anti-bribery compliance confirmation from Engen.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 1/37 sources via Tor (Netherlands exit node) (10 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 37 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | Home | Engen; Engen Petroleum - Wikipedia; Engen Petroleum (Pty) Ltd (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- Home | Engen \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.engen.co.za%2F&rut=d14880007a12738c8d878d50a2acf0d13d]\n- Engen Petroleum - Wikipedia \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FEngen_Petroleum&rut=24b511e4688]\n- Engen Petroleum (Pty) Ltd \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.e]\n- Engen Petroleum (Pty) Ltd - SA Business Listings \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fsabusinesslistings.co.za%2Flistings%2Fengen%2Dpetroleum%2]\n- Engen Petroleum Limited - Naacam \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fnaacam.org.za%2Fmember%2Fengen%2Dpetroleum%2Dlimited%2F&r]\n- Engen Petroleum (Pty) Ltd - OpenCorpData \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fopencorpdata.com%2Flei%2F378900B3E97B6B501E76&rut=b841b73]\n- West Coast Petroleum \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwestcoastpetroleum.yolasite.com%2F&rut=468d6ad4c13d3fd7b8]\n- Engen - LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fza.linkedin.com%2Fcompany%2Fengen&rut=7942a35cad9bff3bae8]\n- Engen Petroleum Limited - The Road Freight Association - RFA \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Frfa.co.za%2FSA%2Fbusiness%2Fengen%2Dpetroleum%2Dlimited%2]\n- South Africa - Vivo Energy \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.vivoenergy.com%2Fen%2Fwhere%2Dwe%2Doperate%2Fsouth%2D]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "americas: Report file not found on remote VM (americas)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "ENGEN PETROLEUM (Pty) LIMITED",
+    "entity_country": "ZA",
+    "entity_address": "Engen Centre, 56 Shortmarket Street, Cape Town, 8001, South Africa",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (americas)"
+    }
+  },
+  "errors": [
+    "americas: Report file not found on remote VM (americas)"
+  ],
+  "dark_web_findings": 0,
+  "dark_web_sources": 37
+}

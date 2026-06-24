@@ -1,0 +1,51 @@
+{
+  "job_id": "fbacafe3-55fa-4ef2-a9fd-d7f6794937e9",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "First Polychem LLC",
+  "country": "US",
+  "created_at": "2026-05-14T13:09:16.376727+00:00",
+  "updated_at": "2026-05-14T13:11:26.368314+00:00",
+  "blob_path": "osint-staging/cir/americas/first_polychem_llc_US_20260514.json",
+  "report_summary": "**No re-research required.** The authoritative report is `americas/first_polychem_llc_US_20260514.json`.\n\n**Address discrepancy note:** This brief says Suite 100; the original brief and Texas SOS (confirmed 2026-05-12) both show Suite 1500. Both are within the same building at 1980 Post Oak Blvd, Houston \u2014 this is a large Regus/shared office complex with multiple suites. The discrepancy has no compliance impact but counterparty should be asked to confirm their current suite during KYC.\n\n| | |\n|---|---|\n| **Report** | `americas/first_polychem_llc_US_20260514.json` \u2014 2026-05-14T11:28 UTC |\n| **Risk** | **2 / CLEAR** |\n| **EIN match** | 27-1333595 \u2713 |\n| **UBOs** | Brahim Benzakour 50% + Lamyae Hanafi Benzakour 50% \u2713 CLEAR |\n| **Suite note** | Brief says 100; SOS says 1500 \u2014 flag for KYC address confirmation |\n---\n\n## DARK WEB SCREENING \u2014 CRITICAL\n**3 actionable findings** from 5/49 sources via Tor (Netherlands exit node) (26 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| World Bank Debarment | 1 |\n| Credential compromise | 1 |\n| SSL certificates (crt.sh) | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n\n**Key findings:**\n- WORLD BANK DEBARMENT: \n- CREDENTIAL COMPROMISE: www.firstpolychem.com\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | \"Investomania - Meme Stock\" video produced by the SEC with t; Vegan Pizza my girlfriend and I made. We're opening Western ; Teacher marked my son\u2019s homework as incorrect. I disagree. (+12 more) |\n| duckduckgo_tor | 10 | FIRST PolyChem - Plastics & Chemicals Raw Materials; First Polychem, LLC Company Profile | Houston, Texas | Compe; First PolyChem - Overview, News & Similar companies - ZoomIn (+7 more) |\n| crtsh | 5 | www.firstpolychem.com; certificate_transparency (+3 more) |\n| hudsonrock_cavalier | 1 | www.firstpolychem.com |\n| adb_sanctions | 1 | debarment_record |\n\n### All findings detail\n\n**WORLD BANK DEBARMENT** (1)\n-  \u2014 *adb_sanctions* [https://www.adb.org/who-we-are/integrity/sanctions]\n\n**CREDENTIAL COMPROMISE** (1)\n- www.firstpolychem.com \u2014 *hudsonrock_cavalier*\n\n**WEB MENTION** (10)\n- FIRST PolyChem - Plastics & Chemicals Raw Materials \u2014 *duckduckgo_tor* [/l/?uddg=http%3A%2F%2Ffirstpolychem.com%2F&rut=b00c175d1ab8ca01e93cdf6f8df04bf6d]\n- First Polychem, LLC Company Profile | Houston, Texas | Competitors ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.f]\n- First PolyChem - Overview, News & Similar companies - ZoomInfo \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zoominfo.com%2Fc%2Ffirst%2Dpolychem%2Dllc%2F358390081]\n- FIRST POLYCHEM, LLC :: Texas (US) :: OpenCorporates \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fopencorporates.com%2Fcompanies%2Fus_tx%2F0801192515&rut=f]\n- First Polychem, Llc ,United States - company-listing.org \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.company%2Dlisting.org%2Ffirst_polychem_llc.html&rut=b]\n- FIRST POLYCHEM, LLC in Houston, TX | Company Info & Reviews - Bizapedia \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.bizapedia.com%2Ftx%2Ffirst%2Dpolychem%2Dllc.html&rut=]\n- FIRST POLYCHEM LLC | Plastics Materials & Basic Forms & Shapes ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fnaicslist.com%2Fcompany%2Dprofile%2Ffirst%2Dpolychem%2Dll]\n- FIRST POLYCHEM LLC Houston TX, 77056 - Company Profile - Cortera \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fstart.cortera.com%2Fcompany%2Fresearch%2Fl8m8nws4s%2Ffirs]\n- First Polychem Houston TX, 77056 - Manta.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.manta.com%2Fc%2Fmb4j1sv%2Ffirst%2Dpolychem%2Dllc&rut=]\n- first polychem, llc ,Rubber Chemicals ,United States \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.listofcompaniesin.com%2FFirst_Polychem_Llc_Company_10]\n\n**SOCIAL MENTION** (15)\n- \"Investomania - Meme Stock\" video produced by the SEC with tax payer money. Close to $500k to produc \u2014 *reddit* [https://reddit.com/r/Superstonk/comments/1hi2otb/investomania_meme_stock_video_p]\n- Vegan Pizza my girlfriend and I made. We're opening Western New Yorks very first, fully plant based  \u2014 *reddit* [https://reddit.com/r/vegan/comments/bx6rb0/vegan_pizza_my_girlfriend_and_i_made_]\n- Teacher marked my son\u2019s homework as incorrect. I disagree. \u2014 *reddit* [https://reddit.com/r/mildlyinfuriating/comments/1qdwisy/teacher_marked_my_sons_h]\n- I traced $2 billion in nonprofit grants and 45 states of lobbying records to figure out who's behind \u2014 *reddit* [https://reddit.com/r/linux/comments/1rshc1f/i_traced_2_billion_in_nonprofit_gran]\n- I wonder why they deleted their Epstein tweets now. \u2014 *reddit* [https://reddit.com/r/WhitePeopleTwitter/comments/1oz3g9c/i_wonder_why_they_delet]\n- Michael Burry is shutting down Scion Asset Management \u2014 *reddit* [https://reddit.com/r/wallstreetbets/comments/1ovsovx/michael_burry_is_shutting_d]\n- Coal LLC, my first game made in Godot, has sold 50,000 copies! \u2014 *reddit* [https://reddit.com/r/godot/comments/1oewb4w/coal_llc_my_first_game_made_in_godot]\n- r/LinusTechTips reacts very normally to Linus buying a private jet, old anti-private-jet WAN clips r \u2014 *reddit* [https://reddit.com/r/SubredditDrama/comments/1saymf6/rlinustechtips_reacts_very_]\n- [DOMO Capital Management, LLC on Twitter] Breaking: $GME just completely changed their \"About GameSt \u2014 *reddit* [https://reddit.com/r/GME/comments/m1i6z6/domo_capital_management_llc_on_twitter_]\n- My first attempt at leading a indie game project towards a personal dream come come true! My brother \u2014 *reddit* [https://reddit.com/r/JRPG/comments/kdcovx/my_first_attempt_at_leading_a_indie_ga]\n- Tennessee Just Made WhistlinDiesel the Poster Child for Tax Evasion \u2014 *reddit* [https://reddit.com/r/MotorBuzz/comments/1qwxjo1/tennessee_just_made_whistlindies]\n- First Tattoo !! Aku Aku done by Hope at Human canvas LLC Pittsburgh PA \u2014 *reddit* [https://reddit.com/r/tattoos/comments/gzvtsd/first_tattoo_aku_aku_done_by_hope_a]\n- Ask Me Anything About My E-Ink Tablet Collection \u2014 *reddit* [https://reddit.com/r/eink/comments/1sk5lx5/ask_me_anything_about_my_eink_tablet_]\n- I (M27) am suing my brother (M41) and my GF (F23) wants me to disown my parents too. Is she right? \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1mx8a4l/i_m27_am_suing_my_br]\n- THE OVERLORDS: Who Was Jeffrey Epstein Really Working For? Four hypotheses. 237,000 documents. 5.37  \u2014 *reddit* [https://reddit.com/r/Epstein/comments/1rfy0tj/the_overlords_who_was_jeffrey_epst]\n\n**CERTIFICATE SUMMARY** (1)\n- www.firstpolychem.com \u2014 *crtsh*\n\n**SSL CERTIFICATE** (1)\n-  \u2014 *crtsh*\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "First Polychem LLC",
+    "entity_country": "US",
+    "entity_address": "1980 Post Oak Blvd, Suite 100, Houston, TX 77056, USA",
+    "entity_tax_id": "27-1333595",
+    "key_individuals": [
+      {
+        "name": "Lamyae Hanafi Benzakour",
+        "title": "Partner"
+      },
+      {
+        "name": "Brahim Benzakour",
+        "title": "Managing Director"
+      },
+      {
+        "name": "Lamyae Hanafi Benzakour",
+        "title": "UBO (50.00%)"
+      },
+      {
+        "name": "Brahim Benzakour",
+        "title": "UBO (50.00%)"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 3,
+  "dark_web_sources": 49
+}

@@ -1,0 +1,81 @@
+{
+  "job_id": "0565da90-f3c1-4dc3-98dc-3dfe46b20684",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "APCOTEX INDUSTRIES LTD",
+  "country": "IN",
+  "created_at": "2026-05-21T15:18:28.696923+00:00",
+  "updated_at": "2026-05-21T15:22:31.012845+00:00",
+  "blob_path": "osint-staging/cir/india/apcotex_industries_ltd_IN_20260521.json",
+  "report_summary": "**DONE: Apcotex Industries Limited, India \u2014 Risk: 1 CLEAR \u2014 BSE: APCOTEXIND; PAN AAACA3427G; Revenue \u20b91,392 Cr FY25; 9M FY26 PAT +78.8% YoY; EBITDA margins expanding; Final Dividend \u20b95 (FY26)**\n\n`~/crawl/output/apcotex_industries_ltd_IN_20260521.json` \u2014 9.4 KB, valid, research date 2026-05-21.\n\nThree items requiring immediate attention:\n1. \ud83d\udea8 **\"India Infoline\" prefix on Rajendra Mariwala** \u2014 DATA ARTIFACT, remove it\n2. \ud83d\udccb **Director change disclosed May 6, 2026** \u2014 verify current board vs subject block\n3. \ud83d\udccb **\"Amit Choksey Champaklal\" (#9)** \u2014 verify if different from Atul Champaklal Choksey (different given names; possible additional family member or name scramble)\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**2 actionable findings** from 4/57 sources via Tor (Netherlands exit node) (23 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 9 |\n| Website scans (URLScan) | 4 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: apcotex.com\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | APCOTEX INDUSTRIES LTD, ACTION CONSTRUCTION EQUIPMENT LTD fo; \ud83c\uddee\ud83c\uddf3India Daybook \u2013 Stocks in News*; India Daybook \u2013 Stocks in News* (+12 more) |\n| duckduckgo_tor | 10 | Apcotex; Apcotex Industries Limited | LinkedIn; Apcotex Industries Share Price - The Economic Times (+7 more) |\n| urlscan | 9 | apcotex.com; NBR Latex, Nitrile & SBR Latex Synthetic Latex, Synthetic Ru; NBR Latex, Nitrile & SBR Latex  Synthetic Latex, Synthetic R (+6 more) |\n| hudsonrock_cavalier | 1 | apcotex.com |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- apcotex.com \u2014 *hudsonrock_cavalier*\n\n**WEB MENTION** (10)\n- Apcotex \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fapcotex.com%2F&rut=016081868efb450f4f4741601cde41eb88899e]\n- Apcotex Industries Limited | LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fin.linkedin.com%2Fcompany%2Fapcotex&rut=6f1f48046bcff7542]\n- Apcotex Industries Share Price - The Economic Times \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Feconomictimes.indiatimes.com%2Fapcotex%2Dindustries%2Dltd]\n- Apcotex Ind Share Price, Apcotex Ind Stock Price, Apcotex Industries ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.moneycontrol.com%2Findia%2Fstockpricequote%2Frubber%2]\n- APCOTEX INDUSTRIES LIMITED Company Profile | Bharuch, Gujarat ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.a]\n- Apcotex Industries Ltd share price | About Apcotex Industri | Key ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.screener.in%2Fcompany%2FAPCOTEXIND%2F&rut=de8b7e68016]\n- Apcotex Industries Limited, Panvel - Manufacturer of ... - IndiaMART \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Fapcotexindustrieslimited%2F&rut=16269]\n- Apcotex Industries Ltd Summary | IIFL Capital - IndiaInfoline \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiainfoline.com%2Fcompany%2Fapcotex%2Dindustries%2D]\n- APCOTEXIND Stock Price | Apcotex Industries Ltd. Stock Quote (India ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.marketwatch.com%2Finvesting%2Fstock%2Fapcotexind%3Fco]\n- Apcotex Industries Limited (APCOTEXIND.NS) - Yahoo Finance \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ffinance.yahoo.com%2Fquote%2FAPCOTEXIND.NS%2F&rut=d28613b9]\n\n**SOCIAL MENTION** (9)\n- APCOTEX INDUSTRIES LTD, ACTION CONSTRUCTION EQUIPMENT LTD for gains \u2014 *reddit* [https://reddit.com/r/IndianStockNews/comments/wxlt5o/apcotex_industries_ltd_acti]\n- \ud83c\uddee\ud83c\uddf3India Daybook \u2013 Stocks in News* \u2014 *reddit* [https://reddit.com/r/UpdateINDIA/comments/1t9r1bj/india_daybook_stocks_in_news/]\n- India Daybook \u2013 Stocks in News* \u2014 *reddit* [https://reddit.com/r/UpdateINDIA/comments/1qvh2c1/india_daybook_stocks_in_news/]\n- Market Brief  -  6 Nov 2025 \u2014 *reddit* [https://reddit.com/r/IndianMarketUpdate/comments/1oq33o4/market_brief_6_nov_2025]\n- *\ud83c\uddee\ud83c\uddf3India Daybook \u2013 Stocks in News* \u2014 *reddit* [https://reddit.com/r/DalalStreetTalks/comments/1khjrex/india_daybook_stocks_in_n]\n- *India Daybook \u2013 Stocks in News* \u2014 *reddit* [https://reddit.com/r/UpdateINDIA/comments/1dy3vly/india_daybook_stocks_in_news/]\n- Shares of Indian companies in Forbes Asia's 200 Best Under A Billion grew by 9.8% against 7.6% growt \u2014 *reddit* [https://reddit.com/r/IndianStreetBets/comments/17uvlr6/shares_of_indian_companie]\n- A 71-year-old anti-poverty activist has filed a $1-billion class-action lawsuit against several groc \u2014 *reddit* [https://reddit.com/r/worldnews/comments/7m018m/a_71yearold_antipoverty_activist_]\n- A boom in electric vehicles made by the likes of Tesla Motors Inc. could erode as much as 10 percent \u2014 *reddit* [https://reddit.com/r/news/comments/5gaa8w/a_boom_in_electric_vehicles_made_by_th]\n\n**DOMAIN SCAN SUMMARY** (1)\n- apcotex.com \u2014 *urlscan*\n\n**WEBSITE SCAN** (4)\n- NBR Latex, Nitrile & SBR Latex Synthetic Latex, Synthetic Rubber & Emulsion Polymers Manufacturers \u2014 *urlscan* [https://apcotex.com/]\n- NBR Latex, Nitrile & SBR Latex  Synthetic Latex, Synthetic Rubber & Emulsion Polymers Manufacturers \u2014 *urlscan* [https://apcotex.com/]\n- NBR Latex, Nitrile & SBR Latex  Synthetic Latex, Synthetic Rubber & Emulsion Polymers Manufacturers  \u2014 *urlscan* [https://apcotex.com//]\n- Sharp Electronic Cash Register ER2396 | Texaco \u2014 *urlscan* [http://www.4mark.net/story/6493931/sharp-electronic-cash-register-er2396]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "APCOTEX INDUSTRIES LTD",
+    "entity_trade_names": "APCOTEX INDUSTRIES LIMITED",
+    "entity_country": "IN",
+    "entity_address": "C-403/404, 4th Level, Wing C, Tower 1, Seawoods Grand Central, Sector 40, Navi Mumbai, Darave, Maharashtra 400706",
+    "entity_type": "Synthetic Latex Manufacturing",
+    "entity_industry": "Synthetic Latex Manufacturing",
+    "entity_tax_id": "AAACA3427G",
+    "key_individuals": [
+      {
+        "name": "Atul Champaklal Choksey",
+        "title": "Director"
+      },
+      {
+        "name": "India Infoline Rajendra Mariwala",
+        "title": "Director (DIN: 00007246)"
+      },
+      {
+        "name": "Priti Savla",
+        "title": "Director (DIN: 00662996)"
+      },
+      {
+        "name": "Abhiraj Atul Choksey"
+      },
+      {
+        "name": "Udayan Dileep Choksi"
+      },
+      {
+        "name": "Dinanath Narcinva Prabhukholkar"
+      },
+      {
+        "name": "Ravishankar Lakshmanan Sharma"
+      },
+      {
+        "name": "Sachin Jaikishan Karwa"
+      },
+      {
+        "name": "Amit Choksey Champaklal"
+      },
+      {
+        "name": "Priti Paras Savla"
+      },
+      {
+        "name": "Priyamvada Ashesh Bhumkar"
+      },
+      {
+        "name": "Achala Vasudev Danait"
+      },
+      {
+        "name": "Jeevan Bhargav Mondkar"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "copap_products": "Synthetic Latex",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 2,
+  "dark_web_sources": 57
+}

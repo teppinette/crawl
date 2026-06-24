@@ -1,0 +1,54 @@
+{
+  "job_id": "152c6c22-febb-4a97-b375-12ae7b320004",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "KLK TENSACHEM S.A.",
+  "country": "US",
+  "created_at": "2026-04-21T15:00:11.174329+00:00",
+  "updated_at": "2026-04-21T15:11:44.457422+00:00",
+  "blob_path": "osint-staging/cir/americas/klk_tensachem_sa_20260421.json",
+  "report_summary": "Upload confirmed. Here's the complete report summary:\n\n---\n\n**DONE: KLK TENSACHEM S.A., BE \u2014 Risk: 2 CLEAR \u2014 Legitimate Belgian surfactant manufacturer, KLK group subsidiary since 2014, no sanctions hits; EDD on director Damoisaux-Delnoy (PEP-adjacent via EURENCO French SOE)**\n\n---\n\n## \ud83d\udccb Counterparty Research: KLK TENSACHEM S.A.\n`~/crawl/output/klk_tensachem_BE_20260421.json` \u2192 uploaded to `stcrawlosint/osint-staging/americas/`\n\n---\n\n### \u26a0\ufe0f Research Parameter Flag\n**ENTITY_COUNTRY: US** in the request header is **incorrect**. The entity is registered in **Belgium** (BE 0449.046.553, Rue de Renory 28, 4102 Seraing). No US corporate registration was found. Research conducted against Belgian CBE and European sources.\n\n---\n\n### \ud83c\udfe2 Corporate Registry (Workstream 1A)\n| Field | Value |\n|---|---|\n| Registration | BE 0449.046.553 |\n| Status | **Active** \u2014 Normale toestand since 21 Dec 1992 |\n| Legal form | NV/SA (Naamloze Vennootschap / Soci\u00e9t\u00e9 Anonyme) |\n| Address | Rue de Renory 28, 4102 Seraing (Ougr\u00e9e), Belgium |\n| Share capital | \u20ac5,048,631.24 |\n| FY end | 30 September |\n| NACE | 20.411 \u2014 Manufacture of soap and detergents |\n| Auditor | Gr\u00e9gory Gonzalez Rodriguez, Executive Director KPMG Belgium, R\u00e9viseur d'Entreprises (LEI: 64880B5OH64CA79RN857) |\n\n**Directors:**\n| Name | Appointed | Role/Background |\n|---|---|---|\n| Uwe Halder | 2015-05-21 | CEO KLK OLEO Europe; ex-BASF, DyStar, CHT/BEZEMA; on Synthomer board (Sept 2024) |\n| William Ong Eng San | 2022-04-28 | CFO Kuala Lumpur Kepong Berhad (KLK Group); ex-PwC |\n| Florian Kr\u00fcckl | 2024-01-01 | CEO KLK OLEO Europe; ex-KLK Kolb, BASF Middle East |\n| Marc Damoisaux-Delnoy | 2024-01-01 | Plant COO/Director KLK Tensachem; **ex/concurrent CEO EURENCO Belgium (French SOE defense)** |\n\n---\n\n### \ud83d\udd17 Beneficial Ownership Chain (Workstream 2A)\n```\nKLK TENSACHEM S.A. (Belgium)\n  \u2514\u2500 KLK OLEO Europe GmbH (Switzerland, ~100%)\n       \u2514\u2500 Kuala Lumpur Kepong Berhad [KLK] (Malaysia, Bursa: KLKK.KL, ~USD 5.46B mkt cap)\n            \u2514\u2500 Batu Kawan Berhad (Malaysia, ~46.9% of KLK)\n                 \u2514\u2500 Lee family: Tan Sri Lee Oi Hian (KLK Exec Chairman) + Dato' Lee Hau Hian (BKB MD)\n```\nNo bearer shares, no nominees, no opaque structures. Fully transparent listed-company ownership chain.\n\n---\n\n### \ud83d\uded1 Sanctions Screening (Workstream 3A)\n| List | Result |\n|---|---|\n| OFAC SDN | **No hits** |\n| EU Consolidated | **No hits** |\n| UK FCDO | **No hits** |\n| UN Security Council | **No hits** |\n| OFAC 50% Rule | **Not triggered** |\n\nMalaysia and Belgium are unsanctioned jurisdictions. Products are standard commercial surfactants, not controlled goods.\n\n---\n\n### \ud83d\udcf0 Adverse Media (Workstream 4A) \u2014 All LOW relevance\n1. **Liberia/EPO/LIBINCO RSPO land rights dispute** (Grand Bassa County, 2013\u2013present) \u2014 Group-level ESG concern only; KLK owns 62.86% of EPO; RSPO update Aug 2024. No criminal or financial penalties.\n2. **RSPO Complaint GR-000960** \u2014 Ongoing RSPO grievance mechanism case; no court proceedings.\n3. **KLK RM180M Synthomer impairment** (Q4 FY2024) \u2014 Financial news; Synthomer liquidity support arrangement Dec 2025. Not relevant to KLK Tensachem operations.\n\n---\n\n### \u2696\ufe0f Litigation (Workstream 5A)\n- No US federal court cases (PACER: no results)\n- No Belgian court proceedings identified\n- RSPO GR-000960: non-judicial grievance; active since 2013; group plantation level only\n\n---\n\n### \ud83e\uddd1\u200d\ud83d\udcbc PEP Connections (Workstream 6A)\n| Person | Category | Detail |\n|---|---|---|\n| **Marc Damoisaux-Delnoy** | **Tier 2 PEP-Adjacent** | CEO of EURENCO Belgium (Poudreries de Belgique, Clermont-sur-Berwinne site), subsidiary of **EURENCO S.A.S.** \u2014 a French SOE controlled by Agence des Participations de l'\u00c9tat. LinkedIn still lists EURENCO as employer as of April 2026. FATF broad PEP definition includes senior executives of SOE subsidiaries. **EDD recommended for this director.** No disqualifying finding for KLK Tensachem's commercial operations. |\n\n---\n\n### \ud83c\udf0d Trade Risk (Workstream 7A)\n- **Products:** SLS (Sodium Lauryl Sulfate / TENSOPOL), SLES (Sodium Lauryl Ether Sulfate / TENSAGEX), anionic surfactants, syndets, hot melts \u2014 standard personal care/home care ingredients\n- **Not dual-use.** Not scheduled under CWC Annexes. Not Annex I of EU Dual-Use Regulation (EU) 2021/821\n- **No sanctioned country exposure** in operations or supply chain\n- **ESG note:** Palm oil feedstock involves Liberia operations (RSPO complaints, ongoing); KLK is RSPO-certified >75% with 85% SPOTT score\n\n---\n\n### \ud83c\udfaf Risk Assessment\n| Score | Label | Rationale |\n|---|---|---|\n| **2** | **CLEAR** | All sanctions checks clear. Transparent 4-level ownership chain through publicly listed parent. Legitimate 58-year-old Belgian chemical manufacturer. KPMG-audited. EU/REACH regulated. One monitoring item: EDD on Damoisaux-Delnoy for EURENCO SOE connection. Group-level ESG (Liberia) low impact on Belgian surfactant subsidiary. |",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "KLK TENSACHEM S.A.",
+    "entity_country": "US",
+    "entity_address": "Rue de Renory 28, 4102 Ougr\u00e9e (Seraing), Belgium",
+    "entity_website": "https://www.klk.com.my/",
+    "entity_tax_id": "BE 0449.046.553",
+    "key_individuals": [
+      {
+        "name": "Halder Uwe",
+        "title": "Director (Administrator)"
+      },
+      {
+        "name": "Ong Eng San William",
+        "title": "Director (Administrator)"
+      },
+      {
+        "name": "Kr\u00fcckl Florian",
+        "title": "Director (Administrator)"
+      },
+      {
+        "name": "Damoisaux-Delnoy Marc",
+        "title": "Director (Administrator)"
+      },
+      {
+        "name": "Gonzalez Rodriguez Gr\u00e9gory",
+        "title": "Statutory Auditor Representative (R\u00e9viseur d'Entreprises)"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": null
+    }
+  }
+}

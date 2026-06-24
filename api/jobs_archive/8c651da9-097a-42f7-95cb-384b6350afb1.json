@@ -1,0 +1,32 @@
+{
+  "job_id": "8c651da9-097a-42f7-95cb-384b6350afb1",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "PLASTICOS RIVAL CIA LTDA",
+  "country": "EC",
+  "created_at": "2026-05-22T18:07:00.628983+00:00",
+  "updated_at": "2026-05-22T18:23:48.884459+00:00",
+  "blob_path": "osint-staging/cir/americas/plasticos_rival_cia_ltda_EC_20260522.json",
+  "report_summary": "Uploaded. Done.\n\n---\n\n**DONE: Plasticos Rival CIA Ltda, EC \u2014 Risk: 2 CLEAR \u2014 49-year Ecuadorian PVC/PE/PP/GRP pipe manufacturer; RUC 0190050033001; 3 plants (Cuenca + Guayaquil + Lima Peru); part of Corporaci\u00f3n Rival; Metro Ecuador coverage August 2025; all sanctions CLEAR; 0 dark web findings**\n\n---\n\n## \ud83d\udccb CIR: PLASTICOS RIVAL CIA LTDA\n`plasticos_rival_cia_ltda_EC_20260522.json` \u2192 `osint-staging/americas/`\n\n---\n\n### \ud83c\udfe2 Workstream 1A \u2014 Registry\n\n| Field | Value |\n|---|---|\n| **RUC** | **0190050033001** |\n| Legal form | Compa\u00f1\u00eda Limitada (CIA LTDA) |\n| **Founded** | **1976** \u2014 49 years |\n| Group | **Corporaci\u00f3n Rival** (50-year anniversary) |\n| Headquarters | Ricaurte, **Cuenca, Azuay**, Ecuador |\n| Website | plasticosrival.com |\n\n**3 Manufacturing Plants:**\n- \ud83c\uddea\ud83c\udde8 Plant 1: **Cuenca** (HQ)\n- \ud83c\uddea\ud83c\udde8 Plant 2: **Guayaquil**\n- \ud83c\uddf5\ud83c\uddea Plant 3: **Lima, Peru**\n\n**Products:** PVC \u00b7 PVC-O \u00b7 HDPE \u00b7 PP \u00b7 GRP/PRFV pipes and fittings \u2014 **Infrastructure, Mining, Energy, Sanitary, Irrigation**\n\n---\n\n### \ud83d\udea8 Sanctions: ALL CLEAR | \ud83d\udcf0 Adverse Media: NONE\n### \ud83d\udcbb Dark Web: 25 findings \u2014 10 legitimate directories, 15 Reddit false positives, **0 breaches**\n\n**Metro Ecuador (August 2025):** \"Pl\u00e1sticos Rival: innovaci\u00f3n ecuatoriana que impulsa infraestructura, miner\u00eda, riego\"\n\n---\n\n### \ud83d\udccc Open Items (both LOW)\n\n| Item | Action |\n|---|---|\n| SCVS company extract | Identify shareholders/directors and screen |\n| Corporaci\u00f3n Rival group structure | Confirm all affiliated entities |\n\n**Recommendation: PROCEED WITH STANDARD ONBOARDING.** Tier 1 Ecuadorian industrial manufacturer, 49-year track record, regional presence.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**1 actionable findings** from 3/49 sources via Tor (Netherlands exit node) (11 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 1 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: www.plasticosrival.com\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | Pl\u00e1sticos RIVAL; Plasticos Rival Cia Ltda Company Profile - Ecuador - EMIS; Plasticos Rival Cia Ltda. Company Profile | Cuenca, Azuay |  (+7 more) |\n| hudsonrock_cavalier | 1 | www.plasticosrival.com |\n| reddit | 1 | Hot Wheels Premium 1995 Mitsubishi Eclipse Fast &amp; Furiou |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- www.plasticosrival.com \u2014 *hudsonrock_cavalier*\n\n**WEB MENTION** (10)\n- Pl\u00e1sticos RIVAL \u2014 *duckduckgo_tor* [/l/?uddg=http%3A%2F%2Fplasticosrival.com%2F&rut=80e0227a1d8604587f554d7df4eefe42]\n- Plasticos Rival Cia Ltda Company Profile - Ecuador - EMIS \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FEC%2FPlasticos_R]\n- Plasticos Rival Cia Ltda. Company Profile | Cuenca, Azuay | Competitors ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.p]\n- PLASTICOS RIVAL CIA. LTDA. Information - RocketReach \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Frocketreach.co%2Fplasticos%2Drival%2Dcia%2Dltda%2Dprofile]\n- PLASTICOS RIVAL CIA LTDA - appscvsmovil.supercias.gob.ec \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fappscvsmovil.supercias.gob.ec%2Fportaldeinformacion%2Fcon]\n- PLASTICOS RIVAL - AZUAY, CUENCA, RICAURTE - EcuadorNegocios \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fecuadornegocios.com%2Finfo%2Fplasticos%2Drival%2DF69955F2]\n- Plasticos Rival CIA.LTDA. | (02) 255-0718 | Pichincha \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fec.todosnegocios.com%2Fplasticos%2Drival%2Dcia%2Dltda%2D0]\n- Pl\u00e1sticos Rival Cia., Ltda \u0432 Guayaquil | Tienda en l\u00ednea Pl\u00e1sticos ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2F5294%2Dec.all.biz%2F&rut=34fc97b970500b7c27ef5e376981f6ea]\n- Pl\u00e1sticos rival, l\u00edder empresarial - Diario El Mercurio \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Felmercurio.com.ec%2Fcolumnistas%2F2025%2F08%2F31%2Fplasti]\n- Pl\u00e1sticos Rival Cia.Ltda. en Cuenca, AZUAY - edina.com.ec \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.edina.com.ec%2Ftuberias%2Dplasticas%2F%25CF%2580%2Fpl]\n\n**SOCIAL MENTION** (1)\n- Hot Wheels Premium 1995 Mitsubishi Eclipse Fast &amp; Furious 25th Anniversary Chase for Trade for R \u2014 *reddit* [https://reddit.com/r/DiecastExchangeV2/comments/1r88uxu/hot_wheels_premium_1995_]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "PLASTICOS RIVAL CIA LTDA",
+    "entity_country": "EC",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 1,
+  "dark_web_sources": 49
+}

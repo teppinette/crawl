@@ -1,0 +1,20 @@
+{
+  "job_id": "4fdb59ba-ce94-42b6-8631-f11ca0266eb5",
+  "scenario": "dark-web",
+  "status": "failed",
+  "region": "darkweb",
+  "entity_name": "AquaChemie Middle East FZE",
+  "country": "",
+  "created_at": "2026-05-22T17:17:42.488691+00:00",
+  "updated_at": "2026-05-22T17:17:46.737094+00:00",
+  "blob_path": "osint-staging/dark-web/aquachemie_middle_east_fze_20260522.json",
+  "report_summary": "0 findings from dark web sources",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_name": "AquaChemie Middle East FZE",
+    "owners": "Anandkumar Varadharajulu, Subrato Saha, Naresh Chandra",
+    "country_code": "AE"
+  }
+}

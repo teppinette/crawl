@@ -1,0 +1,62 @@
+{
+  "job_id": "da2c36ad-5a48-4715-b7f5-d842b014a8c0",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "europe",
+  "entity_name": "ADDCON NORDIC AS",
+  "country": "NO",
+  "created_at": "2026-05-22T17:46:31.423404+00:00",
+  "updated_at": "2026-05-22T17:49:02.422923+00:00",
+  "blob_path": null,
+  "report_summary": "LLM request rejected: You have reached your specified workspace API usage limits. You will regain access on 2026-06-01 at 00:00 UTC.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**1 actionable findings** from 2/57 sources via Tor (Netherlands exit node) (10 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Web mentions (Tor-routed) | 10 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: addcon.com\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | ADDCON products; ADDCON Nordic - heroyaindustripark; ADDCON NORDIC AS - 988774677 - Company Info - yra.no (+7 more) |\n| hudsonrock_cavalier | 1 | addcon.com |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- addcon.com \u2014 *hudsonrock_cavalier*\n\n**WEB MENTION** (10)\n- ADDCON products \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.addcon.com%2Findex.php%2Fnb%2F&rut=febbbd6672151de597]\n- ADDCON Nordic - heroyaindustripark \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fheroya%2Dindustripark.no%2Fbedrifter%2Di%2Dindustriparken]\n- ADDCON NORDIC AS - 988774677 - Company Info - yra.no \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fyra.no%2Fen%2Fcompany%2F988774677&rut=b2dbf587bc3e212236b]\n- Addcon Nordic AS Company Profile | PORSGRUNN, TELEMARK | Competitors ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.a]\n- Addcon Nordic AS - Org.nr. 988 774 677 - Porsgrunn - Proff \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.proff.no%2Fselskap%2Faddcon%2Dnordic%2Das%2Fporsgrunn]\n- Company Profile - Addcon Nordic As - chemdmart.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fchemdmart.com%2Fcompany%2Dprofile%2Faddcon%2Dnordic%2Das&]\n- Addcon Nordic AS - Company Profile and News - Bloomberg Markets \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.bloomberg.com%2Fprofile%2Fcompany%2F0881814D%3ANO&rut]\n- ADDCON Nordic AS - Porsgrunn, Norway - chemeurope.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.chemeurope.com%2Fen%2Fcompanies%2F15806%2Faddcon%2Dno]\n- Addcon Nordic AS - svanen.se \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.svanen.se%2Fen%2Fcompanies%2Faddcon%2Dnordic%2Das%2F&]\n- Addcon Nordic AS - Detailed information - Largestcompanies \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.largestcompanies.com%2Fcompany%2FAddcon%2DNordic%2DAS]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "europe: Report file not found on remote VM (europe)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "ADDCON NORDIC AS",
+    "entity_trade_names": "Addcon Nordic AS",
+    "entity_country": "NO",
+    "entity_address": "Bygg 85, Her\u00f8ya Industripark, 3936 PORSGRUNN, Norway",
+    "entity_website": "https://addcon.com",
+    "entity_type": "Chemical Industry",
+    "entity_industry": "Chemical Industry",
+    "entity_tax_id": "988774677",
+    "key_individuals": [
+      {
+        "name": "Per Ove Kvam Jakobsen",
+        "title": "Officer"
+      },
+      {
+        "name": "Alberto Cambieri",
+        "title": "Director"
+      },
+      {
+        "name": "Roberto Vagheggi",
+        "title": "Director"
+      },
+      {
+        "name": "Andrea Agostino Mangiarotti",
+        "title": "Director"
+      },
+      {
+        "name": "Alberto Cambiert",
+        "title": "Director"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "europe": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (europe)"
+    }
+  },
+  "errors": [
+    "europe: Report file not found on remote VM (europe)"
+  ],
+  "dark_web_findings": 1,
+  "dark_web_sources": 57
+}

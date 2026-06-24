@@ -1,0 +1,32 @@
+{
+  "job_id": "4d808c6d-41ad-422d-a0f3-55074e096cee",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "SELA INDUSTRIES INC",
+  "country": "CA",
+  "created_at": "2026-05-22T21:55:07.994996+00:00",
+  "updated_at": "2026-05-22T22:01:57.639968+00:00",
+  "blob_path": "osint-staging/cir/americas/sela_industries_inc_CA_20260522.json",
+  "report_summary": "Duplicate \u2014 `americas/sela_industries_inc_CA_20260522.json` uploaded today at 21:58 UTC.\n\n| | |\n|---|---|\n| **File** | `americas/sela_industries_inc_CA_20260522.json` |\n| **Risk** | **2 / CLEAR** |\n| **Corp** | 448594-7 (CBCA) \u00b7 Pointe-Claire, QC H9R 5M9 |\n| **UBO** | David Sela \u2014 Town of Mount-Royal QC (ISC confirmed 2025-09-25) |\n| **Sanctions** | ALL CLEAR \u00b7 0 breaches |\n| **\u26a0\ufe0f CRITICAL** | 2 consecutive annual filings overdue \u2014 dissolution notice issued by Corporations Canada. **Verify corp is not dissolved before any transaction.** |\n| **\ud83d\udd34 HIGH** | Business activity not confirmed in open sources |\n\nNo re-research warranted.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 2/45 sources via Tor (Netherlands exit node) (21 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 45 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Deadpool 2 - The Family Edition (PG-13 Combination Cut); TKO Group Holdings, Inc. Quarterly Report Released - Here\u2019s ; JOBY - remember this one? posted about 9 days ago. Up 20% si (+12 more) |\n| duckduckgo_tor | 10 | Sela Industries - Home; About Sela - Sela; Sela Industries - Overview, News & Similar companies - ZoomI (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- Sela Industries - Home \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fselaindustries.com%2F&rut=a78899a15cd24bf2d743617907f88c7]\n- About Sela - Sela \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fsela.com%2Fabout%2Dsela%2F&rut=fb4988ced7e550134b8c0f7cb6]\n- Sela Industries - Overview, News & Similar companies - ZoomInfo \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zoominfo.com%2Fc%2Fsela%2Dindustries%2Dllc%2F44977926]\n- SELA INDUSTRIES LLC in Anaheim, CA | Company Info & Reviews - Bizapedia \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.bizapedia.com%2Fca%2Fsela%2Dindustries%2Dllc.html&rut]\n- SELA INDUSTRIES LLC :: California (US) :: OpenCorporates \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fopencorporates.com%2Fcompanies%2Fus_ca%2F201817710244&rut]\n- Sela - Semiconductor Engineering Laboratories - Usa, Inc. \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.bizprofile.net%2Fca%2Fsanta%2Dclara%2Fsela%2Dsemicond]\n- SELA USA, Inc. - Semiconductor Online \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.semiconductoronline.com%2Fdoc%2Fsela%2Dusa%2Dinc%2D00]\n- Home - Searing Industries \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.searingindustries.com%2F&rut=2ef43343d1200caacefa4c0c]\n- Sela Industries LLC - Company Profile - Corporation Wiki \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.corporationwiki.com%2Fp%2F3260mb%2Fsela%2Dindustries%]\n- sela-industries.com - Home | My Site 1 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.sela%2Dindustries.com%2F&rut=1e12574f7dc5f90847757e6c]\n\n**SOCIAL MENTION** (11)\n- Deadpool 2 - The Family Edition (PG-13 Combination Cut) \u2014 *reddit* [https://reddit.com/r/fanedits/comments/1bhlgmd/deadpool_2_the_family_edition_pg1]\n- TKO Group Holdings, Inc. Quarterly Report Released - Here\u2019s What You Should Know \u2014 *reddit* [https://reddit.com/r/SECFilingsAI/comments/1mjgzrc/tko_group_holdings_inc_quarte]\n- JOBY - remember this one? posted about 9 days ago. Up 20% since.  \u2014 *reddit* [https://reddit.com/r/TradingEdge/comments/1gwmafs/joby_remember_this_one_posted_]\n- TIL the B-side of the cassette release of \"In God We Trust, Inc\" by Dead Kennedys is left blank. The \u2014 *reddit* [https://reddit.com/r/todayilearned/comments/horlaw/til_the_bside_of_the_cassette]\n- [HIRING] 25 Jobs in LA Hiring Now! \u2014 *reddit* [https://reddit.com/r/LouisianaJobsForAll/comments/13xnzoy/hiring_25_jobs_in_la_h]\n- History - invent, patent, standardise, defend IP, the 1st big NETLIST victory against patent thieves \u2014 *reddit* [https://reddit.com/r/NLST/comments/u57n4e/history_invent_patent_standardise_defe]\n- The seafood industry in New Zealand has asked the government to withhold graphic video of dead sea l \u2014 *reddit* [https://reddit.com/r/worldnews/comments/7qztrb/the_seafood_industry_in_new_zeala]\n- A new asteroid-mining company, Deep Space Industries, Inc., launches Tuesday with the goal of helpin \u2014 *reddit* [https://reddit.com/r/worldnews/comments/171hd4/a_new_asteroidmining_company_deep]\n- Sweet Baby Inc. Employee Admits Goal Is \"Burning The Games Industry To The Ground\" \u2014 *reddit* [https://reddit.com/r/KotakuInAction/comments/1fondct/sweet_baby_inc_employee_adm]\n- Sweet Baby Inc. CEO Kim Belair Labels Gamers 'Picky Babies' Amid Industry Backlash \u2014 *reddit* [https://reddit.com/r/KotakuInAction/comments/1sa24j1/sweet_baby_inc_ceo_kim_bela]\n- [HIRING] 40 Jobs in LA Hiring Now! \u2014 *reddit* [https://reddit.com/r/LAJobsForAll/comments/ofivgx/hiring_40_jobs_in_la_hiring_no]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "SELA INDUSTRIES INC",
+    "entity_country": "CA",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 45
+}

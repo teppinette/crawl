@@ -1,0 +1,34 @@
+{
+  "job_id": "7d105fc2-deb0-4fb0-a876-1400e23cc999",
+  "scenario": "cir",
+  "status": "failed",
+  "region": "americas",
+  "entity_name": "ENASPOL A.S.",
+  "country": "CZ",
+  "created_at": "2026-05-22T21:24:14.577157+00:00",
+  "updated_at": "2026-05-22T21:24:26.154405+00:00",
+  "blob_path": null,
+  "report_summary": null,
+  "error": "americas: Error reading SSH protocol banner[Errno 104] Connection reset by peer",
+  "retry_count": 1,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "ENASPOL A.S.",
+    "entity_country": "CZ",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "failed",
+      "error": "Error reading SSH protocol banner[Errno 104] Connection reset by peer"
+    }
+  },
+  "errors": [
+    "americas: Error reading SSH protocol banner[Errno 104] Connection reset by peer",
+    "americas: Error reading SSH protocol banner[Errno 104] Connection reset by peer"
+  ]
+}

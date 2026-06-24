@@ -1,0 +1,87 @@
+{
+  "job_id": "bddd44c8-920f-4c57-8bfb-2fb1a71002bd",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "STERLING SPECIALITY CHEMICALSPRIVATE LIMITED",
+  "country_code": "IN",
+  "created_at": "2026-05-04T16:16:15.413059+00:00",
+  "updated_at": "2026-05-04T16:18:16.748206+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:16:21.688391+00:00",
+      "verified": true,
+      "legal_name": "STERLING SPECIALITY CHEMICALS PRIVATE LIMITED",
+      "cin": "U51100MH2022PTC384385",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "10 June, 2022",
+      "directors": [
+        "Dipesh Mohanlal Pachori",
+        "Nikhil Rajendra Agarwal",
+        "Adesh Kumar Daga"
+      ],
+      "registered_address": "601 Plot No.29/30/31, Marol Co-op. Industrial Estate, Andheri (E), JB Nagar Marol , NR. Borosil, Marol Naka, Mumbai, Mumbai, Maharashtra, India, 400059",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:16:27.123539+00:00",
+      "found": true,
+      "name": "Sterling Specialty Chemicals",
+      "linkedin_url": "https://www.linkedin.com/company/sterling-specialty-chemicals",
+      "industry": "Oil and Gas",
+      "company_size": "201-500 employees",
+      "locations": [
+        "575 N Dairy Ashford Rd Suite 720 Houston, Texas 77079, US"
+      ],
+      "about": "Sterling Specialty Chemicals pushes the boundaries in chemical solutions, redefining the way the world extracts energy. We deliver the chemistry that energizes industry giants and supports a thriving energy sector. Our solutions ensure efficiency and excellence across all facets of energy and water industries. Core Values: 1. Safety First, Always: Our unwavering priority is safety. We maintain a secure environment for all, steadfastly ensuring that safety protocols are non-negotiable and consist",
+      "followers": 10618,
+      "employees_on_linkedin": 163,
+      "organization_type": "Privately Held",
+      "website": "https://sterlingspec.com/",
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "Gregory Tregre",
+          "link": "https://www.linkedin.com/in/gregory-tregre-1040a92?trk=org-employees"
+        },
+        {
+          "name": "Richard Ryder",
+          "link": "https://www.linkedin.com/in/richard-ryder-267a912?trk=org-employees"
+        },
+        {
+          "name": "Mike Gannon",
+          "link": "https://www.linkedin.com/in/gannon-mike?trk=org-employees"
+        },
+        {
+          "name": "Gregory Matusewitch",
+          "link": "https://www.linkedin.com/in/gregory-matusewitch-177bb55?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:18:16.747181+00:00",
+      "risk_level": "CLEAN",
+      "total_findings": 0,
+      "sources_searched": 0,
+      "sources_with_results": 0,
+      "by_type": {},
+      "key_findings": [],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "STERLING SPECIALITY CHEMICALSPRIVATE LIMITED",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

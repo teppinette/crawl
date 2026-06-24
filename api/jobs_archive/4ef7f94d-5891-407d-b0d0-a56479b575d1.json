@@ -1,0 +1,41 @@
+{
+  "job_id": "4ef7f94d-5891-407d-b0d0-a56479b575d1",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "SIDHGUN TECHNOLOGIES PRIVATE LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-04T17:46:38.372858+00:00",
+  "updated_at": "2026-05-04T17:53:30.325383+00:00",
+  "blob_path": "osint-staging/cir/india/sidhgun_technologies_private_limited_IN_20260504.json",
+  "report_summary": "**DONE: Sidhgun Technologies Private Limited, India \u2014 Risk: 3 MONITOR \u2014 New KLJ Group wholesale trading entity (8 months old); zero sanctions/PEP/litigation; \u26a0\ufe0f CRITICAL: GSTIN 24ABRCS0125P1ZY has Gujarat state code, does NOT match Delhi-registered entity; unlisted director Harshvardhan Bothra requires COPAP profile update**\n\n---\n\n`~/crawl/output/sidhgun_technologies_private_limited_IN_20260504.json` \u2014 24 KB, valid JSON, 8 sources\n\n---\n\n## Key Findings\n\n### Entity\n- **CIN:** U46901DL2025PTC453409 \u00b7 Incorporated August 19, 2025 \u00b7 8 months old \u00b7 NIC 46 (Wholesale Trade)\n- **Address:** KLJ House, 8A, Shivaji Marg, Delhi Industrial Area West \u2014 the headquarters of the **KLJ Group** (\u20b912,000 Cr Indian industrial conglomerate)\n- **Paid-up capital:** \u20b910 Lakh (nominal) \u00b7 No bank charges \u00b7 Gmail email (minor flag)\n\n### Director Status \u2014 Discrepancy Found\n\n| Name | DIN | Status | Notes |\n|---|---|---|---|\n| Siddhant Jain | 11230642 | **Current** \u2713 | Founding director; KLJ Group next generation |\n| **Harshvardhan Bothra** | **08533731** | **Current** \u2713 (Additional, Oct 2025) | \u26a0\ufe0f **NOT in subject identification block** \u2014 needs to be added to COPAP profile |\n| Hemant Jain | 00506995 | **Past** (TheCompanyCheck) / **Current** (Tofler) | Data divergence \u2014 MCA master data needed |\n\n### \u26a0\ufe0f Critical: GSTIN 24ABRCS0125P1ZY is WRONG for this entity\n- State code **24 = Gujarat** \u2014 Sidhgun Technologies is in **Delhi (state code 07)**\n- This GSTIN likely belongs to **Sidhe Petrochemicals** or another KLJ Group Gujarat entity (Bharuch plant)\n- **Must resolve before any transactions** \u2014 billing entity may be different from contracted entity\n\n### KLJ Group Context\n- **Hemant Jain** = Group MD, KLJ Group \u2014 India's **largest plasticizer/polymer compounding manufacturer**, \u20b912,000 Cr turnover, operations in India, Qatar, Thailand. VP of PHD Chamber of Commerce.\n- **Sidhe Petrochemicals Private Limited** (CIN U24304DL2020PTC371258) \u2014 sibling entity at same KLJ House address, same directors (Siddhant Jain + Harshvardhan Bothra), \u20b91,651 Cr bank exposure \u2014 confirms the group's substantial petrochemical trading operations\n- **No adverse media, no sanctions, no litigation** found for entity, directors, or KLJ Group\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**60 findings** from 2/45 sources via Tor (Netherlands exit node)\n\n| Category | Count |\n|----------|-------|\n| Breach records | 50 |\n| Web mentions (Tor-routed) | 10 |\n\n**Key findings:**\n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "SIDHGUN TECHNOLOGIES PRIVATE LIMITED",
+    "entity_country": "IN",
+    "entity_address": "KLJ House, 8A, Shivaji Marg, Delhi Industrial Area West, New Delhi, Delhi 110015, India",
+    "entity_tax_id": "24ABRCS0125P1ZY",
+    "key_individuals": [
+      {
+        "name": "HEMANT JAIN"
+      },
+      {
+        "name": "SIDDHANT JAIN"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 60,
+  "dark_web_sources": 45
+}

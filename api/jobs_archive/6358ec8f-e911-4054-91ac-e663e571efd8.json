@@ -1,0 +1,41 @@
+{
+  "job_id": "6358ec8f-e911-4054-91ac-e663e571efd8",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "CHEMTRADE GLOBAL IMPEX LLP",
+  "country": "IN",
+  "created_at": "2026-05-21T12:04:13.015083+00:00",
+  "updated_at": "2026-05-21T12:05:52.309076+00:00",
+  "blob_path": "osint-staging/cir/india/chemtrade_global_impex_llp_IN_20260520.json",
+  "report_summary": "Second Chemtrade Global Impex submission \u2014 identical to 21:28 UTC yesterday. File is complete.\n\n**DONE (existing file): Chemtrade Global Impex LLP \u2014 Risk: 2 CLEAR \u2014 LLPIN AAR-3866; N-Heptane/Sodium Formate importer; active Oct 2025 customs**\n\n`~/crawl/output/chemtrade_global_impex_llp_IN_20260520.json` \u2014 7.3 KB, valid.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 1/45 sources via Tor (Netherlands exit node) (10 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 45 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | CGIL; CHEMTRADE GLOBAL IMPEX LLP - ZaubaCorp; Chemtrade Global Impex Llp (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- CGIL \u2014 *duckduckgo_tor* [/l/?uddg=http%3A%2F%2Fcgil.in%2F&rut=ec8e7681b6df1fa9bb8fbde661e9b2c1989b0f00dc2]\n- CHEMTRADE GLOBAL IMPEX LLP - ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2FCHEMTRADE%2DGLOBAL%2DIMPEX%2DLLP%2DAA]\n- Chemtrade Global Impex Llp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.c]\n- Chemtrade Global Impex LLP - Trader - Wholesaler / Distributor from ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Fchemtradeglobalimpex%2Fprofile.html&r]\n- Chemtrade Global Impex Llp - 2026 Insights - The Company Check \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fcompany%2Fchemtrade%2Dglobal%2D]\n- HOME | chemtrade \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.chemtradeglobal.com%2F&rut=3b692a9ff9bdd653913b147a4b]\n- Bizhub Member | CHEMTRADE GLOBAL IMPEX LLP - Contact Us \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.chemarc.com%2Fbizhub%2Fchemtrade%2Fcontact&rut=9f9e72]\n- Chemtrade Global Impex LLP - LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2Fchemtrade%2Dglobal%2Dimpex%2]\n- CHEMTRADE GLOBAL IMPEX LLP - Company Profile - Tracxn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Fchemtrade%2Dg]\n- PDFChemtrade Global Impex LLP June th16 , 2025 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Finfomericstorage.blob.core.windows.net%2Fuploads%2Fpr_che]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "CHEMTRADE GLOBAL IMPEX LLP",
+    "entity_country": "IN",
+    "entity_address": "A-902 Damji Shamji Corporate Square, Laxmi Nagar, Ghatkopar East, Mumbai, Maharashtra 400075",
+    "entity_tax_id": "AAR-3866",
+    "key_individuals": [
+      {
+        "name": "ASHISH KIRTI SHAH"
+      },
+      {
+        "name": "VIRAL KIRTIKUMAR SHAH"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 45
+}

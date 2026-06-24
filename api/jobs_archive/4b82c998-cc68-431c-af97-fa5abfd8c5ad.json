@@ -1,0 +1,144 @@
+{
+  "job_id": "4b82c998-cc68-431c-af97-fa5abfd8c5ad",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "DOREL JUVENILE GROUP, INC.",
+  "country": "US",
+  "created_at": "2026-05-22T17:51:36.137516+00:00",
+  "updated_at": "2026-05-22T17:53:17.105816+00:00",
+  "blob_path": null,
+  "report_summary": "LLM request rejected: You have reached your specified workspace API usage limits. You will regain access on 2026-06-01 at 00:00 UTC.\n---\n\n## DARK WEB SCREENING \u2014 MEDIUM\n**4 actionable findings** from 5/57 sources via Tor (Netherlands exit node) (25 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Adverse media | 3 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n\n**Key findings:**\n- ADVERSE MEDIA: [READ] Dorel Sued Over Defective Car Seats That Choke People\n- ADVERSE MEDIA: Dorel Juvenile Group News and Press Releases | PR Newswire\n- ADVERSE MEDIA: Regulator Reopens Inquiry into Jonathan Reynolds' Legal Career Claims ... (Jonathan Reynolds)\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Lighting and angles; Car seat recall!; DD dorel completed (+12 more) |\n| duckduckgo_tor | 10 | Dorel Juvenile; Dorel Juvenile Group, Inc. Company Profile | Foxboro, Massac; Corporate Profile - Dorel Industries (+7 more) |\n| duckduckgo_adverse | 3 | [READ] Dorel Sued Over Defective Car Seats That Choke People; Dorel Juvenile Group News and Press Releases | PR Newswire; Regulator Reopens Inquiry into Jonathan Reynolds' Legal Care |\n| court_records_tor | 1 | [READ] Dorel Sued Over Defective Car Seats That Choke People |\n\n### All findings detail\n\n**ADVERSE MEDIA** (3)\n- [READ] Dorel Sued Over Defective Car Seats That Choke People \u2014 *duckduckgo_adverse* [/l/?uddg=https%3A%2F%2Fevilcorporations.com%2Fdorel%2Dcorporate%2Dmisconduct%2Dc]\n- Dorel Juvenile Group News and Press Releases | PR Newswire \u2014 *duckduckgo_adverse* [/l/?uddg=https%3A%2F%2Fwww.prnewswire.com%2Fnews%2Fdorel%2Djuvenile%2Dgroup%2F&r]\n- Regulator Reopens Inquiry into Jonathan Reynolds' Legal Career Claims ... \u2014 *duckduckgo_adverse* (searched: Jonathan Reynolds) [/l/?uddg=https%3A%2F%2Flondondaily.com%2Fregulator%2Dreopens%2Dinquiry%2Dinto%2D]\n\n**WEB MENTION** (10)\n- Dorel Juvenile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fdoreljuvenile.com%2F&rut=e4d27182fcfbdda9cc904c5c9c8f4ead]\n- Dorel Juvenile Group, Inc. Company Profile | Foxboro, Massachusetts ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.d]\n- Corporate Profile - Dorel Industries \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dorel.com%2Fpages%2Fcorporate%2Dprofile&rut=9a26694bf]\n- Dorel Juvenile Group, Inc. | (409) 217-2367 | Columbus, Indiana - AllBiz \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.allbiz.com%2Fbusiness%2Fdorel%2Djuvenile%2Dgroup%2Din]\n- DOREL JUVENILE GROUP, INC. :: Massachusetts (US) :: OpenCorporates \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fopencorporates.com%2Fcompanies%2Fus_ma%2F042836423&rut=ef]\n- Dorel Juvenile Group Inc - BusinessYab \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fbusinessyab.com%2Fexplore%2Funited_states%2Findiana%2Fbar]\n- Dorel Juvenile: Home of Safety 1st, Tiny Love, Cosco Kids \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.safety1st.com%2Fpages%2Fabout%2Ddorel%2Djuvenile&rut=]\n- Dorel Juvenile Group, Inc. - BBB Complaints | Better Business Bureau \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.bbb.org%2Fus%2Fin%2Fcolumbus%2Fprofile%2Fbaby%2Dcar%2]\n- Dorel Juvenile Group - Baby Safety Alliance \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.babysafetyalliance.org%2Fmember%2Fdorel&rut=71f17dc61]\n- DOREL JUVENILE GROUP, INC. in Foxboro, MA - Bizapedia \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.bizapedia.com%2Fma%2Fdorel%2Djuvenile%2Dgroup%2Dinc.h]\n\n**LEGAL RECORD** (1)\n- [READ] Dorel Sued Over Defective Car Seats That Choke People \u2014 *court_records_tor* [/l/?uddg=https%3A%2F%2Fevilcorporations.com%2Fdorel%2Dcorporate%2Dmisconduct%2Dc]\n\n**SOCIAL MENTION** (15)\n- Lighting and angles \u2014 *reddit* [https://reddit.com/r/cats/comments/z0lrtm/lighting_and_angles/]\n- Car seat recall! \u2014 *reddit* [https://reddit.com/r/pregnant/comments/s2nuw1/car_seat_recall/]\n- DD dorel completed \u2014 *reddit* [https://reddit.com/r/Baystreetbets/comments/gnomtf/dd_dorel_completed/]\n- As China Tariffs Loom, Some U.S. Companies Say Buying American Isn\u2019t an Option (Wall Street Journal) \u2014 *reddit* [https://reddit.com/r/Sino/comments/c1jhwo/as_china_tariffs_loom_some_us_companie]\n- A 17yo rich kid in Pune killed 2 people while drunk driving and got away with it in a day. People of \u2014 *reddit* [https://reddit.com/r/india/comments/1cwaeyy/a_17yo_rich_kid_in_pune_killed_2_peo]\n- NOW That's What I Call Music - Vol. 16 (July, 2004) \u2014 *reddit* [https://reddit.com/r/2000sNostalgia/comments/1imcnm2/now_thats_what_i_call_music]\n- Dorel Juvenile Group Recalls Nearly 180,000 Child Car Seats Over Safety Concerns \u2014 *reddit* [https://reddit.com/r/Theveritasfeed/comments/1k74tlw/dorel_juvenile_group_recall]\n- Dorel Juvenile Group FAME Stroller CV472 (MNJ-CV472) \u2014 *reddit* [https://reddit.com/r/FCCID/comments/1k129rf/dorel_juvenile_group_fame_stroller_c]\n- Labor union sues Dorel Juvenile Group in dispute over benefits for retirees \u2014 *reddit* [https://reddit.com/r/union/comments/1gxy3om/labor_union_sues_dorel_juvenile_grou]\n- Dorel Juvenile Group Starling Smart Bassinet BT099 (MNJ-BT099) \u2014 *reddit* [https://reddit.com/r/FCCID/comments/1d1l8lx/dorel_juvenile_group_starling_smart_]\n- Dorel Juvenile Group CryAssist Audio Monitor MO191 (MNJ-MO191) \u2014 *reddit* [https://reddit.com/r/FCCID/comments/1c153ak/dorel_juvenile_group_cryassist_audio]\n- Dorel Juvenile Group Smart Family Scale IH599TX (MNJ-IH599TX) \u2014 *reddit* [https://reddit.com/r/FCCID/comments/1b17vpo/dorel_juvenile_group_smart_family_sc]\n- Dorel Juvenile Group Parent Display MO183DTX (MNJ-MO183DTX) \u2014 *reddit* [https://reddit.com/r/FCCID/comments/18cqejj/dorel_juvenile_group_parent_display_]\n- Dorel Juvenile Group See Pro 360 Baby Monitor MO183TX (MNJ-MO183TX) \u2014 *reddit* [https://reddit.com/r/FCCID/comments/18cnhj2/dorel_juvenile_group_see_pro_360_bab]\n- Dorel Juvenile Group Recalls Cosco Jump, Spin &amp; Play Activity Centers Due to Fall and Injury Haz \u2014 *reddit* [https://reddit.com/r/CPSCRecalls/comments/17h0fyd/dorel_juvenile_group_recalls_c]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "americas: Report file not found on remote VM (americas)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "DOREL JUVENILE GROUP, INC.",
+    "entity_country": "US",
+    "key_individuals": [
+      {
+        "name": "TIMOTHY PHILIP GALLOGLY",
+        "title": "Director"
+      },
+      {
+        "name": "Nick Costides",
+        "title": "Director"
+      },
+      {
+        "name": "Donald March",
+        "title": "Officer"
+      },
+      {
+        "name": "Jonathan Reynolds",
+        "title": "Officer"
+      },
+      {
+        "name": "Martin Schwartz",
+        "title": "Director"
+      },
+      {
+        "name": "Jeffrey Schwartz",
+        "title": "Director"
+      },
+      {
+        "name": "Michael Lerner",
+        "title": "Director"
+      },
+      {
+        "name": "Susan Novins",
+        "title": "Officer"
+      },
+      {
+        "name": "Frank Rana",
+        "title": "Director"
+      },
+      {
+        "name": "Richard E. Wenz",
+        "title": "Officer"
+      },
+      {
+        "name": "Curt R. Feuer",
+        "title": "Officer"
+      },
+      {
+        "name": "Stanley Cygelman",
+        "title": "Officer"
+      },
+      {
+        "name": "Scott Grossman",
+        "title": "Officer"
+      },
+      {
+        "name": "Michael S. Bernstein",
+        "title": "Director"
+      },
+      {
+        "name": "Robert J. Drummond",
+        "title": "Director"
+      },
+      {
+        "name": "Laurence S. Levy",
+        "title": "Director"
+      },
+      {
+        "name": "Mark Owens",
+        "title": "Director"
+      },
+      {
+        "name": "John D. Howard",
+        "title": "Director"
+      },
+      {
+        "name": "James Dworkin",
+        "title": "Director"
+      },
+      {
+        "name": "Diogo Pires",
+        "title": "Director"
+      },
+      {
+        "name": "Tim Gallogly",
+        "title": "Director"
+      },
+      {
+        "name": "Steven E. Willeke",
+        "title": "Officer"
+      },
+      {
+        "name": "Laurent Jean Barb\u00e9",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "Cathy Carter",
+        "title": "Officer"
+      },
+      {
+        "name": "Nicolas Duran",
+        "title": "Officer"
+      },
+      {
+        "name": "Taty Abella",
+        "title": "Director"
+      },
+      {
+        "name": "Timothy P. Gallogly",
+        "title": "Director"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (americas)"
+    }
+  },
+  "errors": [
+    "americas: Report file not found on remote VM (americas)"
+  ],
+  "dark_web_findings": 4,
+  "dark_web_sources": 57
+}

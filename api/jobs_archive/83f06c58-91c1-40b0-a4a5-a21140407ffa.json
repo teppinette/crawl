@@ -1,0 +1,32 @@
+{
+  "job_id": "83f06c58-91c1-40b0-a4a5-a21140407ffa",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "COPAP INC",
+  "country": "CA",
+  "created_at": "2026-05-15T12:05:34.543849+00:00",
+  "updated_at": "2026-05-15T12:06:03.989265+00:00",
+  "blob_path": "osint-staging/cir/americas/copap_inc_CA_20260514.json",
+  "report_summary": "Duplicate \u2014 `americas/copap_inc_CA_20260514.json` covers all workstreams 1A\u20138A. Website `copap.com` was already confirmed and documented in that report.\n\n| | |\n|---|---|\n| **File** | `americas/copap_inc_CA_20260514.json` \u2014 uploaded 2026-05-14T13:31 UTC |\n| **Risk** | **2 / CLEAR \u2014 TIER 1** |\n| **Corp #** | HE 10836141 (CBCA federal) \u2014 original est. 1990 |\n| **Revenue** | ~USD 500M |\n| **Owner** | David Sela \u2014 Bar-Ilan + McGill/HEC, 8 languages, 35yr global trade |\n| **Website** | copap.com \u2713 confirmed in report |\n| **All sanctions** | CLEAR |\n\nNo re-research warranted. Full COPAP Group suite available: COPAP Inc. CA \u00b7 COPAP Trading Sigma CA \u00b7 COPAP USA US \u00b7 Sigma Trade Finance Inc. CA \u2014 all in `osint-staging/americas/`.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 0/0 sources via Tor (Netherlands exit node)\n\nNo dark web exposure detected. Entity and owners clean across all 0 sources.\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "COPAP INC",
+    "entity_country": "CA",
+    "entity_website": "copap.com",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 0
+}

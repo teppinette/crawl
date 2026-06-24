@@ -1,0 +1,144 @@
+{
+  "job_id": "e0b96e4a-8a5b-45ad-8214-f384c0f0c13a",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "ASIAN SOLVOCHEM PRIVATE LIMITED",
+  "country_code": "IN",
+  "created_at": "2026-05-04T15:01:36.363293+00:00",
+  "updated_at": "2026-05-04T15:03:14.392357+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:01:44.270458+00:00",
+      "verified": true,
+      "legal_name": "ASIAN SOLVOCHEM PRIVATE LIMITED",
+      "cin": "U24297MH2010PTC203567",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "31 May, 2010",
+      "directors": [
+        "Mukesh Indravadan Doshi",
+        "Pramod Kalpnath Pandey"
+      ],
+      "registered_address": "404,FAIZ-E-QUTBI, 375,NARSI NATHA STREET,MASJID BUNDER, MUMBAI, Maharashtra, India, 400009",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:01:48.109399+00:00",
+      "found": true,
+      "name": "SOLVOCHEM GROUP",
+      "linkedin_url": "https://www.linkedin.com/company/solvochem-group",
+      "industry": "Chemical Manufacturing",
+      "company_size": "201-500 employees",
+      "locations": [
+        "Nahr el Mott Beirut, LB",
+        "Eden Square Nairobi, KE",
+        "Blaak 22- Rotterdam Rotterdam, NL",
+        "34 Syria Street Cairo, EG"
+      ],
+      "about": "First established in 1979 as exclusive agent for Shell Chemicals, SOLVOCHEM is a major International group of distribution and trading companies for chemical and petrochemical products with offices and advanced storage and distribution facilities across the Middle East, Africa, Europe and Asia. SOLVOCHEM has been particularly successful in the procurement, transportation, marketing and distribution of various raw material to a large number of industries encompassing Paint, Plastic Pharmaceutical",
+      "followers": 2919,
+      "employees_on_linkedin": 120,
+      "organization_type": "Privately Held",
+      "website": "https://www.solvochem.com/",
+      "specialties": "Chemicals, Manufacturing, Petrochemicals, and Logistics",
+      "notable_employees": [
+        {
+          "name": "VIPIN MITTU",
+          "link": "https://in.linkedin.com/in/vipin-mittu-23225621?trk=org-employees"
+        },
+        {
+          "name": "Ahmed Kilany",
+          "link": "https://eg.linkedin.com/in/ahmed-kilany?trk=org-employees"
+        },
+        {
+          "name": "Rizwan Azam",
+          "link": "https://ae.linkedin.com/in/rizwan-azam-5b304a26?trk=org-employees"
+        },
+        {
+          "name": "Sami Saadeh",
+          "link": "https://lb.linkedin.com/in/sami-saadeh-305b3028?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:03:14.391690+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 61,
+      "sources_searched": 37,
+      "sources_with_results": 3,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50,
+        "debarment_record": 1
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "ASIAN SOLVOCHEM PRIVATE LIMITED",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

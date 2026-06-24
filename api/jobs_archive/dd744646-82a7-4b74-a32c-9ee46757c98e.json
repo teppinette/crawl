@@ -1,0 +1,44 @@
+{
+  "job_id": "dd744646-82a7-4b74-a32c-9ee46757c98e",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "AAK IMPEX LLP",
+  "country": "IN",
+  "created_at": "2026-05-21T14:38:45.640737+00:00",
+  "updated_at": "2026-05-21T14:41:13.969238+00:00",
+  "blob_path": "osint-staging/cir/india/aak_impex_llp_IN_20260521.json",
+  "report_summary": "**DONE: AAK Impex LLP, India \u2014 Risk: 3 MONITOR \u2014 Delhi chemicals/materials import-export LLP; LLPIN AAU-1144; incorporated Oct 2020; \u26a0\ufe0f 1 open charge (amount unknown \u2014 verify on MCA LLP portal); \u20b91 lakh capital; FY2025 filings current**\n\n`~/crawl/output/aak_impex_llp_IN_20260521.json` \u2014 7 KB, valid, research date 2026-05-21, all 8 workstreams complete.\n\nPriority actions before credit extension:\n1. **Get charge details** from MCA LLP portal \u2014 amount, charge holder, creation date are critical\n2. **Confirm Ravita Chawla** partner status\n3. **Obtain IEC certificate** \u2014 \"Impex\" name implies active import/export; verify authorization\n---\n\n## DARK WEB SCREENING \u2014 MEDIUM\n**5 actionable findings** from 3/49 sources via Tor (Netherlands exit node) (22 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Adverse media | 5 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 12 |\n\n**Key findings:**\n- ADVERSE MEDIA: Bipasha Basu, Ekta Kapoor To Receive Police Notices Amid Shilpa Shetty ... (EKTA KAPOOR)\n- ADVERSE MEDIA: Ekta Kapoor faces legal action over controversial scenes in 'Gandii ... (EKTA KAPOOR)\n- ADVERSE MEDIA: Ekta Kapoor Controversy: Latest News, Photos, Videos on Ekta Kapoor ... (EKTA KAPOOR)\n- ADVERSE MEDIA: Ekta Kapoor - Wikipedia (EKTA KAPOOR)\n- ADVERSE MEDIA: Court Orders Police Probe Into Complaint Against Ekta Kapoor (EKTA KAPOOR)\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Shah fragrances dhoop sticks; The Goblins of Volm, one-page ten-dungeon; Whoa...... (+12 more) |\n| duckduckgo_tor | 10 | AAK IMPEX LLP - ZaubaCorp; AAK IMPEX LLP / AAU-1144 - falconebiz.com; Aak Impex Llp - 2026 Insights | The Company Check (+7 more) |\n| duckduckgo_adverse | 5 | Bipasha Basu, Ekta Kapoor To Receive Police Notices Amid Shi; Ekta Kapoor faces legal action over controversial scenes in ; Ekta Kapoor Controversy: Latest News, Photos, Videos on Ekta (+2 more) |\n\n### All findings detail\n\n**ADVERSE MEDIA** (5)\n- Bipasha Basu, Ekta Kapoor To Receive Police Notices Amid Shilpa Shetty ... \u2014 *duckduckgo_adverse* (searched: EKTA KAPOOR) [/l/?uddg=https%3A%2F%2Fwww.timesnownews.com%2Fentertainment%2Dnews%2Fbollywood%2]\n- Ekta Kapoor faces legal action over controversial scenes in 'Gandii ... \u2014 *duckduckgo_adverse* (searched: EKTA KAPOOR) [/l/?uddg=https%3A%2F%2Fwww.thedailystar.net%2Fentertainment%2Ftv%2Dfilm%2Fnews%2]\n- Ekta Kapoor Controversy: Latest News, Photos, Videos on Ekta Kapoor ... \u2014 *duckduckgo_adverse* (searched: EKTA KAPOOR) [/l/?uddg=https%3A%2F%2Fwww.ndtv.com%2Ftopic%2Fekta%2Dkapoor%2Dcontroversy&rut=8b]\n- Ekta Kapoor - Wikipedia \u2014 *duckduckgo_adverse* (searched: EKTA KAPOOR) [/l/?uddg=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FEkta_Kapoor&rut=853409e7178e71c]\n- Court Orders Police Probe Into Complaint Against Ekta Kapoor \u2014 *duckduckgo_adverse* (searched: EKTA KAPOOR) [/l/?uddg=https%3A%2F%2Fwww.ndtv.com%2Findia%2Dnews%2Fmumbai%2Dcourt%2Dorders%2Dp]\n\n**WEB MENTION** (10)\n- AAK IMPEX LLP - ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2Fcompany%2FAAK%2DIMPEX%2DLLP%2FAAU%2D1]\n- AAK IMPEX LLP / AAU-1144 - falconebiz.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.falconebiz.com%2FLLP%2FAAK%2DIMPEX%2DLLP%2DAAU%2D1144]\n- Aak Impex Llp - 2026 Insights | The Company Check \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fcompany%2Faak%2Dimpex%2Dllp%2FA]\n- Aak Impex Llp - Company, Directors, Charges and Compliance details ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.filesure.in%2Fcompany%2Faak%2Dimpex%2Dllp%2FAAU%2D114]\n- AAK IMPEX LLP | Tofler | Company Research Platform | Organizing ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tofler.in%2Faak%2Dimpex%2Dllp%2Fcompany%2FAAU%2D1144&]\n- AAK IMPEX LLP - Legal Entities - Tracxn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Faak%2Dimpex%2]\n- AAK IMPEX LLP-SKYSEVEN CHEMICAL - cnchemshop.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.cnchemshop.com%2Fin%2Fcomdetail%2F31145.html&rut=4e0a]\n- AAK IMPEX LLP - ROC India company details - daily-reading.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fdaily%2Dreading.com%2Fsite%2Dwords%2Fcompany_details%2F2%]\n- Aak Impex Llp | See Full Import/Export History | ImportGenius \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.importgenius.com%2Findia%2Fimporters%2Faak%2Dimpex%2D]\n- Aak impex - ezzus.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.ezzus.com%2Fbiz%2Faak%2Dimpex%2Dllp%2FAAU%2D1144&rut=]\n\n**SOCIAL MENTION** (12)\n- Shah fragrances dhoop sticks \u2014 *reddit* [https://reddit.com/r/Incense/comments/1t62l3w/shah_fragrances_dhoop_sticks/]\n- The Goblins of Volm, one-page ten-dungeon \u2014 *reddit* [https://reddit.com/r/osr/comments/1pqkonw/the_goblins_of_volm_onepage_tendungeon]\n- Whoa...... \u2014 *reddit* [https://reddit.com/r/rum/comments/1q0t4bk/whoa/]\n- The Collection grows\u2026 \u2014 *reddit* [https://reddit.com/r/ironmaiden/comments/1mfmijz/the_collection_grows/]\n- Every 3 letter combination but M-Z are in the comments \u2014 *reddit* [https://reddit.com/r/copypasta/comments/kr9fot/every_3_letter_combination_but_mz]\n- Who is the founder of DWC? \u2014 *reddit* [https://reddit.com/r/ticktocktreasures/comments/1ihj7zr/who_is_the_founder_of_dw]\n- Thinking About Starting an Import-Export Business in India? Here\u2019s What I Learned \u2014 *reddit* [https://reddit.com/r/IndianEntrepreneur/comments/1jbus3l/thinking_about_starting]\n- Zepto showing incorrect MRP and disgusting strategy to sell products  \u2014 *reddit* [https://reddit.com/r/india/comments/1f8ag1q/zepto_showing_incorrect_mrp_and_disg]\n- help me decrypt my save file please \u2014 *reddit* [https://reddit.com/r/Decoders/comments/1b4grbk/help_me_decrypt_my_save_file_plea]\n- RDT YouTube Playlist - May 30, 2022 \u2014 *reddit* [https://reddit.com/r/u_DesiAlexa/comments/v0r740/rdt_youtube_playlist_may_30_202]\n- Compact Blast Compound \u2014 *reddit* [https://reddit.com/r/Mindustry/comments/ko5d53/compact_blast_compound/]\n- Alcanna Inc. and YSS Corp. Announce Combination of Cannabis Retail Businesses to Form Nova Cannabis  \u2014 *reddit* [https://reddit.com/r/Penny_Stock_USA/comments/kzvee5/alcanna_inc_and_yss_corp_an]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "AAK IMPEX LLP",
+    "entity_country": "IN",
+    "entity_address": "Office No. 516-517, M.G. House, Community Center, Wazirpur Industrial Area, North West Delhi, Delhi 110052, India",
+    "entity_tax_id": "AAU-1144",
+    "key_individuals": [
+      {
+        "name": "ANSH AJAY KAPUR"
+      },
+      {
+        "name": "EKTA KAPOOR"
+      },
+      {
+        "name": "RAVITA CHAWLA"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 5,
+  "dark_web_sources": 49
+}

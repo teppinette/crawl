@@ -1,0 +1,164 @@
+{
+  "job_id": "812ff851-9eb3-42c4-b4f0-f379f71d17ad",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "Gazprom",
+  "country_code": "RU",
+  "created_at": "2026-05-03T16:26:18.479312+00:00",
+  "updated_at": "2026-05-03T16:27:26.872466+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-03T16:26:18.482010+00:00",
+      "verified": false,
+      "note": "Real-time registry check not available for RU. Included in CIR job.",
+      "source": null
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-03T16:26:25.333848+00:00",
+      "found": true,
+      "name": "Gazprom",
+      "linkedin_url": "https://ru.linkedin.com/company/gazprom",
+      "industry": "Oil and Gas",
+      "company_size": "10,001+ employees",
+      "locations": [],
+      "about": "Gazprom is one of the world\u2019s largest energy companies. Its major business lines are geological exploration, production, transportation, storage, processing and marketing of hydrocarbons as well as generation and marketing of heat and electric power. Gazprom\u2019s mission is to ensure maximally efficient and balanced gas supply to Russian customers and reliably fulfill long-term gas export contracts.",
+      "followers": 134446,
+      "employees_on_linkedin": 3051,
+      "organization_type": "Public Company",
+      "website": "https://gazprom.com/",
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "Lana Miller",
+          "link": "https://ru.linkedin.com/in/millerlana?trk=org-employees"
+        },
+        {
+          "name": "Maria Sedova",
+          "link": "https://ru.linkedin.com/in/maria-sedova-9323142?trk=org-employees"
+        },
+        {
+          "name": "Oleg Tarasov",
+          "link": "https://ru.linkedin.com/in/olegtarasov?trk=org-employees"
+        },
+        {
+          "name": "Sergey Korotkov",
+          "link": "https://ru.linkedin.com/in/sergey-korotkov-6a04843?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "completed",
+      "completed_at": "2026-05-03T16:26:30.348554+00:00",
+      "confirmed_count": 1,
+      "total_searched": 1,
+      "persons_verification": [
+        {
+          "name": "Alexey Miller",
+          "works_at_entity": true,
+          "title": null,
+          "linkedin_url": "https://www.linkedin.com/in/alexey-miller-7a1b90b3",
+          "city": "St Petersburg, St Petersburg City, Russia"
+        }
+      ],
+      "profiles": [
+        {
+          "declared_name": "Alexey Miller",
+          "linkedin_name": "Alexey Miller",
+          "linkedin_url": "https://www.linkedin.com/in/alexey-miller-7a1b90b3",
+          "position": null,
+          "current_company": "Gazprom Neft",
+          "current_title": null,
+          "city": "St Petersburg, St Petersburg City, Russia",
+          "country_code": "RU",
+          "confirmed_at_entity": true
+        }
+      ],
+      "note": "1/1 persons confirmed at entity on LinkedIn",
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-03T16:27:26.871700+00:00",
+      "risk_level": "CRITICAL",
+      "total_findings": 178,
+      "sources_searched": 41,
+      "sources_with_results": 9,
+      "by_type": {
+        "web_mention": 10,
+        "adverse_media": 11,
+        "breach_record": 120,
+        "infostealer_exposure": 1,
+        "leaked_document": 15,
+        "legal_record": 10,
+        "domain_scan_summary": 1,
+        "website_scan": 10
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "Gazprom",
+    "country_code": "RU",
+    "persons": [
+      "Alexey Miller"
+    ],
+    "domain": "gazprom.ru",
+    "ntn": "",
+    "cin": ""
+  }
+}

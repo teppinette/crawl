@@ -1,0 +1,33 @@
+{
+  "job_id": "b019c555-4d56-46a2-a2e5-29502212a8dd",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "PETERS PAPERS (PTY) LTD",
+  "country": "ZA",
+  "created_at": "2026-05-22T20:03:21.292444+00:00",
+  "updated_at": "2026-05-22T20:07:46.943050+00:00",
+  "blob_path": "osint-staging/cir/americas/peters_papers_pty_ltd_ZA_20260522.json",
+  "report_summary": "Done.\n\n---\n\n**DONE: Peters Papers (Pty) Ltd, ZA \u2014 Risk: 2 CLEAR \u2014 South Africa's largest paper merchant; founded 1963 by Ronnie Peters (61 years); 10,000+ customers; 120,000+ tons/year; 42,000+ sqm warehouses; 80 vehicles; JHB + Durban + Cape Town + Port Elizabeth + Namibia; all sanctions CLEAR**\n\n---\n\n## \ud83d\udccb CIR: PETERS PAPERS (PTY) LTD\n`peters_papers_pty_ltd_ZA_20260522.json` \u2192 `osint-staging/americas/`\n\n| Field | Value |\n|---|---|\n| Founded | **1963** by Ronnie Peters \u2014 **61 years** |\n| Position | **South Africa's largest paper merchant / \"Africa's paper merchant\"** |\n| HQ | Johannesburg + Durban \u00b7 Cape Town \u00b7 Port Elizabeth |\n| Namibia | \u2705 Fully-owned subsidiary |\n| Volume | **120,000+ tons/year** \u00b7 **10,000+ customers** |\n| Infrastructure | 42,000+ sqm warehouses \u00b7 80 delivery vehicles |\n| Sanctions | ALL CLEAR |\n\n*\"If it's paper, it's Peters.\"*\n\n**Open items (both LOW):** CIPC registration \u00b7 Current ownership confirmation\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**3 actionable findings** from 5/45 sources via Tor (Netherlands exit node) (19 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| SSL certificates (crt.sh) | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 7 |\n| Website scans (URLScan) | 1 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: www.peterspapers.co.za\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | Homepage - Peters Papers; Peters Papers (Pty) Ltd; Peters Papers Pty Ltd \u2666 South Africa, Johannesburg - PaperWo (+7 more) |\n| reddit | 8 | The GME Run Up in March: The Role of Archegos and Revealing ; The Role of Archegos and Revealing the Alleged Scam by CFG A; Australia and Palantir: what we're allowed to know. (+5 more) |\n| urlscan | 3 | www.peterspapers.co.za; Homepage - Peters Papers (+1 more) |\n| crtsh | 2 | www.peterspapers.co.za; certificate_transparency |\n| hudsonrock_cavalier | 1 | www.peterspapers.co.za |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- www.peterspapers.co.za \u2014 *hudsonrock_cavalier*\n\n**WEB MENTION** (10)\n- Homepage - Peters Papers \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.peterspapers.co.za%2F&rut=7962ac0df6e83c1b560061a7d3d]\n- Peters Papers (Pty) Ltd \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.p]\n- Peters Papers Pty Ltd \u2666 South Africa, Johannesburg - PaperWorld \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.paper%2Dworld.com%2Fen%2Fcompany%2Fpeters%2Dpapers%2D]\n- Peters Papers - LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fza.linkedin.com%2Fcompany%2Fpeters%2Dpapers&rut=c4d58afda]\n- Peters Papers (Pty) Ltd | 012 377 0230 | Pretoria - AfricaBizInfo \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.africabizinfo.com%2FZA%2Fpeters%2Dpapers%2Dpty%2Dltd_]\n- Peters Papers (PTY) Ltd, Paper Merchants, Johannesburg, ...011 677 9 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.africanadvice.com%2F1282695%2FPaper_Merchants%2FJohan]\n- PETERS PAPERS (PTY) LTD, JOHANNESBURG, (South Africa), Verif \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.verif.com%2Fen%2Fcompany%2FPETERS%2DPAPERS%2D%2528PTY]\n- PETERS PAPERS (PTY) LTD, Johannesburg, South Africa, 1 KEEROM RD, 2094 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fsearch.infobelpro.com%2Fsouthafrica%2Fen%2Fbusinessdetail]\n- Peters Papers (Pty) Ltd - SA Business Listings \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fsabusinesslistings.co.za%2Flistings%2Fpeters%2Dpapers%2Dp]\n- Peters Papers (PTY) LTD | Paper Suppliers, Pinetown \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.cylex.net.za%2Fcompany%2Fpeters%2Dpapers%2D%2Dpty%2D%]\n\n**SOCIAL MENTION** (7)\n- The GME Run Up in March: The Role of Archegos and Revealing the Alleged Scam by CFG Alliance \u2014 *reddit* [https://reddit.com/r/Superstonk/comments/1567de0/the_gme_run_up_in_march_the_rol]\n- The Role of Archegos and Revealing the Alleged Scam by CFG Alliance and Sanjeev Gupta \u2014 *reddit* [https://reddit.com/r/Superstonk/comments/159m95t/the_role_of_archegos_and_reveal]\n- Australia and Palantir: what we're allowed to know. \u2014 *reddit* [https://reddit.com/r/u_HealthyMindHappyLife/comments/1scf6c4/australia_and_palan]\n- How much are Dutton and Taylor actually worth? \u2014 *reddit* [https://reddit.com/r/aussie/comments/1k8onmj/how_much_are_dutton_and_taylor_actu]\n- Project Zomboid has the record for being in Steam Early Access for longer than any other game! \u2014 *reddit* [https://reddit.com/r/projectzomboid/comments/oi6vwg/project_zomboid_has_the_reco]\n- [COPA v Wright] Full Witness List \u2014 *reddit* [https://reddit.com/r/bitcoincashSV/comments/1aonhbv/copa_v_wright_full_witness_l]\n- Unsorted New Tracks - Part 5 [Out Date 2024-05-24] [Glow Records Exclusive] \u2014 *reddit* [https://reddit.com/r/proresivesound/comments/1d1t4m6/unsorted_new_tracks_part_5_]\n\n**CERTIFICATE SUMMARY** (1)\n- www.peterspapers.co.za \u2014 *crtsh*\n\n**SSL CERTIFICATE** (1)\n-  \u2014 *crtsh*\n\n**DOMAIN SCAN SUMMARY** (1)\n- www.peterspapers.co.za \u2014 *urlscan*\n\n**WEBSITE SCAN** (1)\n- Homepage - Peters Papers \u2014 *urlscan* [https://www.peterspapers.co.za/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "PETERS PAPERS (PTY) LTD",
+    "entity_country": "ZA",
+    "entity_website": "https://www.peterspapers.co.za/",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 3,
+  "dark_web_sources": 45
+}

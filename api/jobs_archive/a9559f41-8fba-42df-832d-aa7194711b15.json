@@ -1,0 +1,67 @@
+{
+  "job_id": "a9559f41-8fba-42df-832d-aa7194711b15",
+  "status": "failed",
+  "region": "americas",
+  "entity_name": "RIO ENERGY INTERNATIONAL, INC.",
+  "country": "US",
+  "created_at": "2026-04-15T16:05:18.015611+00:00",
+  "updated_at": "2026-04-15T16:05:50.955464+00:00",
+  "blob_path": null,
+  "report_summary": null,
+  "error": "Failed to parse OpenClaw response: ",
+  "retry_count": 1,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "RIO ENERGY INTERNATIONAL, INC.",
+    "entity_trade_names": null,
+    "entity_country": "US",
+    "entity_jurisdiction": null,
+    "entity_address": "5718 Westheimer, Suite 1806, Houston, TX 77057, USA",
+    "entity_website": "www.rioenergy.com",
+    "entity_type": null,
+    "entity_industry": null,
+    "entity_tax_id": "76-0117978",
+    "copap_relationship": "Unknown",
+    "copap_products": null,
+    "copap_incoterms": null,
+    "key_individuals": [
+      {
+        "name": "Andrew Marlow",
+        "title": "Secretary/Treasurer"
+      },
+      {
+        "name": "William Iglesias",
+        "title": "President"
+      },
+      {
+        "name": "Raul Abello",
+        "title": "VP"
+      },
+      {
+        "name": "Kale Krhorjak",
+        "title": "VP"
+      },
+      {
+        "name": "Andrew Marlow",
+        "title": "UBO"
+      },
+      {
+        "name": "William Iglesias",
+        "title": "UBO"
+      },
+      {
+        "name": "Raul Abello",
+        "title": "UBO"
+      },
+      {
+        "name": "Kale Krhorjak",
+        "title": "UBO"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "source_report": null,
+    "workstreams": null,
+    "priority": "standard"
+  }
+}

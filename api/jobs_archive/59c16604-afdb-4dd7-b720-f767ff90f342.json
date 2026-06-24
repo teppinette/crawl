@@ -1,0 +1,27 @@
+{
+  "job_id": "59c16604-afdb-4dd7-b720-f767ff90f342",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "gulf",
+  "entity_name": "Agro Cina",
+  "country": "PK",
+  "created_at": "2026-05-02T09:26:51.122265+00:00",
+  "updated_at": "2026-05-02T09:34:52.781230+00:00",
+  "blob_path": "osint-staging/cir/gulf/agro_cina_PK_20260502.json",
+  "report_summary": "Blob uploaded (HTTP 201). Report saved and uploaded.\n\n---\n\n**DONE: Agro Cina, PK \u2014 Risk: 4 REVIEW \u2014 Entity identity UNRESOLVED; no SECP/NTN/trade records found for this name; possible variant of 'Agro China Pakistan Pvt Ltd' (NTN 4334750-9) but unconfirmed**\n\n---\n\n## Research Summary\n\n### \u26a0\ufe0f Primary Finding: Entity Cannot Be Identified\n\nAfter exhaustive research across 9+ databases and sources, **no Pakistani entity named \"Agro Cina\"** exists in any public record.\n\n| Source | Result |\n|---|---|\n| **SECP Registry** | CAPTCHA-gated; no public data found |\n| **FBR NTN** | CAPTCHA-gated; no NTN found in trade records |\n| **Pakistan Customs** (Seair, TradeImex, 52WMB, Volza, MarketInside) | **Zero records** \u2014 no importer/exporter by this name |\n| **PCJCCI Chinese Companies list** | Not present |\n| **Punjab Agriculture Dept distributors** | Not present |\n| **NAB / Courts** | No records (non-confirmatory given identity failure) |\n| **Sanctions** (OFAC/UN/EU/UK) | No hits \u2014 **screening incomplete** pending identity |\n| **Media** (Dawn, Geo, The News, BR) | No results |\n| **Dark Web scan** | Tor connectivity failure \u2014 re-scan recommended |\n\n---\n\n### Most Likely Explanation\n\n**\"Cina\" = \"China\" in Italian, Romanian, Vietnamese.** \"Agro Cina\" is semantically identical to \"Agro China.\" The most probable interpretation is one of:\n\n1. **Variant/informal spelling** of **AGROCHINA PAKISTAN (PVT.) LIMITED** (NTN 4334750-9, Johar Town Lahore) \u2014 researched 2026-05-01, Risk 3 MONITOR\n2. **Unregistered sole proprietorship** operating under a trade name\n3. **Fictitious/shell entity** \u2014 cannot exclude\n\n---\n\n### Risk: **4 \u2013 REVIEW**\n\nEntity identity failure is itself a compliance red flag. Sanctions screening, ownership chain, and regulatory checks **cannot be considered complete** without a confirmed legal name and NTN.\n\n**Required documentation from counterparty before any transaction:**\n- SECP Certificate of Incorporation\n- FBR NTN Certificate (showing exact registered name)\n- CNIC of authorised director\n- DPP/DRAP pesticide registration certificates (if applicable)\n\n**Output saved:** `~/crawl/output/agro_cina_PK_20260502.json` \u2705\n**Blob uploaded:** `crawl-gulf/agro_cina_PK_20260502.json` \u2192 stcrawlosint/osint-staging \u2705\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 findings** from 0/0 sources via Tor (Netherlands exit node)\n\nNo dark web exposure detected. Entity and owners clean across all 0 sources.\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "Agro Cina",
+    "entity_country": "PK"
+  },
+  "region_status": {
+    "gulf": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 0
+}

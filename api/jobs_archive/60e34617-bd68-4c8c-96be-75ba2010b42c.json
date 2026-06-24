@@ -1,0 +1,75 @@
+{
+  "job_id": "60e34617-bd68-4c8c-96be-75ba2010b42c",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "Plastics Technology De Mexico",
+  "country": "MX",
+  "created_at": "2026-05-21T18:58:59.257574+00:00",
+  "updated_at": "2026-05-21T19:01:29.284426+00:00",
+  "blob_path": "osint-staging/cir/americas/plastics_technology_de_mexico_MX_20260521.json",
+  "report_summary": "Duplicate \u2014 `americas/plastics_technology_de_mexico_MX_20260521.json` uploaded 29 minutes ago at 18:35 UTC. Identical entity, same RFC, same UBOs.\n\n| | |\n|---|---|\n| **File** | `americas/plastics_technology_de_mexico_MX_20260521.json` |\n| **Risk** | **3 / MONITOR** |\n| **RFC** | PTM03042519A \u2713 |\n| **\ud83d\udd34 CRITICAL** | Guiding Light Plastics LLC (52%) \u2014 Delaware LLC, beneficial owners unknown; OFAC 50% rule unresolvable |\n| **\ud83d\udfe1 MEDIUM** | Alejandro Llamas Galvan (13% UBO) \u2014 2017 Baja California procurement cronyism adverse media |\n| **Entity itself** | Operationally clean \u2014 ISO/EMA/FM certified, SAT compliant |\n\nNo re-research warranted.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**2 actionable findings** from 4/57 sources via Tor (Netherlands exit node) (26 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n| Website scans (URLScan) | 1 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: ptmexico.com\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | All the bags we love in this sub! Brands you may know, and s; TRUCK ROAST: Are you this guy? (Satire); Medical Plastics Market 2020 Industry Expansion by Developme (+12 more) |\n| duckduckgo_tor | 10 | PTM - Plastics Technology de M\u00e9xico; Mejores pr\u00e1cticas para la industria del pl\u00e1stico | Plastics ; PTM - Pl\u00e1sticos T\u00e9cnicos Mexicanos (+7 more) |\n| urlscan | 2 | ptmexico.com; FinWin - One Page Business Template |\n| hudsonrock_cavalier | 1 | ptmexico.com |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- ptmexico.com \u2014 *hudsonrock_cavalier*\n\n**WEB MENTION** (10)\n- PTM - Plastics Technology de M\u00e9xico \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fptmexico.com%2F%3Flang%3Den&rut=3d17669a4a451f6680dfe0195]\n- Mejores pr\u00e1cticas para la industria del pl\u00e1stico | Plastics Technology ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.pt%2Dmexico.com%2F&rut=f1bafa96bb9dd2b810c9290525a029]\n- PTM - Pl\u00e1sticos T\u00e9cnicos Mexicanos \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fptm.mx%2Fes&rut=aee89813f01545ac42bcf5a9b844f39f247506e4d]\n- Plastics Technology Mexico \u2022 Abril/Mayo 2026 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fptmexico.mydigitalpublication.com%2F&rut=d33eaada3afead28]\n- PTM M\u00e9xico | LinkedIn - LinkedIn M\u00e9xico \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fmx.linkedin.com%2Fcompany%2Fptm%2Dm%25C3%25A9xico&rut=02d]\n- Plastics Technology M\u00e9xico | Monterrey - Facebook \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.facebook.com%2Fplasticsmexico%2F&rut=bd1394a4f6fc9efc]\n- Plastics Technology de M\u00e9xico, S. de R.L. de C.V. Company Profile | San ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.P]\n- PLASTICS TECHNOLOGY DE MEXICO - Las Empresas M\u00e9xico \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Flasempresas.com.mx%2Fplastics%2Dtechnology%2Dde%2Dmexico%]\n- Plastics Technology M\u00e9xico - MexicoIndustry \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fmexicoindustry.com%2Fempresa%2Fplastics%2Dtechnology%2Dme]\n- Plastics Technology De M\u00e9xico S De Rl De Cv - Plastics Technology De ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ffabricas.com.mx%2Fplastics%2Dtechnology%2Dde%2Dmexico%2Ds]\n\n**SOCIAL MENTION** (15)\n- All the bags we love in this sub! Brands you may know, and some you may not. Enjoy! \u2014 *reddit* [https://reddit.com/r/handbags/comments/1ctipy8/all_the_bags_we_love_in_this_sub_]\n- TRUCK ROAST: Are you this guy? (Satire) \u2014 *reddit* [https://reddit.com/r/Silverado/comments/1stq5df/truck_roast_are_you_this_guy_sat]\n- Medical Plastics Market 2020 Industry Expansion by Development, Technology Leadership, Size, and For \u2014 *reddit* [https://reddit.com/r/latestNews2021/comments/qgq9ah/medical_plastics_market_2020]\n- Global Plastic Bearings Market -Analysis, Market Size, Regional Outlook, Technology, Competitive Str \u2014 *reddit* [https://reddit.com/r/u_savitribadiger0/comments/ecqo9n/global_plastic_bearings_m]\n- Global Non Lethal Ammunition Market 2024 Trends Forecast Analysis by Manufacturers: Nonlethal Techno \u2014 *reddit* [https://reddit.com/r/MechGadgetReports/comments/d9hm2d/global_non_lethal_ammunit]\n- The Comprehensive structure of Global Less Lethal Ammunition Market 2024 and topmost key players: No \u2014 *reddit* [https://reddit.com/r/BizInsightReports/comments/d8lh3g/the_comprehensive_structu]\n- Know the Future Opportunities of PVC Insulation Tapes Market and its detail analysis by Focusing Top \u2014 *reddit* [https://reddit.com/r/TrendingMarketReports/comments/d0d6dl/know_the_future_oppor]\n- A Summary of President Cecil H. Underwood's Second Term (1965-1969) | Peacock-Shah Alternate Electio \u2014 *reddit* [https://reddit.com/r/Presidentialpoll/comments/1h2w6e1/a_summary_of_president_ce]\n- Article: Donald J. Trump is the greatest threat to the world since Adolf Hitler. \u2014 *reddit* [https://reddit.com/r/2westerneurope4u/comments/1q93kx0/article_donald_j_trump_is]\n- Last Week in Collapse: November 3-9, 2024 \u2014 *reddit* [https://reddit.com/r/collapse/comments/1go065e/last_week_in_collapse_november_39]\n- Covid-19 update Monday March 23rd \u2014 *reddit* [https://reddit.com/r/supplychain/comments/fnitfc/covid19_update_monday_march_23r]\n- Beyond the headlines: A comprehensive look at the Iran conflict \u2014 *reddit* [https://reddit.com/r/UAE/comments/1rpiago/beyond_the_headlines_a_comprehensive_l]\n- Last Week in Collapse: November 16-22, 2025 \u2014 *reddit* [https://reddit.com/r/collapse/comments/1p4m5fh/last_week_in_collapse_november_16]\n- Last Week in Collapse: June 11-17, 2022 \u2014 *reddit* [https://reddit.com/r/collapse/comments/vf840r/last_week_in_collapse_june_1117_20]\n- Last Week in Collapse: December 10-16, 2023 \u2014 *reddit* [https://reddit.com/r/collapse/comments/18ke5zs/last_week_in_collapse_december_10]\n\n**DOMAIN SCAN SUMMARY** (1)\n- ptmexico.com \u2014 *urlscan*\n\n**WEBSITE SCAN** (1)\n- FinWin - One Page Business Template \u2014 *urlscan* [https://www.ptmmoney.live/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "Plastics Technology De Mexico",
+    "entity_country": "MX",
+    "entity_address": "Av. Montes Urales No. 8, Parque Opci\u00f3n Los Nogales, San Jos\u00e9 Iturbide, Guanajuato, C.P. 37980, M\u00e9xico",
+    "entity_tax_id": "PTM03042519A",
+    "key_individuals": [
+      {
+        "name": "ALBERTO BARRUTIA JR",
+        "title": "CEO"
+      },
+      {
+        "name": "OLGA LYDIA ANAYA ESTRADA",
+        "title": "DIRECTOR OF ADMINISTRATION AND FINANCE"
+      },
+      {
+        "name": "FRANCISCO GUADALUPE RAMIREZ RODRIGUEZ",
+        "title": "DIRECTOR OF OPERATIONS"
+      },
+      {
+        "name": "ARTURO GONZALEZ OCEGUERA",
+        "title": "LOGISTICS AND WAREHOUSE DIRECTOR"
+      },
+      {
+        "name": "FRANCISCO RIVERA PAREDES",
+        "title": "DIRECTOR COMMERCIAL PVC"
+      },
+      {
+        "name": "SERGIO ROBERTO PADILLA SOLANO",
+        "title": "DIRECTOR COMMERCIAL POLYETHYLENE"
+      },
+      {
+        "name": "GUIDING LIGHT PLASTICS LLC",
+        "title": "UBO (52.00%)"
+      },
+      {
+        "name": "ALEJANDRO LAZARO LLAMAS GALVAN",
+        "title": "UBO (13.00%)"
+      },
+      {
+        "name": "VICTOR ENRIQUE LLAMAS VIDAL",
+        "title": "UBO (7.00%)"
+      },
+      {
+        "name": "TATIANA LLAMAS VIDAL",
+        "title": "UBO (7.00%)"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 2,
+  "dark_web_sources": 57
+}

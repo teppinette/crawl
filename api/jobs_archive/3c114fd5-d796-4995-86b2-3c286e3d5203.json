@@ -1,0 +1,31 @@
+{
+  "job_id": "3c114fd5-d796-4995-86b2-3c286e3d5203",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "COPAP Trading Sigma",
+  "country": "CA",
+  "created_at": "2026-05-14T13:42:44.387640+00:00",
+  "updated_at": "2026-05-14T13:43:21.093004+00:00",
+  "blob_path": "osint-staging/cir/americas/copap_trading_sigma_CA_20260514.json",
+  "report_summary": "Duplicate \u2014 `americas/copap_trading_sigma_CA_20260514.json` uploaded 2026-05-14T13:33 UTC, 9 minutes ago.\n\n| | |\n|---|---|\n| **As submitted** | \"COPAP Trading Sigma\" |\n| **\ud83d\udd34 Critical finding** | Name not registered in any Canadian registry |\n| **Closest entities** | COPAP TRADING INC. (#3445623, est. 1998) + SIGMA TRADE FINANCE INC. (#8103470, est. 2012) |\n| **Risk** | **2 / CLEAR** \u2014 subject to legal name correction |\n| **Directors (both)** | David Sela \u00b7 Laurent Barbe \u00b7 Denys Lamarre |\n\n**Action required before contract:** Counterparty must confirm exact registered legal entity name. No further research warranted.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 0/0 sources via Tor (Netherlands exit node)\n\nNo dark web exposure detected. Entity and owners clean across all 0 sources.\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "COPAP Trading Sigma",
+    "entity_country": "CA",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 0
+}

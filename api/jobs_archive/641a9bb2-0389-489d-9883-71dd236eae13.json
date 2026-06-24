@@ -1,0 +1,18 @@
+{
+  "job_id": "641a9bb2-0389-489d-9883-71dd236eae13",
+  "scenario": "dark-web",
+  "status": "failed",
+  "region": "darkweb",
+  "entity_name": "Sure Paper",
+  "country": "",
+  "created_at": "2026-05-03T12:36:01.289355+00:00",
+  "updated_at": "2026-05-03T12:38:02.862929+00:00",
+  "blob_path": null,
+  "report_summary": null,
+  "error": "",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_name": "Sure Paper"
+  }
+}

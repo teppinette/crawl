@@ -1,0 +1,64 @@
+{
+  "job_id": "84bbf018-6b12-490d-9255-988bfb11ae54",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "china",
+  "entity_name": "FUSION BROKERAGE EUROPE PTE LTD",
+  "country": "SG",
+  "created_at": "2026-05-12T11:56:50.719344+00:00",
+  "updated_at": "2026-05-12T11:59:27.739643+00:00",
+  "blob_path": "osint-staging/cir/china/fusion_brokerage_europe_pte_ltd_sg_20260508.json",
+  "report_summary": "Completed 2026-05-08.\n\n**DONE:** `/home/copapadmin/crawl/output/fusion_brokerage_europe_pte_ltd_sg_20260508.json`\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**103 findings** from 7/57 sources via Tor (Netherlands exit node)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Breach records | 70 |\n| Adverse media | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n| Website scans (URLScan) | 5 |\n\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "FUSION BROKERAGE EUROPE PTE LTD",
+    "entity_country": "SG",
+    "entity_address": "62 CHESTNUT AVENUE, #03-10, TREE HOUSE, Singapore 679518",
+    "entity_website": "NIL",
+    "entity_tax_id": "N/A",
+    "key_individuals": [
+      {
+        "name": "MRS LOUISE ANNE VANDERPUT NEE AERIA",
+        "title": "SECRETARY"
+      },
+      {
+        "name": "ANTONIUS JOSEPH SMIT",
+        "title": "DIRECTOR"
+      },
+      {
+        "name": "Antonius J Smit",
+        "title": "Director"
+      },
+      {
+        "name": "Louise Anne Vanderput nee Aeria",
+        "title": "Director"
+      },
+      {
+        "name": "Antonius Smit",
+        "title": "UBO (100.00%)"
+      },
+      {
+        "name": "ANTONIUS JOSEPH SMIT",
+        "title": "UBO (100.00%)"
+      },
+      {
+        "name": "Antonius J Smit",
+        "title": "UBO (100.00%)"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "china": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 103,
+  "dark_web_sources": 57
+}

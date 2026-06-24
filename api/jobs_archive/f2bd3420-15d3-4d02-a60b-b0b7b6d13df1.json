@@ -1,0 +1,31 @@
+{
+  "job_id": "f2bd3420-15d3-4d02-a60b-b0b7b6d13df1",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "europe",
+  "entity_name": "COPAP EUROPE",
+  "country": "FR",
+  "created_at": "2026-05-15T12:46:35.084735+00:00",
+  "updated_at": "2026-05-15T12:47:03.988348+00:00",
+  "blob_path": "osint-staging/cir/europe/copap_europe_sas_FR_20260514.json",
+  "report_summary": "Same entity, fourth submission \u2014 report on file.\n\n**DONE: COPAP Europe SAS, FR \u2014 Risk: 3 MONITOR**\n\nFile: `~/crawl/output/copap_europe_sas_FR_20260514.json` \u2705\nBlob: `europe/copap_europe_sas_FR_20260514.json` \u2705\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 0/0 sources via Tor (Netherlands exit node)\n\nNo dark web exposure detected. Entity and owners clean across all 0 sources.\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "COPAP EUROPE",
+    "entity_country": "FR",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "priority": "standard"
+  },
+  "region_status": {
+    "europe": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 0
+}

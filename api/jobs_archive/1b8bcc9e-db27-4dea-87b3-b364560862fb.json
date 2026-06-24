@@ -1,0 +1,56 @@
+{
+  "job_id": "1b8bcc9e-db27-4dea-87b3-b364560862fb",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "MAKWELL PLASTISIZERS PRIVATE LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-20T15:35:36.838806+00:00",
+  "updated_at": "2026-05-20T15:52:52.079376+00:00",
+  "blob_path": null,
+  "report_summary": "**DONE: Makwell Plastisizers Private Limited, India \u2014 Risk: 2 CLEAR \u2014 60-year-old plasticizers/additives manufacturer (group since 1965); CIN U25209MH1992PTC070204; Revenue \u20b9325 Cr FY25; Arkema/Kronos partner; zero litigation; \u26a0\ufe0f old open MCA charges from 2002/2007-08**\n\n---\n\n`~/crawl/output/makwell_plastisizers_pvt_ltd_IN_20260520.json` \u2014 19.6 KB, valid JSON, 10 sources, all 8 workstreams complete\n\n---\n\n## Key Findings\n\n### Entity\n- **CIN:** U25209MH1992PTC070204 \u2713 (Tax ID = CIN, exact match) \u00b7 Incorporated December 29, 1992\n- **Group operations since 1965** \u2014 one of India's oldest CP/plasticizer manufacturers\n- **Status:** Active \u00b7 Compliant \u00b7 Unlisted \u00b7 ROC Mumbai I\n- **Products:** Chlorinated Paraffin Wax (Makchlor brand), Acrylic Processing Aid, Zinc Borate, Antimony Trioxide, Magnesium Hydroxide\n- **Partners:** Arkema (France), Kronos \u2014 world-class global chemical companies \u2713\n- **Revenue FY2025:** \u20b9325 Cr (-10%) | **Group entity Makwell Organics:** \u20b9146 Cr FY2025\n\n### \u26a0\ufe0f Open Charges Alert \u2014 Old Instruments\n\n| Lender | Amount | Date | Last Modified | Status |\n|---|---|---|---|---|\n| **Citi Bank N.A.** | **\u20b926 Cr** | **Feb 2002** | **Dec 2022** | **Open \u2014 VERIFY** |\n| 3I Infotech Trusteeship | \u20b99.5 Cr | Oct 2007 | \u2014 | Open \u2014 likely old NCD |\n| 3I Infotech Trusteeship | \u20b96.5 Cr | Dec 2008 | \u2014 | Open \u2014 likely old NCD |\n| ~~Citi Bank N.A.~~ | ~~\u20b94.20 Cr~~ | ~~2002~~ | ~~Nov 2025 SATISFIED~~ | \u2705 Cleared |\n\nThe Citi Bank \u20b926 Cr charge being **modified as recently as December 2022** is the main concern \u2014 not a stale registration. Needs verification.\n\n### Directors \u2014 Two Family Branches, 33 Years Co-ownership\n\n| Name | DIN | Branch | Status | Since |\n|---|---|---|---|---|\n| Amresh Kishor Thakker | 01501203 | Kishor | \u2713 Current | 1992 |\n| Hiren Shashikant Thakker | 01272661 | Shashikant | \u2713 Current | 1992 |\n| Zubin Kishor Thakker | 00300594 | Kishor | \u2713 Current | 1999 |\n| Vishal Shashikant Thakker | 01408345 | Shashikant | \u2713 Current | 1999 |\n| Indumati Kishor Thakker | 02325367 | Kishor | \u2713 Current | 2015 |\n| Shashikant Nemchand Thakkar | 00300693 | Shashikant | \u26a0\ufe0f **Verify \u2014 possible Nov 2025 departure** | 1992 |\n\n**Sanctions CLEAR \u00b7 No PEP \u00b7 Zero litigation (0 IndianKanoon results) \u00b7 Zero adverse media**\n---\n\n## DARK WEB SCREENING \u2014 MEDIUM\n**9 actionable findings** from 4/57 sources via Tor (Netherlands exit node) (10 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Adverse media | 9 |\n| Web mentions (Tor-routed) | 10 |\n\n**Key findings:**\n- ADVERSE MEDIA: Makwell Plastisizers Private Limited - Company Profile\n- ADVERSE MEDIA: MAKWELL PLASTISIZERS PRIVATE LIMITED | ZaubaCorp\n- ADVERSE MEDIA: MAKWELL PLASTISIZERS PRIVATE LIMITED - Company Profile\n- ADVERSE MEDIA: VISHAL SHASHIKANT THAKKER | ZaubaCorp (VISHAL SHASHIKANT THAKKER)\n- ADVERSE MEDIA: Vishal Shashikant Thakker - Director Insights, Profile, and Associated ... (VISHAL SHASHIKANT THAKKER)\n- ADVERSE MEDIA: Vishal Thakker | Director Profile | The Company Check (VISHAL SHASHIKANT THAKKER)\n- ADVERSE MEDIA: Indumati Kishor Thakker - Director Insights, Profile, and Associated ... (INDUMATI KISHOR THAKKER)\n- ADVERSE MEDIA: INDUMATI KISHOR THAKKER Director / Partner, Legal Audit, Risk ... (INDUMATI KISHOR THAKKER)\n- ADVERSE MEDIA: INDUMATI KISHOR THAKKER - 2325367 Director Info | MyCorporateInfo (INDUMATI KISHOR THAKKER)\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | Makwell; Makwell Plastisizers Pvt. Ltd. | LinkedIn; Makwell Plastisizers Private Limited - IndiaMART (+7 more) |\n| duckduckgo_adverse | 9 | Makwell Plastisizers Private Limited - Company Profile; MAKWELL PLASTISIZERS PRIVATE LIMITED | ZaubaCorp; MAKWELL PLASTISIZERS PRIVATE LIMITED - Company Profile (+6 more) |\n\n### All findings detail\n\n**ADVERSE MEDIA** (9)\n- Makwell Plastisizers Private Limited - Company Profile \u2014 *duckduckgo_adverse* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fcompany%2Fmakwell%2Dplastisizer]\n- MAKWELL PLASTISIZERS PRIVATE LIMITED | ZaubaCorp \u2014 *duckduckgo_adverse* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2FMAKWELL%2DPLASTISIZERS%2DPRIVATE%2DLI]\n- MAKWELL PLASTISIZERS PRIVATE LIMITED - Company Profile \u2014 *duckduckgo_adverse* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Fmakwell%2Dpla]\n- VISHAL SHASHIKANT THAKKER | ZaubaCorp \u2014 *duckduckgo_adverse* (searched: VISHAL SHASHIKANT THAKKER) [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2FVISHAL%2DSHASHIKANT%2DTHAKKER%2D01408]\n- Vishal Shashikant Thakker - Director Insights, Profile, and Associated ... \u2014 *duckduckgo_adverse* (searched: VISHAL SHASHIKANT THAKKER) [/l/?uddg=https%3A%2F%2Fwww.filesure.in%2Fdirector%2Fvishal%2Dshashikant%2Dthakke]\n- Vishal Thakker | Director Profile | The Company Check \u2014 *duckduckgo_adverse* (searched: VISHAL SHASHIKANT THAKKER) [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fpeople%2Dprofile%2Fvishal%2Dsha]\n- Indumati Kishor Thakker - Director Insights, Profile, and Associated ... \u2014 *duckduckgo_adverse* (searched: INDUMATI KISHOR THAKKER) [/l/?uddg=https%3A%2F%2Fwww.filesure.in%2Fdirector%2Findumati%2Dkishor%2Dthakker%]\n- INDUMATI KISHOR THAKKER Director / Partner, Legal Audit, Risk ... \u2014 *duckduckgo_adverse* (searched: INDUMATI KISHOR THAKKER) [/l/?uddg=https%3A%2F%2Flextechsuite.com%2FINDUMATI%2DKISHOR%2DTHAKKER%2D%2D02325]\n- INDUMATI KISHOR THAKKER - 2325367 Director Info | MyCorporateInfo \u2014 *duckduckgo_adverse* (searched: INDUMATI KISHOR THAKKER) [/l/?uddg=https%3A%2F%2Fmycorporateinfo.com%2Fdirector%2Findumati%2Dkishor%2Dthak]\n\n**WEB MENTION** (10)\n- Makwell \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fmakwellgroup.com%2F&rut=c704e79490bb06d3625148e3073f97890]\n- Makwell Plastisizers Pvt. Ltd. | LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fin.linkedin.com%2Fcompany%2Fmakwell%2Dplastisizers%2Dpvt%]\n- Makwell Plastisizers Private Limited - IndiaMART \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Fmakwellplastisizers%2F&rut=50f48d751a]\n- MAKWELL PLASTISIZERS PRIVATE LIMITED | ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2FMAKWELL%2DPLASTISIZERS%2DPRIVATE%2DLI]\n- MAKWELL PLASTISIZERS PRIVATE LIMITED - 2025 Company Profile ... - Tracxn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Fmakwell%2Dpla]\n- Makwell Plastisizers Private Limited - 2026 Insights \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fcompany%2Fmakwell%2Dplastisizer]\n- Makwell Plastisizers Private Limited Company Profile - India ... - EMIS \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FIN%2FMakwell_Pla]\n- Makwell Plastisizers Pvt. Ltd. | Mumbai | Western | INDIA INDUSTRY \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiaindustry.biz%2Fcompany%2Dmakwell%2Dplastisizers%]\n- MAKWELL PLASTISIZERS PRIVATE LIMITED - Company Details \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.masterdata.in%2Fcompany%2Fmakwell_plastisizers_privat]\n- Makwell Plastisizers Pvt. Ltd. in Mumbai, Maharashtra, India - Company ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tradeindia.com%2Fmakwell%2Dplastisizers%2Dpvt%2Dltd%2]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "india: Report file not found on remote VM (india)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "MAKWELL PLASTISIZERS PRIVATE LIMITED",
+    "entity_country": "IN",
+    "entity_address": "522/523, 5th Floor, D Wing, Neelkanth Business Park, Kirol Village, Vidhyavihar (W), Mumbai, Maharashtra 400086",
+    "entity_tax_id": "U25209MH1992PTC070204",
+    "key_individuals": [
+      {
+        "name": "VISHAL SHASHIKANT THAKKER"
+      },
+      {
+        "name": "AMRESH KISHOR THAKKER"
+      },
+      {
+        "name": "INDUMATI KISHOR THAKKER"
+      },
+      {
+        "name": "ZUBIN KISHOR THAKKER"
+      },
+      {
+        "name": "SHASHIKANT NEMCHAND THAKKAR"
+      },
+      {
+        "name": "HIREN SHASHIKANT THAKKER"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (india)"
+    }
+  },
+  "errors": [
+    "india: Report file not found on remote VM (india)"
+  ],
+  "dark_web_findings": 9,
+  "dark_web_sources": 57
+}

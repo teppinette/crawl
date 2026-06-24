@@ -1,0 +1,141 @@
+{
+  "job_id": "ebdb6026-ebd9-4ade-8fe1-32e591a78c32",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "AARTI IND. LTD.",
+  "country_code": "IN",
+  "created_at": "2026-05-04T14:47:23.955277+00:00",
+  "updated_at": "2026-05-04T14:48:16.625989+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:47:32.174549+00:00",
+      "verified": true,
+      "legal_name": null,
+      "cin": "L24110GJ1984PLC007301",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "28 September, 1984",
+      "directors": [
+        "Rashesh Chandrakant Gogri",
+        "Manoj Mulji Chheda",
+        "others"
+      ],
+      "registered_address": "PLOT NO 801/23 GIDC ESTATEPHASE III, VAPI, Gujarat, India, 396195",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:47:30.680414+00:00",
+      "found": true,
+      "name": "Aarti Industries Ltd.",
+      "linkedin_url": "https://in.linkedin.com/company/aarti-industries",
+      "industry": "Chemical Manufacturing",
+      "company_size": "5,001-10,000 employees",
+      "locations": [
+        "Mulund Goregaon Link Road, Mulund Mumbai, Maharashtra 400080, IN"
+      ],
+      "about": "Aarti Industries Limited (AIL) is one of the world's leading speciality chemical companies combining process chemistry competence with scale-up engineering competence. Over the years, we have transformed from an Indian company servicing global markets to a global company selecting to manufacture out of India. We globally rank between 1st \u2013 4th position for 75% of our portfolio and are a \"Partner of Choice\" for over 400+ major global & 700+ domestic customers spread across 60 countries with a maj",
+      "followers": 238546,
+      "employees_on_linkedin": 5054,
+      "organization_type": "Public Company",
+      "website": "https://www.aarti-industries.com/",
+      "specialties": "CONTRACT RESEARCH, CUSTOM SYNTHESIS, APIs in US FDA Facility, API INTERMEDIATES, Benzene Products, Toluene Products, Agrochemcials, Multi-product multi geography, Derisked Portfolio, Polymers, Pigments, Dyes, Fuel additives, Fertilizers, Aromatics, Surfactants, Printing Inks, custom chemical manufacturing, Analytical and Process Safety Testing, CDMO, Life Science Products , Oil and Energy Chemicals, Bulk Chemicals, and Economies of Scale Manufacturing",
+      "notable_employees": [
+        {
+          "name": "Radhakrishnan Dhakshinamoorthy",
+          "link": "https://in.linkedin.com/in/radhakrishnan-dhakshinamoorthy-350a292?trk=org-employees"
+        },
+        {
+          "name": "Hrisheekesh Sabnis",
+          "link": "https://in.linkedin.com/in/hsabnis?trk=org-employees"
+        },
+        {
+          "name": "Dr. Reena Sanghvi",
+          "link": "https://in.linkedin.com/in/dr-reena-sanghvi-581a496?trk=org-employees"
+        },
+        {
+          "name": "Abhishek Saxena",
+          "link": "https://in.linkedin.com/in/abhishek-saxena-b602bb7?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:48:16.625345+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 60,
+      "sources_searched": 37,
+      "sources_with_results": 2,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "AARTI IND. LTD.",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "job_id": "0f8c3908-715b-4aa2-94e3-186c1861b383",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "gulf",
+  "entity_name": "FAIZ CHEMICAL INDUSTRIES (PVT) LTD",
+  "country": "PK",
+  "created_at": "2026-04-28T15:40:36.612285+00:00",
+  "updated_at": "2026-04-28T15:41:03.615804+00:00",
+  "blob_path": null,
+  "report_summary": "Confirmed same entity \u2014 postal code `55210` is the only additional detail and consistent with the Timber Market, Ravi Road, Lahore location. No re-run needed.\n\n**DONE: Faiz Chemical Industries (Pvt) Ltd, PK \u2014 Risk: 3 MONITOR \u2014 All 5 sanctions lists CLEAR; MONITOR for complete UBO opacity (SECP unavailable), Pakistan jurisdiction risk, unspecified imported chemicals**\n\n| Item | Status |\n|---|---|\n| All workstreams (1A\u20138A) | \u2705 Completed 2026-04-28 14:48 UTC |\n| JSON | \u2705 `~/crawl/output/faiz_chemical_industries_PK_20260428.json` (17 KB) |\n| Blob | \u2705 `gulf/faiz_chemical_industries_PK_20260428.json` \u2014 live since 14:48:57 UTC |\n| Address match | \u2705 `Plot No. 66, Timber Market, Ravi Road, Lahore` \u2014 postal code 55210 added, same entity |",
+  "error": "gulf: Report file not found on remote VM (gulf)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "FAIZ CHEMICAL INDUSTRIES (PVT) LTD",
+    "entity_country": "PK",
+    "entity_address": "Plot No. 66, Timber Market, Ravi Road, Lahore, Punjab 55210, Pakistan",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "gulf": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (gulf)"
+    }
+  },
+  "errors": [
+    "gulf: Report file not found on remote VM (gulf)"
+  ]
+}

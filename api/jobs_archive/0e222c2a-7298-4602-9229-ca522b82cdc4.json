@@ -1,0 +1,36 @@
+{
+  "job_id": "0e222c2a-7298-4602-9229-ca522b82cdc4",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "europe",
+  "entity_name": "AK-TAS DIS TICARET ANONIM SIRKETI",
+  "country": "TR",
+  "created_at": "2026-05-22T19:53:13.449298+00:00",
+  "updated_at": "2026-05-22T19:57:09.087850+00:00",
+  "blob_path": null,
+  "report_summary": "**DONE: Ak-Ta\u015f D\u0131\u015f Ticaret Anonim \u015eirketi, TR \u2014 Risk: 4 REVIEW \u26a0\ufe0f**\n\nFile: `~/crawl/output/ak_tas_dis_ticaret_TR_20260522.json` \u2705\nBlob: `europe/ak_tas_dis_ticaret_TR_20260522.json` \u2705 (19:55 UTC)\n\n---\n\n## \u26a0\ufe0f REVIEW \u2014 DO NOT CONTRACT\n\nSame data profile as Ela Kimyevi (Risk 4 today). **Key additional flag** beyond registry gaps:\n\n| Issue | Severity |\n|---|---|\n| **No individuals provided** | \u274c Individual sanctions screening IMPOSSIBLE |\n| **\"D\u0131\u015f Ticaret\" sector flag** | \u26a0\ufe0f Turkish foreign trade intermediaries are specifically cited in OFAC/BIS/EU Russia sanctions circumvention guidance |\n| **Zero web presence** | \u274c Unusual for an international trading A.\u015e. |\n| **Trade flows unknown** | \u274c Products, supplier countries, customer countries all unconfirmed |\n| **Entity sanctions (name only)** | \u2705 CLEAN |\n\nThe \"D\u0131\u015f Ticaret\" (foreign trade) company type without any public profile is a **more elevated structural concern** than a manufacturing company \u2014 Turkish foreign trade intermediaries are specifically documented as a Russia/Belarus sanctions circumvention vector. COPAP must obtain: directors + full UBO list \u2192 MERSIS extract \u2192 product/commodity list + HS codes \u2192 trade flow countries (especially Russia/CIS/Iran) before any commercial relationship.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 2/37 sources via Tor (Netherlands exit node) (20 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 37 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | T\u00fcrkiye\u2019nin en b\u00fcy\u00fck al\u0131\u015fveri\u015f siteleri aras\u0131nda yer alan He; EGI DIS TICARET ANONIM SIRKETI Tablet pc MPAD08 (2BBO3-MPAD0; Goldman Sachs Group Inc. Invests $1.05 Million in D-MARKET E (+12 more) |\n| duckduckgo_tor | 10 | Home - Ak-tas Dis Ticaret A.S.; Ak-tas Dis Ticaret Anonim Sirketi; Ak-tas Dis Ticaret A.S. Company Profile - Turkiye - EMIS (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- Home - Ak-tas Dis Ticaret A.S. \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Faktasdis.com%2Fen%2F&rut=93e20082913baf4d93eefd983a3f2253]\n- Ak-tas Dis Ticaret Anonim Sirketi \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.a]\n- Ak-tas Dis Ticaret A.S. Company Profile - Turkiye - EMIS \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FTR%2FAk%2Dtas_Di]\n- Ak-ta\u015f D\u0131\u015f Ticaret A.\u015e. | LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftr.linkedin.com%2Fcompany%2Fak%2Dtas%2Ddis%2Dticaret&rut=]\n- AK-TAS DIS TICARET ANONIM SIRKETI - Verif.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.verif.com%2Fen%2Fcompany%2FAK%2DTAS%2DDIS%2DTICARET%2]\n- Company Overview - AK-TAS DIS TICARET ANONIM SIRKETI \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftr1316771469iuir.fm.alibaba.com%2Fcompany_profile.html&ru]\n- AK-TAS DIS TICARET ANONIM SIRKETI - Company List \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.listcompany.org%2FAk_Tas_Dis_Ticaret_Anonim_Sirketi_I]\n- AK-TAS DIS TICARET ANONIM SIRKETI - listofcompaniesin.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.listofcompaniesin.com%2FAk_Tas_Dis_Ticaret_Anonim_Sir]\n- Ak-ta\u015f D\u0131\u015f Ticaret A.\u015e. Information - RocketReach \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Frocketreach.co%2Fak%2Dtas%2Ddis%2Dticaret%2Das%2Dprofile_]\n- Ak Tas Dis Ticaret Anonim Sirketi, Turkey - Company Profile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.volza.com%2Fcompany%2Dprofile%2Fak%2Dtas%2Ddis%2Dtica]\n\n**SOCIAL MENTION** (10)\n- T\u00fcrkiye\u2019nin en b\u00fcy\u00fck al\u0131\u015fveri\u015f siteleri aras\u0131nda yer alan Hepsi Burada\u2019n\u0131n son 2021-2022-2023  y\u0131lla \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1rg4rv5/t\u00fcrkiyenin_en_b\u00fcy\u00fck_al\u0131\u015fveri\u015f_s]\n- EGI DIS TICARET ANONIM SIRKETI Tablet pc MPAD08 (2BBO3-MPAD08) \u2014 *reddit* [https://reddit.com/r/FCCID/comments/14jtyb8/egi_dis_ticaret_anonim_sirketi_table]\n- Goldman Sachs Group Inc. Invests $1.05 Million in D-MARKET Elektronik Hizmetler ve Ticaret Anonim Si \u2014 *reddit* [https://reddit.com/r/News_GoldmanSachs/comments/t455ey/goldman_sachs_group_inc_i]\n- \u26a0\ufe0fTemu ile rekabet edemedi\u011fi i\u00e7in yurtd\u0131\u015f\u0131ndan g\u00fcmr\u00fcks\u00fcz al\u0131\u015fveri\u015fin k\u0131s\u0131tlanmas\u0131n\u0131 isteyen Arabunu. \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1mjfjqv/temu_ile_rekabet_edemedi\u011fi_i\u00e7in]\n- Si o veste buna - conform DRDP Buzau, azi la 15:30 se inaugureaza lotul 3 Ploiesti-Buzau al autostra \u2014 *reddit* [https://reddit.com/r/Romania/comments/1p7zjjc/si_o_veste_buna_conform_drdp_buzau]\n- Telefon satt\u0131k kayboldu Sar\u0131 site mahkeme karar \u2014 *reddit* [https://reddit.com/r/teknoloji/comments/1tkhymh/telefon_satt\u0131k_kayboldu_sar\u0131_sit]\n- Reddit'in IP verece\u011finin \u00fczerine.. \u2014 *reddit* [https://reddit.com/r/Turkey/comments/1qydufx/redditin_ip_verece\u011finin_\u00fczerine/]\n- S\u0131rr\u0131 S\u00fcreyya \u00d6nder'in damad\u0131 Yasin Cem Kandemir'in mal varl\u0131klar\u0131 \u2014 *reddit* [https://reddit.com/r/dewrim/comments/1kh1sxu/s\u0131rr\u0131_s\u00fcreyya_\u00f6nderin_damad\u0131_yasin_]\n- CHP'den AKP'ye ge\u00e7en Ayd\u0131n B\u00fcy\u00fck\u015fehir Belediye Ba\u015fkan\u0131 \u00d6zlem \u00c7er\u00e7io\u011flu ve ailesinin \u015firketi Jantsa,  \u2014 *reddit* [https://reddit.com/r/CHP/comments/1shk9fb/chpden_akpye_ge\u00e7en_ayd\u0131n_b\u00fcy\u00fck\u015fehir_be]\n- \u201cortalama olarak farkl\u0131 aylardan kalan yakla\u015f\u0131k ortalama \u00fc\u00e7 ayl\u0131k maa\u015flar\u0131 hen\u00fcz maalesef \u00f6denememi\u015f \u2014 *reddit* [https://reddit.com/r/LinkedinLunaticsTR/comments/1su99uo/ortalama_olarak_farkl\u0131_]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "europe: Report file not found on remote VM (europe)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "AK-TAS DIS TICARET ANONIM SIRKETI",
+    "entity_country": "TR",
+    "entity_tax_id": "Not publicly retrievable \u2014 MERSIS/Ticaret Sicil query requires authenticated access to mersis.ticaret.gov.tr",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "europe": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (europe)"
+    }
+  },
+  "errors": [
+    "europe: Report file not found on remote VM (europe)"
+  ],
+  "dark_web_findings": 0,
+  "dark_web_sources": 37
+}

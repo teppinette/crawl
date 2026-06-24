@@ -1,0 +1,142 @@
+{
+  "job_id": "a99b2068-86c9-426a-a30f-16526816f1e1",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "PASUPATI ACRYLON LIMITED",
+  "country_code": "IN",
+  "created_at": "2026-05-04T14:27:20.060292+00:00",
+  "updated_at": "2026-05-04T14:29:08.179702+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:27:28.270373+00:00",
+      "verified": true,
+      "legal_name": "PASUPATI ACRYLON LIMITED",
+      "cin": "L50102UP1982PLC015532",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "22 October, 1982",
+      "directors": [
+        "Satya Prakash Gupta",
+        "Kamlesh Gupta",
+        "others"
+      ],
+      "registered_address": "THAKURDWARAKASHIPUR ROAD, DISTT.MORADABAD, UP, Uttar Pradesh, India, 244601",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:27:26.577092+00:00",
+      "found": true,
+      "name": "Pasupati Acrylon Limited",
+      "linkedin_url": "https://in.linkedin.com/company/pasupati-acrylon-limited",
+      "industry": "Textile Manufacturing",
+      "company_size": "1,001-5,000 employees",
+      "locations": [
+        "M-14, Connaught Circus New Delhi, Delhi 110001, IN"
+      ],
+      "about": "Pasupati Acrylon Limited is a textiles company based out of M-14, Connaught Circus, New Delhi, Delhi, India.",
+      "followers": 1213,
+      "employees_on_linkedin": 261,
+      "organization_type": null,
+      "website": "https://www.pasupatiacrylon.com/",
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "SANJAY AKHAURI",
+          "link": "https://in.linkedin.com/in/sanjay-akhauri-0485336?trk=org-employees"
+        },
+        {
+          "name": "Dhruv Kumar",
+          "link": "https://in.linkedin.com/in/dhruv-kumar-6b95ba9?trk=org-employees"
+        },
+        {
+          "name": "Jinender Jain",
+          "link": "https://in.linkedin.com/in/jinenderjain?trk=org-employees"
+        },
+        {
+          "name": "AMAR CHAUHAN",
+          "link": "https://in.linkedin.com/in/amar-chauhan-a7069117?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:29:08.179134+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 62,
+      "sources_searched": 37,
+      "sources_with_results": 3,
+      "by_type": {
+        "web_mention": 10,
+        "adverse_media": 2,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "PASUPATI ACRYLON LIMITED",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

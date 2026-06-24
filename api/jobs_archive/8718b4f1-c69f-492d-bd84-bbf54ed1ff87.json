@@ -1,0 +1,47 @@
+{
+  "job_id": "8718b4f1-c69f-492d-bd84-bbf54ed1ff87",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "SOHAM POLYMERS PRIVATE LIMITED (UNIT I)",
+  "country": "IN",
+  "created_at": "2026-05-21T14:02:59.250132+00:00",
+  "updated_at": "2026-05-21T14:06:20.298200+00:00",
+  "blob_path": null,
+  "report_summary": "Second Soham Polymers submission \u2014 identical to 13:57 UTC. File is complete.\n\n**DONE (existing file): Soham Polymers Private Limited \u2014 Risk: 2 CLEAR \u2014 CIN U24110MH1995PTC088223; Revenue \u20b9138 Cr FY25; acrylic emulsions manufacturer; new 15,000 MT Ambernath plant under construction; AGM Sep 30, 2024 current**\n\n`~/crawl/output/soham_polymers_pvt_ltd_IN_20260521.json` \u2014 8.5 KB, valid.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 1/49 sources via Tor (Netherlands exit node) (10 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 49 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | Soham Polymers: Polymer Manufacturer in India; SOHAM POLYMERS PRIVATE LIMITED - ZaubaCorp; Soham Polymers Private Limited - Manufacturer from Navi ...  (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- Soham Polymers: Polymer Manufacturer in India \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.sohampolymers.com%2F&rut=e18d07c4ed2b13ba134541eee28d]\n- SOHAM POLYMERS PRIVATE LIMITED - ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2FSOHAM%2DPOLYMERS%2DPRIVATE%2DLIMITED%]\n- Soham Polymers Private Limited - Manufacturer from Navi ... - IndiaMART \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Fsoham%2Dpolymers%2Faboutus.html&rut=5]\n- Soham Polymers Private Limited | LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fin.linkedin.com%2Fcompany%2Fsoham%2Dpolymers%2Dpvt%2Dltd%]\n- Soham Polymers Private Limited | Navi Mumbai, Maharashtra \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Forg%2Fsoham%2Dpolymers%2Dprivat]\n- SOHAM POLYMERS PRIVATE LIMITED - Company Profile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Fsoham%2Dpolym]\n- Soham Polymers Pvt. Ltd. - TradeIndia \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tradeindia.com%2Fsoham%2Dpolymers%2Dpvt%2Dltd%2D35473]\n- Soham Polymers Private Limited - Tmia \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftmia.in%2FDirectoryDetails.asp%3Fid%3D85&rut=5ee884f26e96]\n- Soham Polymers Private Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.s]\n- SOHAM POLYMERS PRIVATE LIMITED Details | Company Profile | Directors ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.companydetails.in%2Fcompany%2Fsoham%2Dpolymers%2Dpriv]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "india: Report file not found on remote VM (india)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "SOHAM POLYMERS PRIVATE LIMITED (UNIT I)",
+    "entity_country": "IN",
+    "entity_address": "FLAT NO. 102, A WING, 1ST FLOOR, OM APARTMENT, SUNDERVAN COMPLEX - SHASTRI NAGAR, ANDHERI WEST, MUMBAI, Mumbai City, Maharashtra - 400053",
+    "entity_tax_id": "088223",
+    "key_individuals": [
+      {
+        "name": "SATISH SHRIDHAR MODAK"
+      },
+      {
+        "name": "VRUSHALI SATISH MODAK"
+      },
+      {
+        "name": "SOHAM SATISH MODAK"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (india)"
+    }
+  },
+  "errors": [
+    "india: Report file not found on remote VM (india)"
+  ],
+  "dark_web_findings": 0,
+  "dark_web_sources": 49
+}

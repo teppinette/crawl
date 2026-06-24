@@ -1,0 +1,31 @@
+{
+  "job_id": "b94a5a5f-eaf8-4e7a-a2df-63b908e856b8",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "SIGMA TRADE FINANCE INC",
+  "country": "CA",
+  "created_at": "2026-05-15T12:05:46.628502+00:00",
+  "updated_at": "2026-05-15T12:09:37.079367+00:00",
+  "blob_path": "osint-staging/cir/americas/sigma_trade_finance_inc_CA_20260514.json",
+  "report_summary": "Duplicate \u2014 `americas/sigma_trade_finance_inc_CA_20260514.json` covers all workstreams 1A\u20138A. Uploaded 2026-05-14T16:28 UTC.\n\n| | |\n|---|---|\n| **Entity** | SIGMA TRADE FINANCE INC. / COMMERCE FINANCE SIGMA INC. (Corp #8103470) |\n| **Risk** | **2 / CLEAR** |\n| **Incorporated** | 9 February 2012 \u2014 2025 filing current |\n| **Function** | Supply chain financing (Latin America cross-border transactions) |\n| **Named Seller** | Confirmed in COPAP General Conditions of Sale |\n| **Directors** | David Sela \u00b7 Laurent Barbe \u00b7 Denys Lamarre |\n| **Sanctions** | ALL CLEAR |\n\nNo re-research warranted.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 0/0 sources via Tor (Netherlands exit node)\n\nNo dark web exposure detected. Entity and owners clean across all 0 sources.\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "SIGMA TRADE FINANCE INC",
+    "entity_country": "CA",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 0
+}

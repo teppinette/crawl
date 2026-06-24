@@ -1,0 +1,71 @@
+{
+  "job_id": "9a9c7b05-20e0-4356-8495-6fe688d69c31",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "EMPRESA DE PL\u00c1STICO DA AMAZ\u00d4NIA LTDA.",
+  "country": "BR",
+  "created_at": "2026-05-22T17:18:50.256845+00:00",
+  "updated_at": "2026-05-22T17:21:36.320638+00:00",
+  "blob_path": null,
+  "report_summary": "Duplicate \u2014 `americas/empresa_de_plastico_da_amazonia_ltda_BR_20260522.json` uploaded today at 17:16 UTC.\n\n| | |\n|---|---|\n| **File** | `americas/empresa_de_plastico_da_amazonia_ltda_BR_20260522.json` |\n| **Risk** | **2 / CLEAR** |\n| **Group** | Packing Group \u2014 flexible plastic packaging, Valinhos SP, Amazon PCR plant |\n| **\ud83d\udd34 HIGH** | CNPJ needed \u00b7 Reiter family nationality/KYC (European-origin surnames) |\n| **Dark web** | 30 findings \u2014 ALL false positives; 0 relevant |\n| **Sanctions** | ALL CLEAR |\n\nNo re-research warranted.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**4 actionable findings** from 6/57 sources via Tor (Netherlands exit node) (27 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Breach records | 1 |\n| Adverse media | 1 |\n| Web mentions (Tor-routed) | 9 |\n| Social media mentions | 14 |\n| Website scans (URLScan) | 4 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: packinggroup.com.br\n- ADVERSE MEDIA: M\u00e1rcio Feitosa Dantas - BDO Brazil | LinkedIn (M\u00e1rcio Feitosa Dantas)\n- BREACH RECORD: \n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Ap\u00f3s DIAS sem energia, mulher se revolta e quebra uma ag\u00eanci; Segundo estudo da USP, mais de um ter\u00e7o dos destilados vendi; Que del\u00edcia de e-mail pra receber quando se trabalha desde a (+12 more) |\n| urlscan | 11 | packinggroup.com.br; Packing Group | embalagens pl\u00e1sticas flex\u00edveis | Alameda Ita; Packing Te Escuta (+8 more) |\n| duckduckgo_tor | 10 | E.p.a. - 11524482000103 Manaus - CNPJ Biz; E.p.a. - Empresa de Plastico da Amazonia Ltda. - CNPJ do AM; E.p.a. - Empresa De Plastico Da Amazonia Ltda. - Cnpj 115244 (+7 more) |\n| leakcheck | 1 | breach_record |\n| hudsonrock_cavalier | 1 | packinggroup.com.br |\n| duckduckgo_adverse | 1 | M\u00e1rcio Feitosa Dantas - BDO Brazil | LinkedIn |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- packinggroup.com.br \u2014 *hudsonrock_cavalier*\n\n**ADVERSE MEDIA** (1)\n- M\u00e1rcio Feitosa Dantas - BDO Brazil | LinkedIn \u2014 *duckduckgo_adverse* (searched: M\u00e1rcio Feitosa Dantas) [/l/?uddg=https%3A%2F%2Fbr.linkedin.com%2Fin%2Fm%25C3%25A1rcio%2Dfeitosa%2Ddantas]\n\n**BREACH RECORD** (1)\n-  \u2014 *leakcheck*\n\n**WEB MENTION** (9)\n- E.p.a. - 11524482000103 Manaus - CNPJ Biz \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fcnpj.biz%2F11524482000103&rut=b5597406dcb94634fc8b8f1cd91]\n- E.p.a. - Empresa de Plastico da Amazonia Ltda. - CNPJ do AM \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fcadastroempresa.com.br%2Ffornecedor%2Fepa%2Dempresa%2Dde%]\n- E.p.a. - Empresa De Plastico Da Amazonia Ltda. - Cnpj 11524482000103 ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fcasadosdados.com.br%2Fsolucao%2Fcnpj%2Fepa%2Dempresa%2Dde]\n- E.p.a. - Empresa De Plastico Da Amazonia Ltda. \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fb2bleads.com.br%2Fempresa%2Fe.p.a.%2D%2D%2Dempresa%2Dde%2]\n- E.p.a. em Manaus, AM - 11.524.482/0001-03 - Consulta Empresa - Econodata \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.econodata.com.br%2Fconsulta%2Dempresa%2F1152448200010]\n- E.p.a. Empresa De Plastico Da Amazonia Ltda. CNPJ 11524482000103 ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.consultascnpj.com%2Fepa%2Dempresa%2Dde%2Dplastico%2Dd]\n- E.P.A. - EMPRESA DE PLASTICO DA AMAZONIA LTDA. - MANAUS/AM - Quero Brasil \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fquerobrasil.com.br%2Fempresa%2F11524482000286%2Depa%2Demp]\n- EPA | Packing Group \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.packinggroup.com.br%2Fepa&rut=d87167e554e2d88705029c3]\n- E.p.a. - Empresa De Plastico Da Amazonia Ltda. | Cnpj\u00e1 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fcnpja.com%2Foffice%2F11524482000103&rut=85bb17d8bd6d04ce2]\n\n**SOCIAL MENTION** (14)\n- Ap\u00f3s DIAS sem energia, mulher se revolta e quebra uma ag\u00eancia da empresa de fornecimento de energia \u2014 *reddit* [https://reddit.com/r/Noticias/comments/1okbmry/ap\u00f3s_dias_sem_energia_mulher_se_r]\n- Segundo estudo da USP, mais de um ter\u00e7o dos destilados vendidos no Brasil \u00e9 falsificado. Isso porque \u2014 *reddit* [https://reddit.com/r/brasil/comments/1ntxd3e/segundo_estudo_da_usp_mais_de_um_te]\n- Que del\u00edcia de e-mail pra receber quando se trabalha desde a pandemia em home, mora a 410 km da empr \u2014 *reddit* [https://reddit.com/r/antitrampo/comments/1rxkfqg/que_del\u00edcia_de_email_pra_recebe]\n- Presente de anivers\u00e1rio da empresa \u2014 *reddit* [https://reddit.com/r/gororoba/comments/1rpbars/presente_de_anivers\u00e1rio_da_empres]\n- Vc pode ser f\u00e3 de um console, ou de uma empresa. Mas pelo amor do que \u00e9 mais sagrado, n\u00e3o vire um Am \u2014 *reddit* [https://reddit.com/r/gamesEcultura/comments/1rmtktj/vc_pode_ser_f\u00e3_de_um_console]\n- Funcion\u00e1rio impedido de sair da empresa no hor\u00e1rio de janta... \u2014 *reddit* [https://reddit.com/r/antitrampo/comments/1fxitg3/funcion\u00e1rio_impedido_de_sair_da]\n- A diferen\u00e7a entre um presidente entreguista e um que defende os interesses do pa\u00eds. A negocia\u00e7\u00e3o fei \u2014 *reddit* [https://reddit.com/r/brasil/comments/1jo0hbn/a_diferen\u00e7a_entre_um_presidente_ent]\n- Dei um banho de ouro em um cord\u00e3o de prata que tinha ganhado de uma ex namorada e comecei a ir com e \u2014 *reddit* [https://reddit.com/r/farialimabets/comments/1okzubf/dei_um_banho_de_ouro_em_um_c]\n- Governo Lula fecha acordo com SpaceSail, concorrente chinesa da empresa de sat\u00e9lites de Elon Musk. \u2014 *reddit* [https://reddit.com/r/brasil/comments/1gvr78g/governo_lula_fecha_acordo_com_space]\n- Senhora nosso c\u00f3digo de conduta e valores da empresa \u00e9 n\u00e3o engravidar \u2014 *reddit* [https://reddit.com/r/VagasArrombadas/comments/1te95hn/senhora_nosso_c\u00f3digo_de_co]\n- se vc faz isso com teu funcion\u00e1rio, vc \u00e9 um babaca! e se vc concorda com essa atitude, tu \u00e9 um babac \u2014 *reddit* [https://reddit.com/r/VagasArrombadas/comments/1lthsv1/se_vc_faz_isso_com_teu_fun]\n- Fontes dentro da Sony diz que a empresa parar\u00e1 de lan\u00e7ar jogos single-player no PC. Yotei e Saros fo \u2014 *reddit* [https://reddit.com/r/gamesEcultura/comments/1rkm3tr/fontes_dentro_da_sony_diz_qu]\n- Isso que voc\u00ea est\u00e1 vendo no v\u00eddeo n\u00e3o s\u00e3o amigos brincando.\n\u00c9 um jogo oficial v\u00e1lido pela fase distr \u2014 *reddit* [https://reddit.com/r/futebol/comments/1sup43y/isso_que_voc\u00ea_est\u00e1_vendo_no_v\u00eddeo_]\n- O DLSS5  \u00e9 o maior erro de comunica\u00e7\u00e3o da hist\u00f3ria recente dos games, vindo da empresa mais valiosa  \u2014 *reddit* [https://reddit.com/r/gamesEcultura/comments/1s44wbt/o_dlss5_\u00e9_o_maior_erro_de_co]\n\n**DOMAIN SCAN SUMMARY** (1)\n- packinggroup.com.br \u2014 *urlscan*\n\n**WEBSITE SCAN** (4)\n- Packing Group | embalagens pl\u00e1sticas flex\u00edveis | Alameda Itajub\u00e1, 1682 - Joapiranga, Valinhos - S\u00e3o  \u2014 *urlscan* [https://www.packinggroup.com.br/]\n- Packing Te Escuta \u2014 *urlscan* [https://comunica.packinggroup.com.br/]\n- Packing Group | L\u00edder na Fabrica\u00e7\u00e3o de Embalaens Pl\u00e1sticas Flex\u00edveis \u2014 *urlscan* [https://www.packinggroup.com.br/]\n- Packing Group - Especializados em embalagens pl\u00e1sticas flex\u00edveis \u2014 *urlscan* [https://packinggroup.com.br/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "americas: Report file not found on remote VM (americas)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "EMPRESA DE PL\u00c1STICO DA AMAZ\u00d4NIA LTDA.",
+    "entity_trade_names": "E.P.A. - EMPRESA DE PLASTICO DA AMAZONIA LTDA.",
+    "entity_country": "BR",
+    "entity_website": "https://packinggroup.com.br/",
+    "entity_industry": "Plastics manufacturer / buyer",
+    "key_individuals": [
+      {
+        "name": "JOSEFA AMARO DA SILVA",
+        "title": "Officer"
+      },
+      {
+        "name": "PAUL ANDR\u00c9 REITER",
+        "title": "Shareholder"
+      },
+      {
+        "name": "THEO REITER",
+        "title": "Shareholder"
+      },
+      {
+        "name": "M\u00e1rcio Feitosa Dantas",
+        "title": "Auditor"
+      },
+      {
+        "name": "GERSON BENGARD",
+        "title": "Director"
+      },
+      {
+        "name": "PAUL ANDRE REITER",
+        "title": "Shareholder"
+      },
+      {
+        "name": "Ailton Cardoso Lisa",
+        "title": "Officer"
+      },
+      {
+        "name": "PETER REITER",
+        "title": "Authorized Signer"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (americas)"
+    }
+  },
+  "errors": [
+    "americas: Report file not found on remote VM (americas)"
+  ],
+  "dark_web_findings": 4,
+  "dark_web_sources": 57
+}

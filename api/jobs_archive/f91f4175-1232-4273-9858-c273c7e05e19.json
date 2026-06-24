@@ -1,0 +1,65 @@
+{
+  "job_id": "f91f4175-1232-4273-9858-c273c7e05e19",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "REPRO INDIA LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-21T14:35:59.732485+00:00",
+  "updated_at": "2026-05-21T14:38:52.006133+00:00",
+  "blob_path": "osint-staging/cir/india/repro_india_limited_IN_20260521.json",
+  "report_summary": "**DONE: Repro India Limited, India \u2014 Risk: 3 MONITOR \u2014 BSE 363.10 / NSE 368.70; CIN L22200MH1993PLC071431; Q3FY26 Revenue \u20b9131.41 Cr; \u26a0\ufe0f PAT margin 0.57% (Q2 FY26 was loss quarter); \u26a0\ufe0f \u20b9282 Cr property sale approved; 10 directors confirmed**\n\n`~/crawl/output/repro_india_limited_IN_20260521.json` \u2014 7.9 KB, valid, research date 2026-05-21.\n\nMonitor rationale \u2014 two key concerns:\n1. **Margin squeeze**: Q2 FY26 PBT \u2212\u20b920 Cr \u2192 Q3 recovery to +\u20b90.75 Cr PAT \u2014 still very thin\n2. **\u20b9282 Cr property sale**: Clarify whether this is strategic (office consolidation, capital recycling) or under financial pressure. The proceeds could significantly strengthen the balance sheet, but intent matters for credit assessment.\n\nRevenue itself is stable (+3-4% YoY) \u2014 the issue is cost pressure/margins, not top-line erosion.\n---\n\n## DARK WEB SCREENING \u2014 MEDIUM\n**2 actionable findings** from 3/57 sources via Tor (Netherlands exit node) (22 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Adverse media | 2 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 12 |\n\n**Key findings:**\n- ADVERSE MEDIA: Repro India Ltd, REPRO:NSI profile - FT.com\n- ADVERSE MEDIA: Repro India Ltd. Share Price Today | Repro India Live NSE/BSE\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | *SC just scrapped the age limit on maternity leave for adopt; Manga in India: Current Access and Options; Even a low daily intake of alcohol (just 9 g or around 1 sta (+12 more) |\n| duckduckgo_tor | 10 | Repro India Ltd; REPRO INDIA LIMITED - ZaubaCorp; Repro India Limited - LinkedIn (+7 more) |\n| duckduckgo_adverse | 2 | Repro India Ltd, REPRO:NSI profile - FT.com; Repro India Ltd. Share Price Today | Repro India Live NSE/BS |\n\n### All findings detail\n\n**ADVERSE MEDIA** (2)\n- Repro India Ltd, REPRO:NSI profile - FT.com \u2014 *duckduckgo_adverse* [/l/?uddg=https%3A%2F%2Fmarkets.ft.com%2Fdata%2Fequities%2Ftearsheet%2Fprofile%3F]\n- Repro India Ltd. Share Price Today | Repro India Live NSE/BSE \u2014 *duckduckgo_adverse* [/l/?uddg=https%3A%2F%2Fwww.valueresearchonline.com%2Fstocks%2F44069%2Frepro%2Din]\n\n**WEB MENTION** (10)\n- Repro India Ltd \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.reproindialtd.com%2F&rut=56b4a31036aa15601335c2050c3a]\n- REPRO INDIA LIMITED - ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2FREPRO%2DINDIA%2DLIMITED%2DL22200MH199]\n- Repro India Limited - LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2Frepro%2Dindia%2Dlimited&rut=]\n- REPRO INDIA LIMITED - 2026 Company Profile & Financials - Tracxn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Frepro%2Dindia]\n- Repro India Limited (REPRO.NS) Stock Price, News, Quote & History ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ffinance.yahoo.com%2Fquote%2FREPRO.NS%2F&rut=2447b90f2a1d4]\n- Repro India Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.r]\n- Repro India (BOM:532687) Company Profile & Description \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fstockanalysis.com%2Fquote%2Fbom%2F532687%2Fcompany%2F&rut]\n- About Repro India : Getting more books to more people \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fbookscape.com%2Fabout%2Drepro%2Dindia&rut=aba7cbce78e8572]\n- Repro India Limited - Manufacturer from Lower Parel, Surat, India ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Frepro%2Dindialimited%2Faboutus.html&r]\n- Repro India Share Price - The Economic Times \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Feconomictimes.indiatimes.com%2Frepro%2Dindia%2Dltd%2Fstoc]\n\n**SOCIAL MENTION** (12)\n- *SC just scrapped the age limit on maternity leave for adoptive mothers \u2014 here's why it matters [Ind \u2014 *reddit* [https://reddit.com/r/u_East-Secretary/comments/1rymwux/sc_just_scrapped_the_age_]\n- Manga in India: Current Access and Options \u2014 *reddit* [https://reddit.com/r/mangaindia/comments/1oal3sr/manga_in_india_current_access_a]\n- Even a low daily intake of alcohol (just 9 g or around 1 standard drink) is linked to a 50% heighten \u2014 *reddit* [https://reddit.com/r/science/comments/1pw1x6w/even_a_low_daily_intake_of_alcohol]\n- DAILY BREAKOUT STOCK WITH GOOD VOLUME 14 OCT 2025 \u2014 *reddit* [https://reddit.com/r/IndianStreetBets/comments/1o6gif6/daily_breakout_stock_with]\n- Investing in India's Maturing Demographic Story. \u2014 *reddit* [https://reddit.com/r/ShareBazarIndia/comments/1odzilv/investing_in_indias_maturi]\n- India\u2019s capital chokes as air pollution levels hit 50 times the safe limit \u2014 *reddit* [https://reddit.com/r/news/comments/1gudxzm/indias_capital_chokes_as_air_pollutio]\n- Delhi, India currently has the 4th worst air quality in the world, scoring 918 out of 500 on India's \u2014 *reddit* [https://reddit.com/r/Damnthatsinteresting/comments/17ohqqd/delhi_india_currently]\n- Drawing of the three - Viking press \u2014 *reddit* [https://reddit.com/r/StephenKingBookClub/comments/1fj8x9l/drawing_of_the_three_v]\n- India Daybook \u2013 Stocks in News \u2014 *reddit* [https://reddit.com/r/IndianStreetBets/comments/1f2a8ms/india_daybook_stocks_in_n]\n- A map that shows how even a small, limited nuclear war between India and Pakistan would release enou \u2014 *reddit* [https://reddit.com/r/MapPorn/comments/1bvovnd/a_map_that_shows_how_even_a_small_]\n- Scored a Viking trade edition first printing of The Drawing of the Three for $10 at my local used bo \u2014 *reddit* [https://reddit.com/r/stephenking/comments/19123b6/scored_a_viking_trade_edition_]\n- I'm the first person in India to get a credit card limit of \u20b91000 \u2014 *reddit* [https://reddit.com/r/IndianCreditCards/comments/1llpd85/im_the_first_person_in_i]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "REPRO INDIA LIMITED",
+    "entity_country": "IN",
+    "entity_address": "11th Floor, Sun Paradise Business Plaza, B Wing, Senapati Bapat Marg, Lower Parel, Mumbai, Maharashtra 400013",
+    "entity_tax_id": "L22200MH1993PLC071431",
+    "key_individuals": [
+      {
+        "name": "Vinod Inderjit Vohra"
+      },
+      {
+        "name": "Rajeev Inderjeet Vohra"
+      },
+      {
+        "name": "Sanjeev Inderjit Vohra"
+      },
+      {
+        "name": "Dushyant Rajnikant Mehta"
+      },
+      {
+        "name": "Mukesh Rajnikant Dhruve"
+      },
+      {
+        "name": "Ullal Ravindra Bhat"
+      },
+      {
+        "name": "Mahalakshmi Ramadorai"
+      },
+      {
+        "name": "Almina Banu Abubakar Shaikh"
+      },
+      {
+        "name": "Abhinav Vinod Vohra"
+      },
+      {
+        "name": "Bhumika Batra"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 2,
+  "dark_web_sources": 57
+}

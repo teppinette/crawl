@@ -1,0 +1,47 @@
+{
+  "job_id": "f7fdac31-f168-4a88-88a3-c797b6f53909",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "STERLING SPECIALITY CHEMICALSPRIVATE LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-20T19:57:00.641176+00:00",
+  "updated_at": "2026-05-20T19:59:18.608091+00:00",
+  "blob_path": null,
+  "report_summary": "Seventh Sterling submission \u2014 Tax ID now shows \"384385\" (registration number only, without state prefix) vs full CIN in prior versions. Same entity. File is complete.\n\n**DONE (existing file): Sterling Speciality Chemicals Private Limited \u2014 Risk: 3 MONITOR**\n\n`~/crawl/output/sterling_speciality_chemicals_pvt_ltd_IN_20260520.json` \u2014 15.6 KB, valid.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 2/49 sources via Tor (Netherlands exit node) (23 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 49 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | \u300cWTS\u300dPilot 1st Generation Vanishing Point! Sterling Silver D; Sterling StingRay Short Scale (RAYSS4) \u2013 Were there other co; Fallout 4 Review Thread (+12 more) |\n| duckduckgo_tor | 10 | Sterling Specialty Chemicals, LLC; Sterling Speciality Chemicals Private Limited; Sterling Speciality Chemicals Private Limited - FY 2026 (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- Sterling Specialty Chemicals, LLC \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.sterlingspec.com%2F&rut=8ed43b54001fe3c3be518ad526c33]\n- Sterling Speciality Chemicals Private Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.s]\n- Sterling Speciality Chemicals Private Limited - FY 2026 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fcompany%2Fsterling%2Dspeciality]\n- Sterling Speciality Chemicals Private Limited Company Profile ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Finfo.edgeinsights.in%2Fcompany%2FSterling%2DSpeciality%2D]\n- Sterling Speciality Chemicals Private Limited Having Cin ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.falconebiz.com%2Fcompany%2FSTERLING%2DSPECIALITY%2DCH]\n- Sterling Speciality Chemicals Private Limited-skyseven Chemical \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.cnchemshop.com%2Fcomdetail%2F32553.html&rut=a5ba57cbb]\n- STERLING SPECIALITY CHEMICALS PRIVATE LIMITED - Tofler \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tofler.in%2Fsterling%2Dspeciality%2Dchemicals%2Dpriva]\n- Sterling Speciality Chemicals Private Limited - U51100mh2022ptc384385 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.instafinancials.com%2Fcompany%2Fsterling%2Dspeciality]\n- STERLING SPECIALITY CHEMICALS PRIVATE LIMITED - India \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fglobalfinreg.com%2Fen%2Flookup%2FSTERLING%2DSPECIALITY%2D]\n- Sterling Speciality Chemicals Private Limited - allindiaitr.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.allindiaitr.com%2Fcompany%2Fsterling%2Dspeciality%2Dc]\n\n**SOCIAL MENTION** (13)\n- \u300cWTS\u300dPilot 1st Generation Vanishing Point! Sterling Silver Dragon Motif! Vintage Nishio Ebonite Urus \u2014 *reddit* [https://reddit.com/r/Pen_Swap/comments/1rk9dbg/wtspilot_1st_generation_vanishing]\n- Sterling StingRay Short Scale (RAYSS4) \u2013 Were there other colors that got discontinued or were they  \u2014 *reddit* [https://reddit.com/r/Bass/comments/1rt6fmf/sterling_stingray_short_scale_rayss4_]\n- Fallout 4 Review Thread \u2014 *reddit* [https://reddit.com/r/Games/comments/3s4k5n/fallout_4_review_thread/]\n- Horizon Zero Dawn - Review Thread \u2014 *reddit* [https://reddit.com/r/Games/comments/5v3eis/horizon_zero_dawn_review_thread/]\n- Red Dead Redemption 2 - Review Thread \u2014 *reddit* [https://reddit.com/r/PS4/comments/9r97vf/red_dead_redemption_2_review_thread/]\n- If you're just coming back to Destiny after a long break, here's what you missed. \u2014 *reddit* [https://reddit.com/r/DestinyTheGame/comments/4eadmq/if_youre_just_coming_back_to]\n- The guitar that took me 20 years to find \u2014 *reddit* [https://reddit.com/r/metalguitar/comments/1hyfd8s/the_guitar_that_took_me_20_yea]\n- Fallout 76 Review Thread \u2014 *reddit* [https://reddit.com/r/Games/comments/9xya7l/fallout_76_review_thread/]\n- Extreme Frugal Tips \u2014 *reddit* [https://reddit.com/r/Frugal/comments/ev82qh/extreme_frugal_tips/]\n- [Games] Blizzard Entertainment (Part 10: The Fall of Blizzard) - How a disgraced publisher tore itse \u2014 *reddit* [https://reddit.com/r/HobbyDrama/comments/sym2nn/games_blizzard_entertainment_par]\n- [WTS] Delta Don Quixote Special Limited Edition FP \u2014 *reddit* [https://reddit.com/r/Pen_Swap/comments/1lpk0om/wts_delta_don_quixote_special_lim]\n- [WTS] \ud83d\udd25\ud83d\udd25\ud83d\udd25 PANTHER PRIVATE MINT \ud83d\udd25\ud83d\udd25\ud83d\udd25 Custom PURE SILVER Bars, Rounds, Special Shapes and MORE! Plus th \u2014 *reddit* [https://reddit.com/r/Pmsforsale/comments/1g4lrvz/wts_panther_private_mint_custom]\n- The entire collection of FIFA 19 content mistakes \u2014 *reddit* [https://reddit.com/r/EASportsFC/comments/armzy1/the_entire_collection_of_fifa_19]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "india: Report file not found on remote VM (india)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "STERLING SPECIALITY CHEMICALSPRIVATE LIMITED",
+    "entity_country": "IN",
+    "entity_address": "601 Plot No.29/30/31, Marol Co-op. Industrial Estate, Andheri (E), JB Nagar Marol, Nr. Borosil, Marol Naka, Mumbai, Maharashtra 400059, India",
+    "entity_tax_id": "384385",
+    "key_individuals": [
+      {
+        "name": "Dipesh Mohanlal Pachori"
+      },
+      {
+        "name": "Nikhil Rajendra Agarwal"
+      },
+      {
+        "name": "Adesh Kumar Daga"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (india)"
+    }
+  },
+  "errors": [
+    "india: Report file not found on remote VM (india)"
+  ],
+  "dark_web_findings": 0,
+  "dark_web_sources": 49
+}

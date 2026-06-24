@@ -1,0 +1,32 @@
+{
+  "job_id": "68ee5c28-b3aa-4f41-9a4e-70325503f0ef",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "ENASPOL A.S.",
+  "country": "CZ",
+  "created_at": "2026-05-22T22:06:49.985299+00:00",
+  "updated_at": "2026-05-22T22:11:45.995050+00:00",
+  "blob_path": "osint-staging/cir/americas/enaspol_as_CZ_20260522.json",
+  "report_summary": "Done.\n\n---\n\n**DONE: ENASPOL A.S., CZ \u2014 Risk: 2 CLEAR \u2014 One of Europe's leading surfactant manufacturers; 55 years; 160 employees; 60+ countries; 120+ products; family-owned; REACH-compliant; Czech Wikipedia article; German subsidiary (Enaspol GmbH); all sanctions CLEAR; 0 breaches**\n\n---\n\n## \ud83d\udccb CIR: ENASPOL A.S.\n`enaspol_as_CZ_20260522.json` \u2192 `osint-staging/americas/`\n\n| Field | Value |\n|---|---|\n| **I\u010cO** | **25006339** |\n| Location | Velv\u011bty 79, **Rtyn\u011b nad B\u00edlinou** \u2014 Northern Bohemia (Prague \u2194 Dresden corridor) |\n| Position | **Leading European surfactant manufacturer** |\n| Scale | 160 employees \u00b7 60+ countries \u00b7 120+ products \u00b7 **55 years** |\n| Ownership | **Family-owned** (per website) |\n| Compliance | \u2705 REACH \u00b7 in-cosmetics Global 2026 \u00b7 Energy savings project |\n| Group | Enaspol GmbH (German subsidiary) |\n| Wikipedia | \u2705 Czech Wikipedia article |\n| Sanctions | ALL CLEAR \u00b7 **0 breaches** |\n\n**Open items:** \ud83d\udfe1 OR.justice.cz extract \u2192 identify family UBOs \u00b7 \ud83d\udfe2 Screen UBOs once identified\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**2 actionable findings** from 4/45 sources via Tor (Netherlands exit node) (17 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| SSL certificates (crt.sh) | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 6 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: www.enaspol.com\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | Surfactants & Industrial Chemicals Manufacturing | ENASPOL a; V\u00fdroba tenzid\u016f a pr\u016fmyslov\u00e9 chemie | ENASPOL a.s.; Enaspol a.s. - LinkedIn (+7 more) |\n| reddit | 6 | Alpha Olefin Sulfonate (AOS) Market Size and Growth Factors ; Report on Natural Surfactants Market Market 2019 Contains Si; Lignin and Lignin-Based Products : Global Market Size, Scope (+3 more) |\n| crtsh | 2 | www.enaspol.com; certificate_transparency |\n| hudsonrock_cavalier | 1 | www.enaspol.com |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- www.enaspol.com \u2014 *hudsonrock_cavalier*\n\n**WEB MENTION** (10)\n- Surfactants & Industrial Chemicals Manufacturing | ENASPOL a.s. \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.enaspol.com%2F&rut=fc710f5c67f7af0272f89f85c87e2564a2]\n- V\u00fdroba tenzid\u016f a pr\u016fmyslov\u00e9 chemie | ENASPOL a.s. \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.enaspol.cz%2F&rut=c860157e3a8c20b2adb2a35e1d38370804f]\n- Enaspol a.s. - LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fcz.linkedin.com%2Fcompany%2Fenaspol&rut=3b8f5d44529e3c97e]\n- Enaspol - Wikipedie \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fcs.wikipedia.org%2Fwiki%2FEnaspol&rut=b73b64ffdd99909648b]\n- Enaspol a.s. Company Profile | Rtyn\u011b nad B\u00edlinou, \u00dasteck\u00fd kraj ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.e]\n- Enaspol A.S. Company Profile - Czech Republic | Financials & Key ... - EMIS \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FCZ%2FEnaspol_AS_]\n- Enaspol a.s. (Rtyn\u011b nad B\u00edlinou, Velv\u011bty) \u2022 Firmy.cz \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fen.firmy.cz%2Fcompany%2F178419%2Denaspol%2Da%2Ds%2Drtyne%]\n- Enaspol a.s. , Rtyn\u011b nad B\u00edlinou I\u010cO 25006339 - Kurzy.cz \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Frejstrik%2Dfirem.kurzy.cz%2F25006339%2Fenaspol%2Das%2F&ru]\n- Company Profile - Enaspol As \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fchemdmart.com%2Fcompany%2Dprofile%2Fenaspol%2Das&rut=e657]\n- Enaspol a.s.: Contact Details and Business Profile - RocketReach \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Frocketreach.co%2Fenaspol%2Das%2Dprofile_b5d9e504f42e5f4f&]\n\n**SOCIAL MENTION** (6)\n- Alpha Olefin Sulfonate (AOS) Market Size and Growth Factors Research and Projection 2024: Enaspol A. \u2014 *reddit* [https://reddit.com/r/TrendingMarketReports/comments/cnjhkq/alpha_olefin_sulfonat]\n- Report on Natural Surfactants Market Market 2019 Contains Size, Gross Margin, Revenue and Trends For \u2014 *reddit* [https://reddit.com/r/ChemicalInsightReport/comments/duoui3/report_on_natural_sur]\n- Lignin and Lignin-Based Products : Global Market Size, Scope, Growth, and Analysis 2019-2024 \u2014 *reddit* [https://reddit.com/r/ChemicalInsightReport/comments/cppcne/lignin_and_ligninbase]\n- Know the Future Opportunities of Sodium Salt Lignosulphonate Market and its detail analysis by Focus \u2014 *reddit* [https://reddit.com/r/TrendingMarketReports/comments/ch4syk/know_the_future_oppor]\n- Cocamide Diethanolamide Market Likely to Emerge over a Period of 2019 - 2025: Lubrizol, AkzoNobel, C \u2014 *reddit* [https://reddit.com/r/BizInsightReports/comments/cgq7yk/cocamide_diethanolamide_m]\n- Global Sodium Salt Lignosulphonate Market Set Explosive Growth to 2023 - VertexMarketInsights.Com \u2014 *reddit* [https://reddit.com/r/u_vertex143/comments/c92njn/global_sodium_salt_lignosulphon]\n\n**CERTIFICATE SUMMARY** (1)\n- www.enaspol.com \u2014 *crtsh*\n\n**SSL CERTIFICATE** (1)\n-  \u2014 *crtsh*\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "ENASPOL A.S.",
+    "entity_country": "CZ",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 2,
+  "dark_web_sources": 45
+}

@@ -1,0 +1,52 @@
+{
+  "job_id": "b4ffeec6-c877-462f-b9b7-eca6fed29ad8",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "ALCHEMIE FINECHEM PVT LTD",
+  "country": "IN",
+  "created_at": "2026-05-21T12:25:20.814935+00:00",
+  "updated_at": "2026-05-21T12:38:40.773423+00:00",
+  "blob_path": "osint-staging/cir/india/alchemie_finechem_pvt_ltd_IN_20260521.json",
+  "report_summary": "**DONE: Alchemie Finechem Private Limited, India \u2014 Risk: 2 CLEAR \u2014 Aarti Group affiliated fine chemicals; CIN U24100MH2021PTC360973; \u20b987.31 Cr paid-up; founded by Aarti Group Chairman Emeritus; strong Aarti Industries operational linkages; zero charges**\n\n`~/crawl/output/alchemie_finechem_pvt_ltd_IN_20260521.json` \u2014 9.7 KB, valid, research date 2026-05-21.\n\nThis covers both the 12:25 requests (duplicate). Key data artifacts to fix:\n\n| Subject Block Entry | Resolution |\n|---|---|\n| `Shah - Director (DIN: 01415556)` | Full name NOT confirmed \u2014 Aarti Group affiliated person (Aarti Bio-Tech, Avinash Drugs); verify current status |\n| `Venugopalan - Director (DIN: 09439069)` | = **AJIT ELEDATH VENUGOPALAN** \u2014 verify if still current |\n\nCurrent confirmed directors (FalconEBiz/ZaubaCorp): Kalpesh Hasmukh Mehta \u00b7 Monil Harish Vikam \u00b7 Sandeep Gupta.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**10 actionable findings** from 6/57 sources via Tor (Netherlands exit node) (18 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Adverse media | 8 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 7 |\n| Website scans (URLScan) | 1 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: www.alchemie-finechem.com\n- ADVERSE MEDIA: Jennifer Shah Lawsuit, RHOSLC Star Sentenced To 6.5 Years For $6.6M ... (Shah)\n- ADVERSE MEDIA: Jen Shah Reveals What Led Her to Plead Guilty To Conspiracy to ... - TODAY (Shah)\n- ADVERSE MEDIA: Jen Shah Apologizes to Fraud Victims After Prison Release (Exclusive) (Shah)\n- ADVERSE MEDIA: Monil Harish Vikam - Director Insights, Profile, and Associated ... (MONIL HARISH VIKAM)\n- ADVERSE MEDIA: MONIL HARISH VIKAM | ZaubaCorp (MONIL HARISH VIKAM)\n- ADVERSE MEDIA: Monil Harish Vikam | Director Profile | The Company Check (MONIL HARISH VIKAM)\n- ADVERSE MEDIA: MONIL HARISH VIKAM | DIN : 06831153 - IndiaFilings (MONIL HARISH VIKAM)\n- ADVERSE MEDIA: Tofler | Director page (MONIL HARISH VIKAM)\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | Alchemie Finechem Pvt. Ltd.; Alchemie Finechem Private Limited | LinkedIn; ALCHEMIE FINECHEM PRIVATE LIMITED | ZaubaCorp (+7 more) |\n| duckduckgo_adverse | 8 | Jennifer Shah Lawsuit, RHOSLC Star Sentenced To 6.5 Years Fo; Jen Shah Reveals What Led Her to Plead Guilty To Conspiracy ; Jen Shah Apologizes to Fraud Victims After Prison Release (E (+5 more) |\n| reddit | 7 | Karaya Gum Market 2019 Analysis, Size, Share, Strategies and; Wrap on Sunny Deol and Akshaye Khanna\u2019s \u2018Ikka\u2019, a Netflix fi; India\u2019s first private gold mining project all set for launch (+4 more) |\n| urlscan | 2 | www.alchemie-finechem.com; Alchemie Finechem Pvt. Ltd. |\n| hudsonrock_cavalier | 1 | www.alchemie-finechem.com |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- www.alchemie-finechem.com \u2014 *hudsonrock_cavalier*\n\n**ADVERSE MEDIA** (8)\n- Jennifer Shah Lawsuit, RHOSLC Star Sentenced To 6.5 Years For $6.6M ... \u2014 *duckduckgo_adverse* (searched: Shah) [/l/?uddg=https%3A%2F%2Fallaboutlawyer.com%2Fjennifer%2Dshah%2Dlawsuit%2Drhoslc%2]\n- Jen Shah Reveals What Led Her to Plead Guilty To Conspiracy to ... - TODAY \u2014 *duckduckgo_adverse* (searched: Shah) [/l/?uddg=https%3A%2F%2Fwww.today.com%2Fpopculture%2Fnews%2Fjen%2Dshah%2Dguilty%2]\n- Jen Shah Apologizes to Fraud Victims After Prison Release (Exclusive) \u2014 *duckduckgo_adverse* (searched: Shah) [/l/?uddg=https%3A%2F%2Fpeople.com%2Fjen%2Dshah%2Dspeaks%2Ddirectly%2Dto%2Dher%2D]\n- Monil Harish Vikam - Director Insights, Profile, and Associated ... \u2014 *duckduckgo_adverse* (searched: MONIL HARISH VIKAM) [/l/?uddg=https%3A%2F%2Fwww.filesure.in%2Fdirector%2Fmonil%2Dharish%2Dvikam%2F068]\n- MONIL HARISH VIKAM | ZaubaCorp \u2014 *duckduckgo_adverse* (searched: MONIL HARISH VIKAM) [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2FMONIL%2DHARISH%2DVIKAM%2D06831153&rut]\n- Monil Harish Vikam | Director Profile | The Company Check \u2014 *duckduckgo_adverse* (searched: MONIL HARISH VIKAM) [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fpeople%2Dprofile%2Fmonil%2Dhari]\n- MONIL HARISH VIKAM | DIN : 06831153 - IndiaFilings \u2014 *duckduckgo_adverse* (searched: MONIL HARISH VIKAM) [/l/?uddg=https%3A%2F%2Fwww.indiafilings.com%2Fsearch%2Fmonil%2Dharish%2Dvikam%2D]\n- Tofler | Director page \u2014 *duckduckgo_adverse* (searched: MONIL HARISH VIKAM) [/l/?uddg=https%3A%2F%2Fwww.tofler.in%2Fmonil%2Dharish%2Dvikam%2Fdirector%2F06831]\n\n**WEB MENTION** (10)\n- Alchemie Finechem Pvt. Ltd. \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.alchemie%2Dfinechem.com%2F&rut=6445b4aeb9d8b101f26b4a]\n- Alchemie Finechem Private Limited | LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fin.linkedin.com%2Fcompany%2Falchemie%2Dfinechem&rut=efce2]\n- ALCHEMIE FINECHEM PRIVATE LIMITED | ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2Fcompany%2FALCHEMIE%2DFINECHEM%2DPRIVA]\n- Alchemie Finechem Private Limited - 2026 Insights - The Company Check \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fcompany%2Falchemie%2Dfinechem%2]\n- Company Profile - Alchemie Finechem Pvt Ltd - chemdmart.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fchemdmart.com%2Fcompany%2Dprofile%2Falchemie%2Dfinechem%2]\n- Alchemie Finechem Private Limited Company Profile - India | Financials ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FIN%2FAlchemie_Fi]\n- Alchemie Finechem Private Limited (erstwhile Alchemie Laboratories ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.icra.in%2FRating%2FGetRationalReportFilePdf%3Fid%3D13]\n- Alchemie Finechem Pvt. Ltd. - Food Additives and Ingredients, Specialty ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.globixo.com%2Falchemie%2Dfinechem%2Dpvt%2Dltd&rut=c08]\n- ALCHEMIE FINECHEM PRIVATE LIMITED - IndiaFilings \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiafilings.com%2Fsearch%2Falchemie%2Dfinechem%2Dpri]\n- Alchemie Finechem Pvt Company Profile | Management and ... - Datanyze \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.datanyze.com%2Fcompanies%2Falchemie%2Dfinechem%2Dpvt%]\n\n**SOCIAL MENTION** (7)\n- Karaya Gum Market 2019 Analysis, Size, Share, Strategies and Forecast to 2024: Nutriroma, Neelkanth  \u2014 *reddit* [https://reddit.com/r/ChemicalInsightReport/comments/ckzthg/karaya_gum_market_201]\n- Wrap on Sunny Deol and Akshaye Khanna\u2019s \u2018Ikka\u2019, a Netflix film \u2014 *reddit* [https://reddit.com/r/BollyBlindsNGossip/comments/1po4tl5/wrap_on_sunny_deol_and_]\n- India\u2019s first private gold mining project all set for launch in Andhra Pradesh \u2014 *reddit* [https://reddit.com/r/GoldIndia/comments/1sq17mm/indias_first_private_gold_mining]\n- [2 YoE, Financial Data Analyst, Equity Research Analyst, India] \u2014 *reddit* [https://reddit.com/r/resumes/comments/1l06kee/2_yoe_financial_data_analyst_equit]\n- Top 25 Blockchain App Developers Worldwide in 2025 \u2014 *reddit* [https://reddit.com/r/top_developers/comments/1labvlj/top_25_blockchain_app_devel]\n- Massive recall of ABH Nature dietary supplements - 859 brands \u2014 *reddit* [https://reddit.com/r/vegan/comments/ezjw31/massive_recall_of_abh_nature_dietary_]\n- Report explores Karaya Gum Market likely to emerge over a period of 2018 - 2025 \u2014 *reddit* [https://reddit.com/r/u_trendsmarketresearc/comments/cjquwi/report_explores_karay]\n\n**DOMAIN SCAN SUMMARY** (1)\n- www.alchemie-finechem.com \u2014 *urlscan*\n\n**WEBSITE SCAN** (1)\n- Alchemie Finechem Pvt. Ltd. \u2014 *urlscan* [https://www.alchemie-finechem.com/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "ALCHEMIE FINECHEM PVT LTD",
+    "entity_country": "IN",
+    "entity_address": "Gala No.127, 1st Floor, Udyog Kshetra, Mulund Goregaon Link Road, Mulund West, Mumbai, Maharashtra 400080",
+    "entity_tax_id": "360973",
+    "key_individuals": [
+      {
+        "name": "Shah",
+        "title": "Director (DIN: 01415556)"
+      },
+      {
+        "name": "Venugopalan",
+        "title": "Director (DIN: 09439069)"
+      },
+      {
+        "name": "KALPESH HASMUKH MEHTA"
+      },
+      {
+        "name": "MONIL HARISH VIKAM"
+      },
+      {
+        "name": "SANDEEP GUPTA"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 10,
+  "dark_web_sources": 57
+}

@@ -1,0 +1,34 @@
+{
+  "job_id": "1040a245-5b7c-4275-b9fa-6afcaf29b37b",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "europe",
+  "entity_name": "Brenntag Nederland B.V.",
+  "country": "NL",
+  "created_at": "2026-05-11T13:03:59.300180+00:00",
+  "updated_at": "2026-05-11T13:06:06.010451+00:00",
+  "blob_path": "osint-staging/cir/europe/brenntag_nederland_bv_NL_20260509.json",
+  "report_summary": "Same entity \u2014 research complete.\n\n**DONE: Brenntag Nederland B.V., NL \u2014 Risk: 1 CLEAR \u2014 World's largest chemical distributor; DAX-listed parent Brenntag SE (ISIN DE000A1DAHH0); all sanctions lists clean; no adverse media; no FCPA findings; standard onboarding only.**\n\nFile: `~/crawl/output/brenntag_nederland_bv_NL_20260509.json` \u2705\nBlob: `europe/brenntag_nederland_bv_NL_20260509.json` \u2705\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**80 findings** from 4/53 sources via Tor (Netherlands exit node)\n\n| Category | Count |\n|----------|-------|\n| Breach records | 50 |\n| Adverse media | 5 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "Brenntag Nederland B.V.",
+    "entity_country": "NL",
+    "entity_address": "Donker Duyvisweg 44, 3316 BM Dordrecht, Netherlands",
+    "entity_tax_id": "30112931",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "europe": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 80,
+  "dark_web_sources": 53
+}

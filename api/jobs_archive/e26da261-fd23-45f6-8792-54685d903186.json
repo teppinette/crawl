@@ -1,0 +1,50 @@
+{
+  "job_id": "e26da261-fd23-45f6-8792-54685d903186",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "KUBO COMBUSTION EFFICIENCY CHEMICALS PRIVATE LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-20T21:26:25.476060+00:00",
+  "updated_at": "2026-05-20T21:29:53.188985+00:00",
+  "blob_path": null,
+  "report_summary": "**DONE: Kubo Combustion Efficiency Chemicals Private Limited, India \u2014 Risk: 3 MONITOR \u2014 47-year-old Mumbai combustion chemicals company; CIN U24100MH1978PTC020754; \u26a0\ufe0f Last known AGM Sep 2022 \u2014 verify MCA compliance; \u20b93.5 lakh paid-up capital (very small niche entity)**\n\n`~/crawl/output/kubo_combustion_efficiency_chemicals_pvt_ltd_IN_20260520.json` \u2014 7.2 KB, valid, all 8 workstreams complete.\n\n**Primary action:** Verify on MCA portal whether FY2023-2025 Annual Returns and Financial Statements have been filed. If not filed for 3 years, the company may be in legal default even while technically \"Active.\"\n---\n\n## DARK WEB SCREENING \u2014 MEDIUM\n**1 actionable findings** from 3/53 sources via Tor (Netherlands exit node) (23 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Adverse media | 1 |\n| Web mentions (Tor-routed) | 8 |\n| Social media mentions | 15 |\n\n**Key findings:**\n- ADVERSE MEDIA: Mustansir Hasanali Dahodwala - Director Insights, Profile, and ... (Mustansir Hasanali Dahodwala)\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | [Final New Update]: TIFU by importing bees to Uruguay + 4-Ye; The worst energy crisis in history is on the horizon [very l; I'm a personal trainer at a 24-hour gym. I found out why the (+12 more) |\n| duckduckgo_tor | 10 | Kubo Combustion Efficiency Chemicals Private Limited; Kubochem - Quality Chemicals for Industries \\; Kubo Combustion Efficiency Chemicals Private Limited -... (+7 more) |\n| duckduckgo_adverse | 1 | Mustansir Hasanali Dahodwala - Director Insights, Profile, a |\n\n### All findings detail\n\n**ADVERSE MEDIA** (1)\n- Mustansir Hasanali Dahodwala - Director Insights, Profile, and ... \u2014 *duckduckgo_adverse* (searched: Mustansir Hasanali Dahodwala) [/l/?uddg=https%3A%2F%2Fwww.filesure.in%2Fdirector%2Fmustansir%2Dhasanali%2Ddahod]\n\n**WEB MENTION** (8)\n- Kubo Combustion Efficiency Chemicals Private Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Fkubo%2Dcombustion%2F&rut=d68b7d903e66]\n- Kubochem - Quality Chemicals for Industries \\ \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fkubochem.com%2F&rut=9db6aca378e7c47202bf0892e944cc39700df]\n- Kubo Combustion Efficiency Chemicals Private Limited -... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fcompany%2Fkubo%2Dcombustion%2De]\n- KUBO COMBUSTION EFFICIENCY CHEMICALS PRIVATE LIMITED Company Profile ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.k]\n- Kubo Combustion Efficiency Chemicals Pvt Ltd - ChemicalBook India \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.chemicalbook.in%2Fmanufacturer%2Fkubo%2Dcombustion%2D]\n- KUBO COMBUSTION EFFICIENCY CHEMICALS PRIVATE LIMITED - Tracxn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Fkubo%2Dcombus]\n- Kubo Combustion Efficiency Chemicals Private Limited ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.falconebiz.com%2Fcompany%2FKUBO%2DCOMBUSTION%2DEFFICI]\n- Kubo Combustion Efficiency Chemicals Pvt. Ltd. - Cybo \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.cybo.com%2FIN%2Dbiz%2Fkubo%2Dcombustion%2Defficiency%]\n\n**SOCIAL MENTION** (15)\n- [Final New Update]: TIFU by importing bees to Uruguay + 4-Year Update \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1t9s6kl/final_new_update_tif]\n- The worst energy crisis in history is on the horizon [very long post] \u2014 *reddit* [https://reddit.com/r/oil/comments/1rmufbq/the_worst_energy_crisis_in_history_is_]\n- I'm a personal trainer at a 24-hour gym. I found out why the night shift clients lose weight so fast \u2014 *reddit* [https://reddit.com/r/stories/comments/1q3f2lw/im_a_personal_trainer_at_a_24hour_]\n- My spouse got caught in a pig slaughtering scam and now our life's savings are gone \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1nuyb59/my_spouse_got_caught]\n- Elon Musk\u2019s Team Now Has Full Access to Treasury\u2019s Payments System - \u2026 \u2014 *reddit* [https://reddit.com/r/antiwork/comments/1ifl7la/elon_musks_team_now_has_full_acce]\n- The Darkest Alien Theory and Why They\u2019re Desperately Hiding It \u2014 *reddit* [https://reddit.com/r/aliens/comments/1mmdgw7/the_darkest_alien_theory_and_why_th]\n- UPDATE: The Ancient Ozark Mountain Seed Bag \u2014 *reddit* [https://reddit.com/r/missouri/comments/1kh4dep/update_the_ancient_ozark_mountain]\n- How do I (M37) tell my wife (F38) that I don\u2019t want to move to US without sounding like an unsupport \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1lcjf59/how_do_i_m37_tell_my]\n- [Entry Thread #112] /r/MillionaireMakers Presents: The Giveaway That Never Was! (In addition to maki \u2014 *reddit* [https://reddit.com/r/millionairemakers/comments/1pnlt5o/entry_thread_112_rmillio]\n- $ASTS DD The Space Trade will Cum. \u2014 *reddit* [https://reddit.com/r/wallstreetbets/comments/1k3o8au/asts_dd_the_space_trade_wil]\n- The Protest, The Blackout, and r/BestofRedditorUpdates [NEW UPDATE] \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/144d5l4/the_protest_the_blac]\n- Wife's grandfather found this ~2,000 year old seed bag just sitting on a Missouri Ozarks hill, still \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1km63nw/wifes_grandfather_fo]\n- (Repost / New Update) Just found out my ex-wife has been feeding my kids turpentine. \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1fyknoq/repost_new_update_ju]\n- Is your team's owner a Nepo Baby? An Analysis of Current NFL Head Coach Searches \u2014 *reddit* [https://reddit.com/r/nfl/comments/1qhzxtv/is_your_teams_owner_a_nepo_baby_an_ana]\n- Read it and weep MAGA! \u2014 *reddit* [https://reddit.com/r/democrats/comments/1mayhci/read_it_and_weep_maga/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "india: Report file not found on remote VM (india)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "KUBO COMBUSTION EFFICIENCY CHEMICALS PRIVATE LIMITED",
+    "entity_country": "IN",
+    "entity_address": "401 AMIT INDUSTRIAL ESTATE, 61 DR S S RAO ROAD, PAREL, MUMBAI, MAHARASHTRA 400012, INDIA",
+    "entity_tax_id": "020754",
+    "key_individuals": [
+      {
+        "name": "Sudhir Kumar"
+      },
+      {
+        "name": "Jayant Pratapsinh Ramaiya"
+      },
+      {
+        "name": "Mustansir Hasanali Dahodwala"
+      },
+      {
+        "name": "Asha Jetander Kumar"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (india)"
+    }
+  },
+  "errors": [
+    "india: Report file not found on remote VM (india)"
+  ],
+  "dark_web_findings": 1,
+  "dark_web_sources": 53
+}

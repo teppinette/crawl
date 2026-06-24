@@ -1,0 +1,123 @@
+{
+  "job_id": "818905bb-f379-42e8-925e-c41c3d3465df",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "AK PAPER CO",
+  "country_code": "IN",
+  "created_at": "2026-05-04T15:16:58.692132+00:00",
+  "updated_at": "2026-05-04T15:18:25.898615+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:17:06.924728+00:00",
+      "verified": true,
+      "legal_name": "A.K.PAPER PRODUCTS PRIVATE LIMITED",
+      "cin": "U21012TG1996PTC022767",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "04 January, 1996",
+      "directors": [
+        "Kirti Kumar Jain",
+        "Manish Jain",
+        "others"
+      ],
+      "registered_address": "# 3-1-763, A K HOUSE,AMBERPET ROAD, KACHIGUDA, HYDERABAD, ANDHRA PRADESH, Telangana - 500027",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:17:10.528003+00:00",
+      "found": true,
+      "name": "A.K. Paper co.",
+      "linkedin_url": "https://www.linkedin.com/company/akpaper-co",
+      "industry": "Wholesale Paper Products",
+      "company_size": "11-50 employees",
+      "locations": [],
+      "about": "",
+      "followers": 6,
+      "employees_on_linkedin": 0,
+      "organization_type": "Self-Employed",
+      "website": "https://www.akpaper.in/",
+      "specialties": null,
+      "notable_employees": [],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:18:25.898002+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 61,
+      "sources_searched": 37,
+      "sources_with_results": 3,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50,
+        "debarment_record": 1
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "AK PAPER CO",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

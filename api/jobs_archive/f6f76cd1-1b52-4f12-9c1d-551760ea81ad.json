@@ -1,0 +1,140 @@
+{
+  "job_id": "f6f76cd1-1b52-4f12-9c1d-551760ea81ad",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "NIMIR RESINS LIMITED",
+  "country_code": "PK",
+  "created_at": "2026-05-04T14:37:32.209493+00:00",
+  "updated_at": "2026-05-04T14:38:03.788753+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:37:39.014699+00:00",
+      "verified": true,
+      "legal_name": "NIMIR RESINS LIMITED",
+      "registration_number": "0002005",
+      "entity_status": "Incorporated",
+      "company_type": null,
+      "cro": "CRO Lahore",
+      "registration_date": "17/12/1964",
+      "fbr": null,
+      "all_matches": null,
+      "source": "SECP eServices (direct gov query)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:37:39.409659+00:00",
+      "found": true,
+      "name": "Nimir Resins Limited",
+      "linkedin_url": "https://pk.linkedin.com/company/nimir-resins-limited",
+      "industry": "Chemical Manufacturing",
+      "company_size": "201-500 employees",
+      "locations": [
+        "14.5 Km Lahore Sheikhupura Road Lahore, Punjab 54600, PK",
+        "12 B New Muslim Town Lahore , Punjab 54000, PK"
+      ],
+      "about": "With over 50 years\u2019 experience, Nimir Resins Limited prides itself on providing its customers the best possible chemical solutions in the industry. Catering to a multitude of industrial sectors, our solutions and services provide the best value and quality that our customers deserve. Innovation is an integral part towards, Nimir Resin's business philosophy. Nimir Resins Limited is a technology leader for new development in the commercial and advanced application. We are constantly redefining our",
+      "followers": 8810,
+      "employees_on_linkedin": 98,
+      "organization_type": "Public Company",
+      "website": "https://www.nimir.com.pk/",
+      "specialties": "Textile Auxiliaries and Binders Unsaturated Polyester Resins, Coatings and Emulsions, Pulp & Paper Chemicals, Adhesives and Graphics, Trading and Exports",
+      "notable_employees": [
+        {
+          "name": "Attique -ur-Rahman",
+          "link": "https://pk.linkedin.com/in/attique-ur-rahman-b2862b19?trk=org-employees"
+        },
+        {
+          "name": "fozia aleem",
+          "link": "https://pk.linkedin.com/in/drfoziaaleem?trk=org-employees"
+        },
+        {
+          "name": "Pervaiz Ahmad Khan",
+          "link": "https://pk.linkedin.com/in/pervaiz-ahmad-khan-a075321b?trk=org-employees"
+        },
+        {
+          "name": "Hamad Masood",
+          "link": "https://pk.linkedin.com/in/hamad-masood-b5595132?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:38:03.788122+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 61,
+      "sources_searched": 37,
+      "sources_with_results": 3,
+      "by_type": {
+        "web_mention": 10,
+        "adverse_media": 1,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "NIMIR RESINS LIMITED",
+    "country_code": "PK",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

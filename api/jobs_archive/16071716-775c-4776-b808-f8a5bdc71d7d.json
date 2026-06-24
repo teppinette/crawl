@@ -1,0 +1,47 @@
+{
+  "job_id": "16071716-775c-4776-b808-f8a5bdc71d7d",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "europe",
+  "entity_name": "PROLINE PVC PLASTIK ANONIM SIRKETI",
+  "country": "TR",
+  "created_at": "2026-05-22T18:59:09.389959+00:00",
+  "updated_at": "2026-05-22T19:02:07.830042+00:00",
+  "blob_path": null,
+  "report_summary": "Updated (Rev 2) and re-uploaded.\n\n**DONE: Proline PVC Plastik A.\u015e., TR \u2014 Risk: 3 MONITOR** (unchanged)\n\nFile: `~/crawl/output/proline_pvc_plastik_TR_20260522.json` \u2705 (Rev 2)\nBlob: `europe/proline_pvc_plastik_TR_20260522.json` \u2705 (19:00 UTC)\n\n**Rev 2 update \u2014 \"Turnover Check\" flag:**\nThis is a **COPAP onboarding system tag**, not a person. It means COPAP's platform requires financial turnover verification before this counterparty can be approved. Action: request 2023\u20132024 audited financial statements. Based on declared capacity (25,000 MT/yr, 45 countries), estimated revenue is TRY 500M+ / USD 15M+ but unverified \u2014 counterparty must supply financials.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**2 actionable findings** from 4/49 sources via Tor (Netherlands exit node) (14 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 3 |\n| Website scans (URLScan) | 1 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: www.prolinepvc.com\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | Proline Pvc Plastik Anonim Sirketi; Proline PVC Kap\u0131 ve Pencere Sistemleri; Proline Pvc Plastik A.S. Company Profile - Turkiye - EMIS (+7 more) |\n| reddit | 3 | is mikailplastik.com legit or scam?; ISKPL \u2022 Mehmet \u00c7eker, 62 milyon adet pay\u0131n\u0131 devredecek.; SPK halka arz ba\u015fvurusu yapan firmalar\u0131n tam listesini resmi |\n| urlscan | 2 | www.prolinepvc.com;  AB Yap\u0131 Pen - \u0130zmir Proline, \u0130zmir Europen Yetkili Bayii ,  |\n| hudsonrock_cavalier | 1 | www.prolinepvc.com |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- www.prolinepvc.com \u2014 *hudsonrock_cavalier*\n\n**WEB MENTION** (10)\n- Proline Pvc Plastik Anonim Sirketi \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.p]\n- Proline PVC Kap\u0131 ve Pencere Sistemleri \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.prolinepvc.com%2Fen%2F&rut=0c4183c8b9052d29281bcd4c68]\n- Proline Pvc Plastik A.S. Company Profile - Turkiye - EMIS \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FTR%2FProline_Pvc]\n- www.prolinepvc.com.tr \u2014 *duckduckgo_tor* [/l/?uddg=http%3A%2F%2Fwww.prolinepvc.com.tr%2F&rut=a535d2529fd7600485ef567208151]\n- Proline PVC Door and Window Systems - LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftr.linkedin.com%2Fcompany%2Fprolinepvc&rut=fab1c3770ed81c]\n- Proline Pvc Plastik Anonim \u015eirketi \u0130\u015f \u0130lanlar\u0131 - \u0130\u015f Ba\u015fvurusu \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.kariyer.net%2Ffirma%2Dprofil%2Fproline%2Dpvc%2Dplasti]\n- PROLINE PVC PLASTIK ANONIM SIRKETI in Izmir - Info-clipper.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.info%2Dclipper.com%2Fen%2Fcompany%2Fturkey%2Fproline%]\n- Proli\u0307ne Pvc Plasti\u0307k Anoni\u0307m \u015ei\u0307rketi\u0307 Vergi\u0307 Numarasi (Vkn) Ve Adres Bi\u0307lgi\u0307leri\u0307 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fmukellef.info%2F4460273030&rut=2a880008698d5662abf704ac63]\n- Proline Pvc Plastik A. S. T\u00fcrkiye - T\u00fcrkiye \u015eirketleri \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.turkishexporter.com.tr%2Ftr%2Ffirmalar%2Fproline%2Dpv]\n- PROL\u0130NE PVC PLAST\u0130K A. \u015e. Pvc, Pvc Profile in Turkey \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.turkishexporter.net%2Fen%2Fcompanies%2Fgurmen%2Dpvc%2]\n\n**SOCIAL MENTION** (3)\n- is mikailplastik.com legit or scam? \u2014 *reddit* [https://reddit.com/r/ScamChecker/comments/1saffm5/is_mikailplastikcom_legit_or_s]\n- ISKPL \u2022 Mehmet \u00c7eker, 62 milyon adet pay\u0131n\u0131 devredecek. \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1rx3z53/iskpl_mehmet_\u00e7eker_62_milyon_ad]\n- SPK halka arz ba\u015fvurusu yapan firmalar\u0131n tam listesini resmi sitesinde yay\u0131nlad\u0131. \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1pcjy1a/spk_halka_arz_ba\u015fvurusu_yapan_f]\n\n**DOMAIN SCAN SUMMARY** (1)\n- www.prolinepvc.com \u2014 *urlscan*\n\n**WEBSITE SCAN** (1)\n-  AB Yap\u0131 Pen - \u0130zmir Proline, \u0130zmir Europen Yetkili Bayii , Haz\u0131r Pvc Do\u011frama Kap\u0131 ve Pencere Sistem \u2014 *urlscan* [https://www.abyapipen.com/d/Tr]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "europe: Report file not found on remote VM (europe)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "PROLINE PVC PLASTIK ANONIM SIRKETI",
+    "entity_country": "TR",
+    "entity_website": "www.prolinepvc.com",
+    "entity_tax_id": "unknown \u2014 MERSIS/Ticaret Sicil number not publicly retrievable without interactive portal access",
+    "key_individuals": [
+      {
+        "name": "Celalettin \u00dcz\u00fcmc\u00fc"
+      },
+      {
+        "name": "Osman Elmal\u0131"
+      },
+      {
+        "name": "Turnover Check"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "europe": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (europe)"
+    }
+  },
+  "errors": [
+    "europe: Report file not found on remote VM (europe)"
+  ],
+  "dark_web_findings": 2,
+  "dark_web_sources": 49
+}

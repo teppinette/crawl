@@ -1,0 +1,139 @@
+{
+  "job_id": "46a3345d-2f75-43bc-b465-4b9578e42769",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "HARESH PETROCHEM PVT LTD",
+  "country_code": "IN",
+  "created_at": "2026-05-04T14:18:07.975007+00:00",
+  "updated_at": "2026-05-04T14:18:37.728336+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:18:15.198586+00:00",
+      "verified": true,
+      "legal_name": "HARESH PETROCHEM PRIVATE LIMITED",
+      "cin": "U24100MH2004PTC145264",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "23 March, 2004",
+      "directors": [
+        "Kamla Kanayalal Kasat",
+        "Kunal Kanayalal Kasat",
+        "Poonam Kunal Kasat"
+      ],
+      "registered_address": "B 3701, 37th Floor, Plot No 46, Kohinoor Square, N C Kelkar Marg, Opp. Shivsena Bhavan, Dadar (W), Shivaji Park (Mumbai), Mumbai, Mumbai, Maharashtra, India, 400028",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:18:14.458568+00:00",
+      "found": true,
+      "name": "Pooja Group of Companies",
+      "linkedin_url": "https://cn.linkedin.com/company/pooja-group-of-companies",
+      "industry": "Industrial Machinery Manufacturing",
+      "company_size": "1 employee",
+      "locations": [],
+      "about": "\u201cPooja Group of Companies (PGC)\u201d is headquartered in Mumbai, India with branches and offices in India, United States, China & United Kingdom. Pooja Group of Companies (PGC) comprises of:- 1) Pooja Industries, PGC India 2) Pooja Flexoplast Pvt. Ltd, PGC India 3) Maxol Enterprise, PGC India 4) Reliant EXIM & Consulting LLC, PGC USA 5) Electromech & Fluid Power Systems, PGC USA 6) Qi Fou De International, PGC China 7) Pooja Group, UK Please visit our website for more information Best Regards, Chira",
+      "followers": 540,
+      "employees_on_linkedin": 32,
+      "organization_type": "Public Company",
+      "website": "https://www.poojagroup.in/",
+      "specialties": "Oil & Gas, Steel, Industrial Project Suppliers, Hydraulics & Pneumatics, and Electrical & Mechanical",
+      "notable_employees": [
+        {
+          "name": "sushil pareek",
+          "link": "https://in.linkedin.com/in/sushil-pareek-4813a268?trk=org-employees"
+        },
+        {
+          "name": "Daniel Murphy",
+          "link": "https://www.linkedin.com/in/daniel-murphy-16800292?trk=org-employees"
+        },
+        {
+          "name": "Laxmi Nirmal",
+          "link": "https://in.linkedin.com/in/laxmi-nirmal-021184135?trk=org-employees"
+        },
+        {
+          "name": "Trunal Pidadi",
+          "link": "https://in.linkedin.com/in/trunal-pidadi-488787141?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:18:37.727728+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 60,
+      "sources_searched": 37,
+      "sources_with_results": 2,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "HARESH PETROCHEM PVT LTD",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

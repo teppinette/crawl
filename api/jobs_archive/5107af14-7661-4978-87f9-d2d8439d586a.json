@@ -1,0 +1,19 @@
+{
+  "job_id": "5107af14-7661-4978-87f9-d2d8439d586a",
+  "scenario": "dark-web",
+  "status": "failed",
+  "region": "darkweb",
+  "entity_name": "COPAP Middle East General Trading LLC",
+  "country": "",
+  "created_at": "2026-05-15T12:06:29.001064+00:00",
+  "updated_at": "2026-05-15T12:06:32.463309+00:00",
+  "blob_path": "osint-staging/dark-web/copap_middle_east_general_trading_llc_20260515.json",
+  "report_summary": "0 findings from dark web sources",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_name": "COPAP Middle East General Trading LLC",
+    "country_code": "AE"
+  }
+}

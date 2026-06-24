@@ -1,0 +1,84 @@
+{
+  "job_id": "c8cfee01-b5f6-4cfe-8648-029505418cf3",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "GRASIM INDUSTRIES LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-20T18:22:12.282109+00:00",
+  "updated_at": "2026-05-20T18:25:48.901960+00:00",
+  "blob_path": "osint-staging/cir/india/grasim_industries_limited_IN_20260520.json",
+  "report_summary": "Third Grasim submission today \u2014 identical to the 17:20 UTC submission. File is complete.\n\n**DONE (existing file): Grasim Industries Limited \u2014 Risk: 1 CLEAR**\n\n`~/crawl/output/grasim_industries_limited_IN_20260520.json` \u2014 25.3 KB, valid.\n---\n\n## DARK WEB SCREENING \u2014 MEDIUM\n**37 actionable findings** from 9/57 sources via Tor (Netherlands exit node) (25 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Breach records | 13 |\n| Adverse media | 22 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n\n**Key findings:**\n- ADVERSE MEDIA: Grasim Industries Limited Annual Financial Results and Strategic ...\n- ADVERSE MEDIA: Grasim Industries Limited (GRASIM.NS) Stock Price, News, Quote ...\n- ADVERSE MEDIA: www.grasim.com\n- ADVERSE MEDIA: GRASIM INDUSTRIES LIMITED - MarketScreener\n- ADVERSE MEDIA: GRASIM INDUSTRIES LIMITED ( ADITYA BIRLA GROUP) - LinkedIn\n- ADVERSE MEDIA: Grasim Industries Ltd (GRASIM) Share Price - Business Today (Grasim Industries)\n- ADVERSE MEDIA: Grasim Industries Announcements/Notices: Latest Sotck/Share Market ... (Grasim Industries)\n- ADVERSE MEDIA: Grasim Industries Share Price Today: Grasim Industries Stock Price Live ... (Grasim Industries)\n- ADVERSE MEDIA: Grasim Industries: Leading in Cement, Textiles, and Chemicals | Aditya ... (Grasim Industries)\n- ADVERSE MEDIA: Delhi Cyber Cops Crack Down on Fake Aditya Birla Investment Scam - Newsd.in (Birla)\n- ADVERSE MEDIA: Delhi: Cyber Police bust investment fraud ring impersonating Aditya ... (Birla)\n- ADVERSE MEDIA: UAE deports Indian fugitive wanted in Rs 2,300 crore betting fraud case (Jain)\n- ADVERSE MEDIA: Coal scam: Ruling given in one case, 22 in court, where do they stand? (Kumar Mangalam Birla)\n- ADVERSE MEDIA: Kumar Mangalam Birla Wiki, Age, Wife, Children, Family, Biography ... (Kumar Mangalam Birla)\n- ADVERSE MEDIA: Kumar Mangalam Birla - Business Today (Kumar Mangalam Birla)\n- ADVERSE MEDIA: The Birla Factor: Why Kumar Mangalam Birla's Return Could Be Vi's ... (Kumar Mangalam Birla)\n- ADVERSE MEDIA: Kumar Mangalam Birla - Wikipedia (Kumar Mangalam Birla)\n- ADVERSE MEDIA: Kumar Mangalam Birla returns as Vodafone Idea non-executive chairman - Mint (Kumar Mangalam Birla)\n- ADVERSE MEDIA: Kumar Birla - Forbes (Kumar Mangalam Birla)\n- ADVERSE MEDIA: Vodafone Idea reappoints K M Birla as chairman in 2026 (Kumar Mangalam Birla)\n- ADVERSE MEDIA: Kumar Mangalam Birla returns to Vodafone Idea's helm (Kumar Mangalam Birla)\n- ADVERSE MEDIA: Kumar Mangalam Birla Takes Helm at Vodafone Idea | Business (Kumar Mangalam Birla)\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| dehashed | 33 | breach_record; breach_record; breach_record (+30 more) |\n| duckduckgo_adverse | 23 | Grasim Industries Limited Annual Financial Results and Strat; Grasim Industries Limited (GRASIM.NS) Stock Price, News, Quo; www.grasim.com (+20 more) |\n| reddit | 15 | Grasim Industries Birla Opus paint factory in Vidyasagar Ind; Birla Opus Paint manufacturing plant of Grasim Industries Li; 'Birla Opus' paint manufacturing plant at Kharagpur will be  (+12 more) |\n| duckduckgo_tor | 10 | Grasim Industries: Leading in Cement, Textiles, and Chemical; Grasim Industries Limited - Aditya Birla Group Company; Grasim Industries - Wikipedia (+7 more) |\n| court_records_tor | 2 | Read all Latest Updates on and about Grasim Industries Limit; Supreme Court Upholds Natural Justice: Criticizes National G |\n\n### All findings detail\n\n**ADVERSE MEDIA** (22)\n- Grasim Industries Limited Annual Financial Results and Strategic ... \u2014 *duckduckgo_adverse* [/l/?uddg=https%3A%2F%2Fwww.investywise.com%2Fgrasim%2Dindustries%2Daudited%2Dfin]\n- Grasim Industries Limited (GRASIM.NS) Stock Price, News, Quote ... \u2014 *duckduckgo_adverse* [/l/?uddg=https%3A%2F%2Ffinance.yahoo.com%2Fquote%2FGRASIM.NS%2F&rut=ab706a15e7bc]\n- www.grasim.com \u2014 *duckduckgo_adverse* [/l/?uddg=https%3A%2F%2Fwww.grasim.com%2Fabout%2Dus%2FPages%2Fdefault.aspx&rut=ab]\n- GRASIM INDUSTRIES LIMITED - MarketScreener \u2014 *duckduckgo_adverse* [/l/?uddg=https%3A%2F%2Fin.marketscreener.com%2Fquote%2Fstock%2FGRASIM%2DINDUSTRI]\n- GRASIM INDUSTRIES LIMITED ( ADITYA BIRLA GROUP) - LinkedIn \u2014 *duckduckgo_adverse* [/l/?uddg=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2Fwww.grasim.com&rut=e582413e6]\n- Grasim Industries Ltd (GRASIM) Share Price - Business Today \u2014 *duckduckgo_adverse* (searched: Grasim Industries) [/l/?uddg=https%3A%2F%2Fwww.businesstoday.in%2Fstocks%2Fgrasim%2Dindustries%2Dltd]\n- Grasim Industries Announcements/Notices: Latest Sotck/Share Market ... \u2014 *duckduckgo_adverse* (searched: Grasim Industries) [/l/?uddg=https%3A%2F%2Fwww.moneycontrol.com%2Fcompany%2Dnotices%2Fgrasimindustri]\n- Grasim Industries Share Price Today: Grasim Industries Stock Price Live ... \u2014 *duckduckgo_adverse* (searched: Grasim Industries) [/l/?uddg=https%3A%2F%2Fwww.financialexpress.com%2Fmarket%2Fgrasim%2Dindustries%2]\n- Grasim Industries: Leading in Cement, Textiles, and Chemicals | Aditya ... \u2014 *duckduckgo_adverse* (searched: Grasim Industries) [/l/?uddg=https%3A%2F%2Fwww.grasim.com%2F&rut=24be49f7f700618676b1e87bcf7f4696e9c]\n- Delhi Cyber Cops Crack Down on Fake Aditya Birla Investment Scam - Newsd.in \u2014 *duckduckgo_adverse* (searched: Birla) [/l/?uddg=https%3A%2F%2Fnewsd.in%2Fdelhi%2Dcyber%2Dcops%2Dcrack%2Ddown%2Don%2Dfak]\n- Delhi: Cyber Police bust investment fraud ring impersonating Aditya ... \u2014 *duckduckgo_adverse* (searched: Birla) [/l/?uddg=https%3A%2F%2Fwww.aninews.in%2Fnews%2Fnational%2Fgeneral%2Dnews%2Fdelhi]\n- UAE deports Indian fugitive wanted in Rs 2,300 crore betting fraud case \u2014 *duckduckgo_adverse* (searched: Jain) [/l/?uddg=https%3A%2F%2Fwww.siasat.com%2Fuae%2Ddeports%2Dindian%2Dfugitive%2Dwant]\n- Coal scam: Ruling given in one case, 22 in court, where do they stand? \u2014 *duckduckgo_adverse* (searched: Kumar Mangalam Birla) [/l/?uddg=https%3A%2F%2Findianexpress.com%2Farticle%2Fexplained%2Fcoal%2Dscam%2Dr]\n- Kumar Mangalam Birla Wiki, Age, Wife, Children, Family, Biography ... \u2014 *duckduckgo_adverse* (searched: Kumar Mangalam Birla) [/l/?uddg=https%3A%2F%2Fwikibio.in%2Fkumar%2Dmangalam%2F&rut=b4db5de4c5d343c25c80]\n- Kumar Mangalam Birla - Business Today \u2014 *duckduckgo_adverse* (searched: Kumar Mangalam Birla) [/l/?uddg=https%3A%2F%2Fwww.businesstoday.in%2Findia%2Dbillionaires%2Fkumar%2Dman]\n- The Birla Factor: Why Kumar Mangalam Birla's Return Could Be Vi's ... \u2014 *duckduckgo_adverse* (searched: Kumar Mangalam Birla) [/l/?uddg=https%3A%2F%2Fwww.outlookbusiness.com%2Fcorporate%2Fthe%2Dbirla%2Dfacto]\n- Kumar Mangalam Birla - Wikipedia \u2014 *duckduckgo_adverse* (searched: Kumar Mangalam Birla) [/l/?uddg=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FKumar_Mangalam_Birla&rut=b7f08b]\n- Kumar Mangalam Birla returns as Vodafone Idea non-executive chairman - Mint \u2014 *duckduckgo_adverse* (searched: Kumar Mangalam Birla) [/l/?uddg=https%3A%2F%2Fwww.livemint.com%2Fcompanies%2Fnews%2Fkumar%2Dmangalam%2D]\n- Kumar Birla - Forbes \u2014 *duckduckgo_adverse* (searched: Kumar Mangalam Birla) [/l/?uddg=https%3A%2F%2Fwww.forbes.com%2Fprofile%2Fkumar%2Dbirla%2F&rut=146a2a9aa]\n- Vodafone Idea reappoints K M Birla as chairman in 2026 \u2014 *duckduckgo_adverse* (searched: Kumar Mangalam Birla) [/l/?uddg=https%3A%2F%2Fwww.multibagg.ai%2Fmarket%2Dpulse%2Farticles%2Fvodafone%2]\n- ... and 2 more\n\n**BREACH RECORD** (13)\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n\n**WEB MENTION** (10)\n- Grasim Industries: Leading in Cement, Textiles, and Chemicals | Aditya ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.grasim.com%2F&rut=24be49f7f700618676b1e87bcf7f4696e9c]\n- Grasim Industries Limited - Aditya Birla Group Company \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.adityabirla.com%2Fbusinesses%2Fcompanies%2Fgrasim%2Di]\n- Grasim Industries - Wikipedia \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FGrasim_Industries&rut=2e4b1f378]\n- Grasim Industries (NSE:GRASIM) Company Profile & Description \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fstockanalysis.com%2Fquote%2Fnse%2FGRASIM%2Fcompany%2F&rut]\n- GRASIM Stock Price Quote | Morningstar \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.morningstar.com%2Fstocks%2FXNSE%2FGRASIM%2Fquote&rut=]\n- GRASIM INDUSTRIES LTD - Company Profile - Tracxn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Fgrasim%2Dindu]\n- Grasim Industries News - The Economic Times \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Feconomictimes.indiatimes.com%2Fgrasim%2Dindustries%2Dltd%]\n- Grasim Industries Ltd. Share Price Today | Grasim Live NSE/BSE \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.valueresearchonline.com%2Fstocks%2F42256%2Fgrasim%2Di]\n- Grasim Industries Reports 32% Revenue Growth To \u20b911,774 Crore In Q4 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.freepressjournal.in%2Fbusiness%2Fgrasim%2Dindustries%]\n- Grasim Industries Ltd (GRASIM) Stock Price & News - Google Finance \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.google.com%2Ffinance%2Fbeta%2Fquote%2FGRASIM%3ANSE&ru]\n\n**LEGAL RECORD** (2)\n- Read all Latest Updates on and about Grasim Industries Limited \u2014 *court_records_tor* [/l/?uddg=https%3A%2F%2Fwww.livelaw.in%2Ftags%2Fgrasim%2Dindustries%2Dlimited&rut]\n- Supreme Court Upholds Natural Justice: Criticizes National Green ... \u2014 *court_records_tor* [/l/?uddg=https%3A%2F%2Fwww.indialaw.in%2Fblog%2Fenvironment%2Fsupreme%2Dcourt%2D]\n\n**SOCIAL MENTION** (15)\n- Grasim Industries Birla Opus paint factory in Vidyasagar Industrial Park, Kharagpur has begun commer \u2014 *reddit* [https://reddit.com/r/westbengal/comments/1pi0lqb/grasim_industries_birla_opus_pa]\n- Birla Opus Paint manufacturing plant of Grasim Industries Limited will be inaugurated on 9th October \u2014 *reddit* [https://reddit.com/r/westbengal/comments/1o17ilx/birla_opus_paint_manufacturing_]\n- 'Birla Opus' paint manufacturing plant at Kharagpur will be commissioned by H1 FY 2026 -Grasim Indus \u2014 *reddit* [https://reddit.com/r/kolkata/comments/1majfwf/birla_opus_paint_manufacturing_pla]\n- Trial run production in 'Birla Opus' Paint Kharagpur Plant expected to commence by Q1 FY 2026 -Grasi \u2014 *reddit* [https://reddit.com/r/westbengal/comments/1joq0ut/trial_run_production_in_birla_o]\n- India's top 50 companies (by market cap) \u2014 *reddit* [https://reddit.com/r/india/comments/192h7hw/indias_top_50_companies_by_market_ca]\n- Fairly valued share scope for much more growth- Grasim industry \u2014 *reddit* [https://reddit.com/r/IndianStreetBets/comments/mqkscz/fairly_valued_share_scope_]\n- India\u2019s top companies in terms of market capitalisation \u2014 *reddit* [https://reddit.com/r/IndianStreetBets/comments/18s5aj9/indias_top_companies_in_t]\n- I tracked what 27 Nifty 50 management teams promised vs what they delivered. The numbers are brutal. \u2014 *reddit* [https://reddit.com/r/IndianStockMarket/comments/1tge4d5/i_tracked_what_27_nifty_]\n- Global Non-Cellulosic Fibers Market Growth, Analysis and Industry Forecast (2019-2024): Crescent Tex \u2014 *reddit* [https://reddit.com/r/TrendingMarketReports/comments/c88eys/global_noncellulosic_]\n- Why INR has fallen over the years ? (List of largest companies in India) \u2014 *reddit* [https://reddit.com/r/IndianStockMarket/comments/1thkhnw/why_inr_has_fallen_over_]\n- 14 out of 50 nifty companies down over 25%, is this a hidden buying opportunity or a warning sign? \ud83d\udcc9 \u2014 *reddit* [https://reddit.com/r/indiaStockMarket/comments/1rwvq5t/14_out_of_50_nifty_compan]\n- NIFTY 50 COMPANIES DOWN FROM 52 WEEK HIGH \u2014 *reddit* [https://reddit.com/r/IndianStreetBets/comments/1nvrgd3/nifty_50_companies_down_f]\n- Earnings calendar for the week \u2014 *reddit* [https://reddit.com/r/IndianStockMarket/comments/1on1ymv/earnings_calendar_for_th]\n- Chemical Engineering Fresher: Should I join Grasim (Aditya Birla) SPHERE Trainee role or look for be \u2014 *reddit* [https://reddit.com/r/Indian_Academia/comments/1qbo45a/chemical_engineering_fresh]\n- *India Daybook \u2013 Stocks in News* \u2014 *reddit* [https://reddit.com/r/UpdateINDIA/comments/1r1pk4m/india_daybook_stocks_in_news/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "GRASIM INDUSTRIES LIMITED",
+    "entity_country": "IN",
+    "entity_address": "P.O. Birlagram, Nagda, Dist. Ujjain, Madhya Pradesh - 456331, India",
+    "entity_tax_id": "L17124MP1947PLC000410",
+    "key_individuals": [
+      {
+        "name": "Adesh Kumar Gupta",
+        "title": "Director (DIN: 00020403)"
+      },
+      {
+        "name": "Grasim Industries",
+        "title": "Director (DIN: 06625036)"
+      },
+      {
+        "name": "Birla",
+        "title": "Director (DIN: 08456879)"
+      },
+      {
+        "name": "Jain",
+        "title": "Director (DIN: 00022454)"
+      },
+      {
+        "name": "Kumar Mangalam Birla"
+      },
+      {
+        "name": "Himanshu Kapania"
+      },
+      {
+        "name": "Rajashree Birla"
+      },
+      {
+        "name": "Anita Ramachandran"
+      },
+      {
+        "name": "Mohanraj Narendranathan Nair"
+      },
+      {
+        "name": "Venkatadri Chandrasekaran"
+      },
+      {
+        "name": "Yazdi Dandiwala"
+      },
+      {
+        "name": "Ananyashree Birla"
+      },
+      {
+        "name": "Aryaman Vikram Birla"
+      },
+      {
+        "name": "Sushil Agarwal"
+      },
+      {
+        "name": "Mukkavilli Jagannath"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 37,
+  "dark_web_sources": 57
+}

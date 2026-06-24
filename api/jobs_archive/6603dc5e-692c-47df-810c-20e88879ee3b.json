@@ -1,0 +1,53 @@
+{
+  "job_id": "6603dc5e-692c-47df-810c-20e88879ee3b",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "REPLIKA PRESS PVT LTD",
+  "country": "IN",
+  "created_at": "2026-05-20T17:04:36.753770+00:00",
+  "updated_at": "2026-05-20T17:16:59.862353+00:00",
+  "blob_path": "osint-staging/cir/india/replika_press_pvt_ltd_IN_20260520.json",
+  "report_summary": "**DONE: Replika Press Private Limited, India \u2014 Risk: 3 MONITOR \u2014 India's leading commercial printer (NOT a chemicals company); CIN U74899DL1994PTC063845; Revenue \u20b9613 Cr FY25; \u26a0\ufe0f EBITDA -50% YoY; net worth +16%; all 6 Seth directors confirmed; IP enforcement winner**\n\n---\n\n`~/crawl/output/replika_press_pvt_ltd_IN_20260520.json` \u2014 15.2 KB, valid JSON, 10 sources, all 8 workstreams complete\n\n---\n\n## Key Findings\n\n### \u26a0\ufe0f Industry Context Note\n**Replika Press is a commercial printing company** \u2014 books, high-end commercial print, digital printing, packaging. It appears in this chemicals research batch as a **supplier of printed labels/packaging to chemical industry clients**, not as a chemicals company itself.\n\n### Entity\n- **CIN:** U74899DL1994PTC063845 \u00b7 Incorporated December 28, 1994 \u00b7 31 years\n- **Group:** Replika Press (\u20b9613 Cr) + Replika Packaging Pvt Ltd (\u20b9204 Cr, CIN U74999DL2016PTC300817) = **~\u20b9817 Cr combined**\n- **Employees:** 1,209 \u00b7 **Address:** Pitampura, Delhi (same building as Replika Packaging)\n- **Latest:** 3rd Manroland 700 Evolution Elite (8-colour) purchased at PrintPack 2025\n\n### FY2025 Financials \u2014 Revenue Pressure\n| Metric | FY2025 | Change |\n|---|---|---|\n| Revenue | \u20b9613 Cr | **-15.11%** |\n| EBITDA | \u2014 | **-50.29%** \u26a0\ufe0f |\n| Net Profit | \u2014 | **-31.01%** |\n| Net Worth | \u2014 | **+16.39%** \u2705 |\n\nEBITDA halved despite modest revenue decline \u2014 likely reflects higher depreciation/interest from Manroland CAPEX + printing industry cost pressures.\n\n### All 6 Directors Confirmed \u2014 Seth Family\n\n| Name | DIN | Role | Since |\n|---|---|---|---|\n| Bhuvnesh Seth | 03278999 | **Managing Director** | 1994 (founding) |\n| Sanandan Seth | 00099266 | Director (Marketing) | 2000 |\n| Renu Seth | 00099268 | Director | 2004 |\n| Vikaran Seth | 00707786 | Director (Production) | 2004 |\n| Attika Seth | 03303885 | Director | 2010 |\n| Shilpa Seth | 06473124 | Director | 2013 |\n\n### Litigation \u2014 Replika is Winning Party in All\n- **IP enforcement (CS COMM 179/2021):** Won decree against Sanjay Kumar for IP infringement \u2014 Replika is Decree Holder. Positive.\n- **Tax cases (2009, 2010 WPs):** Historical income tax challenges \u2014 routine.\n\n**Sanctions CLEAR \u00b7 No PEP \u00b7 Zero adverse media \u00b7 Primary concern is EBITDA compression trend**\n---\n\n## DARK WEB SCREENING \u2014 MEDIUM\n**20 actionable findings** from 3/57 sources via Tor (Netherlands exit node) (24 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Breach records | 20 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 14 |\n\n**Key findings:**\n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| dehashed | 50 | breach_record; breach_record; breach_record (+47 more) |\n| reddit | 15 | Old style font from French Provincial Cooking by Elizabeth D; Gagan media pvt. ltd. is trying so hard; Review | Rk World Infocom Pvt. Ltd. | Amazon Seller (+12 more) |\n| duckduckgo_tor | 10 | Replika Press Pvt. Ltd.; REPLIKA PRESS PVT. LTD. | LinkedIn; Replika Press Private Limited - Manufacturer from Kundli, In (+7 more) |\n\n### All findings detail\n\n**BREACH RECORD** (20)\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n\n**WEB MENTION** (10)\n- Replika Press Pvt. Ltd. \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.replikapress.com%2F&rut=e0c01660b3ebe96996fb4921c894f]\n- REPLIKA PRESS PVT. LTD. | LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fin.linkedin.com%2Fcompany%2Freplika%2Dpress%2Dpvt.%2Dltd.]\n- Replika Press Private Limited - Manufacturer from Kundli, India | About Us \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Freplika%2Dpress%2Dprivate%2Dlimited%2]\n- Replika Press Pvt. Ltd. in Sonipat, Haryana, India - Company Profile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tradeindia.com%2Freplika%2Dpress%2Dpvt%2Dltd%2D272806]\n- REPLIKA PRESS PRIVATE LIMITED - Company Profile - Tracxn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Freplika%2Dpre]\n- Replika Press Pvt - Overview, News & Similar companies - ZoomInfo \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zoominfo.com%2Fc%2Freplika%2Dpress%2Dpvt%2Dltd%2F3523]\n- Replika Press (Pvt.) Ltd., Sonepat, India | PublishersGlobal.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.publishersglobal.com%2Fdirectory%2Fsupplier%2Dprofile]\n- Replika Press Pvt Company Profile | Management and Employees List \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.datanyze.com%2Fcompanies%2Freplika%2Dpress%2Dpvt%2F35]\n- Company Profile | Replika Press Pvt. Ltd. \u2014 *duckduckgo_tor* [/l/?uddg=http%3A%2F%2Freplikapress.com%2Fcompany%2Dprofile.php&rut=c4d977ff8c69f]\n- REPLIKA PRESS PVT. LTD. - Company Profile & Staff Directory | ContactOut \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fcontactout.com%2Fcompany%2Freplika%2Dpress%2Dpvt%2Dltd%2D]\n\n**SOCIAL MENTION** (14)\n- Old style font from French Provincial Cooking by Elizabeth David \u2014 *reddit* [https://reddit.com/r/identifythisfont/comments/52jvm3/old_style_font_from_french]\n- Gagan media pvt. ltd. is trying so hard \u2014 *reddit* [https://reddit.com/r/NepalSocial/comments/1ragp14/gagan_media_pvt_ltd_is_trying_]\n- Review | Rk World Infocom Pvt. Ltd. | Amazon Seller \u2014 *reddit* [https://reddit.com/r/amazonindia/comments/1qudnk5/review_rk_world_infocom_pvt_lt]\n- MSBV India Pvt. Ltd: The New Face of Waste Management in India \u2014 *reddit* [https://reddit.com/r/IndianEntrepreneur/comments/1nwx9p5/msbv_india_pvt_ltd_the_]\n- Hiring: Content Writer at Acrements Ventures PVT LTd \u2014 *reddit* [https://reddit.com/r/RedditJobBoard/comments/1lu1jam/hiring_content_writer_at_ac]\n- Will this apply to Classic Legends pvt. Ltd. Vs Vatsal Mishra case? \u2014 *reddit* [https://reddit.com/r/indianbikes/comments/1kicq3t/will_this_apply_to_classic_leg]\n- Hiring: Performance Marketing Executive at VeeAar softtech and education pvt ltd. \u2014 *reddit* [https://reddit.com/r/RedditJobBoard/comments/1lm23ol/hiring_performance_marketin]\n- Hiring: Web Designer &amp; Office Secretary at Asian News Network Pvt Ltd \u2014 *reddit* [https://reddit.com/r/RedditJobBoard/comments/1l5wf5b/hiring_web_designer_office_]\n- India's largest capacity 12000T Metal Forming Hydraulic Press by ELECTRO PNEUMATICS AND HYDRAULICS ( \u2014 *reddit* [https://reddit.com/r/ManufacturingInIndia/comments/1j3xrip/indias_largest_capaci]\n- C Frame Mechanical Power Presses : The Mankoo India Pvt Ltd \u2014 *reddit* [https://reddit.com/r/powerpressmachines/comments/1h02ovk/c_frame_mechanical_powe]\n- A Promoter Built a Private Bank Inside His Listed Company. Here Are 11 Patterns to Check If Yours Di \u2014 *reddit* [https://reddit.com/r/IndiaGrowthStocks/comments/1tbth5e/a_promoter_built_a_priva]\n- OnlyWhatsNeeded Protein: Coffee flavour Review \u2014 *reddit* [https://reddit.com/r/Fitness_India/comments/1refxp2/onlywhatsneeded_protein_coff]\n- [Giveaway] [$3.99 \u2192 Free Lifetime] You asked, I listened! FunKey is back with 50 free lifetime codes \u2014 *reddit* [https://reddit.com/r/GenAiApps/comments/1panqr0/giveaway_399_free_lifetime_you_a]\n- WordPress Website Development Services | NXlogy Solutions Pvt. Ltd. \u2014 *reddit* [https://reddit.com/r/nxlogy/comments/185rh3s/wordpress_website_development_servi]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "REPLIKA PRESS PVT LTD",
+    "entity_country": "IN",
+    "entity_address": "CSC-5, Ground Floor Block-QD, Pitampura, North West Delhi, Delhi 110034",
+    "entity_tax_id": "U74899DL1994PTC063845",
+    "key_individuals": [
+      {
+        "name": "Sanandan Seth"
+      },
+      {
+        "name": "Renu Seth"
+      },
+      {
+        "name": "Vikaran Seth"
+      },
+      {
+        "name": "Bhuvnesh Seth"
+      },
+      {
+        "name": "Attika Seth"
+      },
+      {
+        "name": "Shilpa Seth"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 20,
+  "dark_web_sources": 57
+}

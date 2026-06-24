@@ -1,0 +1,64 @@
+{
+  "job_id": "6b4a5e37-cc31-4bcb-9cbf-120dc904ff8d",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "china",
+  "entity_name": "FUSION BROKERAGE EUROPE PTE LTD",
+  "country": "SG",
+  "created_at": "2026-05-08T18:27:07.688387+00:00",
+  "updated_at": "2026-05-08T18:35:28.545876+00:00",
+  "blob_path": "osint-staging/cir/china/fusion_brokerage_europe_pte_ltd_sg_20260508.json",
+  "report_summary": "**DONE:** FUSION BROKERAGE EUROPE PTE. LTD., SG \u2014 Risk: 2 MONITOR\n\n## Research Summary\n\n**Entity:** FUSION BROKERAGE EUROPE PTE. LTD.  \n**UEN:** 200813826C | **Incorporated:** 15 Jul 2008 | **Type:** Exempt Private (limited disclosure)  \n**Activity:** Other Holding Companies  \n**Address:** 62 Chestnut Avenue, #03-10 (The Tree House \u2014 **residential condo**)\n\n### Key Individuals:\n\n| Person | Role | Nationality | Risk |\n|--------|------|------------|------|\n| **Antonius Joseph Smit** (also Antonius J Smit / Antonius Smit) | Director, **100% UBO** | \ud83c\uddf3\ud83c\uddf1 Dutch | \u2705 No sanctions, est. $11M net worth, Amicorp UK directorships |\n| **Louise Anne Vanderput** (nee Aeria) | Secretary, Director | \ud83c\uddf8\ud83c\uddec Singaporean | \u2705 No sanctions. Father = late Colonel James Aeria (Singapore's first Navy Chief). Age ~70. No public financial services background. |\n\n### Risk Assessment by Workstream:\n\n| # | Workstream | Status | Observations |\n|---|-----------|--------|-------------|\n| 1A | Registry | \u2705 | Live. Residential condo address. 3 officers (names from user-provided data only). |\n| 2A | UBO | \u26a0\ufe0f | Antonius Joseph Smit reported as 100% UBO. **Requires paid ACRA** to verify. |\n| 3A | Sanctions | \u2705 No hits | Clean across OFAC SDN, EU, UN, UK. |\n| 4A | Adverse Media | \u26a0\ufe0f | Transparency concerns: residential address, no website, no commercial presence. |\n| 5A | Litigation | \u2705 | None found. |\n| 6A | PEP | \u2705 | Neither individual confirmed as PEP. Vanderput's father was military \u2014 not actionable. |\n| 7A | Trade Risk | \u26a0\ufe0f MEDIUM | Sister entity (Fusion Brokerage Asia) claims securities/commodities brokerage activity \u2014 **no MAS license visible**. Opaque holding structure. |\n| 8A | Risk Score | \u2705 **Score: 2 (MONITOR)** | 17+ year old entity with no adverse events but high opacity. |\n\n### \ud83d\udea9 Flags:\n- **\ud83c\udfe0 Residential address** for a European brokerage holding company\n- **\ud83c\udf10 No public website** or industry presence after 17 years\n- **\ud83e\udd1d Sister entity** Fusion Brokerage Asia at same address with brokerage activity but **no visible MAS license**\n- **\ud83d\udd12 Exempt Private Company** \u2014 limits public transparency on directors/UBO\n- **\ud83c\uddea\ud83c\uddfa European assets unknown** \u2014 what does this holding company actually hold?\n\n### \u2705 Output:\n`/home/copapadmin/crawl/output/fusion_brokerage_europe_pte_ltd_sg_20260508.json` (14,837 bytes)\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**103 findings** from 7/57 sources via Tor (Netherlands exit node)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Breach records | 70 |\n| Adverse media | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n| Website scans (URLScan) | 5 |\n\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "FUSION BROKERAGE EUROPE PTE LTD",
+    "entity_country": "SG",
+    "entity_address": "62 Chestnut Avenue, #03-10, Tree House, Singapore 679518",
+    "entity_website": "NIL",
+    "entity_tax_id": "N/A",
+    "key_individuals": [
+      {
+        "name": "MRS LOUISE ANNE VANDERPUT NEE AERIA",
+        "title": "SECRETARY"
+      },
+      {
+        "name": "ANTONIUS JOSEPH SMIT",
+        "title": "DIRECTOR"
+      },
+      {
+        "name": "Antonius J Smit",
+        "title": "Director"
+      },
+      {
+        "name": "Louise Anne Vanderput nee Aeria",
+        "title": "Director"
+      },
+      {
+        "name": "Antonius Smit",
+        "title": "UBO (100.00%)"
+      },
+      {
+        "name": "ANTONIUS JOSEPH SMIT",
+        "title": "UBO (100.00%)"
+      },
+      {
+        "name": "Antonius J Smit",
+        "title": "UBO (100.00%)"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "china": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 103,
+  "dark_web_sources": 57
+}

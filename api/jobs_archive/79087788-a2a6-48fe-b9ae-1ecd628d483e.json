@@ -1,0 +1,43 @@
+{
+  "job_id": "79087788-a2a6-48fe-b9ae-1ecd628d483e",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "KEMPLAST INDUSTRIES",
+  "country": "IN",
+  "created_at": "2026-05-20T19:02:41.103598+00:00",
+  "updated_at": "2026-05-20T19:04:10.754282+00:00",
+  "blob_path": "osint-staging/cir/india/kemplast_industries_IN_20260520.json",
+  "report_summary": "Fourth Kemplast submission. File is complete.\n\n**DONE (existing file): Kemplast Industries \u2014 Risk: 3 MONITOR**\n\n`~/crawl/output/kemplast_industries_IN_20260520.json` \u2014 16.5 KB, valid.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 1/45 sources via Tor (Netherlands exit node) (10 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 45 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | Kemplast Process Solutions | #1 Authorized Dealer for Siemen; Home - Kemplast Systems | Plastic Flexible Packaging & Biode; Kemplast (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- Kemplast Process Solutions | #1 Authorized Dealer for Siemens, WIKA ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.kemplast.in%2F&rut=13e392fc5153d1d0265f92266b83c2e72a]\n- Home - Kemplast Systems | Plastic Flexible Packaging & Biodegradable ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.kemplast.net%2F&rut=9dc1d97e652c28ddef663de567f94906e]\n- Kemplast \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fkemplastindia.com%2Fproducts&rut=396d4ac1a3ac64d10952c46e]\n- Kemplast Industries \u00b7 M/S Kemplast Industries \u00b7 Survey No. 1462 (Old Sr ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fopencorpdata.com%2Flei%2F984500E7DD5641B4AE64&rut=fedca35]\n- Kemplast Inc Information - RocketReach \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Frocketreach.co%2Fkemplast%2Dinc%2Dprofile_b43b15a5c1907e1]\n- Kemplast Industries, Gandhi Nagar - Manufacturer of Chlorinated ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dial4trade.com%2Fkemplast%2Dindustries%2D1987672%2F&r]\n- Contact Kemplast Process Solutions | Authorized Dealer India ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.kemplast.in%2Fcontact&rut=78d86774e460045341eb4c61966]\n- Products - Kemplast Systems | Plastic Flexible Packaging ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fkemplast.net%2Fproducts&rut=7808b8c5fdc337d38c0934316687e]\n- What we do - Kemplast Inc \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fkemplast.in%2Fwhat%2Dwe%2Ddo%2F&rut=24eff9f5fa949fc9fb41c]\n- Industrial Automation Services India | PLC, SCADA, IoT | Kemplast \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.kemplast.in%2Fservices%2Fautomation&rut=9c597b03a5d04]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "KEMPLAST INDUSTRIES",
+    "entity_country": "IN",
+    "entity_address": "Survey No. 1462 (Old Sr. 1067/B), Kadi Road, GIDC Chhatral, Chhatral, Gandhinagar, Gujarat 382729, India",
+    "entity_tax_id": "24AABFK9083C1ZI (GST registration number; no MCA/ROC CIN applicable as this is a partnership firm)",
+    "key_individuals": [
+      {
+        "name": "India Infoline Mr Sumit Maheshwari",
+        "title": "Director (DIN: 06920646)"
+      },
+      {
+        "name": "Reappointment of Mr Ramkumar Shankar",
+        "title": "Director (DIN: 00018391)"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 45
+}

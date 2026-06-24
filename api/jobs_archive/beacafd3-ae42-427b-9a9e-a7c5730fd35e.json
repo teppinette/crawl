@@ -1,0 +1,20 @@
+{
+  "job_id": "beacafd3-ae42-427b-9a9e-a7c5730fd35e",
+  "scenario": "dark-web",
+  "status": "completed",
+  "region": "darkweb",
+  "entity_name": "Palad HY Industries Ltd",
+  "country": "",
+  "created_at": "2026-05-22T16:37:33.772583+00:00",
+  "updated_at": "2026-05-22T16:39:26.636451+00:00",
+  "blob_path": "osint-staging/dark-web/palad_hy_industries_ltd_20260522.json",
+  "report_summary": "29 findings from dark web sources",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_name": "Palad HY Industries Ltd",
+    "domain": "paladhy.com",
+    "country_code": "IL"
+  }
+}

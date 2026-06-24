@@ -1,0 +1,55 @@
+{
+  "job_id": "96749d8f-3fcb-4bdc-b36b-dba8037c89f7",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "china",
+  "entity_name": "JIANGSU HUALUN GALAXY CHEMICAL COMMERCIAL HOLDING CO., LTD",
+  "country": "CN",
+  "created_at": "2026-05-01T11:25:16.061649+00:00",
+  "updated_at": "2026-05-01T11:27:24.856421+00:00",
+  "blob_path": "osint-staging/cir/china/jiangsu_hualun_galaxy_chemical_commercial_holding_co_ltd_cn_20260430.json",
+  "report_summary": "Already completed yesterday (2026-04-30). Report covers all 8 workstreams and all key individuals. No new information to gather.\n\n**DONE:** `/home/copapadmin/crawl/output/jiangsu_hualun_galaxy_chemical_commercial_holding_co_ltd_cn_20260430.json`\n---\n\n## DARK WEB SCREENING \u2014 MEDIUM\n**10 findings** from 1/41 sources via Tor (Netherlands exit node)\n\n| Category | Count |\n|----------|-------|\n| Web mentions (Tor-routed) | 10 |\n\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "JIANGSU HUALUN GALAXY CHEMICAL COMMERCIAL HOLDING CO., LTD",
+    "entity_country": "CN",
+    "entity_address": "East End, Sanjing Avenue, Jiangdu Development Zone, Yangzhou, Jiangsu Province, China 225200",
+    "entity_tax_id": "91321012084395686G",
+    "key_individuals": [
+      {
+        "name": "Lin Liu",
+        "title": "General Manager"
+      },
+      {
+        "name": "Liliang Hou",
+        "title": "Chief Economist"
+      },
+      {
+        "name": "Yijing Yin",
+        "title": "Vice-General Manager"
+      },
+      {
+        "name": "Hailin Xie",
+        "title": "Vice-General Manager"
+      },
+      {
+        "name": "Hualun Advanced Materials (Jiangsu) Co., Ltd.",
+        "title": "UBO (100.00%)"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "china": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 10,
+  "dark_web_sources": 41
+}

@@ -1,0 +1,49 @@
+{
+  "job_id": "6a297b13-9511-42a8-8e4a-d478fa046cd9",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "CARTOCOR DE PERU S.A.",
+  "country": "US",
+  "created_at": "2026-05-04T17:20:36.875875+00:00",
+  "updated_at": "2026-05-04T17:24:10.165641+00:00",
+  "blob_path": null,
+  "report_summary": "The v3 consolidated report (`cartocor_de_peru_PE_20260504v2.json`) already covers this request in full \u2014 it was written and uploaded to `osint-staging/americas/` at 17:21 UTC, one minute after this duplicate request was logged.\n\n**No new research is warranted.** The v3 report is the authoritative current output:\n\n| Report | File | Risk | Key Change |\n|---|---|---|---|\n| v1 \u2014 2026-05-01 | `..._20260501.json` | 2 CLEAR | Initial research |\n| v2 \u2014 2026-05-04 | `..._20260504.json` | 2 CLEAR | + INDECOPI sister-entity fine; LatamCORR 2026 |\n| **v3 \u2014 2026-05-04** | `..._20260504v2.json` | **3 MONITOR** | **+ Full Pagani family screen; Panama Papers / Lafico Group Ltd; Victor Manuel Arce deep dive** |\n\nThe v3 report satisfies all workstreams 1A\u20138A for this subject identification block and key individuals. If you're seeing repeated submissions, it may indicate a gateway retry loop \u2014 worth checking upstream if the job completed signal was received after the 17:17 UTC run.\n---\n\n## DARK WEB SCREENING \u2014 CRITICAL\n**61 findings** from 3/45 sources via Tor (Netherlands exit node)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Breach records | 50 |\n| Web mentions (Tor-routed) | 10 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: www.arcor.com\n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "americas: Report file not found on remote VM (americas)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "CARTOCOR DE PERU S.A.",
+    "entity_country": "US",
+    "entity_address": "Av. Guillermo Prescott Nro. 325, Urb. San Felipe, San Isidro, Lima, Lima, Peru",
+    "entity_website": "https://www.arcor.com/en/industrial-plants/cartocor-lurin-lima",
+    "entity_tax_id": "20515685911",
+    "key_individuals": [
+      {
+        "name": "Victor Manuel Arce"
+      },
+      {
+        "name": "Pagani Family"
+      },
+      {
+        "name": "Victor Manuel Arce",
+        "title": "UBO"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (americas)"
+    }
+  },
+  "errors": [
+    "americas: Report file not found on remote VM (americas)"
+  ],
+  "dark_web_findings": 61,
+  "dark_web_sources": 45
+}

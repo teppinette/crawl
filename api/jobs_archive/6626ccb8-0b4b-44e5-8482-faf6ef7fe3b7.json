@@ -1,0 +1,74 @@
+{
+  "job_id": "6626ccb8-0b4b-44e5-8482-faf6ef7fe3b7",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "COCREATE GLOBAL TECHNOLOGIES PRIVATE LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-21T11:26:44.968308+00:00",
+  "updated_at": "2026-05-21T11:32:07.527403+00:00",
+  "blob_path": null,
+  "report_summary": "Exact duplicate of 11:18 UTC request (8 minutes ago). File is complete.\n\n**DONE (existing file): Cocreate Global Technologies (Scimplify) \u2014 Risk: 2 CLEAR \u2014 Accel/3one4/Bertelsmann-backed specialty chemicals platform**\n\n`~/crawl/output/cocreate_global_technologies_pvt_ltd_IN_20260520.json` \u2014 8.6 KB, valid.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 0/0 sources via Tor (Netherlands exit node)\n\nNo dark web exposure detected. Entity and owners clean across all 0 sources.\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "india: Report file not found on remote VM (india)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "COCREATE GLOBAL TECHNOLOGIES PRIVATE LIMITED",
+    "entity_country": "IN",
+    "entity_address": "#445, BBMP Katha No. 344/445 IV Sector HSR Layout, Ward No.174 Bommanahalli Zone, HSR Layout, Bangalore, Karnataka 560102, India",
+    "entity_tax_id": "U21009KA2023PTC179006",
+    "key_individuals": [
+      {
+        "name": "Srivastava Salil Kumar",
+        "title": "Director"
+      },
+      {
+        "name": "Sachin Santhosh",
+        "title": "Director"
+      },
+      {
+        "name": "Srivastava Salil Kumar",
+        "title": "UBO"
+      },
+      {
+        "name": "Sachin Santhosh",
+        "title": "UBO"
+      },
+      {
+        "name": "3one4 Capital - Fund IV",
+        "title": "UBO"
+      },
+      {
+        "name": "Beenext Asia Fund2 Pte Ltd",
+        "title": "UBO"
+      },
+      {
+        "name": "Omnivore Agritech & Climate Sustainability Fund 3",
+        "title": "UBO"
+      },
+      {
+        "name": "Bertelsmann Nederland B.V.",
+        "title": "UBO"
+      },
+      {
+        "name": "Accel India VII (Mauritius) Ltd.",
+        "title": "UBO"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (india)"
+    }
+  },
+  "errors": [
+    "india: Report file not found on remote VM (india)"
+  ],
+  "dark_web_findings": 0,
+  "dark_web_sources": 0
+}

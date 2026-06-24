@@ -1,0 +1,50 @@
+{
+  "job_id": "8eb8deae-b48c-4ecb-ad14-f20313f54d1c",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "gulf",
+  "entity_name": "RAR RESIN & CHEMICAL INDUSTRIES DMCC",
+  "country": "AE",
+  "created_at": "2026-05-22T18:51:40.569953+00:00",
+  "updated_at": "2026-05-22T18:56:57.309119+00:00",
+  "blob_path": "osint-staging/cir/gulf/rar_resin_chemical_industries_dmcc_AE_20260522.json",
+  "report_summary": "Blob uploaded (HTTP 201). Report v2 complete.\n\n---\n\n**DONE: RAR RESIN & CHEMICAL INDUSTRIES DMCC, AE \u2014 Risk: 3 MONITOR** (updated brief, v2)\n\n---\n\n## What's new in this version\n\n**Rabih Reaidy now fully confirmed** \u2014 no longer just \"Rabih A Raidi\" from a directory. Two independent sources:\n- **Berytech Lebanon 100 Guide 2018**: *\"Rabih Reaidy, founder of RAR Holding, remembers how he set up and grew his manufacturing business and holding company, which now has presence in nine countries\"*\n- **Coatings World Top Companies Report, Jul/Aug 2022**: Listed as **Chairman** \u2014 recognized by a major US trade journal\n\n**Full executive team now documented:**\n\n| Name | Role | Status |\n|---|---|---|\n| Rabih Reaidy | Founder & Chairman | \u2705 Clean \u2014 Lebanese Christian, Jbeil |\n| Anthony Reaidy | Head of Strategic Planning | \u2705 Clean \u2014 likely son/relative |\n| Wissam Kassis | Director | \u2705 No adverse |\n| Fay Bensba | Chief Legal Officer | \u2705 No adverse |\n| Tony Tebechrany | CHRO | \u2705 No adverse |\n| Samer Elias | DGM / UAE contact | \u2705 No adverse |\n| **Sayyed Sajjad Shahab** | Director (DMCC) | \u2753 **Zero web presence \u2014 hard KYC blocker** |\n\n**Rating unchanged: 3 MONITOR.** All hard-stop indicators clear. Sayyed Sajjad Shahab identification remains the sole blocker before transacting.\n---\n\n## DARK WEB SCREENING \u2014 LOW\n**1 actionable findings** from 3/53 sources via Tor (Netherlands exit node) (26 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n| Website scans (URLScan) | 1 |\n\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | American Chemical Society AMA: Hi! I\u2019m Alex Tullo of Chemica; [Final New Update]: TIFU by importing bees to Uruguay + 4-Ye; Quick-glance Recycling Guide \u2014 What to Keep vs. Safely Recyc (+12 more) |\n| duckduckgo_tor | 10 | RAR RESIN & CHEMICAL INDUSTRIES DMCC Company Profile | Dubai; RAR Resin & Chemical Industries DMCC - 2GIS; Rar Resin & Chemicals Industries - Dubai local (+7 more) |\n| urlscan | 2 | rarresin.com; rarresin.com |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- RAR RESIN & CHEMICAL INDUSTRIES DMCC Company Profile | Dubai, Dubai ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.r]\n- RAR Resin & Chemical Industries DMCC - 2GIS \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2F2gis.ae%2Fdubai%2Fbranches%2F70000001006647242&rut=ee7865]\n- Rar Resin & Chemicals Industries - Dubai local \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fdubailocal.ae%2Fbusiness%2Frar%2Dresin%2Dchemicals%2Dindu]\n- Company Profile - Rar Resin And Chemical Industries Dmcc \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fchemdmart.com%2Fcompany%2Dprofile%2Frar%2Dresin%2Dand%2Dc]\n- RAR Resin and Chemical Industries - LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2Frar%2Dresin&rut=cf0cd8f04121]\n- Rar Resin & Chemical Industries (Chemical & Metal Companies ... - HiDubai \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.hidubai.com%2Fbusinesses%2Frar%2Dresin%2Dchemical%2Di]\n- Company Overview - RAR RESIN & CHEMICAL INDUSTRIES DMCC \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Frarchemicals.trustpass.alibaba.com%2F&rut=b25d9c8f0ba526d]\n- RAR Resin & Chemical Industries DMCC - maps.urbi.ae \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fmaps.urbi.ae%2Fdubai%2Ffirm%2F70000001060686038&rut=83f77]\n- RAR Holding \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Frarholding.com%2F&rut=3d73a13509333ea41d8e2f68292d09be7f6]\n- RAR RESIN & CHEMICAL INDUSTRIES DMCC ,United Arab Emirates \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.company%2Dlisting.org%2Frar_resin_chemical_industries]\n\n**SOCIAL MENTION** (15)\n- American Chemical Society AMA: Hi! I\u2019m Alex Tullo of Chemical &amp; Engineering News, here to discus \u2014 *reddit* [https://reddit.com/r/science/comments/43tyhb/american_chemical_society_ama_hi_im]\n- [Final New Update]: TIFU by importing bees to Uruguay + 4-Year Update \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1t9s6kl/final_new_update_tif]\n- Quick-glance Recycling Guide \u2014 What to Keep vs. Safely Recycle (with quest uses) \u2014 *reddit* [https://reddit.com/r/ArcRaiders/comments/1oq6hxw/quickglance_recycling_guide_wha]\n- I dear the right wingers to justify this \u2014 *reddit* [https://reddit.com/r/GenZ/comments/1jrd4xs/i_dear_the_right_wingers_to_justify_t]\n- ARC Raiders \u2014 Quick-Glance Looting Cheat Sheets V3 \u2014 *reddit* [https://reddit.com/r/ArcRaiders/comments/1paix3l/arc_raiders_quickglance_looting]\n- [OC] ARC Raiders Sell vs Recycle Cheat Sheet V3 (Searchable PDF) \u2014 *reddit* [https://reddit.com/r/ArcRaiders/comments/1ozjo0v/oc_arc_raiders_sell_vs_recycle_]\n- TIL that despite living under Jim Crow, Percy Julian was a doctor who pioneered the drug industry. A \u2014 *reddit* [https://reddit.com/r/todayilearned/comments/13ijwtk/til_that_despite_living_unde]\n- My husband won't speak to me after finding out I'm pregnant. \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1m4fh7u/my_husband_wont_spea]\n- Lawmakers want to mandate testing for mold, chemicals &amp; heavy metals in medical weed. The indust \u2014 *reddit* [https://reddit.com/r/Maine/comments/1kg3lug/lawmakers_want_to_mandate_testing_fo]\n- Republican Red \u2014 *reddit* [https://reddit.com/r/StockMarket/comments/1jaqshf/republican_red/]\n- China Just Turned Off U.S. Supplies Of Minerals Critical For Defense &amp; Modern Tech \u2014 *reddit* [https://reddit.com/r/investing/comments/1jsz3ki/china_just_turned_off_us_supplie]\n- ARC Raiders Master Cheat Sheet v3.1 (Expedition 2 Update) \u2014 Searchable PDF \u2014 *reddit* [https://reddit.com/r/ArcRaiders/comments/1pxq0yt/arc_raiders_master_cheat_sheet_]\n- Is your team's owner a Nepo Baby? An Analysis of Current NFL Head Coach Searches \u2014 *reddit* [https://reddit.com/r/nfl/comments/1qhzxtv/is_your_teams_owner_a_nepo_baby_an_ana]\n- Best performing stocks in the S&amp;P 500 (2026 ytd) \u2014 *reddit* [https://reddit.com/r/wallstreetbets/comments/1t1u256/best_performing_stocks_in_t]\n- Scientists have demonstrated that it is possible to efficiently turn industrially processed lignin i \u2014 *reddit* [https://reddit.com/r/science/comments/sb3fx5/scientists_have_demonstrated_that_i]\n\n**DOMAIN SCAN SUMMARY** (1)\n- rarresin.com \u2014 *urlscan*\n\n**WEBSITE SCAN** (1)\n- rarresin.com \u2014 *urlscan* [http://rarresin.com/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "RAR RESIN & CHEMICAL INDUSTRIES DMCC",
+    "entity_trade_names": "RAR Resin & Chemical Industries DMCC",
+    "entity_country": "AE",
+    "entity_website": "https://rarresin.com",
+    "entity_type": "Trading",
+    "entity_industry": "Trading",
+    "key_individuals": [
+      {
+        "name": "Sayyed Sajjad Shahab"
+      },
+      {
+        "name": "Samer Elias"
+      },
+      {
+        "name": "Rabih Reaidy"
+      },
+      {
+        "name": "Partially Transparent"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "copap_products": "Xylene (1500 MT monthly consumption equivalent)",
+    "priority": "standard"
+  },
+  "region_status": {
+    "gulf": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 1,
+  "dark_web_sources": 53
+}

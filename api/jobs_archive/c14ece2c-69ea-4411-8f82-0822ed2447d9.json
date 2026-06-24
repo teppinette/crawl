@@ -1,0 +1,47 @@
+{
+  "job_id": "c14ece2c-69ea-4411-8f82-0822ed2447d9",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "PRAYAG CHEMICALS PRIVATE LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-20T17:08:24.972345+00:00",
+  "updated_at": "2026-05-20T17:20:55.227756+00:00",
+  "blob_path": null,
+  "report_summary": "**DONE: Prayag Chemicals Private Limited, India \u2014 Risk: 2 CLEAR \u2014 Same promoters as Flow Tech Chemicals (Primo Chemicals group); CIN U24119PB1993PTC055159; FY2023 profit +122%; zero litigation; Axis Bank \u20b936 Cr new facility (Dec 2025); \u26a0\ufe0f Ved Pal Singh is PAST director**\n\n---\n\n`~/crawl/output/prayag_chemicals_pvt_ltd_IN_20260520.json` \u2014 12.9 KB, valid JSON, 10 sources, all 8 workstreams complete\n\n---\n\n## Key Findings\n\n### Entity\n- **CIN:** U24119PB1993PTC055159 \u00b7 Incorporated October 5, 1993 (32 years) \u00b7 Punjab\n- **ROC:** Chandigarh \u00b7 **Address discrepancy** \u2014 subject block (Derabassi) vs current MCA (Rajpura)\n\n### \ud83d\udd17 Group Connection \u2014 Same as Flow Tech Chemicals (researched today)\nBoth Prayag Chemicals and Flow Tech Chemicals share **the same two directors**:\n\n| Person | DIN | Role at Prayag | Role at Primo/Flow Tech |\n|---|---|---|---|\n| **Sukhbir Singh Dahiya** | 00169921 | Director (20 yrs) | Non-Exec Chairman, Primo Chemicals |\n| **Jagbir Singh Ahlawat** | 01139187 | Director (13 yrs) | Non-Exec Director, Primo Chemicals; Director, Flow Tech |\n\n**Full group also includes:** Himalaya Alkalies & Chemicals Ltd, Flowtech Industrial Projects, Flowtech Estates, Tara Mercantile, Jasuda Farms & Resorts\n\n### FY2023 Financials \u2014 Excellent\n| Metric | FY2023 |\n|---|---|\n| Revenue | **+30.38%** |\n| PAT | **+122.25%** |\n| EBITDA | **+70.65%** |\n| Net Worth | **+25.07%** |\n\n### \u26a0\ufe0f Three Flags\n\n1. **Ved Pal Singh** \u2014 listed as director in subject block but **PAST director since April 2, 2012**. Remove.\n2. **Address discrepancy** \u2014 verify Rajpura vs Derabassi\n3. **Axis Bank \u20b936 Cr** newly registered December 12, 2025 \u2014 new facility (positive for business activity)\n\n**Sanctions CLEAR \u00b7 Zero litigation (confirmed LexTechSuite) \u00b7 Zero adverse media**\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 2/49 sources via Tor (Netherlands exit node) (24 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 49 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | I pissed off the entire atheism subreddit and received numer; [Final New Update]: TIFU by importing bees to Uruguay + 4-Ye; AITA for refusing to cook a vegetarian Thanksgiving dinner? (+12 more) |\n| duckduckgo_tor | 10 | PRAYAG CHEMICALS PRIVATE LIMITED | ZaubaCorp; PRAYAG CHEMICALS PVT.LTD. Details | Company Profile | Direct; Prayag Chemicals Private Limited (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- PRAYAG CHEMICALS PRIVATE LIMITED | ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2FPRAYAG%2DCHEMICALS%2DPRIVATE%2DLIMITE]\n- PRAYAG CHEMICALS PVT.LTD. Details | Company Profile | Directors Profile ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.companydetails.in%2Fcompany%2Fprayag%2Dchemicals%2Dpv]\n- Prayag Chemicals Private Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.p]\n- Prayag Chemicals Private Limited - 2026 Insights - The Company Check \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fcompany%2Fprayag%2Dchemicals%2D]\n- Prayag Chemicals Private Limited Company Profile - India | Financials ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FIN%2FPrayag_Chem]\n- PRAYAG CHEMICALS PRIVATE LIMITED - India - globalfinreg.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.globalfinreg.com%2Fen%2Flookup%2FPRAYAG%2DCHEMICALS%2]\n- Prayag Chemicals Private Limited - The Economic Times \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Feconomictimes.indiatimes.com%2Fcompany%2Fprayag%2Dchemica]\n- PRAYAG CHEMICALS PRIVATE LIMITED - ClearTax \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fcleartax.in%2Ff%2Fcompany%2Fprayag%2Dchemicals%2Dprivate%]\n- Prayag Chemicals Financials | Company Details | Tofler \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tofler.in%2Fprayag%2Dchemicals%2Dprivate%2Dlimited%2F]\n- PRAYAG CHEMICALS PRIVATE LIMITED - companyhouse.in \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.companyhouse.in%2Fcompany%2Findia%2FU24119DL1993PTC12]\n\n**SOCIAL MENTION** (14)\n- I pissed off the entire atheism subreddit and received numerous threats via private DMS for suggesti \u2014 *reddit* [https://reddit.com/r/DebateAnAtheist/comments/1szhhwk/i_pissed_off_the_entire_at]\n- [Final New Update]: TIFU by importing bees to Uruguay + 4-Year Update \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1t9s6kl/final_new_update_tif]\n- AITA for refusing to cook a vegetarian Thanksgiving dinner? \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1kcs29o/aita_for_refusing_to]\n- The Darkest Alien Theory and Why They\u2019re Desperately Hiding It \u2014 *reddit* [https://reddit.com/r/aliens/comments/1mmdgw7/the_darkest_alien_theory_and_why_th]\n- How do I (M37) tell my wife (F38) that I don\u2019t want to move to US without sounding like an unsupport \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1lcjf59/how_do_i_m37_tell_my]\n- [Entry Thread #112] /r/MillionaireMakers Presents: The Giveaway That Never Was! (In addition to maki \u2014 *reddit* [https://reddit.com/r/millionairemakers/comments/1pnlt5o/entry_thread_112_rmillio]\n- (Repost / New Update) Just found out my ex-wife has been feeding my kids turpentine. \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1fyknoq/repost_new_update_ju]\n- Is your team's owner a Nepo Baby? An Analysis of Current NFL Head Coach Searches \u2014 *reddit* [https://reddit.com/r/nfl/comments/1qhzxtv/is_your_teams_owner_a_nepo_baby_an_ana]\n- Just found out my ex-wife has been feeding my kids turpentine. \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/16ntzn9/just_found_out_my_ex]\n- BATTLEFIELD 6 GAME UPDATE 1.2.2.0 \u2014 *reddit* [https://reddit.com/r/Battlefield/comments/1rsraae/battlefield_6_game_update_1220]\n- OOP Hooks Up with his homophobic-SIL\u2019s Brother and wants to know if he is the AH. \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/136utqy/oop_hooks_up_with_hi]\n- Wearing Power Armor to a Magic School (158/?) \u2014 *reddit* [https://reddit.com/r/HFY/comments/1qt8qcq/wearing_power_armor_to_a_magic_school_]\n- Superstonk's Very GMErry Holiday (VGH for short) \u2014 *reddit* [https://reddit.com/r/Superstonk/comments/qnam2x/superstonks_very_gmerry_holiday_]\n- Physicians make too much and that's why healthcare is expensive. \u2014 *reddit* [https://reddit.com/r/Salary/comments/1m2cpj6/physicians_make_too_much_and_thats_]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "india: Report file not found on remote VM (india)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "PRAYAG CHEMICALS PRIVATE LIMITED",
+    "entity_country": "IN",
+    "entity_address": "Flat No. 38, HIG/4BR, Gulmohar City, Extension Ward No. 2, Derabassi, Sas Nagar, Mohali, Punjab 140507, India",
+    "entity_tax_id": "U24119PB1993PTC055159",
+    "key_individuals": [
+      {
+        "name": "Sukhbir Singh Dahiya"
+      },
+      {
+        "name": "Jagbir Singh Ahlawat"
+      },
+      {
+        "name": "Ved Pal Singh"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (india)"
+    }
+  },
+  "errors": [
+    "india: Report file not found on remote VM (india)"
+  ],
+  "dark_web_findings": 0,
+  "dark_web_sources": 49
+}

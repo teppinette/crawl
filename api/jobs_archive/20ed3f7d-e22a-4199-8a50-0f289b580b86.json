@@ -1,0 +1,47 @@
+{
+  "job_id": "20ed3f7d-e22a-4199-8a50-0f289b580b86",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "europe",
+  "entity_name": "COUNT Energy Trading B.V.",
+  "country": "NL",
+  "created_at": "2026-05-16T00:28:41.947550+00:00",
+  "updated_at": "2026-05-16T00:34:04.956123+00:00",
+  "blob_path": "osint-staging/cir/europe/count_energy_trading_bv_NL_20260516.json",
+  "report_summary": "**DONE: COUNT Energy Trading B.V., NL \u2014 Risk: 2 CLEAR \u2014 All sanctions clean; KvK 67740731; LEI 724500MYK22Z5EC7RV61; primary benzene/energy trader; GLEIF confirms direct consolidation of COUNT Energy Trading SA (Geneva); Baaima, Dahlerup-Petersen, Bollebakker \u2014 all clean.**\n\n---\n\n## \ud83d\udccb Research Summary\n\n| Field | Finding |\n|---|---|\n| **KvK** | **67740731** \u2713 |\n| **LEI** | **724500MYK22Z5EC7RV61** (ACTIVE, validated) |\n| **Founded** | January 26, 2017, Rotterdam |\n| **Address** | Waalhaven O.z. 77, 3087 BM Rotterdam |\n| **Sector** | 46811 \u2014 Wholesale of solid fuels |\n| **Products** | Benzene (primary), energy-related products |\n\n---\n\n### \ud83d\udee1\ufe0f All 8 Workstreams\n\n**1A \u2013 Registry:** Active Dutch B.V., KvK 67740731, LEI fully corroborated. Corporate purpose: production, processing, trade of chemical products (mainly benzene) and energy products. Latest KvK publication September 2024.\n\n**2A \u2013 LEI Confirms Parent-Child:** GLEIF data explicitly confirms COUNT Energy Trading SA (Geneva, LEI 506700KA77XLMOUW7028) **IS DIRECTLY CONSOLIDATED BY** this entity. Relationship from January 11, 2021. However, COUNT Energy Trading B.V. itself has declared LEI parent reporting exceptions \u2014 chain above BV level not LEI-confirmed.\n\n**3A \u2013 Sanctions: ALL CLEAN** \u2014 OFAC SDN, OpenSanctions (1.27M records), UN SC: NO HITS on entity, Baaima, Dahlerup-Petersen, Bollebakker.\n\n**4A \u2013 Adverse Media:** None. ESG-positive signals: Stage V barge COUNTESS MARIA, annual ESG reporting, Clariter \u20ac1.5B circular economy deal.\n\n**5A \u2013 Litigation:** None found.\n\n**6A \u2013 PEP:** All three key individuals \u2014 NOT PEPs. Consistent with April 2026 COUNT SA research.\n\n**7A \u2013 Trade Risk:** Benzene in ARA region \u2014 standard European petrochemical trading, no controls at commercial grades. No sanctioned-country exposure.\n\n**8A \u2013 Actions:** KvK UBO register entry; passport copies (Baaima, Dahlerup-Petersen, Bollebakker); product HS codes for specific trades.\n\n**Cross-reference reports:** `count_energy_trading_CH_20260427.json` (Swiss SA) | `count_energy_distribution_bv_BE_20260506.json` (Belgian distribution)\n---\n\n## DARK WEB SCREENING \u2014 CRITICAL\n**2 actionable findings** from 3/53 sources via Tor (Netherlands exit node) (10 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| World Bank Debarment | 1 |\n| Credential compromise | 1 |\n| Web mentions (Tor-routed) | 10 |\n\n**Key findings:**\n- WORLD BANK DEBARMENT: \n- CREDENTIAL COMPROMISE: www.countgroup.com\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | About COUNT Group; COUNT Energy Trading B.V. | Company.info; COUNT Energy Trading - First dutch (+7 more) |\n| hudsonrock_cavalier | 1 | www.countgroup.com |\n| adb_sanctions | 1 | debarment_record |\n\n### All findings detail\n\n**WORLD BANK DEBARMENT** (1)\n-  \u2014 *adb_sanctions* [https://www.adb.org/who-we-are/integrity/sanctions]\n\n**CREDENTIAL COMPROMISE** (1)\n- www.countgroup.com \u2014 *hudsonrock_cavalier*\n\n**WEB MENTION** (10)\n- About COUNT Group \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.countgroup.com%2Fabout%2Dus&rut=dbaea34f933b2a3e1f805]\n- COUNT Energy Trading B.V. | Company.info \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fcompanyinfo.nl%2Forganisatieprofiel%2Fgroothandel%2Din%2D]\n- COUNT Energy Trading - First dutch \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ffirstdutch.com%2Fen%2Fportfolio%2F917%2F&rut=48c7641902cb]\n- COUNT Energy Trading B.V. \u00b7 Waalhaven O.z. 77, Rotterdam, 3087BM, NL \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fopencorpdata.com%2Flei%2F724500MYK22Z5EC7RV61&rut=18b5e6f]\n- Count Energy Trading B.V. full company profile on Creditsafe \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.creditsafe.com%2Fbusiness%2Dindex%2Fen%2Dgb%2Fcompany]\n- Count Energy Trading Bv 67740731 - Dato Capital \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.datocapital.nl%2Fcompanies%2FCount%2DEnergy%2DTrading]\n- Count Energy Trading B.v. - Rotterdam 3087 BM (Rotterdam ... - Kompass \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fgb.kompass.com%2Fen%2Fc%2Fcount%2Denergy%2Dtrading%2Db%2D]\n- COUNT Energy Trading B.V. Rotterdam - Oozo.nl \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.oozo.nl%2Fbedrijven%2Frotterdam%2Fwaalhaven%2Deemhave]\n- Count Energy Trading B.v. - 3087BM, Rotterdam - kompany.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.kompany.com%2Fp%2Fnl%2F67740731&rut=604a4124836cb02cd]\n- COUNT Group - Products, Competitors, Financials, Employees ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.cbinsights.com%2Fcompany%2Fcount%2Denergy%2Dtrading&r]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "COUNT Energy Trading B.V.",
+    "entity_country": "NL",
+    "entity_address": "Waalhaven O.z. 77, 3087 BM Rotterdam, Netherlands",
+    "entity_tax_id": "67740731",
+    "key_individuals": [
+      {
+        "name": "Jeroen Baaima",
+        "title": "Associated Person"
+      },
+      {
+        "name": "Patrick Obro Dahlerup-Petersen",
+        "title": "Associated Person"
+      },
+      {
+        "name": "Jeffrey Bollebakker",
+        "title": "Associated Person"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "europe": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 2,
+  "dark_web_sources": 53
+}

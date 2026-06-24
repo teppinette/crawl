@@ -1,0 +1,45 @@
+{
+  "job_id": "50607df1-d1d8-4597-b48b-98f7f9ad9298",
+  "scenario": "product-intel",
+  "status": "completed",
+  "regions": [
+    "china"
+  ],
+  "product_name": "PVC resin",
+  "target_markets": [
+    "SG",
+    "TH",
+    "MY",
+    "VN",
+    "PH",
+    "ID",
+    "MM"
+  ],
+  "request_id": "pi-test-001-s6706",
+  "created_at": "2026-04-20T13:58:34.093056+00:00",
+  "updated_at": "2026-04-20T14:05:55.324924+00:00",
+  "blob_paths": [
+    "osint-staging/product-intel/china/pvc_resin_s6706_southeast_asia_20260420.json"
+  ],
+  "report_summary": "Perfect! I have successfully completed the comprehensive product intelligence research for PVC resin (grade S6706) across Southeast Asian markets. Here's a summary of what I found and delivered:\n\n## Research Summary\n\n**Product:** PVC Resin Grade S6706  \n**Target Markets:** Singapore (SG), Thailand (TH), Malaysia (MY), Vietnam (VN), Philippines (PH), Indonesia (ID), Myanmar (MM)  \n**Lookback Period:** 90 days (January - March 2026)  \n**Requested Signal Types:** All 5 types fully covered (geopolitical, freight, supply_disruption, price_index, news)\n\n## Key Findings:\n\n### 1. **Geopolitical Factors:**\n- **Strait of Hormuz closure** (Feb 28, 2026) due to US-Israeli military strikes on Iran\n- **Emergency War Risk Surcharge** implementation ($1,500-2,000/TEU) for Middle East routes\n- **Impact:** Disruption of 20% of global petrochemical trade\n\n### 2. **Supply Disruptions:**\n- **Middle Eastern producers withdrew 80% of GCC import supply**\n- **Qatar's Ras Laffan facilities** damaged by strikes, downstream output offline\n- **Chinese and US sellers** rescinded offers to Southeast Asia\n\n### 3. **Price Impact:**\n- **Southeast Asia CFR:** $850-1,060/MT (up 18% from pre-conflict levels)\n- **China FOB:** $640-670/MT (March 2026)\n- **VCM feedstock:** $785-795/MT CFR Southeast Asia (up 36%)\n\n### 4. **Freight Rates:**\n- **Intra-Asia container rates:** $646 per 40ft container (March 2026)\n- **Southeast Asia to Europe:** $4,700 per 40ft container\n- **Multiple surcharges** including Cape Surcharge, BAF, LSS, and Peak Season Surcharge\n\n### 5. **Market News:**\n- **Supply chain crisis** triggered by Middle East conflict\n- **Buyers holding 1-2 months inventory** creating \"wait-and-see\" sentiment\n- **Downstream production cuts** risk if feedstock-product price gap persists\n\n## Critical Compliance:\n\u2705 **All signals within 90-day lookback window** (Jan-Mar 2026)  \n\u2705 **Every signal has a real URL** (no empty URLs)  \n\u2705 **Unique signal_id generated** for each signal using format: `<type>-<YYYYMMDD>-<8char hash>`  \n\u2705 **Price signals properly categorized** with value_type (level/delta/pct)  \n\u2705 **Freight signals include sub_type** (base_rate/surcharge/all_in)  \n\u2705 **Coverage score:** 100% (all requested signal types with data found)\n\n## Output Delivered:\n\u2705 **Complete JSON report** saved to: `/home/copapadmin/crawl/output/pvc_resin_s6706_southeast_asia_20260420.json`  \n\u2705 **Data sources:** Multiple industry reports, shipping data, geopolitical news  \n\u2705 **Time period:** January-March 2026 (90-day lookback as requested)\n\nThe research reveals a significant supply chain crisis in Southeast Asia's PVC market driven by geopolitical tensions in the Middle East, resulting in price surges, supply withdrawals, and increased freight costs across the region.",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "request_id": "pi-test-001-s6706",
+    "product": {
+      "generic_name": "PVC resin",
+      "grade_code": "S6706",
+      "commodity_family": "polymer"
+    },
+    "region_hint": "SE Asia",
+    "lookback_days": 90,
+    "signal_types": [
+      "geopolitical",
+      "freight",
+      "supply_disruption",
+      "price_index",
+      "news"
+    ]
+  }
+}

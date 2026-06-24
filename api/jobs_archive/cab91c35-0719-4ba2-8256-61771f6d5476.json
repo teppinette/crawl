@@ -1,0 +1,53 @@
+{
+  "job_id": "cab91c35-0719-4ba2-8256-61771f6d5476",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "C.J. Shah and Co.",
+  "country": "IN",
+  "created_at": "2026-04-13T14:34:43.145789+00:00",
+  "updated_at": "2026-04-13T19:55:21.967998+00:00",
+  "blob_path": "osint-staging/india/cj_shah_and_co_in_20260413.json",
+  "report_summary": "JSON valid and complete. Blob upload requires `az login` \u2014 no credentials configured on this host. Here's the full completion report:\n\n---\n\n**DONE: C.J. Shah and Co., India \u2014 Risk: 5 BLOCK \u2014 OFAC SDN #55874 (Iran/EO13846); $44M Iranian toluene via SDN supplier ALSEERAH TRADING LLC; ~89% of India's Iran-toluene import channel; 3 affiliated entities with probable 50% rule blocking**\n\n---\n\n## Completion Summary\n\n**JSON output:** `~/crawl/output/c_j_shah_and_co_IN_20260413.json` (35 KB, valid JSON) ",
+  "error": null,
+  "seed_data": {
+    "entity_legal_name": "C.J. Shah and Co.",
+    "entity_trade_names": "CJ Shah Group, CJ Shah & Co.",
+    "entity_country": "IN",
+    "entity_jurisdiction": "Maharashtra",
+    "entity_address": "18 Akruti Apartment, Kandivali West, Mumbai 400067",
+    "entity_website": null,
+    "entity_type": "Partnership Firm (Private)",
+    "entity_industry": "Specialty Chemicals Distribution",
+    "entity_tax_id": "27AAAFC5600N2ZI",
+    "copap_relationship": "Supplier",
+    "copap_products": "Toluene, Specialty Chemicals",
+    "copap_incoterms": null,
+    "key_individuals": [
+      {
+        "name": "Apurva Mahesh Shah",
+        "title": "Managing Partner"
+      },
+      {
+        "name": "Ashish Prakash Shah",
+        "title": "Director, CJS Specialty Chemicals"
+      }
+    ],
+    "known_affiliates": [
+      {
+        "entity_name": "CJS Specialty Chemicals Pvt Ltd",
+        "country": "IN",
+        "relationship": "Subsidiary"
+      }
+    ],
+    "known_suppliers": [],
+    "source_report": null,
+    "workstreams": null,
+    "priority": "immediate"
+  },
+  "review": {
+    "reviewer": "test_analyst",
+    "score": 4,
+    "notes": "Good coverage, OFAC findings verified",
+    "reviewed_at": "2026-04-13T19:55:21.967987+00:00"
+  }
+}

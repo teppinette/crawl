@@ -1,0 +1,48 @@
+{
+  "job_id": "88b122e3-6a49-484b-84e1-ff9e5ac332f6",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "AGRO CHINA PAKISTAN PVT LTD",
+  "country": "PA",
+  "created_at": "2026-04-28T23:28:07.337556+00:00",
+  "updated_at": "2026-04-28T23:33:26.412507+00:00",
+  "blob_path": "osint-staging/cir/americas/agro_china_pakistan_pvt_ltd_PK_20260428.json",
+  "report_summary": "**DONE: AGRO CHINA PAKISTAN PVT LTD, PK \u2014 Risk: 3 MONITOR \u2014 Active growing China importer (265 customs records, 60 Chinese suppliers, +577% growth 2021-2024); Topsun Group Pakistan parent; no sanctions/adverse media; DR. Usman Ali PEP status unverified; dual-use agrochemical screening required**\n\n---\n\n## \ud83d\udccb Counterparty Research: AGRO CHINA PAKISTAN PVT LTD\n`~/crawl/output/agro_china_pakistan_pvt_ltd_PK_20260428.json` \u2192 uploaded to `stcrawlosint/osint-staging/americas/`\n\n---\n\n### \u26a0\ufe0f Critical Parameter Flag\n**ENTITY_COUNTRY: \"PA\"** (Panama) in the request \u2014 **corrected to PK (Pakistan)**. All evidence confirms a Pakistani entity: NTN 4334750-9, Lahore addresses, topsungroup.pk website, Chinese customs records showing Pakistan-based importer.\n\n---\n\n### \ud83c\udfe2 Corporate Registry (Workstream 1A)\n| Field | Value |\n|---|---|\n| Entity Type | Private Limited Company (Pvt Ltd), Pakistan |\n| NTN (FBR Tax ID) | **4334750-9** |\n| Registered Address | Suite 23-B, Block P, Phase II, Johar Town, Lahore |\n| Operational Address | 7-KM Sundar Raiwind Road, Near Fine Packages, Moza Bhai Kot, Lahore |\n| Regional Office | M3 Industrial City, Faisalabad (Phase II, Plots 92-93 & 32) |\n| Parent Brand | **Topsun Group Pakistan** (topsungroup.pk) \u2014 est. 2012 |\n| Industry | Agrochemicals, Fertilizers, Seeds, E-commerce, Automobile imports |\n\n**Directors:**\n| Name | Role | Notes |\n|---|---|---|\n| **Muhammad Usman Ali** | CEO | Confirmed at Topsun Chemicals Enterprises (eventalways.com) |\n| **M. Farooq Hasnain** | Director | No separate public profile found |\n| **DR. Usman Ali** | Director | \u26a0\ufe0f \"DR.\" prefix \u2014 PEP status requires verification |\n| **Abubakar Siddique** | Director | No separate public profile found |\n\n---\n\n### \ud83d\udcc8 Trade Profile \u2014 Rapidly Growing China Importer (Workstream 7A)\n\n| Year | Import Entries | Chinese Partners |\n|---|---|---|\n| 2021 | 13 | 6 |\n| 2022 | 30 | 13 |\n| 2023 | 55 | 14 |\n| **2024** | **88** | **17** |\n| 2025 (partial) | 64 | 18 |\n\n- **265 total Chinese customs records** | **60 Chinese suppliers** | **+577% growth 2021\u20132024**\n- Products: agrochemicals (insecticides, weedicides, fungicides), fertilizers, seeds, likely automobile parts (DACHI/Z100/LAND WIND brands on website)\n- CPEC agricultural cooperation context\n\n---\n\n### \ud83d\uded1 Sanctions Screening (Workstream 3A)\n| List | Result |\n|---|---|\n| OFAC SDN | No hits identified |\n| BIS Entity List | Indirect search \u2014 no hits; formal BIS search **recommended** \u26a0\ufe0f |\n| EU Consolidated | No hits |\n| UK FCDO | No hits |\n| UN Security Council | No hits |\n\n**Pakistan FATF status**: Removed from grey list October 2022. Elevated AML/CFT risk profile persists.\n\n---\n\n### \ud83c\udf0d Key Risk Factors (MONITOR score 3)\n\n| Factor | Detail |\n|---|---|\n| **Pakistan jurisdiction** | Elevated AML/CFT risk; corruption ~133/180 TI CPI; limited UBO transparency |\n| **Agrochemical + China imports** | Potential dual-use precursors; 60 Chinese suppliers; DPP registrations unverified |\n| **DR. Usman Ali PEP unknown** | \"DR.\" prefix \u2014 could be government medical officer or public university professor; requires CNIC verification |\n| **SECP data inaccessible** | Directors' CNICs, share structure, incorporation date not confirmed |\n| **BIS search incomplete** | Pakistan has proliferation-listed entities; formal BIS check required |\n\n---\n\n### \ud83c\udfaf 8 EDD Actions Required\n| Priority | Action |\n|---|---|\n| \ud83d\udd34 HIGH | SECP Form 29 + incorporation certificate (directors + shareholding) |\n| \ud83d\udd34 HIGH | Verify DR. Usman Ali CNIC + position (PEP screen) |\n| \ud83d\udd34 HIGH | Product HS codes + DPP registration list (dual-use screen) |\n| \ud83d\udd34 HIGH | BIS Entity List formal search (bis.gov) |\n| \ud83d\udfe1 MEDIUM | Top 10 Chinese suppliers list (screen against China entity lists) |\n| \ud83d\udfe1 MEDIUM | Urdu-language adverse media (Dawn, Geo, Jang, Express Tribune) |\n| \ud83d\udfe1 MEDIUM | FBR NTN certificate + SECP annual returns |\n| \ud83d\udfe2 LOW | OFAC SDN interactive search (sanctionssearch.ofac.treas.gov) |",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "AGRO CHINA PAKISTAN PVT LTD",
+    "entity_country": "PA",
+    "entity_address": "Suite No. 23-B, Block P, Phase II, Johar Town, Lahore, Pakistan (historical registration address); operational address listed as 7-KM Sundar Raiwind Road, Near Fine Packages, Moza Bhai Kot, Lahore",
+    "entity_website": "https://topsungroup.pk/",
+    "entity_industry": "Fertilizers & Agrochemicals",
+    "entity_tax_id": "4334750-9",
+    "key_individuals": [
+      {
+        "name": "Muhammad Usman Ali",
+        "title": "CEO"
+      },
+      {
+        "name": "M. Farooq Hasnain"
+      },
+      {
+        "name": "DR. Usman Ali"
+      },
+      {
+        "name": "Abubakar Siddique"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": null
+    }
+  }
+}

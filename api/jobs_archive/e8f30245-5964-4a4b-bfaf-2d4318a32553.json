@@ -1,0 +1,138 @@
+{
+  "job_id": "e8f30245-5964-4a4b-bfaf-2d4318a32553",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "ALKYL AMINES CHEMICALS LIMITED",
+  "country_code": "IN",
+  "created_at": "2026-05-04T14:31:00.826004+00:00",
+  "updated_at": "2026-05-04T14:32:06.427750+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:31:11.368809+00:00",
+      "verified": true,
+      "legal_name": "ALKYL AMINES CHEMICALS LIMITED",
+      "cin": "L99999MH1979PLC021796",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "17 October, 1979",
+      "directors": [
+        "Leja Satish Hattiangadi",
+        "Chandrashekhar Raghunath Gupte",
+        "others"
+      ],
+      "registered_address": "NIRMAN VYAPAR KENDRA 401-407PLOT NO 10 SECTOR-17DBC VASHI, NEW MUMBAI, Maharashtra, India, 400703",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:31:07.613463+00:00",
+      "found": true,
+      "name": "Alkyl Amines Chemicals Limited",
+      "linkedin_url": "https://in.linkedin.com/company/alky",
+      "industry": "Chemical Manufacturing",
+      "company_size": "501-1,000 employees",
+      "locations": [
+        "401-407, Nirman Vyapar Kendra Sector 17, Vashi Navi Mumbai, Maharashtra 400703, IN"
+      ],
+      "about": "Alkyl Amines Chemicals Limited (AACL) is a global supplier of aliphatic amines, specialty amines and amine derivatives to the pharmaceutical, agrochemical, water treatment, rubber chemical and a variety of industries. We work closely with our customers to develop products for their requirements and cater to their specific needs on quality, specifications and supply chain. Our focus on technology, scale of manufacturing as well as our ethical approach to business sets us apart as the partner for ",
+      "followers": 16717,
+      "employees_on_linkedin": 608,
+      "organization_type": "Public Company",
+      "website": "https://www.alkylamines.com/",
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "Kirat Patel",
+          "link": "https://in.linkedin.com/in/kirat-patel-a277486?trk=org-employees"
+        },
+        {
+          "name": "Uday Ghag",
+          "link": "https://in.linkedin.com/in/uday-ghag-40983213?trk=org-employees"
+        },
+        {
+          "name": "GANESH JOGADE",
+          "link": "https://in.linkedin.com/in/ganesh-jogade-5a224714?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:32:06.427124+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 63,
+      "sources_searched": 37,
+      "sources_with_results": 3,
+      "by_type": {
+        "web_mention": 10,
+        "adverse_media": 3,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "ALKYL AMINES CHEMICALS LIMITED",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

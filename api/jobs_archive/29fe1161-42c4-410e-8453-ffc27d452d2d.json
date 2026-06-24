@@ -1,0 +1,37 @@
+{
+  "job_id": "29fe1161-42c4-410e-8453-ffc27d452d2d",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "europe",
+  "entity_name": "ACRAN BOGAZICI KIMYA A.S.",
+  "country": "TR",
+  "created_at": "2026-05-22T17:26:45.979155+00:00",
+  "updated_at": "2026-05-22T17:28:10.150511+00:00",
+  "blob_path": null,
+  "report_summary": "Same entity \u2014 research complete.\n\n**DONE: ACRAN BOGAZICI KIMYA A.S., TR \u2014 Risk: 3 MONITOR**\n\nFile: `~/crawl/output/acran_bogazici_kimya_TR_20260522.json` \u2705\nBlob: `europe/acran_bogazici_kimya_TR_20260522.json` \u2705\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**4 actionable findings** from 4/37 sources via Tor (Netherlands exit node) (11 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Adverse media | 2 |\n| Web mentions (Tor-routed) | 10 |\n| Website scans (URLScan) | 1 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: WWW.ACRAN.COM.TR\n- ADVERSE MEDIA: Acran Bogazici Kimya A.S. Company Profile - Turkiye - EMIS\n- ADVERSE MEDIA: Acran Bogazici Kimya A.s. - Crunchbase Company Profile & Funding\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | Plastik Hammadde'deki Orta\u011f\u0131n\u0131z ! | Acran Bo\u011fazi\u00e7i Kimya A.\u015e; Acran Bogazici Kimya A.S. Company Profile - Turkiye - EMIS; Acran Bogazici Kimya A.S. - LinkedIn (+7 more) |\n| duckduckgo_adverse | 2 | Acran Bogazici Kimya A.S. Company Profile - Turkiye - EMIS; Acran Bogazici Kimya A.s. - Crunchbase Company Profile & Fun |\n| urlscan | 2 | WWW.ACRAN.COM.TR; \n\tPlastik Hammadde'deki Orta\u011f\u0131n\u0131z ! | Acran Bo\u011fazi\u00e7i Kimya A |\n| hudsonrock_cavalier | 1 | WWW.ACRAN.COM.TR |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- WWW.ACRAN.COM.TR \u2014 *hudsonrock_cavalier*\n\n**ADVERSE MEDIA** (2)\n- Acran Bogazici Kimya A.S. Company Profile - Turkiye - EMIS \u2014 *duckduckgo_adverse* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FTR%2FAcran_Bogaz]\n- Acran Bogazici Kimya A.s. - Crunchbase Company Profile & Funding \u2014 *duckduckgo_adverse* [/l/?uddg=https%3A%2F%2Fwww.crunchbase.com%2Forganization%2Facran%2Dbogazici%2Dki]\n\n**WEB MENTION** (10)\n- Plastik Hammadde'deki Orta\u011f\u0131n\u0131z ! | Acran Bo\u011fazi\u00e7i Kimya A.\u015e. \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Facran.com.tr%2F&rut=eb7b2bfd0414f116dd2ae37d2553eb06bf750]\n- Acran Bogazici Kimya A.S. Company Profile - Turkiye - EMIS \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FTR%2FAcran_Bogaz]\n- Acran Bogazici Kimya A.S. - LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftr.linkedin.com%2Fcompany%2Facran%2Dbogazici%2Dkimya%2Da%]\n- Acran Bogazici Kimya AS - Company Profile and News \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.bloomberg.com%2Fprofile%2Fcompany%2F0900717D%3ATI&rut]\n- Acran Bogazici Kimya A.s. - Crunchbase Company Profile & Funding \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.crunchbase.com%2Forganization%2Facran%2Dbogazici%2Dki]\n- Acran Bo\u011fazi\u00e7i Kimya A.\u015e. - Mahmutbey, \u0130sto\u00e7 C Plaza D:42 ... - Cybo \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.cybo.com%2FTR%2Dbiz%2Facran%2Dbo%25C4%259Fazi%25C3%25]\n- Acran Bo\u011fazi\u00e7i Kimya A.\u015e. | \u0130stoc C Plaza Kat 5 No 42, Basaksehir/\u0130stanbul \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Flocal.turkeyturism.com%2Ftr%2Facran%2Dbogazici%2Dkimya%2D]\n- Acran Bogazici Kimya \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.businessawardseurope.com%2Fotw%2Fentry%2F26410&rut=eb]\n- Plast Eurasia \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fplasteurasia.com%2Fen%2Fbrand%2Facran%2Dbogazici%2Dkimya%]\n- Acran Boazi\u00e7i Kimya A - Overview, News & Similar companies - ZoomInfo \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zoominfo.com%2Fc%2Facran%2Dboazici%2Dkimya%2Da%2F4567]\n\n**DOMAIN SCAN SUMMARY** (1)\n- WWW.ACRAN.COM.TR \u2014 *urlscan*\n\n**WEBSITE SCAN** (1)\n- \n\tPlastik Hammadde'deki Orta\u011f\u0131n\u0131z ! | Acran Bo\u011fazi\u00e7i Kimya A.\u015e.\n \u2014 *urlscan* [https://www.acran.com.tr/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "europe: Report file not found on remote VM (europe)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "ACRAN BOGAZICI KIMYA A.S.",
+    "entity_country": "TR",
+    "entity_website": "WWW.ACRAN.COM.TR",
+    "entity_tax_id": "789000QT2MEWP26E4Q21",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "europe": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (europe)"
+    }
+  },
+  "errors": [
+    "europe: Report file not found on remote VM (europe)"
+  ],
+  "dark_web_findings": 4,
+  "dark_web_sources": 37
+}

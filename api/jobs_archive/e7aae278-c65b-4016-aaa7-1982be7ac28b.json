@@ -1,0 +1,35 @@
+{
+  "job_id": "e7aae278-c65b-4016-aaa7-1982be7ac28b",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "europe",
+  "entity_name": "ERAY PLASTIK DOGRAMA SAN. TIC. LTD. STI.",
+  "country": "TR",
+  "created_at": "2026-05-22T20:27:10.119999+00:00",
+  "updated_at": "2026-05-22T20:28:46.974858+00:00",
+  "blob_path": null,
+  "report_summary": "Duplicate \u2014 report complete at 20:26 UTC.\n\n**DONE: Eray Plastik Do\u011frama San. Tic. Ltd. \u015eti., TR \u2014 Risk: 3 MONITOR**\n\nFile: `~/crawl/output/eray_plastik_dograma_TR_20260522.json` \u2705\nBlob: `europe/eray_plastik_dograma_TR_20260522.json` \u2705\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 2/37 sources via Tor (Netherlands exit node) (25 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 37 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Let's have a drink scam in Istanbul, Turkey; A Turkish construction equipment supplier with the long name; bu sistemde hangi oyunlar oynayabilirim (+12 more) |\n| duckduckgo_tor | 10 | Eray Plastik Dograma San. Ve Tic. Ltd. Sti. (Turkiye) - EMIS; ERAY PLASTIK DOGRAMA SANAYI VE TICARET LIMITED SIRKETI Compa; ErayPlast (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- Eray Plastik Dograma San. Ve Tic. Ltd. Sti. (Turkiye) - EMIS \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FTR%2FEray_Plasti]\n- ERAY PLASTIK DOGRAMA SANAYI VE TICARET LIMITED SIRKETI Company Profile ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.e]\n- ErayPlast \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ferayplast.com.tr%2F&rut=454ec6f6ac99b6adcf31da3a23c6c6146]\n- Eray Plastik - Geri D\u00f6n\u00fc\u015f\u00fcm , \u0130mha , Geri Kazan\u0131m \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.erayplastik.com.tr%2F&rut=06d62303f40177ee2d969c95845]\n- Eray Plastik Dograma Sanayi Ve Ticaret Limited Sirketi \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.turkishexporter.com.tr%2Fen%2Fcompanies%2Feray%2Dplas]\n- Eurasia Window & Door Fair \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.eurasiawindowdoorfair.com%2Fbrand%2Fwinturk%2Deray%2D]\n- Eray Plastik Do\u011frama San. ve Tic. Ltd \u015eti - lb.kompass.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Flb.kompass.com%2Fc%2Feray%2Dplastik%2Ddograma%2Dsan%2Dve%]\n- Winturk PVC | Eski\u015fehir PVC Kap\u0131 Pencere \u00dcretimi - PVC \u00dcreticisi \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.winturk.com.tr%2F&rut=bcef9b8cd76b0b2d936f51e8accb426]\n- ERAY PLAST\u0130K DO\u011eRAMA SAN. T\u0130C. LTD. \u015eT\u0130. \u2014 Trade Show Profile & Contact ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftrulista.com%2Fexhibitors%2Feray%2Dplastik%2Ddograma%2Dsa]\n- Eray Plasti\u0307k Do\u011frama Sanayi\u0307 Ve Ti\u0307caret Li\u0307mi\u0307ted \u015ei\u0307rketi\u0307 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.find.com.tr%2FCompany%2Ferayplastikdogramasanayivetic]\n\n**SOCIAL MENTION** (15)\n- Let's have a drink scam in Istanbul, Turkey \u2014 *reddit* [https://reddit.com/r/istanbul_tips/comments/1ozkdpx/lets_have_a_drink_scam_in_is]\n- A Turkish construction equipment supplier with the long name MBKDEVEC\u0130O\u011eLU \u0130N\u015e.MALZ.SAVUNMA SAN.NAK  \u2014 *reddit* [https://reddit.com/r/MilitaryGeek/comments/1ntls62/a_turkish_construction_equipm]\n- bu sistemde hangi oyunlar oynayabilirim \u2014 *reddit* [https://reddit.com/r/bilgisayar/comments/1sef6zn/bu_sistemde_hangi_oyunlar_oynay]\n- Hello everyone is this real or fake? (Be serious) \u2014 *reddit* [https://reddit.com/r/HotWheels/comments/1sew9yd/hello_everyone_is_this_real_or_f]\n- Orijinal Teknoloji Dis Tic. Ltd. Sti Power Bank TPB25 (2BNMC-TPB25) \u2014 *reddit* [https://reddit.com/r/FCCID/comments/1itt0lr/orijinal_teknoloji_dis_tic_ltd_sti_p]\n- Orijinal Teknoloji Dis Tic. Ltd. Sti Power Bank TPB14 (2BNMC-TPB14) \u2014 *reddit* [https://reddit.com/r/FCCID/comments/1itt0m2/orijinal_teknoloji_dis_tic_ltd_sti_p]\n- Dostum birdaha havaliman\u0131ndan bir\u015fey yemicem \ud83e\udd40 \u2014 *reddit* [https://reddit.com/r/vlandiya/comments/1teqqio/dostum_birdaha_havaliman\u0131ndan_bir]\n- Why would a customer buy this fashion pack? \u2014 *reddit* [https://reddit.com/r/Barbie/comments/1tbyj2k/why_would_a_customer_buy_this_fashi]\n- [SELL] [US] January Destash 100+ Mixed Brand \u2014 *reddit* [https://reddit.com/r/RedditLaqueristaSwap/comments/1qlvjs9/sell_us_january_desta]\n- Attention Amazon Canada purchasers of SS86 Soundwave \u2014 *reddit* [https://reddit.com/r/transformers/comments/1qvv9ju/attention_amazon_canada_purch]\n- LANSINOH LABORATORIES SAGLIK GERECLERI TASARIM SAN TIC LTD STI Smartpump 3.0 Rechargeable Breast Pum \u2014 *reddit* [https://reddit.com/r/FCCID/comments/102sphy/lansinoh_laboratories_saglik_gerecle]\n- 10 perc tervez\u00e9st \u00e9s v\u00e1g\u00e1st meg\u00e9rt \u2014 *reddit* [https://reddit.com/r/hungary/comments/1sjg03f/10_perc_tervez\u00e9st_\u00e9s_v\u00e1g\u00e1st_meg\u00e9rt]\n- Which one is your favourite? \u2014 *reddit* [https://reddit.com/r/HotWheels/comments/1oi4jcc/which_one_is_your_favourite/]\n- Bolu'da 2024 y\u0131l\u0131 i\u00e7in en \u00e7ok gelir vergisi \u00f6deyen ki\u015finin Burcu Atik oldu\u011fu a\u00e7\u0131kland\u0131. Burcu Atik v \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1o2tqze/boluda_2024_y\u0131l\u0131_i\u00e7in_en_\u00e7ok_ge]\n- Hangisini se\u00e7meliyim? \u2014 *reddit* [https://reddit.com/r/GarajTurkiye/comments/1r5grbk/hangisini_se\u00e7meliyim/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "europe: Report file not found on remote VM (europe)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "ERAY PLASTIK DOGRAMA SAN. TIC. LTD. STI.",
+    "entity_country": "TR",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "europe": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (europe)"
+    }
+  },
+  "errors": [
+    "europe: Report file not found on remote VM (europe)"
+  ],
+  "dark_web_findings": 0,
+  "dark_web_sources": 37
+}

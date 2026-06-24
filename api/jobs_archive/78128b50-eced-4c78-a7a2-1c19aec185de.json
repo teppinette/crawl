@@ -1,0 +1,38 @@
+{
+  "job_id": "78128b50-eced-4c78-a7a2-1c19aec185de",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "PLASTHIM OU",
+  "country": "ET",
+  "created_at": "2026-05-22T18:15:28.954541+00:00",
+  "updated_at": "2026-05-22T18:23:46.559527+00:00",
+  "blob_path": "osint-staging/cir/americas/plasthim_ou_EE_20260522.json",
+  "report_summary": "Duplicate \u2014 `americas/plasthim_ou_EE_20260522.json` uploaded today at 18:16 UTC.\n\n| | |\n|---|---|\n| **File** | `americas/plasthim_ou_EE_20260522.json` |\n| **Risk** | **3 / MONITOR** |\n| **Entity** | Estonian polymer trading company (PET/PP/PE/PVC/PS) \u2014 Russian-compound name |\n| **\ud83d\udd34 CRITICAL** | Director **S.G. (initials only)** \u2014 CANNOT screen for sanctions without full name |\n| **\u26a0\ufe0f Concern** | Russian-sounding name + virtual office Tallinn + CIS suppliers (Turkmenistan/Uzbekistan) |\n| **Note** | Brief says \"ET\" \u2014 data entry error; correct ISO code is **EE** (Estonia) |\n\n**Do not proceed until S.G.'s full identity is confirmed and screened.** No re-research warranted.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**1 actionable findings** from 2/45 sources via Tor (Netherlands exit node) (10 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Web mentions (Tor-routed) | 10 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: plasthim.ee\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | Plasthim polymers; PLASTHIM O\u00dc (12986288) - Overview - Inforegister.ee; Plasthim OU Company Profile | Tallinn, Harjumaa | Competitor (+7 more) |\n| hudsonrock_cavalier | 1 | plasthim.ee |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- plasthim.ee \u2014 *hudsonrock_cavalier*\n\n**WEB MENTION** (10)\n- Plasthim polymers \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fplasthim.ee%2Fen%2F&rut=643b580f3c35939874dbac67ffd755f0e]\n- PLASTHIM O\u00dc (12986288) - Overview - Inforegister.ee \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.inforegister.ee%2Fen%2F12986288%2DPLASTHIM%2DOU%2F&ru]\n- Plasthim OU Company Profile | Tallinn, Harjumaa | Competitors ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.p]\n- e-\u00c4riregister - Plasthim O\u00dc \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fariregister.rik.ee%2Feng%2Fcompany%2F12986288&rut=65553a4]\n- Plasthim OU Company Profile - Estonia - EMIS \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FEE%2FPlasthim_OU]\n- Plasthim O\u00dc | Estonian companies | Lursoft IT \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Feecompanies.lursoft.lv%2Fen%2Fcompany%2Fplasthim%2Dou%2F1]\n- PLASTIM SAS - Fa\u00e7onnage et Finition de Produits en Mati\u00e8res Plastiques \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fplastimsas.site%2F&rut=da1221bd5c6d08835a5f63fafe3ede9577]\n- Plasthim O\u00dc (12986288) - teatmik.ee \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.teatmik.ee%2Fen%2Fpersonlegal%2F12986288%2DPlasthim%2]\n- Soci\u00e9t\u00e9 PLASTIM SAS \u00e0 38110 MONTAGNIEU - L'Annuaire des ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fannuaire%2Dentreprises.data.gouv.fr%2Fentreprise%2Fplasti]\n- PLASTIM SAS (451307995), tous les \u00e9tablissements de l'entreprise sur ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.societe.com%2Fetablissements%2Fplastim%2Dsas%2D451307]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "PLASTHIM OU",
+    "entity_country": "ET",
+    "entity_address": "R\u00e4vala pst 8-810, Kesklinna linnaosa, Tallinn, 10143, Harju maakond, Estonia",
+    "entity_tax_id": "12986288",
+    "key_individuals": [
+      {
+        "name": "S. G. (initials only \u2014 full name restricted in public registry view)"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 1,
+  "dark_web_sources": 45
+}

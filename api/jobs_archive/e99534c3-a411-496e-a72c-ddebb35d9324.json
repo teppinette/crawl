@@ -1,0 +1,32 @@
+{
+  "job_id": "e99534c3-a411-496e-a72c-ddebb35d9324",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "AARTI DRUGS LTD",
+  "country": "IN",
+  "created_at": "2026-05-04T17:11:45.692410+00:00",
+  "updated_at": "2026-05-04T17:19:02.522799+00:00",
+  "blob_path": "osint-staging/cir/india/aarti_drugs_ltd_IN_20260504.json",
+  "report_summary": "**DONE: Aarti Drugs Limited, India \u2014 Risk: 2 CLEAR \u2014 Listed pharma API manufacturer (BSE 524348 / NSE AARTIDRUGS); CIN L37060MH1984PLC055433; 12 key individuals profiled; zero sanctions hits; Q1 FY26 profit +63% YoY (\u20b954 Cr); USFDA import alert LIFTED; \u20b9230.7 Cr IGST demand contested; Supreme Court case Union of India vs Aarti Drugs (Mar 2026)**\n\n---\n\n`~/crawl/output/aarti_drugs_ltd_IN_20260504.json` \u2014 27 KB, valid JSON, 9 sources\n\n### What's New vs. Prior Research (April 30)\n\n| Item | Update |\n|---|---|\n| **USFDA Import Alert** | \u2705 **LIFTED** on key Tarapur manufacturing site \u2014 resolved Q1 FY2026 |\n| **Q1 FY26 Profit** | \u20b954 Cr (+63% YoY) \u2014 early recovery signal |\n| **\u20b9230.7 Cr IGST demand** | \ud83c\udd95 Contested in court \u2014 new contingent liability identified |\n| **Supreme Court IA 62528/2026** | \ud83c\udd95 Government filing delay condonation to challenge ruling Aarti Drugs won |\n| **WP 2491/2026** | Multiple hearings confirmed (Feb\u2013Mar 2026) alongside Hindustan Monomers |\n| **SEBI compliance** | Routine Reg. 74(5) certificate filed April 6, 2026 \u2014 current |\n\n### India-Specific Workstreams\n\n| Source | Status | Finding |\n|---|---|---|\n| **MCA21** | \u2705 VERIFIED | CIN confirmed, Active, Compliant, 7 directors, \u20b91,570 Cr charges (Axis Bank) |\n| **GST Portal** | \u26a0\ufe0f PARTIALLY VERIFIED | Portal inaccessible from server; GST registration confirmed by operations |\n| **DGFT IEC** | \u26a0\ufe0f NOT DIRECTLY VERIFIED | DGFT portal blocked; export to 100+ countries confirms active IEC |\n| **eCourts / IndianKanoon** | \u2705 SEARCHED | 6 cases; Supreme Court + Bombay HC matters identified |\n| **SEBI / RBI** | \u2705 REVIEWED | SEBI Admin Warning (Mar 2025, no penalty); routine filings current Apr 2026 |\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 findings** from 0/0 sources via Tor (Netherlands exit node)\n\nNo dark web exposure detected. Entity and owners clean across all 0 sources.\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "AARTI DRUGS LTD",
+    "entity_country": "IN",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 0
+}

@@ -1,0 +1,20 @@
+{
+  "job_id": "0d3a906f-a73d-4eb7-9f49-014c4468af71",
+  "scenario": "dark-web",
+  "status": "completed",
+  "region": "darkweb",
+  "entity_name": "Plassim Infrastructures Ltd",
+  "country": "",
+  "created_at": "2026-05-22T16:13:44.132357+00:00",
+  "updated_at": "2026-05-22T16:14:32.474400+00:00",
+  "blob_path": "osint-staging/dark-web/plassim_infrastructures_ltd_20260522.json",
+  "report_summary": "26 findings from dark web sources",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_name": "Plassim Infrastructures Ltd",
+    "domain": "plassim.co.il",
+    "country_code": "IL"
+  }
+}

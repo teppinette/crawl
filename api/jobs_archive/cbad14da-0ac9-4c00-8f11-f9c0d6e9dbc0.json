@@ -1,0 +1,43 @@
+{
+  "job_id": "cbad14da-0ac9-4c00-8f11-f9c0d6e9dbc0",
+  "scenario": "cir",
+  "status": "failed",
+  "region": "india",
+  "entity_name": "KASTURI INTERNATIONAL PVT. LTD.",
+  "country": "IN",
+  "created_at": "2026-05-22T12:41:11.082390+00:00",
+  "updated_at": "2026-05-22T14:22:15.074062+00:00",
+  "blob_path": null,
+  "report_summary": null,
+  "error": "orphan_timeout (stale 95min, reaper cutoff 90min)",
+  "retry_count": 1,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "KASTURI INTERNATIONAL PVT. LTD.",
+    "entity_country": "IN",
+    "entity_website": "http://www.kasturiinternational.com/",
+    "entity_tax_id": "048059",
+    "key_individuals": [
+      {
+        "name": "HARISH GOEL"
+      },
+      {
+        "name": "SATINDER GOEL"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "failed",
+      "error": "india: agent returned empty response (stderr: [plugins] plugins.allow is empty; discovered non-bundled plugins may auto-load: crawl-gateway (/home/copapadmin/.openclaw/extensions/crawl-gateway/index.js). Set plugins.allow to explicit trusted ids.\nGateway agent failed; falling back to embedded: GatewayClientRequestError: FailoverError: session f)"
+    }
+  },
+  "errors": [
+    "india: agent returned empty response (stderr: [plugins] plugins.allow is empty; discovered non-bundled plugins may auto-load: crawl-gateway (/home/copapadmin/.openclaw/extensions/crawl-gateway/index.js). Set plugins.allow to explicit trusted ids.\nGateway agent failed; falling back to embedded: Error: gateway closed (1012): service restart\nGatew)",
+    "india: agent returned empty response (stderr: [plugins] plugins.allow is empty; discovered non-bundled plugins may auto-load: crawl-gateway (/home/copapadmin/.openclaw/extensions/crawl-gateway/index.js). Set plugins.allow to explicit trusted ids.\nGateway agent failed; falling back to embedded: GatewayClientRequestError: FailoverError: session f)"
+  ]
+}

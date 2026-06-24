@@ -1,0 +1,32 @@
+{
+  "job_id": "8e5a8345-40c4-4962-b74b-36a360cacca8",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "europe",
+  "entity_name": "ORGANIK KIMYA NETHERLANDS BV",
+  "country": "NL",
+  "created_at": "2026-05-22T19:49:15.367862+00:00",
+  "updated_at": "2026-05-22T19:52:20.679256+00:00",
+  "blob_path": "osint-staging/cir/europe/organik_kimya_netherlands_bv_NL_20260522.json",
+  "report_summary": "**DONE: Organik Kimya Netherlands B.V., NL \u2014 Risk: 3 MONITOR**\n\nFile: `~/crawl/output/organik_kimya_netherlands_bv_NL_20260522.json` \u2705\nBlob: `europe/organik_kimya_netherlands_bv_NL_20260522.json` \u2705 (19:52 UTC)\n\n---\n\n## \ud83d\udccb Research Summary\n\n| Field | Finding |\n|---|---|\n| **Parent entity** | ORGANIK K\u0130MYA SANAY\u0130 VE T\u0130CARET A.\u015e. (TR) \u2014 Kaslowski family, Risk 3 MONITOR |\n| **Structure** | Standard Dutch B.V. subsidiary \u2014 Rotterdam/EU distribution hub for Turkish chemical parent |\n| **Kaslowski UBOs** | Simone, Stefano, Aldo Kaslowski \u2014 **ALL CLEAN** (screened again for NL entity) |\n| **KVK** | \u26a0\ufe0f Not retrieved \u2014 JavaScript-rendered; KVK extract required |\n| **LEI** | Not found in GLEIF |\n| **Dutch directors** | \u26a0\ufe0f Unknown \u2014 not in COPAP brief; KVK extract needed for individual screening |\n\n**Priority action: KVK uittreksel** (certified Dutch registry extract) \u2014 will confirm KVK number, legal status, directors, and UBO register entry. Until Dutch directors are identified and screened, individual-level sanctions screening is incomplete. Parent entity research (Kaslowski family) is clean, reducing the probability of adverse findings.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 0/0 sources via Tor (Netherlands exit node)\n\nNo dark web exposure detected. Entity and owners clean across all 0 sources.\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "ORGANIK KIMYA NETHERLANDS BV",
+    "entity_country": "NL",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "europe": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 0
+}

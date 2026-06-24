@@ -1,0 +1,23 @@
+{
+  "job_id": "41782a63-3943-4297-a37b-2b60df92350a",
+  "scenario": "cir",
+  "status": "failed",
+  "region": "gulf",
+  "entity_name": "COPAP MIDDLE EAST GENERAL TRADING CO. LLC",
+  "country": "AE",
+  "created_at": "2026-05-14T16:26:26.974213+00:00",
+  "updated_at": "2026-05-14T16:26:26.974213+00:00",
+  "blob_path": null,
+  "report_summary": null,
+  "error": "DATA SANITIZATION FAILURE \u2014 blocked terms detected in payload: Field 'entity_legal_name' contains blocked term 'copap'. This data must NEVER reach OpenClaw.",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "COPAP MIDDLE EAST GENERAL TRADING CO. LLC",
+    "entity_country": "AE",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "priority": "standard"
+  }
+}

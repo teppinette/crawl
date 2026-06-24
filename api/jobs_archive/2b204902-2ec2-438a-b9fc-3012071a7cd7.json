@@ -1,0 +1,87 @@
+{
+  "job_id": "2b204902-2ec2-438a-b9fc-3012071a7cd7",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "KLJ PETROPLAST LIMITED",
+  "country_code": "IN",
+  "created_at": "2026-05-04T14:49:44.456714+00:00",
+  "updated_at": "2026-05-04T14:51:45.786405+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:49:50.618495+00:00",
+      "verified": true,
+      "legal_name": "KLJ PETROPLAST LIMITED",
+      "cin": "U24290DL2020PLC371244",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "10 October, 2020",
+      "directors": [
+        "Mangi Lal Sethia",
+        "Kanhaiya Lal Jain",
+        "others"
+      ],
+      "registered_address": "KLJ HOUSE, 8A, 8TH FLOOR SHIVAJI MARG, NAJAFGARH ROAD, West Delhi, NEW DELHI, Delhi, India, 110015",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:49:56.070573+00:00",
+      "found": true,
+      "name": "KLJ PLASTICIZERS LIMITED.",
+      "linkedin_url": "https://in.linkedin.com/company/klj-plasticizers-limited.",
+      "industry": "Chemical Manufacturing",
+      "company_size": "201-500 employees",
+      "locations": [
+        "KLJ HOUSE ; 63,RAMA MARG; NAJAFGARH ROAD NEW DELHI, Delhi 110015, IN"
+      ],
+      "about": "KLJ PLASTICIZERS LIMITED. is a Chemical company based out of KLJ HOUSE ; 63,RAMA MARG; NAJAFGARH ROAD NEW, DELHI, Delhi, India.",
+      "followers": 3925,
+      "employees_on_linkedin": 147,
+      "organization_type": "Public Company",
+      "website": "https://www.kljindia.com/",
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "Dr. Vrajesh Aghera",
+          "link": "https://in.linkedin.com/in/dr-vrajesh-aghera-005891b?trk=org-employees"
+        },
+        {
+          "name": "Ravi Gupta",
+          "link": "https://in.linkedin.com/in/ravi-gupta-651a29b?trk=org-employees"
+        },
+        {
+          "name": "Rucha V.",
+          "link": "https://in.linkedin.com/in/ruchavikharankar?trk=org-employees"
+        },
+        {
+          "name": "Rakesh Ranjan",
+          "link": "https://in.linkedin.com/in/rakesh-ranjan-073b8518?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:51:45.785775+00:00",
+      "risk_level": "CLEAN",
+      "total_findings": 0,
+      "sources_searched": 0,
+      "sources_with_results": 0,
+      "by_type": {},
+      "key_findings": [],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "KLJ PETROPLAST LIMITED",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

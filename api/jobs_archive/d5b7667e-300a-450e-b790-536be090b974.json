@@ -1,0 +1,33 @@
+{
+  "job_id": "d5b7667e-300a-450e-b790-536be090b974",
+  "scenario": "cir",
+  "status": "failed",
+  "region": "americas",
+  "entity_name": "SELA INDUSTRIES INC",
+  "country": "CA",
+  "created_at": "2026-05-22T21:37:36.645243+00:00",
+  "updated_at": "2026-05-22T21:37:51.666754+00:00",
+  "blob_path": null,
+  "report_summary": null,
+  "error": "americas: No existing session",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "SELA INDUSTRIES INC",
+    "entity_country": "CA",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "failed",
+      "error": "No existing session"
+    }
+  },
+  "errors": [
+    "americas: No existing session"
+  ]
+}

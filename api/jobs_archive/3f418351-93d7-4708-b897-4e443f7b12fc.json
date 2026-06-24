@@ -1,0 +1,74 @@
+{
+  "job_id": "3f418351-93d7-4708-b897-4e443f7b12fc",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "ASIAN PAINTS LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-22T13:47:29.683491+00:00",
+  "updated_at": "2026-05-22T13:54:13.631345+00:00",
+  "blob_path": "osint-staging/cir/india/asian_paints_limited_IN_20260522.json",
+  "report_summary": "`DONE: Asian Paints Limited, IN -- Risk: 2 CLEAR -- Active CCI/Supreme Court competition case; all other checks clean`\n\n---\n\n**ASIAN PAINTS LIMITED `IN` \u2014 Risk: 2 / CLEAR**\n\n- \u2705 `~/crawl/output/asian_paints_limited_IN_20260522.json` \u2014 saved & uploaded to `stcrawlosint/osint-staging/crawl-india/`\n\n| Check | Result |\n|---|---|\n| CIN | L24220MH1945PLC004598 \u2014 Active, Listed (BSE 500820 / NSE ASIANPAINT) |\n| Incorporated | 24 Oct 1945 \u00b7 Mumbai |\n| Capital | Auth \u20b9100 Cr \u00b7 Paid-up \u20b995.92 Cr |\n| Directors (confirmed) | Amit Syngle (MD), Seshasayee Ramaswami, Malav Dani, Manish Choksi, Amrita Vakil, Nehal Vakil, Milind Sarwate, Soumitra Bhattacharya, Gopichand Katragadda, Ireena Vittal, Ashish Choksi, Varun Berry |\n| Bank charges | None (capital markets funded) |\n| Sanctions | No hits |\n| PEP | No hits |\n| NCLT/Insolvency | None |\n\n**Notable findings:**\n\n- \ud83d\udd34 **Active CCI enforcement at Supreme Court** \u2014 W.P. 2887/2025 (Bombay HC \u2192 SC, Oct 2025): Asian Paints challenging Competition Commission investigation for abuse of dominant position. Underlying CCI Case No. 36/2019 (JSW Paints complaint) established prima facie dominance finding. Multiple dealer complaints pattern (2015, 2019, 2021).\n- \ud83d\udfe1 **FY2025 financial deterioration** \u2014 Net profit -32.6%, EBITDA -21%, revenue -4.3%. Driven by Grasim/Birla Opus competitive entry with \u20b910,000 Cr capex.\n- \ud83d\udfe1 **Ransomware incident** (RagnarLocker, Dec 2020) \u2014 resolved, no enforcement action.\n- \u26a0\ufe0f **DATA ERROR IN JOB REQUEST** \u2014 Suresh Narayanan (DIN 07246738) is **Nestle India's CMD**, not an Asian Paints director. No association found. Recommend correcting source data. Also: Jeyamurugan Jeyapandiyan Ramalingam and Jigish Shailesh Choksi not found in current MCA director list \u2014 may be Company Secretary / former directors.\n- \u2705 Publicly listed, SEBI-supervised, 80-year track record, transparent founding-family ownership (~52.6% promoter), well-established website and operations.\n---\n\n## DARK WEB SCREENING \u2014 CRITICAL\n**5 actionable findings** from 7/57 sources via Tor (Netherlands exit node) (30 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| World Bank Debarment | 1 |\n| Credential compromise | 1 |\n| Adverse media | 1 |\n| SSL certificates (crt.sh) | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n| Website scans (URLScan) | 4 |\n\n**Key findings:**\n- WORLD BANK DEBARMENT: \n- CREDENTIAL COMPROMISE: www.asianpaints.com\n- ADVERSE MEDIA: Asian Paints Limited: Shareholders Board Members Managers and Company ...\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Unpacking TS Madison\u2019s recent comments: Why it matters to RP; AITA for bringing sources to my disagreement with my daughte; Immigrant parents do not want me to become a mental health c (+12 more) |\n| urlscan | 11 | www.asianpaints.com; Trusted Wall Painting, Home Painting & Waterproofing in Indi; Shree Ganesh Stone Care (+8 more) |\n| duckduckgo_tor | 10 | Asian Paints; Asian Paints - Wikipedia; Asian Paints Limited - Coatings World (+7 more) |\n| crtsh | 5 | www.asianpaints.com; certificate_transparency (+3 more) |\n| duckduckgo_adverse | 1 | Asian Paints Limited: Shareholders Board Members Managers an |\n| hudsonrock_cavalier | 1 | www.asianpaints.com |\n| adb_sanctions | 1 | debarment_record |\n\n### All findings detail\n\n**WORLD BANK DEBARMENT** (1)\n-  \u2014 *adb_sanctions* [https://www.adb.org/who-we-are/integrity/sanctions]\n\n**CREDENTIAL COMPROMISE** (1)\n- www.asianpaints.com \u2014 *hudsonrock_cavalier*\n\n**ADVERSE MEDIA** (1)\n- Asian Paints Limited: Shareholders Board Members Managers and Company ... \u2014 *duckduckgo_adverse* [/l/?uddg=https%3A%2F%2Fin.marketscreener.com%2Fquote%2Fstock%2FASIAN%2DPAINTS%2D]\n\n**WEB MENTION** (10)\n- Asian Paints \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.asianpaints.com%2F&rut=4359f87458c182b661a3051176396e]\n- Asian Paints - Wikipedia \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FAsian_Paints&rut=72e4dccd8ee629]\n- Asian Paints Limited - Coatings World \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.coatingsworld.com%2Ftop%2Dcompany%2Dprofile%2Fasian%2]\n- Asian Paints International \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.asianpaints.com.sg%2F&rut=f096a23c988eb87a597fec18223]\n- Asian Paints Limited (ASIANPAINT.NS) - Yahoo Finance \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fsg.finance.yahoo.com%2Fquote%2FASIANPAINT.NS%2F&rut=1d4bf]\n- ASIANPAINT Stock Price Quote | Morningstar \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.morningstar.com%2Fstocks%2Fxnse%2Fasianpaint%2Fquote&]\n- Asian Paints Ltd. - Trendlyne \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftrendlyne.com%2Fequity%2F117%2FASIANPAINT%2Fasian%2Dpaint]\n- Asian Paints Ltd: India's premier paint Company - FirmsWorld \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ffirmsworld.com%2Fasian%2Dpaints%2Dpaint%2Dcompany%2F&rut=]\n- ASIANPAINT Stock Price | Asian Paints (India) Ltd. Stock Quote (India ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.marketwatch.com%2Finvesting%2Fstock%2Fasianpaint%3Fco]\n- Asian Paints Share Price, Asian Paints Stock Price, Asian Paints Ltd ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.moneycontrol.com%2Findia%2Fstockpricequote%2Fpaintsva]\n\n**SOCIAL MENTION** (15)\n- Unpacking TS Madison\u2019s recent comments: Why it matters to RPDR \u2014 *reddit* [https://reddit.com/r/rupaulsdragrace/comments/1kvhbwf/unpacking_ts_madisons_rece]\n- AITA for bringing sources to my disagreement with my daughters gf? \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1e1874d/aita_for_bringing_so]\n- Immigrant parents do not want me to become a mental health counselor \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1660ey9/immigrant_parents_do]\n- An Insider's take: What's really going wrong with Asian Paints. \u2014 *reddit* [https://reddit.com/r/IndiaBusiness/comments/1lb1j3m/an_insiders_take_whats_reall]\n- American Cultures in the Modern Day Mod \u2014 *reddit* [https://reddit.com/r/EU5/comments/1t6dbei/american_cultures_in_the_modern_day_mo]\n- Unpacking TS Madison\u2019s recent comments - and why she isn\u2019t just \"prejudiced\" \u2014 *reddit* [https://reddit.com/r/RPDRDRAMA/comments/1kuquov/unpacking_ts_madisons_recent_com]\n- [1/3] The Ultimate DD guide to the moon!!. Crazy Melon \u2014 *reddit* [https://reddit.com/r/GME/comments/n2hgxq/13_the_ultimate_dd_guide_to_the_moon_cr]\n- Immigrant parents do not want me to become a mental health counselor [Concluded] \u2014 *reddit* [https://reddit.com/r/BORUpdates/comments/1o3q75k/immigrant_parents_do_not_want_m]\n- Jefferies upgrades Varun Bev, HUL &amp; Asian Paints to buy from underperform, says, see gradual imp \u2014 *reddit* [https://reddit.com/r/InvestmentsTrading/comments/1lv87us/jefferies_upgrades_varu]\n- What are some Houston life hacks that we should all know? \u2014 *reddit* [https://reddit.com/r/houston/comments/17nmfmv/what_are_some_houston_life_hacks_t]\n- The Left is turning me into a Zionist, the fundamental misunderstanding of 'The Jew'. \u2014 *reddit* [https://reddit.com/r/IsraelPalestine/comments/1lvutce/the_left_is_turning_me_int]\n- Asian Paints vs other listed paint stocks. \u2014 *reddit* [https://reddit.com/r/IndianStreetBets/comments/1c1qmsy/asian_paints_vs_other_lis]\n- Why Metal Does Not Uphold White Supremacy \u2014 *reddit* [https://reddit.com/r/MetalForTheMasses/comments/1o3bkvo/why_metal_does_not_uphol]\n- [DISCUSSION] A letter to the jailbreak community \u2014 *reddit* [https://reddit.com/r/jailbreak/comments/6bu42j/discussion_a_letter_to_the_jailbr]\n- Asian Paints: Planning a new factory in Pithampur with 2,000 Cr investment. Long term investors are  \u2014 *reddit* [https://reddit.com/r/IndianBullishStocks/comments/1b49yk4/asian_paints_planning_]\n\n**CERTIFICATE SUMMARY** (1)\n- www.asianpaints.com \u2014 *crtsh*\n\n**SSL CERTIFICATE** (1)\n-  \u2014 *crtsh*\n\n**DOMAIN SCAN SUMMARY** (1)\n- www.asianpaints.com \u2014 *urlscan*\n\n**WEBSITE SCAN** (4)\n- Trusted Wall Painting, Home Painting & Waterproofing in India - Asian Paints \u2014 *urlscan* [https://www.asianpaints.com/]\n- Shree Ganesh Stone Care \u2014 *urlscan* [https://shreeganeshstonecare.com.mumbaistoneservice.com/]\n- Torrent TXT1050CMB1185 - Wall Texture Design - Asian Paints \u2014 *urlscan* [https://www.asianpaints.com/interior-textures/torrent-txt1050cmb1185.html]\n- Beautiful Homes Painting Service: Expert Wall & House Painting - Asian Paints \u2014 *urlscan* [https://www.asianpaints.com/services/asian-paints-safe-painting-service.html?utm]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "ASIAN PAINTS LIMITED",
+    "entity_country": "IN",
+    "entity_tax_id": "L24220MH1945PLC004598",
+    "key_individuals": [
+      {
+        "name": "Suresh Narayanan",
+        "title": "Director (DIN: 07246738)"
+      },
+      {
+        "name": "SESHASAYEE RAMASWAMI"
+      },
+      {
+        "name": "AMIT SYNGLE"
+      },
+      {
+        "name": "JEYAMURUGAN JEYAPANDIYAN RAMALINGAM"
+      },
+      {
+        "name": "MANISH MAHENDRA CHOKSI"
+      },
+      {
+        "name": "MALAV ASHWIN DANI"
+      },
+      {
+        "name": "AMRITA AMAR VAKIL"
+      },
+      {
+        "name": "NEHAL VAKIL ABHAY"
+      },
+      {
+        "name": "JIGISH SHAILESH CHOKSI"
+      },
+      {
+        "name": "MILIND SHRIPAD SARWATE"
+      },
+      {
+        "name": "GOPICHAND KATRAGADDA"
+      },
+      {
+        "name": "SOUMITRA BHATTACHARYA"
+      },
+      {
+        "name": "IREENA VITTAL"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 5,
+  "dark_web_sources": 57
+}

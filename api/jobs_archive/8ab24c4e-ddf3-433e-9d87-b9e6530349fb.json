@@ -1,0 +1,76 @@
+{
+  "job_id": "8ab24c4e-ddf3-433e-9d87-b9e6530349fb",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "gulf",
+  "entity_name": "AquaChemie Middle East FZE",
+  "country": "AE",
+  "created_at": "2026-05-22T17:17:02.735512+00:00",
+  "updated_at": "2026-05-22T17:25:13.317067+00:00",
+  "blob_path": "osint-staging/cir/gulf/aquachemie_middle_east_fze_AE_20260522.json",
+  "report_summary": "Blob uploaded (HTTP 201). Research complete.\n\n---\n\n**DONE: AquaChemie Middle East FZE, AE \u2014 Risk: 2 CLEAR \u2014 Established JAFZA chemical manufacturer (2008); #8 on ICIS Top 100 Chemical Distributors ($313M revenue); $50M DP World terminal; Kurita (Japan) JV partner; transparent UBO chain; no sanctions/adverse media**\n\n---\n\n## Research Summary\n\n### Entity Confirmed\n**AQUACHEMIE MIDDLE EAST FZE** \u2014 JAFZA (Jebel Ali Free Zone), Street 711, Plot B-048F01, Jebel Ali Free Zone (North), P.O. Box 211586, Dubai, UAE. Incorporated **19 October 2008**. 18-year-old established chemical manufacturer/distributor.\n\n---\n\n### All Workstreams \u2014 Key Findings\n\n| Check | Result |\n|---|---|\n| **Free zone** | \u2705 JAFZA \u2014 DP World operated, world-class compliance |\n| **Emirate** | \u2705 Dubai |\n| **RAK/Ajman flag** | \u2705 None \u2014 JAFZA, not high-risk FZ |\n| **CBUAE** | \u2705 Not a financial institution |\n| **DIFC Courts** | \u2705 NO CASES |\n| **UBO chain** | \u2705 TRANSPARENT: FZE \u2192 Aquachemie DMCC \u2192 Anandkumar Varadharajulu |\n| **Iran evasion** | \u2705 NOT DETECTED |\n| **Virtual office** | \u2705 NONE \u2014 20,000 sqm JAFZA industrial plot + $50M terminal |\n| **Sanctions (all lists)** | \u2705 NO HITS |\n| **Gulf Media** | \u2705 NO ADVERSE \u2014 positive coverage only |\n| **Dark web** | \u26a0\ufe0f Scan failed; 0 findings |\n\n---\n\n### Company Profile\n| Field | Value |\n|---|---|\n| Incorporated | 19 October 2008 |\n| ICIS Global Rank | **#8 Chemical Distributor** (~$313M revenue, 2025) |\n| Terminal | $50M petrochemical terminal, Jebel Ali Port, ~40,000 CBM |\n| Infrastructure | >$100M committed in UAE assets |\n| JV Partner | **Kurita Water Industries Ltd** (Tokyo Stock Exchange) |\n| Certifications | ISO 9001 \u00b7 ISO 14001 \u00b7 OHSAS 18001 \u00b7 CDI-Terminals |\n| Customers | 300+ GCC customers |\n| Co-founders | Anandkumar Varadharajulu (CEO) \u00b7 Subrato Saha (MD, IIT-educated) |\n| DP World | CEO personally attended $50M terminal groundbreaking |\n\n### Risk: **2 \u2013 CLEAR**\nAll checks passed. One of the leading established UAE chemical companies with major physical infrastructure, global industry recognition, and a transparent ownership structure. The Kurita JV (with a Tokyo-listed Japanese multinational) is an independent validation of AquaChemie's compliance standing.\n\n**Output saved:** `~/crawl/output/aquachemie_middle_east_fze_AE_20260522.json` \u2705\n**Blob uploaded:** `crawl-gulf/aquachemie_middle_east_fze_AE_20260522.json` \u2192 stcrawlosint/osint-staging \u2705\n---\n\n## DARK WEB SCREENING \u2014 MEDIUM\n**4 actionable findings** from 4/57 sources via Tor (Netherlands exit node) (21 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Adverse media | 4 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 11 |\n\n**Key findings:**\n- ADVERSE MEDIA: \u200fAnandkumar Varadharajulu\u200f - \u200fAquaChemie \u200f | LinkedIn (Anandkumar Varadharajulu)\n- ADVERSE MEDIA: Anandkumar Varadharajulu | Qatar | Decypha (Anandkumar Varadharajulu)\n- ADVERSE MEDIA: \u200fSubrato Saha\u200f - \u200fE-xplorer \u2022 Entrepreneur \u2022 Enabler - LinkedIn (Subrato Saha)\n- ADVERSE MEDIA: Subrato Saha | Director Profile - The Company Check (Subrato Saha)\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | \ud83d\udce2 AE10 Albemarle Middle East FZE is hiring a Sales Support S; Gate Dubai Secures Full Operational License From VARA, Expan; OKX Middle East has received a license from the Dubai Virtua (+12 more) |\n| duckduckgo_tor | 10 | Home - AquaChemie; Aquachemie Middle East Fze; Aquachemie Middle East FZE - Made in UAE Gate | \u0645\u0646\u0635\u0629 \u0635\u0646\u0639 \u0641\u064a  (+7 more) |\n| duckduckgo_adverse | 4 | \u200fAnandkumar Varadharajulu\u200f - \u200fAquaChemie \u200f | LinkedIn; Anandkumar Varadharajulu | Qatar | Decypha; \u200fSubrato Saha\u200f - \u200fE-xplorer \u2022 Entrepreneur \u2022 Enabler - Linke (+1 more) |\n\n### All findings detail\n\n**ADVERSE MEDIA** (4)\n- \u200fAnandkumar Varadharajulu\u200f - \u200fAquaChemie \u200f | LinkedIn \u2014 *duckduckgo_adverse* (searched: Anandkumar Varadharajulu) [/l/?uddg=https%3A%2F%2Fae.linkedin.com%2Fin%2Fanandkumar%2Dvaradharajulu%2D4564b]\n- Anandkumar Varadharajulu | Qatar | Decypha \u2014 *duckduckgo_adverse* (searched: Anandkumar Varadharajulu) [/l/?uddg=https%3A%2F%2Fwww.decypha.com%2Fen%2Fpeople%2Dlist%2FAnandkumar%2DVarad]\n- \u200fSubrato Saha\u200f - \u200fE-xplorer \u2022 Entrepreneur \u2022 Enabler - LinkedIn \u2014 *duckduckgo_adverse* (searched: Subrato Saha) [/l/?uddg=https%3A%2F%2Fae.linkedin.com%2Fin%2Fsubrato%2Dprofile&rut=5b013704c8ea]\n- Subrato Saha | Director Profile - The Company Check \u2014 *duckduckgo_adverse* (searched: Subrato Saha) [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fpeople%2Dprofile%2Fsubrato%2Dsa]\n\n**WEB MENTION** (10)\n- Home - AquaChemie \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Faquachemie.com%2F&rut=2ba57c3d29168bea1aa147f2df73d757623]\n- Aquachemie Middle East Fze \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.a]\n- Aquachemie Middle East FZE - Made in UAE Gate | \u0645\u0646\u0635\u0629 \u0635\u0646\u0639 \u0641\u064a \u0627\u0644\u0627\u0645\u0627\u0631\u062a \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fmadeinuaegate.ae%2Ffactories%2Faquachemie%2Dmiddle%2Deast]\n- AquaChemie - LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fae.linkedin.com%2Fcompany%2Faquachemie%2Dgt%2Dllc&rut=f99]\n- Aquachemie Middle East FZE, Dubai, United Arab Emirates ... - InfobelPRO \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fsearch.infobelpro.com%2Funitedarabemirates%2Fen%2Fbusines]\n- Aquachemie Middle East FZE - 11446825 - Dubai - B2BHint \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fb2bhint.com%2Fen%2Fcompany%2Fae%2Ddu%2Faquachemie%2Dmiddl]\n- Aquachemie Middle East Fze | United Arab Emirates Companies ... - 996CO \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.996co.com%2Fare%2Fcompany%2F11446996&rut=a35744b97aaf]\n- Company Data Summary Report Of Aquachemie Middle East Fze \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fchemxpert.com%2Fdownload%2Dsummary%2Dcompany%3Fvalue%3DAq]\n- The story of AquaChemie, the leading chemical player | Jafza, Dubai \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.jafza.ae%2Fcommunity%2Fstories%2Faquachemie%2F&rut=e4]\n- AQUACHEMIE MIDDLE EAST FZE - Middle East Coatings Show \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fexhibitors.middleeastcoatingsshow.com%2Fmiddle%2Deast%2Dc]\n\n**SOCIAL MENTION** (11)\n- \ud83d\udce2 AE10 Albemarle Middle East FZE is hiring a Sales Support Specialist at AE10 Albemarle Middle East  \u2014 *reddit* [https://reddit.com/r/jobboardsearch/comments/1kgmzy6/ae10_albemarle_middle_east_]\n- Gate Dubai Secures Full Operational License From VARA, Expanding Compliant Presence In Middle East \u2014 *reddit* [https://reddit.com/r/fabiopempy/comments/1kan6kt/gate_dubai_secures_full_operati]\n- OKX Middle East has received a license from the Dubai Virtual Assets Regulatory Authority (VARA), wh \u2014 *reddit* [https://reddit.com/r/CryptocurrencyScoop/comments/1983lnk/okx_middle_east_has_re]\n- Middle East regulatory clarity drives crypto industry growth \u2014 Binance FZE head \u2014 *reddit* [https://reddit.com/r/VirtualCoinCap/comments/17ap5a1/middle_east_regulatory_clar]\n- Do you be in problems for buying an essay \u2013 MCI Middle East FZE \u2014 *reddit* [https://reddit.com/r/TrendyMagazine/comments/yv2p3l/do_you_be_in_problems_for_bu]\n- How to deal with ISTA Middle East FZE? \u2014 *reddit* [https://reddit.com/r/dubai/comments/pghtwh/how_to_deal_with_ista_middle_east_fze]\n- The Middle East &amp; Africa OTR Tyre Market Key Players Outlook, Latest Trends and Forecast up to 2 \u2014 *reddit* [https://reddit.com/r/u_rickysheikh92/comments/fu7obg/the_middle_east_africa_otr_]\n- Pick 2 \u2014 *reddit* [https://reddit.com/r/GunPorn/comments/1sg2fme/pick_2/]\n- Q. A. / Q. C. Engineer (Dubai) | Engineering Jobs in Dubai, UAE by Patson Middle East FZE L.L.C | Ap \u2014 *reddit* [https://reddit.com/r/reddit.com/comments/6xosq/q_a_q_c_engineer_dubai_engineerin]\n- CP33 \u201cBuild\u201d \u2014 *reddit* [https://reddit.com/r/keltec/comments/1skw6ne/cp33_build/]\n- Today's LGS score - 1982 Browning \u2014 *reddit* [https://reddit.com/r/hipower/comments/1n2txg8/todays_lgs_score_1982_browning/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "AquaChemie Middle East FZE",
+    "entity_country": "AE",
+    "key_individuals": [
+      {
+        "name": "Anandkumar Varadharajulu",
+        "title": "Director"
+      },
+      {
+        "name": "Subrato Saha",
+        "title": "Director"
+      },
+      {
+        "name": "Naresh Chandra",
+        "title": "Director"
+      },
+      {
+        "name": "Anand Kumar Varadharajulu",
+        "title": "Managing Director"
+      },
+      {
+        "name": "V. Anandkumar"
+      },
+      {
+        "name": "Aquachemie DMCC",
+        "title": "UBO"
+      },
+      {
+        "name": "Aquachemie DMCC",
+        "title": "UBO"
+      },
+      {
+        "name": "Aquachemie DMCC",
+        "title": "UBO"
+      },
+      {
+        "name": "AquaChemie DMCC",
+        "title": "UBO"
+      },
+      {
+        "name": "Anandkumar Varadharajulu",
+        "title": "UBO"
+      },
+      {
+        "name": "Aquachemie DMCC",
+        "title": "UBO"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "gulf": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 4,
+  "dark_web_sources": 57
+}

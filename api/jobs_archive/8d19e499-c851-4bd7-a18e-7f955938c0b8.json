@@ -1,0 +1,31 @@
+{
+  "job_id": "8d19e499-c851-4bd7-a18e-7f955938c0b8",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "gulf",
+  "entity_name": "COPAP MIDDLE EAST GENERAL TRADING CO. LLC",
+  "country": "AE",
+  "created_at": "2026-05-15T12:46:39.110216+00:00",
+  "updated_at": "2026-05-15T12:47:20.027017+00:00",
+  "blob_path": "osint-staging/cir/gulf/copap_middle_east_general_trading_co_llc_AE_20260515.json",
+  "report_summary": "This entity was researched **~40 minutes ago** this session. The complete report is already on disk and uploaded.\n\n---\n\n**Existing report:** `~/crawl/output/copap_middle_east_general_trading_co_llc_AE_20260515.json`\n**Blob:** `crawl-gulf/copap_middle_east_general_trading_co_llc_AE_20260515.json` \u2192 stcrawlosint/osint-staging \u2705\n\n**DONE: COPAP Middle East General Trading Co. LLC, AE \u2014 Risk: 3 MONITOR \u2014 UAE entity of COPAP Inc. (Canada, est. 1989); no sanctions/adverse media; UAE DED registry details unconfirmed; director identities for UAE entity not verified**\n\n---\n\n### Summary (from existing report):\n\n| Check | Result |\n|---|---|\n| **Emirates / Zone** | Dubai mainland LLC (DET/DED) |\n| **Parent** | COPAP Inc., Montreal, Canada \u2014 est. 1989, EPCA member |\n| **Sanctions (OFAC/UN/EU/UK)** | \u2705 NO HITS |\n| **DIFC Courts** | \u2705 NO CASES |\n| **Gulf Media** | \u2705 NO ADVERSE |\n| **CBUAE** | \u2705 Not a financial institution |\n| **RAK/Ajman flag** | \u2705 None |\n| **Iran evasion** | \u2705 None detected |\n| **UAE DED registry** | \u26a0\ufe0f Registration details unconfirmed |\n| **UAE directors** | \u26a0\ufe0f Not identified |\n\n**Risk Score: 3 \u2014 MONITOR.** No re-research needed unless there is a specific new concern or different entity intended.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 0/0 sources via Tor (Netherlands exit node)\n\nNo dark web exposure detected. Entity and owners clean across all 0 sources.\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "COPAP MIDDLE EAST GENERAL TRADING CO. LLC",
+    "entity_country": "AE",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "priority": "standard"
+  },
+  "region_status": {
+    "gulf": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 0
+}

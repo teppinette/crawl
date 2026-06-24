@@ -1,0 +1,139 @@
+{
+  "job_id": "9d98a528-a2a3-4f94-8a8c-8822f381a650",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "AJK ENTERPRISES",
+  "country_code": "PK",
+  "created_at": "2026-05-04T15:49:40.473424+00:00",
+  "updated_at": "2026-05-04T15:50:05.888128+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:49:44.430494+00:00",
+      "verified": false,
+      "legal_name": null,
+      "registration_number": null,
+      "entity_status": null,
+      "company_type": null,
+      "cro": null,
+      "registration_date": null,
+      "fbr": null,
+      "all_matches": null,
+      "source": "SECP eServices (direct gov query)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:49:54.261919+00:00",
+      "found": true,
+      "name": "AJK Engineers (Pvt.) Ltd, Islamabad",
+      "linkedin_url": "https://pk.linkedin.com/company/ajkengineers",
+      "industry": "Civil Engineering",
+      "company_size": "51-200 employees",
+      "locations": [
+        "Islamabad, Punjab 44000, PK",
+        "67-D-1 Sir Syed Rd, Block D1 Block D 1 Gulberg III Lahore, Punjab, PK"
+      ],
+      "about": "AJK Engineers (Pvt.) Ltd. (formerly AJK Enterprises) was established in 2004 as a leading company of Professionals having rich experience in providing expert services as follows: Geotechnical Investigation; Geophysical Survey including Seismic Refraction, Down hole Seismic Survey and Electrical Resistivity Survey; Topographic Survey; Piling Works; Grouting and Anchoring Works; Pile / Plate Load Tests; Civil Works Construction; Concrete Coring Works; Non-Destructive Testing including Digital Schm",
+      "followers": 1733,
+      "employees_on_linkedin": 36,
+      "organization_type": "Privately Held",
+      "website": "https://www.ajk.net.pk/",
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "Muhammad Tahir",
+          "link": "https://pk.linkedin.com/in/muhammad-tahir-8331b092?trk=org-employees"
+        },
+        {
+          "name": "Umer Maqsood",
+          "link": "https://pk.linkedin.com/in/umer-maqsood-5670a294?trk=org-employees"
+        },
+        {
+          "name": "waqas ahmed",
+          "link": "https://pk.linkedin.com/in/waqas-ahmed-8a391aa2?trk=org-employees"
+        },
+        {
+          "name": "Hasnain Abbas",
+          "link": "https://pk.linkedin.com/in/hasnain-abbas-07947ba3?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:50:05.887292+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 60,
+      "sources_searched": 37,
+      "sources_with_results": 2,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "AJK ENTERPRISES",
+    "country_code": "PK",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

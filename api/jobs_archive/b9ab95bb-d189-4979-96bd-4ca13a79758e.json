@@ -1,0 +1,36 @@
+{
+  "job_id": "b9ab95bb-d189-4979-96bd-4ca13a79758e",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "ENGEN PETROLEUM (Pty) LIMITED",
+  "country": "ZA",
+  "created_at": "2026-05-22T16:50:54.832802+00:00",
+  "updated_at": "2026-05-22T16:59:53.093156+00:00",
+  "blob_path": null,
+  "report_summary": "Duplicate \u2014 `americas/engen_petroleum_pty_ltd_ZA_20260522.json` uploaded today at 16:49 UTC.\n\n| | |\n|---|---|\n| **File** | `americas/engen_petroleum_pty_ltd_ZA_20260522.json` |\n| **Risk** | **3 / MONITOR** |\n| **Founded** | 1881 \u2014 R156B revenue, 1,040+ stations, 8 African countries |\n| **Owner** | Vivo Energy 74% + Phembani 21% |\n| **\u2b06\ufe0f Risk driver** | **Vitol Group** (ultimate parent) paid **$164M FCPA** settlement (2020) \u2014 Latin America oil trading bribery; pre-dates Vitol's Engen ownership |\n| **DRC/Zimbabwe** | Operations in targeted-sanctions jurisdictions \u2014 screen payment flows |\n| **All direct sanctions** | CLEAR |\n\nNo re-research warranted.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 1/37 sources via Tor (Netherlands exit node) (10 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 37 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | Home | Engen; Engen Petroleum - Wikipedia; Engen Petroleum (Pty) Ltd (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- Home | Engen \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.engen.co.za%2F&rut=d14880007a12738c8d878d50a2acf0d13d]\n- Engen Petroleum - Wikipedia \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FEngen_Petroleum&rut=24b511e4688]\n- Engen Petroleum (Pty) Ltd \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.e]\n- Engen Petroleum (Pty) Ltd - SA Business Listings \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fsabusinesslistings.co.za%2Flistings%2Fengen%2Dpetroleum%2]\n- Engen Petroleum Limited - Naacam \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fnaacam.org.za%2Fmember%2Fengen%2Dpetroleum%2Dlimited%2F&r]\n- Engen Petroleum (Pty) Ltd - OpenCorpData \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fopencorpdata.com%2Flei%2F378900B3E97B6B501E76&rut=b841b73]\n- West Coast Petroleum \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwestcoastpetroleum.yolasite.com%2F&rut=468d6ad4c13d3fd7b8]\n- Engen - LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fza.linkedin.com%2Fcompany%2Fengen&rut=7942a35cad9bff3bae8]\n- Engen Petroleum Limited - The Road Freight Association - RFA \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Frfa.co.za%2FSA%2Fbusiness%2Fengen%2Dpetroleum%2Dlimited%2]\n- South Africa - Vivo Energy \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.vivoenergy.com%2Fen%2Fwhere%2Dwe%2Doperate%2Fsouth%2D]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "americas: Report file not found on remote VM (americas)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "ENGEN PETROLEUM (Pty) LIMITED",
+    "entity_country": "ZA",
+    "entity_address": "Engen Centre, 56 Shortmarket Street, Cape Town, 8001, South Africa",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (americas)"
+    }
+  },
+  "errors": [
+    "americas: Report file not found on remote VM (americas)"
+  ],
+  "dark_web_findings": 0,
+  "dark_web_sources": 37
+}

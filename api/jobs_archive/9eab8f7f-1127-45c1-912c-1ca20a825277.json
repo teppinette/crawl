@@ -1,0 +1,87 @@
+{
+  "job_id": "9eab8f7f-1127-45c1-912c-1ca20a825277",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "Playgro International Pty Ltd",
+  "country": "AU",
+  "created_at": "2026-04-30T15:21:45.706520+00:00",
+  "updated_at": "2026-04-30T15:29:31.363437+00:00",
+  "blob_path": null,
+  "report_summary": "**DONE: Playgro International Pty Ltd, AU \u2014 Risk: 2 CLEAR \u2014 34-year Melbourne infant toy brand; transparent 50/50 Brick/Trakman family trust UBO; co-founders have verifiable legal/patent backgrounds; no sanctions; one handled ACCC product recall (2021)**\n\n---\n\n## \ud83d\udccb Counterparty Research: Playgro International Pty Ltd\n`~/crawl/output/playgro_international_AU_20260430.json` \u2192 uploaded to `stcrawlosint/osint-staging/americas/`\n\n---\n\n### \ud83c\udfe2 Corporate Registry (Workstream 1A)\n\n| Field | Value |\n|---|---|\n| ABN | **20 692 189 012** |\n| ACN | 692 189 012 |\n| Status | **Active from 04 February 2026** |\n| Entity type | Australian Private Company (Pty Ltd) |\n| GST | Not currently registered (new entity, Feb 2026) |\n| Address | 17-19 Wangara Road, Cheltenham VIC 3192 |\n| Brand since | **1992** \u2014 founded by Gavin Trakman & Marc Brick in Melbourne |\n| Global reach | **100+ countries** |\n| Business names | PLAYGRO.COM \u00b7 IN YOUR DREAMS SLEEP SOLUTIONS \u00b7 IYDREAMS.COM |\n\n**Predecessor entities still active:**\n| Entity | ABN | Active Since |\n|---|---|---|\n| PLAYGRO PTY. LTD. | 87 109 699 336 | Oct 28, 2014 |\n| PLAYGRO PARTNERSHIP | 93 632 532 580 | Jun 1, 2022 |\n| Playgro Europe BV (NL) | KVK 17151814 | Boxtel, Netherlands |\n\n---\n\n### \ud83d\udd17 Beneficial Ownership (Workstream 2A)\n\n```\nPlaygro International Pty Ltd\n  \u251c\u2500\u2500 50% \u2014 BRICORP NOMINEES PTY. LTD. ATF THE BRICK FAMILY TRUST\n  \u2502           \u2192 UBO: Marc Kivah Brick (co-founder, CEO)\n  \u2514\u2500\u2500 50% \u2014 TRACORP PTY. LTD. ATF THE TRAKMAN FAMILY TRUST\n              \u2192 UBO: Gavin Michael Trakman (co-founder, product innovation)\n```\n**Standard Australian family trust structure \u2014 fully transparent, no opacity concern.**\n\n---\n\n### \ud83d\udc64 Directors Profile (Workstream 6A)\n\n| Director | Role | Background | PEP |\n|---|---|---|---|\n| **Marc Kivah Brick** | Co-Founder / CEO | Previously: Corrs Chambers Westgarth (top-tier AU law firm); Lander & Rogers (major AU law firm). Launched \"Fun First\" brand platform Feb 2024. | \u2705 NOT PEP |\n| **Gavin Michael Trakman** | Co-Founder / Product Development | Holds USPTO patents for sealed baby toy safety design (prevents mold/bacteria in squeaky toys). US entity Playgro International LLC director. | \u2705 NOT PEP |\n\n---\n\n### \ud83d\uded1 Sanctions (Workstream 3A) \u2014 All CLEAR\nNo OFAC, EU, UK, or UN hits. Australia is not a sanctioned jurisdiction. Both directors are private sector entrepreneurs with no government connection.\n\n---\n\n### \u26a0\ufe0f Adverse Media (Workstreams 4A/5A)\n\n**One handled product recall (LOW-MEDIUM):**\n- **2021 ACCC recall**: Playgro Clip Clop and Clopette Activity Rattles \u2014 specific batch codes (009837, 009986, 010066, 010199) sold Aug 2020\u2013Jan 2021 at Myer/Chemist Warehouse/Baby Bunting\n- **Hazard**: Abacus ring may dislodge, releasing small beads \u2014 choking risk\n- **Response**: Company offered replacement via phone/website \u2014 appropriately handled\n- **No enforcement action, no penalties, no court proceedings**\n\n**No other adverse findings** \u2014 no fraud, insolvency, litigation, or sanctions violations identified.\n\n---\n\n### \ud83c\udfaf Risk Assessment: **2 \u2014 CLEAR**\n\n| Factor | Finding |\n|---|---|\n| Jurisdiction | \u2705 Australia \u2014 very low risk (FATF/OECD member) |\n| UBO transparency | \u2705 50/50 named family trusts \u2014 Brick and Trakman |\n| Director background | \u2705 Law firm + USPTO patents \u2014 highly credible |\n| Operating history | \u2705 34 years (since 1992) |\n| Sanctions | \u2705 None |\n| Adverse media | \u2705 None (one handled product recall) |\n| Product type | \u2705 Infant toys \u2014 no dual-use, no controlled goods |\n| Corporate restructuring | \u26a0\ufe0f New ABN Feb 2026 \u2014 ongoing restructuring from older entities (low concern given 34-year history) |\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**60 findings** from 2/41 sources via Tor (Netherlands exit node)\n\n| Category | Count |\n|----------|-------|\n| Web mentions (Tor-routed) | 10 |\n\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "americas: Report file not found on remote VM (americas)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "Playgro International Pty Ltd",
+    "entity_country": "AU",
+    "entity_address": "17-19 Wangara Road, Cheltenham, Victoria 3192, Australia",
+    "entity_tax_id": "ABN 20 692 189 012",
+    "key_individuals": [
+      {
+        "name": "Gavin M Trakman"
+      },
+      {
+        "name": "Marc K Brick"
+      },
+      {
+        "name": "MARC KIVAH BRICK",
+        "title": "Director"
+      },
+      {
+        "name": "GAVIN MICHAEL TRAKMAN",
+        "title": "Director"
+      },
+      {
+        "name": "Marc Brick",
+        "title": "Director"
+      },
+      {
+        "name": "Gavin Trakman",
+        "title": "Director"
+      },
+      {
+        "name": "Gavin"
+      },
+      {
+        "name": "BRICORP NOMINEES PTY. LTD. ATF THE BRICK FAMILY TRUST",
+        "title": "UBO (50.00%)"
+      },
+      {
+        "name": "TRACORP PTY. LTD. ATF THE TRAKMAN FAMILY TRUST",
+        "title": "UBO (50.00%)"
+      },
+      {
+        "name": "Marc Brick",
+        "title": "UBO (50.00%)"
+      },
+      {
+        "name": "Gavin Trakman",
+        "title": "UBO (50.00%)"
+      },
+      {
+        "name": "Bricorp Nominees Pty. Ltd.",
+        "title": "UBO (50.00%)"
+      },
+      {
+        "name": "Tracorp Pty. Ltd.",
+        "title": "UBO (50.00%)"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (americas)"
+    }
+  },
+  "errors": [
+    "americas: Report file not found on remote VM (americas)"
+  ],
+  "dark_web_findings": 60,
+  "dark_web_sources": 41
+}

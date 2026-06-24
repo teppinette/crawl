@@ -1,0 +1,20 @@
+{
+  "job_id": "713da37c-0ce8-4c97-a4fd-395fd8f3a385",
+  "scenario": "dark-web",
+  "status": "failed",
+  "region": "darkweb",
+  "entity_name": "Plastics Technology de Mexico PTM",
+  "country": "",
+  "created_at": "2026-05-21T18:32:10.034749+00:00",
+  "updated_at": "2026-05-21T18:32:14.475631+00:00",
+  "blob_path": "osint-staging/dark-web/plastics_technology_de_mexico_ptm_20260521.json",
+  "report_summary": "0 findings from dark web sources",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_name": "Plastics Technology de Mexico PTM",
+    "owners": "Alberto Barrutia, Alejandro Llamas Galvan, Victor Llamas, Guiding Light Plastics",
+    "country_code": "MX"
+  }
+}

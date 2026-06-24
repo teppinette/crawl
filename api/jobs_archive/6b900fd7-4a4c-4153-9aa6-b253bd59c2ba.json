@@ -1,0 +1,47 @@
+{
+  "job_id": "6b900fd7-4a4c-4153-9aa6-b253bd59c2ba",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "KHUSHBU DYE-CHEM PRIVATE LIMITED",
+  "country": "IN",
+  "created_at": "2026-04-30T11:40:50.791193+00:00",
+  "updated_at": "2026-04-30T11:47:50.381729+00:00",
+  "blob_path": null,
+  "report_summary": "**DONE: Khushbu Dye-Chem Private Limited, India \u2014 Risk: 2 CLEAR \u2014 Established 23-year chemical trading company; \u20b9500-750 Cr revenue; clean sanctions/media profile; two NCLAT cases as creditor (positive indicator); minor flags: precursor chemical license verification needed and struck-off affiliate directorship**\n\n---\n\n## Research Summary \u2014 Khushbu Dye-Chem Private Limited\n\n`~/crawl/output/khushbu_dye_chem_private_limited_IN_20260430.json` | 10 sources | JSON valid\n\n---\n\n### Workstream Results\n\n| WS | Finding | Status |\n|---|---|---|\n| **1A Entity** | CIN U51410MH2003PTC139518 \u00b7 Active \u00b7 ROC Mumbai \u00b7 Inc. 10 Mar 2003 \u00b7 GSTIN 27AACCK1837C1ZV \u00b7 2 former names \u00b7 Revenue \u20b9500\u2013750 Cr | \u2705 |\n| **2A Individuals** | Ashok Manilal Dand (DIN 01598980, founding director 23y) + Urmila Ashok Dand (DIN 01439654, co-founder, likely spouse) \u00b7 Both active DIns \u00b7 No PEP \u00b7 No adverse media | \u2705 |\n| **2B Ownership** | Husband-wife co-ownership from inception \u00b7 Transparent structure \u00b7 No offshore \u00b7 No nominees | \u2705 |\n| **3A Sanctions** | **CLEAR (OSINT)** \u2014 Zero OFAC/UN/EU/UK hits for entity or either director | \u2705 |\n| **4A Litigation** | Two NCLAT cases found \u2014 **Khushbu is the CREDITOR in both** pursuing trade receivables under IBC. Indicates strong credit management. One minor flag: Aristo Herbofarm Pvt Ltd (struck-off pharma, both directors) | \u2705 |\n| **5A Adverse Media** | **None found** \u2014 23 years clean public record | \u2705 |\n| **6 PEP** | **CLEAR** \u2014 Private sector family entrepreneurs | \u2705 |\n| **7 Trade Risk** | NDPS Act precursor chemicals (toluene, IPA, acetone) \u2014 standard for this business; verify NCB drug precursor license. No Iran/sanctioned-country exposure identified. | \u2705 |\n| **8A Risk** | **2/5 CLEAR** \u2014 Legitimate, established business | \u2705 |\n\n### Financial Snapshot\n\n| Metric | FY2024 | Assessment |\n|---|---|---|\n| Revenue | **\u20b9500\u2013750 Cr** | Mid-size chemical distributor |\n| D/E Ratio | **0.11** | Very conservative \u2713 |\n| Gross Margin | 0.3% | Typical commodity trading |\n| Operating Margin | 0.2% | Normal for sector |\n| Net Profit Margin | \u22120.02% | Near break-even |\n| Open bank charges | **\u20b964.25 Cr** | SBI \u20b925 Cr + Cosmos \u20b930 Cr + Axis \u20b97.5 Cr + Saraswat \u20b91.75 Cr |\n| Settled charges history | **\u20b963.06 Cr** | Strong repayment track record \u2713 |\n\n### The Litigation Cases (Both Favour Khushbu)\nBoth NCLAT cases show Khushbu as an assertive **creditor** recovering commercial dues from defaulting buyers who stopped payment on cheques \u2014 a sign of healthy credit management, not a concern. Products in the cases: ethanol, ethyl acetate, IPA, toluene, MIBK, acetone \u2014 all confirmed product types.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**60 findings** from 2/33 sources via Tor (Netherlands exit node)\n\n| Category | Count |\n|----------|-------|\n| Web mentions (Tor-routed) | 10 |\n\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "india: Report file not found on remote VM (india)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "KHUSHBU DYE-CHEM PRIVATE LIMITED",
+    "entity_country": "IN",
+    "entity_address": "M-403, Vardhaman Nagar, Dr R P Road, Mulund (W), Mumbai, Maharashtra 400080, India",
+    "entity_tax_id": "AACCK1837C",
+    "key_individuals": [
+      {
+        "name": "Ashok Manilal Dand"
+      },
+      {
+        "name": "Urmila Ashok Dand"
+      },
+      {
+        "name": "Ashok M Dand"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (india)"
+    }
+  },
+  "errors": [
+    "india: Report file not found on remote VM (india)"
+  ],
+  "dark_web_findings": 60,
+  "dark_web_sources": 33
+}

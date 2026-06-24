@@ -1,0 +1,41 @@
+{
+  "job_id": "a2640683-b299-4aeb-a861-1fe18d0184bb",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "CHEMNINE LLP",
+  "country": "IN",
+  "created_at": "2026-05-22T19:45:54.985045+00:00",
+  "updated_at": "2026-05-22T19:51:38.122095+00:00",
+  "blob_path": "osint-staging/cir/india/chemnine_llp_IN_20260522.json",
+  "report_summary": "`DONE: Chemnine LLP, IN -- Risk: 2 CLEAR -- Known platform counterparty; clean court/sanctions record; established Mumbai chemical trading address; LLP OSINT gap is standard`\n\n---\n\n**CHEMNINE LLP `IN` \u2014 Risk: 2 / CLEAR**\n\n- \u2705 `~/crawl/output/chemnine_llp_IN_20260522.json` \u2014 saved & uploaded to `stcrawlosint/osint-staging/crawl-india/`\n\n| Check | Result |\n|---|---|\n| LLPIN | ACQ-8594 \u2014 valid MCA LLP format |\n| Status | Presumed Active (no dissolution/strike-off found) |\n| Address | 333, Mahavir Chamber, Samuel Street, Mumbai 400003 \u2713 legitimate chemical trading hub |\n| Partners | Aashil Apurva Shah + Shaurya Apurva Shah \u2014 brothers (Gujarati family LLP) |\n| Website | Not found (chemnine.com doesn't resolve) |\n| Court records | **Zero** across all Indian Kanoon searches |\n| Sanctions | No hits |\n| PEP | No hits |\n| SEBI/ED/RBI | No actions found |\n| Tofler | Not indexed (standard for Indian LLPs \u2014 not anomalous) |\n| Platform status | \u2705 **Listed in TOOLS.md as known platform counterparty** |\n\n**Assessment notes:**\n\n- \u2705 **Known platform counterparty** \u2014 explicitly named in TOOLS.md alongside Shivtek Spechemi as recognised counterparty\n- \u2705 **Address verified** \u2014 333 Mahavir Chamber, Samuel Street (Vadgadi/Masjid Bunder) is one of Mumbai's oldest and most established chemical trading districts; the building has multiple active chemical traders at different units\n- \u2705 **Clean profile** \u2014 no court cases, no enforcement actions, no sanctions, no adverse media across 15+ sources\n- \u2705 **Simple family structure** \u2014 two-partner sibling LLP, Gujarati trading family background typical for Samuel Street chemical traders\n- \u26a0\ufe0f **LLP registries under-indexed** \u2014 Indian LLPs systematically absent from Tofler/ZaubaCorps (normal); MCA21 direct verification recommended for completeness\n- \u26a0\ufe0f **GST/IEC/DPIN not independently verified** \u2014 recommend confirming via counterparty-provided documentation\n- \u26a0\ufe0f **Chemical product lines unknown** \u2014 specific products/HS codes not identified; recommend obtaining product list for trade compliance screening\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**1 actionable findings** from 2/49 sources via Tor (Netherlands exit node) (10 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Web mentions (Tor-routed) | 10 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: NOT FOUND \u2014 chemnine.com domain failed to resolve (fetch error); no active compa\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | Chemnine Llp - 2026 Insights | The Company Check; Chemical Solutions for a Sustainable Future; Chemnine Llp - Lei: 8945000ppsczkmkqru35 (+7 more) |\n| hudsonrock_cavalier | 1 | NOT FOUND \u2014 chemnine.com domain failed to resolve (fetch err |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- NOT FOUND \u2014 chemnine.com domain failed to resolve (fetch error); no active company website identifie \u2014 *hudsonrock_cavalier*\n\n**WEB MENTION** (10)\n- Chemnine Llp - 2026 Insights | The Company Check \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fcompany%2Fchemnine%2Dllp%2FACQ%]\n- Chemical Solutions for a Sustainable Future \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fchemnine9.com%2F&rut=1e539932ec1d18338f8b5d048b07e5e7c56e]\n- Chemnine Llp - Lei: 8945000ppsczkmkqru35 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Flei.bloomberg.com%2Fleis%2Fview%2F8945000PPSCZKMKQRU35&ru]\n- Chemnine Llp - Company, Directors, Charges and Compliance details ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.filesure.in%2Fcompany%2Fchemnine%2Dllp%2FACQ%2D8594%3]\n- Chemnine Llp - 2026 Company Profile - Tracxn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Fchemnine%2Dll]\n- CHEMNINE LLP India, Mumbai | Info-clipper.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.info%2Dclipper.com%2Fen%2Fcompany%2Findia%2Fchemnine%]\n- CHEMNINE \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fen.chemnine.com%2F&rut=7032db95b2342e7e2cdcdcea7449981d9c]\n- CHEMNINE LLP HAVING LLPIN ACQ-8594 IS 8 MONTHS & 21 DAYS OLD LLP at ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.falconebiz.com%2FLLP%2FCHEMNINE%2DLLP%2DACQ%2D8594&ru]\n- CHEMNINE LLP - 8945000PPSCZKMKQRU35 (Issued) - India LEI \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Findialei.in%2Fdetailed%2Dinformation%2F58604228%2F8945000]\n- CHEMNINE LLP | LLPIN ACQ-8594 Company Profile, Directors & MCA Records ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fqorpiq.com%2Fcompany%2Fchemnine%2Dllp%2FACQ%2D8594&rut=0d]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "CHEMNINE LLP",
+    "entity_country": "IN",
+    "entity_address": "333, Mahavir Chamber, Samuel Street, Mumbai, 400003, Maharashtra",
+    "entity_tax_id": "ACQ-8594",
+    "key_individuals": [
+      {
+        "name": "Aashil Apurva Shah"
+      },
+      {
+        "name": "Shaurya Apurva Shah"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 1,
+  "dark_web_sources": 49
+}

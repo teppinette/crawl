@@ -1,0 +1,19 @@
+{
+  "job_id": "bb7e009a-b605-46e5-aded-b5649d5836fe",
+  "scenario": "dark-web",
+  "status": "completed",
+  "region": "darkweb",
+  "entity_name": "Envases Impresos Cordillera SPA Chile packaging",
+  "country": "",
+  "created_at": "2026-05-22T20:14:36.276345+00:00",
+  "updated_at": "2026-05-22T20:15:51.018855+00:00",
+  "blob_path": "osint-staging/dark-web/envases_impresos_cordillera_spa_chile_packaging_20260522.json",
+  "report_summary": "25 findings from dark web sources",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_name": "Envases Impresos Cordillera SPA Chile packaging",
+    "country_code": "CL"
+  }
+}

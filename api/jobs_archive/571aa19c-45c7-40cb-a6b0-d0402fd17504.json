@@ -1,0 +1,139 @@
+{
+  "job_id": "571aa19c-45c7-40cb-a6b0-d0402fd17504",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "AL NOOR AGRO CHEMICALS",
+  "country_code": "PK",
+  "created_at": "2026-05-04T14:41:32.948585+00:00",
+  "updated_at": "2026-05-04T14:43:07.443126+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:41:37.705006+00:00",
+      "verified": false,
+      "legal_name": null,
+      "registration_number": null,
+      "entity_status": null,
+      "company_type": null,
+      "cro": null,
+      "registration_date": null,
+      "fbr": null,
+      "all_matches": null,
+      "source": "SECP eServices (direct gov query)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:41:44.782089+00:00",
+      "found": true,
+      "name": "Al-Noor Agrochemicals",
+      "linkedin_url": "https://gt.linkedin.com/company/al-noor-agrochemicals",
+      "industry": "Consumer Services",
+      "company_size": "501-1,000 employees",
+      "locations": [
+        "61-A, Small Industrial Estate Bahawalpur, Punjab 631000, PK"
+      ],
+      "about": "Redefining Agriculture",
+      "followers": 200,
+      "employees_on_linkedin": 26,
+      "organization_type": "Self-Owned",
+      "website": "https://www.alnooracm.com/",
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "Faisal Arshad",
+          "link": "https://pk.linkedin.com/in/faisal-arshad-1b438444?trk=org-employees"
+        },
+        {
+          "name": "Rana Bilawal",
+          "link": "https://pk.linkedin.com/in/rana-bilawal-06770348?trk=org-employees"
+        },
+        {
+          "name": "Muhammad Nazim Khurshid",
+          "link": "https://pk.linkedin.com/in/muhammad-nazim-khurshid-8b82266a?trk=org-employees"
+        },
+        {
+          "name": "MIRZA QAYYUM",
+          "link": "https://pk.linkedin.com/in/mirza-qayyum-5392b278?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:43:07.442472+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 61,
+      "sources_searched": 37,
+      "sources_with_results": 3,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50,
+        "debarment_record": 1
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "AL NOOR AGRO CHEMICALS",
+    "country_code": "PK",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

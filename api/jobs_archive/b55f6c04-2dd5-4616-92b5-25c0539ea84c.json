@@ -1,0 +1,141 @@
+{
+  "job_id": "b55f6c04-2dd5-4616-92b5-25c0539ea84c",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "KLJ POLYMERS AND CHEMICALS LIMITED",
+  "country_code": "IN",
+  "created_at": "2026-05-04T14:15:27.536809+00:00",
+  "updated_at": "2026-05-04T14:15:53.349734+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:15:34.296868+00:00",
+      "verified": true,
+      "legal_name": "K L J POLYMERS AND CHEMICALS LIMITED",
+      "cin": "U24119DL1989PLC036883",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "10 July, 1989",
+      "directors": [
+        "Kamal Jain",
+        "Shashi Katyal",
+        "others"
+      ],
+      "registered_address": "KLJ HOUSE, 8A, 3RD FLOOR SHIVAJI MARG, NAJAFGARH ROAD, West Delhi, NEW DELHI, Delhi, India, 110015",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:15:35.286137+00:00",
+      "found": true,
+      "name": "KLJ Polymers & Chemicals Ltd Unit-2",
+      "linkedin_url": "https://in.linkedin.com/company/klj-polymers-&-chemicals-ltd-unit-2",
+      "industry": "Plastics Manufacturing",
+      "company_size": "1,001-5,000 employees",
+      "locations": [
+        ". ., 110015, IN"
+      ],
+      "about": "KLJ Polymers is a leading polymer compound maker for over 4 decades of experience. The company makes polymer compounds based on PP, PE, SBS, SEBS, EVA, XLPE compounds besides other speciality polymer compounds based on custom specifications. The plant is in Silvassa and HO in Delhi, besides having sales network in all major cities in the country. The installed capacity is 55KT/year",
+      "followers": 3349,
+      "employees_on_linkedin": 293,
+      "organization_type": "Privately Held",
+      "website": "https://www.kljindia.com/",
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "Vipul Parmar",
+          "link": "https://in.linkedin.com/in/vipul-parmar-4489382?trk=org-employees"
+        },
+        {
+          "name": "Ram Prakash Sharma",
+          "link": "https://in.linkedin.com/in/ram-prakash-sharma-83496413?trk=org-employees"
+        },
+        {
+          "name": "Vipul Sancheti",
+          "link": "https://in.linkedin.com/in/vipul-sancheti-47228916?trk=org-employees"
+        },
+        {
+          "name": "Sushant Dutta",
+          "link": "https://in.linkedin.com/in/sushant-dutta-a123141a?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:15:53.349148+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 43,
+      "sources_searched": 37,
+      "sources_with_results": 2,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 33
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "KLJ POLYMERS AND CHEMICALS LIMITED",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "job_id": "2457680d-ebcd-4eb6-b4ee-3a168ef974fa",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "Agro China Pakistan",
+  "country_code": "PK",
+  "created_at": "2026-05-03T13:31:47.235567+00:00",
+  "updated_at": "2026-05-03T13:32:43.544117+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-03T13:32:09.373522+00:00",
+      "verified": true,
+      "legal_name": "AGROCHINA PAKISTAN (PVT.) LIMITED",
+      "registration_number": "0089758",
+      "entity_status": "Incorporated",
+      "company_type": "Private Limited Company",
+      "cro": "CRO Lahore",
+      "registration_date": "05-09-2014 10:03:11",
+      "fbr": {
+        "ntn": "4334750-9",
+        "status": "UNAVAILABLE",
+        "note": "FBR portal is down \u2014 manual verification required"
+      },
+      "all_matches": null,
+      "source": "SECP eServices (direct gov query)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-03T13:31:48.766658+00:00",
+      "found": false,
+      "note": "LinkedIn company page not found via search"
+    },
+    "linkedin_persons": {
+      "status": "completed",
+      "completed_at": "2026-05-03T13:32:04.013750+00:00",
+      "found_count": 1,
+      "total_searched": 1,
+      "profiles": [
+        {
+          "declared_name": "Muhammad Ali Khan",
+          "linkedin_name": "Muhammad Ali Khan",
+          "linkedin_url": "https://www.linkedin.com/in/muhammad-ali-khan-603a4621b",
+          "position": null,
+          "current_company": "SiSUN ELECTRIC",
+          "current_title": null,
+          "city": "Rawalpindi, Punjab, Pakistan",
+          "country_code": "PK",
+          "about": "With a Gold Medalist distinction in BSc. Agricultural Engineering from PMAS Arid\u2026",
+          "match_entity": false
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-03T13:32:43.543332+00:00",
+      "risk_level": "CRITICAL",
+      "total_findings": 61,
+      "sources_searched": 41,
+      "sources_with_results": 3,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50,
+        "infostealer_exposure": 1
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "Agro China Pakistan",
+    "country_code": "PK",
+    "persons": [
+      "Muhammad Ali Khan"
+    ],
+    "domain": "agrochina.pk",
+    "ntn": "4334750-9",
+    "cin": ""
+  }
+}

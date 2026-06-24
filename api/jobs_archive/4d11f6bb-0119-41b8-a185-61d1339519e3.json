@@ -1,0 +1,32 @@
+{
+  "job_id": "4d11f6bb-0119-41b8-a185-61d1339519e3",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "Papelera A y D Spa",
+  "country": "CL",
+  "created_at": "2026-04-22T17:40:48.058095+00:00",
+  "updated_at": "2026-04-22T17:47:27.377277+00:00",
+  "blob_path": "osint-staging/cir/americas/papelera_a_y_d_spa_CL_20260422_v3.json",
+  "report_summary": "Upload confirmed. Definitive consolidated report delivered.\n\n**DONE: Papelera A y D SpA, CL (v3 Definitive) \u2014 Risk: 2 CLEAR \u2014 19 Diario Oficial dates searched, constitution not located (dequienes.cl index gap confirmed); cohort anchor RUT 77.542.354-4 narrows birth to late-Jan/early-Feb 2022; all sanctions/PEP/adverse-media checks clear**\n\n---\n\n## \ud83d\udccb Counterparty Research v3 \u2014 Definitive Consolidated Report\n**Papelera A y D SpA | CL | RUT 77.542.298-K**\n`~/crawl/output/papelera_a_y_d_spa_CL_20260422_v3.json` \u2192 uploaded to `stcrawlosint/osint-staging/americas/`\n\n---\n\n### \ud83d\udd2c New Intelligence Added in v3\n\n**Constitution date narrowed by RUT cohort analysis:**\n\nOn March 14, 2022, the Diario Oficial MODIFICATION section contained three SpA companies with RUTs strikingly close to our target:\n\n| Company | RUT | Gap from target |\n|---|---|---|\n| YANGO CHILE SpA | 77.506.936-8 | \u2190 55,362 below |\n| PURA SpA | 77.528.697-0 | \u2190 33,601 below |\n| **Solar Araucano SpA** | **77.542.354-4** | **\u2190 56 above** |\n\n**Solar Araucano SpA (77.542.354-4) is only 56 RUT numbers above our target (77.542.298-K).** Both companies registered with SII at essentially the same moment \u2014 almost certainly during the same week in late January or early February 2022.\n\n**Diario Oficial constitution search \u2014 19 dates exhausted:**\nThe \"Papelera Manquehue SpA\" name was not found in the CONSTITUCI\u00d3N section of any of the 19 Diario Oficial dates scanned from January 24 to April 4, 2022. Conclusion: **dequienes.cl's index has a gap for this specific entry.** The entry exists in the official Diario Oficial archive but is not indexed on dequienes.cl. Formal verification requires direct access to the 27th Notar\u00eda of Santiago or the Conservador de Bienes Ra\u00edces y Comercio.\n\n---\n\n### \ud83d\uddfa\ufe0f Complete Research Timeline\n\n```\n[Late Jan 2022]  \u2014 SpA constitution deed signed at a Santiago notary\n                   \"Papelera Manquehue SpA\" is born legally at this moment\n                   \u2193 SII registration follows \u2192 RUT 77.542.298-K assigned\n[~Feb 2022]      \u2014 SII registers; RUT assigned (cohort with Solar Araucano SpA)\n[10 Mar 2022]    \u2014 Name change deed at Notar\u00eda 27a de Santiago, Orrego Luco 153\n[24 Mar 2022]    \u2014 Diario Oficial MODIFICACI\u00d3N published, Folio 2,103,486\n[Present 2026]   \u2014 PAPELERA A Y D SpA \u2014 ACTIVO, Mediana empresa\n```\n\n---\n\n### \ud83c\udfaf Final Risk Summary\n\n| Workstream | Finding |\n|---|---|\n| Corporate Registry | Active, SpA, mediana empresa (USD 2.3M\u20134.5M/yr) |\n| Beneficial Ownership | Single UBO inferred: Alberto Jos\u00e9 Arriagada Edwards (100%) |\n| Sanctions | **CLEAR** \u2014 no OFAC/EU/UK/UN hits |\n| Adverse Media | **CLEAR** \u2014 none found across 3 sessions |\n| Litigation | Poder Judicial/UAF **inaccessible** (portals down from server) |\n| PEP | **None identified** |\n| Trade Risk | **Zero** dual-use / sanctioned-country exposure |\n| Address | Guardia Vieja 202 Of. 902 \u2014 legitimate Providencia commercial address |\n\n### \u26a1 6 Outstanding Verification Actions\n| Priority | Action |\n|---|---|\n| \ud83d\udd34 HIGH | Certificado de Vigencia from Conservador de Bienes Ra\u00edces y Comercio |\n| \ud83d\udd34 HIGH | SpA constitution deed from Notar\u00eda 27a de Santiago |\n| \ud83d\udd34 HIGH | Poder Judicial causas search (pjud.cl / causas.cl) |\n| \ud83d\udfe1 MEDIUM | UAF listados AML check |\n| \ud83d\udfe1 MEDIUM | Address co-registration count at Guardia Vieja 202 Of. 902 |\n| \ud83d\udfe1 MEDIUM | OFAC SDN interactive search (sanctionssearch.ofac.treas.gov) |",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "Papelera A y D Spa",
+    "entity_country": "CL",
+    "entity_address": "Providencia, Santiago, Regi\u00f3n Metropolitana, Chile",
+    "entity_tax_id": "77.542.298-K",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": null
+    }
+  }
+}

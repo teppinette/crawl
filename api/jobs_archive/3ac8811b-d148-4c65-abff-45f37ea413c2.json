@@ -1,0 +1,34 @@
+{
+  "job_id": "3ac8811b-d148-4c65-abff-45f37ea413c2",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "SHREE BALAJI PAPER IMPEX",
+  "country": "IN",
+  "created_at": "2026-05-21T14:16:24.388288+00:00",
+  "updated_at": "2026-05-21T14:19:11.780320+00:00",
+  "blob_path": "osint-staging/cir/india/shree_balaji_paper_impex_IN_20260521.json",
+  "report_summary": "**DONE: Shree Balaji Paper Impex, India \u2014 Risk: 2 CLEAR \u2014 Delhi paper wholesale partnership; UDYAM-DL-01-0008545; GSTIN 07ABLFS4650G1ZZ Active; Small MSME FY2025-26; Partner: Praveen Goel; A4/photocopy paper distributor**\n\n`~/crawl/output/shree_balaji_paper_impex_IN_20260521.json` \u2014 6.2 KB, valid, research date 2026-05-21, all 8 workstreams complete.\n\nThree admin updates needed to subject block:\n1. **Add GSTIN**: 07ABLFS4650G1ZZ (the actual GSTIN \u2014 UDYAM number alone insufficient for KYC)\n2. **Add Praveen Goel** as key individual (proprietor/partner per TradeIndia)\n3. **Verify IEC** \u2014 the \"Impex\" (import-export) name warrants confirmation of DGFT import-export code\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 2/37 sources via Tor (Netherlands exit node) (18 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 37 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | Shree Balaji Paper Impex in New Delhi, Delhi, India - Compan; Shree Balaji Paper Impex; Leading Paper Importers & Exporters in India | Shri Balaji P (+7 more) |\n| reddit | 8 | Is it just me or are Indian tax/audit rules still designed f; India Daybook \u2013 Stocks in News*; !!!!!!!! (+5 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- Shree Balaji Paper Impex in New Delhi, Delhi, India - Company Profile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tradeindia.com%2Fshree%2Dbalaji%2Dpaper%2Dimpex%2D891]\n- Shree Balaji Paper Impex \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.s]\n- Leading Paper Importers & Exporters in India | Shri Balaji Paper Product \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.sbppexim.com%2F&rut=fea4818b7abe2840ea10a71a7e1d583c7]\n- SHREE BALAJI PAPER IMPEX | Import Data | Export Data | Customs Data ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fen.nbd.ltd%2Ftrader%2Finfo%2F26IN0507060148&rut=560543fca]\n- Shri Balaji Impex, New Delhi - Service Provider of Pvc ... - IndiaMART \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Fshreebalajiimpex%2Dnew%2Ddelhi%2F&rut]\n- Shree Balaji Paper Impex in Nangloi, Delhi - Best Motor Vehicle ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.justdial.com%2FDelhi%2FShree%2DBalaji%2DPaper%2DImpex]\n- SHREE BALAJI PAPER IMPEX Import Export Company Data India - Seair \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.seair.co.in%2Findian%2Dtrader%2Fshree%2Dbalaji%2Dpape]\n- GST Number for SHREE BALAJI PAPER IMPEX is 07ABLFS4650G1ZZ \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fpiceapp.com%2Fgst%2Dnumber%2Dsearch%2Fshree%2Dbalaji%2Dpa]\n- Company Contact Directory | PDF \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.scribd.com%2Fdocument%2F583012877%2FCustomer%2DData%2]\n- SHREE BALAJI PAPER IMPEX GST Number - 07ABLFS4650G1ZZ - Masters India \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.mastersindia.co%2Fgst%2Dsearch%2F%3Fname%3Dshree%2Dba]\n\n**SOCIAL MENTION** (8)\n- Is it just me or are Indian tax/audit rules still designed for a world of paper receipts and cash ex \u2014 *reddit* [https://reddit.com/r/IndiaTax/comments/1slccjz/is_it_just_me_or_are_indian_taxau]\n- India Daybook \u2013 Stocks in News* \u2014 *reddit* [https://reddit.com/r/UpdateINDIA/comments/1sxsgyl/india_daybook_stocks_in_news/]\n- !!!!!!!! \u2014 *reddit* [https://reddit.com/r/assam/comments/1kf5oey/_/]\n- JEE Preparation Books for sale \u2014 *reddit* [https://reddit.com/r/delhi_marketplace/comments/1ps28ys/jee_preparation_books_fo]\n- Things to do in Pune - Weekend of May 31st, Jun 01st \u2014 *reddit* [https://reddit.com/r/gemsofpune/comments/1kyupse/things_to_do_in_pune_weekend_of]\n- Very long read- Mixed Review about 24 incenses from my July haul. \u2014 *reddit* [https://reddit.com/r/Incense/comments/1ep0ue3/very_long_read_mixed_review_about_]\n- All Roads Lead to Rome: Chronicle of Hindu Death Foretold. By IndiaFacts. Share this to your acquain \u2014 *reddit* [https://reddit.com/r/IndiaRWResources/comments/jwnuq4/all_roads_lead_to_rome_chr]\n- Warning Tape Market Gross Margin, Attractiveness, Competitive Landscape and Key Players - Luban Pack \u2014 *reddit* [https://reddit.com/r/u_pam_genis/comments/br6jo4/warning_tape_market_gross_margi]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "SHREE BALAJI PAPER IMPEX",
+    "entity_country": "IN",
+    "entity_address": "2nd Floor, 769/777, MRM Chambers, D.B. Gupta Road, Karol Bagh, Central Delhi, Delhi 110005",
+    "entity_tax_id": "UDYAM-DL-01-0008545",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 37
+}

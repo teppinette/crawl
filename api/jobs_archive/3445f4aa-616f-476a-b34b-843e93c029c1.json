@@ -1,0 +1,141 @@
+{
+  "job_id": "3445f4aa-616f-476a-b34b-843e93c029c1",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "REPLIKA PRESS PVT LTD",
+  "country_code": "IN",
+  "created_at": "2026-05-04T16:12:44.809137+00:00",
+  "updated_at": "2026-05-04T16:14:27.161411+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:12:51.706095+00:00",
+      "verified": true,
+      "legal_name": "REPLIKA PRESS PRIVATE LIMITED",
+      "cin": "U74899DL1994PTC063845",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "28 December, 1994",
+      "directors": [
+        "Vikaran Seth",
+        "Attika Seth",
+        "others"
+      ],
+      "registered_address": "CSC-5,GROUND FLOOR BLOCK-QD,PITAMPURA, North West, DELHI, Delhi, India, 110034",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:13:01.714622+00:00",
+      "found": true,
+      "name": "REPLIKA PRESS PVT. LTD.",
+      "linkedin_url": "https://in.linkedin.com/company/replika-press-pvt.-ltd.",
+      "industry": "Printing Services",
+      "company_size": "501-1,000 employees",
+      "locations": [
+        "310-311, EPIP, HSIIDC Kundli Industrial Park, Kundli Sonepat, Haryana 131028, IN"
+      ],
+      "about": "Replika Press Pvt Ltd is a proud printing partner of well-known international publishers like Bloomsbury,Hodder Education,Oxford University Press,Penguin Random House,Simon&Schuster,Susaeta,Tandem and many more. Replika is one of the top integrated printing presses of India which prints and delivers close to 23 million books per year. Replika is spread out in area of 846,000 sq ft. in four swanky units in the EPIP Kundli,Sonepat, Haryana India Replika is professionally managed state-of-the-art c",
+      "followers": 3464,
+      "employees_on_linkedin": 228,
+      "organization_type": "Privately Held",
+      "website": "https://www.replikapress.com/",
+      "specialties": "Printing, Packaging, Binding, and Pre-Press",
+      "notable_employees": [
+        {
+          "name": "Umesh Sahu",
+          "link": "https://in.linkedin.com/in/umesh-sahu-78767315?trk=org-employees"
+        },
+        {
+          "name": "Anjani Pandey",
+          "link": "https://in.linkedin.com/in/anjani-pandey-26689616?trk=org-employees"
+        },
+        {
+          "name": "Norrie Gray",
+          "link": "https://uk.linkedin.com/in/norrie-gray-9881961a?trk=org-employees"
+        },
+        {
+          "name": "Jagdish Seth",
+          "link": "https://in.linkedin.com/in/jagdish-seth-97783226?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:14:27.160549+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 60,
+      "sources_searched": 37,
+      "sources_with_results": 2,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "REPLIKA PRESS PVT LTD",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

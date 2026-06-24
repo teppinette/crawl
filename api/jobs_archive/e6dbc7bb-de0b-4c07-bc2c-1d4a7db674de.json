@@ -1,0 +1,41 @@
+{
+  "job_id": "e6dbc7bb-de0b-4c07-bc2c-1d4a7db674de",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "europe",
+  "entity_name": "KIMYAGER KIMYA SANAYI A.S",
+  "country": "TR",
+  "created_at": "2026-05-22T20:09:39.776129+00:00",
+  "updated_at": "2026-05-22T20:12:43.887225+00:00",
+  "blob_path": null,
+  "report_summary": "**DONE: Kimyager Kimya Sanayi A.\u015e., TR \u2014 Risk: 3 MONITOR \u2014 All sanctions clean; Semih Akba\u015f clean; Vadistanbul premium address (positive legitimacy signal); no website (kimyager.com.tr for sale); MERSIS unconfirmed.**\n\n---\n\n## \ud83d\udccb Research Summary\n\n| Field | Finding |\n|---|---|\n| **Address** | **Vadistanbul Ofis Bloklar\u0131 1B**, Sar\u0131yer, Istanbul \u2014 premium Grade-A office complex |\n| **Name meaning** | \"Kimyager\" = Chemist (professional title) \u2014 specialty chemicals positioning |\n| **Website** | \u274c kimyager.com.tr is **for sale** (domain broker redirect); no operational site found |\n| **LEI** | Not registered |\n| **haberler.com** | \u2705 Zero results for both entity and Semih Akba\u015f |\n| **Risk vs. Ela Kimyevi/Ak-Ta\u015f** | **Risk 3** (not 4) \u2014 specific premium address + named individual are meaningful positive indicators |\n\n**Priority:** MERSIS extract; Semih Akba\u015f identity confirmation; product list with HS codes; Turkey EDD questionnaire. Request company website/profile document (B2B only operation likely explains absence of public website).\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 2/41 sources via Tor (Netherlands exit node) (24 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 41 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Ex-It safe for shrimp? (Parasite removal); Re\u015fad Halife'nin 19 \u0130ddias\u0131na 2000 Y\u0131l\u0131ndan Bir Ele\u015ftiri(Mar; [SORU] CB Ba\u015fdan\u0131\u015fman\u0131 Prof. \u0130.A. Sara\u00e7o\u011flu \u00fczerine (+12 more) |\n| duckduckgo_tor | 10 | Ki\u0307myager Ki\u0307mya Sanayi\u0307 A.\u015f.; K\u0130MYAGER K\u0130MYA SANAY\u0130 A.\u015e - LinkedIn; Kimyager Kimya Sanayi Anonim Sirketi (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- Ki\u0307myager Ki\u0307mya Sanayi\u0307 A.\u015f. \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.kimyager.com%2F&rut=c9ce461ec411d012fa26dd02a67358ae1]\n- K\u0130MYAGER K\u0130MYA SANAY\u0130 A.\u015e - LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftr.linkedin.com%2Fcompany%2Fkimyagerkimya&rut=f41ddf912cf]\n- Kimyager Kimya Sanayi Anonim Sirketi \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.k]\n- Kimyager Kimya A.S. Company Profile - Turkiye | Financials & Key ... - EMIS \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FTR%2FKimyager_Ki]\n- Kimyager Kimya Sanayi As. T\u00fcrkiye - T\u00fcrkiye \u015eirketleri ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.turkishexporter.com.tr%2Ftr%2Ffirmalar%2Fkimyager%2Dk]\n- Kimyager \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.kimyager.org%2F&rut=fc1cd2464e492d704d91df7382949a8b4]\n- Kimyager Kimya, i\u0307thalat-ihracat firmalar\u0131, \u0130stanbul, Sar\u0131yer ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fyandex.com.tr%2Fmaps%2Forg%2Fkimyager_kimya%2F11342706679]\n- K\u0130MYAGER K\u0130MYA SANAY\u0130 ANON\u0130M \u015e\u0130RKET\u0130 - find.com.tr \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.find.com.tr%2FCompany%2Fkimyagerkimyasanayianonimsirk]\n- K\u0130MYAGER K\u0130MYA SANAY\u0130 A.\u015e Information - RocketReach \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Frocketreach.co%2Fkimyager%2Dkimya%2Dsanayi%2Das%2Dprofile]\n- KIMYAGER KIMYA SANAYI ANONIM SIRKETI in Istanbul \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.info%2Dclipper.com%2Fen%2Fcompany%2Fturkey%2Fkimyager]\n\n**SOCIAL MENTION** (14)\n- Ex-It safe for shrimp? (Parasite removal) \u2014 *reddit* [https://reddit.com/r/shrimptank/comments/1nlut5g/exit_safe_for_shrimp_parasite_r]\n- Re\u015fad Halife'nin 19 \u0130ddias\u0131na 2000 Y\u0131l\u0131ndan Bir Ele\u015ftiri(Martin Gardner) \u2014 *reddit* [https://reddit.com/r/AteistTurk/comments/1qvtf0n/re\u015fad_halifenin_19_iddias\u0131na_20]\n- [SORU] CB Ba\u015fdan\u0131\u015fman\u0131 Prof. \u0130.A. Sara\u00e7o\u011flu \u00fczerine \u2014 *reddit* [https://reddit.com/r/lostmediatr/comments/1p2twle/soru_cb_ba\u015fdan\u0131\u015fman\u0131_prof_ia_s]\n- T\u00fcrkiye Proletaryas\u0131 | Birinci B\u00f6l\u00fcm: T\u00fcrkiye'nin Milli Ekonomisi ve Politik D\u00fczeni \u2014 *reddit* [https://reddit.com/r/KemalistTurkey/comments/1o0bnn1/t\u00fcrkiye_proletaryas\u0131_birinc]\n- Investco Holding operasyonu. 20 \u015firkete daha kayyum atand\u0131 \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1owrhmq/investco_holding_operasyonu_20_]\n- Geli\u015fmemi\u015f ( = geli\u015fmekte olan) \u00fclkelere dayat\u0131lan serbest ticaret, finansal liberalizasyon gibi \u00f6ne \u2014 *reddit* [https://reddit.com/r/Kamalizm/comments/1khuu8e/geli\u015fmemi\u015f_geli\u015fmekte_olan_\u00fclkele]\n- Manisada g\u00f6rd\u00fc\u011f\u00fcm b\u00fcy\u00fck bi eksiklik (g\u00fczelyurt tren dura\u011f\u0131) \u2014 *reddit* [https://reddit.com/r/manisaa/comments/1n6qteg/manisada_g\u00f6rd\u00fc\u011f\u00fcm_b\u00fcy\u00fck_bi_eksikli]\n- \ud83d\udcb8 3 y\u0131lda en \u00e7ok kazand\u0131ran hisseler \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1nb11br/3_y\u0131lda_en_\u00e7ok_kazand\u0131ran_hisse]\n- 25 A\u011fustos 2025 Pazartesi \ud83d\udcca Tera Yat\u0131r\u0131m \u00fczerinden en fazla al\u0131m yap\u0131lan hisseler \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1n05oyy/25_a\u011fustos_2025_pazartesi_tera_]\n- [Temett\u00fc Yat\u0131r\u0131m\u0131] \u2022 En yak\u0131n temett\u00fclere ait takvim \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1kw2x4i/temett\u00fc_yat\u0131r\u0131m\u0131_en_yak\u0131n_temet]\n- \ud83d\udcca21 A\u011fustos 2025 \u2022 Tera Yat\u0131r\u0131m \u00fczerinden 2,8 milyarl\u0131k al\u0131m yap\u0131lan pay senetleri \u2022 Borsa \u0130stanbul \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1mwlmv0/21_a\u011fustos_2025_tera_yat\u0131r\u0131m_\u00fcz]\n- Norve\u00e7 Varl\u0131k Fonu \ud83c\uddf3\ud83c\uddf4 31 Aral\u0131k 2024 - 30 Haziran 2025 \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1mpyhrq/norve\u00e7_varl\u0131k_fonu_31_aral\u0131k_20]\n- Orta vade i\u00e7in getirisi y\u00fcksek bekledi\u011fim bir portf\u00f6y dostlar yorumunuz nelerdir \u2014 *reddit* [https://reddit.com/r/Yatirim/comments/177k7tu/orta_vade_i\u00e7in_getirisi_y\u00fcksek_bek]\n- MKE Laboratuvar\u0131 \u0130lk Akreditasyon Sertifikas\u0131n\u0131 Ald\u0131 \u2014 *reddit* [https://reddit.com/r/haber71net/comments/1dp5gv3/mke_laboratuvar\u0131_ilk_akreditasy]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "europe: Report file not found on remote VM (europe)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "KIMYAGER KIMYA SANAYI A.S",
+    "entity_country": "TR",
+    "entity_address": "\u0130stanbul, Ayaza\u011fa Mahallesi, Azerbaycan Caddesi, Vadistanbul Ofis Bloklar\u0131 1B Blok, 34396, Sar\u0131yer",
+    "entity_tax_id": "unknown \u2014 MERSIS portal requires authentication; not retrievable via web search",
+    "key_individuals": [
+      {
+        "name": "Semih Akba\u015f"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "europe": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (europe)"
+    }
+  },
+  "errors": [
+    "europe: Report file not found on remote VM (europe)"
+  ],
+  "dark_web_findings": 0,
+  "dark_web_sources": 41
+}

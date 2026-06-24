@@ -1,0 +1,73 @@
+{
+  "job_id": "11231eca-5bf2-4b4b-a187-38fb0d950985",
+  "scenario": "product-intel",
+  "status": "completed",
+  "regions": [
+    "americas",
+    "europe",
+    "gulf",
+    "china",
+    "india"
+  ],
+  "product_name": "polypropylene homopolymer",
+  "target_markets": [
+    "US",
+    "DE",
+    "AE",
+    "CN",
+    "IN"
+  ],
+  "request_id": "cal-2f8daae56a",
+  "created_at": "2026-04-20T20:57:42.342161+00:00",
+  "updated_at": "2026-04-20T21:05:58.244046+00:00",
+  "blob_paths": [
+    "osint-staging/product-intel/china/polypropylene_homopolymer_cal_pp_homo_cn_20260420.json",
+    "osint-staging/product-intel/gulf/polypropylene_homopolymer_CAL-PP-HOMO_AE_20260420.json",
+    "osint-staging/product-intel/europe/polypropylene_homopolymer_20260420.json",
+    "osint-staging/product-intel/india/polypropylene_homopolymer_20260420.json",
+    "osint-staging/product-intel/americas/polypropylene_homopolymer_20260420.json"
+  ],
+  "report_summary": "JSON is valid \u2014 21 signals, 14 sources, all URLs populated, 100% coverage. Let me give you the full intelligence brief.\n\n---\n\n## \ud83d\udee2\ufe0f Product Intelligence Report: Polypropylene Homopolymer (CAL-PP-HOMO)\n**Market: US | Research Date: 2026-04-20 | Lookback: 90 days (Jan 20 \u2013 Apr 20, 2026)**\n**Output saved:** `~/crawl/output/pp_homo_US_20260420.json`\n\n---\n\n### \ud83d\udcca Price Index (5 signals)\n\n| Date | Market | Value Type | Price | Basis | Source |\n|---|---|---|---|---|---|\n| 2026-04-06 | US Gulf Coast | **Level** | **$1,655\u20131,675/MT** (mid $1,665) | FAS Houston | PolymerUpdate |\n| 2026-04-01 | North America | **Level** | **$1,390\u20131,470/MT** (mid $1,430) | EXW domestic avg | BusinessAnalytiq |\n| 2026-04-01 | North America | **Pct change** | **+20.2% MoM** (Mar \u2192 Apr) | \u2014 | BusinessAnalytiq |\n| 2026-04-15 | US | **Pct change** | **+34% YTD** (Jan \u2192 Apr baseline ~$1,067/MT) | \u2014 | BusinessAnalytiq |\n| 2026-04-20 | China DCE (reference) | **Pct change** | **-13.73% (30-day)** at 8,175 CNY/T | DCE futures | Trading Economics |\n\n> \u26a0\ufe0f China benchmark diverges sharply from US market \u2014 domestic demand weakness vs. US supply crisis driven by Hormuz closure.\n\n---\n\n### \ud83d\udcf0 News (4 signals \u2014 all negative/neutral)\n\n| Date | Headline | Sentiment | Source |\n|---|---|---|---|\n| Apr 10 | US PP Prices Surge on Monomer Tightness and Supply Disruptions | \ud83d\udd34 Negative | ChemAnalyst |\n| Apr 8 | Jubail Is Burning: PP Prices Have Doubled and the Worst Is Not Over | \ud83d\udd34 Negative | Adpack Limited |\n| Apr 18 | US Polypropylene Film Sourcing 2026: Why Domestic Matters More Than Ever | \ud83d\udfe1 Neutral | Profol Americas |\n| Apr 15 | US Plastic Resin Prices Up ~30% YTD; PP Leads at +34% | \ud83d\udd34 Negative | BusinessAnalytiq |\n\n---\n\n### \ud83d\udea8 Supply Disruptions (3 signals)\n\n| Date | Producer | Country | Event | Capacity Impact |\n|---|---|---|---|---|\n| Mar 27 | **SABIC** | Saudi Arabia | Force majeure on PP from Al Jubail; Iranian missile strike Apr 7 hit complex directly | >2M MT/year PP capacity; 6\u20138% of global chem output |\n| Feb 25 | **Advanced Petrochemical Co. / SEPC (Tasnee)** | Saudi Arabia | FM on PP + planned maintenance; expected back Mar/Apr (may be re-disrupted) | ~850,000 MT/year combined (~71,000 MT/month) |\n| Mar 10 | **Multiple US Gulf Coast crackers** | United States | Cracker outages tightening propylene monomer supply domestically | ~10\u201315% reduction in available Gulf Coast propylene |\n\n---\n\n### \ud83c\udf0d Geopolitical (4 signals)\n\n| Effective Date | Country | Event | Impact |\n|---|---|---|---|\n| Feb 28 | Iran/Gulf | US-Israel military op; Hormuz effectively closed mid-March; ~130 ships stranded; US naval blockade | Brent >$127/bbl; naphtha crack +179%; Jebel Ali hub offline |\n| Apr 7 | Saudi Arabia | Iranian missile/drone strike on Al Jubail \u2014 world's largest petrochem complex | PP raffia CFR W.Africa +39% (Platts); US domestic FAS Houston +52\u201358% vs pre-conflict |\n| Feb 24 | United States | Section 122 surcharge effective; China PP cumulative tariff ~61.5% (MFN + 301 + IEEPA + reciprocal) | Chinese PP priced out; US buyers captive to domestic producers |\n| Mar 1 | United States | USTR Section 301 investigations; SCOTUS upholds IEEPA authority; tariff stacking ongoing | No import substitution arbitrage available; domestic premiums protected |\n\n---\n\n### \ud83d\udea2 Freight (5 signals)\n\n| Date | Route | Sub-type | Rate | Source |\n|---|---|---|---|---|\n| Apr 2 | Global composite (Drewry WCI) | base_rate | **$2,287 / 40ft** | Drewry |\n| Apr 14 | Far East \u2192 US West Coast (FBX01) | base_rate | **~$3,100 / 40ft** (+40% since Feb 28) | SeaVantage / Xeneta |\n| Apr 14 | Asia \u2192 US East Coast (FBX03) | base_rate | **~$3,800 / 40ft** (+10% week) | Freightos FBX03 |\n| Apr 14 | N. Europe \u2192 US (transatlantic all-in) | all_in | **$2,100 / FEU** (+50% in 1 week) | Freightos FBX |\n| Apr 14 | N. Europe \u2192 US (EFS/PSS surcharges) | surcharge | **$500\u20131,000 / FEU** (mid $750) | Maersk/CMA-CGM/MSC |\n\n---\n\n### \ud83c\udfaf Coverage Score: **100%** (5/5 signal types: news \u2705 price_index \u2705 freight \u2705 supply_disruption \u2705 geopolitical \u2705)\n\n**Bottom line:** The US PP homopolymer market is in a structural supply crisis, not a cyclical correction. The Strait of Hormuz closure + Jubail strike has removed a major slice of global supply, domestic tariff policy has walled off Asian import alternatives, and US Gulf Coast cracker constraints have tightened domestic propylene simultaneously. FAS Houston at $1,665/MT (~$0.76/lb) represents a ~55\u201360% premium over pre-conflict January 2026 levels. No near-term relief catalyst is visible.",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "request_id": "cal-2f8daae56a",
+    "product": {
+      "generic_name": "polypropylene homopolymer",
+      "grade_code": "CAL-PP-HOMO",
+      "commodity_family": "plastics_resins"
+    },
+    "region_hint": "global",
+    "lookback_days": 90,
+    "signal_types": [
+      "freight",
+      "geopolitical",
+      "supply_disruption",
+      "price_index",
+      "news"
+    ]
+  },
+  "region_status": {
+    "europe": {
+      "status": "completed",
+      "error": null
+    },
+    "gulf": {
+      "status": "completed",
+      "error": null
+    },
+    "americas": {
+      "status": "completed",
+      "error": null
+    },
+    "china": {
+      "status": "completed",
+      "error": null
+    },
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  }
+}

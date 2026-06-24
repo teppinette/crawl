@@ -1,0 +1,50 @@
+{
+  "job_id": "ccabbdc8-0cd8-483d-94cd-98f6eac2173b",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "PRAKASH CHEMICALS INTERNATIONAL PRIVATE LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-21T11:20:03.280784+00:00",
+  "updated_at": "2026-05-21T11:26:36.594300+00:00",
+  "blob_path": null,
+  "report_summary": "Exact duplicate of 20:47 UTC request yesterday. File is complete.\n\n**DONE (existing file): Prakash Chemicals International Private Limited \u2014 Risk: 3 MONITOR \u2014 \u20b9742 Cr open charges, ZERO satisfied (23-year accumulation); \u20b9592 Cr from unidentified lenders**\n\n`~/crawl/output/prakash_chemicals_international_pvt_ltd_IN_20260520.json` \u2014 11 KB, valid.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 0/0 sources via Tor (Netherlands exit node)\n\nNo dark web exposure detected. Entity and owners clean across all 0 sources.\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "india: Report file not found on remote VM (india)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "PRAKASH CHEMICALS INTERNATIONAL PRIVATE LIMITED",
+    "entity_country": "IN",
+    "entity_address": "Prakash House, 39/40 Krishna Industrial Estate, Gorwa Road, Vadodara, Gujarat 390016, India",
+    "entity_tax_id": "U24231GJ2002PTC040891",
+    "key_individuals": [
+      {
+        "name": "Manish Kumarpal Shah"
+      },
+      {
+        "name": "Dilip Kumarpal Shah"
+      },
+      {
+        "name": "Ujjval Manish Shah"
+      },
+      {
+        "name": "Pinakin Kumarbhai Shah"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (india)"
+    }
+  },
+  "errors": [
+    "india: Report file not found on remote VM (india)"
+  ],
+  "dark_web_findings": 0,
+  "dark_web_sources": 0
+}

@@ -1,0 +1,20 @@
+{
+  "job_id": "bcf02da4-0e47-4dc3-a965-f4886ed12331",
+  "scenario": "dark-web",
+  "status": "failed",
+  "region": "darkweb",
+  "entity_name": "Shalimar Resins Industries Pvt Ltd",
+  "country": "",
+  "created_at": "2026-05-13T15:00:23.033137+00:00",
+  "updated_at": "2026-05-13T15:00:26.655620+00:00",
+  "blob_path": "osint-staging/dark-web/shalimar_resins_industries_pvt_ltd_20260513.json",
+  "report_summary": "0 findings from dark web sources",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_name": "Shalimar Resins Industries Pvt Ltd",
+    "owners": "Muhammad Ahmad, Muhammad Faisal",
+    "country_code": "PK"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "job_id": "a389fb9a-1760-450b-b956-4c3ef1ba7fc2",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "FLOW TECH CHEMICALS PRIVATE LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-20T15:24:12.507264+00:00",
+  "updated_at": "2026-05-20T15:40:46.569364+00:00",
+  "blob_path": null,
+  "report_summary": "**DONE: Flow Tech Chemicals Private Limited, India \u2014 Risk: 2 CLEAR \u2014 30-year-old Delhi chemicals company; CIN U25202DL1996PTC078956; GSTIN 07AAACF4621K3ZP Active; Revenue \u20b9275 Cr FY25 (+20%); 49% owned by Primo Chemicals Ltd (BSE: PRIMO); zero sanctions / zero litigation / zero adverse media**\n\n---\n\n`~/crawl/output/flow_tech_chemicals_pvt_ltd_IN_20260520.json` \u2014 21 KB, valid JSON, 10 sources, all 8 workstreams complete\n\n---\n\n## Key Findings\n\n### Entity\n- **CIN:** U25202DL1996PTC078956 (Delhi entity \u2014 not the Punjab sister entity CIN U25202PB1996PTC067073)\n- **Incorporated:** May 16, 1996 \u00b7 Private Ltd \u00b7 Active \u00b7 ROC Delhi \u00b7 30 years old\n- **Former names:** Advance Rexine Pvt Ltd \u2192 Flow Well Plast-Chem Private Limited \u2192 Flow Tech Chemicals\n- **Revenue FY2025:** \u20b9275 Cr (+20% CAGR) \u00b7 Employees: 65 \u00b7 HDFC Bank: \u20b983.89 Cr open facility\n\n### \u26a0\ufe0f PACL Disambiguation \u2014 Resolved\n\nSubject block lists \"Primo Chemicals Ltd (Formerly Punjab Alkalies & Chemicals Ltd)\" as UBO. This may flag PACL in automated screening:\n\n| | Punjab Alkalies / Primo Chemicals | Pearl Agrotech Corporation (PACL fraud) |\n|---|---|---|\n| CIN | L24119CH1975PLC003607 | Different |\n| Status | BSE-listed chlor-alkali manufacturer | SEBI enforcement / Ponzi investigation |\n| Connection to Flow Tech | 49% owner (confirmed associate) | **ZERO** |\n| Risk | CLEAR | N/A |\n\n**These are completely different companies.** Punjab Alkalies \u2192 Primo Chemicals is a 50-year-old legitimate chemical company.\n\n### Ownership Structure\n```\nPrimo Chemicals Ltd (BSE: PRIMO)  \u2014  49% stake\nDahiya family (Sukhbir Singh Dahiya + S.S. Dahiya & Sons HUF + Dayawati Dahiya + Jatin Dahiya)  \\\nAhlawat family (Jagbir Singh Ahlawat + Mayank Ahlawat + Parema Ahlawat)                          } 51%\n```\n\n### Director Cross-Holdings (Primo Chemicals \u2194 Flow Tech)\n| Person | Flow Tech | Primo Chemicals |\n|---|---|---|\n| Sukhbir Singh Dahiya | Director (20 yrs) | Non-Executive **Chairman** |\n| Jagbir Singh Ahlawat | Director (7 yrs) | Non-Exec Non-Indep Director |\n| Jatin Dahiya | Director (Nov 2024) | **Executive Director** |\n\n### \u26a0\ufe0f Subject Block Updates Required\n1. **Add Jatin Dahiya (DIN 08106876) as Director** \u2014 appointed Nov 14, 2024; currently only listed as UBO\n2. **Confirm correct CIN** = U25202DL1996PTC078956 (Delhi, matches reg 078956) \u2014 NOT U25202PB1996PTC067073 (Punjab sister entity)\n\n**All sanctions CLEAR \u00b7 No PEP \u00b7 Zero litigation \u00b7 Zero adverse media**\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**13 actionable findings** from 6/57 sources via Tor (Netherlands exit node) (26 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Breach records | 10 |\n| Adverse media | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n| Website scans (URLScan) | 1 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: flowtechgroup.in\n- ADVERSE MEDIA: Primo Chemicals Ltd share price | About Primo Chemicals - Screener (Primo Chemicals Ltd (Formerly Punjab Alkalies & Chemicals Ltd))\n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| dehashed | 50 | breach_record; breach_record; breach_record (+47 more) |\n| reddit | 15 | TIFU by importing bees to Uruguay; MNMD Starter Due Diligence; Loopring: A no-brainer investment (Due Diligence) (+12 more) |\n| duckduckgo_tor | 10 | FLOW TECH CHEMICALS PRIVATE LIMITED - Company Profile; FLOW TECH CHEMICALS PRIVATE LIMITED | ZaubaCorp; Flow Tech Group of Industries (+7 more) |\n| urlscan | 2 | flowtechgroup.in; Flow Tech Group of Industries |\n| hudsonrock_cavalier | 1 | flowtechgroup.in |\n| duckduckgo_adverse | 1 | Primo Chemicals Ltd share price | About Primo Chemicals - Sc |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- flowtechgroup.in \u2014 *hudsonrock_cavalier*\n\n**ADVERSE MEDIA** (1)\n- Primo Chemicals Ltd share price | About Primo Chemicals - Screener \u2014 *duckduckgo_adverse* (searched: Primo Chemicals Ltd (Formerly Punjab Alkalies & Chemicals Ltd)) [/l/?uddg=https%3A%2F%2Fwww.screener.in%2Fcompany%2FPRIMO%2Fconsolidated%2F&rut=e]\n\n**BREACH RECORD** (10)\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n\n**WEB MENTION** (10)\n- FLOW TECH CHEMICALS PRIVATE LIMITED - Company Profile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Fflow%2Dtech%2]\n- FLOW TECH CHEMICALS PRIVATE LIMITED | ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2FFLOW%2DTECH%2DCHEMICALS%2DPRIVATE%2DL]\n- Flow Tech Group of Industries \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.flowtechgroup.in%2F&rut=66fc4798f2ee1772de03bf7cddd6a]\n- FLOW TECH CHEMICALS PRIVATE LIMITED Company Profile | New Delhi, Delhi ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.f]\n- Flow Tech Chemicals Private Limited - 2026 Insights - The Company Check \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fcompany%2Fflow%2Dtech%2Dchemica]\n- FLOW TECH CHEMICALS PRIVATE LIMITED - IndiaFilings \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiafilings.com%2Fsearch%2Fflow%2Dtech%2Dchemicals%2]\n- FLOW TECH CHEMICALS PRIVATE LIMITED - zauba.company \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fzauba.company%2Fcompany%2Fflow_tech_chemicals_private_lim]\n- Flow Tech Chemicals Private Limited Information - Flow Tech Chemicals ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Feconomictimes.indiatimes.com%2Fcompany%2Fflow%2Dtech%2Dch]\n- Flow Tech Chemicals Private Limited - IndiaMART \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Fflow%2Dtech%2Dgroup%2Fchemical%2Dcomp]\n- FLOW TECH CHEMICALS PRIVATE LIMITED - companyhouse.in \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.companyhouse.in%2Fcompany%2Findia%2FU25202DL1996PTC07]\n\n**SOCIAL MENTION** (15)\n- TIFU by importing bees to Uruguay \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/108enh7/tifu_by_importing_be]\n- MNMD Starter Due Diligence \u2014 *reddit* [https://reddit.com/r/wallstreetbets/comments/mzxtz5/mnmd_starter_due_diligence/]\n- Loopring: A no-brainer investment (Due Diligence) \u2014 *reddit* [https://reddit.com/r/loopringorg/comments/rzuikf/loopring_a_nobrainer_investment]\n- Stellaris Dev Diary #389 - 4.0.22 Released, Upcoming Planet Improvements \u2014 *reddit* [https://reddit.com/r/Stellaris/comments/1mw7q48/stellaris_dev_diary_389_4022_rel]\n- First Contact Second Wave - Chapter 181 \u2014 *reddit* [https://reddit.com/r/HFY/comments/gnncxi/first_contact_second_wave_chapter_181/]\n- EPA Proposes Rule to Limit Forever Chemicals in Drinking Water BioLargo DD $BLGO - is Clean Water!!  \u2014 *reddit* [https://reddit.com/r/pennystocks/comments/11rpffs/epa_proposes_rule_to_limit_for]\n- The Greater Depression PT.3 \u2014 *reddit* [https://reddit.com/r/Superstonk/comments/1eznzwg/the_greater_depression_pt3/]\n- GPT-4o is already AGI \u2013 We are just looking at a \"lobotomized\" version for profit reasons \u2014 *reddit* [https://reddit.com/r/ChatGPTcomplaints/comments/1r4pci6/gpt4o_is_already_agi_we_]\n- HeliumOne, poised to gain from growing market and a supply crisis. (250% - 1500% Growth Potential fr \u2014 *reddit* [https://reddit.com/r/pennystocks/comments/mkmz4s/heliumone_poised_to_gain_from_g]\n- [Tales From the Terran Republic] Tempting Fate and Deciding It. \u2014 *reddit* [https://reddit.com/r/HFY/comments/q1naq2/tales_from_the_terran_republic_tempting]\n- r/Amiibomb FAQ \u2014 *reddit* [https://reddit.com/r/Amiibomb/comments/frkn07/ramiibomb_faq/]\n- Hunyuan 3.0 image comparison repost with larger images \u2014 *reddit* [https://reddit.com/r/StableDiffusion/comments/1nw2f4s/hunyuan_30_image_compariso]\n- DD: A Hidden Gem: When a $70M Company Solves Trillion-Dollar Problems \u2014 *reddit* [https://reddit.com/r/pennystocks/comments/1kht532/dd_a_hidden_gem_when_a_70m_com]\n- Changelog for v1.31e Core Game Version (PS New DLC is also out) \u2014 *reddit* [https://reddit.com/r/ShadowEmpireGame/comments/1sh23s4/changelog_for_v131e_core_]\n- Gadicharla V.R. Rao: The Indian Engineer Who Shaped Modern Rocketry \u2014 *reddit* [https://reddit.com/r/IndicKnowledgeSystems/comments/1t8ahn1/gadicharla_vr_rao_th]\n\n**DOMAIN SCAN SUMMARY** (1)\n- flowtechgroup.in \u2014 *urlscan*\n\n**WEBSITE SCAN** (1)\n- Flow Tech Group of Industries \u2014 *urlscan* [https://www.flowtechgroup.in/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "india: Report file not found on remote VM (india)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "FLOW TECH CHEMICALS PRIVATE LIMITED",
+    "entity_trade_names": "FLOW TECH CHEMICALS PRIVATE LIMITED",
+    "entity_country": "IN",
+    "entity_address": "314 PP Tower, Netaji Subhash Place, Pitampura, Delhi, 110034, Delhi",
+    "entity_website": "https://flowtechgroup.in",
+    "entity_type": "PRIVATE LIMITED",
+    "entity_industry": "PRIVATE LIMITED",
+    "entity_tax_id": "078956",
+    "key_individuals": [
+      {
+        "name": "Mayank Ahlawat",
+        "title": "Director"
+      },
+      {
+        "name": "Jagbir Singh Ahlawat",
+        "title": "Director"
+      },
+      {
+        "name": "Sukhbir Singh Dahiya",
+        "title": "Director"
+      },
+      {
+        "name": "Primo Chemicals Ltd (Formerly Punjab Alkalies & Chemicals Ltd)",
+        "title": "UBO"
+      },
+      {
+        "name": "S.S. Dahiya and Sons (HUF)",
+        "title": "UBO"
+      },
+      {
+        "name": "Dayawati Dahiya",
+        "title": "UBO"
+      },
+      {
+        "name": "Parema Ahlawat",
+        "title": "UBO"
+      },
+      {
+        "name": "Mayank Ahlawat",
+        "title": "UBO"
+      },
+      {
+        "name": "Jatin Dahiya",
+        "title": "UBO"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (india)"
+    }
+  },
+  "errors": [
+    "india: Report file not found on remote VM (india)"
+  ],
+  "dark_web_findings": 13,
+  "dark_web_sources": 57
+}

@@ -1,0 +1,32 @@
+{
+  "job_id": "9515e7af-fd1a-4aa1-9f61-fe14505c6c12",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "china",
+  "entity_name": "SINOCHEM INTERNATIONAL OIL (SINGAPORE) PTE LTD",
+  "country": "SG",
+  "created_at": "2026-04-22T15:15:37.055100+00:00",
+  "updated_at": "2026-04-22T15:16:49.002085+00:00",
+  "blob_path": "osint-staging/cir/china/sinochem_international_oil_singapore_pte_ltd_sg_20260422.json",
+  "report_summary": "Perfect! The research has already been completed and the comprehensive JSON report is saved. This is a duplicate request for the same entity. Here's the completion status:\n\n## Research Already Completed (Earlier Today)\n\n**Entity:** SINOCHEM INTERNATIONAL OIL (SINGAPORE) PTE LTD  \n**UEN:** 199002584N  \n**Research Completed:** 2026-04-22 12:39 UTC  \n**File Location:** `/home/copapadmin/crawl/output/sinochem_international_oil_singapore_pte_ltd_sg_20260422.json`\n\n## Key Findings Already Documented:\n\n### 1. **Corporate Registry (Step 1A):**\n- **Status:** Live Company, incorporated May 29, 1990\n- **Address:** 9 Temasek Boulevard, #18-03, Suntec Tower Two, Singapore 038989\n- **Directors:** LI QING, ZHAO ZHIQIANG, WU WENLONG, TEO CHIN KEE\n- **Shareholder:** Sinochem Energy Hong Kong Co., Limited (100%)\n\n### 2. **Beneficial Ownership Chain (Step 2A):**\n- **Level 1:** Sinochem Energy Hong Kong Co., Limited (100%)\n- **Level 2:** Sinochem Hong Kong (Group) Co., Ltd. (100%)\n- **Level 3:** Sinochem Holdings Corporation Ltd. (100%)\n- **Level 4:** SASAC of China (100% state ownership)\n\n### 3. **Sanctions Screening (Step 3A):**\n- **Parent Company:** Sinochem Group Co Ltd on OFAC **NS-CCMC List** (Chinese Military-Industrial Complex)\n- **OFAC 50% Rule:** Flags raised due to 100% ownership by sanctioned parent\n- **No direct SDN hits** for Singapore entity or directors\n\n### 4. **Adverse Media (Step 4A):**\n- **Major Corruption:** Named in Indonesia's Pertamina oil corruption scandal (2018-2023)\n- **Alleged Profit:** US$1,394,988.19 from corrupt practices\n- **Related Case:** Former Sinochem executive prosecuted for bribery (April 2026)\n\n### 5. **Litigation (Step 5A):**\n- **Jakarta Corruption Court:** Pertamina officials convicted (2025)\n- **Sinochem named as beneficiary** but not charged\n\n### 6. **PEP Check (Step 6A):**\n- **All directors** classified as de facto PEPs due to SOE executive positions\n- **Enhanced due diligence** required\n\n### 7. **Trade Risk (Step 7A):**\n- **Sanctions Compliance:** Historically conservative - avoided Russia, Iran, Venezuela, Syria transactions\n- **Dual-Use Indicators:** Petroleum products trading\n\n### 8. **Risk Assessment (Step 8A):**\n- **Risk Score:** 4 (REVIEW)\n- **Rationale:** High-risk due to parent's NS-CCMC listing, corruption scandal involvement, state ownership\n\n## Output Already Delivered:\n\u2705 **Complete JSON report** with all 8 workstreams covered  \n\u2705 **File size:** 9,895 bytes  \n\u2705 **Created:** April 22, 2026 12:39 UTC  \n\u2705 **All counterparty_research skill requirements met**\n\n**DONE:** SINOCHEM INTERNATIONAL OIL (SINGAPORE) PTE LTD, SG -- Risk: 4 REVIEW -- Parent on OFAC NS-CCMC list, involved in Pertamina corruption scandal, state-owned with PEP connections\n\nThe research is complete and no additional work is needed for this duplicate request. The JSON output is already saved in the specified location.",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "SINOCHEM INTERNATIONAL OIL (SINGAPORE) PTE LTD",
+    "entity_country": "SG",
+    "entity_address": "9 Temasek Boulevard, #18-03, Suntec Tower Two, Singapore 038989",
+    "entity_tax_id": "199002584N",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "china": {
+      "status": "completed",
+      "error": null
+    }
+  }
+}

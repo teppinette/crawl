@@ -1,0 +1,88 @@
+{
+  "job_id": "34bd1623-87c2-400e-89e4-3898ebb87c14",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "DORF KETAL CHEMICALS  INDIA LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-20T20:55:42.667179+00:00",
+  "updated_at": "2026-05-20T21:00:22.512069+00:00",
+  "blob_path": "osint-staging/cir/india/dorf_ketal_chemicals_india_limited_IN_20260520.json",
+  "report_summary": "**DONE: Dorf-Ketal Chemicals India Limited, India \u2014 Risk: 1 CLEAR \u2014 Global refinery specialty chemicals; CIN U24100GJ1992PLC102619; Revenue \u20b96,240 Cr FY25; \ud83d\ude80 DRHP filed Jan 23, 2025 \u2014 \u20b95,000 Cr IPO in progress; ZERO open charges**\n\n---\n\n`~/crawl/output/dorf_ketal_chemicals_india_limited_IN_20260520.json` \u2014 14 KB, valid JSON, 10 sources, all 8 workstreams complete\n\n---\n\n## Key Findings\n\n### \ud83d\ude80 IPO In Progress \u2014 Major Corporate Event\n\n| Item | Detail |\n|---|---|\n| **DRHP Filed** | **January 23, 2025** with SEBI |\n| Fresh Issue | \u20b91,500 Cr |\n| Offer for Sale | \u20b93,500 Cr |\n| **Total Offer** | **\u20b95,000 Cr** |\n| Promoters | Subodh Menon, Sudhir Menon, Menon Family Holdings Trust, Sudhir Menon HUF |\n| Converted to Public | Recently (PTC \u2192 PLC) for IPO |\n\n### Entity\n- **CIN:** U24100GJ1992PLC102619 \u00b7 Incorporated 1992 \u00b7 Mundra, Gujarat (Adani Port SEZ)\n- **Revenue FY2025:** \u20b96,240 Cr \u00b7 **Zero open charges**\n- **Global:** India, USA, Brazil, Colombia, UAE, Singapore, China, Malaysia, Netherlands\n\n### Subject Block Confirmations\n- **Rajdeep Shahane** = Company Secretary & Compliance Officer \u2713 (DRHP confirmed)\n- **Vijaykumar Malpani** = Officer \u2713 (email vijaymalpani@dorfketal.com on website)\n- **Perumangode Neelkandhan Ramaswamy** = Director \u2713\n\n**Note:** Subject block entity name has a double space typo \u2014 correct: **DORF-KETAL CHEMICALS INDIA LIMITED** (with hyphen)\n\n**Sanctions CLEAR \u00b7 No PEP \u00b7 Zero adverse media \u00b7 SEBI DRHP under review = highest transparency level for pre-listed entity**\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**2 actionable findings** from 4/57 sources via Tor (Netherlands exit node) (27 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n| Website scans (URLScan) | 2 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: dorfketal.com\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | IPO Grey Market Premium Sheet; Hydrogen Sulfide Removal: Global Market Size, Scope, Growth,; Hydrogen Sulfide Removal Industry: Future Demand, Market Ana (+12 more) |\n| urlscan | 11 | dorfketal.com; Dorf Ketal | Local Expertise, Global Perspective; 404 Not Found | Dorf Ketal (+8 more) |\n| duckduckgo_tor | 10 | Contact Us | Dorf Ketal; DORF-KETAL CHEMICALS INDIA LIMITED Company Profile | Mumbai ; Dorf-Ketal Chemicals India Limited - 2026 Insights - The Com (+7 more) |\n| hudsonrock_cavalier | 1 | dorfketal.com |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- dorfketal.com \u2014 *hudsonrock_cavalier*\n\n**WEB MENTION** (10)\n- Contact Us | Dorf Ketal \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fdorfketal.com%2Findex.php%2Fcontact%2Dus%2F&rut=fc54d8866]\n- DORF-KETAL CHEMICALS INDIA LIMITED Company Profile | Mumbai ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.d]\n- Dorf-Ketal Chemicals India Limited - 2026 Insights - The Company Check \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fcompany%2Fdorfketal%2Dchemicals]\n- Dorf Ketal - LinkedIn India \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fin.linkedin.com%2Fcompany%2Fdorf%2Dketal%2Dchemicals%2Di%]\n- DORF KETAL CHEMICALS INDIA - The Economic Times \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Feconomictimes.indiatimes.com%2Ftopic%2Fdorf%2Dketal%2Dche]\n- Dorf-Ketal Chemicals IPO Date, Price, GMP, Review, Details \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.chittorgarh.com%2Fipo%2Fdorf%2Dketal%2Dchemicals%2Dip]\n- Chemicals maker Dorf Ketal likely defers IPO plans amid ... - Mint \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.livemint.com%2Fcompanies%2Fnews%2Fchemicals%2Dmaker%2]\n- Dorf Ketal Chemicals India Pvt. Ltd. | Maharashtra | Western | INDIA ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiaindustry.biz%2Fcompany%2Ddorf%2Dketal%2Dchemical]\n- Dorf Ketal Chemicals India Private Limited - IndiaMART \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Fdorfketal%2Dchemicalsindia%2F&rut=d0f]\n- Dorf-Ketal Chemicals India Limited Company Profile - India | Financials ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FIN%2FDorf%2DKeta]\n\n**SOCIAL MENTION** (15)\n- IPO Grey Market Premium Sheet \u2014 *reddit* [https://reddit.com/r/IndianStockMarket/comments/1nikmsy/ipo_grey_market_premium_]\n- Hydrogen Sulfide Removal: Global Market Size, Scope, Growth, and Analysis 2019-2026 \u2014 *reddit* [https://reddit.com/r/BizInsightReports/comments/ed73ng/hydrogen_sulfide_removal_]\n- Hydrogen Sulfide Removal Industry: Future Demand, Market Analysis &amp; Outlook to 2026 \u2014 *reddit* [https://reddit.com/r/ChemicalInsightReport/comments/ecqcyt/hydrogen_sulfide_remo]\n- Hydrogen Sulfide Removal Market Dynamics, Scope, Competition, Analysis, Value, Forecast to 2026 \u2014 *reddit* [https://reddit.com/r/BizInsightReports/comments/ecp8yl/hydrogen_sulfide_removal_]\n- Hydrogen Sulfide Removal: Global Market Size, Scope, Growth, and Analysis 2019-2022 \u2014 *reddit* [https://reddit.com/r/BizInsightReports/comments/ebvo2z/hydrogen_sulfide_removal_]\n- Global Gasoline Fuel Additives Market: Sales, Consumption, Demand and Forecast to 2019-2024 \u2014 *reddit* [https://reddit.com/r/TrendingMarketReports/comments/d5ddac/global_gasoline_fuel_]\n- Global Water Soluble Demulsifier Market: Sales, Consumption, Demand and Forecast 2019-2024: Akzonobe \u2014 *reddit* [https://reddit.com/r/BizInsightReports/comments/cw29fq/global_water_soluble_demu]\n- Hydrogen Sulfide Removal Market 2019 In-Depth Analysis of Industry Share, Size, Growth Outlook up to \u2014 *reddit* [https://reddit.com/r/ChemicalInsightReport/comments/c2s4e9/hydrogen_sulfide_remo]\n- A deadly chemical Will make in india \u2014 *reddit* [https://reddit.com/r/sundaysarthak/comments/1pra010/a_deadly_chemical_will_make_]\n- Beginner Exporter from India \u2013 Confused Between Engineering, Agriculture &amp; Chemicals | Planning  \u2014 *reddit* [https://reddit.com/r/exportersindia/comments/1rfy68i/beginner_exporter_from_indi]\n- Yes, Climate Change Is Probably Going To Kill You \u2014 *reddit* [https://reddit.com/r/collapse/comments/1h6ajjp/yes_climate_change_is_probably_go]\n- Professor G. D. Yadav: India's Pioneer of Green Chemistry and Chemical Engineering \u2014 *reddit* [https://reddit.com/r/IndicKnowledgeSystems/comments/1tc5bs1/professor_g_d_yadav_]\n- (293)-- Historical Decode-- 1984 Indian Chemical Leak Disaster--- INDIAN GAS LEAK DISASTER= 911 ---  \u2014 *reddit* [https://reddit.com/r/u_EurekaStockade/comments/1rxeek7/293_historical_decode_198]\n- According to the Ministry of Commerce and Industry, India\u2019s manufacturing exports to the US include  \u2014 *reddit* [https://reddit.com/r/BusinessTodayNews/comments/1qussre/according_to_the_ministr]\n- The Journey of India's Organic Chemical Industry: Struggles, Innovations, and Triumphs \u2014 *reddit* [https://reddit.com/r/IndicKnowledgeSystems/comments/1qsxbv5/the_journey_of_india]\n\n**DOMAIN SCAN SUMMARY** (1)\n- dorfketal.com \u2014 *urlscan*\n\n**WEBSITE SCAN** (2)\n- Dorf Ketal | Local Expertise, Global Perspective \u2014 *urlscan* [https://dorfketal.com/]\n- 404 Not Found | Dorf Ketal \u2014 *urlscan* [https://dorfketal.com/__;!!HTp9Kzo!iY8ZyvtpIJp1zuO7oK235xtuZEjG=]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "DORF KETAL CHEMICALS  INDIA LIMITED",
+    "entity_country": "IN",
+    "entity_address": "Plot No. 2, Block-F, Sector 12 N, Adani Port & SEZ Ltd., Mundra, Kachchh 370421, Gujarat, India",
+    "entity_tax_id": "102619",
+    "key_individuals": [
+      {
+        "name": "Sudhir Menon",
+        "title": "Director"
+      },
+      {
+        "name": "Subodh Menon",
+        "title": "Director"
+      },
+      {
+        "name": "Vijaykumar Malpani",
+        "title": "Officer"
+      },
+      {
+        "name": "Rajdeep Shahane",
+        "title": "Officer"
+      },
+      {
+        "name": "Navnit S. Gajja",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "Subodh Vijayaraghava Menon"
+      },
+      {
+        "name": "Perumangode Neelkandhan Ramaswamy"
+      },
+      {
+        "name": "Pramod Menon"
+      },
+      {
+        "name": "Yogesh Gangadhar Ranade"
+      },
+      {
+        "name": "Mahesh Subramanyya Subramaniyam"
+      },
+      {
+        "name": "Vijaykumar Bhanwarlal Malpani"
+      },
+      {
+        "name": "Rajesh Vasudeo Desai"
+      },
+      {
+        "name": "Ganapati Dadasaheb Yadav"
+      },
+      {
+        "name": "Parsotambhai Devsibhai Vaghela"
+      },
+      {
+        "name": "Deepak Rasiklal Parikh"
+      },
+      {
+        "name": "Bhavna Thakur"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 2,
+  "dark_web_sources": 57
+}

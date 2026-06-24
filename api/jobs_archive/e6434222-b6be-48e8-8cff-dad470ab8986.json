@@ -1,0 +1,84 @@
+{
+  "job_id": "e6434222-b6be-48e8-8cff-dad470ab8986",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "POWER CHEMICALS INDUSTRIES LTD.",
+  "country_code": "PK",
+  "created_at": "2026-05-04T14:53:05.094604+00:00",
+  "updated_at": "2026-05-04T14:55:06.435505+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:53:12.090099+00:00",
+      "verified": false,
+      "legal_name": null,
+      "registration_number": null,
+      "entity_status": null,
+      "company_type": null,
+      "cro": null,
+      "registration_date": null,
+      "fbr": null,
+      "all_matches": null,
+      "source": "SECP eServices (direct gov query)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:53:12.137629+00:00",
+      "found": true,
+      "name": "Power Chemical Industries Ltd",
+      "linkedin_url": "https://pk.linkedin.com/company/power-chemical-industries-ltd",
+      "industry": "Chemical Manufacturing",
+      "company_size": "501-1,000 employees",
+      "locations": [
+        "1447-B, Peoples Colony # 1, Faisalabad, Punjab 38000, PK"
+      ],
+      "about": "POWER CHEMICAL INDUSTRIES IS THE LEADING SUPPLIER OF VARIOUS CHEMICAL PRODUCTS TO INDUSTRIES LIKE PAINTS, TEXTILE, PAPER, WOOD, LEATHER AND CONSTRUCTION. BESIDES MANUFACTURING, WE ARE ALSO THE LEADING IMPORTER OF RAW MATERIAL IN PAKISTAN FROM THE TOP LINE CHEMICAL SUPPLIERS OF THE WORLD.\u201d",
+      "followers": 9217,
+      "employees_on_linkedin": 174,
+      "organization_type": "Public Company",
+      "website": "https://www.powci.com/",
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "Nadeem Shahzad",
+          "link": "https://pk.linkedin.com/in/nadeem-shahzad-b156651a?trk=org-employees"
+        },
+        {
+          "name": "Ghulam Mustafa Baig",
+          "link": "https://pk.linkedin.com/in/ghulam-mustafa-baig-140aa129?trk=org-employees"
+        },
+        {
+          "name": "Talha Omar",
+          "link": "https://pk.linkedin.com/in/talha-omar-2237a830?trk=org-employees"
+        },
+        {
+          "name": "Sarfraz Ali",
+          "link": "https://pk.linkedin.com/in/sarfraz-ali-540b6b32?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:55:06.434899+00:00",
+      "risk_level": "CLEAN",
+      "total_findings": 0,
+      "sources_searched": 0,
+      "sources_with_results": 0,
+      "by_type": {},
+      "key_findings": [],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "POWER CHEMICALS INDUSTRIES LTD.",
+    "country_code": "PK",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

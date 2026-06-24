@@ -1,0 +1,135 @@
+{
+  "job_id": "56fdec23-72a0-4c84-9e24-d847b6ecf4cc",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "SHREE BALAJI PAPER IMPEX",
+  "country_code": "IN",
+  "created_at": "2026-05-04T16:10:14.146912+00:00",
+  "updated_at": "2026-05-04T16:11:38.883373+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:10:22.198493+00:00",
+      "verified": true,
+      "legal_name": "SRI BALAJI PAPERS IMPEX PRIVATE LIMITED",
+      "cin": "U21013TN2005PTC056496",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "02 June, 2005",
+      "directors": [
+        "Sivamuthu"
+      ],
+      "registered_address": "FLAT NO.1-C, DOSHI RESIDENCY, NO.17,DHANDAPANI STREET, T-NAGAR, CHENNAI, Chennai, Tamil Nadu - 600017",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:10:20.782451+00:00",
+      "found": true,
+      "name": "RP Paper Impex (P) Limited",
+      "linkedin_url": "https://in.linkedin.com/company/rp-paper-impex-pvt-ltd",
+      "industry": "Paper & Forest Products",
+      "company_size": "201-500 employees",
+      "locations": [
+        "Jawaharpur Industrial Area Derbassi Mohali, Punjab 140507, IN"
+      ],
+      "about": "RP Paper Impex is a manufacturer exporter of paper and packaging products. We operate under the esteemed leadership of Mr. Punit Gupta, who holds a rich experience of over 25 years in the paper business. RP Paper Impex possess expertise in providing tailored and customised products in India and globally. We have developed a massive partner and supply chain network in the industry to deliver above-market-standards products and services to our clients. We aim to bring all paper, printing and packa",
+      "followers": 436,
+      "employees_on_linkedin": 5,
+      "organization_type": "Privately Held",
+      "website": "https://www.rppaperimpex.com/",
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "Parth Gupta",
+          "link": "https://in.linkedin.com/in/parthgupta22?trk=org-employees"
+        },
+        {
+          "name": "Rohit Gera",
+          "link": "https://in.linkedin.com/in/rohit-gera-40616816b?trk=org-employees"
+        },
+        {
+          "name": "Punit Gupta",
+          "link": "https://in.linkedin.com/in/punit-gupta-26774a35b?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:11:38.882563+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 60,
+      "sources_searched": 37,
+      "sources_with_results": 2,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "SHREE BALAJI PAPER IMPEX",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "job_id": "f82ee8b4-00d7-408f-a467-a21dae29601c",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "gulf",
+  "entity_name": "INDO GLOBAL RESOURCES FZCO",
+  "country": "AE",
+  "created_at": "2026-05-12T13:04:22.712522+00:00",
+  "updated_at": "2026-05-12T13:12:02.429029+00:00",
+  "blob_path": "osint-staging/cir/gulf/indo_global_resources_fzco_AE_20260512.json",
+  "report_summary": "Blob uploaded (HTTP 201). Research complete.\n\n---\n\n**DONE: Indo Global Resources FZCO, AE \u2014 Risk: 2 CLEAR \u2014 Active DMCC paper/pulp trader; UBO fully identified (Saksham Jain, 100%); 35-year group heritage; no sanctions/adverse findings; FSC certified**\n\n---\n\n## Research Summary\n\n### Entity Confirmed\n**INDO GLOBAL RESOURCES FZCO / DMCC** \u2014 Registration **DMCC190978**. Unit 2402, Saba Tower 1, JLT, Dubai. Active DMCC-licensed paper and pulp trading company, part of the 35-year-old Indo Global Commercials group (India).\n\n> **Name note:** All public databases (Panjiva, ImportGenius) list this as \"DMCC\" not \"FZCO\" \u2014 this is a naming convention difference, not a separate entity. The subject brief's \"FZCO\" designates the legal entity form within DMCC.\n\n---\n\n### Key Findings\n\n| Check | Result | Detail |\n|---|---|---|\n| **Free Zone** | \u2705 DMCC | World's #1 ranked free zone \u2014 not RAK/Ajman |\n| **UBO** | \u2705 IDENTIFIED | Saksham Jain, 100%, DIN 10676197 (India MCA, Approved) |\n| **Sanctions (OFAC/UN/EU/UK)** | \u2705 NO HITS | Entity and UBO both clean |\n| **PEP Check** | \u2705 NO PEP | Private sector paper trading executive |\n| **Gulf Media** | \u2705 NO ADVERSE | Gulf News, Khaleej Times, The National \u2014 all clear |\n| **DIFC Courts** | \u2705 NO CASES | No litigation found |\n| **Active Trade** | \u2705 CONFIRMED | 15 US customs shipments, 27 global customers (Panjiva), latest Mar 2025 |\n| **Iran evasion** | \u2705 NONE DETECTED | Non-strategic commodity; no RAK FZ; no recent incorporation |\n| **Dark web** | \u26a0\ufe0f SCAN FAILED | Technical failure; 0 findings in partial scan |\n\n---\n\n### Entity & Group Profile\n| Field | Value |\n|---|---|\n| DMCC Reg # | DMCC190978 |\n| Address | Unit 2402, Saba Tower 1, Cluster E, JLT, Dubai |\n| Activity | Paper & pulp trading (HS 47, HS 48) |\n| FSC Cert | SCS-COC-009876 (confirmed in shipment docs) |\n| Parent (India) | Indo Global Commercials Pvt Ltd, CIN U23100MH1991PTC063736, est. 1991 |\n| Group scale | 500+ customers, 150,000+ tons/year, 40+ countries |\n| India financials | Revenue +89%, Profit +46% (FY2023) \u2014 healthy |\n| UBO | Saksham Jain \u2014 Executive Director, 100% owner |\n\n---\n\n### Trade Records (ImportGenius)\n- **15 US customs shipments** confirmed (2024\u20132025)\n- Products: Standard Newsprint, Bleached Softwood Pulp\n- Key buyers: Graphic Communication Group (USA), Spento Papers India (USA), Premier Tissues India (USA), Logic Paper (Peru)\n- Most recent: March 2025 \u2014 Bleached Softwood Pulp \u2192 Premier Tissues, Newark NJ\n\n### \u26a0\ufe0f One Informational Note\nThe parent company website lists Russia among sourcing countries. No Russian-origin goods confirmed in reviewed shipments (one BoL shows Canadian origin). For **EU-destined transactions only**, standard practice is to request certificate of origin to confirm non-Russian origin compliance with EU 2022 paper pulp sanctions.\n\n### Risk: **2 \u2013 CLEAR**\nAll primary compliance checks passed. Legitimate, active, transparent DMCC entity with fully identified UBO, 35-year group heritage, active FSC-certified trade records, and no adverse findings.\n\n**Output saved:** `~/crawl/output/indo_global_resources_fzco_AE_20260512.json` \u2705\n**Blob uploaded:** `crawl-gulf/indo_global_resources_fzco_AE_20260512.json` \u2192 stcrawlosint/osint-staging \u2705\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**76 findings** from 4/41 sources via Tor (Netherlands exit node)\n\n| Category | Count |\n|----------|-------|\n| World Bank Debarment | 1 |\n| Breach records | 50 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "INDO GLOBAL RESOURCES FZCO",
+    "entity_country": "AE",
+    "entity_address": "Unit 2402, Saba Tower 1, Cluster E, Jumeirah Lake Towers (JLT), Al Thanyah 5, Hadaeq Mohammad Bin Rashid, Dubai, UAE. PO Box 337485.",
+    "entity_tax_id": "DMCC190978",
+    "key_individuals": [
+      {
+        "name": "Saksham Jain",
+        "title": "Executive Director"
+      },
+      {
+        "name": "Saksham Jain",
+        "title": "UBO (100.00%)"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "gulf": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 76,
+  "dark_web_sources": 41
+}

@@ -1,0 +1,20 @@
+{
+  "job_id": "cc0b9e61-5562-4672-a242-05a7d5df447d",
+  "scenario": "dark-web",
+  "status": "failed",
+  "region": "darkweb",
+  "entity_name": "Nimir Industrial Chemicals Limited Pakistan",
+  "country": "",
+  "created_at": "2026-05-22T19:04:29.864608+00:00",
+  "updated_at": "2026-05-22T19:04:33.995505+00:00",
+  "blob_path": "osint-staging/dark-web/nimir_industrial_chemicals_limited_pakistan_20260522.json",
+  "report_summary": "0 findings from dark web sources",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_name": "Nimir Industrial Chemicals Limited Pakistan",
+    "owners": "Khalid Siddiq Tirmizey, Zafar Mahmood, Khalid Mumtaz Qazi",
+    "country_code": "PK"
+  }
+}

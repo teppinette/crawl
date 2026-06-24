@@ -1,0 +1,43 @@
+{
+  "job_id": "6f468d91-9ac9-47d1-8bfa-8d7285f9a49d",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "gulf",
+  "entity_name": "INDO GLOBAL RESOURCES FZCO",
+  "country": "AE",
+  "created_at": "2026-05-12T13:24:43.294936+00:00",
+  "updated_at": "2026-05-12T13:26:37.453275+00:00",
+  "blob_path": "osint-staging/cir/gulf/indo_global_resources_fzco_AE_20260512.json",
+  "report_summary": "This entity was researched and filed **~20 minutes ago** this session. The report is already on disk and in blob storage.\n\n---\n\n**Existing report:** `~/crawl/output/indo_global_resources_fzco_AE_20260512.json`\n**Blob:** `crawl-gulf/indo_global_resources_fzco_AE_20260512.json` \u2192 stcrawlosint/osint-staging \u2705\n\n**DONE: Indo Global Resources FZCO, AE \u2014 Risk: 2 CLEAR \u2014 Active DMCC paper/pulp trader; UBO fully identified (Saksham Jain, 100%); 35-year group heritage; no sanctions/adverse findings; FSC certified**\n\n---\n\nKey findings from that report:\n\n| Check | Result |\n|---|---|\n| Free Zone | \u2705 DMCC (world's #1 ranked) |\n| UBO | \u2705 Saksham Jain, 100%, India DIN 10676197 |\n| Sanctions (OFAC/UN/EU/UK) | \u2705 NO HITS |\n| PEP | \u2705 NONE |\n| Gulf Media | \u2705 NO ADVERSE |\n| DIFC Courts | \u2705 NO CASES |\n| Active Trade | \u2705 15 US customs shipments; 27 global customers |\n| Iran evasion | \u2705 NOT DETECTED |\n| Dark web | \u26a0\ufe0f Scan failed (0 findings before failure) |\n\n**Risk Score: 2 \u2014 CLEAR.** No re-research needed unless there's a specific new concern or different entity intended.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**75 findings** from 3/41 sources via Tor (Netherlands exit node)\n\n| Category | Count |\n|----------|-------|\n| Breach records | 50 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "INDO GLOBAL RESOURCES FZCO",
+    "entity_country": "AE",
+    "entity_address": "Dubai, Jumeirah Lake Towers (JLT), Hadaeq Mohammad Bin Rashid, Al Thanyah 5, Dubai; Unit 2402, Saba Tower 1, Cluster E, JLT, PO Box 337485",
+    "entity_tax_id": "DMCC190978",
+    "key_individuals": [
+      {
+        "name": "Saksham Jain",
+        "title": "Executive Director"
+      },
+      {
+        "name": "Saksham Jain",
+        "title": "UBO (100.00%)"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "gulf": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 75,
+  "dark_web_sources": 41
+}

@@ -1,0 +1,54 @@
+{
+  "job_id": "e46528b8-c2f5-42fa-be0f-122635865517",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "PLASCHEM COMERCIO DE RESINAS TERMOPLASTICAS LTDA",
+  "country": "BR",
+  "created_at": "2026-05-22T22:12:07.461353+00:00",
+  "updated_at": "2026-05-22T22:16:48.678236+00:00",
+  "blob_path": null,
+  "report_summary": "Duplicate \u2014 `americas/plaschem_comercio_resinas_termoplasticas_BR_20260522.json` uploaded today at 22:00 UTC.\n\n| | |\n|---|---|\n| **File** | `americas/plaschem_comercio_resinas_termoplasticas_BR_20260522.json` |\n| **Risk** | **2 / CLEAR** |\n| **CNPJ** | 35.222.724/0001-64 \u2014 **ATIVA** \u00b7 Founded Oct 2019 \u00b7 Capital BRL 2M |\n| **Location** | Rodovia Ant\u00f4nio Heil 3000, Galp\u00e3o M6, **Itaja\u00ed, SC** (Porto de Itaja\u00ed) |\n| **Activity** | Thermoplastic compound **manufacturer** \u2014 fiberglass, talc, UV, V0 flame retardant, custom colorants |\n| **Interplast** | \u2705 Exhibitor \u2014 Brazil's largest plastics trade fair |\n| **All 3 individuals** | \u2705 Screened \u2014 ALL CLEAR (Ten\u00f3rio family + Kasprowicz) |\n| **Sanctions** | ALL CLEAR \u00b7 0 breaches |\n| **\ud83d\udd34 HIGH** | JUCESC extract for shareholding % \u00b7 Clarify CNPJ 0002-45 (\"Plaschem Industria\") |\n\nNo re-research warranted.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**2 actionable findings** from 4/49 sources via Tor (Netherlands exit node) (23 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 12 |\n| Website scans (URLScan) | 1 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: plaschem.com.br\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Xzl Comercio Varejista e Atacadista de Artigos de Artesanato; Ganhei um kit de materiais da escola que estudo; Estoquista/Conferente at Lion Comercio e Servi\u00e7os de C\u00f3pias  (+12 more) |\n| duckduckgo_tor | 10 | Plaschem | Fabrica\u00e7\u00e3o e Distribui\u00e7\u00e3o de Resinas Termopl\u00e1stic; Plaschem Industria de Resinas Termoplasticas Plaschem Comerc; Plaschem Comercio De Resinas Termoplasticas Ltda CNPJ 352227 (+7 more) |\n| urlscan | 2 | plaschem.com.br; Plaschem | Fabrica\u00e7\u00e3o e Distribui\u00e7\u00e3o de Resinas Termopl\u00e1stic |\n| hudsonrock_cavalier | 1 | plaschem.com.br |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- plaschem.com.br \u2014 *hudsonrock_cavalier*\n\n**WEB MENTION** (10)\n- Plaschem | Fabrica\u00e7\u00e3o e Distribui\u00e7\u00e3o de Resinas Termopl\u00e1sticas \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fplaschem.com.br%2F&rut=411825ec45e7ff570c3350912c4050b85f]\n- Plaschem Industria de Resinas Termoplasticas Plaschem Comercio de ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fcnpj.biz%2F35222724000245&rut=2723756d71ceeaa5904c5d56391]\n- Plaschem Comercio De Resinas Termoplasticas Ltda CNPJ 35222724000164 ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.consultascnpj.com%2Fplaschem%2Dcomercio%2Dde%2Dresina]\n- Plaschem Comercio De Resinas Termoplasticas Ltda \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.consultacnpjfacil.com.br%2Fempresa%2F35222724000164%2]\n- Plaschem Comercio de Resinas Termoplasticas LTDA - CNPJ de SC \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fcadastroempresa.com.br%2Ffornecedor%2Fplaschem%2Dcomercio]\n- CNPJ: 35.222.724/0001-64 - Plaschem Comercio de Resinas Termoplasticas ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.situacaocadastral.info%2Fcnpj%2Fplaschem%2Dcomercio%2]\n- Plaschem Comercio De Resinas Termoplasticas Ltda - Cnpj 35222724000164 ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fcasadosdados.com.br%2Fsolucao%2Fcnpj%2Fplaschem%2Dcomerci]\n- Plaschem Comercio De Resinas Termoplasticas Cnpj 35222724000164 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fempresadois.com.br%2Fcnpj%2Fplaschem%2Dcomercio%2Dde%2Dre]\n- PLASCHEM Comercio de RESINAS TERMOPLASTICAS - efirma.com.br \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.efirma.com.br%2Fempresas%2Fsc%2Fitajai%2Fplaschem%2Dc]\n- \u2611 CNPJ da PLASCHEM COMERCIO DE RESINAS TERMOPLASTICAS LTDA \u00e9 35.222.7 ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fguiadocnpj.com.br%2Fsc%2Fitajai%2Fplaschem%2Dcomercio%2Dd]\n\n**SOCIAL MENTION** (12)\n- Xzl Comercio Varejista e Atacadista de Artigos de Artesanato Ltda \u2014 *reddit* [https://reddit.com/r/diyartesanato/comments/1sndfeg/xzl_comercio_varejista_e_ata]\n- Ganhei um kit de materiais da escola que estudo \u2014 *reddit* [https://reddit.com/r/naoeinteressante/comments/1s4gf4e/ganhei_um_kit_de_materiai]\n- Estoquista/Conferente at Lion Comercio e Servi\u00e7os de C\u00f3pias Ltda \u2014 *reddit* [https://reddit.com/r/InternPlug/comments/1mbd40x/estoquistaconferente_at_lion_co]\n- operador de caixa e repositor at S1 COMERCIO LTDA \u2014 *reddit* [https://reddit.com/r/InternPlug/comments/1m4u0kp/operador_de_caixa_e_repositor_a]\n- AUXILIAR DE EXPEDI\u00c7\u00c3O at PIT BULL JEANS INDUSTRIA E COMERCIO DE CONFECCOES LTDA \u2014 *reddit* [https://reddit.com/r/InternPlug/comments/1l3av9r/auxiliar_de_expedi\u00e7\u00e3o_at_pit_bu]\n- Assistente de Rede TI I at Morais de Castro Comercio e Importacao de Produtos Quimicos Ltda \u2014 *reddit* [https://reddit.com/r/InternPlug/comments/1ky7w3c/assistente_de_rede_ti_i_at_mora]\n- Comprador at WM COMERCIO DE FERRAMENTAS LTDA \u2014 *reddit* [https://reddit.com/r/InternPlug/comments/1keon24/comprador_at_wm_comercio_de_fer]\n- Estoquista/Repositor at Mons Comercio de Produtos Esportivos Ltda \u2014 *reddit* [https://reddit.com/r/InternPlug/comments/1j2g6iz/estoquistarepositor_at_mons_com]\n- \ud83d\udce2 Nova vaga: VENDEDOR(A) @ LOJINHA PET COMERCIO DE PRODUTOS LTDA \u2014 *reddit* [https://reddit.com/r/trampos/comments/1ifbjjh/nova_vaga_vendedora_lojinha_pet_co]\n- \ud83d\udce2 Nova vaga: VENDEDOR(A) @ HAJI COMERCIO DE COSMETICOS LTDA \u2014 *reddit* [https://reddit.com/r/trampos/comments/1gxakmd/nova_vaga_vendedora_haji_comercio_]\n- \ud83d\udce2 Nova vaga: GESTOR(A) DE TR\u00c1FEGO PAGO @ MMI COMERCIO DE MOVEIS E COLCHOES LTDA \u2014 *reddit* [https://reddit.com/r/trampos/comments/1dztjh4/nova_vaga_gestora_de_tr\u00e1fego_pago_]\n- \ud83d\udce2 Nova vaga: ESTAGI\u00c1RIO(A) EM RECURSOS HUMANOS @ MUNDIALMIX COMERCIO DE ALIMENTOS LTDA \u2014 *reddit* [https://reddit.com/r/trampos/comments/1dwsc6u/nova_vaga_estagi\u00e1rioa_em_recursos_]\n\n**DOMAIN SCAN SUMMARY** (1)\n- plaschem.com.br \u2014 *urlscan*\n\n**WEBSITE SCAN** (1)\n- Plaschem | Fabrica\u00e7\u00e3o e Distribui\u00e7\u00e3o de Resinas Termopl\u00e1sticas \u2014 *urlscan* [http://plaschem.com.br/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "americas: Report file not found on remote VM (americas)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "PLASCHEM COMERCIO DE RESINAS TERMOPLASTICAS LTDA",
+    "entity_trade_names": "PLASCHEM COMERCIO DE RESINAS TERMOPLASTICAS LTDA",
+    "entity_country": "BR",
+    "entity_address": "RODOVIA ANTONIO HEIL 3000, GALPAO MODULO M6, ITAJAI, SC, 88316000, Brazil",
+    "entity_website": "https://plaschem.com.br/",
+    "entity_type": "Thermoplastic resin trading / import (Sociedade Empresarial Limitada)",
+    "entity_industry": "Thermoplastic resins trading / import",
+    "entity_tax_id": "35.222.724/0001-64",
+    "key_individuals": [
+      {
+        "name": "RODRIGO BUZETTI TEN\u00d3RIO",
+        "title": "Director"
+      },
+      {
+        "name": "JAIR KASPROWICZ",
+        "title": "Shareholder"
+      },
+      {
+        "name": "FLORIAL TENORIO JUNIOR"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "copap_products": "Thermoplastic resins (Resinas Termoplasticas)",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (americas)"
+    }
+  },
+  "errors": [
+    "americas: Report file not found on remote VM (americas)"
+  ],
+  "dark_web_findings": 2,
+  "dark_web_sources": 49
+}

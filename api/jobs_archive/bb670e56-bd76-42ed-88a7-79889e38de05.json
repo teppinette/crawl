@@ -1,0 +1,68 @@
+{
+  "job_id": "bb670e56-bd76-42ed-88a7-79889e38de05",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "Lords Chloro Alkali Ltd.",
+  "country": "IN",
+  "created_at": "2026-05-21T17:33:48.436664+00:00",
+  "updated_at": "2026-05-21T17:35:53.378450+00:00",
+  "blob_path": "osint-staging/cir/india/lords_chloro_alkali_ltd_IN_20260520.json",
+  "report_summary": "Second Lords Chloro Alkali submission \u2014 previously researched and filed.\n\nSubject block data artifacts (previously documented):\n- **\"remuneration to Shri Ajay Virmani\"** \u2014 board resolution action label, not a name; actual person = **Ajay Virmani (DIN 00758726)** = same as entry #1\n\n**DONE (existing file): Lords Chloro Alkali Ltd. \u2014 Risk: 3 MONITOR \u2014 CIN L24117RJ1979PLC002099; BSE 500284 / NSE LORDSCHLO; formerly Modi Alkalies And Chemicals Ltd; \u26a0\ufe0f ED criminal appeal Crl.A. 617/2016 (Delhi HC 2017) flagged HIGH; 2 subject-block artifacts**\n\n`~/crawl/output/lords_chloro_alkali_ltd_IN_20260520.json` \u2014 valid, filed May 20, 2026.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**2 actionable findings** from 4/57 sources via Tor (Netherlands exit node) (15 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Adverse media | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 5 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: lordschloro.com\n- ADVERSE MEDIA: Tax evasion to multi-crore scams: Inside the world of India's sham ... (Rajiv Kumar)\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | PDFLords Chloro Alkali Limited; Lords Chloro Alkali Ltd. - Moneycontrol; NSDL (+7 more) |\n| reddit | 5 | \ud83d\udcc5Earnings Today \u2013 21st July 2025 | India; 44 Companies to watch in Indian Stock Market December 2023; Global Hypochlorite Bleaches Market 2019 \u2013 Huge Market Growt (+2 more) |\n| hudsonrock_cavalier | 1 | lordschloro.com |\n| duckduckgo_adverse | 1 | Tax evasion to multi-crore scams: Inside the world of India' |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- lordschloro.com \u2014 *hudsonrock_cavalier*\n\n**ADVERSE MEDIA** (1)\n- Tax evasion to multi-crore scams: Inside the world of India's sham ... \u2014 *duckduckgo_adverse* (searched: Rajiv Kumar) [/l/?uddg=https%3A%2F%2Fwww.theweek.in%2Ftheweek%2Fcover%2F2023%2F02%2F11%2Fregis]\n\n**WEB MENTION** (10)\n- PDFLords Chloro Alkali Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.lordschloro.com%2Fwp%2Dcontent%2Fuploads%2F2025%2F02%]\n- Lords Chloro Alkali Ltd. - Moneycontrol \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.moneycontrol.com%2Findia%2Fstockpricequote%2Fchemical]\n- NSDL \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fnsdl.co.in%2Fmaster_search_detail_res.php%3Fisin%3DINE846]\n- Lords Chloro Alkali Ltd Live Stock Price, Lordschlo Live Share Price ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.bseindia.com%2Fstock%2Dshare%2Dprice%2Flords%2Dchloro]\n- Lords Chloro Alkali Ltd. Share Price Today, Market Cap, Price Chart ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fticker.finology.in%2FCompany%2FLORDSCHLO&rut=673e9e0811c6]\n- Lords Chloro Alkali Ltd Share Price - HDFC securities \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.hdfcsec.com%2Fmarket%2Fcompany%2FLordsChloroAlkaliLtd]\n- Lords Chloro Alkali Ltd. Share Price Today | Lords Chloro Live NSE/BSE \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.valueresearchonline.com%2Fstocks%2F43098%2Flords%2Dch]\n- Lords Chloro Alkali Share Price - The Economic Times \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Feconomictimes.indiatimes.com%2Flords%2Dchloro%2Dalkali%2D]\n- LORDS CHLORO ALKALI LIMITED - ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2FLORDS%2DCHLORO%2DALKALI%2DLIMITED%2DL]\n- Lords Chloro Alkali Ltd. - Emkay \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emkayglobal.com%2Fcompany%2Dinfo%2Foverview%2Flords%2]\n\n**SOCIAL MENTION** (5)\n- \ud83d\udcc5Earnings Today \u2013 21st July 2025 | India \u2014 *reddit* [https://reddit.com/r/StockMarketIndia/comments/1m5a5s9/earnings_today_21st_july_]\n- 44 Companies to watch in Indian Stock Market December 2023 \u2014 *reddit* [https://reddit.com/r/IndianStockMarket/comments/18lu1gs/44_companies_to_watch_in]\n- Global Hypochlorite Bleaches Market 2019 \u2013 Huge Market Growth Till 2024: INEOS, etc. \u2014 *reddit* [https://reddit.com/r/BizInsightReports/comments/cppsm9/global_hypochlorite_bleac]\n- NEW MUSIC! DJ Marky, Rockwell, Sustance, Klinical, gyrofield, Inner City Life Remixes and more! [+we \u2014 *reddit* [https://reddit.com/r/DnB/comments/15897gf/new_music_dj_marky_rockwell_sustance_k]\n- Global Anhydrous Aluminium Chloride Market Production, Sales and Consumption Status and Prospects Pr \u2014 *reddit* [https://reddit.com/r/ChemicalInsightReport/comments/cubd65/global_anhydrous_alum]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "Lords Chloro Alkali Ltd.",
+    "entity_trade_names": "LORDS CHLORO ALKALI LTD.",
+    "entity_country": "IN",
+    "entity_address": "SP-460, Matsya Industrial Area, Alwar, Rajasthan - 301030, India",
+    "entity_website": "https://lordschloro.com",
+    "entity_type": "MANUFACTURING",
+    "entity_industry": "MANUFACTURING",
+    "entity_tax_id": "L24117RJ1979PLC002099",
+    "key_individuals": [
+      {
+        "name": "Ajay Virmani",
+        "title": "Director"
+      },
+      {
+        "name": "Madhav Dhir",
+        "title": "Director"
+      },
+      {
+        "name": "Nitesh Anand",
+        "title": "Officer"
+      },
+      {
+        "name": "Rajiv Kumar",
+        "title": "Officer"
+      },
+      {
+        "name": "Jeetmal Khandelwal",
+        "title": "Officer"
+      },
+      {
+        "name": "Shubha Singh",
+        "title": "Director (DIN: 06926872)"
+      },
+      {
+        "name": "remuneration to Shri Ajay Virmani",
+        "title": "Director (DIN: 00758726)"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "copap_products": "Chloro Alkali (implied); monthly consumption 30 TPM",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 2,
+  "dark_web_sources": 57
+}

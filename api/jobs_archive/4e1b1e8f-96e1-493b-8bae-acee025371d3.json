@@ -1,0 +1,142 @@
+{
+  "job_id": "4e1b1e8f-96e1-493b-8bae-acee025371d3",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "GRASIM INDUSTRIES LIMITED",
+  "country_code": "IN",
+  "created_at": "2026-05-04T14:26:39.894526+00:00",
+  "updated_at": "2026-05-04T14:27:16.929910+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:26:48.470657+00:00",
+      "verified": true,
+      "legal_name": null,
+      "cin": "L17124MP1947PLC000410",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "25 August, 1947",
+      "directors": [
+        "Anita Ramachandran",
+        "Venkatadri Chandrasekaran",
+        "others"
+      ],
+      "registered_address": "BIRLAGRAM NAGDA, UJJAIN, Madhya Pradesh, India, 456331",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:26:51.757341+00:00",
+      "found": true,
+      "name": "GRASIM INDUSTRIES LIMITED ( ADITYA BIRLA GROUP)",
+      "linkedin_url": "https://in.linkedin.com/company/www.grasim.com",
+      "industry": "Manufacturing",
+      "company_size": "10,001+ employees",
+      "locations": [
+        "Aditya Birla Centre, S k Ahire Marg 2 A Mumbai , Maharashtra 400030, IN"
+      ],
+      "about": "Grasim Industries Limited, a flagship company of the Aditya Birla Group, ranks amongst the top publicly listed companies in India. Incorporated in 1947, it started as a textiles manufacturer in India. Today, it has evolved into a leading diversified player with leadership presence across many sectors. It is a leading global producer of Cellulosic Fibres, Diversified Chemicals, Fashion Yarn and Fabrics producer in India. Implementing next phase of transformational growth journey, the company has ",
+      "followers": 188261,
+      "employees_on_linkedin": 5354,
+      "organization_type": "Public Company",
+      "website": "https://www.grasim.com/",
+      "specialties": "manufacturing , viscose, chemicals , textiles , fashion, livaeco, insulators, paints, Chlor-Alkali, Advanced Material, sustainability, people, technology, culture, purpose, aditya birla group, CSR, Building Materials, and cement",
+      "notable_employees": [
+        {
+          "name": "Saugata Chakravarty",
+          "link": "https://in.linkedin.com/in/saugata-chakravarty-03a75b1?trk=org-employees"
+        },
+        {
+          "name": "Himanshu Kapadia",
+          "link": "https://in.linkedin.com/in/kapadiahimanshu?trk=org-employees"
+        },
+        {
+          "name": "Adesh K Gupta",
+          "link": "https://in.linkedin.com/in/adesh-k-gupta-4a21124?trk=org-employees"
+        },
+        {
+          "name": "Prashant Modasia",
+          "link": "https://in.linkedin.com/in/prashant-modasia-1224686?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:27:16.929279+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 62,
+      "sources_searched": 37,
+      "sources_with_results": 3,
+      "by_type": {
+        "web_mention": 10,
+        "adverse_media": 2,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "GRASIM INDUSTRIES LIMITED",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

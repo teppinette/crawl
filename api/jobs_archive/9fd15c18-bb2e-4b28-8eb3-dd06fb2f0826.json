@@ -1,0 +1,59 @@
+{
+  "job_id": "9fd15c18-bb2e-4b28-8eb3-dd06fb2f0826",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "NARSINGH DASS AND COMPANY PVT LTD",
+  "country": "IN",
+  "created_at": "2026-05-21T11:56:05.349765+00:00",
+  "updated_at": "2026-05-21T11:58:20.990625+00:00",
+  "blob_path": "osint-staging/cir/india/narsingh_dass_and_company_pvt_ltd_IN_20260520.json",
+  "report_summary": "Second Narsingh Dass submission \u2014 identical to 21:14 UTC yesterday. File is complete.\n\n**DONE (existing file): Narsingh Dass and Company Private Limited \u2014 Risk: 2 CLEAR \u2014 CIN U74899DL1990PTC039721; Delhi paper manufacturer (Cup Making Paper, Thermal Paper); all 8 Gupta family directors confirmed**\n\n`~/crawl/output/narsingh_dass_and_company_pvt_ltd_IN_20260520.json` \u2014 6.8 KB, valid.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 1/57 sources via Tor (Netherlands exit node) (10 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 57 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | Narsingh Dass And Company Private Limited - IndiaMART; NARSINGH DASS AND COMPANY PRIVATE LIMITED - ZaubaCorp; Narsingh Dass Group | LinkedIn (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- Narsingh Dass And Company Private Limited - IndiaMART \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Fnarsinghdasscompany%2Fprofile.html&ru]\n- NARSINGH DASS AND COMPANY PRIVATE LIMITED - ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2Fcompany%2FNARSINGH%2DDASS%2DAND%2DCOM]\n- Narsingh Dass Group | LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fin.linkedin.com%2Fcompany%2Fnarsingh%2Ddass%2Dgroup&rut=e]\n- Narsingh Dass And Company Private Limited - 2026 Insights \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fcompany%2Fnarsingh%2Ddass%2Dand]\n- Contact the best paper manufacturing Company, Paper Industry in india ... \u2014 *duckduckgo_tor* [/l/?uddg=http%3A%2F%2Fwww.indiapaper.com%2Fcontact%2Fcontactus.php&rut=338270275]\n- Narsingh Dass and Company Private Limited Having Cin ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.falconebiz.com%2Fcompany%2FNARSINGH%2DDASS%2DAND%2DCO]\n- Narsingh Dass & Company Private Limited - PaperMart Directory \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fpapermartdirectory.com%2Fco%2Fnarsingh%2Ddass%2Dcompany%2]\n- Narsingh Dass and Company Private Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.n]\n- Narsingh Dass and Company Pvt.ltd. \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.companydetails.in%2Fcompany%2Fnarsingh%2Ddass%2Dand%2]\n- Narsingh Dass And Company Financials | Company Details - Tofler \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tofler.in%2Fnarsingh%2Ddass%2Dand%2Dcompany%2Dprivate]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "NARSINGH DASS AND COMPANY PVT LTD",
+    "entity_country": "IN",
+    "entity_address": "E-3/16, Balram House, Daryaganj, Central Delhi, Delhi 110002, India",
+    "entity_tax_id": "039721",
+    "key_individuals": [
+      {
+        "name": "KAPIL GUPTA"
+      },
+      {
+        "name": "PRADEEP GUPTA"
+      },
+      {
+        "name": "RAJENDER PARSHAD GUPTA"
+      },
+      {
+        "name": "ADITYA GUPTA"
+      },
+      {
+        "name": "ASHOK KUMAR GUPTA"
+      },
+      {
+        "name": "SATYA PAL GUPTA"
+      },
+      {
+        "name": "RAM AVTAR GUPTA"
+      },
+      {
+        "name": "ABHINAV GUPTA"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 57
+}

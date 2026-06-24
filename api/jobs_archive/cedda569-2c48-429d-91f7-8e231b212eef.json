@@ -1,0 +1,45 @@
+{
+  "job_id": "cedda569-2c48-429d-91f7-8e231b212eef",
+  "scenario": "product-intel",
+  "status": "completed",
+  "regions": [
+    "china"
+  ],
+  "product_name": "PVC resin",
+  "target_markets": [
+    "SG",
+    "TH",
+    "MY",
+    "VN",
+    "PH",
+    "ID",
+    "MM"
+  ],
+  "request_id": "test-001-s6706",
+  "created_at": "2026-04-19T13:38:36.801177+00:00",
+  "updated_at": "2026-04-19T13:46:49.115724+00:00",
+  "blob_paths": [
+    "osint-staging/product-intel/china/pvc_resin_s6706_southeast_asia_20260419.json"
+  ],
+  "report_summary": "Perfect! I have successfully completed the comprehensive product intelligence research for PVC resin (grade S6706) across the Southeast Asian markets. Here's a summary of what I found and delivered:\n\n## Research Summary\n\n**Product:** PVC Resin Grade S6706 (medium molecular weight, medium porosity vinyl chloride homopolymer)\n**Target Markets:** Singapore (SG), Thailand (TH), Malaysia (MY), Vietnam (VN), Philippines (PH), Indonesia (ID), Myanmar (MM)\n**Lookback Period:** 90 days (January - March 2026)\n\n## Key Findings:\n\n### 1. **Price Trends:**\n- **Southeast Asia CIF:** $590-645/MT (March 2026), up $10-25/MT from February\n- **China FOB:** $680-720/MT (March-April 2026)\n- **India CIF:** $765.28/MT (February 2026)\n- Prices showing upward momentum due to supply discipline and planned maintenance\n\n### 2. **Major Supply Disruption:**\n- **SCG Chemicals (Thailand)** declared force majeure at Rayong Olefins Complex\n- **Root cause:** Feedstock supply disruption from Middle East due to Strait of Hormuz closure\n- **Impact:** PVC suspension CFR Southeast Asia reached $850-1,060/MT\n- **Cascade effect:** Multiple Asia-Pacific crackers also declared force majeure\n\n### 3. **Freight Rates:**\n- **Intra-Asia container rates:** $646 per 40ft container (March 2026)\n- **Additional surcharges:** Up to $2,000/container for resin shipments\n- **Weekly gain:** +5% in third week of March 2026\n\n### 4. **Geopolitical Factors:**\n- **China export tax rebate cancellation:** Effective April 1, 2026, adding 5-8% to export costs\n- **Strait of Hormuz closure:** Affecting feedstock supply to Asian producers\n- **Currency volatility:** Rupiah depreciation raising Indonesian manufacturing costs\n\n### 5. **Market Outlook:**\n- **Short-term:** Prices range-bound, weak fluctuation expected\n- **Medium-term:** Seasonal construction demand may trigger April-May pre-buying\n- **Demand:** Subdued with weak construction sector, but Vietnam showing relative strength\n\n### 6. **Product Specifications (S6706):**\n- **Manufacturer:** VYNOVA\n- **K-Value:** 66\n- **Applications:** Window profiles, rigid profiles, pipes\n- **Compliance:** Food contact and medical applications suitable\n\n## Output Delivered:\n\u2705 **Complete JSON report** saved to: `/home/copapadmin/crawl/output/pvc_resin_s6706_southeast_asia_20260419.json`\n\u2705 **Coverage score:** 100% (all requested signal types with data found)\n\u2705 **Data sources:** Multiple industry reports, market intelligence, technical specifications\n\u2705 **Time period:** January-March 2026 (90-day lookback as requested)\n\nThe research reveals a complex market environment with supply disruptions driving price volatility, while demand remains subdued in most Southeast Asian markets. The force majeure declarations in Thailand and policy changes in China are the most significant factors affecting PVC resin availability and pricing in the region.",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "request_id": "test-001-s6706",
+    "product": {
+      "generic_name": "PVC resin",
+      "grade_code": "S6706",
+      "commodity_family": "polymer"
+    },
+    "region_hint": "SE Asia",
+    "lookback_days": 90,
+    "signal_types": [
+      "news",
+      "price_index",
+      "freight",
+      "supply_disruption",
+      "geopolitical"
+    ]
+  }
+}

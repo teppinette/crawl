@@ -1,0 +1,19 @@
+{
+  "job_id": "2e7e4dab-5d51-4b04-8108-c06ff9baba5f",
+  "scenario": "dark-web",
+  "status": "completed",
+  "region": "darkweb",
+  "entity_name": "Al Madd Raw Materials Trading LLC UAE",
+  "country": "",
+  "created_at": "2026-05-22T22:32:26.535239+00:00",
+  "updated_at": "2026-05-22T22:33:31.320381+00:00",
+  "blob_path": "osint-staging/dark-web/al_madd_raw_materials_trading_llc_uae_20260522.json",
+  "report_summary": "26 findings from dark web sources",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_name": "Al Madd Raw Materials Trading LLC UAE",
+    "country_code": "AE"
+  }
+}

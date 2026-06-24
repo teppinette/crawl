@@ -1,0 +1,76 @@
+{
+  "job_id": "a82e8082-14ff-43d1-b1bf-b6e54d50a50b",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "AARTI DRUGS LTD",
+  "country": "IN",
+  "created_at": "2026-05-08T18:38:55.812734+00:00",
+  "updated_at": "2026-05-08T18:41:04.162410+00:00",
+  "blob_path": "osint-staging/cir/india/aarti_drugs_ltd_IN_20260508.json",
+  "report_summary": "This is a duplicate of the request processed 10 minutes ago. The updated output file is already on disk.\n\n**DONE: Aarti Drugs Limited, India \u2014 Risk: 2 CLEAR \u2014 CIN L37060MH1984PLC055433; all 13 key individuals confirmed; zero sanctions hits; Board Meeting May 15, 2026 for FY2025-26 results; USFDA alert LIFTED; \u20b9230.7 Cr IGST contested**\n\n`~/crawl/output/aarti_drugs_ltd_IN_20260508.json` \u2014 27 KB, valid, all 8 workstreams + 5 India-specific requirements complete, research date 2026-05-08.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**90 findings** from 6/57 sources via Tor (Netherlands exit node)\n\n| Category | Count |\n|----------|-------|\n| Breach records | 50 |\n| Adverse media | 15 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "AARTI DRUGS LTD",
+    "entity_country": "IN",
+    "entity_address": "Plot No. N-198, MIDC Tarapur, Tal. Palghar, Village Pamtermbhi, District Palghar, Maharashtra 401506",
+    "entity_tax_id": "L37060MH1984PLC055433",
+    "key_individuals": [
+      {
+        "name": "Patil",
+        "title": "Director (DIN: 01186406)"
+      },
+      {
+        "name": "Joshi",
+        "title": "Director (DIN: 00516409)"
+      },
+      {
+        "name": "PRAKASH MORESHWAR PATIL"
+      },
+      {
+        "name": "RASHESH CHANDRAKANT GOGRI"
+      },
+      {
+        "name": "UDAY MORESHWAR PATIL"
+      },
+      {
+        "name": "HARIT PRAGJI SHAH"
+      },
+      {
+        "name": "HARSHIT MANILAL SAVLA"
+      },
+      {
+        "name": "NARENDRA JAGANNATH SALVI"
+      },
+      {
+        "name": "AJIT ELEDATH VENUGOPALAN"
+      },
+      {
+        "name": "NEHA RAJEN GADA"
+      },
+      {
+        "name": "ANKIT VIKRAM PALEJA"
+      },
+      {
+        "name": "SANDEEP MADHUSUDAN JOSHI"
+      },
+      {
+        "name": "BHASKAR NARAYAN THORAT"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 90,
+  "dark_web_sources": 57
+}

@@ -1,0 +1,20 @@
+{
+  "job_id": "487efae8-bf4b-4f49-ba7e-f02fa1fefd39",
+  "scenario": "dark-web",
+  "status": "failed",
+  "region": "darkweb",
+  "entity_name": "Kemsol Limited UAE",
+  "country": "",
+  "created_at": "2026-05-22T18:57:02.110181+00:00",
+  "updated_at": "2026-05-22T18:57:06.371214+00:00",
+  "blob_path": "osint-staging/dark-web/kemsol_limited_uae_20260522.json",
+  "report_summary": "0 findings from dark web sources",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_name": "Kemsol Limited UAE",
+    "owners": "Aditya Shah, Ashit Gunvantlal Shah",
+    "country_code": "AE"
+  }
+}

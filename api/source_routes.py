@@ -394,6 +394,53 @@ async def gleif_lei_lookup(req: GLEIFRequest):
 
 
 # ---------------------------------------------------------------------------
+# Generic country registry lookup — used by every per-country collector
+# ---------------------------------------------------------------------------
+
+class CountryRegRequest(BaseModel):
+    entity_name: str = Field(..., max_length=500)
+    registration_number: Optional[str] = Field(None, max_length=100)
+
+
+@router.post("/sources/country_registry/lookup")
+async def country_registry_lookup(req: CountryRegRequest, country: str):
+    """Loopback to /api/v1/verify with the given country_code. Source attribution
+    captured in extracted.validation_source. Returns source_id="<cc>_registry"
+    keyed to the per-country sources_catalog entry."""
+    cc = (country or "").upper().strip()
+    if len(cc) != 2:
+        raise HTTPException(status_code=400, detail="country must be ISO-2 code")
+    payload = {"entity_name": req.entity_name, "country_code": cc}
+    if req.registration_number:
+        # The /verify dispatcher reads multiple aliases — reg_number is the
+        # canonical generic one (CIN for IN, USCC for CN, company_number for GB).
+        payload["reg_number"] = req.registration_number
+        payload["company_number"] = req.registration_number
+        payload["cin"] = req.registration_number
+    out = _loopback_verify(payload)
+    vs = out.get("validation_source") or {}
+    return {
+        "source_id": f"{cc.lower()}_registry",
+        "source_url": vs.get("primary_url") or vs.get("url")
+                      or f"https://crawl-verify-gateway/{cc.lower()}",
+        "fetched_at": _now_iso(),
+        "found": bool(out.get("verified") or out.get("found")),
+        "legal_name": out.get("legal_name") or out.get("entity_name"),
+        "status": out.get("status"),
+        "registration_number": (out.get("registration_number")
+                                or out.get("company_number") or out.get("cin")
+                                or out.get("uscc")),
+        "registration_date": (out.get("incorporated_on")
+                              or out.get("incorporation_date")
+                              or out.get("established_date")),
+        "registered_address": out.get("registered_address") or out.get("address"),
+        "directors": out.get("directors") or out.get("partners") or [],
+        "validation_source": vs,
+        "note": out.get("note"),
+    }
+
+
+# ---------------------------------------------------------------------------
 # Collector lifecycle
 # ---------------------------------------------------------------------------
 

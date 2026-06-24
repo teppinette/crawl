@@ -1,0 +1,52 @@
+{
+  "job_id": "21aa6034-6716-40c2-a840-177bfd0d3c54",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "ASIAN SOLVOCHEM PRIVATE LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-20T22:16:35.608069+00:00",
+  "updated_at": "2026-05-20T22:19:11.702563+00:00",
+  "blob_path": null,
+  "report_summary": "Fourth submission. File is complete.\n\n**DONE (existing file): Asian Solvochem Private Limited \u2014 Risk: 3 MONITOR**\n\n`~/crawl/output/asian_solvochem_pvt_ltd_IN_20260520.json` \u2014 11.8 KB, valid.\n---\n\n## DARK WEB SCREENING \u2014 CRITICAL\n**1 actionable findings** from 3/53 sources via Tor (Netherlands exit node) (25 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| World Bank Debarment | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n\n**Key findings:**\n- WORLD BANK DEBARMENT: \n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Interviewed and hired two people this year. The people that ; I\u2019m pretty sure my Wife\u2019s DM hates me.; My parents changed their plans and are ruining my birthday (+12 more) |\n| duckduckgo_tor | 10 | Asian; Asian Solvochem Private Limited; ASIAN SOLVOCHEM PRIVATE LIMITED - Company Profile (+7 more) |\n| adb_sanctions | 1 | debarment_record |\n\n### All findings detail\n\n**WORLD BANK DEBARMENT** (1)\n-  \u2014 *adb_sanctions* [https://www.adb.org/who-we-are/integrity/sanctions]\n\n**WEB MENTION** (10)\n- Asian \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fasiansolvochem.com%2F&rut=7395cbdd4dab8c21eb30d54e55f0d26]\n- Asian Solvochem Private Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.a]\n- ASIAN SOLVOCHEM PRIVATE LIMITED - Company Profile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Fasian%2Dsolvo]\n- ASIAN SOLVOCHEM PRIVATE LIMITED | ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2Fcompany%2FASIAN%2DSOLVOCHEM%2DPRIVATE]\n- Asian Solvochem Pvt. Ltd. in Mumbai, Maharashtra, India - Company Profile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tradeindia.com%2Fasian%2Dsolvochem%2Dpvt%2Dltd%2D9956]\n- Asian Solvochem Private Limited - 2026 Insights - The Company Check \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fcompany%2Fasian%2Dsolvochem%2Dp]\n- Asian Solvochem Private Limited Company Profile - EMIS \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FIN%2FAsian_Solvo]\n- ASIAN SOLVOCHEM PRIVATE LIMITED - IndiaFilings \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiafilings.com%2Fsearch%2Fasian%2Dsolvochem%2Dpriva]\n- ASIAN SOLVOCHEM PVT LTD-SKYSEVEN CHEMICAL - cnchemshop.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.cnchemshop.com%2Fcomdetail%2F33950.html&rut=fc6402725]\n- Asian Solvochem Private Limited - The Economic Times \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Feconomictimes.indiatimes.com%2Fcompany%2Fasian%2Dsolvoche]\n\n**SOCIAL MENTION** (15)\n- Interviewed and hired two people this year. The people that showed up to work were not the people we \u2014 *reddit* [https://reddit.com/r/recruitinghell/comments/1ovud0z/interviewed_and_hired_two_p]\n- I\u2019m pretty sure my Wife\u2019s DM hates me. \u2014 *reddit* [https://reddit.com/r/DnD/comments/1jp0lgl/im_pretty_sure_my_wifes_dm_hates_me/]\n- My parents changed their plans and are ruining my birthday \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1rc8g8e/my_parents_changed_t]\n- I\u2019m pretty sure my Wife\u2019s DM hates me (New Update) \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1k6jmmj/im_pretty_sure_my_wi]\n- Unpacking TS Madison\u2019s recent comments: Why it matters to RPDR \u2014 *reddit* [https://reddit.com/r/rupaulsdragrace/comments/1kvhbwf/unpacking_ts_madisons_rece]\n- Incomplete and Growing List of Participating Subreddits \u2014 *reddit* [https://reddit.com/r/ModCoord/comments/1401qw5/incomplete_and_growing_list_of_pa]\n- Japan, you were amazing! \u2014 *reddit* [https://reddit.com/r/travel/comments/1qwp47k/japan_you_were_amazing/]\n- We enrolled our daughter in a classical private school and now I\u2019m seeing people online saying class \u2014 *reddit* [https://reddit.com/r/ClassicalEducation/comments/1t0zlxm/we_enrolled_our_daughte]\n- I\u2019m pretty sure my Wife\u2019s DM hates me \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1jyq0l2/im_pretty_sure_my_wi]\n- Husband 35M blew up bbq and blames me 34F for our marriage falling apart. Do we come back from this? \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1e188s2/husband_35m_blew_up_]\n- AITAH for being a bad godparent? \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1s0bvji/aitah_for_being_a_ba]\n- Immigrant parents do not want me to become a mental health counselor \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1660ey9/immigrant_parents_do]\n- My (57M) son (23M) moved back in and has been acting weird. Can anyone help? \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1hoop2c/my_57m_son_23m_moved]\n- WIBTAH for sending my mother back to Japan earlier than anticipated due to her behaviour \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/17qees5/wibtah_for_sending_m]\n- My Swiss husband can never find a job \u2014 *reddit* [https://reddit.com/r/askswitzerland/comments/1snsj42/my_swiss_husband_can_never_]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "india: Report file not found on remote VM (india)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "ASIAN SOLVOCHEM PRIVATE LIMITED",
+    "entity_country": "IN",
+    "entity_address": "404, FAIZ-E-QUTBI, 375, NARSI NATHA STREET, MASJID BUNDER, MUMBAI, Maharashtra 400009, India",
+    "entity_tax_id": "203567",
+    "key_individuals": [
+      {
+        "name": "Pramod K. Pandey",
+        "title": "Director"
+      },
+      {
+        "name": "Mukesh I. Doshi",
+        "title": "Director"
+      },
+      {
+        "name": "MUKESH INDRAVADAN DOSHI"
+      },
+      {
+        "name": "PRAMOD KALPNATH PANDEY"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (india)"
+    }
+  },
+  "errors": [
+    "india: Report file not found on remote VM (india)"
+  ],
+  "dark_web_findings": 1,
+  "dark_web_sources": 53
+}

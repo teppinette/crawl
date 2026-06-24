@@ -1,0 +1,23 @@
+{
+  "job_id": "ebe16b3a-61fe-4baa-827c-0e9cabbe0321",
+  "scenario": "dark-web",
+  "status": "completed",
+  "region": "darkweb",
+  "entity_name": "Chemnine LLP",
+  "country": "GB",
+  "created_at": "2026-04-29T14:57:14.415119+00:00",
+  "updated_at": "2026-04-29T14:57:49.170263+00:00",
+  "blob_path": "osint-staging/dark-web/chemnine_llp_20260429.json",
+  "report_summary": "22 findings from dark web sources",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_name": "Chemnine LLP",
+    "country": "GB",
+    "owners": [
+      "Aashil Shah"
+    ],
+    "depth": "heavy"
+  }
+}

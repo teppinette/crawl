@@ -1,0 +1,37 @@
+{
+  "job_id": "677e21db-0aa5-44f9-b16c-b8ab8b472f9d",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "KAPACHIM MAROC",
+  "country": "MA",
+  "created_at": "2026-05-22T22:06:46.967883+00:00",
+  "updated_at": "2026-05-22T22:08:28.185169+00:00",
+  "blob_path": "osint-staging/cir/americas/kapachim_maroc_MA_20260522.json",
+  "report_summary": "Duplicate \u2014 `americas/kapachim_maroc_MA_20260522.json` uploaded today at 20:50 UTC.\n\n| | |\n|---|---|\n| **File** | `americas/kapachim_maroc_MA_20260522.json` |\n| **Risk** | **2 / CLEAR** |\n| **Parent** | KAPACHIM S.A. (Greece) \u2014 EU entity |\n| **Location** | **Jorf Lasfar**, El Jadida \u2014 Morocco's chemical industrial port zone |\n| **Products** | LAS surfactants (sulfonation) \u00b7 NaOCl \u00b7 Caustic soda \u00b7 HCl |\n| **Certifications** | ISO 9001:2015 \u00b7 REACH (EU) |\n| **Sanctions** | ALL CLEAR \u00b7 0 breaches \u00b7 1 minor HudsonRock infostealer (employee-level) |\n| **\ud83d\udd34 HIGH** | Moroccan ICE/RC number needed \u00b7 Greek parent UBOs (GEMI extract) |\n\nNo re-research warranted.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**2 actionable findings** from 3/49 sources via Tor (Netherlands exit node) (11 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Website scans (URLScan) | 1 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: kapachim.com\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | Kapachim - Inventing Chemistry; KAPACHIM MAROC - LinkedIn; Kapachim Maroc (+7 more) |\n| urlscan | 3 | kapachim.com; Kapachim \u2013 Inventing Chemistry (+1 more) |\n| hudsonrock_cavalier | 1 | kapachim.com |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- kapachim.com \u2014 *hudsonrock_cavalier*\n\n**WEB MENTION** (10)\n- Kapachim - Inventing Chemistry \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fkapachim.com%2F&rut=70f37a981e7b83c619c49b716558069cdee6c]\n- KAPACHIM MAROC - LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fma.linkedin.com%2Fcompany%2Fkapachim%2Dmaroc&rut=47b3fd84]\n- Kapachim Maroc \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.k]\n- Kapachim Maroc Sarl | 05233-45174 | El Jadida - AfricaBizInfo \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.africabizinfo.com%2Ffr%2DMA%2Fkapachim%2Dmaroc%2Dsarl]\n- KAPACHIM MAROC Information - RocketReach \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Frocketreach.co%2Fkapachim%2Dmaroc%2Dprofile_b44257a0fa302]\n- KAPACHIM MAROC, MOULAY ABDELLAH, (Maroc), Verif \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.verif.com%2Fsociete%2FKAPACHIM%2DMAROC%2D68d9cf671299]\n- Fiche d'Identit\u00e9 Soci\u00e9t\u00e9 : KAPACHIM MAROC - CHARIKA \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.charika.ma%2Fsociete%2Dkapachim%2Dmaroc%2D123544&rut=]\n- KAPACHIM MAROC company | Business Trust Africa \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.bt%2Dafrica.com%2Fen%2Fcompany%2Ff65556cc2ab997d3290e]\n- Google Maps \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fmaps.google.com%2F&rut=d2c0fc520c1292831422e584533a5bfb3d]\n- Kapachim Maroc | Kerix, the directory of professionals in Morocco \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.kerix.net%2Fen%2Fannuaire%2Dentreprise%2Fkapachim%2Dm]\n\n**DOMAIN SCAN SUMMARY** (1)\n- kapachim.com \u2014 *urlscan*\n\n**WEBSITE SCAN** (1)\n- Kapachim \u2013 Inventing Chemistry \u2014 *urlscan* [https://kapachim.com/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "KAPACHIM MAROC",
+    "entity_trade_names": "KAPACHIM MAROC",
+    "entity_country": "MA",
+    "entity_website": "https://kapachim.com",
+    "entity_type": "PRODUCTION OF RAW MATERIAL FOR DETERGENTS",
+    "entity_industry": "PRODUCTION OF RAW MATERIAL FOR DETERGENTS",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "copap_products": "RAW MATERIAL FOR DETERGENTS",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 2,
+  "dark_web_sources": 49
+}

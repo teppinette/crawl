@@ -1,0 +1,75 @@
+{
+  "job_id": "8565e43d-cd8d-4b89-a262-a11dd765a11f",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "KS INTERNATIONAL",
+  "country_code": "IN",
+  "created_at": "2026-05-04T15:57:31.887739+00:00",
+  "updated_at": "2026-05-04T15:59:32.911011+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:57:37.837492+00:00",
+      "verified": true,
+      "legal_name": "K.S. OVERSEAS PRIVATE LIMITED",
+      "cin": "U15122HR2013PTC048824",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "11 April, 2013",
+      "directors": [
+        "Minakshi Goel",
+        "Pankaj Kumar",
+        "others"
+      ],
+      "registered_address": "NEAR STATE WARE HOUSE, TARAORI, Haryana, India, 132116",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:57:38.745666+00:00",
+      "found": true,
+      "name": "K S International",
+      "linkedin_url": "https://in.linkedin.com/company/ksinternational",
+      "industry": "Rubber Products Manufacturing",
+      "company_size": "11-50 employees",
+      "locations": [
+        "Kh 80, Street No. 10, Railway Road, Samaypur New Delhi, Delhi 110042, IN"
+      ],
+      "about": "K S International is a group company of M/s K.K. Rubber Co. (India) Pvt. Ltd. which was established in 1969 in New Delhi and managed by our visionary family members from older generations. With over 5 decades of experience in manufacturing & exporting rubber belting, we laid the foundation stone of K S International in 2016. We manufacture and supply Food Grade Synthetic Conveyor Belts, Unvulcunized Rubber Compounds, and Rubber Transmission Belts.",
+      "followers": 17,
+      "employees_on_linkedin": 2,
+      "organization_type": "Partnership",
+      "website": "https://ksinternationalco.in/",
+      "specialties": "50+ Years of Experience",
+      "notable_employees": [
+        {
+          "name": "Sumeesh Jain",
+          "link": "https://in.linkedin.com/in/sumeesh-jain-5b893372?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:59:32.910426+00:00",
+      "risk_level": "CLEAN",
+      "total_findings": 0,
+      "sources_searched": 0,
+      "sources_with_results": 0,
+      "by_type": {},
+      "key_findings": [],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "KS INTERNATIONAL",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

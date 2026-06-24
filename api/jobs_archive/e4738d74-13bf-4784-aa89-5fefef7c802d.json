@@ -1,0 +1,86 @@
+{
+  "job_id": "e4738d74-13bf-4784-aa89-5fefef7c802d",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "BIN ARIF INDUSTRIES PVT LTD",
+  "country_code": "PK",
+  "created_at": "2026-05-04T14:59:25.970470+00:00",
+  "updated_at": "2026-05-04T15:01:27.320148+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:59:34.324975+00:00",
+      "verified": true,
+      "legal_name": "BIN ARIF INDUSTRIES (PVT.) LIMITED",
+      "registration_number": "0081760",
+      "entity_status": "Incorporated",
+      "company_type": "Private Limited Company",
+      "cro": "CRO Lahore",
+      "registration_date": "20-11-2012 14:05:18",
+      "fbr": null,
+      "all_matches": null,
+      "source": "SECP eServices (direct gov query)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:59:32.624102+00:00",
+      "found": true,
+      "name": "SHINING 3D",
+      "linkedin_url": "https://www.linkedin.com/company/shining-3d-tech-co-ltd-",
+      "industry": "Industrial Machinery Manufacturing",
+      "company_size": "501-1,000 employees",
+      "locations": [
+        "No. 1398, Xiangbin Road, Wenyan, Xiaoshan, Hangzhou, Zhejiang 311258, CN",
+        "Breitwiesenstra\u00dfe 28 Stuttgart, Baden-W\u00fcrttemberg 70565, DE",
+        "1740 C\u00e9sar Ch\u00e1vez St. Unit D. San Francisco, California 94124, US"
+      ],
+      "about": "SHINING 3D is a high-tech enterprise with China National Torch Plan, professional in providing integrated solutions for 3D digitizing technology. With 20 years of establishment, SHINING 3D focuses on 3D digitizing and 3D printing technology, from high precision 3D digitizing (3D scanning), 3D modeling and inspection (reverse design, 3D inspection) to 3D Printing and rapid manufacturing (3D data output). We are rapidly developing, and sincerely invite people to enter the shining family. We are lo",
+      "followers": 41974,
+      "employees_on_linkedin": 328,
+      "organization_type": "Public Company",
+      "website": "https://www.shining3d.com/",
+      "specialties": "3D Scanning, 3D Printing, 3D Inspection, Reverse Engineering, and Design and Engineering",
+      "notable_employees": [
+        {
+          "name": "simone zanasi",
+          "link": "https://it.linkedin.com/in/simone-zanasi?trk=org-employees"
+        },
+        {
+          "name": "Hans Heydorn",
+          "link": "https://de.linkedin.com/in/hans-heydorn-a069914?trk=org-employees"
+        },
+        {
+          "name": "Patric Charest",
+          "link": "https://www.linkedin.com/in/patric-charest?trk=org-employees"
+        },
+        {
+          "name": "Alberto Ferriani",
+          "link": "https://br.linkedin.com/in/albertoferriani?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:01:27.319511+00:00",
+      "risk_level": "CLEAN",
+      "total_findings": 0,
+      "sources_searched": 0,
+      "sources_with_results": 0,
+      "by_type": {},
+      "key_findings": [],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "BIN ARIF INDUSTRIES PVT LTD",
+    "country_code": "PK",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

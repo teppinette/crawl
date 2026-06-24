@@ -1,0 +1,108 @@
+{
+  "job_id": "0463fa52-78de-4d76-b5cc-16bedd6b227f",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "ACCORD CHEMICAL CORPORATION",
+  "country": "IN",
+  "created_at": "2026-05-21T17:51:43.657759+00:00",
+  "updated_at": "2026-05-21T17:55:03.192945+00:00",
+  "blob_path": "osint-staging/cir/india/accord_chemical_corporation_IN_20260520.json",
+  "report_summary": "Third Accord Chemical Corporation submission (LEI removed from this version vs previous). File is complete.\n\n**DONE (existing file): Accord Chemical Corporation \u2014 Risk: 2 CLEAR \u2014 GSTIN 27AAQFA7545N1ZP; Maharashtra petrochemical partnership; 17 entries \u2192 3 unique individuals (Jinesh + Meghna Shah, Yash Jinesh Shah)**\n\n`~/crawl/output/accord_chemical_corporation_IN_20260520.json` \u2014 13.4 KB, valid, filed May 20, 2026.\n---\n\n## DARK WEB SCREENING \u2014 CRITICAL\n**2 actionable findings** from 4/57 sources via Tor (Netherlands exit node) (25 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| World Bank Debarment | 1 |\n| Credential compromise | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n\n**Key findings:**\n- WORLD BANK DEBARMENT: \n- CREDENTIAL COMPROMISE: accordchemicals.com\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Trump to Hit Canada, Mexico With 25% Tariffs on Saturday; How do I (M37) tell my wife (F38) that I don\u2019t want to move ; Is your team's owner a Nepo Baby? An Analysis of Current NFL (+12 more) |\n| duckduckgo_tor | 10 | Accord Chemical Corporation - Trusted Petrochemical Trading ; Accord Chemical Corporation - Trader - Wholesaler / Distribu; Accord Chemical Corporation (+7 more) |\n| hudsonrock_cavalier | 1 | accordchemicals.com |\n| adb_sanctions | 1 | debarment_record |\n\n### All findings detail\n\n**WORLD BANK DEBARMENT** (1)\n-  \u2014 *adb_sanctions* [https://www.adb.org/who-we-are/integrity/sanctions]\n\n**CREDENTIAL COMPROMISE** (1)\n- accordchemicals.com \u2014 *hudsonrock_cavalier*\n\n**WEB MENTION** (10)\n- Accord Chemical Corporation - Trusted Petrochemical Trading & Customs ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.accordchemicals.com%2F&rut=8d492c59f5612763458bbee7a5]\n- Accord Chemical Corporation - Trader - Wholesaler / Distributor of ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Faccordchemical%2F&rut=1802b1bdc985b16]\n- Accord Chemical Corporation \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.a]\n- ACCORD CHEMICAL CORPORATION - Home \u2014 *duckduckgo_tor* [/l/?uddg=http%3A%2F%2Faccordchemical.lookchem.com%2F&rut=525e669f4737ab756c8d0ea]\n- Accord Chem Corp Pvt Ltd | LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fin.linkedin.com%2Fcompany%2Faccord%2Dchemcorp%2Dpvt%2Dltd]\n- Accord Chemical Corporation - celesttechnologies.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fcelesttechnologies.com%2Faccord%2Dchemical%2Dcorporation.]\n- Accord Chemical Corporation in Mumbai, Maharashtra, India - Company Profile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tradeindia.com%2Faccord%2Dchemical%2Dcorporation%2D70]\n- Accord Chemical - Overview, News & Similar companies - ZoomInfo \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zoominfo.com%2Fc%2Faccord%2Dchemical%2Dcorp%2F3472681]\n- Company Profile - Accord Chemical Corporation \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fchemdmart.com%2Fcompany%2Dprofile%2Faccord%2Dchemical%2Dc]\n- ACCORD CHEMICAL CORPORATION - Chemical Trading Company on ECHEMI \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.echemi.com%2Fshop%2Dus20180832100038038%2Findex.html&]\n\n**SOCIAL MENTION** (15)\n- Trump to Hit Canada, Mexico With 25% Tariffs on Saturday \u2014 *reddit* [https://reddit.com/r/stocks/comments/1ie0pxa/trump_to_hit_canada_mexico_with_25_]\n- How do I (M37) tell my wife (F38) that I don\u2019t want to move to US without sounding like an unsupport \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1lcjf59/how_do_i_m37_tell_my]\n- Is your team's owner a Nepo Baby? An Analysis of Current NFL Head Coach Searches \u2014 *reddit* [https://reddit.com/r/nfl/comments/1qhzxtv/is_your_teams_owner_a_nepo_baby_an_ana]\n- I accepted a counter offer from my employer, and they back tracked.. \u2014 *reddit* [https://reddit.com/r/personalfinance/comments/hikvdg/i_accepted_a_counter_offer_]\n- Motor Oil Is The Next Shortage And It's Just As Bad As Higher Gas Prices \u2014 *reddit* [https://reddit.com/r/oil/comments/1tfvbqp/motor_oil_is_the_next_shortage_and_its]\n- If you say you are \"The Most Transparent Candidate\" while constantly obfuscating data, what does tha \u2014 *reddit* [https://reddit.com/r/politics/comments/4e0vo6/if_you_say_you_are_the_most_transp]\n- Motor Oil Is The Next Shortage And It\u2019s Just As Bad As Higher Gas Prices \u2014 *reddit* [https://reddit.com/r/Shortages/comments/1tfvlkq/motor_oil_is_the_next_shortage_a]\n- This keeps bothering me and I don't have anyone to talk to about it... \u2014 *reddit* [https://reddit.com/r/rupaulsdragrace/comments/1doslz9/this_keeps_bothering_me_an]\n- Flurry of 911 calls has been coming from ICE detention site near San Antonio. The calls, ranging fro \u2014 *reddit* [https://reddit.com/r/SanAntonioUSA/comments/1lm6cq6/flurry_of_911_calls_has_been]\n- Doing hazardous waste inventory of an old dry cleaner, and found several containers like this in the \u2014 *reddit* [https://reddit.com/r/TerrifyingAsFuck/comments/13yg8ud/doing_hazardous_waste_inv]\n- Nova Wars Chapter GPS Coordinate Unavailable \u2014 *reddit* [https://reddit.com/r/HFY/comments/1hnuuur/nova_wars_chapter_gps_coordinate_unava]\n- In 2000, Rodney Marks was hit with a mysterious illness at the Amundsen-Scott South Pole Station in  \u2014 *reddit* [https://reddit.com/r/UnresolvedMysteries/comments/xtt4cj/in_2000_rodney_marks_wa]\n- European Metals ($ERPNF) - Speculating on Europe\u2019s largest lithium resource. How an approaching cata \u2014 *reddit* [https://reddit.com/r/pennystocks/comments/lfargh/european_metals_erpnf_speculati]\n- First Contact - Fourth Wave - 470 First Telkan \u2014 *reddit* [https://reddit.com/r/HFY/comments/mpr25p/first_contact_fourth_wave_470_first_tel]\n- Manchin and Sinema force Dems to drop corporate tax rate hike, fossil fuel penalties, and free commu \u2014 *reddit* [https://reddit.com/r/Keep_Track/comments/qg6z63/manchin_and_sinema_force_dems_to]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "ACCORD CHEMICAL CORPORATION",
+    "entity_trade_names": "ACCORD CHEMICAL CORPORATION",
+    "entity_country": "IN",
+    "entity_address": "4th Floor/7th Floor, A-405 / B-705, Kanakia Western Edge-II, Off W.E. Highway, Behind Metro Store, Borivali East, Mumbai Suburban, Maharashtra 400066",
+    "entity_website": "https://accordchemicals.com",
+    "entity_type": "Petrochemical",
+    "entity_industry": "Petrochemical",
+    "entity_tax_id": "GSTIN: 27AAQFA7545N1ZP; PAN: AAQFA7545N",
+    "key_individuals": [
+      {
+        "name": "Jinesh Shah",
+        "title": "Partner"
+      },
+      {
+        "name": "Meghna Shah",
+        "title": "Partner"
+      },
+      {
+        "name": "Jinesh Mahendra Shah",
+        "title": "Director"
+      },
+      {
+        "name": "Meghana J. Shah",
+        "title": "Director"
+      },
+      {
+        "name": "Jinesh M. Shah",
+        "title": "Partner"
+      },
+      {
+        "name": "Meghna J. Shah",
+        "title": "Partner"
+      },
+      {
+        "name": "Jinesh M Shah",
+        "title": "Partner"
+      },
+      {
+        "name": "Meghna J Shah",
+        "title": "Partner"
+      },
+      {
+        "name": "Jinesh Mahendra Shah",
+        "title": "UBO"
+      },
+      {
+        "name": "Meghana J. Shah",
+        "title": "UBO"
+      },
+      {
+        "name": "Jinesh Mahendra Shah",
+        "title": "UBO"
+      },
+      {
+        "name": "Yash Jinesh Shah",
+        "title": "UBO"
+      },
+      {
+        "name": "Meghana J. Shah",
+        "title": "UBO"
+      },
+      {
+        "name": "Jinesh Mahendra Shah",
+        "title": "UBO"
+      },
+      {
+        "name": "Meghna J. Shah",
+        "title": "UBO"
+      },
+      {
+        "name": "Jinesh Mahendra Shah",
+        "title": "UBO"
+      },
+      {
+        "name": "Meghana J. Shah",
+        "title": "UBO"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "copap_products": "Petrochemical",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 2,
+  "dark_web_sources": 57
+}

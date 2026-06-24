@@ -1,0 +1,41 @@
+{
+  "job_id": "5d873e88-9461-408c-82b2-6d9fd5356b31",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "URMI CHEMICALS",
+  "country": "IN",
+  "created_at": "2026-05-21T12:53:11.238328+00:00",
+  "updated_at": "2026-05-21T12:56:23.507711+00:00",
+  "blob_path": "osint-staging/cir/india/urmi_chemicals_IN_20260521.json",
+  "report_summary": "**DONE: Urmi Chemicals, India \u2014 Risk: 2 CLEAR \u2014 39-year Mumbai specialty esters partnership; GSTIN 27AAAFU2434Q1ZT Active; \u2705 GSTR3B filed May 11, 2026 (April FY27 \u2014 10 days ago); 10 business locations; exporter of Ethyl Chloroacetate**\n\n`~/crawl/output/urmi_chemicals_IN_20260521.json` \u2014 7.7 KB, valid, research date 2026-05-21, all 8 workstreams complete.\n\nKey notes:\n- **GST compliance is best-in-class** \u2014 filing on the 10th\u201311th of every single month, no exceptions, April 2026 already filed\n- **\"LEI Reg: 12401448\"** in subject block is not a valid 20-char ISO 17442 LEI \u2014 flag as partial/internal reference\n- Partnership firm since 1986 \u2014 predates corporate India's modern era; obtain partnership deed for KYC\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 2/45 sources via Tor (Netherlands exit node) (11 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 45 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | Urmi Chemicals | Ethyl Chloroacetate manufacturer, supplier,; Urmi Chemicals - India | LinkedIn; Urmi Chemicals - Manufacturer from Thane, India | About Us (+7 more) |\n| reddit | 1 | Circuit sushi-based mall for any items unlocked trough green |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- Urmi Chemicals | Ethyl Chloroacetate manufacturer, supplier, and ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.urmichemicals.com%2F&rut=ab324190866930a98a459883a40b]\n- Urmi Chemicals - India | LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2Furmi%2Dchemicals%2D%2D%2Dind]\n- Urmi Chemicals - Manufacturer from Thane, India | About Us \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Furmi%2Dchemicals%2Fprofile.html&rut=a]\n- Urmi Chemicals \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.u]\n- Urmi Chemicals - Contact - ChemicalBook India \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.chemicalbook.in%2Fmanufacturer%2Furmi%2Dchemicals%2Fc]\n- Urmi Chemicals - Sourceready Supplier \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.sourceready.com%2Fsupplier%2Fdetail%2Furmi%2Dchemical]\n- Urmi Chemicals - Overview, News & Similar companies - ZoomInfo \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zoominfo.com%2Fc%2Furmi%2Dchemicals%2F365411854&rut=8]\n- Urmi Chemicals Company Profile | Management and Employees List - Datanyze \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.datanyze.com%2Fcompanies%2Furmi%2Dchemicals%2F3654118]\n- Urmit Chemicals - A Government Recognized Star Export House. \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Furmitchem.com%2F&rut=51116710c5a8684424fb11f2648cfea1bb7c]\n- Urmi Chemicals in Mumbai \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fmumbai.idbf.in%2F4313985%2Furmi%2Dchemicals&rut=415b216f0]\n\n**SOCIAL MENTION** (1)\n- Circuit sushi-based mall for any items unlocked trough green science  \u2014 *reddit* [https://reddit.com/r/factorio/comments/1gr71hq/circuit_sushibased_mall_for_any_i]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "URMI CHEMICALS",
+    "entity_country": "IN",
+    "entity_address": "1st Floor, 113, Champaklal Industrial Estate, Road Number 29, Next to Sion Telephone Exchange, Sion East, Mumbai, Maharashtra, 400022",
+    "entity_tax_id": "27AAAFU2434Q1ZT (GSTIN) / LEI Reg: 12401448",
+    "key_individuals": [
+      {
+        "name": "Miten V. Bhayani"
+      },
+      {
+        "name": "Vinod P. Shah"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 45
+}

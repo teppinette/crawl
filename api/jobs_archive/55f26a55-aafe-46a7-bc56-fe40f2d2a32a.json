@@ -1,0 +1,84 @@
+{
+  "job_id": "55f26a55-aafe-46a7-bc56-fe40f2d2a32a",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "KEMPLAST INDUSTRIES",
+  "country_code": "IN",
+  "created_at": "2026-05-04T15:12:38.107745+00:00",
+  "updated_at": "2026-05-04T15:14:39.465224+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:12:45.397669+00:00",
+      "verified": true,
+      "legal_name": "CHEMPLAST PRODUCTS PRIVATE LIMITED",
+      "cin": "U26990CT2021PTC011668",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "07 June, 2021",
+      "directors": [
+        "Vishal Agrawal",
+        "Anurag Agrawal",
+        "others"
+      ],
+      "registered_address": "C/O ANURAG AGRAWAL, INFORNT OF KANHA STEEL, INDUSTRIAL AREA, BHANPURI, Raipur, RAIPUR, Chattisgarh, India, 492001",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:12:44.540493+00:00",
+      "found": true,
+      "name": "Kemplast Process Solutions",
+      "linkedin_url": "https://in.linkedin.com/company/kemplast-process-solutions",
+      "industry": "Industrial Machinery Manufacturing",
+      "company_size": "11-50 employees",
+      "locations": [
+        "Ghasmandi Road, hill street Secunder\u0101b\u0101d, Telangana 500003, IN",
+        "Raghavendra Swamy, No.21, NGEF Layout, 2nd Main, 1st cross, 1st Main Rd, Sanjayanagara, Bengaluru, Karnataka 560094, IN"
+      ],
+      "about": "Kemplast Inc was established in 1986 with the sole aim of serving process industries in India. Through exceptional customer services and good quality product we have gained trust within Process Industry. Our Journey started in 1986, in association with SPITMAAN Industries with the mission of providing quality seals & packing material to Power, Sugar, Paper, Pharma, Cement, F&B and Chemical Industry. We gained customer confidence by providing them with innovative and reliable solutions for their ",
+      "followers": 331,
+      "employees_on_linkedin": 10,
+      "organization_type": "Self-Employed",
+      "website": "https://www.kemplast.in/",
+      "specialties": "PLC , AUTOMATION, PROCESS IMPROVEMENT, FIELD INSTRUMENTATION, SIEMENS, VALIDATION, PROCESS INDUSTRIES, GASKETS, HEAT INSULATION, and INDUSTRIAL SEALS",
+      "notable_employees": [
+        {
+          "name": "Raghavendra H",
+          "link": "https://in.linkedin.com/in/raghavendra-h-75b852193?trk=org-employees"
+        },
+        {
+          "name": "Preetha shankar",
+          "link": "https://in.linkedin.com/in/preetha-shankar-131b11225?trk=org-employees"
+        },
+        {
+          "name": "Vinay konda",
+          "link": "https://in.linkedin.com/in/vinay-konda-191713382?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:14:39.464554+00:00",
+      "risk_level": "CLEAN",
+      "total_findings": 0,
+      "sources_searched": 0,
+      "sources_with_results": 0,
+      "by_type": {},
+      "key_findings": [],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "KEMPLAST INDUSTRIES",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

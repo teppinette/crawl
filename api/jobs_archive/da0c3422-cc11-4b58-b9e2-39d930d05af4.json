@@ -1,0 +1,32 @@
+{
+  "job_id": "da0c3422-cc11-4b58-b9e2-39d930d05af4",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "china",
+  "entity_name": "SINOCHEM INTERNATIONAL OIL (SINGAPORE) PTE LTD",
+  "country": "SG",
+  "created_at": "2026-04-22T14:57:33.611754+00:00",
+  "updated_at": "2026-04-22T14:58:30.039261+00:00",
+  "blob_path": "osint-staging/cir/china/sinochem_international_oil_singapore_pte_ltd_sg_20260422.json",
+  "report_summary": "Perfect! The research has already been completed and the JSON report is saved. Let me provide a summary of what was found:\n\n## Research Already Completed\n\n**Entity:** SINOCHEM INTERNATIONAL OIL (SINGAPORE) PTE LTD  \n**Country:** Singapore (SG)  \n**UEN:** 199002584N  \n**Research Date:** 2026-04-22  \n\n## Key Findings Summary:\n\n### 1. **Corporate Structure:**\n- **Status:** Live Company (incorporated May 29, 1990)\n- **Direct Parent:** Sinochem Energy Hong Kong Co., Limited (100% ownership)\n- **Ultimate Parent:** Sinochem Holdings Corporation Ltd. (Chinese state-owned enterprise)\n- **Ultimate Beneficial Owner:** SASAC of China\n\n### 2. **Sanctions Screening:**\n- **Parent Company:** Sinochem Group Co Ltd on OFAC **NS-CCMC List** (Chinese Military-Industrial Complex)\n- **OFAC 50% Rule:** Subsidiary may be subject to same restrictions\n- **No direct SDN designations** for Singapore entity\n\n### 3. **Adverse Media:**\n- **Major Corruption Scandal:** Named in Indonesia's Pertamina oil corruption case (2018-2023)\n- **Alleged Profit:** US$1,394,988.19 from corrupt gasoline procurement\n- **Related Case:** Former Sinochem executive prosecuted for bribery (April 2026)\n\n### 4. **Risk Assessment:**\n- **Risk Score:** 4 (REVIEW)\n- **Rationale:** High-risk due to parent's NS-CCMC listing, corruption scandal involvement, state ownership with PEP connections\n\n## Output Already Delivered:\n\u2705 **Complete JSON report:** `/home/copapadmin/crawl/output/sinochem_international_oil_singapore_pte_ltd_sg_20260422.json`  \n\u2705 **All 7 research steps completed** per counterparty_research skill  \n\u2705 **File size:** 9,895 bytes  \n\u2705 **Created:** April 22, 2026 12:39 UTC\n\n**DONE:** SINOCHEM INTERNATIONAL OIL (SINGAPORE) PTE LTD, SG -- Risk: 4 REVIEW -- Parent on OFAC NS-CCMC list, involved in Pertamina corruption scandal, state-owned with PEP connections\n\nThe research is complete and the JSON output is already saved in the specified location. No additional research is needed as this is a duplicate request for the same entity.",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "SINOCHEM INTERNATIONAL OIL (SINGAPORE) PTE LTD",
+    "entity_country": "SG",
+    "entity_address": "9 Temasek Boulevard #18-03, Suntec Tower Two, Singapore 038989",
+    "entity_tax_id": "199002584N",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "china": {
+      "status": "completed",
+      "error": null
+    }
+  }
+}

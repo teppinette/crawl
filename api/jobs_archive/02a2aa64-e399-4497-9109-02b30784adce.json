@@ -1,0 +1,61 @@
+{
+  "job_id": "02a2aa64-e399-4497-9109-02b30784adce",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "THE PRINTERS (MYSORE) PVT LTD.",
+  "country": "IN",
+  "created_at": "2026-05-20T21:35:25.170973+00:00",
+  "updated_at": "2026-05-20T21:39:06.096772+00:00",
+  "blob_path": "osint-staging/cir/india/the_printers_mysore_pvt_ltd_IN_20260520.json",
+  "report_summary": "**DONE: The Printers (Mysore) Private Limited, India \u2014 Risk: 2 CLEAR \u2014 Karnataka's oldest commercial printer (est. 1948); CIN U22110KA1948PTC000521; Zero debt; Kanekal family promoters; \u26a0\ufe0f \"Sansera Engineering\" is data artifact; verify MCA filings since 2022**\n\n`~/crawl/output/the_printers_mysore_pvt_ltd_IN_20260520.json` \u2014 8 KB, valid, all 8 workstreams complete.\n---\n\n## DARK WEB SCREENING \u2014 CRITICAL\n**4 actionable findings** from 4/53 sources via Tor (Netherlands exit node) (10 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| World Bank Debarment | 1 |\n| Credential compromise | 1 |\n| Adverse media | 2 |\n| Web mentions (Tor-routed) | 10 |\n\n**Key findings:**\n- WORLD BANK DEBARMENT: \n- CREDENTIAL COMPROMISE: printersmysore.com\n- ADVERSE MEDIA: SANSERA ENGINEERING LIMITED - MarketScreener.com (Sansera Engineering)\n- ADVERSE MEDIA: Sansera Engineering Share Price Today | NSE: SASE - Investing.com IN (Sansera Engineering)\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | The Printers Mysore | Magazine & Newspaper Publishing | Decc; The Printers Mysore | Deccan Herald | Prajavani | LinkedIn; THE PRINTERS (MYSORE) PRIVATE LIMITED - 2025 Company Profile (+7 more) |\n| duckduckgo_adverse | 2 | SANSERA ENGINEERING LIMITED - MarketScreener.com; Sansera Engineering Share Price Today | NSE: SASE - Investin |\n| hudsonrock_cavalier | 1 | printersmysore.com |\n| adb_sanctions | 1 | debarment_record |\n\n### All findings detail\n\n**WORLD BANK DEBARMENT** (1)\n-  \u2014 *adb_sanctions* [https://www.adb.org/who-we-are/integrity/sanctions]\n\n**CREDENTIAL COMPROMISE** (1)\n- printersmysore.com \u2014 *hudsonrock_cavalier*\n\n**ADVERSE MEDIA** (2)\n- SANSERA ENGINEERING LIMITED - MarketScreener.com \u2014 *duckduckgo_adverse* (searched: Sansera Engineering) [/l/?uddg=https%3A%2F%2Fwww.marketscreener.com%2Fquote%2Fstock%2FSANSERA%2DENGINE]\n- Sansera Engineering Share Price Today | NSE: SASE - Investing.com IN \u2014 *duckduckgo_adverse* (searched: Sansera Engineering) [/l/?uddg=https%3A%2F%2Fin.investing.com%2Fequities%2Fsansera%2Dengineering&rut=7]\n\n**WEB MENTION** (10)\n- The Printers Mysore | Magazine & Newspaper Publishing | Deccan Herald ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fprintersmysore.com%2F&rut=5ccd46ffff9a70dcbeec219eabd2a5b]\n- The Printers Mysore | Deccan Herald | Prajavani | LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fin.linkedin.com%2Fcompany%2Ftheprintersmysore&rut=fcb4b41]\n- THE PRINTERS (MYSORE) PRIVATE LIMITED - 2025 Company Profile ... - Tracxn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Fthe%2Dprinter]\n- THE PRINTERS (MYSORE) PRIVATE LIMITED | ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2FTHE%2DPRINTERS%2DMYSORE%2DPRIVATE%2DL]\n- THE PRINTERS (MYSORE) PRIVATE LIMITED Details | Company Profile ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.companydetails.in%2Fcompany%2Fthe%2Dprinters%2Dmysore]\n- The Printers (Mysore) Private Limited / U22110ka1948ptc000521 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.falconebiz.com%2Fcompany%2FTHE%2DPRINTERS%2DMYSORE%2D]\n- The Printers (Mysore) Private Limited - 2026 Insights \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fcompany%2Fthe%2Dprinters%2Dmyso]\n- The Printers ( Mysore )Pvt. Ltd. - Service Provider of ... - IndiaMART \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Fthe%2Dprinters%2Dltd%2F&rut=8bdee8020]\n- THE PRINTERS (MYSORE) PRIVATE LIMITED - Dun & Bradstreet \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.t]\n- THE Printers (mysore) Private Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Feconomictimes.indiatimes.com%2Fcompany%2Fthe%2Dprinters%2]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "THE PRINTERS (MYSORE) PVT LTD.",
+    "entity_country": "IN",
+    "entity_address": "PLOT NO.7-12, KUMBALGODU INDL. AREA, MYSORE ROAD, Bangalore, Karnataka 560074",
+    "entity_website": "https://printersmysore.com/",
+    "entity_tax_id": "U22110KA1948PTC000521",
+    "key_individuals": [
+      {
+        "name": "Sansera Engineering",
+        "title": "Director (DIN: 10516270)"
+      },
+      {
+        "name": "Kanekal Nettakallappa Tilak Kumar"
+      },
+      {
+        "name": "Kanekal Nettakallappa Shanth Kumar"
+      },
+      {
+        "name": "Parul Anant Shah"
+      },
+      {
+        "name": "Sondekoppa Sundarswamy Naganand"
+      },
+      {
+        "name": "Sulegai Dhondusa Muniswamy"
+      },
+      {
+        "name": "Chaitanya Hari Netkalappa"
+      },
+      {
+        "name": "Kanekal Tilak Sowbhagya Lakshmi"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 4,
+  "dark_web_sources": 53
+}

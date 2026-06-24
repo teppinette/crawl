@@ -1,0 +1,19 @@
+{
+  "job_id": "78b2c945-5a12-46b5-8d2d-43986273aca7",
+  "scenario": "dark-web",
+  "status": "completed",
+  "region": "darkweb",
+  "entity_name": "Sur Papel SA Chile paper Santiago",
+  "country": "",
+  "created_at": "2026-05-22T20:18:34.676989+00:00",
+  "updated_at": "2026-05-22T20:19:38.462139+00:00",
+  "blob_path": "osint-staging/dark-web/sur_papel_sa_chile_paper_santiago_20260522.json",
+  "report_summary": "26 findings from dark web sources",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_name": "Sur Papel SA Chile paper Santiago",
+    "country_code": "CL"
+  }
+}

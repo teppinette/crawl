@@ -1,0 +1,19 @@
+{
+  "job_id": "f51bcc2b-0ec0-4e78-8ff9-1e861e019afb",
+  "scenario": "dark-web",
+  "status": "completed",
+  "region": "darkweb",
+  "entity_name": "Scribe Colombia SAS",
+  "country": "",
+  "created_at": "2026-05-22T16:25:38.051644+00:00",
+  "updated_at": "2026-05-22T16:26:58.440091+00:00",
+  "blob_path": "osint-staging/dark-web/scribe_colombia_sas_20260522.json",
+  "report_summary": "26 findings from dark web sources",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_name": "Scribe Colombia SAS",
+    "country_code": "CO"
+  }
+}

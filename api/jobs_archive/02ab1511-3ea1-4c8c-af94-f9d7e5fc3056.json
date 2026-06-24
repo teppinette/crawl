@@ -1,0 +1,138 @@
+{
+  "job_id": "02ab1511-3ea1-4c8c-af94-f9d7e5fc3056",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "THE MATHRUBHUMI PRINTING & PUBLISHING CO. LTD.",
+  "country_code": "IN",
+  "created_at": "2026-05-04T16:49:48.804039+00:00",
+  "updated_at": "2026-05-04T16:50:14.390685+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:49:49.778495+00:00",
+      "verified": false,
+      "legal_name": null,
+      "cin": null,
+      "entity_status": null,
+      "company_type": null,
+      "incorporation_date": null,
+      "directors": null,
+      "registered_address": null,
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:49:55.914222+00:00",
+      "found": true,
+      "name": "Mathrubhumi",
+      "linkedin_url": "https://in.linkedin.com/company/themathrubhumi",
+      "industry": "Newspaper Publishing",
+      "company_size": "1,001-5,000 employees",
+      "locations": [
+        "M.J. Krishnamohan Memorial Building, K.P. Kesava Menon Road Kozhikode, Kerala 673001, IN",
+        "12/13 F, North Janatha Road, Udyogamandal, Manjummel, Eloor Ernakulam, Kerala 683501, IN"
+      ],
+      "about": "Conceived as the mouthpiece of India's freedom movement, Mathrubhumi is one of the front-runners among the Malayalam newspapers. The first copy of Mathrubhumi was published on 18th March 1923 - the day before the first anniversary of Mahatma Gandhi's arrest for the first time by the British police. Led by K.P. Kesava Menon, the prominent freedom fighter, as Editor and K. Madhavan Nair as Managing Director, Mathrubhumi was envisaged for spreading the message of the great National Movement. Now wi",
+      "followers": 12007,
+      "employees_on_linkedin": 1259,
+      "organization_type": "Privately Held",
+      "website": "https://www.mathrubhumi.com/",
+      "specialties": "Publishing, Newspaper, News, Television, Literature, Politics, Entertainment, Publishing, Production House, Music Label, Event Management, E-Learning, Online Media, Media, Broadcast, and Radio",
+      "notable_employees": [
+        {
+          "name": "Babuprakash Kalathil",
+          "link": "https://in.linkedin.com/in/bkalathil?trk=org-employees"
+        },
+        {
+          "name": "Sushant Lonkar",
+          "link": "https://in.linkedin.com/in/sushant-lonkar-5899885?trk=org-employees"
+        },
+        {
+          "name": "Gopichand M C",
+          "link": "https://in.linkedin.com/in/gopichand?trk=org-employees"
+        },
+        {
+          "name": "B S Biminith ...",
+          "link": "https://in.linkedin.com/in/bsbiminith?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:50:14.389997+00:00",
+      "risk_level": "MEDIUM",
+      "total_findings": 11,
+      "sources_searched": 37,
+      "sources_with_results": 2,
+      "by_type": {
+        "web_mention": 10,
+        "debarment_record": 1
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "THE MATHRUBHUMI PRINTING & PUBLISHING CO. LTD.",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "job_id": "f3bd0d68-2a23-49d8-8410-0c31a6b9ab65",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "ATS SYNTHETIC (Pvt) Ltd.",
+  "country_code": "PK",
+  "created_at": "2026-05-04T15:14:48.445854+00:00",
+  "updated_at": "2026-05-04T15:16:49.766138+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:14:55.507895+00:00",
+      "verified": false,
+      "legal_name": null,
+      "registration_number": null,
+      "entity_status": null,
+      "company_type": null,
+      "cro": null,
+      "registration_date": null,
+      "fbr": null,
+      "all_matches": null,
+      "source": "SECP eServices (direct gov query)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:14:55.090202+00:00",
+      "found": true,
+      "name": "ATS Synthetic (Pvt) Ltd.",
+      "linkedin_url": "https://pk.linkedin.com/company/ats-synthetic",
+      "industry": "Chemical Manufacturing",
+      "company_size": "1,001-5,000 employees",
+      "locations": [
+        "4-KM KACHA ROAD, KAHNA NAU, LAHORE, PUNJAB, PAKISTAN LAHORE, PUNJAB 53100, PK"
+      ],
+      "about": "ATS GROUP A vision comes to age\u2026 Established in 1968 by Mian Nisar Elahi (Late), ATS was created to spearhead Pakistan\u2019s industrial drive beyond typical textile business. By introducing materials with countless applications in modern life, our vision was to create world-class business to reduce dependency on import and raise performance in the sector. Today that vision has been realized. ATS Group stands tall as the Pakistan\u2019s largest and the fastest growing industrial concerns. Specializing in ",
+      "followers": 4666,
+      "employees_on_linkedin": 147,
+      "organization_type": "Privately Held",
+      "website": "https://www.atssynthetic.com.pk/",
+      "specialties": "Geomembrane, Artificial Leather, Plastics, Chemicals, Polyurethane, Metal Drums, Synthetic Leather, PVC Flooring, Floor Mat, Geotextile, PVC Rigid Films, PVC Sheets, and PVC Flex Vinyl",
+      "notable_employees": [
+        {
+          "name": "Engineer Nafees Muhammad",
+          "link": "https://pk.linkedin.com/in/nafees267?trk=org-employees"
+        },
+        {
+          "name": "Hammad Muhammad",
+          "link": "https://pk.linkedin.com/in/hammad-muhammad-04614428?trk=org-employees"
+        },
+        {
+          "name": "Rehman 1988",
+          "link": "https://pk.linkedin.com/in/rehman-1988-2645783b?trk=org-employees"
+        },
+        {
+          "name": "Waqar ATS Ahmed",
+          "link": "https://pk.linkedin.com/in/waqar-ats-ahmed-15b29b40?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:16:49.765503+00:00",
+      "risk_level": "CLEAN",
+      "total_findings": 0,
+      "sources_searched": 0,
+      "sources_with_results": 0,
+      "by_type": {},
+      "key_findings": [],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "ATS SYNTHETIC (Pvt) Ltd.",
+    "country_code": "PK",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

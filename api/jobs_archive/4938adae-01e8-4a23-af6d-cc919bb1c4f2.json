@@ -1,0 +1,139 @@
+{
+  "job_id": "4938adae-01e8-4a23-af6d-cc919bb1c4f2",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "CLYDE CHEMICALS",
+  "country_code": "PK",
+  "created_at": "2026-05-04T14:57:25.597484+00:00",
+  "updated_at": "2026-05-04T14:59:25.326217+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:57:30.382388+00:00",
+      "verified": true,
+      "legal_name": "CLYDE CHEMICALS (PRIVATE) LIMITED",
+      "registration_number": "0193395",
+      "entity_status": "Incorporated",
+      "company_type": "Private Limited Company",
+      "cro": "CRO Karachi",
+      "registration_date": "21-01-2022 14:08:19",
+      "fbr": null,
+      "all_matches": null,
+      "source": "SECP eServices (direct gov query)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:57:34.293016+00:00",
+      "found": true,
+      "name": "Clydes Chemists Ltd",
+      "linkedin_url": "https://www.linkedin.com/company/clydes-chemists-ltd",
+      "industry": "Pharmaceutical Manufacturing",
+      "company_size": "2-10 employees",
+      "locations": [
+        "926 Madison Ave New York, NY 10021, US",
+        "22 E 65th St Fl 5 New York, New York 10021-7033, US"
+      ],
+      "about": "Clyde's on Madison is an NYC apothecary and pharmacy offering unique products from the four corners of the world.",
+      "followers": 7,
+      "employees_on_linkedin": 6,
+      "organization_type": null,
+      "website": "https://clydesonline.com/",
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "Gary From Clydes",
+          "link": "https://www.linkedin.com/in/gary-from-clydes-78684958?trk=org-employees"
+        },
+        {
+          "name": "Janice Dejesus",
+          "link": "https://www.linkedin.com/in/janice-dejesus-3b8003130?trk=org-employees"
+        },
+        {
+          "name": "Mercy Adom",
+          "link": "https://www.linkedin.com/in/mercy-adom-997849170?trk=org-employees"
+        },
+        {
+          "name": "GARY ROSENTHAL",
+          "link": "https://www.linkedin.com/in/gary-rosenthal-646717368?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:59:25.325544+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 60,
+      "sources_searched": 37,
+      "sources_with_results": 2,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "CLYDE CHEMICALS",
+    "country_code": "PK",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

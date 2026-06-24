@@ -1,0 +1,39 @@
+{
+  "job_id": "6f55fa3a-bf12-44d0-8ec0-c558dbf205e6",
+  "scenario": "cir",
+  "status": "failed",
+  "region": "americas",
+  "entity_name": "KAPACHIM MAROC",
+  "country": "MA",
+  "created_at": "2026-05-22T21:31:13.177944+00:00",
+  "updated_at": "2026-05-22T21:31:48.827206+00:00",
+  "blob_path": null,
+  "report_summary": null,
+  "error": "americas: No existing session",
+  "retry_count": 1,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "KAPACHIM MAROC",
+    "entity_trade_names": "KAPACHIM MAROC",
+    "entity_country": "MA",
+    "entity_website": "https://kapachim.com",
+    "entity_type": "PRODUCTION OF RAW MATERIAL FOR DETERGENTS",
+    "entity_industry": "PRODUCTION OF RAW MATERIAL FOR DETERGENTS",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "copap_products": "RAW MATERIAL FOR DETERGENTS",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "failed",
+      "error": "No existing session"
+    }
+  },
+  "errors": [
+    "americas: Error reading SSH protocol banner[Errno 104] Connection reset by peer",
+    "americas: No existing session"
+  ]
+}

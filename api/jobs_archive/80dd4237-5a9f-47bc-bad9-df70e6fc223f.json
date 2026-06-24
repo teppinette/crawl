@@ -1,0 +1,124 @@
+{
+  "job_id": "80dd4237-5a9f-47bc-bad9-df70e6fc223f",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "ALKYL AMINES CHEMICALS LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-21T12:25:56.330530+00:00",
+  "updated_at": "2026-05-21T12:41:29.756339+00:00",
+  "blob_path": "osint-staging/cir/india/alkyl_amines_chemicals_limited_IN_20260521.json",
+  "report_summary": "**DONE: Alkyl Amines Chemicals Limited, India \u2014 Risk: 1 CLEAR \u2014 BSE/NSE: ALKYLAMINE; CIN L99999MH1979PLC021796; Revenue FY26 \u20b91,535.85 Cr; PAT \u20b9180 Cr; EBITDA 18.3%; \u20b97,582 Cr market cap; FY26 audited results filed May 5, 2026**\n\n`~/crawl/output/alkyl_amines_chemicals_limited_IN_20260521.json` \u2014 11.9 KB, valid, research date 2026-05-21.\n\n**Subject block cleanup needed:**\n\n| Issue | Detail |\n|---|---|\n| **24 entries \u2192 15 unique individuals** | Entries 1\u201312 are abbreviated; 13\u201324 are full legal names for the same people |\n| **Dilip G. Piramal \u2014 ALIVE** | Born Nov 2, 1949; named Chairman Emeritus at VIP Industries Sep 2025; confirmed NED at AACL |\n| **Litigation WP 7331/2024 Bombay HC** | Alkyl Amines vs State of Maharashtra \u2014 routine tax/regulatory challenge, LOW risk |\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**3 actionable findings** from 5/57 sources via Tor (Netherlands exit node) (27 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Adverse media | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 13 |\n| Website scans (URLScan) | 4 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: alkylamines.com\n- ADVERSE MEDIA: Alkyl Amines Chemicals Limited Annual Secretarial Compliance Report ...\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Our electrochemical reactor was used in a recent Angew. Chem; India Daybook \u2013 Stocks in News*; Geopolitical Shock: Iran\u2013Strait Risk &amp; Implications for  (+12 more) |\n| urlscan | 11 | alkylamines.com; Alkyl Amines Chemicals Limited; alkylamines.com (+8 more) |\n| duckduckgo_tor | 10 | Alkyl Amines Chemicals Limited; Alkyl Amines Chemicals Limited - LinkedIn; Alkyl Amines Chemicals (BOM:506767) Company Profile & Descri (+7 more) |\n| duckduckgo_adverse | 1 | Alkyl Amines Chemicals Limited Annual Secretarial Compliance |\n| hudsonrock_cavalier | 1 | alkylamines.com |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- alkylamines.com \u2014 *hudsonrock_cavalier*\n\n**ADVERSE MEDIA** (1)\n- Alkyl Amines Chemicals Limited Annual Secretarial Compliance Report ... \u2014 *duckduckgo_adverse* [/l/?uddg=https%3A%2F%2Fwww.investywise.com%2Falkyl%2Damines%2Dchemicals%2Dlimite]\n\n**WEB MENTION** (10)\n- Alkyl Amines Chemicals Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Falkylamines.com%2F&rut=62d20312a8663a5862f8b4a86716460ba0]\n- Alkyl Amines Chemicals Limited - LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2Falky&rut=55e5338c9f4b1976d67]\n- Alkyl Amines Chemicals (BOM:506767) Company Profile & Description \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fstockanalysis.com%2Fquote%2Fbom%2F506767%2Fcompany%2F&rut]\n- Alkyl Amines Chemicals Ltd. - Moneycontrol \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.moneycontrol.com%2Findia%2Fstockpricequote%2Fchemical]\n- Alkyl Amines Chemicals Ltd, ALKYLAMINE:NSI profile - FT.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fmarkets.ft.com%2Fdata%2Fequities%2Ftearsheet%2Fprofile%3F]\n- Alkyl Amines Chemicals Limited (ALKYLAMINE.NS) \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ffinance.yahoo.com%2Fquote%2FALKYLAMINE.NS%2F&rut=0e53fa8b]\n- ALKYL AMINES CHEMICALS LIMITED Company Profile | Mumbai, Maharashtra ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.a]\n- Alkyl Amines Chemicals Share Price Announcement \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.financialexpress.com%2Fmarket%2Falkyl%2Damines%2Dchem]\n- Alkyl Amines Chemicals Ltd share price | About Alkyl Amines | Key ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.screener.in%2Fcompany%2FALKYLAMINE%2F&rut=1147cd1ff26]\n- ALKYL AMINES CHEMICALS LIMITED - Company Profile - Tracxn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Falkyl%2Damine]\n\n**SOCIAL MENTION** (13)\n- Our electrochemical reactor was used in a recent Angew. Chem. Int. Ed. (2025) publication! \u2014 *reddit* [https://reddit.com/r/chemistry/comments/1o8ze58/our_electrochemical_reactor_was_]\n- India Daybook \u2013 Stocks in News* \u2014 *reddit* [https://reddit.com/r/UpdateINDIA/comments/1rvyyjt/india_daybook_stocks_in_news/]\n- Geopolitical Shock: Iran\u2013Strait Risk &amp; Implications for Indian Chemicals \u2014 *reddit* [https://reddit.com/r/stock_trading_India/comments/1ri5g6u/geopolitical_shock_ira]\n- Kya kar paunga before 31st? \u2014 *reddit* [https://reddit.com/r/JEENEETards/comments/1pluvmr/kya_kar_paunga_before_31st/]\n- Balaji Amines: A Cyclical Giant in a Transition Year  What It Means, Why It Matters \u2014 *reddit* [https://reddit.com/r/stock_trading_India/comments/1pcyyqh/balaji_amines_a_cyclic]\n- Indian Market Earnings Summary: November 3 - November 4, 2025 \u2014 *reddit* [https://reddit.com/r/IndianMarketUpdate/comments/1oppvci/indian_market_earnings_]\n- Market Pulse Your Data-Driven Briefing for October 16, 2025 \u2014 *reddit* [https://reddit.com/r/IndianStockMarket/comments/1o83hkj/market_pulse_your_datadr]\n- Market Pulse\nYour Data-Driven Briefing for October 16, 2025 \u2014 *reddit* [https://reddit.com/r/IndianMarketUpdate/comments/1o83gpn/market_pulse_your_datad]\n- *India Daybook \u2013 Stocks in News* \u2014 *reddit* [https://reddit.com/r/UpdateINDIA/comments/1lj1pi4/india_daybook_stocks_in_news/]\n- Bulk Deals, Insider Trades; &amp; Trading Tweaks! \u2014 *reddit* [https://reddit.com/r/InvestmentsTrading/comments/1lj0cdi/bulk_deals_insider_trad]\n- Should I exit or increase holding? If Exit, how to Exit from these? These are real pain in the portf \u2014 *reddit* [https://reddit.com/r/StockMarketIndia/comments/1hrqodi/should_i_exit_or_increase]\n- India Daybook \u2013 Stocks in News*  \u2014 *reddit* [https://reddit.com/r/UpdateINDIA/comments/1hpetms/india_daybook_stocks_in_news/]\n- Let's talk about caring for your gear \u2014 *reddit* [https://reddit.com/r/arcteryx/comments/11rt7w2/lets_talk_about_caring_for_your_g]\n\n**DOMAIN SCAN SUMMARY** (1)\n- alkylamines.com \u2014 *urlscan*\n\n**WEBSITE SCAN** (4)\n- Alkyl Amines Chemicals Limited \u2014 *urlscan* [https://alkylamines.com/]\n- alkylamines.com \u2014 *urlscan* [https://alkylamines.com/]\n- DIMETHYLAMINOPROPYLAMINE (DMAPA) - Alkyl Amines Chemicals Limited \u2014 *urlscan* [https://alkylamines.com/product/dimethyl-amino-propyl-amine-dmapa/]\n- Manufacturing Capabilities - Alkyl Amines Chemicals Limited \u2014 *urlscan* [https://alkylamines.com/manufacturing-capabilities/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "ALKYL AMINES CHEMICALS LIMITED",
+    "entity_trade_names": "ALKYL AMINES CHEMICALS LIMITED",
+    "entity_country": "IN",
+    "entity_address": "401-407, Nirman Vyapar Kendra, Plot No. 10, Sector 17, Vashi, Navi Mumbai 400703, Maharashtra, India",
+    "entity_website": "https://alkylamines.com",
+    "entity_type": "CHEMICALS",
+    "entity_industry": "CHEMICALS",
+    "entity_tax_id": "L99999MH1979PLC021796",
+    "key_individuals": [
+      {
+        "name": "Yogesh M. Kothari",
+        "title": "Director"
+      },
+      {
+        "name": "Dilip G. Piramal",
+        "title": "Director"
+      },
+      {
+        "name": "Shyam B. Ghia",
+        "title": "Director"
+      },
+      {
+        "name": "Shobhan M. Thakore",
+        "title": "Director"
+      },
+      {
+        "name": "Premal N. Kapadia",
+        "title": "Director"
+      },
+      {
+        "name": "Leja S. Hattiangadi",
+        "title": "Director"
+      },
+      {
+        "name": "Chandrashekhar R. Gupte",
+        "title": "Director"
+      },
+      {
+        "name": "Kirat M. Patel",
+        "title": "Director"
+      },
+      {
+        "name": "Suneet Y. Kothari",
+        "title": "Director"
+      },
+      {
+        "name": "Rakesh S. Goyal",
+        "title": "Director"
+      },
+      {
+        "name": "Chintamani D. Thatte",
+        "title": "Officer"
+      },
+      {
+        "name": "Kanchan A. Shinde",
+        "title": "Officer"
+      },
+      {
+        "name": "Yogesh Mathradas Kothari"
+      },
+      {
+        "name": "Kirat Madhusudhan Patel"
+      },
+      {
+        "name": "Suneet Yogesh Kothari"
+      },
+      {
+        "name": "Rakesh Goyal"
+      },
+      {
+        "name": "Chandrashekhar Raghunath Gupte"
+      },
+      {
+        "name": "Leja Satish Hattiangadi"
+      },
+      {
+        "name": "Ashwin Ramanathan"
+      },
+      {
+        "name": "Ravi Brijmohan Kapoor"
+      },
+      {
+        "name": "Bhavna Gautam Doshi"
+      },
+      {
+        "name": "Chintamani Dattatraya Thatte"
+      },
+      {
+        "name": "Premal Narendra Kapadia"
+      },
+      {
+        "name": "Kanchan Ajit Shinde"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "copap_products": "Chemicals",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 3,
+  "dark_web_sources": 57
+}

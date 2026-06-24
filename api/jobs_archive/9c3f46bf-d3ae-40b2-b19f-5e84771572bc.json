@@ -1,0 +1,35 @@
+{
+  "job_id": "9c3f46bf-d3ae-40b2-b19f-5e84771572bc",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "INDUSTRIAL PAPELERA CAICEDO MI\u00d1O CIA. LTDA INDUPAC",
+  "country": "EC",
+  "created_at": "2026-05-22T20:33:48.108992+00:00",
+  "updated_at": "2026-05-22T20:36:37.100849+00:00",
+  "blob_path": null,
+  "report_summary": "Duplicate \u2014 `americas/indupac_industrial_papelera_caicedo_mino_EC_20260522.json` uploaded today at 20:32 UTC.\n\n| | |\n|---|---|\n| **File** | `americas/indupac_industrial_papelera_caicedo_mino_EC_20260522.json` |\n| **Risk** | **2 / CLEAR** |\n| **RUC** | 1890064562001 \u2014 Bol\u00edvar Province, Ecuador |\n| **Activity** | Paper importer (HS 4802559000 \u2014 uncoated paper) + industrial paper company |\n| **Databases** | Panjiva \u00b7 ImportGenius \u00b7 Ekos Negocios \u00b7 Volza confirmed |\n| **Sanctions** | ALL CLEAR \u00b7 0 breaches |\n| **\ud83d\udd34 HIGH** | SCVS extract \u2014 identify Caicedo Mi\u00f1o family shareholders/directors |\n\nNo re-research warranted.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 2/37 sources via Tor (Netherlands exit node) (11 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 37 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | Industrial Papelera Caicedo Mi\u00f1o Cia. Ltda. Indupac; Industrial Papelera Caicedo Mino Cia. Ltda Indupac (Ecuador); Industrial Papelera Caicedo Mi\u00f1o Cia. Ltda. Indupac 18900645 (+7 more) |\n| reddit | 7 | The L\u2019Automobile Ventura, a Brazilian sports car made during; The Farus. A Brazilian brand that produced sports cars durin; The Dacunha Jeg, a Brazilian off-roader that despite having  (+4 more) |\n\n### All findings detail\n\n**WEB MENTION** (5)\n- Industrial Papelera Caicedo Mi\u00f1o Cia. Ltda. Indupac \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.i]\n- Industrial Papelera Caicedo Mino Cia. Ltda Indupac (Ecuador) \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FEC%2FIndustrial_]\n- Industrial Papelera Caicedo Mi\u00f1o Cia. Ltda. Indupac 1890064562001 RUC \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fsri%2Den%2Dlinea.com%2Fruc%2F1890064562001&rut=1bc5b45a51]\n- Industrial Papelera Caicedo Mino Cia. Ltda Indupac - Panjiva \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fpanjiva.com%2FIndustrial%2DPapelera%2DCaicedo%2DMino%2DCi]\n- Industrial Papelera Caicedo Mi\u00f1o Cia. Ltda. Indupac in Ambato \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.info%2Dclipper.com%2Fen%2Fcompany%2Fecuador%2Findustr]\n\n**SOCIAL MENTION** (6)\n- The L\u2019Automobile Ventura, a Brazilian sports car made during the import prohibition. Long post. \u2014 *reddit* [https://reddit.com/r/WeirdWheels/comments/1k7xkmw/the_lautomobile_ventura_a_braz]\n- The Farus. A Brazilian brand that produced sports cars during the 1980s. They got into a partnership \u2014 *reddit* [https://reddit.com/r/WeirdWheels/comments/1gg1gs0/the_farus_a_brazilian_brand_th]\n- The Dacunha Jeg, a Brazilian off-roader that despite having VW parts, was exceptional on off-road. \u2014 *reddit* [https://reddit.com/r/WeirdWheels/comments/1eyvfom/the_dacunha_jeg_a_brazilian_of]\n- \"Let's roll already, I want some action!\" The little Dacunha Jeg, a small Brazilian off-roader made  \u2014 *reddit* [https://reddit.com/r/CuteWheels/comments/1eyvkco/lets_roll_already_i_want_some_a]\n- \ud83e\udd2f\ud83e\udd2f\ud83e\udd2f \u2014 *reddit* [https://reddit.com/r/TheVirginZone/comments/1fi9uba/_/]\n- coloquei aqui a rela\u00e7\u00e3o dos frigorificos da opera\u00e7\u00e3o carne fraca.. \u2014 *reddit* [https://reddit.com/r/brasil/comments/611ysk/coloquei_aqui_a_rela\u00e7\u00e3o_dos_frigorif]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "americas: Report file not found on remote VM (americas)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "INDUSTRIAL PAPELERA CAICEDO MI\u00d1O CIA. LTDA INDUPAC",
+    "entity_country": "EC",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (americas)"
+    }
+  },
+  "errors": [
+    "americas: Report file not found on remote VM (americas)"
+  ],
+  "dark_web_findings": 0,
+  "dark_web_sources": 37
+}

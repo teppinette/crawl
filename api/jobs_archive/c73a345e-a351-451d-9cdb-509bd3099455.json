@@ -1,0 +1,50 @@
+{
+  "job_id": "c73a345e-a351-451d-9cdb-509bd3099455",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "AGRO CHINA PAKISTAN PVT LTD",
+  "country": "PA",
+  "created_at": "2026-04-29T17:39:14.689086+00:00",
+  "updated_at": "2026-04-29T17:45:38.055087+00:00",
+  "blob_path": "osint-staging/cir/americas/agro_china_pakistan_pvt_ltd_PK_20260429_v3.json",
+  "report_summary": "**DONE: AGRO CHINA PAKISTAN PVT LTD, PK (v4 Final) \u2014 Risk: 3 MONITOR (HIGH confidence) \u2014 BIS CLEAR; CWC CLEAR; DPP products confirmed; 6/12 EDD gaps resolved; PEP (ex-PAF COO) and SECP records remain open**\n\n---\n\n## \ud83d\udccb Counterparty Research v4 \u2014 Definitive Final Report\n**AGRO CHINA PAKISTAN PVT LTD | NTN 4334750-9 | Topsun Group Pakistan**\n`~/crawl/output/agro_china_pakistan_pvt_ltd_PK_20260429_v4.json` \u2192 uploaded to `stcrawlosint/osint-staging/americas/`\n\n---\n\n### \ud83c\udd95 Major New Intelligence in v4\n\n#### \u2705 BIS Entity List \u2014 CONFIRMED CLEAR\nThe March 28, 2025 Federal Register action (FR Doc 2025-05426) added 19 Pakistani entities. All are **nuclear or ballistic missile program** entities:\n\n| Category | Entities |\n|---|---|\n| **Nuclear (12)** | Britlite Engineering, Indentech International, IntraLink, Proc-Master, Rehman Engineering & Services, The Sadidians, Sine Technologies, Supply Source Co., Ariston Trade Links, Professional Systems Pvt, RASTEK Technologies, NA Enterprises |\n| **Ballistic Missile (7)** | Allied Business Concerns, Global Traders, Linkers Automation, Otto Manufacturing, Potohar Industrial & Trading, Rachna Supplies, Resource Enterprises |\n\n**Agro China Pakistan, Topsun Group, and all directors are NOT on the BIS Entity List.**\n\n#### \u2705 CWC Chemical Screen \u2014 CONFIRMED CLEAR\n| Chemical | CAS | CWC Status |\n|---|---|---|\n| Trichlorfon | 52-68-6 | **NOT scheduled** (Sched. 1/2/3 verified) |\n| Phoxim | 14816-18-3 | **NOT scheduled** |\n| Toluene (HS 27073000) | 108-88-3 | **NOT scheduled** |\n| Quizalofop-P-Ethyl | \u2014 | **NOT scheduled** |\n| Fomesafen | \u2014 | **NOT scheduled** |\n\n#### \u2705 DPP Products Confirmed (kissanghar.pk)\n| Product | Active Ingredients | Type | CWC |\n|---|---|---|---|\n| **Trioxim 50EC** | Trichlorfon 25% + Phoxim 25% | Insecticide | \u2705 CLEAR |\n| **Gap 22SC** | Quizalofop-P-Ethyl 5.6% + Fomesafen 15.2% | Herbicide | \u2705 CLEAR |\n\n**Toluene use explained**: Trioxim 50EC is an **EC (Emulsifiable Concentrate)** formulation \u2014 EC formulations require aromatic hydrocarbon solvents (toluene, xylene). HS 27073000 imports are legitimate formulation solvents.\n\n---\n\n### \ud83d\udcca EDD Gap Resolution Scorecard (12 items)\n\n| Gap | Status |\n|---|---|\n| BIS Entity List | **\u2705 RESOLVED \u2014 CLEAR** |\n| CWC chemical screen | **\u2705 RESOLVED \u2014 CLEAR** |\n| DPP products | **\u2705 PARTIALLY RESOLVED \u2014 2 products confirmed** |\n| Toluene use | **\u2705 RESOLVED \u2014 EC solvent confirmed** |\n| Urdu adverse media | **\u2705 RESOLVED \u2014 None found** |\n| UBO identity | **\u2705 RESOLVED \u2014 Muhammad Usman Ali (self-declared)** |\n| Farooq Hasnain PAF rank | \u26a0\ufe0f PEP confirmed; rank not publicly available |\n| DR. Usman Ali CNIC | \u26a0\ufe0f Identity unconfirmed; requires CNIC |\n| SECP formal records | \u26a0\ufe0f Portal inaccessible all 4 sessions |\n| Chinese supplier names | \u26a0\ufe0f Requires paid data subscription |\n| International affiliates | \u26a0\ufe0f Claimed but unverified |\n| OFAC interactive search | \u26a0\ufe0f Requires non-sandboxed environment |\n\n---\n\n### 7 Remaining EDD Actions\n\n| Priority | Action |\n|---|---|\n| \ud83d\udd34 HIGH | Farooq Hasnain PEP EDD: PAF rank + source of wealth |\n| \ud83d\udd34 HIGH | DR. Usman Ali CNIC + PEP assessment |\n| \ud83d\udd34 HIGH | SECP Form 29 + share register (local counsel) |\n| \ud83d\udfe1 MEDIUM | Top 10 Chinese suppliers: Chinese Business License numbers |\n| \ud83d\udfe1 MEDIUM | DPP certificates: formal registration documents |\n| \ud83d\udfe2 LOW | OFAC SDN interactive search |\n| \ud83d\udfe2 LOW | International affiliate documentation |\n---\n\n## DARK WEB SCREENING \u2014 CRITICAL\n**20 findings** from 3/32 sources via Tor (Netherlands exit node)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Leaked documents | 9 |\n| Web mentions (Tor-routed) | 10 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: topsungroup.pk\n- LEAKED DOCUMENT: PAK/PAKISTAN/SOUTH ASIA\n- LEAKED DOCUMENT: CHN/CHINA/ASIA PACIFIC\n- LEAKED DOCUMENT: CHN/CHINA/ASIA PACIFIC\n- LEAKED DOCUMENT: [TACTICAL] [Fwd: ammonium nitrate]\n- LEAKED DOCUMENT: ammonium nitrate\n- LEAKED DOCUMENT: Russia 100805\n- LEAKED DOCUMENT: [OS] Russia 100805\n- LEAKED DOCUMENT: IND/INDIA/SOUTH ASIA\n- LEAKED DOCUMENT: RUS/RUSSIA/FORMER SOVIET UNION\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "AGRO CHINA PAKISTAN PVT LTD",
+    "entity_country": "PA",
+    "entity_address": "23-B, Block-P, Phase-II, Johar Town, Lahore, Punjab, Pakistan",
+    "entity_website": "https://topsungroup.pk/",
+    "entity_industry": "Fertilizers & Agrochemicals",
+    "entity_tax_id": "4334750-9",
+    "key_individuals": [
+      {
+        "name": "Muhammad Usman Ali",
+        "title": "CEO"
+      },
+      {
+        "name": "M. Farooq Hasnain"
+      },
+      {
+        "name": "DR. Usman Ali"
+      },
+      {
+        "name": "Abubakar Siddique"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 20,
+  "dark_web_sources": 32
+}

@@ -1,0 +1,20 @@
+{
+  "job_id": "8cb63fca-e914-4529-944d-a4bbb1afc0b1",
+  "scenario": "dark-web",
+  "status": "completed",
+  "region": "darkweb",
+  "entity_name": "Galata Chemicals Canada Inc",
+  "country": "",
+  "created_at": "2026-05-22T19:27:27.763677+00:00",
+  "updated_at": "2026-05-22T19:29:12.970465+00:00",
+  "blob_path": "osint-staging/dark-web/galata_chemicals_canada_inc_20260522.json",
+  "report_summary": "29 findings from dark web sources",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_name": "Galata Chemicals Canada Inc",
+    "domain": "galatachemicals.com",
+    "country_code": "CA"
+  }
+}

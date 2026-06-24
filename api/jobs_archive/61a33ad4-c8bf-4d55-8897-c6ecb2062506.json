@@ -1,0 +1,74 @@
+{
+  "job_id": "61a33ad4-c8bf-4d55-8897-c6ecb2062506",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "A.J. SYNTHETIC FOOTWARE INDUSTRIES (PVT.) LTD.",
+  "country_code": "PK",
+  "created_at": "2026-05-04T15:47:30.238618+00:00",
+  "updated_at": "2026-05-04T15:49:31.246637+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:47:37.900695+00:00",
+      "verified": false,
+      "legal_name": null,
+      "registration_number": null,
+      "entity_status": null,
+      "company_type": null,
+      "cro": null,
+      "registration_date": null,
+      "fbr": null,
+      "all_matches": null,
+      "source": "SECP eServices (direct gov query)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:47:36.694026+00:00",
+      "found": true,
+      "name": "AJ Synthetic and Footware Industries Pvt. Limited",
+      "linkedin_url": "https://www.linkedin.com/company/aj-synthetic-and-footware-industries-pvt-limited",
+      "industry": "Textile Manufacturing",
+      "company_size": "51-200 employees",
+      "locations": [],
+      "about": "",
+      "followers": 30,
+      "employees_on_linkedin": 2,
+      "organization_type": "Privately Held",
+      "website": null,
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "Ghulam Mujtaba Hassan",
+          "link": "https://pk.linkedin.com/in/ghulam-mujtaba-hassan-a49a44217?trk=org-employees"
+        },
+        {
+          "name": "Hafiz Haseeb Ahmad",
+          "link": "https://pk.linkedin.com/in/hafiz-haseeb-ahmad-9b6b89230?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:49:31.246061+00:00",
+      "risk_level": "CLEAN",
+      "total_findings": 0,
+      "sources_searched": 0,
+      "sources_with_results": 0,
+      "by_type": {},
+      "key_findings": [],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "A.J. SYNTHETIC FOOTWARE INDUSTRIES (PVT.) LTD.",
+    "country_code": "PK",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

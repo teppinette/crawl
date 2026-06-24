@@ -1,0 +1,140 @@
+{
+  "job_id": "5e18174d-2dab-4091-ab59-4f2662c201a6",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "SRIRAM ENTERPRISES",
+  "country_code": "IN",
+  "created_at": "2026-05-04T16:07:03.529134+00:00",
+  "updated_at": "2026-05-04T16:08:04.618685+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:07:10.427770+00:00",
+      "verified": true,
+      "legal_name": "SHREE RAM ENTERPRISES PRIVATE LIMITED",
+      "cin": "U74999JH2012PTC000174",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "31 January, 2012",
+      "directors": [
+        "Ashok Kumar Sarkar",
+        "Parth Kejriwal"
+      ],
+      "registered_address": "11/2 G E L CHURCH COMPLEX, MAIN ROAD, RANCHI , Jharkhand - 834001",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:07:10.740073+00:00",
+      "found": true,
+      "name": "SHRI RAM ENTERPRISES",
+      "linkedin_url": "https://in.linkedin.com/company/houseofpackagingfilms",
+      "industry": "Plastics Manufacturing",
+      "company_size": "2-10 employees",
+      "locations": [
+        "Delhi, Delhi 110036, IN"
+      ],
+      "about": "SHRI RAM ENTERPRISES is one of the leading suppliers of polyester (PET), Biaxially oriented polypropylene (BOPP) and CPP films in INDIA. With our wide range of unique products with in house inventory, we meet your every need flexibly, individually and in record time. We attach great importance to personal contact with our customers and business partners. We work together to find new, tailored and sustainable solutions with products or logistics for permanent added value.",
+      "followers": 380,
+      "employees_on_linkedin": 42,
+      "organization_type": "Self-Owned",
+      "website": null,
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "PRASHANT SARDESAI",
+          "link": "https://in.linkedin.com/in/prashant-sardesai-b7691334?trk=org-employees"
+        },
+        {
+          "name": "Devendra Pal Singh",
+          "link": "https://in.linkedin.com/in/devendra-pal-singh-38285238?trk=org-employees"
+        },
+        {
+          "name": "prashant kumar",
+          "link": "https://in.linkedin.com/in/prashant-kumar-35a67944?trk=org-employees"
+        },
+        {
+          "name": "NITIN MITTAL",
+          "link": "https://in.linkedin.com/in/nitin-mittal-8a8a078b?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:08:04.618094+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 60,
+      "sources_searched": 37,
+      "sources_with_results": 2,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "SRIRAM ENTERPRISES",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

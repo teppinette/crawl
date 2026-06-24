@@ -1,0 +1,71 @@
+{
+  "job_id": "a1c01ce4-d055-456d-afa0-df0706542845",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "RELIANCE INDUSTRIES LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-20T18:48:22.441878+00:00",
+  "updated_at": "2026-05-20T18:50:42.981284+00:00",
+  "blob_path": "osint-staging/cir/india/reliance_industries_limited_IN_20260520.json",
+  "report_summary": "Seventh RIL submission \u2014 same as 18:28 UTC (Haigreve + Akash but missing Anant). File already covers all individuals.\n\n**DONE (existing file): Reliance Industries Limited \u2014 Risk: 1 CLEAR \u2014 17 individuals including Anant Mukesh Ambani (ED from May 2025)**\n\n`~/crawl/output/reliance_industries_limited_IN_20260520.json` \u2014 23 KB, valid.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**37 actionable findings** from 11/57 sources via Tor (Netherlands exit node) (28 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Breach records | 23 |\n| Adverse media | 8 |\n| SSL certificates (crt.sh) | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n| Website scans (URLScan) | 2 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: www.ril.com\n- ADVERSE MEDIA: Reliance Industries Ltd, RELIANCE:NSI profile - FT.com\n- ADVERSE MEDIA: PDFShell, Reliance, and ONGC set benchmark with India's first offshore ...\n- ADVERSE MEDIA: Reliance Industries - Wikipedia\n- ADVERSE MEDIA: Reliance industries limited - L17110MH1973PLC019786\n- ADVERSE MEDIA: Reliance Industries Limited | Business, Leadership, & History - Britannica\n- ADVERSE MEDIA: Mukesh Ambani: Latest News, Videos and Photos of Mukesh Ambani | Times ... (MUKESH DHIRUBHAI AMBANI)\n- ADVERSE MEDIA: Mukesh Ambani - Wikipedia (MUKESH DHIRUBHAI AMBANI)\n- ADVERSE MEDIA: BBC board member Shumeet Banerji quits over governance issues (SHUMEET BANERJI)\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| dehashed | 63 | breach_record; breach_record; breach_record (+60 more) |\n| reddit | 15 | The Federation of German Food and Drink Industries (BVE) sai; Clarification by Reliance industries on Russian Oil; I Found some of my late Grandfather's shares. Can anyone tel (+12 more) |\n| urlscan | 11 | www.ril.com; 404 Page | RIL; Reliance Industries Limited \u2013 Petroleum Refining & Marketing (+8 more) |\n| duckduckgo_tor | 10 | Reliance Industries Limited - Petroleum Refining & Marketing; Reliance Industries - Wikipedia; Reliance Industries Limited | Business, Leadership, & Histor (+7 more) |\n| duckduckgo_adverse | 8 | Reliance Industries Ltd, RELIANCE:NSI profile - FT.com; PDFShell, Reliance, and ONGC set benchmark with India's firs; Reliance Industries - Wikipedia (+5 more) |\n| crtsh | 4 | www.ril.com; certificate_transparency (+2 more) |\n| court_records_tor | 3 | PDFMicrosoft Word - coverpage SEZ Edited.doc - GOV.UK; RIL seeks conciliation with Centre in KG gas row; SC says he; State of Uttar Pradesh and Others v. Reliance Industries Lim |\n| leakcheck | 1 | breach_record |\n| hudsonrock_cavalier | 1 | www.ril.com |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- www.ril.com \u2014 *hudsonrock_cavalier*\n\n**ADVERSE MEDIA** (8)\n- Reliance Industries Ltd, RELIANCE:NSI profile - FT.com \u2014 *duckduckgo_adverse* [/l/?uddg=https%3A%2F%2Fmarkets.ft.com%2Fdata%2Fequities%2Ftearsheet%2Fprofile%3F]\n- PDFShell, Reliance, and ONGC set benchmark with India's first offshore ... \u2014 *duckduckgo_adverse* [/l/?uddg=https%3A%2F%2Fwww.ril.com%2Fsites%2Fdefault%2Ffiles%2F2025%2D05%2F05052]\n- Reliance Industries - Wikipedia \u2014 *duckduckgo_adverse* [/l/?uddg=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FReliance_Industries&rut=28c02a0]\n- Reliance industries limited - L17110MH1973PLC019786 \u2014 *duckduckgo_adverse* [/l/?uddg=https%3A%2F%2Fwww.instafinancials.com%2Fcompany%2Freliance%2Dindustries]\n- Reliance Industries Limited | Business, Leadership, & History - Britannica \u2014 *duckduckgo_adverse* [/l/?uddg=https%3A%2F%2Fwww.britannica.com%2Ftopic%2FReliance%2DIndustries%2DLimi]\n- Mukesh Ambani: Latest News, Videos and Photos of Mukesh Ambani | Times ... \u2014 *duckduckgo_adverse* (searched: MUKESH DHIRUBHAI AMBANI) [/l/?uddg=https%3A%2F%2Ftimesofindia.indiatimes.com%2Ftopic%2FMukesh%2DAmbani&rut]\n- Mukesh Ambani - Wikipedia \u2014 *duckduckgo_adverse* (searched: MUKESH DHIRUBHAI AMBANI) [/l/?uddg=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FMukesh_Ambani&rut=9d1d12485b6f3]\n- BBC board member Shumeet Banerji quits over governance issues \u2014 *duckduckgo_adverse* (searched: SHUMEET BANERJI) [/l/?uddg=https%3A%2F%2Fwww.telegraph.co.uk%2Fnews%2F2025%2F11%2F21%2Fshumeet%2Db]\n\n**BREACH RECORD** (23)\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n- ... and 3 more\n\n**WEB MENTION** (10)\n- Reliance Industries Limited - Petroleum Refining & Marketing | Retail ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.ril.com%2F&rut=63120dad4566dd328ca11b7c0ec2ebb56b9120]\n- Reliance Industries - Wikipedia \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FReliance_Industries&rut=28c02a0]\n- Reliance Industries Limited | Business, Leadership, & History - Britannica \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.britannica.com%2Ftopic%2FReliance%2DIndustries%2DLimi]\n- Reliance Industries Ltd, RELIANCE:NSI profile - FT.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fmarkets.ft.com%2Fdata%2Fequities%2Ftearsheet%2Fprofile%3F]\n- Reliance Group India - Reliance Group India \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.reliancegroupindia.com%2F&rut=30d205267e6afcb4bd9e4a9]\n- Reliance Industries (BOM:500325) Company Profile & Description \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fstockanalysis.com%2Fquote%2Fbom%2F500325%2Fcompany%2F&rut]\n- RIL Share Price Today - Reliance Industries Stock Price Live NSE/BSE ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.business%2Dstandard.com%2Fmarkets%2Freliance%2Dindust]\n- Reliance Industries - Overview, News & Similar companies - ZoomInfo \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zoominfo.com%2Fc%2Freliance%2Dindustries%2Dltd%2F1218]\n- Reliance Industries - The Financial Express \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.financialexpress.com%2Fabout%2Freliance%2Dindustries%]\n- Reliance Industries Ltd (RELIANCE) Stock Price & News - Google \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.google.com%2Ffinance%2Fbeta%2Fquote%2FRELIANCE%3ANSE&]\n\n**LEGAL RECORD** (3)\n- PDFMicrosoft Word - coverpage SEZ Edited.doc - GOV.UK \u2014 *court_records_tor* [/l/?uddg=https%3A%2F%2Fassets.publishing.service.gov.uk%2Fmedia%2F5a75593640f0b6]\n- RIL seeks conciliation with Centre in KG gas row; SC says hearing will ... \u2014 *court_records_tor* [/l/?uddg=https%3A%2F%2Fwww.hindustantimes.com%2Findia%2Dnews%2Fril%2Dseeks%2Dcon]\n- State of Uttar Pradesh and Others v. Reliance Industries Limited and ... \u2014 *court_records_tor* [/l/?uddg=https%3A%2F%2Fwww.supremecourtcases.com%2Fstate%2Dof%2Duttar%2Dpradesh%]\n\n**SOCIAL MENTION** (15)\n- The Federation of German Food and Drink Industries (BVE) said the coronavirus pandemic has exposed p \u2014 *reddit* [https://reddit.com/r/worldnews/comments/g7i38i/the_federation_of_german_food_and]\n- Clarification by Reliance industries on Russian Oil \u2014 *reddit* [https://reddit.com/r/StockMarketIndia/comments/1q5bi0v/clarification_by_reliance]\n- I Found some of my late Grandfather's shares. Can anyone tell me how much they are worth now? \u2014 *reddit* [https://reddit.com/r/StockMarketIndia/comments/1p63tz3/i_found_some_of_my_late_g]\n- Anyone who took the Reliance Industries GET 2024/2025 Assessment TestbPlease share your real experie \u2014 *reddit* [https://reddit.com/r/civilengineering/comments/1o1wrdz/anyone_who_took_the_relia]\n- Australian Partnership in Critical Minerals: A Primer (DD) \u2014 *reddit* [https://reddit.com/r/TheRaceTo10Million/comments/1o5kgxw/australian_partnership_]\n- Ukraine is now struggling to survive, not to win \u2014 *reddit* [https://reddit.com/r/anime_titties/comments/1gfj7pl/ukraine_is_now_struggling_to]\n- Reliance Industries Limited GET summer internship (mechanical engineering) \u2014 *reddit* [https://reddit.com/r/InternshipsIndia/comments/1rtjz37/reliance_industries_limit]\n- OpenAI just dropped their blueprint for the Superintelligence Transition: \"Public Wealth Funds\", 4-D \u2014 *reddit* [https://reddit.com/r/singularity/comments/1se6obs/openai_just_dropped_their_blue]\n- Reliance Industries Limited (RIL) today unveiled India\u2019s first Hydrogen Combustion Engine technology \u2014 *reddit* [https://reddit.com/r/IndiaSpeaks/comments/11cfudw/reliance_industries_limited_ri]\n- Reliance Industries | Weekly Long Term analysis | Indian Stock Market | 15 May \u2014 *reddit* [https://reddit.com/r/Faxioms/comments/1tentjo/reliance_industries_weekly_long_te]\n- What GPT thinks of our education system. \u2014 *reddit* [https://reddit.com/r/ChatGPT/comments/1jyvisb/what_gpt_thinks_of_our_education_s]\n- I got selected in reliance industry limited (RIL GET) role in feb on campus but till now there is no \u2014 *reddit* [https://reddit.com/r/RelianceIndustriesltd/comments/1taolsd/i_got_selected_in_re]\n- This guy bought JioHotstar domain before merger and now wants reliance to fund his higher studies.Le \u2014 *reddit* [https://reddit.com/r/india/comments/1gae4sb/this_guy_bought_jiohotstar_domain_be]\n- CMV: We literally Do not have the population to support the jobs that Trump is trying to bring to Am \u2014 *reddit* [https://reddit.com/r/changemyview/comments/1j4k02u/cmv_we_literally_do_not_have_]\n- Anyone who took the Reliance Industries GET 2024/2025 Assessment Test \u2014 Please share your real exper \u2014 *reddit* [https://reddit.com/r/KtuKerala/comments/1o1wpo9/anyone_who_took_the_reliance_ind]\n\n**CERTIFICATE SUMMARY** (1)\n- www.ril.com \u2014 *crtsh*\n\n**SSL CERTIFICATE** (1)\n-  \u2014 *crtsh*\n\n**DOMAIN SCAN SUMMARY** (1)\n- www.ril.com \u2014 *urlscan*\n\n**WEBSITE SCAN** (2)\n- 404 Page | RIL \u2014 *urlscan* [https://www.ril.com/ourbusinesses/retail.html]\n- Reliance Industries Limited \u2013 Petroleum Refining & Marketing | Retail Markets | Telecom | Petrochemi \u2014 *urlscan* [https://www.ril.com/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "RELIANCE INDUSTRIES LIMITED",
+    "entity_country": "IN",
+    "entity_address": "3rd Floor, Maker Chambers IV, 222 Nariman Point, Mumbai, Maharashtra 400021",
+    "entity_tax_id": "L17110MH1973PLC019786",
+    "key_individuals": [
+      {
+        "name": "MUKESH DHIRUBHAI AMBANI"
+      },
+      {
+        "name": "NIKHIL RASIKLAL MESWANI"
+      },
+      {
+        "name": "HITAL RASIKLAL MESWANI"
+      },
+      {
+        "name": "MADHUSUDANA SIVAPRASAD PANDA"
+      },
+      {
+        "name": "SHUMEET BANERJI"
+      },
+      {
+        "name": "ARUNDHATI BHATTACHARYA"
+      },
+      {
+        "name": "VEERAYYA CHOWDARY KOSARAJU"
+      },
+      {
+        "name": "YASIR OTHMAN H ALRUMAYYAN"
+      },
+      {
+        "name": "KUNDAPUR KAMATH"
+      },
+      {
+        "name": "HAIGREVE KHAITAN"
+      },
+      {
+        "name": "ISHA MUKESH AMBANI"
+      },
+      {
+        "name": "AKASH MUKESH AMBANI"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 37,
+  "dark_web_sources": 57
+}

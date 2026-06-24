@@ -1,0 +1,141 @@
+{
+  "job_id": "cda54ebe-beb2-4da5-94c2-3440900aee0e",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "DORF KETAL CHEMICALS  INDIA LIMITED",
+  "country_code": "IN",
+  "created_at": "2026-05-04T14:10:03.537027+00:00",
+  "updated_at": "2026-05-04T14:11:09.252221+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:10:11.672154+00:00",
+      "verified": true,
+      "legal_name": null,
+      "cin": "U24100GJ1992PLC102619",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "12 May, 1992",
+      "directors": [
+        "Sudhir Menon",
+        "Perumangode Neelkandhan Ramaswamy",
+        "others"
+      ],
+      "registered_address": "Plot No.2, Block-F, Sector 12 N Adani Port & SEZ Ltd., Kachchh, Mundra, Gujarat, India, 370421",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:10:10.215021+00:00",
+      "found": true,
+      "name": "Dorf Ketal Americas | Brasil",
+      "linkedin_url": "https://br.linkedin.com/company/dorfketal-latam",
+      "industry": "Chemical Manufacturing",
+      "company_size": "201-500 employees",
+      "locations": [
+        "Av. Tarso Dutra 1201 Porto Alegre, RS 90690-140, BR"
+      ],
+      "about": "CUSTOMER FOCUSED \u2013 MARKET CENTRIC Commitment and focus on core markets is a strength that has enabled Dorf Ketal to become a leader in innovative solutions. Our deep knowledge of the petroleum and specialty chemicals industries provides us with insights on market developments and trends. We use this insight in customer focused discovery to identify solutions which helps our customers enhance their competitive position in their markets. Solutions which deliver value that can be quantified, provid",
+      "followers": 19497,
+      "employees_on_linkedin": 194,
+      "organization_type": "Privately Held",
+      "website": "https://www.dorfketal.com/",
+      "specialties": "Chemicals for Oil & Gas Production, Chemicals for Refining, Chemicals for Petrochemicals, Fuel Additives Chemicals, Catalysts and Adsorbents, Wire Coatings, Lubricant Additives, Fertilizer Additives, Specialty Catalysts, and Heathcare Chemicals",
+      "notable_employees": [
+        {
+          "name": "Wolf Carlos",
+          "link": "https://br.linkedin.com/in/wolf-carlos-543968b?trk=org-employees"
+        },
+        {
+          "name": "Renata Sousa",
+          "link": "https://br.linkedin.com/in/renata-vieira-de-sousa/en?trk=org-employees"
+        },
+        {
+          "name": "Daiane Coradin Fernandes",
+          "link": "https://br.linkedin.com/in/daiane-coradin-fernandes-59659b22?trk=org-employees"
+        },
+        {
+          "name": "Karla Dall' Alba",
+          "link": "https://br.linkedin.com/in/karla-dall-alba-a1a60b22?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:11:09.251555+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 60,
+      "sources_searched": 37,
+      "sources_with_results": 2,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "DORF KETAL CHEMICALS  INDIA LIMITED",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

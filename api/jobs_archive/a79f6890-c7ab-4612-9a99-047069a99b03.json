@@ -1,0 +1,68 @@
+{
+  "job_id": "a79f6890-c7ab-4612-9a99-047069a99b03",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "china",
+  "entity_name": "INTERASIA ENERGY PTE. LTD.",
+  "country": "SG",
+  "created_at": "2026-05-04T20:17:14.458702+00:00",
+  "updated_at": "2026-05-04T20:23:50.363292+00:00",
+  "blob_path": "osint-staging/cir/china/interasia_energy_pte_ltd_sg_20260504.json",
+  "report_summary": "**DONE:** INTERASIA ENERGY PTE. LTD., SG -- Risk: 3 MONITOR -- Updated with new key individuals\n\n## Research Summary\n\n**Entity:** INTERASIA ENERGY PTE. LTD. (formerly Cliff Capital Partners Pte. Ltd.)  \n**UEN:** 201733771N | **Incorporated:** 23 Nov 2017 | **Capital:** SGD 100\n\n### Key Individuals \u2014 Updated Findings:\n\n| Person | Role Per Request | Verified? | Notes |\n|--------|-----------------|-----------|-------|\n| **GABRIELE MURRONI** | GM, Secretary, Director, UBO (100%) | \u2705 | Italian. Also Chairman of **Far East Commodities SA** (Geneva) \u2014 $301M turnover trading coal, kerosene, biofuels. No sanctions hits. |\n| **Pierre-Yves Rigaux** | CEO | \u2705 | Ex-Trafigura, Galena Asset Mgmt, BNP Paribas. 12+ yrs Mongolia. Founded Interasia ~2021. |\n| **Quentin Herbrecht** | Founder | \u26a0\ufe0f **Not confirmed** | Background in intl trade. Not publicly linked to Interasia. |\n| **Mike Henry** | CEO | \u274c **Likely data error** | Mike Henry = CEO of **BHP** (global mining), not Interasia. |\n| **Yves Rigaux** | Associated Person | \u26a0\ufe0f **Not confirmed** | Possibly family relation. Not publicly linked. |\n| **Apparent Former** | Director | \u274c **Not a person name** | Appears to be a label, not a formal name. |\n| **Cliff Capital Partners Pte** | Founder | \u274c **That's the old company name, not a person** | Former name of Interasia Energy. |\n\n### Fresh Checks:\n\n| Workstream | Status | Key Observations |\n|-----------|--------|-----------------|\n| **1A Registry** | \u2705 | Live. Virtual office. SGD 100 capital. Name change history. |\n| **2A UBO** | \u26a0\ufe0f | Murroni reported 100% UBO \u2014 requires ACRA confirmation. Parallel entity (Far East Commodities) chaired by same person. |\n| **3A Sanctions** | \u2705 No hits | \u26a0\ufe0f **Near-match:** Interasia Trading Group (HK) is OFAC-sanctioned (Russian tech) \u2014 **different entity**, name similarity requires clarification. |\n| **4A Adverse Media** | \u26a0\ufe0f | Shell indicators (virtual office, SGD 100, name change). Trafigura Mongolia $1.1B fraud context (Rigaux's former employer). |\n| **5A Litigation** | \u2705 | **None found.** |\n| **6A PEP** | \u2705 | Neither Murroni nor Rigaux confirmed as PEP. |\n| **7A Trade Risk** | \u26a0\ufe0f **High** | Indirect Russia/Mongolia fuel exposure. Disproportionate capital vs turnover. |\n| **8A Risk** | \u2705 **Score: 3 (MONITOR)** | Recommend paid ACRA search + counterparty interview. |\n\n### \u26a0\ufe0f Data Accuracy Notice:\nSeveral individuals from the request could not be independently verified (Mike Henry = BHP CEO, Quentin Herbrecht as Founder conflicts with Rigaux's public role, \"Apparent Former\" is not a person name, \"Cliff Capital Partners Pte\" is a company name). These issues should be resolved before reliance.\n\n**Output:** `/home/copapadmin/crawl/output/interasia_energy_pte_ltd_sg_20260504.json` (16,007 bytes)\n---\n\n## DARK WEB SCREENING \u2014 CRITICAL\n**22 findings** from 5/57 sources via Tor (Netherlands exit node)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Breach records | 8 |\n| Adverse media | 1 |\n| SSL certificates (crt.sh) | 1 |\n| Web mentions (Tor-routed) | 10 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: interasiaenergy.com\n- ADVERSE MEDIA: The King's Trust Canada Announces Appointment of Mike Henry as Incoming ... (Mike Henry)\n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "INTERASIA ENERGY PTE. LTD.",
+    "entity_country": "SG",
+    "entity_address": "3 Coleman Street #03-24 Peninsula Shopping Complex Singapore 179804",
+    "entity_website": "https://interasiaenergy.com/",
+    "entity_tax_id": "26776",
+    "key_individuals": [
+      {
+        "name": "GABRIELE MURRONI",
+        "title": "General Manager, Secretary, Director"
+      },
+      {
+        "name": "Pierre-Yves Rigaux",
+        "title": "CEO"
+      },
+      {
+        "name": "Quentin Herbrecht",
+        "title": "Founder"
+      },
+      {
+        "name": "Mike Henry",
+        "title": "CEO"
+      },
+      {
+        "name": "Yves Rigaux",
+        "title": "Associated Person"
+      },
+      {
+        "name": "Apparent Former",
+        "title": "Director"
+      },
+      {
+        "name": "Cliff Capital Partners Pte",
+        "title": "Founder"
+      },
+      {
+        "name": "GABRIELE MURRONI",
+        "title": "UBO (100.00%)"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "china": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 22,
+  "dark_web_sources": 57
+}

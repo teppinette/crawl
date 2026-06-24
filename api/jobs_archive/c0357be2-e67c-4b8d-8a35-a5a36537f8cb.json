@@ -1,0 +1,39 @@
+{
+  "job_id": "c0357be2-e67c-4b8d-8a35-a5a36537f8cb",
+  "scenario": "cir",
+  "status": "failed",
+  "region": "americas",
+  "entity_name": "KAPACHIM MAROC",
+  "country": "MA",
+  "created_at": "2026-05-22T20:49:05.347603+00:00",
+  "updated_at": "2026-05-22T21:05:30.888497+00:00",
+  "blob_path": null,
+  "report_summary": null,
+  "error": "americas: No existing session",
+  "retry_count": 1,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "KAPACHIM MAROC",
+    "entity_trade_names": "KAPACHIM MAROC",
+    "entity_country": "MA",
+    "entity_website": "https://kapachim.com",
+    "entity_type": "PRODUCTION OF RAW MATERIAL FOR DETERGENTS",
+    "entity_industry": "PRODUCTION OF RAW MATERIAL FOR DETERGENTS",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "copap_products": "RAW MATERIAL FOR DETERGENTS",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "failed",
+      "error": "No existing session"
+    }
+  },
+  "errors": [
+    "americas: ",
+    "americas: No existing session"
+  ]
+}

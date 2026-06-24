@@ -1,0 +1,137 @@
+{
+  "job_id": "64936ff8-1980-4c28-aa92-52b86c97afb9",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "SAYBAN INTERNATIONAL",
+  "country_code": "PK",
+  "created_at": "2026-05-04T15:42:39.638273+00:00",
+  "updated_at": "2026-05-04T15:44:02.903847+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:42:43.674278+00:00",
+      "verified": false,
+      "legal_name": null,
+      "registration_number": null,
+      "entity_status": null,
+      "company_type": null,
+      "cro": null,
+      "registration_date": null,
+      "fbr": null,
+      "all_matches": null,
+      "source": "SECP eServices (direct gov query)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:42:46.199393+00:00",
+      "found": true,
+      "name": "Auriga Group",
+      "linkedin_url": "https://mu.linkedin.com/company/auriga-group",
+      "industry": "Chemical Manufacturing",
+      "company_size": "1,001-5,000 employees",
+      "locations": [],
+      "about": "Auriga Group of Companies is one of the fastest growing companies among all multinationals and national companies engaged in agrochemicals and seeds business. The Group has three subsidiaries : Auriga Chemical Enterprises, Sayban International & Auriga Seeds Corporation. Auriga Chemical Enterprises has a vast and trusted dealer\u2019s network covering whole of country Sayban International is an infant company aiming for country wide network of franchisees with distinct look of the put let in the mark",
+      "followers": 4390,
+      "employees_on_linkedin": 217,
+      "organization_type": "Partnership",
+      "website": null,
+      "specialties": "Pesticides, Seeds, Micronutrents, and Urban Pest Management",
+      "notable_employees": [
+        {
+          "name": "Gabriele Baldissera",
+          "link": "https://it.linkedin.com/in/gabrielebaldissera?trk=org-employees"
+        },
+        {
+          "name": "Muhammad Saeed Sarwar",
+          "link": "https://pk.linkedin.com/in/muhammadsaeedsarwar?trk=org-employees"
+        },
+        {
+          "name": "Shahzad Ahmad",
+          "link": "https://pk.linkedin.com/in/shahzad-ahmad-9a95341a?trk=org-employees"
+        },
+        {
+          "name": "Syed Imran Raza Rizvi",
+          "link": "https://pk.linkedin.com/in/syed-imran-raza-rizvi-b6a77421?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:44:02.903154+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 64,
+      "sources_searched": 37,
+      "sources_with_results": 3,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50,
+        "un_sanctions_notice": 4
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "SAYBAN INTERNATIONAL",
+    "country_code": "PK",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

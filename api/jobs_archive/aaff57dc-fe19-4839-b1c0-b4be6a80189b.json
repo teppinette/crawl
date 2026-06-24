@@ -1,0 +1,21 @@
+{
+  "job_id": "aaff57dc-fe19-4839-b1c0-b4be6a80189b",
+  "scenario": "dark-web",
+  "status": "failed",
+  "region": "darkweb",
+  "entity_name": "RPB Limited",
+  "country": "",
+  "created_at": "2026-05-08T18:28:25.791955+00:00",
+  "updated_at": "2026-05-08T18:28:29.316358+00:00",
+  "blob_path": "osint-staging/dark-web/rpb_limited_20260508.json",
+  "report_summary": "0 findings from dark web sources",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_name": "RPB Limited",
+    "owners": "Oliver Hull, James Brayshaw, Victoria Dimmock, David Phillips, Sheila Phillips, Christina Yerolemou, Theodora Kaskani, Charita Kyriakou, Maria Kyriakou",
+    "domain": "rpbindex.com",
+    "country_code": "CY"
+  }
+}

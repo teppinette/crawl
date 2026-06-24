@@ -1,0 +1,37 @@
+{
+  "job_id": "344de49a-3f59-4da6-a652-a4c7991e94de",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "Anshul Dawani Daulat Ram Dawani",
+  "country": "IN",
+  "created_at": "2026-05-21T15:11:02.213944+00:00",
+  "updated_at": "2026-05-21T15:13:54.140290+00:00",
+  "blob_path": "osint-staging/cir/india/anshul_dawani_daulat_ram_dawani_IN_20260521.json",
+  "report_summary": "3.1 KB, valid. Same pattern as Abhishek Narayan (14:43 UTC) \u2014 individual name only.\n\n\u26a0\ufe0f **Action required from requester**: Provide at minimum the **DIN** or **company name/CIN** for \"Anshul Dawani Daulat Ram Dawani\" to enable any research. Naming pattern suggests Sindhi community (Daulat Ram = father's name appended). If this person is a director of any company already researched today, simply cross-reference that company's report.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 1/41 sources via Tor (Netherlands exit node) (10 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 41 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | Anshul Dawani (@anshuldawani) \u2022 Instagram photos and videos; 2 \"Anshul Dawani\" profiles | LinkedIn; Daulat Ram Engineering Services Limited | Life in Motion.... (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- Anshul Dawani (@anshuldawani) \u2022 Instagram photos and videos \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.instagram.com%2Fanshuldawani%2F&rut=7414a4fe18e0cb3d5]\n- 2 \"Anshul Dawani\" profiles | LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.linkedin.com%2Fpub%2Fdir%2FAnshul%2FDawani&rut=fb0e38]\n- Daulat Ram Engineering Services Limited | Life in Motion.... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fdaulatram.com%2F&rut=45d81c4d988d84bfb01431bd3214d22aae85]\n- Anshul Dawani - Facebook \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.facebook.com%2Fanshul.dawani.7%2F&rut=04702e4491229f7]\n- Home | Daulat Ram College \u2014 *duckduckgo_tor* [/l/?uddg=http%3A%2F%2Fdr.du.ac.in%2F&rut=937224ff345e6290e40b058028777f7105451fb]\n- Exim Finance: Innovative and Accessible Financing for Sustainability ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Feximfinance.ae%2F&rut=39b0e144985304905f1b579896dde1e2d10]\n- Anshul Dawani Email & Phone Number | Associate Partner at ... - ZoomInfo \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zoominfo.com%2Fp%2FAnshul%2DDawani%2F5320433786&rut=7]\n- Anshul Dawani Email & Phone Number - RocketReach \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Frocketreach.co%2Fanshul%2Ddawani%2Demail_124577662&rut=c5]\n- Anshul Dawani currently working as Commercial Manager at Centuria ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.gulftalent.com%2Fpeople%2Fanshul%2Ddawani%2D8960285&r]\n- Anshul Dawani - Regional Sales - Bayt.com People \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fpeople.bayt.com%2Fanshul%2Ddawani%2D16566000%2F&rut=1e3f9]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "Anshul Dawani Daulat Ram Dawani",
+    "entity_country": "IN",
+    "key_individuals": [
+      {
+        "name": "Anshul Dawani Daulat Ram Dawani",
+        "title": "Director"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 41
+}

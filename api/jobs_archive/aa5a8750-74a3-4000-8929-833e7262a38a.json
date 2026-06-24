@@ -1,0 +1,44 @@
+{
+  "job_id": "aa5a8750-74a3-4000-8929-833e7262a38a",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "europe",
+  "entity_name": "SARAY DOKUM VE MADENI AKSAM SAN. TURIZM A.S.",
+  "country": "TR",
+  "created_at": "2026-05-22T18:58:20.566082+00:00",
+  "updated_at": "2026-05-22T19:00:46.504510+00:00",
+  "blob_path": null,
+  "report_summary": "Duplicate \u2014 report complete at 18:56 UTC.\n\n**DONE: Saray D\u00f6k\u00fcm ve Madeni Aksam Sanayi Turizm A.\u015e., TR \u2014 Risk: 3 MONITOR \u26a0\ufe0f GOST-R flag**\n\nFile: `~/crawl/output/saray_dokum_madeni_aksam_TR_20260522.json` \u2705\nBlob: `europe/saray_dokum_madeni_aksam_TR_20260522.json` \u2705\n\nNotable for COPAP: **MERSIS retrieved** (0745003102900012), **LEI confirmed** (789000YNXVKBRQ30NG36), **#236 Turkey Top 500** \u2014 and the GOST-R Russia/EAEU certification flag requires EDD questionnaire before contracting.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**4 actionable findings** from 5/45 sources via Tor (Netherlands exit node) (24 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Breach records | 2 |\n| Web mentions (Tor-routed) | 7 |\n| Social media mentions | 15 |\n| Website scans (URLScan) | 2 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: saray.com\n- BREACH RECORD: \n- BREACH RECORD: \n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | [MacMahon] If Fox asks out, teams like San Antonio and Houst; [Barnes] Dillon Brooks on Klay Thompson\u2019s back and forth at ; What\u2019s a unique experience you\u2019ve had that makes you say \u201con (+12 more) |\n| duckduckgo_tor | 10 | Home - Saray; Saray Dokum Ve Madeni Aksam Sanayi Turizm A.S. (Turkiye); Saray Dokum VE Madeni Aksam Sanayi Turizm AS - Bloomberg.com (+7 more) |\n| urlscan | 6 | saray.com; saray.com; Saray Al\u00fcminyum | Al\u00fcminyum Mimari Sistemler ve Ekstr\u00fczyon \u00dc (+3 more) |\n| leakcheck | 2 | breach_record; breach_record |\n| hudsonrock_cavalier | 1 | saray.com |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- saray.com \u2014 *hudsonrock_cavalier*\n\n**BREACH RECORD** (2)\n-  \u2014 *leakcheck*\n-  \u2014 *leakcheck*\n\n**WEB MENTION** (7)\n- Home - Saray \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fsaray.com%2Fen%2F&rut=473aa0823e79f52fe399dbc9a460d697447]\n- Saray Dokum Ve Madeni Aksam Sanayi Turizm A.S. (Turkiye) \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FTR%2FSaray_Dokum]\n- Saray Dokum VE Madeni Aksam Sanayi Turizm AS - Bloomberg.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.bloomberg.com%2Fprofile%2Fcompany%2F6117807Z%3ATI&rut]\n- PDFUnited States District Court Southern District of New York ------------------------------- \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.brownsims.com%2Fassets%2Fhtmldocuments%2Fuploads%2F20]\n- Saray D\u00f6k\u00fcm ve Madeni Aksam San. Tur. A.\u015e. | LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftr.linkedin.com%2Fcompany%2Fsaray%2Dalu&rut=cc1e811e98d7e]\n- Saray Dokum ve Madeni Aksam Sanayi Turizm A.S. v. MTS Logistics, Inc. \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fdockets.justia.com%2Fdocket%2Fnew%2Dyork%2Fnysdce%2F1%3A2]\n- Saray D\u00f6k\u00fcm - Turkish Aluminium 365 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.turkishaluminium365.com%2Fclient%2Fsaray%2Ddokum&rut=]\n\n**SOCIAL MENTION** (15)\n- [MacMahon] If Fox asks out, teams like San Antonio and Houston are the ones to watch. I\u2019ve also hear \u2014 *reddit* [https://reddit.com/r/nba/comments/1hni5az/macmahon_if_fox_asks_out_teams_like_sa]\n- [Barnes] Dillon Brooks on Klay Thompson\u2019s back and forth at the end. \u201cThey\u2019ve got 4 rings\u2026.that\u2019s mo \u2014 *reddit* [https://reddit.com/r/nba/comments/11vbokb/barnes_dillon_brooks_on_klay_thompsons]\n- What\u2019s a unique experience you\u2019ve had that makes you say \u201conly in San Francisco\u2026\u201d \u2014 *reddit* [https://reddit.com/r/sanfrancisco/comments/16a3weh/whats_a_unique_experience_you]\n- Travel influencers \u2014 *reddit* [https://reddit.com/r/unitedairlines/comments/1t1chz4/travel_influencers/]\n- A Redditor Criticized ICE. Trump Is Trying to Unmask Them by Dragging the Company to a Secret Grand  \u2014 *reddit* [https://reddit.com/r/Fauxmoi/comments/1shj6zn/a_redditor_criticized_ice_trump_is]\n- [KNBR] Logan Webb on Buster Posey\u2019s comments regarding players\u2019 perceptions of San Francisco: \u201cI\u2019m g \u2014 *reddit* [https://reddit.com/r/baseball/comments/198f55o/knbr_logan_webb_on_buster_poseys_]\n- The San Antonio Spurs have started accepting applications to join \u201cThe Jackals\u201d, the superfan sectio \u2014 *reddit* [https://reddit.com/r/nba/comments/1sprd4f/the_san_antonio_spurs_have_started_acc]\n- \u201cI\u2019ve never been to San Francisco personally, and I know you were talking very highly of it,\u201d Tennes \u2014 *reddit* [https://reddit.com/r/SFGiants/comments/1ocuo83/ive_never_been_to_san_francisco_p]\n- [Stein] Snyder is widely expected to take a season off and then become one of the NBA\u2019s most coveted \u2014 *reddit* [https://reddit.com/r/nba/comments/v5nq42/stein_snyder_is_widely_expected_to_take]\n- Just lost my mind at my boyfriend \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1q66f1g/just_lost_my_mind_at]\n- Hey I\u2019m new here ! Here\u2019s a little Sans fanart I\u2019ve been working on, hope you like it ! \u2014 *reddit* [https://reddit.com/r/Undertale/comments/gozm8s/hey_im_new_here_heres_a_little_sa]\n- We\u2019ve had our boy Bruce for a month now. We live in Toronto, but he was rescued from San Antonio Tex \u2014 *reddit* [https://reddit.com/r/AustralianCattleDog/comments/1ob4424/weve_had_our_boy_bruce]\n- [Henderson] League sources including Doris Burke are saying the Portland Trailblazers treatment of T \u2014 *reddit* [https://reddit.com/r/nba/comments/1szapjt/henderson_league_sources_including_dor]\n- AITAH for moving back home after my husband left me even though I\u2019m pregnant? \u2014 *reddit* [https://reddit.com/r/AITAH/comments/1nps2jt/aitah_for_moving_back_home_after_my_]\n- I collected over 900 greatest games lists and made a master list. Here are the results \u2014 *reddit* [https://reddit.com/r/gaming/comments/1qwjkqe/i_collected_over_900_greatest_games]\n\n**DOMAIN SCAN SUMMARY** (1)\n- saray.com \u2014 *urlscan*\n\n**WEBSITE SCAN** (2)\n- saray.com \u2014 *urlscan* [https://saray.com/]\n- Saray Al\u00fcminyum | Al\u00fcminyum Mimari Sistemler ve Ekstr\u00fczyon \u00dcr\u00fcnleri \u2014 *urlscan* [https://saray.com/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "europe: Report file not found on remote VM (europe)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "SARAY DOKUM VE MADENI AKSAM SAN. TURIZM A.S.",
+    "entity_country": "TR",
+    "entity_website": "saray.com",
+    "entity_tax_id": "unknown (MERSIS/Ticaret Sicil requires authenticated access)",
+    "key_individuals": [
+      {
+        "name": "Murat Sarayl\u0131"
+      },
+      {
+        "name": "Talin Sarayl\u0131"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "europe": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (europe)"
+    }
+  },
+  "errors": [
+    "europe: Report file not found on remote VM (europe)"
+  ],
+  "dark_web_findings": 4,
+  "dark_web_sources": 45
+}

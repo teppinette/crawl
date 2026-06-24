@@ -1,0 +1,37 @@
+{
+  "job_id": "594adbe3-dba7-4748-b766-3c8aa4b86da3",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "europe",
+  "entity_name": "PLASTIFAY KIMYA ENDUSTRISI A.S.",
+  "country": "TR",
+  "created_at": "2026-05-22T17:41:19.702739+00:00",
+  "updated_at": "2026-05-22T17:42:00.322491+00:00",
+  "blob_path": null,
+  "report_summary": "LLM request rejected: You have reached your specified workspace API usage limits. You will regain access on 2026-06-01 at 00:00 UTC.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 2/37 sources via Tor (Netherlands exit node) (12 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 37 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | Plastifay Kimya End\u00fcstrisi A.\u015e. - T\u00fcrkiye'de Plastifiyan \u00fcre; Plastifay Kimya Endustrisi A.S. (Turkiye) - EMIS; PLASTIFAY KIMYA ENDUSTRISI ANONIM SIRKETI - Dun & Bradstreet (+7 more) |\n| reddit | 2 | T\u00fcrkiye Presents MKE Pirana Kamikaze Sea Drone to Target Shi; Malaysia reviews planned acquisition of new CAESAR 155mm sel |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- Plastifay Kimya End\u00fcstrisi A.\u015e. - T\u00fcrkiye'de Plastifiyan \u00fcretimini ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fplastifay.com%2F&rut=a029ee1cdced67ceba136d9f4bb573786137]\n- Plastifay Kimya Endustrisi A.S. (Turkiye) - EMIS \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FTR%2FPlastifay_K]\n- PLASTIFAY KIMYA ENDUSTRISI ANONIM SIRKETI - Dun & Bradstreet \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.p]\n- About Us - Plastay Kimya \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fplastay.com%2Fen%2Fabout%2Dus&rut=cd2b33dafac271f8ad3ec97]\n- PLAST\u0130FAY K\u0130MYA END\u00dcST\u0130R\u0130S\u0130 A.\u015e. - LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftr.linkedin.com%2Fcompany%2Fplastifaykimya&rut=8dc9257cd1]\n- Plastifay Kimya Endustrisi A.S. T\u00fcrkiye - T\u00fcrkiye \u015eirketleri \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.turkishexporter.com.tr%2Ftr%2Ffirmalar%2Fplastifay%2D]\n- Company Profile - Plastifay Kimya Endustrisi As - ChemDmart \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fchemdmart.com%2Fcompany%2Dprofile%2Fplastifay%2Dkimya%2De]\n- Plastifay Kimya Endustrisi AS - Company Profile and News \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.bloomberg.com%2Fprofile%2Fcompany%2F6111711Z%3ATI&rut]\n- PLAST\u0130FAY K\u0130MYA END\u00dcSTR\u0130S\u0130 A\u015e - Plast Eurasia \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fplasteurasia.com%2Fen%2Fbrand%2Fplastifay%2Dkimya%2Dendus]\n- Plastifay Kimya End\u00fcstrisi - Rubber and rubber proofed sheets to ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fxk.kompass.com%2Fc%2Fplastifay%2Dkimya%2Dendustrisi%2Ftr0]\n\n**SOCIAL MENTION** (2)\n- T\u00fcrkiye Presents MKE Pirana Kamikaze Sea Drone to Target Ships and Ports \u2014 *reddit* [https://reddit.com/r/WorldDefenseNews/comments/1qj704y/t\u00fcrkiye_presents_mke_pira]\n- Malaysia reviews planned acquisition of new CAESAR 155mm self-propelled howitzers from French compan \u2014 *reddit* [https://reddit.com/r/autotldr/comments/12z8773/malaysia_reviews_planned_acquisit]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "europe: Report file not found on remote VM (europe)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "PLASTIFAY KIMYA ENDUSTRISI A.S.",
+    "entity_country": "TR",
+    "entity_address": "\u0130stanbul, Maslak Mah. Maslak Meydan Sok. No:1, Beybi Giz Plaza Kat:21 No:81-82, 34398, Sar\u0131yer",
+    "entity_tax_id": "12401448",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "europe": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (europe)"
+    }
+  },
+  "errors": [
+    "europe: Report file not found on remote VM (europe)"
+  ],
+  "dark_web_findings": 0,
+  "dark_web_sources": 37
+}

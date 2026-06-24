@@ -1,0 +1,60 @@
+{
+  "job_id": "31c10f8f-9578-461d-93e3-a8b1c8de03bc",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "AMJEY CHEM TRADE PRIVATE LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-21T15:11:35.965902+00:00",
+  "updated_at": "2026-05-21T15:14:29.194695+00:00",
+  "blob_path": null,
+  "report_summary": "**DONE: Amjey Chem Trade Private Limited, India \u2014 Risk: 2 CLEAR \u2014 18-year Mumbai chemicals trader; CIN U74999MH2007PTC169676; Revenue \u20b9508 Cr FY25; 12 employees; Amjey Group (Jhanwar family); no charges; AGM Sep 30, 2024 current**\n\n`~/crawl/output/amjey_chem_trade_pvt_ltd_IN_20260521.json` \u2014 7.1 KB, valid, research date 2026-05-21.\n\nSubject block cleanup: **6 entries \u2192 3 unique individuals:**\n| # | Subject block | Actual |\n|---|---|---|\n| 1+4+6 | Ashok Kumar Jhanwar / ASHOK JHANWAR / ASHOK KUMAR RAMESHWAR LAL JHANWAR | **Same person** \u2014 Ashok Kumar Rameshwar Lal Jhanwar |\n| 2+3 | Sumit Jhanwar / SUMIT RAJENDRA PRASAD JHANWAR | **Same person** |\n| 5 | AMIT RAJENDRAPRASAD JHANWAR | **Different person** \u2014 Amit (brother of Sumit) |\n---\n\n## DARK WEB SCREENING \u2014 MEDIUM\n**5 actionable findings** from 4/57 sources via Tor (Netherlands exit node) (25 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Adverse media | 5 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n\n**Key findings:**\n- ADVERSE MEDIA: SUMIT RAJENDRA PRASAD JHANWAR Director / Partner, Legal Audit, Risk ... (SUMIT RAJENDRA PRASAD JHANWAR)\n- ADVERSE MEDIA: Amit Jhanwar | Director Profile | The Company Check (AMIT RAJENDRAPRASAD JHANWAR)\n- ADVERSE MEDIA: Amit Rajendraprasad Jhanwar - Director Insights, Profile, and ... (AMIT RAJENDRAPRASAD JHANWAR)\n- ADVERSE MEDIA: Director - AMIT RAJENDRAPRASAD JHANWAR | Planetexim.net (AMIT RAJENDRAPRASAD JHANWAR)\n- ADVERSE MEDIA: AMIT RAJENDRAPRASAD JHANWAR - 06547762 - IndiaFilings (AMIT RAJENDRAPRASAD JHANWAR)\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | 25M with impaired vision hits traffic light drinking and dri; 25M w/ impaired vision drove extremely intoxicated and is fu; Whoops (+12 more) |\n| duckduckgo_tor | 10 | Amjey Group - Connecting world through chemistry; Amjey Chem Trade Private Limited - sme.in; Amjey Chem Trade Private Limited - IndiaMART (+7 more) |\n| duckduckgo_adverse | 5 | SUMIT RAJENDRA PRASAD JHANWAR Director / Partner, Legal Audi; Amit Jhanwar | Director Profile | The Company Check; Amit Rajendraprasad Jhanwar - Director Insights, Profile, an (+2 more) |\n\n### All findings detail\n\n**ADVERSE MEDIA** (5)\n- SUMIT RAJENDRA PRASAD JHANWAR Director / Partner, Legal Audit, Risk ... \u2014 *duckduckgo_adverse* (searched: SUMIT RAJENDRA PRASAD JHANWAR) [/l/?uddg=https%3A%2F%2Flextechsuite.com%2FSUMIT%2DRAJENDRA%2DPRASAD%2DJHANWAR%2D]\n- Amit Jhanwar | Director Profile | The Company Check \u2014 *duckduckgo_adverse* (searched: AMIT RAJENDRAPRASAD JHANWAR) [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fpeople%2Dprofile%2Famit%2Drajen]\n- Amit Rajendraprasad Jhanwar - Director Insights, Profile, and ... \u2014 *duckduckgo_adverse* (searched: AMIT RAJENDRAPRASAD JHANWAR) [/l/?uddg=https%3A%2F%2Fwww.filesure.in%2Fdirector%2Famit%2Drajendraprasad%2Djhan]\n- Director - AMIT RAJENDRAPRASAD JHANWAR | Planetexim.net \u2014 *duckduckgo_adverse* (searched: AMIT RAJENDRAPRASAD JHANWAR) [/l/?uddg=https%3A%2F%2Fwww.planetexim.net%2Fdirector%2Famit%2Drajendraprasad%2Dj]\n- AMIT RAJENDRAPRASAD JHANWAR - 06547762 - IndiaFilings \u2014 *duckduckgo_adverse* (searched: AMIT RAJENDRAPRASAD JHANWAR) [/l/?uddg=https%3A%2F%2Fwww.indiafilings.com%2Fsearch%2Famit%2Drajendraprasad%2Dj]\n\n**WEB MENTION** (10)\n- Amjey Group - Connecting world through chemistry \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Famjeygroup.com%2F&rut=ae7cecc0302a5fda6ecd5a2c93dac80e152]\n- Amjey Chem Trade Private Limited - sme.in \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.sme.in%2Famjeychem%2Findex.html&rut=0aa6f5edbe5ea8b93]\n- Amjey Chem Trade Private Limited - IndiaMART \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Famjeychemicals%2Fprofile.html&rut=7c2]\n- Amjey Chem Trade Private Limited - 2026 Insights - The Company Check \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fcompany%2Famjey%2Dchem%2Dtrade%]\n- AMJEY CHEM TRADE PRIVATE LIMITED | ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2FAMJEY%2DCHEM%2DTRADE%2DPRIVATE%2DLIMI]\n- AMJEY CHEM TRADE PRIVATE LIMITED - Dun & Bradstreet \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.a]\n- Company Overview - AMJEY CHEM TRADE P. LTD. \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fin1017084801.m.fm.alibaba.com%2Fcompany_profile.html&rut=]\n- Amjey Chem Trade Private Limited (India) - EMIS \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FIN%2FAmjey_Chem_]\n- AMJEY CHEM TRADE PRIVATE LIMITED - IndiaFilings \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiafilings.com%2Fsearch%2Famjey%2Dchem%2Dtrade%2Dpr]\n- Amjey Chem Trade Private Limited / U74999mh2007ptc169676 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.falconebiz.com%2Fcompany%2FAMJEY%2DCHEM%2DTRADE%2DPRI]\n\n**SOCIAL MENTION** (15)\n- 25M with impaired vision hits traffic light drinking and driving 3x the legal limit and also asks fo \u2014 *reddit* [https://reddit.com/r/OhNoConsequences/comments/1t7pdil/25m_with_impaired_vision_]\n- 25M w/ impaired vision drove extremely intoxicated and is fundraising to help pay his fine. He also  \u2014 *reddit* [https://reddit.com/r/ChoosingBeggars/comments/1t7syz7/25m_w_impaired_vision_drov]\n- Whoops \u2014 *reddit* [https://reddit.com/r/funny/comments/1ow5k1r/whoops/]\n- 80 BNB Private Sale Closed - Presale on July 21 - OTC Space - Derivatives Trading Platform \u2014 *reddit* [https://reddit.com/r/CryptoMoonShots/comments/on4ko7/80_bnb_private_sale_closed_]\n- [New Updates]: My 15yo idiot kid got his GF pregnant on purpose. \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1lr99r3/new_updates_my_15yo_]\n- My 15yo idiot kid got his GF pregnant on purpose. \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1l7panh/my_15yo_idiot_kid_go]\n- TikTok's most popular influencer sold his company for $975m... to a sketchy Chinese \"printing\" compa \u2014 *reddit* [https://reddit.com/r/wallstreetbets/comments/1qtig67/tiktoks_most_popular_influe]\n- The Golden Treasure Part II [100% Proof Apes Get Paid] \u2014 *reddit* [https://reddit.com/r/Superstonk/comments/1ohiz4y/the_golden_treasure_part_ii_100]\n- Video From Day T+0 1st Tested On US Market W/ Rare Authorization From SEC (PulteGroup, below Wendy's \u2014 *reddit* [https://reddit.com/r/Superstonk/comments/18lmbcd/video_from_day_t0_1st_tested_on]\n- Created dashboard to track flights (commercial, private, military), ships &amp; traffic routes. Also \u2014 *reddit* [https://reddit.com/r/osinttools/comments/1qfz9zc/created_dashboard_to_track_flig]\n- [Analyse] C'est rempli de belles promesses et surtout de frais : pourquoi je ne touche pas aux nouve \u2014 *reddit* [https://reddit.com/r/vosfinances/comments/1nq0p1o/analyse_cest_rempli_de_belles_]\n- New twist on the \"buying feathers\" scam at the GE to \"avoid trade limits\" \u2014 *reddit* [https://reddit.com/r/2007scape/comments/17qshw5/new_twist_on_the_buying_feathers]\n- Democrats will continue to be worthless as long as geriatric and feeble Chuck Schumer is their top l \u2014 *reddit* [https://reddit.com/r/WorkReform/comments/1jb564m/democrats_will_continue_to_be_w]\n- WIBTAH if I (F28) told my husband (M28) his \"sleep boundries\" went out the window when he had our so \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1lpvtvt/wibtah_if_i_f28_told]\n- AITA for reminding my mom that my son is a child? \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1odtyno/aita_for_reminding_m]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "india: Report file not found on remote VM (india)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "AMJEY CHEM TRADE PRIVATE LIMITED",
+    "entity_country": "IN",
+    "entity_address": "402, 4th Floor, Nanak Chambers, Opp. Fun Republic, Opp. New Link Road, Andheri (West), Mumbai, Maharashtra 400053",
+    "entity_tax_id": "169676",
+    "key_individuals": [
+      {
+        "name": "Ashok Kumar Jhanwar",
+        "title": "Director"
+      },
+      {
+        "name": "Sumit Jhanwar",
+        "title": "Director"
+      },
+      {
+        "name": "SUMIT RAJENDRA PRASAD JHANWAR",
+        "title": "Director"
+      },
+      {
+        "name": "ASHOK JHANWAR",
+        "title": "Director"
+      },
+      {
+        "name": "AMIT RAJENDRAPRASAD JHANWAR"
+      },
+      {
+        "name": "ASHOK KUMAR RAMESHWAR LAL JHANWAR"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (india)"
+    }
+  },
+  "errors": [
+    "india: Report file not found on remote VM (india)"
+  ],
+  "dark_web_findings": 5,
+  "dark_web_sources": 57
+}

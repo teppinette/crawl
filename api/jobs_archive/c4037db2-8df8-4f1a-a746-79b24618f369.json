@@ -1,0 +1,36 @@
+{
+  "job_id": "c4037db2-8df8-4f1a-a746-79b24618f369",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "RAVIBRAS EMBALAGENS DA AMAZONIA LTDA.",
+  "country": "BR",
+  "created_at": "2026-05-22T17:54:39.713027+00:00",
+  "updated_at": "2026-05-22T17:55:25.181571+00:00",
+  "blob_path": null,
+  "report_summary": "LLM request rejected: You have reached your specified workspace API usage limits. You will regain access on 2026-06-01 at 00:00 UTC.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**1 actionable findings** from 3/37 sources via Tor (Netherlands exit node) (25 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: www.gruporavi.com\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | O que s\u00e3o esses fios??; SABER SE \u00c9 UM JOGO DE VDD OU ALUCINA\u00c7\u00c3O DE UMA CRIAN\u00c7A; Achei essa raridade de document\u00e1rio que ainda vem com CD (+12 more) |\n| duckduckgo_tor | 10 | Ravibras Embalagens da Amaz\u00f4nia Ltda. | tampas pl\u00e1sticas; Ravibras Embalagens da Amaz\u00f4nia - LinkedIn Brasil; Ravibras - 08658519000173 Manaus - CNPJ Biz (+7 more) |\n| hudsonrock_cavalier | 1 | www.gruporavi.com |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- www.gruporavi.com \u2014 *hudsonrock_cavalier*\n\n**WEB MENTION** (10)\n- Ravibras Embalagens da Amaz\u00f4nia Ltda. | tampas pl\u00e1sticas \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.ravibras.com.br%2F&rut=016fed7eab284507cddf8e17cfc3a0]\n- Ravibras Embalagens da Amaz\u00f4nia - LinkedIn Brasil \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fbr.linkedin.com%2Fcompany%2Fravibras&rut=c8f67f5156466c45]\n- Ravibras - 08658519000173 Manaus - CNPJ Biz \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fcnpj.biz%2F08658519000173&rut=952a3c51fdc1e45240991b49d41]\n- Ravibras Embalagens da Amaz\u00f4nia | (92) 3090-3777 | Manaus \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fbr.todosnegocios.com%2Fpt%2Fravibras%2Dembalagens%2Dda%2D]\n- Ravi \u2014 *duckduckgo_tor* [/l/?uddg=http%3A%2F%2Fwww.gruporavi.com%2F&rut=9a433fc155fd69693c8a09698831c0c1d]\n- Ravibras em Manaus, AM - 08.658.519/0001-73 - Consulta Empresa - Econodata \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.econodata.com.br%2Fconsulta%2Dempresa%2F0865851900017]\n- Ravibras Embalagens da Amaz\u00f4nia (@ravibras ... - Instagram \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.instagram.com%2Fravibras__%2F&rut=25ca0d5078d9d62b76e]\n- RAVIBRAS EMBALAGENS DA AMAZ\u00d4NIA - listaamarela.com.br \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Flistaamarela.com.br%2Fam%2Dmanaus%2Fembalagens%2Fravibras]\n- RAVIBRAS - MANAUS/AM - Quero Brasil \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fquerobrasil.com.br%2Fempresa%2F08658519000173%2Dravibras&]\n- Ravibras Embalagens da Amaz\u00f4nia | Telefones e endere\u00e7os ... - ListaTudo \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Flistatudo.com.br%2Famazonas%2Fregiao%2Dde%2Dmanaus%2Fmana]\n\n**SOCIAL MENTION** (15)\n- O que s\u00e3o esses fios?? \u2014 *reddit* [https://reddit.com/r/motoca/comments/1spcstv/o_que_s\u00e3o_esses_fios/]\n- SABER SE \u00c9 UM JOGO DE VDD OU ALUCINA\u00c7\u00c3O DE UMA CRIAN\u00c7A \u2014 *reddit* [https://reddit.com/r/jogatina/comments/1isdqxw/saber_se_\u00e9_um_jogo_de_vdd_ou_aluc]\n- Achei essa raridade de document\u00e1rio que ainda vem com CD \u2014 *reddit* [https://reddit.com/r/CDsBrasil/comments/1rtyhxw/achei_essa_raridade_de_document\u00e1]\n- Geladeira e lava lou\u00e7as na mesma tomada, d\u00favida. \u2014 *reddit* [https://reddit.com/r/engenhariaeletrica/comments/1sjfg0g/geladeira_e_lava_lou\u00e7as]\n- Dinossauro \u2014 *reddit* [https://reddit.com/r/computadores/comments/1pxgh6b/dinossauro/]\n- Perdi/estraguei meu GBA \u2014 *reddit* [https://reddit.com/r/gamesEcultura/comments/1jdrn6y/perdiestraguei_meu_gba/]\n- Surprised how good this game looks with hdr on OLED. \u2014 *reddit* [https://reddit.com/r/MiSideReddit/comments/1lyscks/surprised_how_good_this_game_]\n- Old drive cleaning day \u2014 *reddit* [https://reddit.com/r/DataHoarder/comments/1svqqvl/old_drive_cleaning_day/]\n- Acabou a rela\u00e7\u00e3o? \u2014 *reddit* [https://reddit.com/r/motoca/comments/1qvqj6z/acabou_a_rela\u00e7\u00e3o/]\n- Great memories \u2014 *reddit* [https://reddit.com/r/Gentoo/comments/1ldzxnz/great_memories/]\n- Sou burrona ou o meu toca CD veio com defeito? \u2014 *reddit* [https://reddit.com/r/audiofiliabrasil/comments/1lu9t29/sou_burrona_ou_o_meu_toca]\n- S25 silicone case \u2014 *reddit* [https://reddit.com/r/GalaxyS25/comments/1pzndms/s25_silicone_case/]\n- Avalie meu curr\u00edculo \u2014 *reddit* [https://reddit.com/r/curriculos/comments/1t5wk3i/avalie_meu_curr\u00edculo/]\n- Finalmente consegui! E que coisa Linda!! \u2014 *reddit* [https://reddit.com/r/CDsBrasil/comments/1pmnrcm/finalmente_consegui_e_que_coisa_]\n- A ditadura j\u00e1 come\u00e7ou o monitoramento das empresas de tecnologia para censurar a Internet. \u2014 *reddit* [https://reddit.com/r/brasilivre/comments/1run6qe/a_ditadura_j\u00e1_come\u00e7ou_o_monitor]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "americas: Report file not found on remote VM (americas)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "RAVIBRAS EMBALAGENS DA AMAZONIA LTDA.",
+    "entity_country": "BR",
+    "entity_website": "http://www.gruporavi.com/",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (americas)"
+    }
+  },
+  "errors": [
+    "americas: Report file not found on remote VM (americas)"
+  ],
+  "dark_web_findings": 1,
+  "dark_web_sources": 37
+}

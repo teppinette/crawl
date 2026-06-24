@@ -1,0 +1,51 @@
+{
+  "job_id": "877c5eb4-d6a2-451c-9220-fd8f73c36fd7",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "BRENNTAG INGREDIENTS (INDIA) PVT LTD",
+  "country": "IN",
+  "created_at": "2026-05-21T17:27:05.080550+00:00",
+  "updated_at": "2026-05-21T17:28:57.634684+00:00",
+  "blob_path": "osint-staging/cir/india/brenntag_ingredients_india_pvt_ltd_IN_20260520.json",
+  "report_summary": "Second Brenntag Ingredients submission \u2014 previously researched and filed.\n\nNote on subject block: \"Huan Yong\" and \"Chan Huan Yong\" (if in earlier version) = same person **Chan Huan Yong (DIN 09021170)**. Also the previous research confirmed MD = **Ronnie Fali Titina (DIN 10657604)** \u2014 not in this subject block.\n\n**DONE (existing file): Brenntag Ingredients (India) Private Limited \u2014 Risk: 1 CLEAR \u2014 CIN U24117MH2005PTC215980; 100% subsidiary of Brenntag SE (DAX); Revenue \u20b91,240 Cr FY25; \"Huan Yong\" + \"Chan Huan Yong\" = duplicate for Chan Huan Yong DIN 09021170**\n\n`~/crawl/output/brenntag_ingredients_india_pvt_ltd_IN_20260520.json` \u2014 valid, filed May 20, 2026.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 1/53 sources via Tor (Netherlands exit node) (10 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 53 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | Chemical Distribution in India | Brenntag; Brenntag Ingredients (India) Private Limited - IndiaMART; BRENNTAG INGREDIENTS (INDIA) PVT.LTD. Details | Company Prof (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- Chemical Distribution in India | Brenntag \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.brenntag.com%2Fen%2Din%2F&rut=8700747aa371bb81073d598]\n- Brenntag Ingredients (India) Private Limited - IndiaMART \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Fbrenntagingredients%2Fprofile.html&ru]\n- BRENNTAG INGREDIENTS (INDIA) PVT.LTD. Details | Company Profile ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.companydetails.in%2Fcompany%2Fbrenntag%2Dingredients%]\n- BRENNTAG INGREDIENTS (INDIA) PRIVATE LIMITED | ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2FBRENNTAG%2DINGREDIENTS%2D(INDIA)%2DPR]\n- About Brenntag Ingredients (India) Private Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.ingredientsnetwork.com%2Fbrenntag%2Dingredients%2Dind]\n- BRENNTAG INGREDIENTS (INDIA) PRIVATE LIMITED - Company Profile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Fbrenntag%2Din]\n- Brenntag Ingredients India Pvt Ltd - TradeIndia \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tradeindia.com%2Fbrenntag%2Dingredients%2Dindia%2Dpvt]\n- Brenntag Ingredients (India) Private Limited - 2026 Insights \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fcompany%2Fbrenntag%2Dingredient]\n- Company Profile - Brenntag Ingredients India Pvt Ltd \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fchemdmart.com%2Fcompany%2Dprofile%2Fbrenntag%2Dingredient]\n- Brenntag Ingredients (India) Private Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.b]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "BRENNTAG INGREDIENTS (INDIA) PVT LTD",
+    "entity_country": "IN",
+    "entity_address": "Ackruti Center Point, 301, 3rd Floor, MIDC Central Road, Andheri East, Mumbai, Maharashtra 400093, India",
+    "entity_tax_id": "U24117MH2005PTC215980",
+    "key_individuals": [
+      {
+        "name": "Huan Yong",
+        "title": "Director"
+      },
+      {
+        "name": "Alok Sharman",
+        "title": "Director"
+      },
+      {
+        "name": "Vikas Shaw",
+        "title": "Officer"
+      },
+      {
+        "name": "Mayank Vijay Jain",
+        "title": "Officer"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 53
+}

@@ -1,0 +1,141 @@
+{
+  "job_id": "4f470399-942e-4360-a2ee-9ae7d9a2aa42",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "KARTIK PAPER MARKETING PRIVATE LIMITED",
+  "country_code": "IN",
+  "created_at": "2026-05-04T16:14:35.131517+00:00",
+  "updated_at": "2026-05-04T16:16:11.001951+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:14:42.918241+00:00",
+      "verified": true,
+      "legal_name": "KARTIK PAPER MARKETING PRIVATE LIMITED",
+      "cin": "U51909DL2017PTC319885",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "28 June, 2017",
+      "directors": [
+        "Anand Kumar Juneja",
+        "Purnima Juneja",
+        "Kartik Juneja"
+      ],
+      "registered_address": "Plot No.19, Unit No.501-A & and 501-B, Fifth Floor, Sagar Plaza, District Centre, Laxmi Nagar, New Delhi, East Delhi, East Delhi, Delhi, India, 110092",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:14:47.036801+00:00",
+      "found": true,
+      "name": "KARTIK PAPER MARKETING LTD",
+      "linkedin_url": "https://in.linkedin.com/company/kartik-paper-marketing-pvt-ltd",
+      "industry": "Wholesale Import and Export",
+      "company_size": "11-50 employees",
+      "locations": [
+        "501A, 501B SAGAR PLAZA, NIRMAN VIHAR , DELHI -110092 501A, 501B SAGAR PLAZA, NIRMAN VIHAR , DELHI -110092 NEW DELHI, DELHI 110092, IN"
+      ],
+      "about": "Your trusted partner in paper sourcing and trading solutions. With over 25 years of industry expertise, we are committed to delivering quality, consistency, and reliability in every transaction. Whether it\u2019s Prime, stocklot, joblot - grade paper, we help businesses navigate the complex world of paper procurement with confidence and efficiency.",
+      "followers": 1778,
+      "employees_on_linkedin": 14,
+      "organization_type": "Privately Held",
+      "website": "https://www.kartikpapermarketing.com/",
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "Kartik Juneja",
+          "link": "https://in.linkedin.com/in/kartik-juneja-76a89ab3?trk=org-employees"
+        },
+        {
+          "name": "DEVENDRA SINGH",
+          "link": "https://in.linkedin.com/in/devendra-singh-1b8b73129?trk=org-employees"
+        },
+        {
+          "name": "RAVI KANT",
+          "link": "https://in.linkedin.com/in/ravi-kant-b16aa4164?trk=org-employees"
+        },
+        {
+          "name": "Reet Parmar",
+          "link": "https://in.linkedin.com/in/reet-parmar-3b52b3263?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:16:11.001270+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 60,
+      "sources_searched": 37,
+      "sources_with_results": 2,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "KARTIK PAPER MARKETING PRIVATE LIMITED",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

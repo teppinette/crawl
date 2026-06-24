@@ -1,0 +1,46 @@
+{
+  "job_id": "840991f5-cd3b-46ba-b916-72c4131d352a",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "CHEM CONNECT",
+  "country": "IN",
+  "created_at": "2026-05-21T18:40:26.908707+00:00",
+  "updated_at": "2026-05-21T18:42:19.049542+00:00",
+  "blob_path": "osint-staging/cir/india/chem_connect_IN_20260521.json",
+  "report_summary": "**DONE (updated): Chem Connect \u2014 Risk: 3 MONITOR \u2014 GSTIN 27AAVFC5538J1ZT Active; 8-month-old partnership; Nidhi Kilachand + Mahesh Shah + \u26a0\ufe0f new: \"Kat Gale\" (non-Indian, no role, unverified)**\n\n`~/crawl/output/chem_connect_IN_20260521.json` \u2014 updated, valid.\n\n\"Kat Gale\" appears only in this third submission with no role designation. Actions:\n1. Verify identity \u2014 foreign national? UK/US origin?\n2. Confirm role at Chem Connect (partner, advisor, foreign principal?)\n3. Screen on OFAC/EU/UN/UK HMT if confirmed as foreign national\n4. Determine if this changes the entity's ownership/control structure\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 2/49 sources via Tor (Netherlands exit node) (25 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 49 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | My first Gunpla. PGU RX-78.; Devblog: Incoming Balance Changes; This might be the most polite rejection I've ever received,  (+12 more) |\n| duckduckgo_tor | 10 | Eurofins Connect Page; ChemConnect 2025 (Milan) - The Total Event for the Italian .; How to use the Bestway pool ChemConnect to add chlorine tabl (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- Eurofins Connect Page \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fchemconnect.chemtest.com%2F&rut=a7656f078d655873b3c2e2db9]\n- ChemConnect 2025 (Milan) - The Total Event for the Italian ... - Showsbee \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.showsbee.com%2Ffairs%2FChemConnect.html&rut=d06fef979]\n- How to use the Bestway pool ChemConnect to add chlorine tablets \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dk8nZe6y9M9w&rut=eb5ad463485]\n- ChemConnect - American Chemistry Council \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.americanchemistry.com%2Fabout%2Dacc%2Fchemconnect&rut]\n- Buy Research Chemicals Online | Research Chemicals for sale \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fchemsconnect.com%2F&rut=4e2f3021b96615906da5f0db776baffb0]\n- chem-connect.com \u2014 *duckduckgo_tor* [/l/?uddg=http%3A%2F%2Fchem%2Dconnect.com%2F&rut=ffb97dd03341eaf0d98a5f3412a7728f]\n- Chem Connect 2025 - Disruption, Innovation, & Resilience \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indianchemicalnews.com%2Fchem%2Dconnect%2D2025%2F&rut]\n- ChemPoint Connect - Login \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.chempointconnect.com%2F&rut=e4a84fb54944089608694a1d6]\n- ChemConnect\u00ae Chemical Dispenser | Lay-Z-Spa UK \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.lay%2Dz%2Dspa.co.uk%2Fpages%2Fchemconnect&rut=432ef39]\n- Chem Connect Exhibition & Conference (May 2026), Assago Italy - 10times \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2F10times.com%2Fe137%2Ddxdz%2Dhfz1%2D2&rut=a77ad8e6da6a1fde]\n\n**SOCIAL MENTION** (15)\n- My first Gunpla. PGU RX-78. \u2014 *reddit* [https://reddit.com/r/Gunpla/comments/1rdgfpi/my_first_gunpla_pgu_rx78/]\n- Devblog: Incoming Balance Changes \u2014 *reddit* [https://reddit.com/r/DarkTide/comments/1t7c5qy/devblog_incoming_balance_changes/]\n- This might be the most polite rejection I've ever received, but damn lol I give up. \u2014 *reddit* [https://reddit.com/r/Tinder/comments/1s5a1hm/this_might_be_the_most_polite_rejec]\n- [s2 spoilers] A lot of people are misinterpreting the Hellfire Montage (The Gray) \u2014 *reddit* [https://reddit.com/r/arcane/comments/1grizex/s2_spoilers_a_lot_of_people_are_mis]\n- I gotta do a project for my undergraduate degree. I was thinking about a topic that connects ChemEng \u2014 *reddit* [https://reddit.com/r/ChemicalEngineering/comments/1t9ujmm/i_gotta_do_a_project_f]\n- My pitch for a new Bioshock game (no AI generated pictures) \u2014 *reddit* [https://reddit.com/r/Bioshock/comments/1rcprjj/my_pitch_for_a_new_bioshock_game_]\n- Cooking a 100% FREE Marks alternative. DROP YOUR Requirements and Ideas! (Yes video solutions will b \u2014 *reddit* [https://reddit.com/r/JEENEETards/comments/1iab0tt/cooking_a_100_free_marks_alter]\n- To those opposing the teacher strike\u2026 \u2014 *reddit* [https://reddit.com/r/Calgary/comments/1nzasrz/to_those_opposing_the_teacher_stri]\n- Dev Blog - Hive Scum: Class Design &amp; Talents \u2014 *reddit* [https://reddit.com/r/DarkTide/comments/1p0hejn/dev_blog_hive_scum_class_design_t]\n- NUS Offer ChemEng - Wanting to connect pre-enrolment! \u2014 *reddit* [https://reddit.com/r/SGExams/comments/1ruf38o/nus_offer_chemeng_wanting_to_conne]\n- Wearing Power Armor to a Magic School (129/?) \u2014 *reddit* [https://reddit.com/r/HFY/comments/1l0ulh0/wearing_power_armor_to_a_magic_school_]\n- I just received my folio society IT book! \u2014 *reddit* [https://reddit.com/r/stephenking/comments/1m2fkkv/i_just_received_my_folio_socie]\n- Teemo Appreciation Thread \u2014 *reddit* [https://reddit.com/r/leagueoflegends/comments/6qjfqm/teemo_appreciation_thread/]\n- People are taking wellness too far, it's unhinged \u2014 *reddit* [https://reddit.com/r/Biohackers/comments/1t1vcq2/people_are_taking_wellness_too_]\n- It may be cruel, but its accurate \u2014 *reddit* [https://reddit.com/r/technicallythetruth/comments/lwu105/it_may_be_cruel_but_its]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "CHEM CONNECT",
+    "entity_country": "IN",
+    "entity_address": "7th Floor, 7/A, PIL Court, 111, Sherbanoo CHS, Maharshi Karve Marg, Churchgate, New Marine Lines, Mumbai, Maharashtra 400020",
+    "entity_tax_id": "27AAVFC5538J1ZT",
+    "key_individuals": [
+      {
+        "name": "Nidhi R. Kilachand",
+        "title": "officer"
+      },
+      {
+        "name": "Mahesh N. Shah",
+        "title": "officer"
+      },
+      {
+        "name": "Kat Gale"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 49
+}

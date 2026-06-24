@@ -1,0 +1,48 @@
+{
+  "job_id": "2901634c-abdf-480e-9522-b6f3596cf3cd",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "SIDHGUN TECHNOLOGIES PRIVATE LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-22T20:30:50.521060+00:00",
+  "updated_at": "2026-05-22T20:37:59.334294+00:00",
+  "blob_path": "osint-staging/cir/india/sidhgun_technologies_private_limited_IN_20260504.json",
+  "report_summary": "`DONE: Sidhgun Technologies Pvt Ltd, IN -- Risk: 3 MONITOR -- Gujarat GSTIN at Delhi address; CIN unconfirmed; KLJ Group address link (Hemant Jain); AI chemicals B2B marketplace (Sumairo) active`\n\n---\n\n**SIDHGUN TECHNOLOGIES PRIVATE LIMITED `IN` \u2014 Risk: 3 / MONITOR**\n\n- \u2705 `~/crawl/output/sidhgun_technologies_pvt_ltd_IN_20260522.json` \u2014 saved & uploaded\n\n| Check | Result |\n|---|---|\n| GSTIN | 24ABRCS0125P1ZY \u2014 **Gujarat (24)** \u2014 \u26a0\ufe0f mismatch with Delhi address |\n| CIN | **Not confirmed** \u2014 Tofler CIN brute-force failed; very new entity |\n| Address | KLJ House, 8A Shivaji Marg, Delhi Industrial Area, West Delhi 110015 |\n| Brand | **Sumairo** (sumairo.in) \u2014 AI B2B industrial chemicals marketplace |\n| Directors | Hemant Jain \u00b7 Siddhant Jain \u00b7 Harshvardhan Bothra |\n| Litigation | Zero court records |\n| Sanctions | No hits |\n| PEP | No hits |\n\n**Key findings:**\n\n- \ud83d\udd34 **Gujarat GSTIN at Delhi address** \u2014 GSTIN `24ABRCS0125P1ZY` = state code 24 (Gujarat), but company is at West Delhi 110015. Possible legitimate explanation (Gujarat-based chemical operations), but must be clarified before trading.\n- \ud83d\udd34 **CIN not confirmed** \u2014 submitted GSTIN used as registration number; actual CIN not found in Tofler. Company is likely recently incorporated and not yet indexed.\n- \ud83d\udfe1 **KLJ House connection** \u2014 KLJ House, 8A Shivaji Marg is the HQ of **KLJ Group** (KLJ Organic Ltd / KLJ Plasticizers \u2014 major Indian chemicals conglomerate). Indian Kanoon returns 1 result linking **Hemant Jain to KLJ chemicals**. Suggests Sidhgun is a KLJ family technology initiative.\n- \ud83d\udfe1 **Brand \u2260 Legal name** \u2014 Sumairo platform doesn't reference legal entity \"Sidhgun Technologies\"; common for Indian startups but must appear correctly on invoices.\n- \u2705 **Sumairo platform is credible** \u2014 active website with sophisticated AI marketplace features (price tracking, embedded financing, market intelligence) targeting India's industrial chemical sector; consistent with KLJ Group's sector expertise.\n- \u2705 No adverse media, no court records, no sanctions, no SEBI/ED action.\n\n**Before trading \u2014 request from counterparty:**\n1. CIN from MCA certificate of incorporation\n2. Clarification on Gujarat GST registration vs. Delhi operating address\n3. Confirmation of KLJ Group relationship (subsidiary / incubatee / tenant)\n4. Legal entity name confirmation on all invoices (should show Sidhgun Technologies / GSTIN 24ABRCS0125P1ZY)\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**1 actionable findings** from 3/49 sources via Tor (Netherlands exit node) (25 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: www.sumairo.in.\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | ISRO technology being sold cheaply to private firms, Parliam; TikTok's most popular influencer sold his company for $975m.; New Yorker published a major investigation into Sam Altman a (+12 more) |\n| duckduckgo_tor | 10 | Sidhgun Technologies Private Limited - 2026 Insights; Sidhgun Technologies Private Limited / U46901dl2025ptc453409; Sidhgun Technologies Private Limited - Company Profile - Tra (+7 more) |\n| hudsonrock_cavalier | 1 | www.sumairo.in. |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- www.sumairo.in. \u2014 *hudsonrock_cavalier*\n\n**WEB MENTION** (10)\n- Sidhgun Technologies Private Limited - 2026 Insights \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fcompany%2Fsidhgun%2Dtechnologie]\n- Sidhgun Technologies Private Limited / U46901dl2025ptc453409 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.falconebiz.com%2Fcompany%2FSIDHGUN%2DTECHNOLOGIES%2DP]\n- Sidhgun Technologies Private Limited - Company Profile - Tracxn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Fsidhgun%2Dtec]\n- SIDHGUN TECHNOLOGIES PRIVATE LIMITED - IndiaFilings \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiafilings.com%2Fsearch%2Fsidhgun%2Dtechnologies%2D]\n- Sidhgun Technologies Pvt Ltd | LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fin.linkedin.com%2Fcompany%2Fsidhgun%2Dtechnologies%2Dpvt%]\n- Sidhgun Technologies Private Limited - U46901dl2025ptc453409 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.instafinancials.com%2Fcompany%2Fsidhgun%2Dtechnologie]\n- Sidhgun Technologies Private Limited - Company, Directors, Charges and ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.filesure.in%2Fcompany%2Fsidhgun%2Dtechnologies%2Dpriv]\n- Sidhgun Technologies Financials | Company Details | Tofler \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tofler.in%2Fsidhgun%2Dtechnologies%2Dprivate%2Dlimite]\n- Sidhgun Technologies Private Limited - Lei: 335800fs7pzo9uioc324 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Flei.bloomberg.com%2Fleis%2Fview%2F335800FS7PZO9UIOC324&ru]\n- SIDHGUN TECHNOLOGIES PRIVATE LIMITED - planetexim.net \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.planetexim.net%2Findian%2Dcompany%2Fmap%2Fsidhgun%2Dt]\n\n**SOCIAL MENTION** (15)\n- ISRO technology being sold cheaply to private firms, Parliamentary panel finds. \u2014 *reddit* [https://reddit.com/r/scienceisdope/comments/1s601j5/isro_technology_being_sold_c]\n- TikTok's most popular influencer sold his company for $975m... to a sketchy Chinese \"printing\" compa \u2014 *reddit* [https://reddit.com/r/wallstreetbets/comments/1qtig67/tiktoks_most_popular_influe]\n- New Yorker published a major investigation into Sam Altman and OpenAI today \u2014 based on never-before- \u2014 *reddit* [https://reddit.com/r/OpenAI/comments/1sdyg8c/new_yorker_published_a_major_invest]\n- The Golden Treasure Part II [100% Proof Apes Get Paid] \u2014 *reddit* [https://reddit.com/r/Superstonk/comments/1ohiz4y/the_golden_treasure_part_ii_100]\n- [New Final Update]: AITAH for not siding with my wife over our son's ex-girlfriend\u2019s pregnancy \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1qbihpj/new_final_update_ait]\n- Private primary schools and use of technology \u2014 *reddit* [https://reddit.com/r/HENRYUK/comments/1sbfl4m/private_primary_schools_and_use_of]\n- Exclusive: Samsung S26 Ultra Introduces Localized Privacy Screen Technology \u2014 *reddit* [https://reddit.com/r/samsunggalaxy/comments/1qp8ki5/exclusive_samsung_s26_ultra_]\n- The Darkest Alien Theory and Why They\u2019re Desperately Hiding It \u2014 *reddit* [https://reddit.com/r/aliens/comments/1mmdgw7/the_darkest_alien_theory_and_why_th]\n- Neighbor is harassing my gf but also there's a mystery stalker?? \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1s99wvv/neighbor_is_harassin]\n- Incomplete and Growing List of Participating Subreddits \u2014 *reddit* [https://reddit.com/r/ModCoord/comments/1401qw5/incomplete_and_growing_list_of_pa]\n- $ASTS DD The Space Trade will Cum. \u2014 *reddit* [https://reddit.com/r/wallstreetbets/comments/1k3o8au/asts_dd_the_space_trade_wil]\n- r/aliens finally gets its alien: The University of Ica just announced that, after studying the Nazca \u2014 *reddit* [https://reddit.com/r/aliens/comments/17q7hnt/raliens_finally_gets_its_alien_the_]\n- Cook in Internal memo to Employees: he\u2019s \u201cdeeply distraught\u201d with the US\u2019s current approach to immig \u2014 *reddit* [https://reddit.com/r/apple/comments/1qwvbsq/cook_in_internal_memo_to_employees_h]\n- Using Macros - TOS \u2014 *reddit* [https://reddit.com/r/ArcRaiders/comments/1pzlvdi/using_macros_tos/]\n- Is your team's owner a Nepo Baby? An Analysis of Current NFL Head Coach Searches \u2014 *reddit* [https://reddit.com/r/nfl/comments/1qhzxtv/is_your_teams_owner_a_nepo_baby_an_ana]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "SIDHGUN TECHNOLOGIES PRIVATE LIMITED",
+    "entity_country": "IN",
+    "entity_address": "KLJ House, 8A, Shivaji Marg, Delhi Industrial Area, West Delhi, 110015, Delhi",
+    "entity_website": "www.sumairo.in.",
+    "entity_tax_id": "24ABRCS0125P1ZY",
+    "key_individuals": [
+      {
+        "name": "HEMANT JAIN",
+        "title": "Associated Person"
+      },
+      {
+        "name": "SIDDHANT JAIN",
+        "title": "Associated Person"
+      },
+      {
+        "name": "Harshvardhan Bothra",
+        "title": "Associated Person"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 1,
+  "dark_web_sources": 49
+}

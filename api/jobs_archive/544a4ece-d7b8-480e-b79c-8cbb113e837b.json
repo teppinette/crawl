@@ -1,0 +1,76 @@
+{
+  "job_id": "544a4ece-d7b8-480e-b79c-8cbb113e837b",
+  "scenario": "product-intel",
+  "status": "completed",
+  "regions": [
+    "americas",
+    "europe",
+    "gulf",
+    "china",
+    "india"
+  ],
+  "product_name": "Kraft linerboard",
+  "target_markets": [
+    "US",
+    "DE",
+    "AE",
+    "CN",
+    "IN"
+  ],
+  "request_id": "pi-test-004-kraft",
+  "created_at": "2026-04-20T14:54:15.914932+00:00",
+  "updated_at": "2026-04-20T14:58:36.716955+00:00",
+  "blob_paths": [
+    "osint-staging/product-intel/gulf/kraft_linerboard_KLB_AE_20260420.json",
+    "osint-staging/product-intel/europe/product_intelligence_kraft_linerboard_DE_20260420.json",
+    "osint-staging/product-intel/india/product_intel_kraft_linerboard_IN_20260420.json"
+  ],
+  "report_summary": "All checks pass. `~/crawl/output/product_intel_kraft_linerboard_IN_20260420.json` \u2014 22 signals, 0 missing IDs, 0 missing URLs.\n\n---\n\n## Product Intelligence \u2014 Kraft Linerboard / India | 2026-04-20\n\n**Coverage: 85/100** | Window: Feb 20 \u2013 Apr 20, 2026 | 22 signals across all 5 requested types\n\n---\n\n### \u26a0\ufe0f DOMINANT STORY: Strait of Hormuz Crisis (Feb 28 \u2013 ongoing)\n\nThis is the single largest market disruption within the lookback window and it directly hits India's KLB import supply chain:\n\n| Event | Date | Impact |\n|---|---|---|\n| US-Israel strikes on Iran, Hormuz closed | Feb 28 | Suez routing suspended; Cape rerouting begins |\n| Surcharges: $3,000/FEU ECS + $1,500/TEU WRS | Mar 2 | Freight cost spike for all India-bound cargo |\n| Singapore VLSFO bunker fuel +35% | Mar 10 | BAF surcharges added on top |\n| Nhava Sheva on-time rate: 50% \u2192 33% | Mar 18 | Port congestion well above normal |\n| Ceasefire agreed, collapses same day | Apr 8 | No resolution; Hormuz still effectively closed |\n| US naval blockade launched | Apr 11 | Escalation; daily crossings -95% vs. pre-war |\n\n---\n\n### \ud83d\udcca Signals Quick-Reference\n\n**Price Levels (within window):**\n| signal_id | Grade / Market | Basis | Level |\n|---|---|---|---|\n| `price_index-20260407-pvxgcc` | GCC Testliner (recycled) | EXW | **$462\u2013$482/tonne** |\n| `price_index-20260301-naklb-lv` | US 42-lb KLB | FOB mill | **$905\u2013$995/ton** |\n| `price_index-20260401-incif-lv` | India 150 GSM KLB | CIF Nhava Sheva | **$630\u2013$700/MT** *(derived)* |\n| `price_index-20260401-incif-170` | India 170 GSM KLB | CIF Nhava Sheva | **$660\u2013$730/MT** *(derived)* |\n\n**Price Changes (within window):**\n| signal_id | Event | Delta |\n|---|---|---|\n| `price_index-20260407-gccpix-d` | GCC PIX Testliner Mar\u2192Apr | **+$20/tonne (+4.4%)** |\n| `price_index-20260301-naklb-d` | NA KLB March hike (partial) | **+$30\u2013$70/ton** |\n\n**Freight Surcharges (within window):**\n| signal_id | Charge | Rate |\n|---|---|---|\n| `freight-20260302-ecswrs` | War Risk Surcharge (Hapag-Lloyd) | **$1,500/TEU** |\n| `freight-20260302-ecsfeu` | Emergency Conflict Surcharge | **$3,000/FEU** |\n| `freight-20260302-bunkr` | Bunker surcharge (Singapore VLSFO) | **+35%** |\n| `freight-20260301-cogh` | Cape of Good Hope all-in (est.) | **~$140/MT**, 35 days |",
+  "error": "china: unhandled: Expecting value: line 1 column 1 (char 0)",
+  "retry_count": 1,
+  "review": null,
+  "seed_data": {
+    "request_id": "pi-test-004-kraft",
+    "product": {
+      "generic_name": "Kraft linerboard",
+      "grade_code": "KLB",
+      "commodity_family": "paper"
+    },
+    "region_hint": "global",
+    "lookback_days": 60,
+    "signal_types": [
+      "price_index",
+      "freight",
+      "supply_disruption",
+      "geopolitical",
+      "news"
+    ]
+  },
+  "region_status": {
+    "americas": {
+      "status": "failed",
+      "error": "Failed to parse response from americas: "
+    },
+    "europe": {
+      "status": "completed",
+      "error": null
+    },
+    "gulf": {
+      "status": "completed",
+      "error": null
+    },
+    "india": {
+      "status": "completed",
+      "error": null
+    },
+    "china": {
+      "status": "failed",
+      "error": "Expecting value: line 1 column 1 (char 0)"
+    }
+  },
+  "errors": [
+    "Failed to parse response from americas: ",
+    "Failed to parse response from americas: ",
+    "china: unhandled: Expecting value: line 1 column 1 (char 0)"
+  ]
+}

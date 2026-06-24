@@ -1,0 +1,69 @@
+{
+  "job_id": "8582b877-2cbd-44d2-9a35-45b3725f75fa",
+  "scenario": "cir",
+  "status": "failed",
+  "region": "india",
+  "entity_name": "RELIANCE INDUSTRIES LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-20T18:28:11.799025+00:00",
+  "updated_at": "2026-05-21T18:05:45.575014+00:00",
+  "blob_path": "osint-staging/cir/india/reliance_industries_limited_IN_20260520.json",
+  "report_summary": "**DONE (updated file): Reliance Industries Limited, India \u2014 Risk: 1 CLEAR \u2014 FY26 record revenue \u20b911,75,919 Cr; now 17 individuals profiled**\n\n`~/crawl/output/reliance_industries_limited_IN_20260520.json` \u2014 23 KB, valid, updated 18:28 UTC.\n\n---\n\n### New Individuals Confirmed \u2014 Ambani Family Succession\n\n| Person | DIN | Role | Since |\n|---|---|---|---|\n| **Akash Mukesh Ambani** | **06984194** | MD Jio Platforms; Chairman Jio Infocomm; RIL board director | Jun 2022 (Jio MD) |\n| **Anant Mukesh Ambani** | **07945702** | **Executive Director, RIL \u2014 5-year term** | **May 1, 2025** |\n\n**Key note on Anant:** His appointment as Executive Director of the RIL parent company from May 1, 2025 was announced on April 26, 2025 \u2014 his first executive role at the listed parent entity. He drives New Energy (green hydrogen, solar, renewable energy) and is leading RIL's Net Carbon Zero 2035 strategy.\n\n**All 3 Ambani children now in senior executive roles:**\n- **Isha** = Executive Director, Reliance Retail Ventures (leads 20,000+ stores)\n- **Akash** = MD Jio Platforms (leads 524M subscriber telecom/digital)\n- **Anant** = Executive Director, RIL (leads New Energy + materials)",
+  "error": "orphan_timeout (stale 1416min, reaped 2026-05-21)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "RELIANCE INDUSTRIES LIMITED",
+    "entity_country": "IN",
+    "entity_address": "3rd Floor, Maker Chamber IV, 222 Nariman Point, Mumbai, Maharashtra 400021",
+    "entity_tax_id": "L17110MH1973PLC019786",
+    "key_individuals": [
+      {
+        "name": "MUKESH DHIRUBHAI AMBANI"
+      },
+      {
+        "name": "NIKHIL RASIKLAL MESWANI"
+      },
+      {
+        "name": "HITAL RASIKLAL MESWANI"
+      },
+      {
+        "name": "MADHUSUDANA SIVAPRASAD PANDA"
+      },
+      {
+        "name": "SHUMEET BANERJI"
+      },
+      {
+        "name": "ARUNDHATI BHATTACHARYA"
+      },
+      {
+        "name": "VEERAYYA CHOWDARY KOSARAJU"
+      },
+      {
+        "name": "YASIR OTHMAN H ALRUMAYYAN"
+      },
+      {
+        "name": "KUNDAPUR KAMATH"
+      },
+      {
+        "name": "ISHA MUKESH AMBANI"
+      },
+      {
+        "name": "AKASH MUKESH AMBANI"
+      },
+      {
+        "name": "ANANT MUKESH AMBANI"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  }
+}

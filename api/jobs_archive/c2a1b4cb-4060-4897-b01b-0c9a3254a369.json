@@ -1,0 +1,88 @@
+{
+  "job_id": "c2a1b4cb-4060-4897-b01b-0c9a3254a369",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "COMPANHIA DOREL BRASIL PRODUTOS INFANTIS",
+  "country": "BR",
+  "created_at": "2026-05-22T16:58:09.608365+00:00",
+  "updated_at": "2026-05-22T17:08:06.902246+00:00",
+  "blob_path": "osint-staging/cir/americas/companhia_dorel_brasil_produtos_infantis_BR_20260522.json",
+  "report_summary": "Duplicate \u2014 `americas/companhia_dorel_brasil_produtos_infantis_BR_20260522.json` uploaded today at 16:55 UTC.\n\n| | |\n|---|---|\n| **File** | `americas/companhia_dorel_brasil_produtos_infantis_BR_20260522.json` |\n| **Risk** | **2 / CLEAR** |\n| **Parent** | Dorel Industries Inc. (Montreal, Canada \u2014 Schwartz family) |\n| **\ud83d\udd34 CRITICAL** | \"SIGMA TRADING Inc.\" trade name unexplained \u2014 clarify before contract |\n| **\ud83d\udd34 HIGH** | CNPJ not retrieved \u2014 obtain from counterparty |\n| **Sanctions** | ALL CLEAR |\n\nNo re-research warranted.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**1 actionable findings** from 3/57 sources via Tor (Netherlands exit node) (25 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: www.dorel.com.br\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Cacau Show bate recorde hist\u00f3rico e fatura mais de R$300 mil; Proibir a publicidade infantil foi uma das decis\u00f5es mais des; \ud83c\udde7\ud83c\uddf7 La\u00e7os infantis tem\u00e1ticos do Brasil - artesanato/manual, p (+12 more) |\n| duckduckgo_tor | 10 | At Dorel Juvenile we care for precious life; COMPANHIA DOREL BRASIL PRODUTOS INFANTIS | Loja Dorel Juveni; Central de Atendimento - Dorel (+7 more) |\n| hudsonrock_cavalier | 1 | www.dorel.com.br |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- www.dorel.com.br \u2014 *hudsonrock_cavalier*\n\n**WEB MENTION** (10)\n- At Dorel Juvenile we care for precious life \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fdoreljuvenile.com%2Fpt%2Dbr&rut=1e0638b35e67832a26351e4e3]\n- COMPANHIA DOREL BRASIL PRODUTOS INFANTIS | Loja Dorel Juvenile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fdorelempresas.com.br%2F&rut=d540578f8ddfdf02ed4094e073e3c]\n- Central de Atendimento - Dorel \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fajuda.dorel.com.br%2Fhc%2Fpt%2Dbr&rut=c1f20ce7fc7f0846623]\n- Dorel Brasil - Companhia Dorel Brasil \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fatracaodetalentos.totvs.app%2Fdorelbrasil&rut=7e8a6acca86]\n- COMPANHIA DOREL BRASIL PRODUTOS INFANTIS | Hora do Sono \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.babyoutlet.com.br%2Fcollections%2Fhora%2Ddo%2Dsono&ru]\n- Companhia Dorel Brasil Produtos Infantis - 10659948000107 - CNPJ Biz \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fcnpj.biz%2F10659948000107&rut=cb01405393dc0450139053f4f38]\n- Dorel - Loja de F\u00e1brica | Campos dos Goytacazes RJ - Facebook \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.facebook.com%2Flojadefabricadorel%2F&rut=6b5e7909247a]\n- Companhia Dorel Brasil Produtos Infantis - Econodata \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.econodata.com.br%2Fconsulta%2Dempresa%2F1065994800061]\n- COMPANHIA DOREL BRASIL PRODUTOS INFANTIS - CNPJ 10659948001189 - Casa ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fcasadosdados.com.br%2Fsolucao%2Fcnpj%2Fcompanhia%2Ddorel%]\n- Dorel Juvenile Brasil | LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fbr.linkedin.com%2Fcompany%2Fdoreljuvenilebrasil&rut=125e0]\n\n**SOCIAL MENTION** (15)\n- Cacau Show bate recorde hist\u00f3rico e fatura mais de R$300 milh\u00f5es em um s\u00f3 dia. Isso porque, segundo  \u2014 *reddit* [https://reddit.com/r/NoticiasBR/comments/1sdei06/cacau_show_bate_recorde_hist\u00f3ri]\n- Proibir a publicidade infantil foi uma das decis\u00f5es mais desastrosas j\u00e1 tomadas. \u2014 *reddit* [https://reddit.com/r/opiniaoimpopular/comments/1kk6u2l/proibir_a_publicidade_inf]\n- \ud83c\udde7\ud83c\uddf7 La\u00e7os infantis tem\u00e1ticos do Brasil - artesanato/manual, perfeitos para dias de jogo ou eventos es \u2014 *reddit* [https://reddit.com/r/CentralDosAchados/comments/1th4ifu/la\u00e7os_infantis_tem\u00e1ticos]\n- A nostalgia do Brasil est\u00e1 mais relacionada \u00e0 TV Aberta (No caso a Globo)? \u2014 *reddit* [https://reddit.com/r/Nostalgia_Br/comments/1sp43qm/a_nostalgia_do_brasil_est\u00e1_ma]\n- O rico cada vez mais rico e o pobre cada vez mais pobre? \u2014 *reddit* [https://reddit.com/r/brasil/comments/1dnrxc5/o_rico_cada_vez_mais_rico_e_o_pobre]\n- Cansado de comparar taxas no \"olh\u00f4metro\"? Fiz uma planilha que calcula a rentabilidade l\u00edquida real  \u2014 *reddit* [https://reddit.com/r/investimentos/comments/1t6coqx/cansado_de_comparar_taxas_no]\n- Num momento em que a outrora poderosa Ind\u00fastrias Matarazzo (IRFM) come\u00e7ava a entrar em decl\u00ednio, a c \u2014 *reddit* [https://reddit.com/r/saopaulo/comments/1t6d1af/num_momento_em_que_a_outrora_pode]\n- Nuclemon: uma emerg\u00eancia radioativa em S\u00e3o Paulo \u2014 *reddit* [https://reddit.com/r/saopaulo/comments/1syk1jm/nuclemon_uma_emerg\u00eancia_radioativ]\n- P\u00e1gina dos cr\u00e9ditos (Turma da M\u00f4nica n\u00b0 93) \u2014 *reddit* [https://reddit.com/r/porramauricio/comments/1snf041/p\u00e1gina_dos_cr\u00e9ditos_turma_da]\n- CEITEC S.A- Empresa estatal de eletr\u00f4nica avan\u00e7ada, salva\u00e7\u00e3o ou fracasso do Brasil? \u2014 *reddit* [https://reddit.com/r/computadores/comments/1shrlcs/ceitec_sa_empresa_estatal_de_]\n- Colecionismo de fato est\u00e1 matando o mercado de quadrinhos M \u2014 *reddit* [https://reddit.com/r/Quadrinhos/comments/1q712g1/colecionismo_de_fato_est\u00e1_matan]\n- TURNO 3 \u2014 1\u00ba DE DEZEMBRO DE 1850 \u2014 *reddit* [https://reddit.com/r/NRPdaEtecJB/comments/1t4w4vf/turno_3_1\u00ba_de_dezembro_de_1850]\n- 6x1, 5x2 ou quem sabe 0x7? \u2014 *reddit* [https://reddit.com/r/DebatesBr/comments/1t5620e/6x1_5x2_ou_quem_sabe_0x7/]\n- o Zimbabwe estava melhor sendo Rod\u00e9sia \u2014 *reddit* [https://reddit.com/r/opiniaoimpopular/comments/1rmdyxz/o_zimbabwe_estava_melhor_]\n- Lecar: o que aprendi no curso de R$ 459 do \u2018Elon Musk brasileiro\u2019 para vender carros \u2014 *reddit* [https://reddit.com/r/carros/comments/1qfif7v/lecar_o_que_aprendi_no_curso_de_r_4]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "COMPANHIA DOREL BRASIL PRODUTOS INFANTIS",
+    "entity_trade_names": "SIGMA TRADING Inc.",
+    "entity_country": "BR",
+    "entity_website": "https://www.dorel.com.br/",
+    "entity_industry": "Trading / Reseller intermediary for baby and child products",
+    "key_individuals": [
+      {
+        "name": "Martin Schwartz",
+        "title": "officer"
+      },
+      {
+        "name": "John Paikopoulos",
+        "title": "officer"
+      },
+      {
+        "name": "Jeffrey Schwartz",
+        "title": "officer"
+      },
+      {
+        "name": "Peggy Gouskos",
+        "title": "auditor"
+      },
+      {
+        "name": "MAURO JORGE SIMAS DE SOUZA",
+        "title": "officer"
+      },
+      {
+        "name": "CANUTO SILV\u00c9RIO SOUZA",
+        "title": "Director"
+      },
+      {
+        "name": "RAFAEL ANJOS CAMARANO",
+        "title": "Director"
+      },
+      {
+        "name": "RENATA DE SOUZA PAULA RODRIGUES",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "Gabriel Oliveira de Souza Voi",
+        "title": "Officer"
+      },
+      {
+        "name": "Jos\u00e9 Marcelo Severo Ferreira",
+        "title": "Officer"
+      },
+      {
+        "name": "NICOLAS FERNANDO DURAN ALVAREZ",
+        "title": "Director"
+      },
+      {
+        "name": "CARLOS ALEXANDRE PEREIRA DE ALMEIDA",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "JORGE PAULO MAGDALENO FILHO",
+        "title": "Officer"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 1,
+  "dark_web_sources": 57
+}

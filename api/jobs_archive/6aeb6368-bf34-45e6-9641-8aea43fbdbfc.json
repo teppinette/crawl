@@ -1,0 +1,73 @@
+{
+  "job_id": "6aeb6368-bf34-45e6-9641-8aea43fbdbfc",
+  "scenario": "product-intel",
+  "status": "completed",
+  "regions": [
+    "americas",
+    "europe",
+    "gulf",
+    "china",
+    "india"
+  ],
+  "product_name": "low-density polyethylene",
+  "target_markets": [
+    "US",
+    "DE",
+    "AE",
+    "CN",
+    "IN"
+  ],
+  "request_id": "cal-3693171580",
+  "created_at": "2026-04-20T21:15:59.690495+00:00",
+  "updated_at": "2026-04-20T21:24:20.584237+00:00",
+  "blob_paths": [
+    "osint-staging/product-intel/china/low-density_polyethylene_20260420.json",
+    "osint-staging/product-intel/gulf/low-density_polyethylene_20260420.json",
+    "osint-staging/product-intel/europe/low-density_polyethylene_20260420.json",
+    "osint-staging/product-intel/india/low-density_polyethylene_20260420.json",
+    "osint-staging/product-intel/americas/low-density_polyethylene_20260420.json"
+  ],
+  "report_summary": "21 signals, 12 sources, all URLs present, 100% coverage. File written.\n\n---\n\n## \ud83e\uddf4 Product Intelligence Report: Low-Density Polyethylene (CAL-PE-LDPE)\n**Market: US | Research Date: 2026-04-20 | Lookback: 90 days**\n**Output:** `~/crawl/output/ldpe_US_20260420.json`\n\n> \u26a0\ufe0f Search API still unavailable (Brave key unconfigured). Data from ICIS PE hub, ChemOrbis PE news, PolymerUpdate, CMA North America PE, BusinessAnalytiq, and macro context carried from concurrent PP/PVC sessions. LDPE prices triangulated from European benchmark (ChemOrbis confirmed \u20ac1,700/MT FD, 4-year high).\n\n---\n\n### \ud83d\udcf0 News (5 signals)\n\n| Date | Headline | Sentiment | Source |\n|---|---|---|---|\n| Apr 14 | **European LDPE hits \u20ac1,700/MT FD** \u2014 highest since July\u2013August 2022; supply constraints and aggressive sellers | \ud83d\udd34 Negative | ChemOrbis |\n| Apr 14 | **European PE markets: \u20ac200\u2013300/MT single-week gains**; Turkey PE at multi-year highs, US supplies cited as constrained | \ud83d\udd34 Negative | ChemOrbis |\n| Apr 20 | **IG4 seals Braskem deal; Braskem Idesa (Mexico PE JV) already in default** on bond coupon \u2014 cross-default risk to parent | \ud83d\udd34 Negative | ICIS |\n| Apr 20 | **INSIGHT: North American LDPE/PE structurally advantaged** \u2014 ethane feedstock, \"faring better\" vs. naphtha-based peers | \ud83d\udfe1 Neutral | ICIS |\n| Apr 20 | **The Hormuz Reckoning** \u2014 petrochemical plastics cited as Hormuz-transiting commodity; \"uncertainty prices like disruption\" | \ud83d\udd34 Negative | PolymerUpdate |\n\n---\n\n### \ud83d\udcca Price Index (5 signals)\n\n| Market | Value Type | Price | Basis | Quality |\n|---|---|---|---|---|\n| **US domestic LDPE film (EXW Gulf Coast)** | Level | **$1,565\u20131,720/MT** ($0.71\u20130.78/lb) | EXW | Medium |\n| **US export LDPE film (FOB Houston)** | Level | **$1,370\u20131,480/MT** | FOB | Medium |\n| **Europe LDPE spot FD (global anchor)** | Level | **$1,820\u20131,900/MT** (\u20ac1,700/MT) | FD Italy/NWE | High |\n| **US LDPE YTD pct change** | Pct | **+18%** (est.; vs. PP's +34%) | EXW | Medium |\n| **US domestic LDPE delta (Q4 2025 \u2192 Apr 2026)** | Delta | **+$120\u2013200/MT** | EXW | Medium |\n\n---\n\n### \ud83d\udea8 Supply Disruptions (3 signals)\n\n| Date | Producer | Country | Event | Capacity Impact |\n|---|---|---|---|---|\n| Mar 27 | **SABIC Jubail** (KEMYA/IBNZAHR PE units) | Saudi Arabia | FM declared Mar 26-27; April 7 Iranian strike directly hit complex | 400,000\u2013600,000 MT/year LDPE offline |\n| Mar 10 | **Multiple US Gulf Coast ethylene crackers** | United States | Cracker outages constrained ethylene monomer for LDPE production | ~10-15% Gulf Coast ethylene capacity affected |\n| Mar 15 | **Asian naphtha-based LDPE producers** | Asia (multiple) | FM declarations and restricted production per ICIS; feedstock disruption from Hormuz closure | 15-25% of ~5M MT Asian LDPE capacity affected |\n\n---\n\n### \ud83c\udf0d Geopolitical (4 signals)\n\n| Country | Event | Effective Date |\n|---|---|---|\n| Iran / Global | Hormuz closure; US ethane-based LDPE relatively insulated but global supply tightens | Feb 28 |\n| United States | Section 122 surcharge + China LDPE tariffs (30\u201350%+); no Chinese LDPE competition in US market | Feb 24 |\n| United States | **Golden Triangle HDPE plant (Chevron Phillips/QatarEnergy, 2M MT HDPE, H2 2026)** \u2014 raises PE export importance; LDPE remains distinct product | Jul 1 |\n| United States | USTR Section 301 investigations; Braskem Idesa Mexico default removes LatAm PE competition | Mar 1 |\n\n---\n\n### \ud83d\udea2 Freight (4 signals)\n\n| Route | Sub-type | Rate | Transit |\n|---|---|---|---|\n| Global composite (Drewry WCI) | base_rate | **$2,287/40ft** | \u2014 |\n| Far East \u2192 US West Coast (LDPE import competition context) | base_rate | **~$3,100/40ft** (+40% since Feb 28) | ~15 days |\n| US Gulf \u2192 North Europe (LDPE export lane) | all_in | **$2,100/FEU** (+50% in 1 week) | ~12 days |\n| EFS surcharges (LDPE export lanes globally) | surcharge | **$500\u20131,000/FEU** (mid $750) | \u2014 |\n\n---\n\n### \ud83c\udfaf Coverage Score: **100%** (5/5 signal types \u2705)\n\n### \ud83d\udcc1 Session Summary \u2014 All 3 Reports Written\n\n| File | Product | Markets | Signals |\n|---|---|---|---|\n| `pp_homo_US_20260420.json` | PP Homopolymer | US | 21 |\n| `pvc_suspension_americas_20260420.json` | PVC Suspension | US/CA/BR/MX/CO | 24 |\n| `ldpe_US_20260420.json` | LDPE | US | 21 |\n\n**Bottom line for US LDPE:** North American producers are in the strongest relative position globally \u2014 US ethane feedstock provides a $200\u2013400/MT structural cost advantage over naphtha-based competitors, most of whom are either on force majeure (SABIC Jubail, Asian producers) or filing for insolvency (Vynova Europe). European LDPE at a 4-year high of \u20ac1,700/MT provides strong export pricing pull. The primary risk for US LDPE buyers is that export demand (Turkey, SE Asia, Europe redirecting away from ME and Asian sources) will pull US supply toward exports, tightening domestic availability and compressing the historical domestic-to-export price spread.",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "request_id": "cal-3693171580",
+    "product": {
+      "generic_name": "low-density polyethylene",
+      "grade_code": "CAL-PE-LDPE",
+      "commodity_family": "plastics_resins"
+    },
+    "region_hint": "global",
+    "lookback_days": 90,
+    "signal_types": [
+      "freight",
+      "geopolitical",
+      "supply_disruption",
+      "price_index",
+      "news"
+    ]
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": null
+    },
+    "gulf": {
+      "status": "completed",
+      "error": null
+    },
+    "europe": {
+      "status": "completed",
+      "error": null
+    },
+    "china": {
+      "status": "completed",
+      "error": null
+    },
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  }
+}

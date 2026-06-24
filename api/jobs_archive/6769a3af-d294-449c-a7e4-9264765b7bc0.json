@@ -1,0 +1,20 @@
+{
+  "job_id": "6769a3af-d294-449c-a7e4-9264765b7bc0",
+  "scenario": "dark-web",
+  "status": "failed",
+  "region": "darkweb",
+  "entity_name": "Indo Global Resources DMCC",
+  "country": "",
+  "created_at": "2026-05-12T13:05:52.464607+00:00",
+  "updated_at": "2026-05-12T13:05:55.984257+00:00",
+  "blob_path": "osint-staging/dark-web/indo_global_resources_dmcc_20260512.json",
+  "report_summary": "0 findings from dark web sources",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_name": "Indo Global Resources DMCC",
+    "owners": "Saksham Jain",
+    "country_code": "AE"
+  }
+}

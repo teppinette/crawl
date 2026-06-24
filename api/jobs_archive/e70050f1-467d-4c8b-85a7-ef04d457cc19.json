@@ -1,0 +1,142 @@
+{
+  "job_id": "e70050f1-467d-4c8b-85a7-ef04d457cc19",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "PRAKASH CHEMICALS INTERNATIONAL PRIVATE LIMITED",
+  "country_code": "IN",
+  "created_at": "2026-05-04T16:11:44.441699+00:00",
+  "updated_at": "2026-05-04T16:12:10.663975+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:11:55.326498+00:00",
+      "verified": true,
+      "legal_name": "PRAKASH CHEMICALS INTERNATIONAL PRIVATE LIMITED",
+      "cin": "U24231GJ2002PTC040891",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "21 June, 2002",
+      "directors": [
+        "Pinakin Kumarbhai Shah",
+        "Manish Kumarpal Shah",
+        "others"
+      ],
+      "registered_address": "PRAKASHHOUSE,39/40KRISHNAINDUSTRIALESTATEGORWAROAD, VADODARA, Gujarat, India, 390016",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:11:56.672094+00:00",
+      "found": true,
+      "name": "Prakash Chemicals International Private Limited",
+      "linkedin_url": "https://in.linkedin.com/company/prakashchemicalsinternational",
+      "industry": "Chemical Manufacturing",
+      "company_size": "201-500 employees",
+      "locations": [
+        "C-39 / 40, Krishna Industrial Estate Nr. Gorwa BIDC, Gorwa VADODARA, INDIA 390016, IN",
+        "22 Jericho Turnpike , Suite 108 , Mineola New York, New York NY11501, US"
+      ],
+      "about": "Prakash Chemicals International, a global chemical distribution and manufacturing company caters to a wide range of industry verticals with a customer base spread across 120+ countries all over the world. The company partners with the chemical industry and offers an array of value-added products and bespoke solutions that accelerate growth for all its stakeholders. With more than 70 years of experience, we have evolved to be India\u2019s leading player in bulk, specialty and performance chemicals. Ou",
+      "followers": 30923,
+      "employees_on_linkedin": 274,
+      "organization_type": "Privately Held",
+      "website": "https://www.pciplindia.com/",
+      "specialties": "Chemical Distribution, Chemical Manufacturing, Chemicals Export, R&D, Paints,Inks and Coatings, Home and Personal care, Pharmaceuticals/APIs, Water treatment and Mining, Food and Beverages, Plastics and Rubbers, Feed & Fertilizers, Flavor and Fragrances, and Chemical Intermediates",
+      "notable_employees": [
+        {
+          "name": "Akhouri Bikash Kumar",
+          "link": "https://in.linkedin.com/in/akhouri-bikash-kumar-6883a09?trk=org-employees"
+        },
+        {
+          "name": "Chetan Solanki",
+          "link": "https://in.linkedin.com/in/chetan-solanki-1a35a8a?trk=org-employees"
+        },
+        {
+          "name": "Milan Shah",
+          "link": "https://in.linkedin.com/in/milan-shah-55381b16?trk=org-employees"
+        },
+        {
+          "name": "Sohil Parikh",
+          "link": "https://in.linkedin.com/in/sohil-parikh-a8a09217?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:12:10.663328+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 60,
+      "sources_searched": 37,
+      "sources_with_results": 2,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "PRAKASH CHEMICALS INTERNATIONAL PRIVATE LIMITED",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "job_id": "4692afc5-4e99-4804-885c-78724bcb0701",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "ANM TRADERS",
+  "country_code": "PK",
+  "created_at": "2026-05-04T14:38:12.427227+00:00",
+  "updated_at": "2026-05-04T14:38:49.465922+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:38:15.722576+00:00",
+      "verified": false,
+      "legal_name": null,
+      "registration_number": null,
+      "entity_status": null,
+      "company_type": null,
+      "cro": null,
+      "registration_date": null,
+      "fbr": null,
+      "all_matches": null,
+      "source": "SECP eServices (direct gov query)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:38:18.919602+00:00",
+      "found": true,
+      "name": "ANM Group",
+      "linkedin_url": "https://in.linkedin.com/company/anmgroupco",
+      "industry": "Chemical Manufacturing",
+      "company_size": "51-200 employees",
+      "locations": [
+        "Mohali, Rudrapur, Punjab & UK 140308, IN"
+      ],
+      "about": "ANM Group, established in mid 1980s, is a reputed group having diversified interests in Chemicals, Healthcare and Trading and ranks as a recognized manufacturer of Specialty Paper Chemicals, Textile Chemicals, Detergent Chemicals, Waste Water Treatment Chemicals and provider of technical solutions and expertise. Chemical Manufacturing for: 1. PULP & PAPER - Sizing(AKD/Surface Sizing/ASA), RDA, Strength(DSR/WSR), Defoamers, Pulp mill additives, Coating additives, Fluff and Micorbial Control and a",
+      "followers": 233,
+      "employees_on_linkedin": 9,
+      "organization_type": "Privately Held",
+      "website": "https://www.anmgroup.co/",
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "Nitesh Tiwari",
+          "link": "https://in.linkedin.com/in/nitesh-tiwari-a9002265?trk=org-employees"
+        },
+        {
+          "name": "Prasad Pulikkal",
+          "link": "https://in.linkedin.com/in/prasad-pulikkal-7a0a73aa?trk=org-employees"
+        },
+        {
+          "name": "Akash Singh",
+          "link": "https://in.linkedin.com/in/akash-singh-ict-mumbai-batch-2021?trk=org-employees"
+        },
+        {
+          "name": "Saiful Islam",
+          "link": "https://eg.linkedin.com/in/saiful-islam-024804177?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:38:49.465263+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 61,
+      "sources_searched": 37,
+      "sources_with_results": 3,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50,
+        "debarment_record": 1
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "ANM TRADERS",
+    "country_code": "PK",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

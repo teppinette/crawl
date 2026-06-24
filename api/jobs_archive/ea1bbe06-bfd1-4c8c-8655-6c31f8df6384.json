@@ -1,0 +1,161 @@
+{
+  "job_id": "ea1bbe06-bfd1-4c8c-8655-6c31f8df6384",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "europe",
+  "entity_name": "Plastay Kimya Sanayi ve Ticaret Anonim Sirketi",
+  "country": "TR",
+  "created_at": "2026-05-22T18:33:44.461655+00:00",
+  "updated_at": "2026-05-22T18:38:41.480227+00:00",
+  "blob_path": null,
+  "report_summary": "**DONE: Plastay Kimya Sanayi ve Ticaret A.\u015e., TR \u2014 Risk: 3 MONITOR \u2014 All 7 individuals clean across all sanctions lists; 35-year Turkish plasticizer manufacturer (founded 1989, 2nd gen SUNGUR family); 60,000 MT/yr, Gebze OIZ; REACH/ISO 9001; \u0130KM\u0130B export champion; MERSIS number not provided \u2192 standard Turkey EDD applies.**\n\n---\n\n## \ud83d\udccb Research Summary\n\n| Field | Finding |\n|---|---|\n| **Founded** | **1989** \u2014 Mehmet \u0130smet SUNGUR, Pendik Kurtk\u00f6y, Istanbul |\n| **Current** | 2nd generation \u2014 **Mustafa Sinan SUNGUR** (Chairman) |\n| **Factory** | Gebze G\u00fczeller Organized Industrial Zone, Kocaeli |\n| **Area** | 15,000 m\u00b2 |\n| **Capacity** | **~60,000 MT/year** |\n| **Export** | **50%+**, to **30+ countries** |\n| **Group** | Plastay Group: Plastay Kimya + Askim Stabilizer + Tayplas Kimya |\n\n---\n\n### \ud83d\udee1\ufe0f All 8 Workstreams \u2014 Key Findings\n\n**1A \u2013 Registry:** MERSIS number not provided. Company confirmed via 35-year operational website, Gebze OIZ address, REACH compliance, \u0130KM\u0130B membership. Request MERSIS tasdikname.\n\n**2A \u2013 Ownership:** SUNGUR family (controlling) + 6 other shareholders (Kokuluda\u011f \u00d72, K\u00f6kdemir, \u00d6zkan, Bekircan/Y\u0131ld\u0131z, Efe). Percentages unconfirmed. \u26a0\ufe0f \"Bet\u00fcl Bekircan\" and \"Bet\u00fcl Y\u0131ld\u0131z\" in brief = likely same person, name variant \u2014 clarify.\n\n**3A \u2013 Sanctions: ALL CLEAN** \u2014 7 unique individuals (both Bet\u00fcl variants) across OFAC, OpenSanctions, UN SC.\n\n**4A \u2013 Adverse Media:** Only positive commercial news (\u0130KM\u0130B 2020 award, export champion). No adverse findings.\n\n**5A\u20137A:** KAP/SPK not applicable; UYAP not public; Turkey FATF-cleared June 2024.\n\n**6A \u2013 PEP:** ALL NOT PEPs \u2014 Mustafa Sinan Sungur: private sector businessman/award winner.\n\n**7A \u2013 Trade Risk:** DOP/DINP/DOTP/DOA \u2014 standard plasticizers. Note: **DOP (DEHP) restricted under EU REACH** for consumer applications \u2014 confirm intended use. No Russia/Iran indicators.\n\n**8A \u2013 Priority Actions:** MERSIS extract; Bet\u00fcl identity clarification; UBO ownership %; Turkey EDD questionnaire.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**2 actionable findings** from 4/57 sources via Tor (Netherlands exit node) (26 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n| Website scans (URLScan) | 1 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: www.plastay.com\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Reddit T\u00fcrkiye\u2019de \u015eirket Kurdu; Milli E\u011fitim Bakan\u0131 Yusuf Tekin, sanayi ve ticaret alanlar\u0131n; Almanya'da ekonomik tart\u0131\u015fmalar genellikle otomotiv, kimya v (+12 more) |\n| duckduckgo_tor | 10 | Plastay Kimya; Plastay Kimya Sanayi Ve Ticaret Anonim Sirketi; Plastay Kimya - LinkedIn (+7 more) |\n| urlscan | 4 | www.plastay.com; Plastay Kimya (+2 more) |\n| hudsonrock_cavalier | 1 | www.plastay.com |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- www.plastay.com \u2014 *hudsonrock_cavalier*\n\n**WEB MENTION** (10)\n- Plastay Kimya \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.plastay.com%2F&rut=7b7d246c2ce98b81ba92dc187d1c4a4720]\n- Plastay Kimya Sanayi Ve Ticaret Anonim Sirketi \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.p]\n- Plastay Kimya - LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftr.linkedin.com%2Fcompany%2Fplastaykimya&rut=0e8c70266f7d]\n- Plastay Kimya San. Tic. Ltd. Sti. - turkish-industry.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fturkish%2Dindustry.com%2Ffirma%2FPlastay%2DKimya%2DSan%2D]\n- Plastay Kimya A.S. Company Profile - Turkiye | Financials & Key ... - EMIS \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FTR%2FPlastay_Kim]\n- Plastay Ki\u0307mya Sanayi\u0307 Ve Ti\u0307caret Anoni\u0307m \u015ei\u0307rketi\u0307 I\u0307stanbul \u015eubesi\u0307 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.firmabulucu.com%2Fisletme%2Fplastay%2Dkimya%2Dsanayi%]\n- Plastay Ki\u0307mya Sanayi\u0307 Ve Ti\u0307caret Anoni\u0307m \u015ei\u0307rketi\u0307 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.find.com.tr%2FCompany%2Fplastaykimyasanayiveticaretan]\n- Plastay Kimya Sanayi ve Ticaret Ltd Sirketi - Bloomberg.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.bloomberg.com%2Fprofile%2Fcompany%2F0163391D%3ATI&rut]\n- Plastay Kimya - (0262) 679 53... - \u0130N\u00d6N\u00dc MH. GEB... GEBZE / KOCAEL\u0130 ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fiyifirma.com%2Fplastay%2Dkimya%2F&rut=11b65e6faf1afa7ee2a]\n- Plastay Kimya Sanayive Ticaret Anonim Sirketi, Turkey - Company Profile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.volza.com%2Fcompany%2Dprofile%2Fplastay%2Dkimya%2Dsan]\n\n**SOCIAL MENTION** (15)\n- Reddit T\u00fcrkiye\u2019de \u015eirket Kurdu \u2014 *reddit* [https://reddit.com/r/Turkey/comments/1qxp3ee/reddit_t\u00fcrkiyede_\u015firket_kurdu/]\n- Milli E\u011fitim Bakan\u0131 Yusuf Tekin, sanayi ve ticaret alanlar\u0131ndan gelen nitelikli i\u015f g\u00fcc\u00fc talebi \u00fczeri \u2014 *reddit* [https://reddit.com/r/WorldPanorama/comments/1kipkph/milli_e\u011fitim_bakan\u0131_yusuf_te]\n- Almanya'da ekonomik tart\u0131\u015fmalar genellikle otomotiv, kimya ve makina gibi geleneksel sanayi sekt\u00f6rle \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1t0bne6/almanyada_ekonomik_tart\u0131\u015fmalar_]\n- ULUUN \u2022 ULUSOY UN SANAY\u0130 VE T\u0130CARET A.\u015e. bilan\u00e7osunu a\u00e7\u0131klad\u0131. \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1su9orz/uluun_ulusoy_un_sanayi_ve_ticar]\n- T.C. Ticaret Bakan\u0131 \u00d6mer Bolat, T\u00fcrkiye'de \u00fcretilen ve G\u00fcmr\u00fck Birli\u011fi kurallar\u0131na uygun sanayi \u00fcr\u00fcnl \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1rkz0b3/tc_ticaret_bakan\u0131_\u00f6mer_bolat_t\u00fc]\n- T.C. Sanayi ve Teknoloji Bakanl\u0131\u011f\u0131, Ticaret Bakanl\u0131\u011f\u0131 ve Merkez Bankas\u0131 i\u015f birli\u011fiyle T\u00dcB\u0130TAK taraf\u0131 \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1r8e13t/tc_sanayi_ve_teknoloji_bakanl\u0131\u011f]\n- GMTAS, Gimat Magazacilik Sanayi ve Ticaret A.S. \u2014 *reddit* [https://reddit.com/r/Compoundingcapital/comments/1rzebvb/gmtas_gimat_magazacilik]\n- Katar'\u0131n enerji \u015firketi QatarEnergy, s\u0131v\u0131la\u015ft\u0131r\u0131lm\u0131\u015f do\u011fal gaz \u00fcretimini durdurmas\u0131n\u0131n ard\u0131ndan bug\u00fc \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1rjqfq3/katar\u0131n_enerji_\u015firketi_qatarene]\n- \"Bu saatten sonra s\u0131k\u0131 para politikas\u0131yla, kemer s\u0131kmakla, finansman\u0131 daraltmakla sonu\u00e7 al\u0131namaz. \u00c7\u00fc \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1r6gbal/bu_saatten_sonra_s\u0131k\u0131_para_poli]\n- ASELS \u2022 ASELSAN ELEKTRON\u0130K SANAY\u0130 VE T\u0130CARET A.\u015e. bilan\u00e7osunu a\u00e7\u0131klad\u0131. \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1rdl086/asels_aselsan_elektronik_sanayi]\n- ALCAR \u2022 ALARKO CARRIER SANAY\u0130 VE T\u0130CARET A.\u015e. bilan\u00e7osunu a\u00e7\u0131klad\u0131. \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1rh7225/alcar_alarko_carrier_sanayi_ve_]\n- TABGD \u2022 TAB GIDA SANAY\u0130 VE T\u0130CARET A.\u015e. bilan\u00e7osunu a\u00e7\u0131klad\u0131. \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1rgnhqc/tabgd_tab_gida_sanayi_ve_ticare]\n- KCAER \u2022 KOCAER \u00c7EL\u0130K SANAY\u0130 VE T\u0130CARET A.\u015e. bilan\u00e7osunu a\u00e7\u0131klad\u0131. \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1rfnt69/kcaer_kocaer_\u00e7elik_sanayi_ve_ti]\n- NTGAZ \u2022 NATURELGAZ SANAY\u0130 VE T\u0130CARET A.\u015e. bilan\u00e7osunu a\u00e7\u0131klad\u0131. \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1reppsd/ntgaz_naturelgaz_sanayi_ve_tica]\n- RTALB \u2022 RTA LABORATUVARLARI B\u0130YOLOJ\u0130K \u00dcR\u00dcNLER \u0130LA\u00c7 VE MAK\u0130NE SANAY\u0130 T\u0130CARET A.\u015e. bilan\u00e7osunu a\u00e7\u0131klad \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1reoks3/rtalb_rta_laboratuvarlari_biyol]\n\n**DOMAIN SCAN SUMMARY** (1)\n- www.plastay.com \u2014 *urlscan*\n\n**WEBSITE SCAN** (1)\n- Plastay Kimya \u2014 *urlscan* [https://plastay.com/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "europe: Report file not found on remote VM (europe)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "Plastay Kimya Sanayi ve Ticaret Anonim Sirketi",
+    "entity_country": "TR",
+    "entity_website": "www.plastay.com",
+    "entity_tax_id": "unknown (MERSIS login required)",
+    "key_individuals": [
+      {
+        "name": "Levend Kokuluda\u011f",
+        "title": "Director"
+      },
+      {
+        "name": "Serap Kokuluda\u011f",
+        "title": "Director"
+      },
+      {
+        "name": "Tezel K\u00f6kdemir",
+        "title": "Director"
+      },
+      {
+        "name": "Gazi \u00d6zkan",
+        "title": "Director"
+      },
+      {
+        "name": "Bet\u00fcl Bekircan",
+        "title": "Director"
+      },
+      {
+        "name": "Zeynep Efe",
+        "title": "Director"
+      },
+      {
+        "name": "Mustafa Sinan Sungur"
+      },
+      {
+        "name": "Levend Kokuluda\u011f",
+        "title": "UBO"
+      },
+      {
+        "name": "Serap Kokuluda\u011f",
+        "title": "UBO"
+      },
+      {
+        "name": "Tezel K\u00f6kdemir",
+        "title": "UBO"
+      },
+      {
+        "name": "Gazi \u00d6zkan",
+        "title": "UBO"
+      },
+      {
+        "name": "Bet\u00fcl Bekircan",
+        "title": "UBO"
+      },
+      {
+        "name": "Zeynep Efe",
+        "title": "UBO"
+      },
+      {
+        "name": "Levend Kokuluda\u011f",
+        "title": "UBO"
+      },
+      {
+        "name": "Serap Kokuluda\u011f",
+        "title": "UBO"
+      },
+      {
+        "name": "Tezel K\u00f6kdemir",
+        "title": "UBO"
+      },
+      {
+        "name": "Gazi \u00d6zkan",
+        "title": "UBO"
+      },
+      {
+        "name": "Bet\u00fcl Bekircan",
+        "title": "UBO"
+      },
+      {
+        "name": "Zeynep Efe",
+        "title": "UBO"
+      },
+      {
+        "name": "Levend Kokuluda\u011f",
+        "title": "UBO"
+      },
+      {
+        "name": "Serap Kokuluda\u011f",
+        "title": "UBO"
+      },
+      {
+        "name": "Tezel K\u00f6kdemir",
+        "title": "UBO"
+      },
+      {
+        "name": "Gazi \u00d6zkan",
+        "title": "UBO"
+      },
+      {
+        "name": "Bet\u00fcl Y\u0131ld\u0131z",
+        "title": "UBO"
+      },
+      {
+        "name": "Zeynep Efe",
+        "title": "UBO"
+      },
+      {
+        "name": "Levend Kokuluda\u011f",
+        "title": "UBO"
+      },
+      {
+        "name": "Serap Kokuluda\u011f",
+        "title": "UBO"
+      },
+      {
+        "name": "Tezel K\u00f6kdemir",
+        "title": "UBO"
+      },
+      {
+        "name": "Gazi \u00d6zkan",
+        "title": "UBO"
+      },
+      {
+        "name": "Bet\u00fcl Bekircan",
+        "title": "UBO"
+      },
+      {
+        "name": "Zeynep Efe",
+        "title": "UBO"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "europe": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (europe)"
+    }
+  },
+  "errors": [
+    "europe: Report file not found on remote VM (europe)"
+  ],
+  "dark_web_findings": 2,
+  "dark_web_sources": 57
+}

@@ -1,0 +1,37 @@
+{
+  "job_id": "aedee9c3-de3b-4730-932c-84dfb7b23b34",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "china",
+  "entity_name": "TRAFIGURA PTE LTD",
+  "country": "SG",
+  "created_at": "2026-04-27T17:37:19.593139+00:00",
+  "updated_at": "2026-04-27T17:37:44.455008+00:00",
+  "blob_path": "osint-staging/cir/china/trafigura_pte_ltd_sg_20260427.json",
+  "report_summary": "Already completed multiple times today (15:51 UTC). The report covers all 8 workstreams and Richard Holtum. No new information to gather.\n\n**Done:** `/home/copapadmin/crawl/output/trafigura_pte_ltd_sg_20260427.json`",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "TRAFIGURA PTE LTD",
+    "entity_country": "SG",
+    "entity_address": "10 Collyer Quay, #29-01/05, Ocean Financial Centre, Singapore 049315",
+    "entity_website": "WWW.TRAFIGURA.COM",
+    "entity_tax_id": "199601595D",
+    "key_individuals": [
+      {
+        "name": "Richard Holtum"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "china": {
+      "status": "completed",
+      "error": null
+    }
+  }
+}

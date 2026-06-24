@@ -1,0 +1,20 @@
+{
+  "job_id": "a568f0a2-82a8-4163-a383-7192e9cf488a",
+  "scenario": "dark-web",
+  "status": "failed",
+  "region": "darkweb",
+  "entity_name": "COPAP Inc",
+  "country": "",
+  "created_at": "2026-05-14T13:27:46.139247+00:00",
+  "updated_at": "2026-05-14T13:27:49.657354+00:00",
+  "blob_path": "osint-staging/dark-web/copap_inc_20260514.json",
+  "report_summary": "0 findings from dark web sources",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_name": "COPAP Inc",
+    "domain": "copap.ca",
+    "country_code": "CA"
+  }
+}

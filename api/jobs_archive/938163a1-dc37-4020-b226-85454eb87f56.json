@@ -1,0 +1,68 @@
+{
+  "job_id": "938163a1-dc37-4020-b226-85454eb87f56",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "china",
+  "entity_name": "INTERASIA ENERGY PTE. LTD.",
+  "country": "SG",
+  "created_at": "2026-05-05T16:08:54.718327+00:00",
+  "updated_at": "2026-05-05T16:10:36.416909+00:00",
+  "blob_path": "osint-staging/cir/china/interasia_energy_pte_ltd_sg_20260504.json",
+  "report_summary": "Completed yesterday at 2026-05-04. All 8 workstreams done. Report still current.\n\n**DONE:** `/home/copapadmin/crawl/output/interasia_energy_pte_ltd_sg_20260504.json`\n---\n\n## DARK WEB SCREENING \u2014 CRITICAL\n**71 findings** from 4/57 sources via Tor (Netherlands exit node)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Breach records | 58 |\n| SSL certificates (crt.sh) | 1 |\n| Web mentions (Tor-routed) | 10 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: interasiaenergy.com\n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "INTERASIA ENERGY PTE. LTD.",
+    "entity_country": "SG",
+    "entity_address": "3 Coleman Street, #03-24, Peninsula Shopping Complex, Singapore 179804",
+    "entity_website": "https://interasiaenergy.com/",
+    "entity_tax_id": "26776",
+    "key_individuals": [
+      {
+        "name": "GABRIELE MURRONI",
+        "title": "General Manager, Secretary, Director"
+      },
+      {
+        "name": "Pierre-Yves Rigaux",
+        "title": "CEO"
+      },
+      {
+        "name": "Quentin Herbrecht",
+        "title": "Founder"
+      },
+      {
+        "name": "Mike Henry",
+        "title": "CEO"
+      },
+      {
+        "name": "Yves Rigaux",
+        "title": "Associated Person"
+      },
+      {
+        "name": "Apparent Former",
+        "title": "Director"
+      },
+      {
+        "name": "Cliff Capital Partners Pte",
+        "title": "Founder"
+      },
+      {
+        "name": "GABRIELE MURRONI",
+        "title": "UBO (100.00%)"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "china": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 71,
+  "dark_web_sources": 57
+}

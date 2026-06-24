@@ -1,0 +1,31 @@
+{
+  "job_id": "18f1d0a8-334b-422f-a105-70045858a208",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "COPAP TRADING INC",
+  "country": "CA",
+  "created_at": "2026-05-15T12:05:36.559006+00:00",
+  "updated_at": "2026-05-15T12:07:22.112651+00:00",
+  "blob_path": "osint-staging/cir/americas/copap_trading_inc_CA_20260515.json",
+  "report_summary": "**DONE: COPAP TRADING INC., CA \u2014 Risk: 2 CLEAR \u2014 Named COPAP Group \"Seller\" affiliate; 28-year commodity trading entity (pulp/paper/petrochemicals/polymers); fully compliant 2022\u20132024 filings; same clean group principals**\n\n---\n\n## \ud83d\udccb CIR: COPAP TRADING INC.\n`copap_trading_inc_CA_20260515.json` \u2192 `osint-staging/americas/`\n\n| Field | Value |\n|---|---|\n| Corp # | **3445623** (CBCA) |\n| BN | 868738691RC0001 |\n| Incorporated | **6 January 1998** (28 years) |\n| Status | **Active** \u2014 2022, 2023, **2024 all filed** |\n| Address | 755 St-Jean Boul., Suite 305, Pointe-Claire, QC |\n| Directors | David Sela \u00b7 Laurent Barbe \u00b7 Denys Lamarre |\n| Sanctions | ALL CLEAR |\n| Adverse media | NONE |\n| Dark web | CLEAR (0 findings \u2014 group sweep 2026-05-14) |\n\n**Commercial role:** Named \"Seller\" affiliate in COPAP's official General Conditions of Sale (`copap.com/conditions-of-sale`) alongside Copap Inc., Copap USA Inc., Sigma Trade Finance Inc., and Copap Petrochemicals Inc. Primary international commodity trading entity for the group.\n\n**Open items (both LOW):** Russia/Belarus exclusion confirmation \u00b7 ownership % via paid CBCA extract\n\n---\n\n### Complete COPAP Group Report Suite\n\n| Entity | File | Risk |\n|---|---|---|\n| COPAP Inc. (CA) | `copap_inc_CA_20260514.json` | 2/CLEAR |\n| COPAP Trading Inc. (CA) | `copap_trading_inc_CA_20260515.json` | 2/CLEAR |\n| Sigma Trade Finance Inc. (CA) | `sigma_trade_finance_inc_CA_20260514.json` | 2/CLEAR |\n| COPAP USA, Inc. (US) | `copap_usa_US_20260514.json` | 2/CLEAR |\n| COPAP Trading Sigma (CA) | `copap_trading_sigma_CA_20260514.json` | 2/CLEAR \u26a0\ufe0f name not registered |\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 0/0 sources via Tor (Netherlands exit node)\n\nNo dark web exposure detected. Entity and owners clean across all 0 sources.\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "COPAP TRADING INC",
+    "entity_country": "CA",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 0
+}

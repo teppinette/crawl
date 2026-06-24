@@ -1,0 +1,141 @@
+{
+  "job_id": "a378b8ff-be53-40be-95a2-8d54e27483b4",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "KASTURI INTERNATIONAL PVT. LTD.",
+  "country_code": "IN",
+  "created_at": "2026-05-04T14:14:57.355168+00:00",
+  "updated_at": "2026-05-04T14:15:21.222030+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:15:05.071159+00:00",
+      "verified": true,
+      "legal_name": "KASTURI INTERNATIONAL PRIVATE LIMITED",
+      "cin": "U74999DL1992PTC048059",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "17 March, 1992",
+      "directors": [
+        "Satinder Goel",
+        "Harish Goel",
+        "Ishank Goel"
+      ],
+      "registered_address": "206, SECOND FLOOR ,RATTAN JYOTI BUILDING RAJENDRA PLACE, Central Delhi, DELHI, Delhi, India, 110008",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:15:05.584450+00:00",
+      "found": true,
+      "name": "KASTURI INTERNATIONAL PRIVATE LIMITED",
+      "linkedin_url": "https://do.linkedin.com/company/kasturi-international-private-limited",
+      "industry": "Paper & Forest Products",
+      "company_size": "2-10 employees",
+      "locations": [
+        "206 New Delhi, Delhi 110008, IN"
+      ],
+      "about": "",
+      "followers": 10,
+      "employees_on_linkedin": 7,
+      "organization_type": null,
+      "website": "https://www.kasturiinternational.in/",
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "Kushank Goel",
+          "link": "https://in.linkedin.com/in/kushank-goel-b46b9985?trk=org-employees"
+        },
+        {
+          "name": "keshava murthy.c murthy",
+          "link": "https://in.linkedin.com/in/keshava-murthy-c-murthy-a95175175?trk=org-employees"
+        },
+        {
+          "name": "harish goel",
+          "link": "https://in.linkedin.com/in/harish-goel-a45302268?trk=org-employees"
+        },
+        {
+          "name": "Manish Agrawal",
+          "link": "https://in.linkedin.com/in/manish-agrawal-54969a325?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:15:21.221423+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 60,
+      "sources_searched": 37,
+      "sources_with_results": 2,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "KASTURI INTERNATIONAL PVT. LTD.",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

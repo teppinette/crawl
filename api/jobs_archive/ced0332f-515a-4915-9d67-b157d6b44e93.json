@@ -1,0 +1,87 @@
+{
+  "job_id": "ced0332f-515a-4915-9d67-b157d6b44e93",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "ADVANCE CHEMICAL INDUSTRIES",
+  "country_code": "IN",
+  "created_at": "2026-05-04T15:07:07.261343+00:00",
+  "updated_at": "2026-05-04T15:09:08.595419+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:07:15.363661+00:00",
+      "verified": true,
+      "legal_name": null,
+      "cin": "U24299GJ1982PTC005438",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "20 August, 1982",
+      "directors": [
+        "Mukesh Parasram Purohit",
+        "Rakesh Parasram Purohit",
+        "Siddhant Mukesh Purohit"
+      ],
+      "registered_address": "618/619, Neptune Edge,, B/h Neptune Trinity, Vadodara, Vadodara, Gujarat - 390023",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:07:14.123474+00:00",
+      "found": true,
+      "name": "Advanced Chemical Industries",
+      "linkedin_url": "https://www.linkedin.com/company/advanced-chemical-industries",
+      "industry": "Chemical Manufacturing",
+      "company_size": "51-200 employees",
+      "locations": [
+        "1st Industrial Zone, Borg El-Arab Alexandria, EG"
+      ],
+      "about": "Advanced Chemical Industries (ACI) is a leading industrial manufacturer of Adhesives, Sealants and Lubricants. Established in 1986, ACI was formed in 1998 as a shareholder company (S.A.E), headquartered in Alexandria-Egypt. We provide a substantial range of products across a diverse range of markets, with a track record spanning over 25 years. At ACI we have an innovative approach to the way adhesives, sealants, and lubricants are sold and distributed. One spot can provide you with a customized ",
+      "followers": 3395,
+      "employees_on_linkedin": 112,
+      "organization_type": "Privately Held",
+      "website": "https://www.aci-adhesive.com/",
+      "specialties": "Adhesives For PVC/CPVC Pipes, General Purpose Adhesives, Rubber Compound Sealants, Plastisol Sealants ( polymeric ), and PVC Solvent Cement",
+      "notable_employees": [
+        {
+          "name": "Mahmoud Nada",
+          "link": "https://eg.linkedin.com/in/mahmoud-nada-4b8a719?trk=org-employees"
+        },
+        {
+          "name": "Amira Ragab",
+          "link": "https://eg.linkedin.com/in/engamiraragab?trk=org-employees"
+        },
+        {
+          "name": "Estiar Haque",
+          "link": "https://bd.linkedin.com/in/estiar-haque-35b79026?trk=org-employees"
+        },
+        {
+          "name": "Sanju Kumar",
+          "link": "https://bd.linkedin.com/in/sanju-kumar-32043333?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:09:08.594799+00:00",
+      "risk_level": "CLEAN",
+      "total_findings": 0,
+      "sources_searched": 0,
+      "sources_with_results": 0,
+      "by_type": {},
+      "key_findings": [],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "ADVANCE CHEMICAL INDUSTRIES",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "job_id": "037d1eff-0d21-4e07-91c3-fd20fe992b36",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "BRENNTAG INGREDIENTS (INDIA) PVT LTD",
+  "country": "IN",
+  "created_at": "2026-05-20T16:50:29.040054+00:00",
+  "updated_at": "2026-05-20T16:58:50.689199+00:00",
+  "blob_path": "osint-staging/cir/india/brenntag_ingredients_india_pvt_ltd_IN_20260520.json",
+  "report_summary": "**DONE: Brenntag Ingredients (India) Private Limited, India \u2014 Risk: 1 CLEAR \u2014 100% subsidiary of Brenntag SE (DAX, Germany); CIN U24117MH2005PTC215980; Revenue \u20b91,240 Cr FY25; zero adverse media; near-zero debt (\u20b90.09 Cr); routine commercial litigation only**\n\n---\n\n`~/crawl/output/brenntag_ingredients_india_pvt_ltd_IN_20260520.json` \u2014 18.2 KB, valid JSON, 10 sources, all 8 workstreams complete\n\n---\n\n## Key Findings\n\n### Entity\n- **CIN:** U24117MH2005PTC215980 \u2713 \u00b7 Incorporated October 3, 2005 \u00b7 Active \u00b7 ROC Mumbai\n- **Former name:** EAC Industrial Ingredients (India) Private Limited (East Asiatic Company era)\n- **Revenue FY2025:** \u20b91,240 Cr \u00b7 **Employees:** 109 \u00b7 **Debt: \u20b90.09 Cr** (essentially zero)\n\n### Parent: Brenntag SE (Germany)\n- **World's largest chemical & ingredients distributor** \u2014 DAX-listed Frankfurt Stock Exchange\n- ~\u20ac16 billion global revenue \u00b7 90+ countries \u00b7 17,000+ employees\n- India acquired via EAC Industrial Ingredients; also owns Raj Petro Specialities (CCI approved 2018)\n- Parent subject to German BaFin, EU AML regulations, DAX governance standards\n\n### Current Directors\n| Name | DIN | Role | Since |\n|---|---|---|---|\n| Ronnie Fali Titina | 10657604 | **Managing Director** | June 2024 |\n| Chan Huan Yong | 09021170 | Director (APAC) | Jan 2021 |\n| Francois Didier Bleger | 10051955 | Director | Mar 2023 |\n| Juhi Akhil Shah | \u2014 | **Company Secretary** | Jan 2025 |\n\n### \u26a0\ufe0f 4 Subject Block Data Quality Items\n1. **'Huan Yong' + 'Chan Huan Yong' = same person** \u2014 remove duplicate\n2. Alok Sharman \u2014 likely past director, unconfirmed as current\n3. **Ronnie Fali Titina** \u2014 not labelled as Director/Officer; he is the **Managing Director**\n4. Legacy \u20b99L charge from 1993 Societe Generale (pre-company era) \u2014 suggest formal discharge\n\n**Sanctions CLEAR \u00b7 No PEP \u00b7 Zero adverse media \u00b7 Commercial litigation only (company as plaintiff) \u00b7 Lowest risk entity in today's batch alongside Grasim**\n---\n\n## DARK WEB SCREENING \u2014 MEDIUM\n**3 actionable findings** from 2/57 sources via Tor (Netherlands exit node) (10 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Breach records | 3 |\n| Web mentions (Tor-routed) | 10 |\n\n**Key findings:**\n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | Chemical Distribution in India | Brenntag; Brenntag Ingredients (India) Private Limited - IndiaMART; BRENNTAG INGREDIENTS (INDIA) PRIVATE LIMITED - Company Profi (+7 more) |\n| dehashed | 3 | breach_record; breach_record; breach_record |\n\n### All findings detail\n\n**BREACH RECORD** (3)\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n\n**WEB MENTION** (10)\n- Chemical Distribution in India | Brenntag \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.brenntag.com%2Fen%2Din%2F&rut=bb4ee373cf6207c933e8bc1]\n- Brenntag Ingredients (India) Private Limited - IndiaMART \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Fbrenntagingredients%2Fprofile.html&ru]\n- BRENNTAG INGREDIENTS (INDIA) PRIVATE LIMITED - Company Profile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Fbrenntag%2Din]\n- BRENNTAG INGREDIENTS (INDIA) PVT.LTD. Details | Company Profile ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.companydetails.in%2Fcompany%2Fbrenntag%2Dingredients%]\n- BRENNTAG INGREDIENTS (INDIA) PRIVATE LIMITED | ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2FBRENNTAG%2DINGREDIENTS%2D(INDIA)%2DPR]\n- Brenntag Ingredients India Pvt Ltd - TradeIndia \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tradeindia.com%2Fbrenntag%2Dingredients%2Dindia%2Dpvt]\n- Company Profile - Brenntag Ingredients India Pvt Ltd \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fchemdmart.com%2Fcompany%2Dprofile%2Fbrenntag%2Dingredient]\n- About Brenntag Ingredients (India) Private Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.ingredientsnetwork.com%2Fbrenntag%2Dingredients%2Dind]\n- BRENNTAG INGREDIENTS (INDIA) PRIVATE LIMITED - Dun & Bradstreet \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.b]\n- Brenntag Ingredients (India) Private Limited - 2026 Insights \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fcompany%2Fbrenntag%2Dingredient]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "BRENNTAG INGREDIENTS (INDIA) PVT LTD",
+    "entity_country": "IN",
+    "entity_address": "ACKRUTI CENTER POINT, 301, 3RD FLOOR, MIDC CENTRAL ROAD, ANDHERI EAST, Mumbai, Maharashtra, 400093",
+    "entity_tax_id": "215980",
+    "key_individuals": [
+      {
+        "name": "Huan Yong",
+        "title": "Director"
+      },
+      {
+        "name": "Alok Sharman",
+        "title": "Director"
+      },
+      {
+        "name": "Vikas Shaw",
+        "title": "Officer"
+      },
+      {
+        "name": "Mayank Vijay Jain",
+        "title": "Officer"
+      },
+      {
+        "name": "Chan Huan Yong"
+      },
+      {
+        "name": "Francois Didier Bleger"
+      },
+      {
+        "name": "Ronnie Fali Titina"
+      },
+      {
+        "name": "Juhi Akhil Shah"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 3,
+  "dark_web_sources": 57
+}

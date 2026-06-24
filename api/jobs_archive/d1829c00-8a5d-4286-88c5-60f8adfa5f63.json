@@ -1,0 +1,146 @@
+{
+  "job_id": "d1829c00-8a5d-4286-88c5-60f8adfa5f63",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "MANIPAL TECHNOLOGIES LIMITED",
+  "country_code": "IN",
+  "created_at": "2026-05-04T16:08:13.778050+00:00",
+  "updated_at": "2026-05-04T16:10:05.480975+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:08:20.183591+00:00",
+      "verified": true,
+      "legal_name": "MANIPAL TECHNOLOGIES LIMITED",
+      "cin": "U22219KA2000PLC026222",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "13 January, 2000",
+      "directors": [
+        "Abhay Anant Gupte",
+        "Sachin Tonse Pai",
+        "others"
+      ],
+      "registered_address": "UDAYAVANI BUILDING, PRESS CORNER, Manipal, Udupi, Udupi, Karnataka, India, 576104",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:08:26.235204+00:00",
+      "found": true,
+      "name": "Manipal Technologies Limited",
+      "linkedin_url": "https://in.linkedin.com/company/manipal-technologies-limited",
+      "industry": "Financial Services",
+      "company_size": "5,001-10,000 employees",
+      "locations": [
+        "Udayavani Building Press Corner Manipal, Karnataka 576104, IN",
+        "Unit no.123/101, The Summit Business Bay Off Andheri Kurla Road, Opp PVR Cinema, Behind WEH Metro station, Andheri East Mumbai , Maharashtra 400093, IN",
+        "No: 10, 3rd Floor Casa Brigitta Bangalore , Karnataka 560025, IN",
+        "Unit No. 910, 9th Floor, Logix City Centre, Sector 32 Noida, Delhi NCR 201301, IN",
+        "\u2018PARK CENTRA\u2019 Unit #703, 7th floor, Tower B Sector 30 Gurugram, Haryana 122001, IN"
+      ],
+      "about": "Manipal Technologies Limited (MTL) is a leading player in the fintech, enterprise solution, digital media, financial inclusion, banking cards, gold loan, door step banking, secure solutions, commercial print, and print industry in India since 1941. The company counts all the leading financial institutions and government departments as its valued customers. The company is the leading provider of payment card fulfillment solutions. In addition, a preferred partner in many mission-critical solution",
+      "followers": 96769,
+      "employees_on_linkedin": 1449,
+      "organization_type": "Privately Held",
+      "website": "https://www.manipaltechnologies.com/",
+      "specialties": "Digital Publishing Solutions, Packaging Solutions, Security Printing, Smart Card Printing and Personalisation, Print on Demand, Learning Management Solutions, Virtualization - Secure solutions, Print Management Solutions, Digital Imaging Services, Fintech & Payment Solutions, Digital Banking - Smart Banking solutions, Virtual Welcome Kit, Fraud and Risk Management, Financial Inclusion, Virtualisation, Fintech, Education, and Payments",
+      "notable_employees": [
+        {
+          "name": "Amarjeet Tiwari",
+          "link": "https://in.linkedin.com/in/amarjeet-tiwari-29349a2?trk=org-employees"
+        },
+        {
+          "name": "Raju U.",
+          "link": "https://in.linkedin.com/in/raju-u-a534504?trk=org-employees"
+        },
+        {
+          "name": "Saju Shivdasan",
+          "link": "https://in.linkedin.com/in/saju-shivdasan-9965b76?trk=org-employees"
+        },
+        {
+          "name": "Laxman Pardeshi",
+          "link": "https://in.linkedin.com/in/laxman-pardeshi-6448056?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:10:05.480344+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 61,
+      "sources_searched": 37,
+      "sources_with_results": 3,
+      "by_type": {
+        "web_mention": 10,
+        "adverse_media": 1,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "MANIPAL TECHNOLOGIES LIMITED",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

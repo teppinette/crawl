@@ -1,0 +1,114 @@
+{
+  "job_id": "b690ff12-8785-4e5d-b2fc-920a233297d3",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "SANJAY CHEMICALS (INDIA) PRIVATE LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-21T18:49:57.230209+00:00",
+  "updated_at": "2026-05-21T18:51:49.893366+00:00",
+  "blob_path": null,
+  "report_summary": "Sixth Sanjay Chemicals submission. File is complete.\n\n**DONE (existing file): Sanjay Chemicals (India) Private Limited \u2014 Risk: 2 CLEAR \u2014 CIN U51434MH2000PTC129290; Revenue \u20b93,220 Cr FY25; 4 confirmed directors; \u26a0\ufe0f Nitin Jain = auditor not director**\n\n`~/crawl/output/sanjay_chemicals_india_pvt_ltd_IN_20260521.json` \u2014 8.7 KB, valid.\n---\n\n## DARK WEB SCREENING \u2014 MEDIUM\n**3 actionable findings** from 4/57 sources via Tor (Netherlands exit node) (17 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Adverse media | 3 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 7 |\n\n**Key findings:**\n- ADVERSE MEDIA: Tofler | Director page (Vijayraj Parmar)\n- ADVERSE MEDIA: PDFPRESS RELEASE - enforcementdirectorate.gov.in (Manoj Parmar)\n- ADVERSE MEDIA: ED suicide | Businessman, wife commit suicide in Madhya Pradesh ... (Manoj Parmar)\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | Home - Sanjay Chemicals (India) Pvt. Ltd.; SANJAY CHEMICALS (INDIA) PRIVATE LIMITED - Company Profile; Sanjay Chemicals (India) Pvt. Ltd. - LinkedIn (+7 more) |\n| reddit | 8 | \u2764\ufe0f BILASPUR WASIO, SUNO\u2026 THIS IS OUR HOME \u2014 AND IT'S HURTING; The Anatomy of a Political Defection: Constitutional Loophol; *India Daybook \u2013 Stocks in News* (+5 more) |\n| duckduckgo_adverse | 3 | Tofler | Director page; PDFPRESS RELEASE - enforcementdirectorate.gov.in; ED suicide | Businessman, wife commit suicide in Madhya Prad |\n\n### All findings detail\n\n**ADVERSE MEDIA** (3)\n- Tofler | Director page \u2014 *duckduckgo_adverse* (searched: Vijayraj Parmar) [/l/?uddg=https%3A%2F%2Fwww.tofler.in%2Fsanjay%2Dvijayraj%2Dparmar%2Fdirector%2F0]\n- PDFPRESS RELEASE - enforcementdirectorate.gov.in \u2014 *duckduckgo_adverse* (searched: Manoj Parmar) [/l/?uddg=https%3A%2F%2Fenforcementdirectorate.gov.in%2Fmedia%2Fpress%2Drelease%2]\n- ED suicide | Businessman, wife commit suicide in Madhya Pradesh ... \u2014 *duckduckgo_adverse* (searched: Manoj Parmar) [/l/?uddg=https%3A%2F%2Fwww.telegraphindia.com%2Findia%2Fbusinessman%2Dwife%2Dcom]\n\n**WEB MENTION** (10)\n- Home - Sanjay Chemicals (India) Pvt. Ltd. \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fsanjaychemindia.com%2F&rut=37e78c2eaefc27e20bd129fabd6c07]\n- SANJAY CHEMICALS (INDIA) PRIVATE LIMITED - Company Profile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Fsanjay%2Dchem]\n- Sanjay Chemicals (India) Pvt. Ltd. - LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fin.linkedin.com%2Fcompany%2Fsanjay%2Dchemicals%2Dindia%2D]\n- SANJAY CHEMICALS (INDIA) PRIVATE LIMITED | ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2Fcompany%2FSANJAY%2DCHEMICALS%2DINDIA%]\n- Sanjay Chemicals (India) Private Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.s]\n- Sanjay Chemicals (india) Private Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Feconomictimes.indiatimes.com%2Fcompany%2Fsanjay%2Dchemica]\n- Company Profile - Sanjay Chemicals India Pvt Ltd - ChemDmart \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fchemdmart.com%2Fcompany%2Dprofile%2Fsanjay%2Dchemicals%2D]\n- Sanjay Chemicals India Private Limited - IndiaMART \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Fsanjay%2Dchemicals%2Dindia%2Dpvt%2Dlt]\n- Sanjay Chemicals (India) Private Limited - 2026 Insights \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fcompany%2Fsanjay%2Dchemicals%2D]\n- Sanjay Chemicals \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.sanjaychemicals.com%2F&rut=d4a8ad229e3d764910d726c7b9]\n\n**SOCIAL MENTION** (7)\n- \u2764\ufe0f BILASPUR WASIO, SUNO\u2026 THIS IS OUR HOME \u2014 AND IT'S HURTING \u2014 *reddit* [https://reddit.com/r/Bilaspur/comments/1owtqrc/bilaspur_wasio_suno_this_is_our_h]\n- The Anatomy of a Political Defection: Constitutional Loopholes, Digital PR, and the AAP Exodus of 20 \u2014 *reddit* [https://reddit.com/r/neopen/comments/1t38v9h/the_anatomy_of_a_political_defectio]\n- *India Daybook \u2013 Stocks in News* \u2014 *reddit* [https://reddit.com/r/UpdateINDIA/comments/1lnzy5u/india_daybook_stocks_in_news/]\n- Insider Trades, Pledge Share Details, &amp; Trading Tweaks! \u2014 *reddit* [https://reddit.com/r/InvestmentsTrading/comments/1kyrldy/insider_trades_pledge_s]\n- India Daybook \u2013 Stocks in News*  \u2014 *reddit* [https://reddit.com/r/UpdateINDIA/comments/1hpetms/india_daybook_stocks_in_news/]\n- Some of the corporate funding to our so-called \"Independent media\". \u2014 *reddit* [https://reddit.com/r/IndiaSpeaks/comments/ospxpj/some_of_the_corporate_funding_t]\n- \ud83e\ude7a August 18, 2024: Consolidated News from 100+ Publications for Medical Professionals | UK \ud83c\udfe5\n \u2014 *reddit* [https://reddit.com/r/MedNewsUKDaily/comments/1ev59bx/august_18_2024_consolidated]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "india: Report file not found on remote VM (india)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "SANJAY CHEMICALS (INDIA) PRIVATE LIMITED",
+    "entity_country": "IN",
+    "entity_address": "1201-B, Peninsula Business Park Tower, Ganpatrao Kadam Marg, Lower Parel, Mumbai, Maharashtra 400013, India",
+    "entity_tax_id": "U51434MH2000PTC129290",
+    "key_individuals": [
+      {
+        "name": "Vijayraj Parmar",
+        "title": "Director"
+      },
+      {
+        "name": "Dilip Parmar",
+        "title": "Director"
+      },
+      {
+        "name": "Manoj Parmar",
+        "title": "Director"
+      },
+      {
+        "name": "Sanjay Parmar",
+        "title": "Director"
+      },
+      {
+        "name": "Varun Parmar",
+        "title": "Director"
+      },
+      {
+        "name": "Monik Parmar",
+        "title": "Director"
+      },
+      {
+        "name": "Harsh Parmar",
+        "title": "Director"
+      },
+      {
+        "name": "Yash Parmar",
+        "title": "Director"
+      },
+      {
+        "name": "Priyal Parmar",
+        "title": "Director"
+      },
+      {
+        "name": "Nitanta Parmar",
+        "title": "Director"
+      },
+      {
+        "name": "Shikha Parmar",
+        "title": "Director"
+      },
+      {
+        "name": "Tanish Parmar",
+        "title": "Director"
+      },
+      {
+        "name": "Bharti Parmar",
+        "title": "Director"
+      },
+      {
+        "name": "Gunwanti Parmar",
+        "title": "Director"
+      },
+      {
+        "name": "Kanchan Parmar",
+        "title": "Director"
+      },
+      {
+        "name": "Varsha Parmar",
+        "title": "Director"
+      },
+      {
+        "name": "Dilip V. Parmar",
+        "title": "Director"
+      },
+      {
+        "name": "Sanjay V. Parmar",
+        "title": "Director"
+      },
+      {
+        "name": "Nitin Jain",
+        "title": "Auditor"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (india)"
+    }
+  },
+  "errors": [
+    "india: Report file not found on remote VM (india)"
+  ],
+  "dark_web_findings": 3,
+  "dark_web_sources": 57
+}

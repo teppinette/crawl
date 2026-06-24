@@ -1,0 +1,33 @@
+{
+  "job_id": "b494a495-babc-4479-b81c-159d0cd68bce",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "china",
+  "entity_name": "TRAFIGURA PTE LTD",
+  "country": "SG",
+  "created_at": "2026-04-27T16:47:28.691297+00:00",
+  "updated_at": "2026-04-27T16:47:53.749386+00:00",
+  "blob_path": "osint-staging/cir/china/trafigura_pte_ltd_sg_20260427.json",
+  "report_summary": "Already completed at 15:51 UTC today. Same entity, same UEN, already has comprehensive report with all 8 workstreams covered.\n\n**DONE:** TRAFIGURA PTE LTD, SG -- Risk: 4 REVIEW -- Report exists at `/home/copapadmin/crawl/output/trafigura_pte_ltd_sg_20260427.json` (16,444 bytes, created 15:51 UTC)",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "TRAFIGURA PTE LTD",
+    "entity_country": "SG",
+    "entity_address": "10 Collyer Quay, #29-01/05, Ocean Financial Centre, Singapore 049315",
+    "entity_website": "WWW.TRAFIGURA.COM",
+    "entity_tax_id": "199601595D",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "china": {
+      "status": "completed",
+      "error": null
+    }
+  }
+}

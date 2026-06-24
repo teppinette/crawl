@@ -1,0 +1,72 @@
+{
+  "job_id": "8661cdf3-2654-4122-8b4f-7cb00eef2c5a",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "MERINO INDUSTRIES LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-21T12:49:52.883016+00:00",
+  "updated_at": "2026-05-21T12:54:21.699559+00:00",
+  "blob_path": "osint-staging/cir/india/merino_industries_limited_IN_20260521.json",
+  "report_summary": "**DONE: Merino Industries Limited, India \u2014 Risk: 2 CLEAR \u2014 60-year Lohia family laminates/furniture panels manufacturer; CIN U51909WB1965PLC026556; Revenue \u20b92,350 Cr FY25; 2,584 employees; AGM Sep 26, 2025 current**\n\n`~/crawl/output/merino_industries_limited_IN_20260521.json` \u2014 10.7 KB, valid, research date 2026-05-21.\n\n\ud83d\udea8 **Critical data artifact to fix immediately:**\n\n| Field | Subject Block | Correct |\n|---|---|---|\n| **Website** | `finolexpipes.com` (= Finolex Pipes Ltd, Pune \u2014 PVC pipes, DIFFERENT company) | `www.merinoindia.com` |\n\nAdditional notes:\n- **Titu Prasad Kooretti (DIN 02539556)** \u2014 appointed Sep 26, 2025; very recent; confirm role\n- **Anil Jajoo** \u2014 3-year WTD term from Feb 2023 expires Feb 2026; confirm renewal status\n- Champa Lal Lohia + Rup Chand Lohia (in 2019 AR) \u2014 not in current subject block; confirm retirement/succession status\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**3 actionable findings** from 5/57 sources via Tor (Netherlands exit node) (28 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| SSL certificates (crt.sh) | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n| Website scans (URLScan) | 2 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: www.finolexpipes.com\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Power is a national asset, which we should use to invest in ; SEBI has imposed a comprehensive two-year ban on MAN INDUSTR; Your guide to shopping The RealReal \u2014 a hot mess consignment (+12 more) |\n| duckduckgo_tor | 10 | Merino; MERINO INDUSTRIES LIMITED - Company Profile - Tracxn; MERINO INDUSTRIES LIMITED Company Profile | Thane, Maharasht (+7 more) |\n| urlscan | 7 | www.finolexpipes.com; PVC Pipes & Fittings - Leading PVC Pipe Manufacturer | Finol; Finolex Pipes | CPVC, PVC, UPVC Pipes & Fittings Manufacture (+4 more) |\n| crtsh | 2 | www.finolexpipes.com; certificate_transparency |\n| hudsonrock_cavalier | 1 | www.finolexpipes.com |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- www.finolexpipes.com \u2014 *hudsonrock_cavalier*\n\n**WEB MENTION** (10)\n- Merino \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fmerinogroup.com%2F&rut=965825d4415f90a5464adaef450f3ae622]\n- MERINO INDUSTRIES LIMITED - Company Profile - Tracxn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Fmerino%2Dindu]\n- MERINO INDUSTRIES LIMITED Company Profile | Thane, Maharashtra ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.m]\n- About us | Global Laminates Manufacturer | Merino Laminates \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.merinolaminates.com%2Fen%2Fabout%2Dus%2F&rut=0275a35c]\n- MERINO INDUSTRIES LIMITED - ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2Fcompany%2FMERINO%2DINDUSTRIES%2DLIMIT]\n- MERINO INDUSTRIES LIMITED Details | Company Profile | Directors Profile ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.companydetails.in%2Fcompany%2Fmerino%2Dindustries%2Dl]\n- Merino Industries Limited - Manufacturer from Pune, India | About Us \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Fmerino%2Dindustries%2Dlimited%2Fabout]\n- Merino Group | LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fin.linkedin.com%2Fcompany%2Fmerinogroup&rut=754c2107d7b6d]\n- MERINO INDUSTRIES LTD overview - Find and update company information ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ffind%2Dand%2Dupdate.company%2Dinformation.service.gov.uk%]\n- Merino Industries Limited Company Profile - India - EMIS \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FIN%2FMerino_Indu]\n\n**SOCIAL MENTION** (15)\n- Power is a national asset, which we should use to invest in New Zealand \u2014 *reddit* [https://reddit.com/r/newzealand/comments/1st5c0y/power_is_a_national_asset_which]\n- SEBI has imposed a comprehensive two-year ban on MAN INDUSTRIES INDIA LIMITED and three of its senio \u2014 *reddit* [https://reddit.com/r/investmentwala/comments/1nu6cl2/sebi_has_imposed_a_comprehe]\n- Your guide to shopping The RealReal \u2014 a hot mess consignment website with some amazing gems. \u2014 *reddit* [https://reddit.com/r/femalefashionadvice/comments/qwah1y/your_guide_to_shopping_]\n- Manufacturing should be bottlenecked by skilled artisans, not buildings or population \u2014 *reddit* [https://reddit.com/r/EU5/comments/1qk2pwn/manufacturing_should_be_bottlenecked_b]\n- The Australian GYW Guide - 2026 update \u2014 *reddit* [https://reddit.com/r/goodyearwelt/comments/1sj0q23/the_australian_gyw_guide_2026]\n- Plastic Resins Decorative Laminate Market 2019 Specification, Growth Drivers, Industry Analysis Fore \u2014 *reddit* [https://reddit.com/r/BizInsightReports/comments/cj7nko/plastic_resins_decorative]\n- 2025 Year in Fabrics \u2014 *reddit* [https://reddit.com/r/Outlier/comments/1q2cx99/2025_year_in_fabrics/]\n- I'm compiling advice from Reddit/others on making fabric/fiber choices, natural vs synthetic, etc. H \u2014 *reddit* [https://reddit.com/r/femalefashionadvice/comments/1ahagee/im_compiling_advice_fr]\n- Putting my Spectron obsession in context: Lufthansa, 8 kg, and why the T30 punches above its class \u2014 *reddit* [https://reddit.com/r/tombihn/comments/1rx9g5b/putting_my_spectron_obsession_in_c]\n- Is this counterfeit merchandise? \u2014 *reddit* [https://reddit.com/r/poshmarkcanada/comments/1romg7p/is_this_counterfeit_merchan]\n- Your guide to shopping The RealReal \u2014 a hot mess consignment website with some amazing gems \u2014 *reddit* [https://reddit.com/r/FrugalFemaleFashion/comments/qn9h1x/your_guide_to_shopping_]\n- What Silk Road Merchants Knew About Dressing for Five Climates in One Journey \u2014 *reddit* [https://reddit.com/r/HistoricalGear/comments/1tjgn4d/what_silk_road_merchants_kn]\n- 5 Things To Look Out For In Brentford Vs Arsenal \u2014 *reddit* [https://reddit.com/r/Brentford/comments/1r25v8m/5_things_to_look_out_for_in_bren]\n- Avoid the Greenwashing: What to Look for in a High-Quality Organic Mattress \u2014 *reddit* [https://reddit.com/r/LeesaSleep/comments/1t4gvpk/avoid_the_greenwashing_what_to_]\n- UNLISTED shares \u2014 *reddit* [https://reddit.com/r/StockMarketIndia/comments/1ikesyk/unlisted_shares/]\n\n**CERTIFICATE SUMMARY** (1)\n- www.finolexpipes.com \u2014 *crtsh*\n\n**SSL CERTIFICATE** (1)\n-  \u2014 *crtsh*\n\n**DOMAIN SCAN SUMMARY** (1)\n- www.finolexpipes.com \u2014 *urlscan*\n\n**WEBSITE SCAN** (2)\n- PVC Pipes & Fittings - Leading PVC Pipe Manufacturer | Finolex Pipes \u2014 *urlscan* [https://www.finolexpipes.com/]\n- Finolex Pipes | CPVC, PVC, UPVC Pipes & Fittings Manufacturers in India \u2014 *urlscan* [https://www.finolexpipes.com/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "MERINO INDUSTRIES LIMITED",
+    "entity_country": "IN",
+    "entity_address": "5, Alexandra Court, 60/1, Chowringhee Road, Kolkata - 700020, West Bengal, India",
+    "entity_website": "https://www.finolexpipes.com/",
+    "entity_tax_id": "026556",
+    "key_individuals": [
+      {
+        "name": "Prakash Lohia"
+      },
+      {
+        "name": "Madhusudan Lohia"
+      },
+      {
+        "name": "Nripen Kumar Dugar"
+      },
+      {
+        "name": "Ruchira Lohia"
+      },
+      {
+        "name": "Manoj Lohia"
+      },
+      {
+        "name": "Bikash Lohia"
+      },
+      {
+        "name": "Prasan Lohia"
+      },
+      {
+        "name": "Deepak Lohia"
+      },
+      {
+        "name": "Bama Prasad Mukhopadhyay"
+      },
+      {
+        "name": "Prabal Kumar Sarkar"
+      },
+      {
+        "name": "Anil Jajoo"
+      },
+      {
+        "name": "Titu Prasad Kooretti"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 3,
+  "dark_web_sources": 57
+}

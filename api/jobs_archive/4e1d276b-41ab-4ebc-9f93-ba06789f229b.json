@@ -1,0 +1,24 @@
+{
+  "job_id": "4e1d276b-41ab-4ebc-9f93-ba06789f229b",
+  "scenario": "dark-web",
+  "status": "completed",
+  "region": "darkweb",
+  "entity_name": "Agro China Pakistan Pvt Ltd",
+  "country": "PK",
+  "created_at": "2026-05-01T11:17:15.734891+00:00",
+  "updated_at": "2026-05-01T11:18:12.947459+00:00",
+  "blob_path": "osint-staging/dark-web/agro_china_pakistan_pvt_ltd_20260501.json",
+  "report_summary": "65 findings from dark web sources",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_name": "Agro China Pakistan Pvt Ltd",
+    "entity_country": "PK",
+    "owners": [
+      "Muhammad Usman Ali",
+      "Muhammad Farooq Hasnain"
+    ],
+    "domain": "topsungroup.pk"
+  }
+}

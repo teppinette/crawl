@@ -1,0 +1,50 @@
+{
+  "job_id": "3464ae85-f295-43fc-86a2-48557fb777fc",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "europe",
+  "entity_name": "LUXI CHEMICAL GROUP CO., LTD. COAL CHEMICAL THE SECOND BRANCH",
+  "country": "CH",
+  "created_at": "2026-04-24T16:12:49.221259+00:00",
+  "updated_at": "2026-04-24T16:19:06.766212+00:00",
+  "blob_path": null,
+  "report_summary": "Uploaded. Complete.\n\n---\n\n**DONE: Luxi Chemical Group Co., Ltd. Coal Chemical The Second Branch, CN \u2014 Risk: 3 MONITOR \u2014 All sanctions lists CLEAR; Chinese SOE chain (SASAC\u2192Sinochem Holdings); serious EHS track record (9 deaths in 2023 explosion; 2022 multi-subsidiary safety penalties); customs compliance violation 2022; branch entity with no independent legal standing.**\n\n---\n\n## \ud83d\udccb Research Summary\n\n| Field | Finding |\n|---|---|\n| **Entity** | Branch (\u5206\u516c\u53f8) of Luxi Chemical Group Co., Ltd. (000830.SZ) |\n| **USCC** | 91371500MA3Q5YB9XF |\n| **Incorporated** | 10 July 2019, Liaocheng High-Tech Zone, Shandong |\n| **Legal Form** | Branch \u2014 **no independent legal personality** |\n| **Parent** | Luxi Chemical Group Co., Ltd. (SZ:000830) \u2014 publicly listed |\n| **Country Code** | **CN** (brief had 'CH' \u2014 assumed typo; confirmed China) |\n\n---\n\n### \ud83d\udee1\ufe0f All 8 Workstreams\n\n**1A \u2013 Registry:** Branch confirmed, USCC 91371500MA3Q5YB9XF, est. July 10, 2019. Parent listed 000830.SZ since 1998. 12,352 employees, RMB 35.5B assets. IMPORTANT: contracting party should be the *parent* legal entity.\n\n**2A \u2013 Beneficial Ownership:** SASAC (Chinese state) \u2192 **Sinochem Holdings** (merged ChemChina+Sinochem, 2021) \u2192 **Luxi Group Co., Ltd.** (~26%, largest shareholder) \u2192 Luxi Chemical Group (listed, 000830.SZ) \u2192 Coal Chemical Second Branch. Top 3 holders = 51%.\n\n**3A \u2013 Sanctions (5 lists):**\n- \u2705 OFAC SDN \u2014 CLEAN (18,698 records)\n- \u2705 OpenSanctions \u2014 CLEAN (1.27M records; \"Luxi\"-prefixed hits are unrelated companies)\n- \u2705 UN SC \u2014 CLEAN\n- \u2705 Sinochem Holdings (ultimate parent) \u2014 NOT sanctioned\n- \u2705 Men Maokai / Wang Jiajia \u2014 NO HITS\n\n**4A \u2013 Adverse Media:**\n- \ud83d\udea8 **May 1, 2023**: Fatal explosion at Luxi Hydrogen Peroxide subsidiary \u2014 **9 dead, 1 missing**; classified \"major production safety liability accident\"\n- \u26a0\ufe0f **2022**: Customs duty omission on BPA imports; RMB 1.2M+ fines imposed\n- \u26a0\ufe0f **2022**: 13 subsidiaries simultaneously penalised for safety violations (RMB 1.15M total fines)\n\n**5A \u2013 Litigation:** 3 confirmed enforcement actions (2022 customs, 2022 safety, 2023 fatal accident investigation)\n\n**6A \u2013 PEP:** Men Maokai \u2014 NOT a PEP. Wang Jiajia \u2014 NOT a PEP. Sinochem Holdings is a state SOE (PEP-adjacent by SOE definition)\n\n**7A \u2013 Trade Risk:** No sanctioned-country trade identified. Coal chemicals (methanol, ammonia, formic acid) are standard commodity chemicals \u2014 low dual-use risk. H2O2 >50% concentration warrants end-use certificate.\n\n**8A \u2013 Key Action Items:**\n1. \ud83d\udd34 **Contract at parent level** (Luxi Chemical Group Co., Ltd., USCC 91370000614071479T) \u2014 branch has no independent legal standing\n2. \u26a0\ufe0f **Request EHS corrective action evidence** from 2023 fatal accident\n3. \ud83d\udccb **SOE EDD** \u2014 document Sinochem/SASAC chain\n4. \ud83d\udcc4 **End-use certificate** if H2O2 supplied at >50% concentration",
+  "error": "europe: Report file not found on remote VM (europe)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "LUXI CHEMICAL GROUP CO., LTD. COAL CHEMICAL THE SECOND BRANCH",
+    "entity_country": "CH",
+    "entity_address": "\u804a\u57ce\u5e02\u9ad8\u65b0\u6280\u672f\u4ea7\u4e1a\u5f00\u53d1\u533a\u5316\u5de5\u4ea7\u4e1a\u56ed (Liaocheng High-Tech Industrial Development Zone Chemical Industrial Park, Liaocheng, Shandong, China)",
+    "entity_website": "www.luxichemical.com",
+    "entity_industry": "Manufacturing",
+    "entity_tax_id": "91371500MA3Q5YB9XF",
+    "key_individuals": [
+      {
+        "name": "Men Maokai",
+        "title": "General Manager"
+      },
+      {
+        "name": "Wang Jiajia",
+        "title": "Director"
+      },
+      {
+        "name": "Men Maokai",
+        "title": "UBO"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "europe": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (europe)"
+    }
+  },
+  "errors": [
+    "europe: Report file not found on remote VM (europe)"
+  ]
+}

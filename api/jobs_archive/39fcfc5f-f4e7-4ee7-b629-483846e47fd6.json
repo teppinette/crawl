@@ -1,0 +1,50 @@
+{
+  "job_id": "39fcfc5f-f4e7-4ee7-b629-483846e47fd6",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "europe",
+  "entity_name": "Brenntag Nederland B.V.",
+  "country": "NL",
+  "created_at": "2026-05-11T14:34:43.620240+00:00",
+  "updated_at": "2026-05-11T14:39:04.405638+00:00",
+  "blob_path": "osint-staging/cir/europe/brenntag_nederland_bv_NL_20260509.json",
+  "report_summary": "Updated (Rev 3) and re-uploaded.\n\n**DONE: Brenntag Nederland B.V., NL \u2014 Risk: 1 CLEAR** (unchanged)\n\nFile: `~/crawl/output/brenntag_nederland_bv_NL_20260509.json` \u2705 (Rev 3, 20,110 bytes)\nBlob: `europe/brenntag_nederland_bv_NL_20260509.json` \u2705 (updated 14:36 UTC)\n\n---\n\n**Rev 3 additions:**\n\n| Item | Finding |\n|---|---|\n| **KvK 24209814** | Resolves to same entity (KvK 30112931). Likely pre-2008 Dordrecht regional chamber number from before national KvK unification. Same legal entity. |\n| **Lekdijk 30, 3343 LV Dordrecht** | Additional Brenntag Dordrecht waterfront/Lek river facility site. |\n| **Frank Haven** | \u2705 CLEAN \u2014 OFAC/OS/UN: NO HIT. Not a PEP. **Actual role: President Nutrition EMEA (Brenntag Holding GmbH, group divisional level)** \u2014 not formal statutory managing director of the NL B.V. specifically. 26+ year Brenntag veteran, transitioning to Remedios Marcos (eff. March 2026, transition through end May 2026). |\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**143 findings** from 6/57 sources via Tor (Netherlands exit node)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Breach records | 100 |\n| Adverse media | 6 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n| Website scans (URLScan) | 10 |\n\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "Brenntag Nederland B.V.",
+    "entity_country": "NL",
+    "entity_jurisdiction": "Netherlands",
+    "entity_address": "Lekdijk 30, Dordrecht 3343 LV",
+    "entity_website": "https://www.brenntag.com",
+    "entity_type": "Limited Liability Company",
+    "entity_industry": "Chemical Distribution",
+    "entity_tax_id": "24209814",
+    "key_individuals": [
+      {
+        "name": "Frank Haven",
+        "title": "Managing Director"
+      }
+    ],
+    "known_affiliates": [
+      {
+        "entity_name": "Brenntag SE",
+        "country": "DE",
+        "relationship": "Parent"
+      }
+    ],
+    "known_suppliers": [],
+    "copap_relationship": "Customer",
+    "copap_products": "Methanol",
+    "priority": "standard"
+  },
+  "region_status": {
+    "europe": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 143,
+  "dark_web_sources": 57
+}

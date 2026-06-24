@@ -1,0 +1,73 @@
+{
+  "job_id": "4b36d1d1-d6ff-4635-9432-7a94f2222033",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "RPB Limited",
+  "country": "CY",
+  "created_at": "2026-05-08T18:37:45.293966+00:00",
+  "updated_at": "2026-05-08T18:39:52.729556+00:00",
+  "blob_path": "osint-staging/cir/americas/rpb_limited_CY_20260508.json",
+  "report_summary": "**No action required.** The authoritative report is already live:\n\n| | |\n|---|---|\n| **File** | `americas/rpb_limited_CY_20260508.json` |\n| **Uploaded** | 2026-05-08T18:33:10 UTC |\n| **Risk** | **2 / CLEAR** |\n| **Address note** | \"Egkomi\" (18:27 brief) = \"Engomi\" (18:37 brief) = same suburb, \u0395\u03b3\u03ba\u03c9\u03bc\u03b7 \u2014 alternate English transliterations of the Greek |\n| **Workstreams** | 1A\u20138A all executed |\n| **Key individuals** | 10 individuals screened |\n| **Dark web** | 0 findings |\n\nThis is the second duplicate submission within 10 minutes for RPB Limited (18:27, 18:37 UTC) \u2014 same pattern as the Cartocor repeat submissions earlier today. Recommend checking the upstream job dispatch/acknowledgement loop.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**77 findings** from 5/57 sources via Tor (Netherlands exit node)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Breach records | 50 |\n| Adverse media | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "RPB Limited",
+    "entity_country": "CY",
+    "entity_address": "Pindou 4, Engomi, 2409, Nicosia, Cyprus",
+    "entity_website": "https://www.rpbindex.com/",
+    "entity_industry": "Brokerage",
+    "entity_tax_id": "10158276X",
+    "key_individuals": [
+      {
+        "name": "THEODORA KASKANI",
+        "title": "DIRECTOR"
+      },
+      {
+        "name": "CHARITA KYRIAKOU",
+        "title": "DIRECTOR"
+      },
+      {
+        "name": "MARIA KYRIAKOU",
+        "title": "DIRECTOR"
+      },
+      {
+        "name": "Oliver Hull"
+      },
+      {
+        "name": "James Brayshaw"
+      },
+      {
+        "name": "Victoria Dimmock"
+      },
+      {
+        "name": "Christina Yerolemou"
+      },
+      {
+        "name": "Oliver Hull",
+        "title": "UBO (90.00%)"
+      },
+      {
+        "name": "David & Sheila Phillips",
+        "title": "UBO (10.00%)"
+      },
+      {
+        "name": "Oliver Charles Hull",
+        "title": "UBO (90.00%)"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 77,
+  "dark_web_sources": 57
+}

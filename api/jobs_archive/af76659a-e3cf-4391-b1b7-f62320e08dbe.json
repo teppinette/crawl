@@ -1,0 +1,35 @@
+{
+  "job_id": "af76659a-e3cf-4391-b1b7-f62320e08dbe",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "europe",
+  "entity_name": "ERAY PLASTIK DOGRAMA SAN. TIC. LTD. STI.",
+  "country": "TR",
+  "created_at": "2026-05-22T20:24:09.535645+00:00",
+  "updated_at": "2026-05-22T20:27:05.632781+00:00",
+  "blob_path": null,
+  "report_summary": "**DONE: Eray Plastik Do\u011frama San. Tic. Ltd. \u015eti., TR \u2014 Risk: 3 MONITOR**\n\nFile: `~/crawl/output/eray_plastik_dograma_TR_20260522.json` \u2705\nBlob: `europe/eray_plastik_dograma_TR_20260522.json` \u2705 (20:26 UTC)\n\n---\n\n**Summary:** PVC joinery/door-window system Ltd. \u015eti. \u2014 entity CLEAN, haberler.com zero results, no website/LEI/MERSIS confirmed, no individuals named. Standard Turkey EDD. No Russia flags identified.\n\n\u26a0\ufe0f **Key open question for COPAP:** Is Eray a **profile manufacturer** (extruder buying raw PVC resin from COPAP) or a **joinery fabricator** (assembler buying pre-made profiles \u2014 not a direct COPAP raw material customer)? Clarify before contracting.\n\nPriority actions: MERSIS extract + ortaklar listesi + director identification + product clarification (manufacturer vs. fabricator).\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 1/37 sources via Tor (Netherlands exit node) (10 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 37 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | Eray Plastik Dograma San. Ve Tic. Ltd. Sti. (Turkiye) - EMIS; ERAY PLASTIK DOGRAMA SANAYI VE TICARET LIMITED SIRKETI Compa; ErayPlast (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- Eray Plastik Dograma San. Ve Tic. Ltd. Sti. (Turkiye) - EMIS \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FTR%2FEray_Plasti]\n- ERAY PLASTIK DOGRAMA SANAYI VE TICARET LIMITED SIRKETI Company Profile ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.e]\n- ErayPlast \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ferayplast.com.tr%2F&rut=454ec6f6ac99b6adcf31da3a23c6c6146]\n- Eray Plastik - Geri D\u00f6n\u00fc\u015f\u00fcm , \u0130mha , Geri Kazan\u0131m \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.erayplastik.com.tr%2F&rut=06d62303f40177ee2d969c95845]\n- Eray Plastik Dograma Sanayi Ve Ticaret Limited Sirketi \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.turkishexporter.com.tr%2Fen%2Fcompanies%2Feray%2Dplas]\n- Eurasia Window & Door Fair \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.eurasiawindowdoorfair.com%2Fbrand%2Fwinturk%2Deray%2D]\n- Eray Plastik Do\u011frama San. ve Tic. Ltd \u015eti - lb.kompass.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Flb.kompass.com%2Fc%2Feray%2Dplastik%2Ddograma%2Dsan%2Dve%]\n- Winturk PVC | Eski\u015fehir PVC Kap\u0131 Pencere \u00dcretimi - PVC \u00dcreticisi \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.winturk.com.tr%2F&rut=bcef9b8cd76b0b2d936f51e8accb426]\n- ERAY PLAST\u0130K DO\u011eRAMA SAN. T\u0130C. LTD. \u015eT\u0130. \u2014 Trade Show Profile & Contact ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftrulista.com%2Fexhibitors%2Feray%2Dplastik%2Ddograma%2Dsa]\n- Er-ay Plastik - eraypack.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Feraypack.com%2Fhakkimizda.html&rut=0b826c0b440dadbee5e1bf]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "europe: Report file not found on remote VM (europe)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "ERAY PLASTIK DOGRAMA SAN. TIC. LTD. STI.",
+    "entity_country": "TR",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "europe": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (europe)"
+    }
+  },
+  "errors": [
+    "europe: Report file not found on remote VM (europe)"
+  ],
+  "dark_web_findings": 0,
+  "dark_web_sources": 37
+}

@@ -1,0 +1,20 @@
+{
+  "job_id": "df0e0337-4870-4350-ae5d-1314db647d84",
+  "scenario": "dark-web",
+  "status": "failed",
+  "region": "darkweb",
+  "entity_name": "RAR Resin Chemical Industries DMCC",
+  "country": "",
+  "created_at": "2026-05-22T18:35:38.357934+00:00",
+  "updated_at": "2026-05-22T18:35:41.768989+00:00",
+  "blob_path": "osint-staging/dark-web/rar_resin_chemical_industries_dmcc_20260522.json",
+  "report_summary": "0 findings from dark web sources",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_name": "RAR Resin Chemical Industries DMCC",
+    "owners": "Sayyed Sajjad Shahab, Samer Elias",
+    "country_code": "AE"
+  }
+}

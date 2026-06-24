@@ -1,0 +1,31 @@
+{
+  "job_id": "575c5774-9f4b-468d-9900-9cbd1f90fdb1",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "china",
+  "entity_name": "HONG KONG HUEN NAM INTERNATIONAL LIMITED",
+  "country": "HK",
+  "created_at": "2026-04-27T12:49:36.363943+00:00",
+  "updated_at": "2026-04-27T12:50:04.434303+00:00",
+  "blob_path": "osint-staging/cir/china/hong_kong_huen_nam_international_limited_hk_20260427.json",
+  "report_summary": "This research was already completed earlier today (2026-04-27 12:03 UTC) and the JSON report is saved. **Duplicate request \u2014 no additional work needed.**\n\n**DONE:** HONG KONG HUEN NAM INTERNATIONAL LIMITED, HK -- Risk: 3 MONITOR -- Opaque ownership, Oct 2023 incorporation, virtual office address, directors/shareholders require paid ICRIS search\n\nThe comprehensive JSON output is already at:\n`/home/copapadmin/crawl/output/hong_kong_huen_nam_international_limited_hk_20260427.json`",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "HONG KONG HUEN NAM INTERNATIONAL LIMITED",
+    "entity_country": "HK",
+    "entity_tax_id": "75809750-000-10-25-0",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "china": {
+      "status": "completed",
+      "error": null
+    }
+  }
+}

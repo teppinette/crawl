@@ -1,0 +1,99 @@
+{
+  "job_id": "48887a38-6d24-43cc-a44e-84c6a51f237d",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "europe",
+  "entity_name": "FAR EAST COMMODITIES SA",
+  "country": "CH",
+  "created_at": "2026-05-06T00:00:25.657452+00:00",
+  "updated_at": "2026-05-06T00:02:12.692353+00:00",
+  "blob_path": "osint-staging/cir/europe/far_east_commodities_sa_CH_20260505.json",
+  "report_summary": "Same entity \u2014 report is complete and up to date (Rev 2, updated 21:43 UTC).\n\n**DONE: Far East Commodities SA, CH \u2014 Risk: 4 REVIEW** \u2014 all workstreams complete, Sule Duman incorporated.\n\nFile: `~/crawl/output/far_east_commodities_sa_CH_20260505.json` \u2705 (Rev 2, 37,801 bytes)\nBlob: `europe/far_east_commodities_sa_CH_20260505.json` \u2705 (uploaded 21:43 UTC)\n\nNo new entities or information in this submission versus the previous one.\n---\n\n## DARK WEB SCREENING \u2014 CRITICAL\n**61 findings** from 3/57 sources via Tor (Netherlands exit node)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Breach records | 50 |\n| Web mentions (Tor-routed) | 10 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: fareastcommodities.com\n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "FAR EAST COMMODITIES SA",
+    "entity_country": "CH",
+    "entity_address": "Rue de la Croix-d'Or 17A, 1204 Gen\u00e8ve, Switzerland",
+    "entity_website": "https://fareastcommodities.com",
+    "entity_tax_id": "CHE-353.596.432",
+    "key_individuals": [
+      {
+        "name": "Murroni Gabriele",
+        "title": "Chairman of the Board (adm. pr\u00e9sident)"
+      },
+      {
+        "name": "Nuredini Ardian",
+        "title": "Secretary of the Board (adm. secr\u00e9taire)"
+      },
+      {
+        "name": "Grandjean Thomas Dominique",
+        "title": "Board Member (adm.)"
+      },
+      {
+        "name": "Spallarossa Gianfranco",
+        "title": "Board Member (adm.)"
+      },
+      {
+        "name": "GABRIELE MURRONI"
+      },
+      {
+        "name": "Ardian Nuredini",
+        "title": "Identity Document Holder"
+      },
+      {
+        "name": "Thomas Dominique Grandjean",
+        "title": "Passport Holder / Individual"
+      },
+      {
+        "name": "Gianfranco Spallarossa",
+        "title": "Associated Person"
+      },
+      {
+        "name": "Trafigura Pte Ltd",
+        "title": "Shareholder"
+      },
+      {
+        "name": "Director Change Timeline",
+        "title": "Associated Person"
+      },
+      {
+        "name": "Sule Duman",
+        "title": "Associated Person"
+      },
+      {
+        "name": "Board Member",
+        "title": "CFO"
+      },
+      {
+        "name": "Partially Transparent",
+        "title": "Associated Person"
+      },
+      {
+        "name": "Gabriele Murroni",
+        "title": "UBO (70.00%)"
+      },
+      {
+        "name": "Gianfranco Spallarossa",
+        "title": "UBO (20.00%)"
+      },
+      {
+        "name": "Trafigura Pte Ltd",
+        "title": "UBO (10.00%)"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "europe": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 61,
+  "dark_web_sources": 57
+}

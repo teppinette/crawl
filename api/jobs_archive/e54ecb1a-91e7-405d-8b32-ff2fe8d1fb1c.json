@@ -1,0 +1,31 @@
+{
+  "job_id": "e54ecb1a-91e7-405d-8b32-ff2fe8d1fb1c",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "COPAP TRADING INC",
+  "country": "CA",
+  "created_at": "2026-05-15T12:46:31.045225+00:00",
+  "updated_at": "2026-05-15T12:46:54.887920+00:00",
+  "blob_path": "osint-staging/cir/americas/copap_trading_inc_CA_20260515.json",
+  "report_summary": "Duplicate \u2014 `americas/copap_trading_inc_CA_20260515.json` uploaded earlier today at 12:07 UTC.\n\n| | |\n|---|---|\n| **File** | `americas/copap_trading_inc_CA_20260515.json` |\n| **Risk** | **2 / CLEAR** |\n| **Corp #** | 3445623 (CBCA, est. 1998) |\n| **Function** | Primary international commodity trading entity (pulp/paper/petrochemicals/polymers) |\n| **Named Seller** | Confirmed in COPAP General Conditions of Sale |\n| **Sanctions** | ALL CLEAR |\n\nNo re-research warranted.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 0/0 sources via Tor (Netherlands exit node)\n\nNo dark web exposure detected. Entity and owners clean across all 0 sources.\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "COPAP TRADING INC",
+    "entity_country": "CA",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 0
+}

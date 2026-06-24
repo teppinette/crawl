@@ -1,0 +1,76 @@
+{
+  "job_id": "cf83a858-2b02-467d-b9e7-53ba8d38c985",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "gulf",
+  "entity_name": "ATS SYNTHETIC (Pvt) Ltd.",
+  "country": "PK",
+  "created_at": "2026-05-22T17:35:06.996718+00:00",
+  "updated_at": "2026-05-22T17:41:01.067732+00:00",
+  "blob_path": null,
+  "report_summary": "LLM request rejected: You have reached your specified workspace API usage limits. You will regain access on 2026-06-01 at 00:00 UTC.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**2 actionable findings** from 4/57 sources via Tor (Netherlands exit node) (26 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n| Website scans (URLScan) | 1 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: atssynthetic.com.pk\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | My First Car From the Money I Made! (Mazda Carol GS); Foodpharmer's plant protein review; PSLV-C60: SpaDeX Mission Updates and Discussion. (+12 more) |\n| duckduckgo_tor | 10 | ATS Synthetic (Pvt.) Ltd. | 57 Years of Excellence; ATS Synthetic (Pvt) Ltd. - LinkedIn; ATS Synthetic Pvt. Ltd. | Lahore - Facebook (+7 more) |\n| urlscan | 2 | atssynthetic.com.pk; ATS Synthetic (Pvt.) Ltd. | 57 Years of Excellence |\n| hudsonrock_cavalier | 1 | atssynthetic.com.pk |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- atssynthetic.com.pk \u2014 *hudsonrock_cavalier*\n\n**WEB MENTION** (10)\n- ATS Synthetic (Pvt.) Ltd. | 57 Years of Excellence \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.atssynthetic.com.pk%2F&rut=68c2267d67de9deffa0c7c2c02]\n- ATS Synthetic (Pvt) Ltd. - LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2Fats%2Dsynthetic&rut=df820759]\n- ATS Synthetic Pvt. Ltd. | Lahore - Facebook \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.facebook.com%2FATS.Synthetic.Official%2F&rut=ff72aaa7]\n- A.T.S. SYNTHETIC (PVT) LTD Lahore - Branches.pk \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fbranches.pk%2Fbranch%2Ddetail%2F29014%2DC%2DATS%2DSYNTHET]\n- ATS Synthetic Pvt Ltd. - SAARC Bazaar \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fsaarcbazaar.com%2Fcompany%2Ddetails%2F1e110efc%2D0b8d%2D4]\n- Company Profile - Ats Synthetic Pvt Ltd - chemdmart.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fchemdmart.com%2Fcompany%2Dprofile%2Fats%2Dsynthetic%2Dpvt]\n- ATS Synthetic Pvt. Ltd., 4-KM, Kacha Road, Kahna Nau, Lahore (2026) \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.fashyas.com%2FPK%2FLahore%2F485044065312215%2FATS%2DS]\n- A.T.S. SYNTHETIC (PVT) LTD. | Lahore, Pakistan | Company Overview \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.myallday.com%2Fdetails%2DPKENekV7bf0C%2FATS%2DSYNTHET]\n- ATS Synthetic (Pvt.) Ltd. - Cybo \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.cybo.com%2FPK%2Dbiz%2Fats%2Dsynthetic%2Dpvt%2Dltd_2M&]\n- 7987-pk.all.biz - A.T.S. synthetic (pvt), Ltd. in Lahore \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2F7987%2Dpk.all.biz%2F&rut=ab718d7d69f0fdd82193fe8b712d90ad]\n\n**SOCIAL MENTION** (15)\n- My First Car From the Money I Made! (Mazda Carol GS) \u2014 *reddit* [https://reddit.com/r/PakistanAutoHub/comments/1r9alky/my_first_car_from_the_mone]\n- Foodpharmer's plant protein review \u2014 *reddit* [https://reddit.com/r/indiasocial/comments/1rv7x28/foodpharmers_plant_protein_rev]\n- PSLV-C60: SpaDeX Mission Updates and Discussion. \u2014 *reddit* [https://reddit.com/r/ISRO/comments/1ho16xz/pslvc60_spadex_mission_updates_and_di]\n- In search of the divine: The Perfect Temple Fragrance \u2014 *reddit* [https://reddit.com/r/DesiFragranceAddicts/comments/1orniuv/in_search_of_the_divi]\n- Rate my resume \u2014 *reddit* [https://reddit.com/r/Btechtards/comments/1sowmvh/rate_my_resume/]\n- Which Oil to use for elite i20 Diesel \u2014 *reddit* [https://reddit.com/r/CarsIndia/comments/1t1qhf9/which_oil_to_use_for_elite_i20_d]\n- Reviewing 7 Peptide Lip Balms \u2014 *reddit* [https://reddit.com/r/IndianBeautyTalks/comments/1jrel8c/reviewing_7_peptide_lip_]\n- (Creating a) Master List of All Indian Makeup Brush Brands \u2014 *reddit* [https://reddit.com/r/IndianMakeupAddicts/comments/1ji2bkd/creating_a_master_list]\n- Selling new and unused products and pouches \u2014 *reddit* [https://reddit.com/r/ThriftIndia/comments/1rveoi0/selling_new_and_unused_product]\n- Query regarding the manufacturer \u2014 *reddit* [https://reddit.com/r/SneakersIndia/comments/1qdkboo/query_regarding_the_manufact]\n- [Season 2] Reviews of masks across the globe - Trident, Laianzhi, Honeywell, Koken, Moldex, 3M, Alph \u2014 *reddit* [https://reddit.com/r/Masks4All/comments/1kenzgd/season_2_reviews_of_masks_across]\n- Marketing in 2026: When ROI Meets Reality (and AI Tries to Be Polite) \u2014 *reddit* [https://reddit.com/r/practicalInsights/comments/1raqhl4/marketing_in_2026_when_r]\n- New car guy. Is this fine? \u2014 *reddit* [https://reddit.com/r/CarsIndia/comments/1pq0ehi/new_car_guy_is_this_fine/]\n- Please roast my resume. Highlight the weak points and suggest some good results of possible \u2014 *reddit* [https://reddit.com/r/developersIndia/comments/1q8ls2v/please_roast_my_resume_hig]\n- The Journey of India's Organic Chemical Industry: Struggles, Innovations, and Triumphs \u2014 *reddit* [https://reddit.com/r/IndicKnowledgeSystems/comments/1qsxbv5/the_journey_of_india]\n\n**DOMAIN SCAN SUMMARY** (1)\n- atssynthetic.com.pk \u2014 *urlscan*\n\n**WEBSITE SCAN** (1)\n- ATS Synthetic (Pvt.) Ltd. | 57 Years of Excellence \u2014 *urlscan* [https://www.atssynthetic.com.pk/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "gulf: Report file not found on remote VM (gulf)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "ATS SYNTHETIC (Pvt) Ltd.",
+    "entity_trade_names": "ATS Synthetic (Pvt) Ltd.",
+    "entity_country": "PK",
+    "entity_address": "Lahore, 4-km, Kacha Road, Kahna Nau, 54000, Punjab",
+    "entity_website": "https://atssynthetic.com.pk",
+    "entity_type": "Buyer (Retail/Trading Group)",
+    "entity_industry": "Manufacturing",
+    "key_individuals": [
+      {
+        "name": "Sohail Nisar",
+        "title": "Director"
+      },
+      {
+        "name": "Nadeem Nisar",
+        "title": "Director"
+      },
+      {
+        "name": "Mian Sohail Nisar",
+        "title": "Director"
+      },
+      {
+        "name": "Mian Nadeem Nisar",
+        "title": "Director"
+      },
+      {
+        "name": "Moses Platt",
+        "title": "Director / Authorized Signer"
+      },
+      {
+        "name": "Anthony Thunstro",
+        "title": "Director / Authorized Signer"
+      },
+      {
+        "name": "BAKER & MCKENZIE INC.",
+        "title": "Appointed Attorney / Executing Director"
+      },
+      {
+        "name": "Mian Anjum Nisar",
+        "title": "Managing Director"
+      },
+      {
+        "name": "Mian Nisar Elahi (Late)"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "gulf": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (gulf)"
+    }
+  },
+  "errors": [
+    "gulf: Report file not found on remote VM (gulf)"
+  ],
+  "dark_web_findings": 2,
+  "dark_web_sources": 57
+}

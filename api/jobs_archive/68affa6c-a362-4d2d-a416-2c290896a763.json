@@ -1,0 +1,41 @@
+{
+  "job_id": "68affa6c-a362-4d2d-a416-2c290896a763",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "gulf",
+  "entity_name": "AGRO CHINA PAKISTAN PVT LTD",
+  "country": "PK",
+  "created_at": "2026-04-29T16:02:54.565161+00:00",
+  "updated_at": "2026-04-29T16:07:31.786149+00:00",
+  "blob_path": "osint-staging/cir/gulf/agro_china_pakistan_pvt_ltd_PK_20260429.json",
+  "report_summary": "**DONE: Agro China Pakistan Pvt Ltd, PK \u2014 Risk: 3 MONITOR \u2014 All 5 sanctions lists CLEAR; MONITOR for complete UBO opacity (SECP unavailable), new entity (est. 2021), unscreened Chinese supplier base (60 suppliers), Pakistan jurisdiction**\n\n---\n\n### Research Summary \u2014 All Workstreams Executed\n\n| Check | Result |\n|---|---|\n| Corporate registry | \u26a0\ufe0f SECP DNS failure \u2014 directors/UBOs not confirmed; registered address not found |\n| Parent group | \u2705 Topsun Group Pakistan (est. 2012) \u2014 topsungroup.pk |\n| OFAC SDN | \u2705 CLEAR |\n| OFAC Consolidated | \u2705 CLEAR |\n| UK OFSI | \u2705 CLEAR |\n| BIS CSL | \u2705 CLEAR (both individuals + entity + \"Topsun\") |\n| UN UNSC | \u2705 CLEAR |\n| EU Consolidated | \u26a0\ufe0f Not verified \u2014 manual check required |\n| Adverse media | \u2705 None found |\n| PEP | \u2705 None identified |\n| Dual-use products | \u2705 LOW \u2014 finished agricultural formulations, not CWC-scheduled |\n\n### Entity Profile\n\n- **Full name:** Agro China Pakistan Pvt Ltd\n- **Parent:** Topsun Group Pakistan (agribusiness group est. 2012; Faisalabad/Punjab base)\n- **Established:** 2021 (per group website + China customs first entry Jan 2021)\n- **Activity:** Imports agrochemicals from China (insecticides, weedicides, fungicides, miticides, bactericides)\n- **Trade scale:** 265 China customs records \u00b7 60 Chinese suppliers \u00b7 88 shipments in 2024 (+577% vs. 2021)\n- **CEO:** Muhammad Usman Ali | **COO:** Muhammad Farooq Hasnain\n\n### \u26a0\ufe0f MONITOR Flags\n\n| Flag | Severity |\n|---|---|\n| **UBO completely unknown** \u2014 SECP inaccessible (3rd consecutive session) | HIGH |\n| **New entity (est. 2021)** \u2014 limited track record | MEDIUM |\n| **60 unscreened Chinese suppliers** \u2014 supplier identities unknown | MEDIUM |\n| **Rapid growth** \u2014 577% import growth in 4 years | MEDIUM |\n| **Pakistan jurisdiction** | MEDIUM |\n\n### Mandatory EDD Before Onboarding\n1. SECP certificate + Form A (directors + UBOs)\n2. Chinese supplier list for OFAC/BIS screening\n3. Pakistan DRAP pesticide product registrations\n4. NTN certificate + FBR active taxpayer status\n\n**File:** `~/crawl/output/agro_china_pakistan_PK_20260429.json` (15 KB)\n**Blob:** \u2705 `gulf/agro_china_pakistan_PK_20260429.json` \u2014 16:06:30 UTC",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "AGRO CHINA PAKISTAN PVT LTD",
+    "entity_country": "PK",
+    "key_individuals": [
+      {
+        "name": "Muhammad Usman Ali",
+        "title": "CEO"
+      },
+      {
+        "name": "Muhammad Farooq Hasnain",
+        "title": "COO"
+      }
+    ],
+    "entity_website": "topsungroup.pk"
+  },
+  "region_status": {
+    "gulf": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (gulf)"
+    }
+  },
+  "errors": [
+    "gulf: Report file not found on remote VM (gulf)"
+  ],
+  "dark_web_findings": 20,
+  "dark_web_sources": 24
+}

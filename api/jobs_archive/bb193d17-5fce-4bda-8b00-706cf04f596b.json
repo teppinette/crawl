@@ -1,0 +1,49 @@
+{
+  "job_id": "bb193d17-5fce-4bda-8b00-706cf04f596b",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "CARTOCOR DE PERU S.A.",
+  "country": "US",
+  "created_at": "2026-05-04T17:17:17.712099+00:00",
+  "updated_at": "2026-05-04T17:24:02.508939+00:00",
+  "blob_path": null,
+  "report_summary": "Uploaded. Done.\n\n---\n\n**DONE: Cartocor de Peru S.A., PE \u2014 Risk: \u2b06\ufe0f 3 MONITOR (upgraded from 2) \u2014 Panama Papers (2016) adverse media for Pagani family UBO chain; Lafico Group Ltd offshore structure; Victor Manuel Arce UBO unverified; no sanctions on any party**\n\n---\n\n## \ud83d\udccb CIR v3 \u2014 CARTOCOR DE PERU S.A. (Consolidated)\n`cartocor_de_peru_PE_20260504v2.json` \u2192 `osint-staging/americas/`\n\n---\n\n### \u2b06\ufe0f Risk Upgrade: 2 CLEAR \u2192 3 MONITOR\n\nTwo grounds for escalation this run:\n\n**1. \ud83d\udd34 Panama Papers \u2014 Pagani Family UBO Chain (MATERIAL)**\n\n| Individual | Role | Panama Papers Finding |\n|---|---|---|\n| **Luis Alejandro Pagani** | Former President 1993\u20132023 | Investigated by Argentine justice for undeclared offshore accounts |\n| **Mario Pagani** | Current VP (since May 2023) | Shareholder of **Lafico Group Limited** (offshore entity) |\n| **Lilia Pagani** | Family shareholder | Shareholder of **Lafico Group Limited** |\n\n- No criminal conviction confirmed; no sanctions designation (OFAC/UN/EU: **NO HIT**)\n- Family response: structures described as \"common for HNW families\"\n- Argentina's 2016 blanqueo (capital amnesty) widely used in this context\n- Outcome of Argentine judicial investigation: **unresolved in public record**\n- Luis Pagani retired from operational control May 2023 per company statutes\n\n**2. \ud83d\udfe1 Victor Manuel Arce \u2014 UBO designation unverified** (three independent search attempts across all accessible databases; no connection to Cartocor or Arcor Group found)\n\n---\n\n### \ud83d\udc65 Pagani Family \u2014 Full Screening Summary\n\n| Name | Current Role | PEP | Sanctions | Adverse Media |\n|---|---|---|---|---|\n| **Alfredo Pagani** | President (since May 2023) | NOT PEP | CLEAR | NONE |\n| **Luis Pagani** | Ex-President; intl. expansion | NOT PEP | CLEAR | \u26a0\ufe0f Panama Papers 2016 |\n| **Mario Pagani** | VP (since May 2023) | NOT PEP | CLEAR | \u26a0\ufe0f Lafico Group Ltd 2016 |\n| **Lilia Pagani** | Family shareholder | NOT PEP | CLEAR | \u26a0\ufe0f Lafico Group Ltd 2016 |\n\n> PEP note: Luis Pagani presided over AEA (Asociaci\u00f3n Empresaria Argentina, private sector roundtable) 2002\u20132009. AEA is a private business association \u2014 **NOT a government role. NOT PEP.**\n\n---\n\n### \ud83d\udccc Open Items (Updated)\n\n| Priority | Item |\n|---|---|\n| \ud83d\udd34 **HIGH** | EDD \u2014 Pagani family: source of wealth, blanqueo participation, Lafico Group Ltd status, current Argentine judicial proceedings status |\n| \ud83d\udd34 **HIGH** | SUNARP Partida Electr\u00f3nica \u2014 verify/reject Victor Manuel Arce as UBO |\n| LOW | Confirm current Gerente General (Nardea confirmed 2022) |\n| LOW | SUNAT commerce exterior status clarification |\n\n**Recommendation: PROCEED WITH ENHANCED DUE DILIGENCE.** The entity itself is operationally sound and carries no direct sanctions exposure. EDD triggers are in the UBO chain (Panama Papers / offshore structures) and the unresolved UBO designation. Both items are resolvable before transaction execution.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 findings** from 0/0 sources via Tor (Netherlands exit node)\n\nNo dark web exposure detected. Entity and owners clean across all 0 sources.\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "americas: Report file not found on remote VM (americas)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "CARTOCOR DE PERU S.A.",
+    "entity_country": "US",
+    "entity_address": "Av. Guillermo Prescott Nro. 325, Urb. San Felipe, San Isidro, Lima, Lima, Peru",
+    "entity_website": "https://www.arcor.com/en/industrial-plants/cartocor-lurin-lima",
+    "entity_tax_id": "20515685911",
+    "key_individuals": [
+      {
+        "name": "Victor Manuel Arce"
+      },
+      {
+        "name": "Pagani Family"
+      },
+      {
+        "name": "Victor Manuel Arce",
+        "title": "UBO"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (americas)"
+    }
+  },
+  "errors": [
+    "americas: Report file not found on remote VM (americas)"
+  ],
+  "dark_web_findings": 0,
+  "dark_web_sources": 0
+}

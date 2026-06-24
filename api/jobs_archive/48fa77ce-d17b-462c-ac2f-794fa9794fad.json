@@ -1,0 +1,23 @@
+{
+  "job_id": "48fa77ce-d17b-462c-ac2f-794fa9794fad",
+  "scenario": "cir",
+  "status": "failed",
+  "region": "americas",
+  "entity_name": "COPAP USA INC",
+  "country": "US",
+  "created_at": "2026-05-14T16:26:20.943331+00:00",
+  "updated_at": "2026-05-14T16:26:20.943331+00:00",
+  "blob_path": null,
+  "report_summary": null,
+  "error": "DATA SANITIZATION FAILURE \u2014 blocked terms detected in payload: Field 'entity_legal_name' contains blocked term 'copap'. This data must NEVER reach OpenClaw.",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "COPAP USA INC",
+    "entity_country": "US",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "priority": "standard"
+  }
+}

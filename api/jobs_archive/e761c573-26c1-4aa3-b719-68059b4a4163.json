@@ -1,0 +1,53 @@
+{
+  "job_id": "e761c573-26c1-4aa3-b719-68059b4a4163",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "europe",
+  "entity_name": "FIRAT PLASTIK KAUCUK SANAYI VE TICARET A.S.",
+  "country": "TR",
+  "created_at": "2026-05-22T19:11:06.984286+00:00",
+  "updated_at": "2026-05-22T19:13:16.338438+00:00",
+  "blob_path": null,
+  "report_summary": "Duplicate \u2014 report complete at 19:07 UTC.\n\n**DONE: F\u0131rat Plastik Kau\u00e7uk Sanayi ve Ticaret A.\u015e., TR \u2014 Risk: 3 MONITOR \u26a0\ufe0f Russia/CIS flag**\n\nFile: `~/crawl/output/firat_plastik_kaucuk_TR_20260522.json` \u2705\nBlob: `europe/firat_plastik_kaucuk_TR_20260522.json` \u2705\n\nLEI `789000792RJX40SGK881` confirmed active (updated 10 days ago), MERSIS `0386004182500018` confirmed, Dr. Nevzat Demir (Be\u015fikta\u015f benefactor/export champion) clean, Russian-language website = CIS/Russia EDD questionnaire required before contracting.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**3 actionable findings** from 5/57 sources via Tor (Netherlands exit node) (28 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n| Website scans (URLScan) | 3 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: firat.com\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Bill Clinton: \"Would Have Turned Him In\" If Aware of Epstein; Elon Musk megabitch; Milli E\u011fitim Bakan\u0131 Yusuf Tekin, sanayi ve ticaret alanlar\u0131n (+12 more) |\n| urlscan | 11 | firat.com; Anasayfa - \u00d6z Anka Mekanik Tesisat; PE & PPRC & PVC Boru, PVC Pencere & Kap\u0131 Sistemleri | F\u0131rat (+8 more) |\n| duckduckgo_tor | 10 | Hakk\u0131m\u0131zda | F\u0131rat Kurumsal | F\u0131rat Plastik; Firat Plastik Kau\u00e7uk San. Ve Tic. A.\u015f; F\u0131rat Hakk\u0131nda | Kurumsal | F\u0131ratpen (+7 more) |\n| hudsonrock_cavalier | 1 | firat.com |\n| alienvault_otx | 1 | firat.com |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- firat.com \u2014 *hudsonrock_cavalier*\n\n**WEB MENTION** (10)\n- Hakk\u0131m\u0131zda | F\u0131rat Kurumsal | F\u0131rat Plastik \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.firat.com%2Fhakkimizda&rut=410e8695d63cbb021b67b8b78a]\n- Firat Plastik Kau\u00e7uk San. Ve Tic. A.\u015f \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ffiratp.com%2F&rut=f66a7dc4c48023e4c593c48fb46fa48aacf4d81]\n- F\u0131rat Hakk\u0131nda | Kurumsal | F\u0131ratpen \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.firatpen.com.tr%2Fkurumsal%2Ffirat%2Dhakkinda&rut=5b8]\n- FIRAT PLASTIK KAUCUK SANAYII VE TICARET ANONIM SIRKETI Company Profile ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.f]\n- FIRAT PLAST\u0130K KAU\u00c7UK SAN. T\u0130C. A.\u015e. - Turkiyemfg \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.turkiyemfg.com%2Ffabrikalar%2Drev%2Ffirat%2Dplasti%25]\n- F\u0131ratmed | F\u0131rat Plastik | F\u0131ratmed \u00dcr\u00fcn Grubu \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.firatmed.com%2F&rut=acdc67d91032e2cbc46f88fb73754438c]\n- F\u0131rat Plastik Kau\u00e7uk San. Tic. A.\u015e. - Ankara Sanayi Odas\u0131 I ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.aosb.org.tr%2F161%2Ff%2Ffirat%2Dplastik%2Dkaucuk%2Dsa]\n- Firat Plastik Kaucuk San. ve Tic. Inc. | (0212) 866 41 41 | Tepecik \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tumisyeri.com%2Ffirat%2Dplastik%2Dkaucuk%2Dsan%2Dve%2]\n- Firat Plastik Kaucuk Sanayii T.A.S. (Turkiye) - EMIS \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FTR%2FFirat_Plast]\n- FIRAT PLAST\u0130K A\u015e - LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2Ffiratplastik&rut=88be9e174bc]\n\n**SOCIAL MENTION** (15)\n- Bill Clinton: \"Would Have Turned Him In\" If Aware of Epstein's Crimes \u2014 *reddit* [https://reddit.com/r/thenextgenbusiness/comments/1rge7gt/bill_clinton_would_have]\n- Elon Musk megabitch \u2014 *reddit* [https://reddit.com/r/autism/comments/1i6lawd/elon_musk_megabitch/]\n- Milli E\u011fitim Bakan\u0131 Yusuf Tekin, sanayi ve ticaret alanlar\u0131ndan gelen nitelikli i\u015f g\u00fcc\u00fc talebi \u00fczeri \u2014 *reddit* [https://reddit.com/r/WorldPanorama/comments/1kipkph/milli_e\u011fitim_bakan\u0131_yusuf_te]\n- ULUUN \u2022 ULUSOY UN SANAY\u0130 VE T\u0130CARET A.\u015e. bilan\u00e7osunu a\u00e7\u0131klad\u0131. \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1su9orz/uluun_ulusoy_un_sanayi_ve_ticar]\n- T.C. Ticaret Bakan\u0131 \u00d6mer Bolat, T\u00fcrkiye'de \u00fcretilen ve G\u00fcmr\u00fck Birli\u011fi kurallar\u0131na uygun sanayi \u00fcr\u00fcnl \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1rkz0b3/tc_ticaret_bakan\u0131_\u00f6mer_bolat_t\u00fc]\n- T.C. Sanayi ve Teknoloji Bakanl\u0131\u011f\u0131, Ticaret Bakanl\u0131\u011f\u0131 ve Merkez Bankas\u0131 i\u015f birli\u011fiyle T\u00dcB\u0130TAK taraf\u0131 \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1r8e13t/tc_sanayi_ve_teknoloji_bakanl\u0131\u011f]\n- GMTAS, Gimat Magazacilik Sanayi ve Ticaret A.S. \u2014 *reddit* [https://reddit.com/r/Compoundingcapital/comments/1rzebvb/gmtas_gimat_magazacilik]\n- 2026 Belgium Lineup \u2014 *reddit* [https://reddit.com/r/Tomorrowland/comments/1qjv9gz/2026_belgium_lineup/]\n- \"Bu saatten sonra s\u0131k\u0131 para politikas\u0131yla, kemer s\u0131kmakla, finansman\u0131 daraltmakla sonu\u00e7 al\u0131namaz. \u00c7\u00fc \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1r6gbal/bu_saatten_sonra_s\u0131k\u0131_para_poli]\n- ASELS \u2022 ASELSAN ELEKTRON\u0130K SANAY\u0130 VE T\u0130CARET A.\u015e. bilan\u00e7osunu a\u00e7\u0131klad\u0131. \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1rdl086/asels_aselsan_elektronik_sanayi]\n- ALCAR \u2022 ALARKO CARRIER SANAY\u0130 VE T\u0130CARET A.\u015e. bilan\u00e7osunu a\u00e7\u0131klad\u0131. \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1rh7225/alcar_alarko_carrier_sanayi_ve_]\n- TABGD \u2022 TAB GIDA SANAY\u0130 VE T\u0130CARET A.\u015e. bilan\u00e7osunu a\u00e7\u0131klad\u0131. \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1rgnhqc/tabgd_tab_gida_sanayi_ve_ticare]\n- KCAER \u2022 KOCAER \u00c7EL\u0130K SANAY\u0130 VE T\u0130CARET A.\u015e. bilan\u00e7osunu a\u00e7\u0131klad\u0131. \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1rfnt69/kcaer_kocaer_\u00e7elik_sanayi_ve_ti]\n- NTGAZ \u2022 NATURELGAZ SANAY\u0130 VE T\u0130CARET A.\u015e. bilan\u00e7osunu a\u00e7\u0131klad\u0131. \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1reppsd/ntgaz_naturelgaz_sanayi_ve_tica]\n- RTALB \u2022 RTA LABORATUVARLARI B\u0130YOLOJ\u0130K \u00dcR\u00dcNLER \u0130LA\u00c7 VE MAK\u0130NE SANAY\u0130 T\u0130CARET A.\u015e. bilan\u00e7osunu a\u00e7\u0131klad \u2014 *reddit* [https://reddit.com/r/borsavefon/comments/1reoks3/rtalb_rta_laboratuvarlari_biyol]\n\n**DOMAIN THREAT INTEL** (1)\n- firat.com \u2014 *alienvault_otx*\n\n**DOMAIN SCAN SUMMARY** (1)\n- firat.com \u2014 *urlscan*\n\n**WEBSITE SCAN** (3)\n- Anasayfa - \u00d6z Anka Mekanik Tesisat \u2014 *urlscan* [https://www.ozankamekaniktesisat.com.tr/]\n- PE & PPRC & PVC Boru, PVC Pencere & Kap\u0131 Sistemleri | F\u0131rat \u2014 *urlscan* [https://www.firat.com/]\n- dosya.firat.com \u2014 *urlscan* [https://dosya.firat.com/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "europe: Report file not found on remote VM (europe)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "FIRAT PLASTIK KAUCUK SANAYI VE TICARET A.S.",
+    "entity_country": "TR",
+    "entity_website": "firat.com",
+    "entity_tax_id": "0386004182500018",
+    "key_individuals": [
+      {
+        "name": "Dr. Nevzat Demir"
+      },
+      {
+        "name": "M\u00fcmtaz Demir"
+      },
+      {
+        "name": "Hava Demir"
+      },
+      {
+        "name": "Tayfun Demir"
+      },
+      {
+        "name": "Muharrem Y\u0131ld\u0131r\u0131m Demir"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "europe": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (europe)"
+    }
+  },
+  "errors": [
+    "europe: Report file not found on remote VM (europe)"
+  ],
+  "dark_web_findings": 3,
+  "dark_web_sources": 57
+}

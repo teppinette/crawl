@@ -1,0 +1,48 @@
+{
+  "job_id": "4c1f4613-4e21-489d-a907-d6bd0bfa3b39",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "ACG PHARMAPACK PVT LTD",
+  "country": "IN",
+  "created_at": "2026-05-21T14:52:38.669758+00:00",
+  "updated_at": "2026-05-21T14:55:16.621067+00:00",
+  "blob_path": "osint-staging/cir/india/acg_pharmapack_pvt_ltd_IN_20260521.json",
+  "report_summary": "**DONE: ACG Pharmapack Private Limited, India \u2014 Risk: 1 CLEAR \u2014 ACG World Group entity; CIN U45200MH2004PTC149770; Revenue \u20b91,270 Cr FY25; AGM Sep 30, 2025 current; 335 employees; Group founded 1961, operates in 100 countries**\n\n`~/crawl/output/acg_pharmapack_pvt_ltd_IN_20260521.json` \u2014 6.7 KB, valid, research date 2026-05-21.\n\nTier 1 counterparty \u2014 ACG Group is one of India's most globally recognized pharma packaging conglomerates ($844M-$2B group revenue, Croatia acquisitions, track-and-trace technology). Founding brothers Ajit & Jasjit Daljit Singh; CEO = Karan Jasjit Singh (next gen). NIC code U45200 = construction is a miscoding (actual: pharma packaging).\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**3 actionable findings** from 5/53 sources via Tor (Netherlands exit node) (17 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Adverse media | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 5 |\n| Website scans (URLScan) | 2 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: www.acg-world.com\n- ADVERSE MEDIA: Sreekantrao Ramarao Shivshankar . - Director Insights, Profile, and ... (SREEKANTRAO RAMARAO SHIVSHANKAR)\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| urlscan | 11 | www.acg-world.com; ACG - Capsules | Pharma machine manufacturing | Packaging ma; ACG - C\u00e1psulas | Fabrica\u00e7\u00e3o de m\u00e1quinas farmac\u00eauticas | Mate (+8 more) |\n| duckduckgo_tor | 10 | Manufacturer of pharmaceutical packaging materials | ACG; ACG PHARMAPACK PRIVATE LIMITED - Company Profile - Tracxn; ACG PHARMAPACK PRIVATE LIMITED Company Profile | Mumbai, Mah (+7 more) |\n| reddit | 5 | HPMC Capsules Market Huge Growth Opportunity by Trend 2019-2; Beat?; Latest New report Cartoners market breaking the ground with  (+2 more) |\n| hudsonrock_cavalier | 1 | www.acg-world.com |\n| duckduckgo_adverse | 1 | Sreekantrao Ramarao Shivshankar . - Director Insights, Profi |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- www.acg-world.com \u2014 *hudsonrock_cavalier*\n\n**ADVERSE MEDIA** (1)\n- Sreekantrao Ramarao Shivshankar . - Director Insights, Profile, and ... \u2014 *duckduckgo_adverse* (searched: SREEKANTRAO RAMARAO SHIVSHANKAR) [/l/?uddg=https%3A%2F%2Fwww.filesure.in%2Fdirector%2Fsreekantrao%2Dramarao%2Dshiv]\n\n**WEB MENTION** (10)\n- Manufacturer of pharmaceutical packaging materials | ACG \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.acg%2Dworld.com%2Fpackaging%2Dmaterials&rut=da843c44c]\n- ACG PHARMAPACK PRIVATE LIMITED - Company Profile - Tracxn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Facg%2Dpharmap]\n- ACG PHARMAPACK PRIVATE LIMITED Company Profile | Mumbai, Maharashtra ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.a]\n- Acg Pharmapack Pvt. Ltd. in Satara, Maharashtra, India - Company Profile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tradeindia.com%2Facg%2Dpharmapack%2Dpvt%2Dltd%2D40738]\n- ACG Pharmapack Pvt. Ltd. - GAT No. 448, 5X33+8P6 Tal : Khandala ... - Cybo \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.cybo.com%2FIN%2Dbiz%2Facg%2Dpharmapack%2Dpvt%2Dltd&ru]\n- ACG Pharmapack Pvt. Ltd - visitor.cphieventplanner.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fvisitor.cphieventplanner.com%2Fc%2Finforma%2Dmarkets%2Dcp]\n- ACG PHARMAPACK PRIVATE LIMITED - ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2FACG%2DPHARMAPACK%2DPRIVATE%2DLIMITED%]\n- Company Profile - Acg Pharmapack Pvt Ltd - chemdmart.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fchemdmart.com%2Fcompany%2Dprofile%2Facg%2Dpharmapack%2Dpv]\n- ACG Pharmapack Pvt Ltd DMF, CEP, Written Confirmations ... - PharmaCompass \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.pharmacompass.com%2Fpharma%2Dservices%2Fpackaging%2Fa]\n- ACG Pharmapack Pvt Ltd - Company Profile and News \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.bloomberg.com%2Fprofile%2Fcompany%2F9156507Z%3AIN&rut]\n\n**SOCIAL MENTION** (5)\n- HPMC Capsules Market Huge Growth Opportunity by Trend 2019-2025: ACG-Associated Capsules, Capsugel B \u2014 *reddit* [https://reddit.com/r/HealthcareInsights/comments/c2t6g9/hpmc_capsules_market_hug]\n- Beat? \u2014 *reddit* [https://reddit.com/r/NepalSocial/comments/1idkfqq/beat/]\n- Latest New report Cartoners market breaking the ground with Top Players Molins Langen, Industria Mac \u2014 *reddit* [https://reddit.com/r/BizInsightReports/comments/dy01k2/latest_new_report_cartone]\n- Global N Pharmaceutical Packaging Machinery Market 2019 \u2013 Huge Market Growth Till 2026: ACCURATE MAC \u2014 *reddit* [https://reddit.com/r/MechGadgetReports/comments/c38yyz/global_n_pharmaceutical_p]\n- Atmospheric water generator-an incredible technology to fight against water crisis \u2014 *reddit* [https://reddit.com/r/readit/comments/b61mkd/atmospheric_water_generatoran_incred]\n\n**DOMAIN SCAN SUMMARY** (1)\n- www.acg-world.com \u2014 *urlscan*\n\n**WEBSITE SCAN** (2)\n- ACG - Capsules | Pharma machine manufacturing | Packaging materials \u2014 *urlscan* [https://www.acg-world.com/]\n- ACG - C\u00e1psulas | Fabrica\u00e7\u00e3o de m\u00e1quinas farmac\u00eauticas | Materiais de embalagem \u2014 *urlscan* [https://www.acg-world.com/pt/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "ACG PHARMAPACK PVT LTD",
+    "entity_country": "IN",
+    "entity_address": "1001 DALAMAL HOUSE, 10TH FLOOR, NARIMAN POINT, MUMBAI, MAHARASHTRA 400021",
+    "entity_website": "www.acg-world.com",
+    "entity_tax_id": "149770",
+    "key_individuals": [
+      {
+        "name": "JASJIT DALJIT SINGH"
+      },
+      {
+        "name": "KARAN JASJIT SINGH"
+      },
+      {
+        "name": "AJIT DALJIT SINGH"
+      },
+      {
+        "name": "SREEKANTRAO RAMARAO SHIVSHANKAR"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 3,
+  "dark_web_sources": 53
+}

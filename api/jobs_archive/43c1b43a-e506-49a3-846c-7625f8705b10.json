@@ -1,0 +1,70 @@
+{
+  "job_id": "43c1b43a-e506-49a3-846c-7625f8705b10",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "gulf",
+  "entity_name": "NIMIR INDUSTRIALCHEMICALS LIMITED",
+  "country": "PK",
+  "created_at": "2026-05-22T19:03:00.215292+00:00",
+  "updated_at": "2026-05-22T19:11:48.683196+00:00",
+  "blob_path": null,
+  "report_summary": "Blob uploaded (HTTP 201). Research complete.\n\n---\n\n**DONE: NIMIR INDUSTRIAL CHEMICALS LIMITED, PK \u2014 Risk: 2 CLEAR \u2705**\n\n---\n\n## Summary\n\n| Check | Result |\n|---|---|\n| **SECP** | \u2705 **VERIFIED** \u2014 #0031982, Incorporated 06/02/1994, CRO Lahore |\n| **PSX Listed** | \u2705 Ticker **NICL** \u2014 listed since 1996 (29 years) |\n| **FBR ATL** | \u26a0\ufe0f Portal timeout \u2014 UNVERIFIED technically, but 26\u201337% effective tax rate in audited accounts confirms active compliance |\n| **Revenue FY2025** | \u2705 PKR 45.3B (~USD 162M), net income PKR 2.0B |\n| **Dividends** | \u2705 PKR 5.50/share (FY2025) \u2014 consistent dividend payer |\n| **PACRA rated** | \u2705 CEO described as \"highly experienced professional\" |\n| **PSX Shariah** | \u2705 Compliant |\n| **Institutional investors** | \u2705 UBL Fund Managers confirmed holder |\n| **Court order Jan 2024** | \u2705 Lahore HC-sanctioned **Scheme of Arrangement** \u2014 corporate restructuring, not criminal |\n| **NAB** | \u2705 No cases for entity or any director |\n| **Sanctions** | \u2705 No match (OFAC/UN/EU/UK) |\n| **Dark web** | \u2705 0 findings |\n| **Adverse media** | \u2705 None found |\n| **Reckitt client** | \u2705 3PM manufacturing relationship \u2014 major MNC endorsement |\n\n\u26a0\ufe0f **Important disambiguation**: This is **NOT** the \"Nimir Chemical Pakistan Ltd.\" linked to the ATS Group (Anjum Nisar family) researched earlier today. Completely separate entity, separate ownership, separate history.\n\n**Standard KYC only** \u2014 SECP cert, FBR NTN certificate, full names for \"Shahzeb\" and \"Saqib\" directors, authorized signatory CNIC. No EDD required.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**2 actionable findings** from 4/57 sources via Tor (Netherlands exit node) (28 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n| Website scans (URLScan) | 3 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: nimir.com.pk\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | NIMIR Industrial Chemicals Limited Jobs June 2022; $5,200 coolant leak on 52k mile 2012 Outback\u2026second opinion ; Nimir Industrial Chemicals Pakistan Limited (+12 more) |\n| duckduckgo_tor | 10 | Home - Nimir Group of Companies; NICL - Stock quote for Nimir Industrial Chemicals Limited - ; Home | Nimir Chemicals Pakistan Limited (+7 more) |\n| urlscan | 7 | nimir.com.pk; Home - Nimir Group of Companies; Sophos (+4 more) |\n| hudsonrock_cavalier | 1 | nimir.com.pk |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- nimir.com.pk \u2014 *hudsonrock_cavalier*\n\n**WEB MENTION** (10)\n- Home - Nimir Group of Companies \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fnimir.com.pk%2F&rut=46bf3158807f530719396895009716aefcf66]\n- NICL - Stock quote for Nimir Industrial Chemicals Limited - Pakistan ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fdps.psx.com.pk%2Fcompany%2FNICL&rut=5d15a619913592437567c]\n- Home | Nimir Chemicals Pakistan Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fnimirchemicals.com%2F&rut=2dfa5d9f2e978076ec443b11e744722]\n- PCMA | Nimir Industrial Chemicals Ltd. - Yasser Hakeem \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fchemicalonline.pk%2Fmember%2Fnimir%2Fhome&rut=2bcc3039dc4]\n- NICL.PK | Nimir Industrial Chemicals Ltd. Financial Statements - WSJ \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.wsj.com%2Fmarket%2Ddata%2Fquotes%2FPK%2FNICL%2Ffinanc]\n- NIMIR INDUSTRIAL CHEMICALS LIMITED Company Profile | Lahore, Punjab ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.n]\n- NICL Stock Price | Nimir Industrial Chemicals Ltd. Stock Quote ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.marketwatch.com%2Finvesting%2Fstock%2Fnicl%3Fcountryc]\n- NIMIR INDUSTRIAL CHEMICALS LIMITED, Lahore, (Pakistan), Verif \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.verif.com%2Fen%2Fcompany%2FNIMIR%2DINDUSTRIAL%2DCHEMI]\n- Nimir Industrial Chemicals Limited Company Profile - Pakistan ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FPK%2FNimir_Indus]\n- Nimir Industrial Chemicals (PSX:NICL) Company Profile & Description \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fstockanalysis.com%2Fquote%2Fpsx%2FNICL%2Fcompany%2F&rut=c]\n\n**SOCIAL MENTION** (15)\n- NIMIR Industrial Chemicals Limited Jobs June 2022 \u2014 *reddit* [https://reddit.com/r/jobbank/comments/vx4u50/nimir_industrial_chemicals_limited_]\n- $5,200 coolant leak on 52k mile 2012 Outback\u2026second opinion didn\u2019t find evidence of one \u2014 *reddit* [https://reddit.com/r/subaru/comments/1r6t09m/5200_coolant_leak_on_52k_mile_2012_]\n- Nimir Industrial Chemicals Pakistan Limited \u2014 *reddit* [https://reddit.com/r/PkVacancy/comments/2qw1n3/nimir_industrial_chemicals_pakist]\n- Let\u2019s Talk About Coway\u2019s Green True HEPA Filter | Safety, Efficacy, &amp; Trust \u2014 *reddit* [https://reddit.com/r/AirPurifiers/comments/1ppbk70/lets_talk_about_coways_green_]\n- \"I wanted to either concentrate on the beach or become a teacher.\" Who is the admirable back that fu \u2014 *reddit* [https://reddit.com/r/SVLeagueJapan/comments/1pb0kkm/i_wanted_to_either_concentra]\n- Is it normal for players just change positions for a tournament at the pro level? \u2014 *reddit* [https://reddit.com/r/volleyball/comments/1cwx9pj/is_it_normal_for_players_just_c]\n- 2020/21 Italian Superlega - regular season grades, stats and playoff picture \u2014 *reddit* [https://reddit.com/r/volleyball/comments/lltti4/202021_italian_superlega_regular]\n- 2021/22 Italian Superlega - half season grades and stats \u2014 *reddit* [https://reddit.com/r/volleyball/comments/rmvn9v/202122_italian_superlega_half_se]\n- Top 10 wages in Italian pro volleyball (men's and women's) \u2014 *reddit* [https://reddit.com/r/volleyball/comments/jk5jan/top_10_wages_in_italian_pro_voll]\n- 2021/22 Italian Superlega - match week 11 recap + Douglas Souza leaving Vibo \u2014 *reddit* [https://reddit.com/r/volleyball/comments/rd6wxn/202122_italian_superlega_match_w]\n- 2021/22 Italian Superlega - match week 13 recap \u2014 *reddit* [https://reddit.com/r/volleyball/comments/rlczha/202122_italian_superlega_match_w]\n- Best men's players line-ups per birth year (1990 - 2000) \u2014 *reddit* [https://reddit.com/r/volleyball/comments/k3axl8/best_mens_players_lineups_per_bi]\n- World Championships Pool B Preview \u2014 *reddit* [https://reddit.com/r/volleyball/comments/9e1ou0/world_championships_pool_b_previ]\n- 2020/21 Italian Superlega - match week 6 recap \u2014 *reddit* [https://reddit.com/r/volleyball/comments/jfxw71/202021_italian_superlega_match_w]\n- 2021/22 Italian Superlega - quarter finals game 1 recap \u2014 *reddit* [https://reddit.com/r/volleyball/comments/tqvieb/202122_italian_superlega_quarter]\n\n**DOMAIN SCAN SUMMARY** (1)\n- nimir.com.pk \u2014 *urlscan*\n\n**WEBSITE SCAN** (3)\n- Home - Nimir Group of Companies \u2014 *urlscan* [https://nimir.com.pk/]\n- Sophos \u2014 *urlscan* [https://nrlprd.nimir.com.pk/userportal/webpages/myaccount/login.jsp]\n- Nimir Group of Companies \u2014 *urlscan* [https://nimir.com.pk/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "gulf: Report file not found on remote VM (gulf)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "NIMIR INDUSTRIALCHEMICALS LIMITED",
+    "entity_trade_names": "NIMIR INDUSTRIAL CHEMICALS LIMITED",
+    "entity_country": "PK",
+    "entity_address": "Sheikhupura, 14.8 Km., Sheikhupura \u2013 Faisalabad Road, Bhikhi, Punjab",
+    "entity_website": "https://nimir.com.pk",
+    "entity_type": "CHEMICAL INDUSTRY",
+    "entity_industry": "CHEMICAL INDUSTRY",
+    "entity_tax_id": "0031982",
+    "key_individuals": [
+      {
+        "name": "Khalid Siddiq Tirmizey"
+      },
+      {
+        "name": "Zafar Mahmood"
+      },
+      {
+        "name": "Khalid Mumtaz Qazi"
+      },
+      {
+        "name": "Abdul Jaleel Shaikh"
+      },
+      {
+        "name": "Muhammad Yahya Khan"
+      },
+      {
+        "name": "Shahzeb"
+      },
+      {
+        "name": "Mahnoor Mansoor Jawaid"
+      },
+      {
+        "name": "Saqib"
+      },
+      {
+        "name": "Saeed-uz-Zaman"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "copap_products": "Industrial Chemicals",
+    "priority": "standard"
+  },
+  "region_status": {
+    "gulf": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (gulf)"
+    }
+  },
+  "errors": [
+    "gulf: Report file not found on remote VM (gulf)"
+  ],
+  "dark_web_findings": 2,
+  "dark_web_sources": 57
+}

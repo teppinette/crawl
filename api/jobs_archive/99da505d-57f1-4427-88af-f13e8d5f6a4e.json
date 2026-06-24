@@ -1,0 +1,41 @@
+{
+  "job_id": "99da505d-57f1-4427-88af-f13e8d5f6a4e",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "SHAH INTERNATIONAL PAPER PVT. LTD.",
+  "country": "IN",
+  "created_at": "2026-05-21T14:12:11.723465+00:00",
+  "updated_at": "2026-05-21T14:14:42.108633+00:00",
+  "blob_path": "osint-staging/cir/india/shah_international_paper_pvt_ltd_IN_20260521.json",
+  "report_summary": "**DONE: Shah International Paper Private Limited, India \u2014 Risk: 3 MONITOR \u2014 Mumbai paper trader; CIN U21098MH2012PTC230313; Revenue \u20b928.8 Cr FY25; \u26a0\ufe0f last confirmed AGM Sep 30, 2022 \u2014 FY2023/24/25 filings unconfirmed**\n\n`~/crawl/output/shah_international_paper_pvt_ltd_IN_20260521.json` \u2014 6.6 KB, valid, research date 2026-05-21, all 8 workstreams complete.\n\nKey actions before credit extension:\n1. **Verify MCA portal** for FY2023/2024/2025 AGM and balance sheet filings \u2014 Tofler data may be stale but gap needs confirmation\n2. **Obtain GSTIN** \u2014 not retrieved (IndiaFilings shows only Gmail contact)\n3. **\u20b91 lakh paid-up capital vs \u20b928.8 Cr revenue** \u2014 request ITR/bank statements for credit assessment\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 2/45 sources via Tor (Netherlands exit node) (25 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 45 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | IPL 2023 Season Preview Part 1: Delhi Capitals; Gauri Chhibber Khan &amp; her business ventures; India Daybook \u2013 Stocks in News* (+12 more) |\n| duckduckgo_tor | 10 | Shah International Paper Pvt. Ltd. - Trader - Wholesaler ...; Shah International Paper Pvt. Ltd. in Mumbai, Maharashtra, I; SHAH INTERNATIONAL PAPER PRIVATE LIMITED - ZaubaCorp (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- Shah International Paper Pvt. Ltd. - Trader - Wholesaler ... - IndiaMART \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Fshah%2Dinternational%2Dpapers%2Fabout]\n- Shah International Paper Pvt. Ltd. in Mumbai, Maharashtra, India ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tradeindia.com%2Fshah%2Dinternational%2Dpaper%2Dpvt%2]\n- SHAH INTERNATIONAL PAPER PRIVATE LIMITED - ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2FSHAH%2DINTERNATIONAL%2DPAPER%2DPRIVAT]\n- Shah International Paper Pvt. Ltd. in Mumbai - ExportersIndia \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.exportersindia.com%2Fshah%2Dinternational%2Dpaper%2Dp]\n- SHAH INTERNATIONAL PAPER PRIVATE LIMITED - Dun & Bradstreet \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.s]\n- Shah International Paper Private Limited Having Cin ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.falconebiz.com%2Fcompany%2FSHAH%2DINTERNATIONAL%2DPAP]\n- Shah International Paper Private Limited - 2026 Insights \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fcompany%2Fshah%2Dinternational%]\n- Shah International Paper Pvt Ltd - Supplier of A4 Paper Mumbai India \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.exporthub.com%2Fshah%2Dinternational%2Dpaper%2F&rut=c]\n- Shah International Paper Pvt. Ltd. Vidya Vihar, Mumbai, Maharashtra \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indianyellowpages.com%2Fmumbai%2Fshah%2Dinternational]\n- Shah International, Vidya Vihar West, Mumbai - Justdial \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.justdial.com%2FMumbai%2FShah%2DInternational%2DVidya%]\n\n**SOCIAL MENTION** (15)\n- IPL 2023 Season Preview Part 1: Delhi Capitals \u2014 *reddit* [https://reddit.com/r/Cricket/comments/11xmxvx/ipl_2023_season_preview_part_1_del]\n- Gauri Chhibber Khan &amp; her business ventures \u2014 *reddit* [https://reddit.com/r/BollyBlindsNGossip/comments/14b1k3b/gauri_chhibber_khan_her]\n- India Daybook \u2013 Stocks in News* \u2014 *reddit* [https://reddit.com/r/UpdateINDIA/comments/1jgc3cs/india_daybook_stocks_in_news/]\n- Some news you may have missed out on part 15. \u2014 *reddit* [https://reddit.com/r/pakistan/comments/9tezjb/some_news_you_may_have_missed_out_]\n- Can anyone be an HR nowadays? \u2014 *reddit* [https://reddit.com/r/IndianWorkplace/comments/1rkiaii/can_anyone_be_an_hr_nowada]\n- Don't join pvt ltd. (Also, ET+PT), That's 12 hours \u2014 *reddit* [https://reddit.com/r/IndianWorkplace/comments/1nx095g/dont_join_pvt_ltd_also_etp]\n- THE OVERLORDS: Who Was Jeffrey Epstein Really Working For? Four hypotheses. 237,000 documents. 5.37  \u2014 *reddit* [https://reddit.com/r/Epstein/comments/1rfy0tj/the_overlords_who_was_jeffrey_epst]\n- \u26a0\ufe0f WARNING: Zorvyn FinTech Pvt. Ltd. \u2014 Internship Scam with PROOF \u2014 Read Before Joining \u2014 *reddit* [https://reddit.com/r/SRMUNIVERSITY/comments/1sl1vsg/warning_zorvyn_fintech_pvt_l]\n- Found in a wooden chest bought at a secondhand shop \u2014 *reddit* [https://reddit.com/r/Weird/comments/1pisr9v/found_in_a_wooden_chest_bought_at_a_]\n- You Can Sell a Pvt Ltd Company Even If the Business Failed \u2014 *reddit* [https://reddit.com/r/StartUpIndia/comments/1t7vj69/you_can_sell_a_pvt_ltd_compan]\n- Today I became an Employed Jobless Programmer. \u2014 *reddit* [https://reddit.com/r/ProgrammerHumor/comments/ypbtax/today_i_became_an_employed_]\n- I just got scammed for \u20b980K from a fraud company called Go Life Vacation (OPC) Pvt. Ltd. \u2014 *reddit* [https://reddit.com/r/LegalAdviceIndia/comments/1h5en3t/i_just_got_scammed_for_80]\n- MEMORANDUM FOR THE RECORD: DUE DILIGENCE REPORT ON POTENTIAL SYSTEMIC MARKET MANIPULATION VIA TOTAL  \u2014 *reddit* [https://reddit.com/r/Superstonk/comments/1olv8ox/memorandum_for_the_record_due_d]\n- Filed an RTI against NHAI about the Devanahalli toll plaza. Here's why more of us should be doing th \u2014 *reddit* [https://reddit.com/r/bangalore/comments/1tdwdov/filed_an_rti_against_nhai_about_]\n- Was 2007 the greatest year in the history of Bollywood? \u2014 *reddit* [https://reddit.com/r/bollywood/comments/1np5yb9/was_2007_the_greatest_year_in_th]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "SHAH INTERNATIONAL PAPER PVT. LTD.",
+    "entity_country": "IN",
+    "entity_address": "505-A Wing, Neelkanth Business Park, Nathani Road, Near Vidhyavihar Station, Vidhyavihar (W), Mumbai, Maharashtra 400086, India",
+    "entity_tax_id": "U21098MH2012PTC230313",
+    "key_individuals": [
+      {
+        "name": "Rakesh Kanaiyalal Shah"
+      },
+      {
+        "name": "Ami Rakesh Shah"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 45
+}

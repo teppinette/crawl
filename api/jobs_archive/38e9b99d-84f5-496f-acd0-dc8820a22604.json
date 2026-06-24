@@ -1,0 +1,29 @@
+{
+  "job_id": "38e9b99d-84f5-496f-acd0-dc8820a22604",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "Test Entity",
+  "country": "US",
+  "created_at": "2026-04-29T01:01:56.507663+00:00",
+  "updated_at": "2026-04-29T01:02:54.839928+00:00",
+  "blob_path": "osint-staging/cir/americas/test_entity_US_20260429.json",
+  "report_summary": "**DONE: Test Entity, US \u2014 Risk: 4 REVIEW \u2014 Placeholder request; no real entity data provided; all workstreams returned null results; re-submit with real identifying information**\n\n---\n\n`~/crawl/output/test_entity_US_20260429.json` \u2192 uploaded to `stcrawlosint/osint-staging/americas/`\n\nThe report is structurally valid and correctly filed, but the REVIEW score (4) reflects the fact that a counterparty submitted with zero identifying information \u2014 no Tax ID, no address, no directors \u2014 is itself a compliance red flag in a real-world scenario. For a genuine research run, please re-submit with:\n\n| Required Field | Status |\n|---|---|\n| Full legal entity name | \u274c \"Test Entity\" is a placeholder |\n| Jurisdiction / Country | \u2705 US provided |\n| Tax ID / Registration number | \u274c Not provided |\n| Registered address | \u274c Not provided |\n| Directors / key individuals | \u274c Not provided |\n| Industry | \u274c Not provided |",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "Test Entity",
+    "entity_country": "US",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": null
+    }
+  }
+}

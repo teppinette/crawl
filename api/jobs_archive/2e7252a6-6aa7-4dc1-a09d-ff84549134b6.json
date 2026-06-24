@@ -1,0 +1,129 @@
+{
+  "job_id": "2e7252a6-6aa7-4dc1-a09d-ff84549134b6",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "AL REHMAN CHEMIlCAL INDUSTRIES (PRIVATE) LIMITED",
+  "country_code": "PK",
+  "created_at": "2026-05-04T15:50:10.545384+00:00",
+  "updated_at": "2026-05-04T15:51:30.273337+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:50:19.133496+00:00",
+      "verified": false,
+      "legal_name": null,
+      "registration_number": null,
+      "entity_status": null,
+      "company_type": null,
+      "cro": null,
+      "registration_date": null,
+      "fbr": null,
+      "all_matches": null,
+      "source": "SECP eServices (direct gov query)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:50:17.501731+00:00",
+      "found": true,
+      "name": "THE NEXUS LAW FIRM",
+      "linkedin_url": "https://www.linkedin.com/company/the-nexus-law-firm",
+      "industry": "Legal Services",
+      "company_size": "2-10 employees",
+      "locations": [],
+      "about": "",
+      "followers": 198,
+      "employees_on_linkedin": 2,
+      "organization_type": "Self-Owned",
+      "website": null,
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "Faisal Ikram",
+          "link": "https://pk.linkedin.com/in/faisal-ikram-b48891215?trk=org-employees"
+        },
+        {
+          "name": "Irfan Sandhu",
+          "link": "https://pk.linkedin.com/in/irfan-sandhu-094695388?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:51:30.272684+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 61,
+      "sources_searched": 37,
+      "sources_with_results": 3,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50,
+        "debarment_record": 1
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "AL REHMAN CHEMIlCAL INDUSTRIES (PRIVATE) LIMITED",
+    "country_code": "PK",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

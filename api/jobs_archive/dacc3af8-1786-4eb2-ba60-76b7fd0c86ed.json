@@ -1,0 +1,23 @@
+{
+  "job_id": "dacc3af8-1786-4eb2-ba60-76b7fd0c86ed",
+  "scenario": "cir",
+  "status": "failed",
+  "region": "europe",
+  "entity_name": "COPAP EUROPE",
+  "country": "FR",
+  "created_at": "2026-05-14T16:26:22.953839+00:00",
+  "updated_at": "2026-05-14T16:26:22.953839+00:00",
+  "blob_path": null,
+  "report_summary": null,
+  "error": "DATA SANITIZATION FAILURE \u2014 blocked terms detected in payload: Field 'entity_legal_name' contains blocked term 'copap'. This data must NEVER reach OpenClaw.",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "COPAP EUROPE",
+    "entity_country": "FR",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "priority": "standard"
+  }
+}

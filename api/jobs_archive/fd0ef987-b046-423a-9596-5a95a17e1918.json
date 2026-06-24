@@ -1,0 +1,44 @@
+{
+  "job_id": "fd0ef987-b046-423a-9596-5a95a17e1918",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "CANARA SECURITY PRESS LTD.",
+  "country": "IN",
+  "created_at": "2026-05-21T14:32:17.457655+00:00",
+  "updated_at": "2026-05-21T14:35:07.034393+00:00",
+  "blob_path": "osint-staging/cir/india/canara_security_press_ltd_IN_20260521.json",
+  "report_summary": "**DONE: Canara Security Press Limited, India \u2014 Risk: 3 MONITOR \u2014 43-year Manipal security printer; CIN U22219KA1982PLC005014; Revenue +48.62% FY2025; \u26a0\ufe0f AGM filing dates conflicting (2017 vs 2022); \u26a0\ufe0f Baikadi Narahari vs Ravindranath Shanbhogue director discrepancy; probable Manipal Group affiliation**\n\n`~/crawl/output/canara_security_press_ltd_IN_20260521.json` \u2014 8.4 KB, valid, research date 2026-05-21.\n\nTwo items requiring MCA portal verification before clearing:\n1. **Compliance** \u2014 ET says last AGM 2017, Vakilsearch says 2022 \u2014 which is correct?\n2. **Director** \u2014 Baikadi Narahari (subject block) vs Ravindranath Shanbhogue (ZaubaCorp) \u2014 confirm current board\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 2/49 sources via Tor (Netherlands exit node) (24 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 49 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | India Daybook \u2013 Stocks in News*; GameStop cannot enact a Share Recall. But I found evidence (; Dear SEC: THE BANK ROBBERS HAVE BEEN CAUGHT AND THE PROCEEDS (+12 more) |\n| duckduckgo_tor | 10 | CANARA SECURITY PRESS LIMITED - ZaubaCorp; CANARA SECURITY PRESS LIMITED - Company Profile - Tracxn; CANARA SECURITY PRESS LIMITED Details | Company Profile | Di (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- CANARA SECURITY PRESS LIMITED - ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2FCANARA%2DSECURITY%2DPRESS%2DLIMITED%2]\n- CANARA SECURITY PRESS LIMITED - Company Profile - Tracxn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Fcanara%2Dsecu]\n- CANARA SECURITY PRESS LIMITED Details | Company Profile | Directors Profile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.companydetails.in%2Fcompany%2Fcanara%2Dsecurity%2Dpre]\n- Canara security press limited - U22219KA1982PLC005014 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.instafinancials.com%2Fcompany%2Fcanara%2Dsecurity%2Dp]\n- Canara Security Press Limited - The Economic Times \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Feconomictimes.indiatimes.com%2Fcompany%2Fcanara%2Dsecurit]\n- Canara Security Press Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.c]\n- CANARA SECURITY PRESS LIMITED - IndiaFilings \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiafilings.com%2Fsearch%2Fcanara%2Dsecurity%2Dpress]\n- Canara Security Press Limited | Company Details \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.allindiaitr.com%2Fcompany%2Fcanara%2Dsecurity%2Dpress]\n- Canara Security Press Limited / U22219ka1982plc005014 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.falconebiz.com%2Fcompany%2FCANARA%2DSECURITY%2DPRESS%]\n- Canara Security Press Limited Company Profile - India - EMIS \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FIN%2FCanara_Secu]\n\n**SOCIAL MENTION** (14)\n- India Daybook \u2013 Stocks in News* \u2014 *reddit* [https://reddit.com/r/UpdateINDIA/comments/1sxsgyl/india_daybook_stocks_in_news/]\n- GameStop cannot enact a Share Recall. But I found evidence (and an amazing precedent) they can inste \u2014 *reddit* [https://reddit.com/r/Superstonk/comments/xpcxc1/gamestop_cannot_enact_a_share_re]\n- Dear SEC: THE BANK ROBBERS HAVE BEEN CAUGHT AND THE PROCEEDS OF THE HEIST HAVE BEEN LOCATED. PLEASE  \u2014 *reddit* [https://reddit.com/r/Superstonk/comments/wyhowu/dear_sec_the_bank_robbers_have_b]\n- FTX backdoor was through.. LedgerX.. with an allowed deficit of... $65 billion \u2014 *reddit* [https://reddit.com/r/Superstonk/comments/176qp0g/ftx_backdoor_was_through_ledger]\n- Street Fighter 6 Review Thread \u2014 *reddit* [https://reddit.com/r/Games/comments/13vj2fe/street_fighter_6_review_thread/]\n- The Pretty Flowers - Never Felt Bitter Ltd. 1st pressing LPs \u2014 *reddit* [https://reddit.com/r/VinylReleases/comments/1ssb53t/the_pretty_flowers_never_fel]\n- Silverco Mining Ltd. (SICO.v SICOF) Advances 30,000m Drill Program Targeting Major Silver Expansion  \u2014 *reddit* [https://reddit.com/r/wallstreetsmallcaps/comments/1rzcc4r/silverco_mining_ltd_si]\n- The GameStop Market Hedge Thesis. A comprehensive analysis using the data this sub has accumulated o \u2014 *reddit* [https://reddit.com/r/Superstonk/comments/vhe37m/the_gamestop_market_hedge_thesis]\n- A mob of shysters, spivs and useful idiots (Statement by Stephen Wright, February 18, 2026, ANL case \u2014 *reddit* [https://reddit.com/r/SaintMeghanMarkle/comments/1r8ex2y/a_mob_of_shysters_spivs_]\n- The Chicago Code - How a whole city wants to bankrupt GameStop \u2014 *reddit* [https://reddit.com/r/Superstonk/comments/nf6i4o/the_chicago_code_how_a_whole_cit]\n- #NIOCORP~NioCorp Developments Ltd. (NB) Presents at Morgan Stanley Virtual National Security &amp; C \u2014 *reddit* [https://reddit.com/r/NIOCORP_MINE/comments/1oxqrol/niocorpniocorp_developments_l]\n- Billionaire Boys Club Part 12 (BBC) - PLEASE PROVE ME WRONG? - Kenny's WARCHEST - SPECIALIZED PURPOS \u2014 *reddit* [https://reddit.com/r/Superstonk/comments/pcp37f/billionaire_boys_club_part_12_bb]\n- I\u2019m not in your Army \u2014 *reddit* [https://reddit.com/r/IDontWorkHereLady/comments/a74epc/im_not_in_your_army/]\n- [For Sale] Bloc Party \u2013 Silent Alarm Ltd Ed LP + Bonus 7\" (1 of 1000, VG+/EX) 2010 UK Press \u2014 *reddit* [https://reddit.com/r/VinylCollectors/comments/1nhdpfm/for_sale_bloc_party_silent]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "CANARA SECURITY PRESS LTD.",
+    "entity_country": "IN",
+    "entity_address": "Canara Security Building, Manipal, Karnataka 576119, India",
+    "entity_tax_id": "005014",
+    "key_individuals": [
+      {
+        "name": "Belavinakodige Madhu Subramanya"
+      },
+      {
+        "name": "Perdoor Vaman Mallya"
+      },
+      {
+        "name": "Baikadi Narahari"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 49
+}

@@ -1,0 +1,56 @@
+{
+  "job_id": "db721d7b-7bc2-4f61-9dec-3d5f5788fb1a",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "europe",
+  "entity_name": "A.S.C.Hemik doo",
+  "country": "RS",
+  "created_at": "2026-05-22T18:20:23.526593+00:00",
+  "updated_at": "2026-05-22T18:23:47.922654+00:00",
+  "blob_path": null,
+  "report_summary": "Same entity, third submission \u2014 report is current at Rev 2.\n\n**DONE: A.S.C. Hemik D.O.O., RS \u2014 Risk: 3 MONITOR**\n\nFile: `~/crawl/output/asc_hemik_doo_RS_20260522.json` \u2705 (Rev 2)\nBlob: `europe/asc_hemik_doo_RS_20260522.json` \u2705\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 1/49 sources via Tor (Netherlands exit node) (10 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 49 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | A.S.C. HEMIK doo - LinkedIn; A.S.C. HEMIK DOO BEOGRAD Company Profile | Nova Pazova | Com; A.S.C. Hemik D.O.O. Beograd (Serbia) (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- A.S.C. HEMIK doo - LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Frs.linkedin.com%2Fcompany%2Fa%2Ds%2Dc%2Dhemik%2Ddoo&rut=f]\n- A.S.C. HEMIK DOO BEOGRAD Company Profile | Nova Pazova | Competitors ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.a]\n- A.S.C. Hemik D.O.O. Beograd (Serbia) \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FYU%2FASC_Hemik_D]\n- A.S.C. HEMIK DOO BEOGRAD - CompanyWall Business \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.companywall.rs%2Ffirma%2Fasc%2Dhemik%2Ddoo%2Dbeograd%]\n- A.S.C. Hemik doo , Yugoslavia , Rubber & Plastics - Company List \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.listcompany.org%2FA_S_C_Hemik_Doo_Info.html&rut=9ffda]\n- A.S.C. Hemik d.o.o. - Moja Nova Pazova \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.mojanovapazova.com%2Ffirme%2Fnova%2Dpazova%2Dpvc%2Dst]\n- A.S.C. Hemik - Crunchbase Company Profile & Funding \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.crunchbase.com%2Forganization%2Fa%2Ds%2Dc%2Dhemik&rut]\n- A.S.C. Hemik Doo Beograd - National Company | \u5168\u7403\u516c\u53f8\u6570\u636e\u96c6\u5f00\u653e\u5e73\u53f0 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fdatabasesets.com%2Fnational%2Dcompany%2Fid%2F153038500&ru]\n- A.s.c. Hemik D.o.o. Beograd - Vnbis \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fvnbis.com%2Fproducts%2Fcompanies%2Ftrue%2Fasc%2Dhemik%2Dd]\n- Supply Chain Data Of A S C Hemik Doo Company Profile | Trademo \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.trademo.com%2Fcompanies%2Fa%2Ds%2Dc%2Dhemik%2Ddoo%2F4]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "europe: Report file not found on remote VM (europe)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "A.S.C.Hemik doo",
+    "entity_country": "RS",
+    "entity_address": "Vojvode Brane 57, 11050 Beograd, Zvezdara, Serbia",
+    "entity_tax_id": "17317962",
+    "key_individuals": [
+      {
+        "name": "Jovan Le\u010di\u0107",
+        "title": "Director"
+      },
+      {
+        "name": "Tatjana Karanovi\u0107 Le\u010di\u0107"
+      },
+      {
+        "name": "Jovan Vujanovi\u0107"
+      },
+      {
+        "name": "Jovan Le\u010di\u0107",
+        "title": "UBO"
+      },
+      {
+        "name": "Tatjana Karanovi\u0107 Le\u010di\u0107",
+        "title": "UBO"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "europe": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (europe)"
+    }
+  },
+  "errors": [
+    "europe: Report file not found on remote VM (europe)"
+  ],
+  "dark_web_findings": 0,
+  "dark_web_sources": 49
+}

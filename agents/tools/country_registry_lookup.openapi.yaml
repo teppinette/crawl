@@ -1,0 +1,69 @@
+openapi: 3.0.3
+info:
+  title: Country Registry Lookup
+  version: "1.0.0"
+  description: >
+    Look up a company in its home-country government registry. The gateway
+    routes the call to the appropriate per-country adapter on crawl-verify
+    (41 countries supported: Companies House for GB, SEC EDGAR for US,
+    Tofler/MCA21 for IN, Tianyancha for CN, etc.). Returns the structured
+    registry record with source attribution (validation_source field
+    identifies the actual upstream gov source).
+
+    Returns source_id="<cc_lowercase>_registry" so each country's evidence
+    is tier-tagged against its own sources_catalog entry.
+
+servers:
+  - url: http://20.94.45.219:8400/api/v1
+
+paths:
+  /sources/country_registry/lookup:
+    post:
+      operationId: country_registry_lookup
+      summary: Look up entity in its home-country gov registry
+      parameters:
+        - in: query
+          name: country
+          required: true
+          schema: { type: string, minLength: 2, maxLength: 2 }
+          description: ISO-2 country code (GB, US, DE, IN, CN, etc.)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [entity_name]
+              properties:
+                entity_name: { type: string, maxLength: 500 }
+                registration_number:
+                  type: string
+                  description: Country-specific reg number (CIN for IN, USCC for CN, company_number for GB, etc.)
+      responses:
+        '200':
+          description: Registry record (or NOT_FOUND with source attribution)
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [source_id, source_url, fetched_at]
+                properties:
+                  source_id: { type: string, example: gb_registry }
+                  source_url: { type: string }
+                  fetched_at: { type: string, format: date-time }
+                  found: { type: boolean }
+                  legal_name: { type: string }
+                  status: { type: string }
+                  registration_number: { type: string }
+                  registration_date: { type: string }
+                  registered_address: { type: string }
+                  directors:
+                    type: array
+                    items:
+                      type: object
+                      additionalProperties: true
+                  validation_source:
+                    type: object
+                    description: Identifies the actual upstream gov registry hit
+                    additionalProperties: true
+                  note: { type: string }

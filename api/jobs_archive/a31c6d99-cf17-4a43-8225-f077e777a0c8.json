@@ -1,0 +1,135 @@
+{
+  "job_id": "a31c6d99-cf17-4a43-8225-f077e777a0c8",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "THE PRINTERS (MYSORE) PVT LTD.",
+  "country_code": "IN",
+  "created_at": "2026-05-04T14:13:47.042491+00:00",
+  "updated_at": "2026-05-04T14:14:26.983915+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:13:53.735656+00:00",
+      "verified": true,
+      "legal_name": "THE PRINTERS (MYSORE) PRIVATE LIMITED",
+      "cin": "U22110KA1948PTC000521",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "04 February, 1948",
+      "directors": [
+        "Kanekal Nettakallappa Tilak Kumar",
+        "Parul Anant Shah",
+        "others"
+      ],
+      "registered_address": "PLOT NO.7-12,KUMBALGODU INDL.AREA,MYSORE ROAD B'LORE-560074",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:13:53.927755+00:00",
+      "found": true,
+      "name": "The Printers Mysore | Deccan Herald | Prajavani",
+      "linkedin_url": "https://in.linkedin.com/company/theprintersmysore",
+      "industry": "Newspaper Publishing",
+      "company_size": "1,001-5,000 employees",
+      "locations": [
+        "75 MG Road Bangalore, Karnataka 560001, IN",
+        "Plot No. 7-12, Kumbalgodu Industrial Area 2nd Phase Bengaluru, Karnataka 560074, IN"
+      ],
+      "about": "The Printers Mysore limited is a leading Media Company in India with iconic media brands like Deccan Herald and Prajavani. The Printers Mysore is going from being an integral part of the print media ecosystem to a diversified media group. Capitalizing on the strength of its media brands, it has embarked on a journey to develop a digital media business for the 21st century media consumer. Currently Deccan Herald and Prajavani are available across various digital products such as desktop and mobil",
+      "followers": 17633,
+      "employees_on_linkedin": 586,
+      "organization_type": "Privately Held",
+      "website": "https://printersmysore.com/",
+      "specialties": "Newspapers, Advertising, Journalism, Circulation and Distribution, Magazines, Digital Media, Events and Activations, Media Production, News Media, Digital Media, and Internet",
+      "notable_employees": [
+        {
+          "name": "Maullika Sharma",
+          "link": "https://in.linkedin.com/in/maullikasharma?trk=org-employees"
+        },
+        {
+          "name": "Rajeev Velur",
+          "link": "https://in.linkedin.com/in/velurrajeev?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:14:26.983300+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 61,
+      "sources_searched": 37,
+      "sources_with_results": 3,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50,
+        "debarment_record": 1
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "THE PRINTERS (MYSORE) PVT LTD.",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

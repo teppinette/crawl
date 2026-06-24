@@ -1,0 +1,44 @@
+{
+  "job_id": "83ec07b6-11a6-4bbf-85d3-c573c93ce766",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "KAMSONS POLYMERS LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-20T16:54:52.755940+00:00",
+  "updated_at": "2026-05-20T17:02:53.592584+00:00",
+  "blob_path": "osint-staging/cir/india/kamsons_polymers_limited_IN_20260520.json",
+  "report_summary": "**DONE: Kamsons Polymers Limited, India \u2014 Risk: 2 CLEAR \u2014 Acrylic emulsions/PUD manufacturer (group since 1972); CIN U24230MH2005PLC151012; Revenue \u20b9313 Cr FY25; FY24 profit +36%; \u26a0\ufe0f 4 new KMPs missing from subject block; zero litigation**\n\n---\n\n`~/crawl/output/kamsons_polymers_limited_IN_20260520.json` \u2014 17.1 KB, valid JSON, 10 sources, all 8 workstreams complete\n\n---\n\n## Key Findings\n\n### Entity\n- **CIN:** U24230MH2005PLC151012 \u2713 \u00b7 Public Limited (Unlisted) \u00b7 Incorporated Feb 4, 2005\n- **Group since 1972** \u00b7 Former names: Supreme Drugs Pvt Ltd \u2192 Kamsons Polymers\n- **Brands:** Kamicryl (acrylic emulsions) \u00b7 Kamthane (polyurethane dispersions)\n- **Plants:** Two near Mumbai, ~35,000 MT capacity \u00b7 **Technology partner:** MOLEQUAL Solutions (UK)\n- **Website:** kamsons.com\n\n### Financials \u2014 Strong Growth Trajectory\n| Year | Revenue | PAT | EBITDA | Net Worth |\n|---|---|---|---|---|\n| FY2025 | **\u20b9313 Cr** | \u2014 | \u2014 | \u2014 |\n| FY2024 | \u20b9285 Cr est | **+36.43%** | **+23.81%** | **+37.65%** |\n\n### \u26a0\ufe0f 4 KMPs Appointed Oct-Dec 2024 Missing from Subject Block\n\n| Name | DIN | Role | Since |\n|---|---|---|---|\n| Nidhi Kirti Bhatt | 07773954 | **Independent Director** | Oct 30, 2024 |\n| Dhiren Ashok Bontra | 09591605 | **Independent Director** | Oct 30, 2024 |\n| Pradip Shivshankar Joshi | \u2014 | **CFO** | Nov 27, 2024 |\n| Neha Moonka | 07514086 | **Company Secretary** | Dec 11, 2024 |\n\nPositive sign: governance significantly strengthened in Q4 2024.\n\n### Note: Two Kamsons Entities\n- **Subject entity:** U24230MH2005**PLC**151012 (Public Limited) \u2190 correct\n- **Different entity:** U24230MH2005**PTC**151012 (Private Limited)\n\n**Sanctions CLEAR \u00b7 No PEP \u00b7 Zero litigation \u00b7 Zero adverse media \u00b7 Abhyudaya Co-op Bank (lender, \u20b953 Cr) is bank-level issue, not Kamsons risk**\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**1 actionable findings** from 3/49 sources via Tor (Netherlands exit node) (25 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: www.kamsons.com\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Emulsion Polymers Market Growth Around 6.4% CAGR By 2026; I spent a year building a \"PCPartPicker\" for AR-15s because ; Mechs can have a place in realistic military sci fi, if you  (+12 more) |\n| duckduckgo_tor | 10 | Kamsons - Acrylic Polymer Emulsion for Waterproofing, Constr; Building Chemicals, Construction Chemicals, Acrylic Polymer ; Kamsons Polymers Limited | Molequal Solutions Ltd. (+7 more) |\n| hudsonrock_cavalier | 1 | www.kamsons.com |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- www.kamsons.com \u2014 *hudsonrock_cavalier*\n\n**WEB MENTION** (10)\n- Kamsons - Acrylic Polymer Emulsion for Waterproofing, Construction ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.kamsons.com%2F&rut=7e07930d1ea40f853e980482666d35e3fd]\n- Building Chemicals, Construction Chemicals, Acrylic Polymer Emulsion ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fkamsons.net%2F&rut=050bb9ba8304979bfeeb2b98775c5230614121]\n- Kamsons Polymers Limited | Molequal Solutions Ltd. \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.molequal.com%2Fkamsons&rut=e10d034354d86895e9e511fc0b]\n- Kamsons - LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2Fkamsonsindia&rut=9bd623d9d96]\n- KAMSONS POLYMERS PRIVATE LIMITED - Dun & Bradstreet \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.k]\n- Kamsons Polymers Limited - 2026 Insights - The Company Check \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fcompany%2Fkamsons%2Dpolymers%2D]\n- Kamsons Polymers Limited Financials | Company Details - Tofler \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tofler.in%2Fkamsons%2Dpolymers%2Dlimited%2Fcompany%2F]\n- KAMSONS POLYMERS PVT.LTD. Details | Company Profile | Directors Profile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.companydetails.in%2Fcompany%2Fkamsons%2Dpolymers%2Dpv]\n- Kamsons Polymers IPO Date, Price, GMP, Review, Details \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.chittorgarh.com%2Fipo%2Fkamsons%2Dpolymers%2Dipo%2F21]\n- Kamsons Polymers Limited Company Profile - India - EMIS \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FIN%2FKamsons_Pol]\n\n**SOCIAL MENTION** (15)\n- Emulsion Polymers Market Growth Around 6.4% CAGR By 2026 \u2014 *reddit* [https://reddit.com/r/u_Manaliahire/comments/bwzo5o/emulsion_polymers_market_grow]\n- I spent a year building a \"PCPartPicker\" for AR-15s because I struggled to figure out what to build  \u2014 *reddit* [https://reddit.com/r/ar15/comments/1rxbz40/i_spent_a_year_building_a_pcpartpicke]\n- Mechs can have a place in realistic military sci fi, if you make the right assumptions \u2014 *reddit* [https://reddit.com/r/worldbuilding/comments/1p931uj/mechs_can_have_a_place_in_re]\n- Polymer clay \u2013 this was my most challenging succulent project yet. The arrangement is quite large, a \u2014 *reddit* [https://reddit.com/r/succulents/comments/1jw8445/polymer_clay_this_was_my_most_c]\n- Alternate Recipe Ranking 1.0 - Optimizing for Time/Effort \u2014 *reddit* [https://reddit.com/r/SatisfactoryGame/comments/1fekus9/alternate_recipe_ranking_]\n- COMEBACK HOGAYA YAAROOOOO (90%ile --------&gt; 278 15S1) \u2014 *reddit* [https://reddit.com/r/Bitsatards/comments/1sm08f2/comeback_hogaya_yaarooooo_90ile]\n- Norvina \u2014 *reddit* [https://reddit.com/r/rupaulsdragrace/comments/1fh2gym/norvina/]\n- Polymer Pew is back!! 20% off entire site for limited time. \u2014 *reddit* [https://reddit.com/r/supersafety/comments/1m038yj/polymer_pew_is_back_20_off_ent]\n- I built a GIANT battery factory to help people with their permadeath runs \u2014 *reddit* [https://reddit.com/r/NoMansSkyTheGame/comments/1li390w/i_built_a_giant_battery_f]\n- I tried making a dog as small as I possibly could out of clay \u2014 *reddit* [https://reddit.com/r/somethingimade/comments/1r1gc65/i_tried_making_a_dog_as_sma]\n- [Pistol] Tanfoglio Limited Pro, Polymer Frame, 10mm, SAO, 14 Round Mag $865 \u2014 *reddit* [https://reddit.com/r/gundeals/comments/1imdglg/pistol_tanfoglio_limited_pro_poly]\n- Limited Edition 2000 Lei, Polymer Note from Romania commemorating an eclipse \u2014 *reddit* [https://reddit.com/r/Banknotes/comments/1p4cubv/limited_edition_2000_lei_polymer]\n- Daily GOOGLE GOON SQUAD: $GOOGL$ is the true AI king and it\u2019s about to print \u2014 *reddit* [https://reddit.com/r/wallstreetbets/comments/1oeljk3/daily_google_goon_squad_goo]\n- After production delays due to COVID 19, Glock has announced the release of a Polymer-frame, hammer- \u2014 *reddit* [https://reddit.com/r/1911/comments/ttpqgp/after_production_delays_due_to_covid_1]\n- Upgrade to Hall Effect Joystick \u2014 *reddit* [https://reddit.com/r/SteamDeck/comments/1qr82dp/upgrade_to_hall_effect_joystick/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "KAMSONS POLYMERS LIMITED",
+    "entity_country": "IN",
+    "entity_address": "1003 Embassy Chamber 10th Floor, 3rd Road CTS-E/85 859 B-2 Plot No 5, Opp Simran Plaza Khar (West), Mumbai City, Mumbai, Maharashtra, India 400052",
+    "entity_tax_id": "U24230MH2005PLC151012",
+    "key_individuals": [
+      {
+        "name": "Navin Raman Mehra"
+      },
+      {
+        "name": "Kunal Mehra"
+      },
+      {
+        "name": "Sapna Navin Mehra"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 1,
+  "dark_web_sources": 49
+}

@@ -1,0 +1,41 @@
+{
+  "job_id": "c4bc37c5-df9d-4c7f-8dd3-1193741abbb9",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "gulf",
+  "entity_name": "Agro China Pakistan Pvt Ltd",
+  "country": "PK",
+  "created_at": "2026-05-01T14:51:05.231856+00:00",
+  "updated_at": "2026-05-01T15:01:49.592880+00:00",
+  "blob_path": "osint-staging/cir/gulf/agro_china_pakistan_pvt_ltd_PK_20260501.json",
+  "report_summary": "Blob uploaded (HTTP 201). Research complete.\n\n---\n\n**DONE: Agro China Pakistan Pvt Ltd, PK \u2014 Risk: 3 MONITOR \u2014 Legitimate agrochemical importer within Topsun Group; NTN confirmed; no sanctions/NAB/media hits; monitoring warranted for HHP imports (carbofuran, paraquat) and UAE FZE opacity**\n\n---\n\n## Research Summary\n\n### Entity Confirmed\n**AGROCHINA PAKISTAN (PVT.) LIMITED** \u2014 NTN **4334750-9** confirmed in Pakistan Customs records. Registered address: Suite 23-B, Block P, Phase II, Johar Town, Lahore. Established January 2013. Website: agrochinapak.com (footer: *\"Powered by Topsun Technologies\"*).\n\n---\n\n### Key Findings\n\n| Check | Status | Detail |\n|---|---|---|\n| **NTN 4334750-9** | \u2705 CONFIRMED IN CUSTOMS | NTN 4334750 found in Pakistan Customs BoL (Oct 2018). ATL active/inactive status UNVERIFIED (CAPTCHA-gated portal) |\n| **SECP Registration** | \u26a0\ufe0f UNVERIFIED | Portal JS-gated; company is actively importing at scale ($3.03M, 2025\u20132026), consistent with registered status |\n| **OFAC/UN/EU/UK Sanctions** | \u2705 NO HITS | Entity, directors, group entities \u2014 all clean |\n| **NAB** | \u2705 NO HITS | No inquiries, investigations, or references found |\n| **Courts** | \u2705 NO HITS | No Lahore HC, Sindh HC, IHC, or SC cases found |\n| **Adverse Media** | \u2705 NONE | Dawn, Geo, The News, BR \u2014 no adverse coverage |\n| **SBP Sanctions** | \u2705 NO HITS | No watchlist references found |\n| **Dark Web** | \u26a0\ufe0f ERROR | Tor fetch failed; recommend gateway re-scan |\n\n---\n\n### Corporate Structure\n**Topsun Group Pakistan** (est. 2012, Multan) is the parent group. AgroCHINA Pakistan is one of several operating entities:\n\n- **Dr. Usman Ali** \u2014 CEO (also CEO of **Topsun Global FZE**, Hamriyah Free Zone, Sharjah, UAE)\n- **M. Farooq Hasnain** \u2014 COO\n- Other group entities: Topsun Chemicals Enterprises, SinoPak Chemicals, Sona Chemicals, KisanCare, Lotus Quality Seeds\n\n---\n\n### Trade Intelligence\n- **$3.03M imports** | 76 shipments | Feb 2025\u2013Jan 2026\n- Sources: \ud83c\udde8\ud83c\uddf3 China 52% | \ud83c\uddf9\ud83c\uddfc Taiwan 27% | \ud83c\uddf0\ud83c\uddf7 South Korea 15% | \ud83c\uddf4\ud83c\uddf2 Oman 3% | \ud83c\uddf2\ud83c\uddfe Malaysia 3%\n- Top HS codes: **27073000** (Xylene solvent, 42% of value), **29269050** (nitrile compounds, 12%)\n- Historical confirmed: **Carbofuran 95% TC** (18,000 KG, 2018, Sinoway International Jiangsu); **Paraquat 20 SL** (34,350 KG, 2018)\n\n---\n\n### Risk: **3 \u2013 MONITOR**\nThree moderate factors:\n1. **HHP Pesticides**: Imports of WHO Class 1b Highly Hazardous Pesticide technical grades (carbofuran, paraquat) \u2014 legal in Pakistan but banned in EU/US; China banned carbofuran domestically June 2024\n2. **Multi-entity opacity**: UAE FZE (Topsun Global FZE) + multiple Pakistani brands; UBO chain not portal-confirmed\n3. **Registry gaps**: FBR ATL and SECP not directly verified (CAPTCHA portals); manual verification recommended\n\n**Output saved:** `~/crawl/output/agro_china_pakistan_pvt_ltd_PK_20260501.json` \u2705\n**Blob uploaded:** `crawl-gulf/agro_china_pakistan_pvt_ltd_PK_20260501.json` \u2192 stcrawlosint/osint-staging \u2705\n---\n\n## DARK WEB SCREENING \u2014 CRITICAL\n**18 findings** from 3/53 sources via Tor (Netherlands exit node)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| SSL certificates (crt.sh) | 6 |\n| Web mentions (Tor-routed) | 10 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: topsungroup.pk\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "Agro China Pakistan Pvt Ltd",
+    "entity_country": "PK",
+    "registration_number": "4334750-9",
+    "entity_tax_id": "4334750-9",
+    "entity_website": "https://topsungroup.pk",
+    "key_individuals": [
+      {
+        "name": "Muhammad Usman Ali",
+        "role": "CEO"
+      },
+      {
+        "name": "Muhammad Farooq Hasnain",
+        "role": "COO"
+      }
+    ],
+    "research_focus": "Verify NTN 4334750-9 on FBR. Verify SECP registration. Check NAB. Search Pakistani courts and media."
+  },
+  "region_status": {
+    "gulf": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 18,
+  "dark_web_sources": 53
+}

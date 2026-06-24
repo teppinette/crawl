@@ -1,0 +1,29 @@
+{
+  "job_id": "38aa9990-d9ce-45bf-9d1b-d8389ee97c27",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "Chemnine LLP",
+  "country": "IN",
+  "created_at": "2026-04-29T01:04:03.688965+00:00",
+  "updated_at": "2026-04-29T01:10:06.001142+00:00",
+  "blob_path": "osint-staging/cir/india/chemnine_llp_IN_20260429.json",
+  "report_summary": "**DONE: Chemnine LLP, India \u2014 Risk: 5 BLOCK \u2014 CRITICAL: Probable sanctions circumvention successor to OFAC SDN #55874 (C.J. Shah and Co.); principals are sons of SDN entity's Managing Partner; incorporated 43 days before designation; \u20b9250 Cr bank facilities raised within 64 days post-designation; predecessor entity (CJ Shah Chemicals LLP) simultaneously wound down**\n\n---\n\n## \u26d4 ESCALATION REQUIRED \u2014 Chemnine LLP\n\n`~/crawl/output/chemnine_llp_IN_20260429.json` (valid, 24 KB)\n\n---\n\n### The Succession Chain \u2014 Fully Mapped\n\n```\nC.J. SHAH AND CO. [OFAC SDN #55874 \u2014 Oct 9, 2025]\nManaging Partner: Apurva Mahesh Shah (DIN 02007622)\n         \u2502\n         \u251c\u2500\u25ba CJ Shah Chemicals LLP (ACA-3549) \u2190 WINDING DOWN\n         \u2502   Partners: Apurva Mahesh Shah + Aashil Apurva Shah\n         \u2502   Inc: March 2023 | Status: Under Process of Striking Off\n         \u2502\n         \u2514\u2500\u25ba CHEMNINE LLP (ACQ-8594) \u2190 ACTIVE / NEW VEHICLE\n             Partners: Aashil Apurva Shah + Shaurya Apurva Shah\n             (sons of the SDN entity's Managing Partner)\n             Inc: August 27, 2025 (43 days BEFORE OFAC designation)\n             Bank charges: \u20b9250 Cr (Dec 2025 \u2014 64 days post-designation)\n```\n\n---\n\n### 9 Confirmed Sanctions Evasion Indicators\n\n| # | Indicator | Severity |\n|---|---|---|\n| 1 | Incorporated 43 days before OFAC designation | CRITICAL |\n| 2 | Predecessor (CJ Shah Chemicals LLP) wound down immediately after designation | CRITICAL |\n| 3 | \u20b9250 Cr banking for a \u20b920,000 capital entity \u2014 12,500\u00d7 leverage | CRITICAL |\n| 4 | Same business activity (wholesale chemicals, NIC 46) as SDN entity | HIGH |\n| 5 | Shaurya Shah has ZERO prior corporate history \u2014 sole function is Chemnine DP | HIGH |\n| 6 | Identical nominal capital (\u20b920,000) to predecessor CJ Shah Chemicals LLP | HIGH |\n| 7 | Address deliberately changed from known CJ Shah Nariman Point cluster | HIGH |\n| 8 | LEI issued \u2014 prepared for international financial transactions | MEDIUM |\n| 9 | Both bank charges registered on consecutive days (Dec 10 & 12) \u2014 coordinated facility | MEDIUM |\n\n---\n\n### Immediate Actions Required\n\n1. **NOW:** Add Chemnine LLP and both DPs to COPAP block list\n2. **NOW:** Chemnine is listed as a *known COPAP counterparty* in TOOLS.md \u2014 scan all past transactions immediately\n3. **48H:** Escalate to legal/compliance leadership\n4. **Counsel:** Evaluate OFAC voluntary disclosure obligation for any prior Chemnine transactions\n5. **Consider:** OFAC tip referral and FIU-IND suspicious transaction report",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "Chemnine LLP",
+    "entity_country": "IN",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  }
+}

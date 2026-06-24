@@ -1,0 +1,41 @@
+{
+  "job_id": "9e11e6b4-b19c-4339-acb9-b550bc37d6c8",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "gulf",
+  "entity_name": "Shalimar Resins Industries (Pvt) Ltd",
+  "country": "PK",
+  "created_at": "2026-05-13T19:40:39.214318+00:00",
+  "updated_at": "2026-05-13T19:43:29.100950+00:00",
+  "blob_path": "osint-staging/cir/gulf/shalimar_resins_industries_pvt_ltd_PK_20260513.json",
+  "report_summary": "This entity was fully researched **~4.5 hours ago** today. The complete report is already saved and uploaded.\n\n---\n\n**Existing report:** `~/crawl/output/shalimar_resins_industries_pvt_ltd_PK_20260513.json`\n**Blob:** `crawl-gulf/shalimar_resins_industries_pvt_ltd_PK_20260513.json` \u2192 stcrawlosint/osint-staging \u2705\n\n**DONE: Shalimar Resins Industries (Pvt) Ltd, PK \u2014 Risk: 2 CLEAR \u2014 Active Pakistani coatings chemical manufacturer since 1997; NTN + STRN + CNIC confirmed; no sanctions/NAB/adverse media; ATIR tax case won 2025**\n\n---\n\n### Summary of findings (from the existing report):\n\n| Check | Status |\n|---|---|\n| **NTN 1950679** | \u2705 VERIFIED_ACTIVE \u2014 confirmed in Pakistan Customs records AND PCA Corporate Member List (NTN 1950679-1; STRN 0302-3907001-19) |\n| **SECP** | \u26a0\ufe0f UNCONFIRMED via portal (CAPTCHA-gated); 25+ year operating history makes registration virtually certain |\n| **CNIC (Muhammad Ahmad MD)** | \u2705 35202-2682252-9 confirmed from PCA directory |\n| **Sanctions (OFAC/UN/EU/UK)** | \u2705 NO HITS |\n| **NAB** | \u2705 NO HITS |\n| **Courts** | \u2705 ATIR STA No.599/LB/2025 \u2014 company WON full relief (positive) |\n| **Media (Dawn/Geo/The News/BR)** | \u2705 NO ADVERSE |\n| **DRAP** | \u2705 N/A \u2014 coatings chemicals, not pharma/agro |\n| **Chemical dual-use** | \u2705 NONE \u2014 alkyd resins, phthalic anhydride, cellulose ethers are standard paint industry materials |\n| **Trade** | \u2705 Confirmed imports from South Korea (phthalic anhydride, Bermocoll); active PCA + LCCI member; Pakistan Coating Show 2026 participant |\n\n**Risk Score: 2 \u2014 CLEAR.** No re-research needed unless there is a specific new concern or different entity intended.",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "Shalimar Resins Industries (Pvt) Ltd",
+    "entity_country": "PK",
+    "entity_address": "21-KM Ferozepur Road, Opp Masjid Ibrahim, Lahore, Punjab, 54000, Pakistan",
+    "entity_website": "https://www.knowde.com/stores/shalimar-resins",
+    "entity_tax_id": "NTN 1950679",
+    "key_individuals": [
+      {
+        "name": "Muhammad Ahmad"
+      },
+      {
+        "name": "Muhammad Faisal"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "gulf": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_error": "name 'dw_by_source' is not defined"
+}

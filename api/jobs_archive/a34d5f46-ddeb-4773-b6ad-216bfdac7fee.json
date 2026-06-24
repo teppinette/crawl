@@ -1,0 +1,44 @@
+{
+  "job_id": "a34d5f46-ddeb-4773-b6ad-216bfdac7fee",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "CHANDRA PRABHA PUBLICATIONS PRIVATE LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-21T12:43:54.164930+00:00",
+  "updated_at": "2026-05-21T12:46:56.933039+00:00",
+  "blob_path": null,
+  "report_summary": "**DONE: Chandra Prabha Publications Private Limited, India \u2014 Risk: 2 CLEAR \u2014 29-year Delhi publisher; CIN U02221DL1996PTC080453; Darya Ganj; Revenue \u20b910.7 Cr FY25 (+96%); AGM Sep 30, 2025 current**\n\n`~/crawl/output/chandra_prabha_publications_pvt_ltd_IN_20260521.json` \u2014 7 KB, valid, research date 2026-05-21, all 8 workstreams complete.\n\nTwo notes:\n- \u26a0\ufe0f **NIC code mismatch**: MCA shows U02221 = Forestry/Logging \u2014 an incorporation-era miscoding. Actual business is publishing (Darya Ganj). No compliance risk.\n- \u26a0\ufe0f **96% revenue CAGR**: from ~\u20b95.5 Cr to \u20b910.7 Cr \u2014 worth verifying if organic or a one-time bulk order spike.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 3/45 sources via Tor (Netherlands exit node) (23 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 45 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Elon Musk says Americans are \"too retarded\" for skilled jobs; DnDBeyond just nuked their Campaign page by suddenly setting; New study reveals private groups behind the 'plandemic' disi (+12 more) |\n| duckduckgo_tor | 10 | CHANDRA PRABHA PUBLICATIONS PRIVATE LIMITED - ZaubaCorp; Chandra Prabha Publications Private Limited; Chandra Prabha Publications Private Limited - 2026 Insights (+7 more) |\n| dehashed | 1 |  (+1 more) |\n\n### All findings detail\n\n**WEB MENTION** (8)\n- CHANDRA PRABHA PUBLICATIONS PRIVATE LIMITED - ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2Fcompany%2FCHANDRA%2DPRABHA%2DPUBLICAT]\n- Chandra Prabha Publications Private Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.c]\n- Chandra Prabha Publications Private Limited - 2026 Insights \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fcompany%2Fchandra%2Dprabha%2Dpu]\n- CHANDRA PRABHA PUBLICATIONS PRIVATE LIMITED - IndiaFilings \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiafilings.com%2Fsearch%2Fchandra%2Dprabha%2Dpublic]\n- Chandra Prabha Publications Private Limited - Company Profile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Fchandra%2Dpra]\n- Chandra Prabha Publications Private Limited Having Cin ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.falconebiz.com%2Fcompany%2FCHANDRA%2DPRABHA%2DPUBLICA]\n- Chandra Prabha Publications Pvt Ltd - Company Profile and News \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.bloomberg.com%2Fprofile%2Fcompany%2F2620692D%3AIN&rut]\n- Chandra Prabha Publications Private Limited - corpintel.io \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fcorpintel.io%2FCHANDRA%2DPRABHA%2DPUBLICATIONS%2DPRIVATE%]\n\n**SOCIAL MENTION** (15)\n- Elon Musk says Americans are \"too retarded\" for skilled jobs. Musk is calling for mass layoffs in bo \u2014 *reddit* [https://reddit.com/r/WorkReform/comments/1hrvhf5/elon_musk_says_americans_are_to]\n- DnDBeyond just nuked their Campaign page by suddenly setting a 2048 character limit to Public and Pr \u2014 *reddit* [https://reddit.com/r/DnD/comments/1m8i69o/dndbeyond_just_nuked_their_campaign_pa]\n- New study reveals private groups behind the 'plandemic' disinformation campaign. By social engineeri \u2014 *reddit* [https://reddit.com/r/science/comments/ov6b9p/new_study_reveals_private_groups_be]\n- Neighbours putting up a fence. How to figure out if land is private or public, and who to speak to? \u2014 *reddit* [https://reddit.com/r/LegalAdviceUK/comments/1sbj1oz/neighbours_putting_up_a_fenc]\n- Which actor acts like a family man in public, but a bachelor in private? \u2014 *reddit* [https://reddit.com/r/Fauxmoi/comments/1b48uy7/which_actor_acts_like_a_family_man]\n- The post saying there's a 20% limit on donations to a public school is completely unsourced and made \u2014 *reddit* [https://reddit.com/r/nba/comments/965n84/the_post_saying_theres_a_20_limit_on_do]\n- I'm trying to limit the number of homes Private Equity can own in Columbus. AMA. \u2014 *reddit* [https://reddit.com/r/Columbus/comments/1oznquv/im_trying_to_limit_the_number_of_]\n- Here are the associations between individuals and organizations that influence Indian politics and d \u2014 *reddit* [https://reddit.com/r/IndiaSpeaks/comments/dyhxzs/here_are_the_associations_betwe]\n- SquidVerse Token \ud83e\uddec | Launch 08.12.21 16:00 UTC \ud83d\ude80 | Marketing Started With Twitter Influencers on Boa \u2014 *reddit* [https://reddit.com/r/Squidversetoken22/comments/r9bdte/squidverse_token_launch_0]\n- Chesscom CEO says Dlugy's private emails were shared \"as a matter of public interest.\" Here are more \u2014 *reddit* [https://reddit.com/r/chess/comments/xr8pxs/chesscom_ceo_says_dlugys_private_emai]\n- Is there any reason Tek Knight has seemingly stopped wearing his super suit in the public and leans  \u2014 *reddit* [https://reddit.com/r/TheBoys/comments/1s79dp1/is_there_any_reason_tek_knight_has]\n- Shared this in Van, felt you all should see it too. FYI - if you went to diploma mills, private or p \u2014 *reddit* [https://reddit.com/r/torontoJobs/comments/1ewvc4u/shared_this_in_van_felt_you_al]\n- FYI: Emergency Meeting TOMORROW RE: Ford Government's Privatization of our Public Hospitals \u2014 *reddit* [https://reddit.com/r/toronto/comments/10pafnh/fyi_emergency_meeting_tomorrow_re_]\n- LPT: If you\u2019re using public Wi-Fi and your session times out, go to your Wi-Fi settings and switch \u201c \u2014 *reddit* [https://reddit.com/r/LifeProTips/comments/1jpouo1/lpt_if_youre_using_public_wifi]\n- Epstein had no degree, no credentials, no public business wins, yet he controlled a billionaire's fo \u2014 *reddit* [https://reddit.com/r/conspiracy/comments/1r5tp73/epstein_had_no_degree_no_creden]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "india: Report file not found on remote VM (india)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "CHANDRA PRABHA PUBLICATIONS PRIVATE LIMITED",
+    "entity_country": "IN",
+    "entity_address": "T-5, Akarshan Bhawan, 23 Ansari Road, Darya Ganj, New Delhi, Delhi 110002",
+    "entity_tax_id": "80453",
+    "key_individuals": [
+      {
+        "name": "Chander Prabha Goel"
+      },
+      {
+        "name": "Saloni Zutshi"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (india)"
+    }
+  },
+  "errors": [
+    "india: Report file not found on remote VM (india)"
+  ],
+  "dark_web_findings": 0,
+  "dark_web_sources": 45
+}

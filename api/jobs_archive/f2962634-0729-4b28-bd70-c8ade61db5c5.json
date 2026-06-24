@@ -1,0 +1,48 @@
+{
+  "job_id": "f2962634-0729-4b28-bd70-c8ade61db5c5",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "AGRO CHINA PAKISTAN PVT LTD",
+  "country": "PA",
+  "created_at": "2026-04-29T02:06:28.842751+00:00",
+  "updated_at": "2026-04-29T02:14:01.635723+00:00",
+  "blob_path": "osint-staging/cir/americas/agro_china_pakistan_pvt_ltd_PK_20260429_v2.json",
+  "report_summary": "**DONE: AGRO CHINA PAKISTAN PVT LTD, PK (v2) \u2014 Risk: 3 MONITOR \u2014 PEP flag: M. Farooq Hasnain (ex-PAF 17 years, COO); dual-use HS 27073000 (Toluene) + 38249999; UBO confirmed (Muhammad Usman Ali, owner); manufacturing verified (KFUEIT tour); no sanctions/adverse media**\n\n---\n\n## \ud83d\udccb Counterparty Research v2: AGRO CHINA PAKISTAN PVT LTD\n`~/crawl/output/agro_china_pakistan_pvt_ltd_PK_20260429_v2.json` \u2192 uploaded to `stcrawlosint/osint-staging/americas/`\n\n---\n\n### \ud83c\udd95 Major New Intelligence vs. v1\n\n| Category | v1 | **v2** |\n|---|---|---|\n| UBO | \"Muhammad Usman Ali (inferred)\" | **\u2705 CONFIRMED \u2014 self-declared owner** |\n| Farooq Hasnain | \"Director\" | **\ud83d\udea8 COO + ex-Pakistan Air Force (17 yrs) = PEP** |\n| Abubakar Siddique | \"Director\" | **\u2705 Director of Sales & Marketing** |\n| DR. Usman Ali | \"Unknown\" | \"Likely same as CEO (Dr.) or family member\" |\n| HS Codes | Unknown | **\u2705 27073000 (Toluene) + 38249999 (Misc Chem)** |\n| Manufacturing | \"Multiple sites claimed\" | **\u2705 KFUEIT university tour to Multan unit confirmed** |\n| Adverse media | None found | None found (+ no Urdu media searched) |\n\n---\n\n### \ud83d\udea8 PEP Alert: Muhammad Farooq Hasnain (COO)\n\n> **Pakistan Air Force** | 2006\u20132023 | 17 years service | Now COO, Topsun Group\n\n- Self-described: \"joined Pakistan Air Force in 2006 and left in 2023 for assuming role of COO\"\n- 16 years management experience in PAF \u2192 likely achieved Squadron Leader/Wing Commander rank\n- **FATF Recommendation 12**: Senior officials of armed forces = PEPs\n- Still within **12\u201318 month former-PEP EDD window** (left 2023)\n- No adverse findings related to PAF service\n- **Action required**: Confirm rank at separation; source of funds/wealth analysis\n\n---\n\n### \u2697\ufe0f Dual-Use Import Profile\n\n| HS Code | Product | Use | Risk |\n|---|---|---|---|\n| **27073000** | **Toluene** | Pesticide EC solvent | \ud83d\udfe1 MONITOR \u2014 DEA List I chemical; standard agrochemical use |\n| **38249999** | Misc chemical preps | Active ingredients / formulated pesticides | \ud83d\udfe1 MONITOR \u2014 catch-all; CAS numbers needed for CWC screen |\n\nFor a legitimate formulator with QC lab + production units (Multan, Lahore, Faisalabad), this product mix is **consistent and expected**. But product-level verification is required.\n\n---\n\n### \ud83c\udfed Manufacturing Legitimacy \u2014 Verified\n\n> **KFUEIT University Industrial Tour** (Khwaja Fareed University of Engineering & Information Technology, HEC-accredited)\n>\n> \"The Institute of Biological Sciences recently organized an industrial tour for the students of Biotechnology to Topsun Chemicals Pakistan, a renowned Agro chemical company. The students along with the faculty members of IBS explored the facility and gain hands-on experience in the industry. During the visit, the students were briefed about the company's operations, products, and services. They also had the opportunity to visit the **Quality Control (QC) lab and production unit**...\"\n\nA shield was formally presented to **the COO (Farooq Hasnain)** by the university.\n\n---\n\n### \ud83d\udccb 8 Outstanding EDD Actions\n\n| Priority | Action |\n|---|---|\n| \ud83d\udd34 HIGH | **Farooq Hasnain PEP EDD**: PAF rank confirmation; source of funds/wealth |\n| \ud83d\udd34 HIGH | **Toluene product justification**: DPP registration + SDS for HS 27073000 imports |\n| \ud83d\udd34 HIGH | **DR. Usman Ali CNIC**: identity confirmation; PEP screen if gov. position |\n| \ud83d\udd34 HIGH | **SECP Form 29**: current director list with CNICs + shareholding register |\n| \ud83d\udfe1 MEDIUM | **Chinese suppliers list**: top 10 names + CAS numbers for CWC screen |\n| \ud83d\udfe1 MEDIUM | **BIS Entity List**: formal search (bis.gov) for all directors + entity |\n| \ud83d\udfe1 MEDIUM | **Urdu-language media**: Dawn Urdu, Jang, Geo Urdu, ARY News, Express News |\n| \ud83d\udfe2 LOW | **OFAC SDN interactive** search at sanctionssearch.ofac.treas.gov |",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "AGRO CHINA PAKISTAN PVT LTD",
+    "entity_country": "PA",
+    "entity_address": "Suite No. 23-B, Block P, Phase II, Johar Town, Lahore, Pakistan (primary); 7-KM Sundar Raiwind Road, Near Fine Packages, Moza Bhai Kot, Lahore (operational site per recent shipment records)",
+    "entity_website": "https://topsungroup.pk/",
+    "entity_industry": "Fertilizers & Agrochemicals",
+    "entity_tax_id": "4334750-9",
+    "key_individuals": [
+      {
+        "name": "Muhammad Usman Ali",
+        "title": "CEO"
+      },
+      {
+        "name": "M. Farooq Hasnain"
+      },
+      {
+        "name": "DR. Usman Ali"
+      },
+      {
+        "name": "Abubakar Siddique"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": null
+    }
+  }
+}

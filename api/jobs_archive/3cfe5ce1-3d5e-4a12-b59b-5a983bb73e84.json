@@ -1,0 +1,43 @@
+{
+  "job_id": "3cfe5ce1-3d5e-4a12-b59b-5a983bb73e84",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "CARTOCOR DE PERU S.A.",
+  "country": "US",
+  "created_at": "2026-05-01T20:04:57.162656+00:00",
+  "updated_at": "2026-05-01T20:19:38.335953+00:00",
+  "blob_path": null,
+  "report_summary": "Uploaded. Done.\n\n---\n\n**DONE: Cartocor de Peru S.A., PE \u2014 Risk: 2 CLEAR \u2014 Arcor Group subsidiary (major Argentine multinational); ACTIVO/HABIDO; 20,000m\u00b2 Lur\u00edn plant since 2020; no sanctions; no Peru adverse media; UBO Victor Manuel Arce unverifiable in open sources (SUNARP needed)**\n\n---\n\n## \ud83d\udccb Counterparty Research: CARTOCOR DE PERU S.A.\n`~/crawl/output/cartocor_de_peru_PE_20260501.json` \u2192 uploaded to `osint-staging/americas/`\n\n---\n\n### \ud83c\udfe2 Workstream 1A \u2014 Corporate Registry\n\n| Field | Value |\n|---|---|\n| RUC | **20515685911** |\n| Entity Type | Sociedad An\u00f3nima (S.A.) |\n| SUNAT Status | **ACTIVO / HABIDO** |\n| Incorporated | **10 April 2007** |\n| Fiscal Address | Av. Guillermo Prescott 325, Urb. San Felipe, San Isidro, Lima |\n| Operational Plant | **Lur\u00edn, Lima \u2014 20,000m\u00b2 plant inaugurated 28 August 2020** |\n| CIIU | 21029 \u2014 Fabricaci\u00f3n de papel y cart\u00f3n ondulado y envases |\n| Capital (current) | **S/ 23,557,044** (post Oct-2022 reduction from S/ 32.65M) |\n| SNI Membership | \u2705 Sociedad Nacional de Industrias \u2014 Peru |\n\n**Capital Reduction Event (Oct 2022):** JGA on 05-Aug-2022 unanimously approved amortisation of 22,741,167 shares, reducing capital by S/ 9.1M (~28%). Signed by **Alejandro Miguel Nardea, Gerente General**. Interpretation: standard post-construction intra-group capital return; plant was built 2018\u20132020, excess capitalisation returned to parent.\n\n---\n\n### \ud83d\udc65 Workstream 2A \u2014 Ownership & UBO\n\n| Name | Role | Status |\n|---|---|---|\n| **Alejandro Miguel Nardea** | Gerente General | \u2705 Confirmed via El Peruano (Oct 2022) |\n| **Carlos Alberto Torres La Torre** | Gerente / Apoderado | \u2705 Confirmed (Kompass) |\n| **Victor Manuel Arce** | Designated UBO (brief) | \u26a0\ufe0f Not confirmed in open sources |\n\n**Ownership chain:**\n\n```\nCartocor de Peru S.A. (PE)\n  \u2192 Cartocor S.A. (AR) \u2014 Arcor Group packaging division\n    \u2192 Arcor S.A.I.C. (AR) \u2014 founded 1951, Arroyito, C\u00f3rdoba\n      \u2192 Pagani family (Luis Pagani, Chairman/CEO) + co-founders\n        (Brizio, Mujica, Seveso, Funes families)\n```\n\nArcor Group: ~USD 4B revenue, 39 industrial plants across Latin America, 100+ countries, world's largest hard candy manufacturer.\n\n\u26a0\ufe0f **Victor Manuel Arce as UBO:** No public record connects this name to Cartocor de Peru or Arcor Group. Could be a local nominee shareholder or SUNARP-registered director not visible in open sources. **SUNARP partida electr\u00f3nica required for confirmation.**\n\n---\n\n### \ud83d\udea8 Workstream 3A \u2014 Sanctions & PEP\n\n| Target | OFAC SDN | UN List | EU List | PEP |\n|---|---|---|---|---|\n| Cartocor de Peru S.A. | \u2705 NO HIT | \u2705 NO HIT | \u2705 NO HIT | N/A |\n| Cartocor S.A. (AR) | \u2705 NO HIT | \u2705 NO HIT | \u2705 NO HIT | N/A |\n| Arcor S.A.I.C. / Grupo Arcor | \u2705 NO HIT | \u2705 NO HIT | \u2705 NO HIT | N/A |\n| Alejandro Miguel Nardea | \u2705 NO HIT | \u2014 | \u2014 | NOT PEP |\n| Carlos Alberto Torres La Torre | \u2705 NO HIT | \u2014 | \u2014 | NOT PEP |\n| Victor Manuel Arce | \u2705 NO HIT (name) | \u2014 | \u2014 | NOT PEP |\n\n**Peru jurisdiction:** FATF/GAFILAT member, not grey/black listed. TI-CPI 2023: 33/100 \u2014 elevated corruption environment, standard EDD applies to Peruvian entities.\n\n---\n\n### \ud83d\udcf0 Workstream 4A \u2014 Adverse Media\n\n**Peru-specific:** \u2705 **No adverse media, regulatory actions, or litigation found for Cartocor de Peru S.A.**\n\n**Group-level (Argentina only):**\n\n| # | Date | Entity | Issue | Jurisdiction | Relevance to PE |\n|---|---|---|---|---|---|\n| AM-001 | Oct 2024 | Cartocor S.A. \u2014 Villa del Totoral, C\u00f3rdoba | UOGC union complaints: discriminatory dismissals, threats, anti-union coercion | \ud83c\udde6\ud83c\uddf7 Argentina | \u274c None |\n| AM-002 | 2024 | Cartocor S.A. \u2014 Ranelagh, Buenos Aires | Union: unjustified layoffs, shift reductions | \ud83c\udde6\ud83c\uddf7 Argentina | \u274c None |\n\nBoth disputes concern Argentine sister entities in a different legal jurisdiction. No financial crimes alleged. Flagged as ESG context only.\n\n---\n\n### \ud83d\udcb0 Workstream 5A \u2014 Financial Profile\n\n| Metric | Value |\n|---|---|\n| Registered Capital | S/ 23,557,044 (~USD 6.15M) |\n| Pre-reduction Capital | S/ 32,653,510 |\n| Reduction % | 27.9% |\n| Insolvency / INDECOPI | \u2705 NO proceedings found |\n| Parent Group Credit | Arcor Group bond-issuer rated near investment-grade |\n\n---\n\n### \u2705 Workstreams 6A\u20138A Summary\n\n- **6A Regulatory:** HABIDO, no debarment (OSCE), no SUNAT enforcement, no environmental violations\n- **7A Operational:** 20,000m\u00b2 state-of-the-art plant, agroexport-focused, SNI member\n- **8A Dark Web/OSINT:** No breach data (cartocor.com), no ransomware claims, no infostealer exposure\n\n---\n\n### \ud83d\udccc Open Items\n\n| Priority | Item | Action |\n|---|---|---|\n| **MEDIUM** | UBO verification \u2014 Victor Manuel Arce | Obtain SUNARP partida electr\u00f3nica for RUC 20515685911 |\n| LOW | GG tenure 2025\u20132026 | Confirm Nardea or successor via SUNARP or entity contact |\n| LOW | Commerce exterior status | Fresh SUNAT query to resolve SIN ACTIVIDAD vs IMPORTADOR/EXPORTADOR |\n\n**Recommendation: PROCEED WITH STANDARD ONBOARDING.** Low-risk multinational subsidiary. No sanctions, no adverse Peru findings. SUNARP verification of Victor Manuel Arce as UBO is the only substantive follow-up item before closing KYC.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 findings** from 0/0 sources via Tor (Netherlands exit node)\n\nNo dark web exposure detected. Entity and owners clean across all 0 sources.\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "americas: Report file not found on remote VM (americas)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "CARTOCOR DE PERU S.A.",
+    "entity_country": "US",
+    "entity_address": "Av. Guillermo Prescott Nro. 325, Urb. San Felipe, San Isidro, Lima, Lima, Peru",
+    "entity_website": "https://www.arcor.com/en/industrial-plants/cartocor-lurin-lima",
+    "entity_tax_id": "20515685911",
+    "key_individuals": [
+      {
+        "name": "Victor Manuel Arce",
+        "title": "UBO"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (americas)"
+    }
+  },
+  "errors": [
+    "americas: Report file not found on remote VM (americas)"
+  ],
+  "dark_web_findings": 0,
+  "dark_web_sources": 0
+}

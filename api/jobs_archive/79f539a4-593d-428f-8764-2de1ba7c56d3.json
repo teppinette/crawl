@@ -1,0 +1,50 @@
+{
+  "job_id": "79f539a4-593d-428f-8764-2de1ba7c56d3",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "AGRO CHINA PAKISTAN PVT LTD",
+  "country": "PA",
+  "created_at": "2026-04-29T15:25:24.077910+00:00",
+  "updated_at": "2026-04-29T15:32:39.966185+00:00",
+  "blob_path": "osint-staging/cir/americas/agro_china_pakistan_pvt_ltd_PK_20260429_v3.json",
+  "report_summary": "**DONE: AGRO CHINA PAKISTAN PVT LTD, PK (v3 Definitive) \u2014 Risk: 3 MONITOR (HIGH confidence) \u2014 PEP: Farooq Hasnain (ex-PAF 17yr COO); UBO: Usman Ali (founder/owner); Toluene + misc chem preps from 60 Chinese suppliers; manufacturing verified; no sanctions/adverse media across 3 sessions; 8 EDD actions remaining**\n\n---\n\n## \ud83d\udccb Counterparty Research v3 \u2014 Definitive Report\n**AGRO CHINA PAKISTAN PVT LTD | NTN 4334750-9 | Topsun Group Pakistan**\n`~/crawl/output/agro_china_pakistan_pvt_ltd_PK_20260429_v3.json` \u2192 uploaded to `stcrawlosint/osint-staging/americas/`\n\n---\n\n### \ud83c\udd95 New Intelligence Added in v3\n\n**Corporate Ecosystem Expanded:**\n| Entity | Role | Status |\n|---|---|---|\n| AGRO CHINA PAKISTAN PVT LTD | China import vehicle | \u2705 Confirmed |\n| Topsun Chemicals Enterprises | Manufacturing/formulation | \u2705 Confirmed |\n| Sona Chemicals | Sindh distribution | \u2705 Confirmed |\n| TopsunBazar.com | E-commerce agri | \u2705 Confirmed |\n| **Topsun Exports** | Salt/sesame/rice export | \u2705 **NEW** |\n| Topsun Technologies | IT subsidiary | \u2705 Confirmed |\n| **International affiliates (Europe/ME/Africa)** | Claimed on topsunchemical.com | \u26a0\ufe0f **UNVERIFIED** |\n\n**TOPSUN CO., LTD. (NBD)** \u2260 Related entity \u2014 separate company trading industrial lubricants/solar panels to Vietnam/Philippines.\n\n**Founder Confirmed:** \"A farmer from a small rural town of Southern Punjab\" who started from a retail pesticide shop in 2012. Consistent with Muhammad Usman Ali as founder/owner/UBO.\n\n**DPP Regulatory Context:** Pakistan's Department of Plant Protection requires registration for all pesticide formulations under Agricultural Pesticide Act 1997. Sector-wide registration backlogs noted (2024) \u2014 not entity-specific. Topsun's product registrations not independently verified.\n\n---\n\n### \ud83d\udea8 PEP Status Summary (v3 Final)\n\n| Director | Role | PEP Status |\n|---|---|---|\n| Muhammad Usman Ali | CEO/Owner | \u2705 NOT PEP (private entrepreneur) |\n| **Muhammad Farooq Hasnain** | **COO** | **\ud83d\udea8 FORMER MILITARY PEP (PAF 2006-2023)** |\n| Muhammad Abubakar Siddique | Dir Sales & Marketing | \u2705 NOT PEP |\n| DR. Usman Ali | Director | \u26a0\ufe0f UNCLEAR \u2014 CNIC needed |\n\n---\n\n### \u2697\ufe0f Import Products (Confirmed from Chinese Customs)\n\n| HS Code | Product | Legitimate Use | Risk |\n|---|---|---|---|\n| **27073000** | **Toluene** | EC pesticide solvent | \ud83d\udfe1 Monitor (DEA List I; confirm DPP formulation use) |\n| **38249999** | **Misc chemical preparations** | Active ingredients, formulations | \ud83d\udfe1 Monitor (CAS numbers needed for CWC screen) |\n\n---\n\n### \ud83d\udcca Complete Import Trend\n\n| Year | Entries | Partners | Categories |\n|---|---|---|---|\n| 2021 | 13 | 6 | 3 |\n| 2022 | 30 | 13 | 4 |\n| 2023 | 55 | 14 | 7 |\n| **2024** | **88** | **17** | **13** |\n| 2025 (partial) | 64+ | 18 | 18 |\n\n**+577% growth 2021\u21922024 | 60 Chinese suppliers | 265 total records**\n\n---\n\n### \ud83c\udfaf 8 Outstanding EDD Actions\n\n| Priority | Action |\n|---|---|\n| \ud83d\udd34 HIGH | Farooq Hasnain PEP EDD: PAF rank + source of wealth |\n| \ud83d\udd34 HIGH | Product dual-use screen: DPP certs + CAS numbers for HS 27073000/38249999 |\n| \ud83d\udd34 HIGH | DR. Usman Ali CNIC + PEP screen |\n| \ud83d\udd34 HIGH | SECP Form 29 + shareholder register |\n| \ud83d\udfe1 MEDIUM | BIS Entity List formal search (bis.gov) |\n| \ud83d\udfe1 MEDIUM | Chinese supplier KYC (top 10 names + CAS numbers) |\n| \ud83d\udfe1 MEDIUM | DPP pesticide registration verification |\n| \ud83d\udfe2 LOW | OFAC SDN interactive batch search |\n---\n\n## DARK WEB SCREENING \u2014 CRITICAL\n**20 findings** from 3/32 sources via Tor (Netherlands exit node)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Leaked documents | 9 |\n| Web mentions (Tor-routed) | 10 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: topsungroup.pk\n- LEAKED DOCUMENT: PAK/PAKISTAN/SOUTH ASIA\n- LEAKED DOCUMENT: CHN/CHINA/ASIA PACIFIC\n- LEAKED DOCUMENT: CHN/CHINA/ASIA PACIFIC\n- LEAKED DOCUMENT: [TACTICAL] [Fwd: ammonium nitrate]\n- LEAKED DOCUMENT: ammonium nitrate\n- LEAKED DOCUMENT: Russia 100805\n- LEAKED DOCUMENT: [OS] Russia 100805\n- LEAKED DOCUMENT: IND/INDIA/SOUTH ASIA\n- LEAKED DOCUMENT: RUS/RUSSIA/FORMER SOVIET UNION\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "AGRO CHINA PAKISTAN PVT LTD",
+    "entity_country": "PA",
+    "entity_address": "Suite No 23-B, Block P, Phase II, Johar Town, Lahore, Punjab, Pakistan",
+    "entity_website": "https://topsungroup.pk/",
+    "entity_industry": "Fertilizers & Agrochemicals",
+    "entity_tax_id": "4334750-9",
+    "key_individuals": [
+      {
+        "name": "Muhammad Usman Ali",
+        "title": "CEO"
+      },
+      {
+        "name": "M. Farooq Hasnain"
+      },
+      {
+        "name": "DR. Usman Ali"
+      },
+      {
+        "name": "Abubakar Siddique"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 20,
+  "dark_web_sources": 32
+}

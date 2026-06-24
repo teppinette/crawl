@@ -1,0 +1,47 @@
+{
+  "job_id": "77778498-950e-4ca3-9473-428847bded4d",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "INDUSTRIAL SOLVENTS AND CHEMICALS PRIVATE LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-21T11:17:36.692056+00:00",
+  "updated_at": "2026-05-21T11:24:47.164396+00:00",
+  "blob_path": null,
+  "report_summary": "**DONE: Industrial Solvents and Chemicals Private Limited, India \u2014 Risk: 3 MONITOR \u2014 66-year Mumbai solvents company; CIN U24110MH1959PTC011440; Revenue \u20b9860 Cr FY25; \u26a0\ufe0f SBICAP \u20b9290 Cr NCD from 2011 (14 years open); \u26a0\ufe0f Net worth declining; 2 new directors Dec 2025**\n\n`~/crawl/output/industrial_solvents_and_chemicals_pvt_ltd_IN_20260520.json` \u2014 9.8 KB, valid, research date 2026-05-21, all 8 workstreams complete.\n\n---\n\n## Key Findings\n\n**Entity:** CIN U24110MH1959PTC011440 \u00b7 Incorporated Aug 31, 1959 \u00b7 Nariman Point, Mumbai \u00b7 Revenue \u20b9860 Cr FY25\n\n**Main Flag: SBICAP \u20b9290 Cr NCD from November 2011 (14 years)**\nThis is the dominant open charge. SBICAP = SBI Capital Markets Trustee \u2014 typically holds security for NCD instruments. Verify if NCD has been repaid but charge not formally discharged, or if \u20b9290 Cr is still genuinely outstanding.\n\n**Subject Block Updates:**\n- Add Jacob Thomas Mathew (DIN 11405334) \u2014 Additional Director Dec 2025\n- Add Chungath Anthony Johnson (DIN 11412633) \u2014 Additional Director Dec 2025\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 0/0 sources via Tor (Netherlands exit node)\n\nNo dark web exposure detected. Entity and owners clean across all 0 sources.\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "india: Report file not found on remote VM (india)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "INDUSTRIAL SOLVENTS AND CHEMICALS PRIVATE LIMITED",
+    "entity_country": "IN",
+    "entity_address": "101 ATLANTA, 209 NARIMAN POINT, MUMBAI, Maharashtra, 400021",
+    "entity_tax_id": "U24110MH1959PTC011440",
+    "key_individuals": [
+      {
+        "name": "Bimal Virendra Shah"
+      },
+      {
+        "name": "Bhavesh Virendra Shah"
+      },
+      {
+        "name": "Bhubneshwar Janak Pandit"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (india)"
+    }
+  },
+  "errors": [
+    "india: Report file not found on remote VM (india)"
+  ],
+  "dark_web_findings": 0,
+  "dark_web_sources": 0
+}

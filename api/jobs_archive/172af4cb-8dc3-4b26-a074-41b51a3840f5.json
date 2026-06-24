@@ -1,0 +1,40 @@
+{
+  "job_id": "172af4cb-8dc3-4b26-a074-41b51a3840f5",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "europe",
+  "entity_name": "FORPLAS PLASTIK SAN. VE TIC. LTD. STI.",
+  "country": "TR",
+  "created_at": "2026-05-22T19:25:51.628333+00:00",
+  "updated_at": "2026-05-22T19:26:58.327146+00:00",
+  "blob_path": null,
+  "report_summary": "Duplicate \u2014 report complete at 19:24 UTC.\n\n**DONE: Forplas Plastik San. ve Tic. Ltd. \u015eti., TR \u2014 Risk: 3 MONITOR**\n\nFile: `~/crawl/output/forplas_plastik_TR_20260522.json` \u2705\nBlob: `europe/forplas_plastik_TR_20260522.json` \u2705\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 2/41 sources via Tor (Netherlands exit node) (25 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 41 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | What I\u2019m giving out for Halloween; Is this bridge possible?; Bought candy for the kiddos in my life and... (+12 more) |\n| duckduckgo_tor | 10 | Forplas - PVC Granul - PVC Compound; Forplas Plastik A.S. Company Profile - Turkiye - EMIS; Forplas Plastik Sanayi Ve Ticaret Ltd Sti - Kompass (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- Forplas - PVC Granul - PVC Compound \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fforplas.com.tr%2F&rut=bc0033e954364fed4606dc2688bd6f83e66]\n- Forplas Plastik A.S. Company Profile - Turkiye - EMIS \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FTR%2FForplas_Pla]\n- Forplas Plastik Sanayi Ve Ticaret Ltd Sti - Kompass \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fin.kompass.com%2Fen%2Fc%2Fforplas%2Dplastik%2Dsanayi%2Dve]\n- Forplas Plasti\u0307k San. Ve Ti\u0307c. Ltd. \u015eti\u0307. \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.nakliyerehberim.com%2Fweb%2Fsayfalar%2Fdetay_sayfalar]\n- FORPLAS PLAST\u0130K - COMPOUNDS - LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftr.linkedin.com%2Fcompany%2Fforplas%2Dplasti%25CC%2587k%2]\n- Forplas Plastik Sanayi VE Ticaret Ltd Sti - Bloomberg.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.bloomberg.com%2Fprofile%2Fcompany%2F0885667D%3ATI&rut]\n- Forplas Plastik Ltd. Sti. T\u00fcrkiye - T\u00fcrkiye \u015eirketleri \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.turkishexporter.com.tr%2Ftr%2Ffirmalar%2Fforplas%2Dpl]\n- Forplas Plastik San. Tic. Ltd. Sti. - information about company in Smart \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.extrusion%2Dinfo.com%2Fdirectory%2Fforplas%2Dplastik%]\n- Forplas Plastik San.Tic.Ltd.Sti. - turkish-industry.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fturkish%2Dindustry.com%2Ffirma%2FForplas%2DPlastik%2DSanT]\n- Forplas - Crunchbase Company Profile & Funding \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.crunchbase.com%2Forganization%2Fforplas&rut=4b4222df6]\n\n**SOCIAL MENTION** (15)\n- What I\u2019m giving out for Halloween \u2014 *reddit* [https://reddit.com/r/Millennials/comments/1o53ged/what_im_giving_out_for_hallowe]\n- Is this bridge possible? \u2014 *reddit* [https://reddit.com/r/geography/comments/1ssalo5/is_this_bridge_possible/]\n- Bought candy for the kiddos in my life and... \u2014 *reddit* [https://reddit.com/r/candy/comments/1ny65mc/bought_candy_for_the_kiddos_in_my_li]\n- is it normal for stores to record your card details and forcibly remove the security sticker on the  \u2014 *reddit* [https://reddit.com/r/Philippines/comments/1ee8b8h/is_it_normal_for_stores_to_rec]\n- San Francisco \ud83e\ude75\u2728 \u2014 *reddit* [https://reddit.com/r/sanfrancisco/comments/1qxs183/san_francisco/]\n- In 2004, the USS Princeton &amp; 2 Super Hornets encountered an airliner-sized object with \u201cno plume \u2014 *reddit* [https://reddit.com/r/Military/comments/7kcq4e/in_2004_the_uss_princeton_2_super_]\n- Let's have a drink scam in Istanbul, Turkey \u2014 *reddit* [https://reddit.com/r/istanbul_tips/comments/1ozkdpx/lets_have_a_drink_scam_in_is]\n- three of my cartoons that were in the New Yorker in 2025! [OC] \u2014 *reddit* [https://reddit.com/r/comics/comments/1q1fhh1/three_of_my_cartoons_that_were_in_t]\n- A Turkish construction equipment supplier with the long name MBKDEVEC\u0130O\u011eLU \u0130N\u015e.MALZ.SAVUNMA SAN.NAK  \u2014 *reddit* [https://reddit.com/r/MilitaryGeek/comments/1ntls62/a_turkish_construction_equipm]\n- bu sistemde hangi oyunlar oynayabilirim \u2014 *reddit* [https://reddit.com/r/bilgisayar/comments/1sef6zn/bu_sistemde_hangi_oyunlar_oynay]\n- The number of tags I had to cut off my new cap \u2014 *reddit* [https://reddit.com/r/mildlyinteresting/comments/1rt760r/the_number_of_tags_i_had]\n- LCBO Georgetown actually went and did this. \u2014 *reddit* [https://reddit.com/r/ontario/comments/1ivq3qs/lcbo_georgetown_actually_went_and_]\n- Ser-Al \u0130n\u015f.Tic.Ltd.\u015eti. kurucusu ve aktif sahibi servet alta\u015f ser-al in\u015faat alt\u0131nda yap\u0131lan neredeys \u2014 *reddit* [https://reddit.com/r/KGBTR/comments/10vlipq/seral_in\u015fticltd\u015fti_kurucusu_ve_aktif]\n- First San Martin - WTF \u2014 *reddit* [https://reddit.com/r/ChineseWatches/comments/1pcy7w9/first_san_martin_wtf/]\n- Hello everyone is this real or fake? (Be serious) \u2014 *reddit* [https://reddit.com/r/HotWheels/comments/1sew9yd/hello_everyone_is_this_real_or_f]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "europe: Report file not found on remote VM (europe)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "FORPLAS PLASTIK SAN. VE TIC. LTD. STI.",
+    "entity_country": "TR",
+    "entity_address": "Dilovas\u0131, K\u00f6seler Mahallesi 18. Cadde No:21/0, S.S. \u0130stanbul Mermerciler K\u00fc\u00e7\u00fck Sanayi Sitesi Yap\u0131 Kooperatifi, 41455, Kocaeli, Turkey",
+    "key_individuals": [
+      {
+        "name": "\u0130smail Fatih Oru\u00e7"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "europe": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (europe)"
+    }
+  },
+  "errors": [
+    "europe: Report file not found on remote VM (europe)"
+  ],
+  "dark_web_findings": 0,
+  "dark_web_sources": 41
+}

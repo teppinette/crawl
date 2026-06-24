@@ -1,0 +1,32 @@
+{
+  "job_id": "40091321-6a11-422f-bc7c-4b03e63ad5fa",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "china",
+  "entity_name": "KOSOKU INVESTMENT (CHINA) LIMITED",
+  "country": "HK",
+  "created_at": "2026-05-22T19:46:14.180719+00:00",
+  "updated_at": "2026-05-22T19:47:16.716159+00:00",
+  "blob_path": "osint-staging/cir/china/kosoku_investment_china_limited_hk_20260522.json",
+  "report_summary": "Completed 7 minutes ago. Report is current.\n\n**DONE:** `/home/copapadmin/crawl/output/kosoku_investment_china_limited_hk_20260522.json` \u2014 Risk: 1 LOW RISK\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 1/37 sources via Tor (Netherlands exit node) (10 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 37 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | KOSOKU INVESTMENT (CHINA) LIMITED - Dun & Bradstreet; KOSOKU INVESTMENT (CHINA) LIMITED | Hong Kong Companies Dire; Kosoku Investment China Ltd - Company Profile and News (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- KOSOKU INVESTMENT (CHINA) LIMITED - Dun & Bradstreet \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.k]\n- KOSOKU INVESTMENT (CHINA) LIMITED | Hong Kong Companies Directory \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.ltddir.com%2Fcompanies%2Fkosoku%2Dinvestment%2Dchina%]\n- Kosoku Investment China Ltd - Company Profile and News \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.bloomberg.com%2Fprofile%2Fcompany%2FKOSOKZ%3AHK&rut=6]\n- KOSOKU INVESTMENT (CHINA) LIMITED/\u9ad8\u901f\u6295\u8cc7\uff08\u4e2d\u570b\uff09\u6709\u9650\u516c\u53f8\uff08Company Register Number ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fhkg.databasesets.com%2Fen%2Fgongsimingdan%2Fnumber%2F0353]\n- \u9ad8\u901f\u6295\u8cc7\uff08\u4e2d\u570b\uff09\u6709\u9650\u516c\u53f8 - \u4f01\u67e5\u67e5 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.qcc.com%2Ffirm%2Fheaec6057efb6da5dd1f5b163df96e59.htm]\n- KOSOKU INVESTMENT (CHINA) LIMITED \u9ad8\u901f\u6295\u8cc7 (\u4e2d\u570b)\u6709\u9650\u516c\u53f8 - Hong Kong Company \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fhongkong%2Dcorp.com%2Fco%2Fkosoku%2Dinvestment%2Dchina%2D]\n- \u9ad8\u901f\u6295\u8cc7 (\u4e2d\u570b)\u6709\u9650\u516c\u53f8 Kosoku Investment (China) Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tempb.com%2Fcompanies%2Fkosoku%2Dinvestment%2Dchina%2]\n- Verified HK Business Data | Companies House Registry Search \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fcompanieshouse.hk%2F&rut=5843d535e29aac944eab2c5e29afa59d]\n- Kosoku Investment China Ltd.\u8fdb\u53e3\u6570\u636e\u53ca\u8054\u7cfb\u65b9\u5f0f-\u5916\u8d38\u90a6 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.52wmb.com%2Fbuyer%2F2438411&rut=6538398ba19cc059228a2]\n- Hong Kong Exchanges and Clearing Limited - di.hkex.com.hk \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fdi.hkex.com.hk%2Fdi%2FNSSelectCorp.aspx%3Fsrc%3DMAIN%26la]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "KOSOKU INVESTMENT (CHINA) LIMITED",
+    "entity_country": "HK",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "china": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 37
+}

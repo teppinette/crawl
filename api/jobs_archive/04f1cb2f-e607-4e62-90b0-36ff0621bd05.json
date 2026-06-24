@@ -1,0 +1,75 @@
+{
+  "job_id": "04f1cb2f-e607-4e62-90b0-36ff0621bd05",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "gulf",
+  "entity_name": "APRIL Fine Paper Trading (Middle East) FZE",
+  "country": "AE",
+  "created_at": "2026-05-22T13:47:40.777094+00:00",
+  "updated_at": "2026-05-22T13:55:49.401829+00:00",
+  "blob_path": "osint-staging/cir/gulf/april_fine_paper_trading_middle_east_fze_AE_20260522.json",
+  "report_summary": "Blob uploaded (HTTP 201). Research complete.\n\n---\n\n**DONE: APRIL Fine Paper Trading (Middle East) FZE, AE \u2014 Risk: 4 REVIEW \u2014 DAFZA paper trading FZE of APRIL Group (Singapore); PEP director (former Singapore Chief of Defence Force); FSC MoU suspended Sept 2025 for violence allegations against indigenous community; no sanctions**\n\n---\n\n## \u26a0\ufe0f Critical: Subject Brief Contains Mixed Data from Two Entities\n\nThe subject brief accidentally merged data from **two different counterparties**:\n\n| Field in Brief | Actual Source |\n|---|---|\n| `APRIL Fine Paper Trading (Middle East) FZE` | \u2705 Correct entity |\n| `ENTITY_TRADE_NAMES: DOREL JUVENILE GROUP, INC` | \u274c **Wrong** \u2014 Dorel is a baby products company |\n| `ENTITY_WEBSITE: djgusa.com` | \u274c **Wrong** \u2014 Dorel Juvenile Group USA |\n| Cathy Carter, Nicolas Duran, Willeke, Gallogly, Schwartz, Abella, Pires | \u274c **Wrong** \u2014 All Dorel Juvenile Group directors |\n| `Bey Soo Khiang` | \u2705 Correctly belongs to APRIL |\n\n**Probable cause**: APRIL Fine Paper is a paper **supplier** to Dorel Juvenile Group; two counterparty records were merged in the research request system. **Dorel Juvenile Group requires a separate CIR.**\n\n---\n\n## Research Summary \u2014 APRIL Fine Paper Trading (Middle East) FZE\n\n### Entity Confirmed\n- **Free Zone**: DAFZA (Dubai Airport Free Zone) \u2705\n- **Address**: 813/820, Building 4/6 EA, Dubai Airport Free Zone, P.O. Box 293775, Dubai\n- **Parent**: APRIL Group (Asia Pacific Resources International Holdings Ltd), Singapore\n- **Ultimate owner**: Sukanto Tanoto via RGE Pte Ltd\n- **Phone (ME/Africa)**: +971 4 701 7752\n- **Products**: PaperOne\u2122 office/printing paper (HS 4802); pulp/paperboard\n\n### Key Findings\n\n| Check | Result |\n|---|---|\n| **Free zone** | \u2705 DAFZA \u2014 well-regulated, not RAK/Ajman |\n| **Sanctions (OFAC/UN/EU/UK)** | \u2705 NO HITS |\n| **DIFC Courts** | \u2705 NO CASES |\n| **Gulf media** | \u2705 NO ADVERSE on UAE entity |\n| **CBUAE** | \u2705 Not a financial institution |\n| **Dark web** | \u26a0\ufe0f Scan failed; 0 findings |\n| **\u26a0\ufe0f PEP \u2014 Bey Soo Khiang** | \ud83d\udd34 Former Chief of Defence Force, Singapore (1995\u20132000). **EDD mandatory.** |\n| **\u26a0\ufe0f FSC suspension** | \ud83d\udd34 Sept 2025: FSC suspended APRIL's MoU \u2014 **serious allegations of violence** against indigenous community in North Sumatra by TPL (APRIL group subsidiary). |\n| **ESG track record** | \ud83d\udd34 2013 FSC disassociation; deforestation violations; community conflicts; Jakarta court loss |\n\n### Risk: **4 \u2013 REVIEW**\n\nThree drivers: **(1)** PEP director (EDD mandatory); **(2)** FSC suspended Sept 2025 for violence allegations \u2014 material human rights/ESG concern for responsible sourcing policies; **(3)** Pattern of parent group ESG non-compliance since 2013.\n\n**Positive factors**: No sanctions; legitimate ~$2B Vinda acquisition (2024); DAFZA (transparent FZ); active physical operation; PEFC/ISO certified; clear UBO chain.\n\n**Output saved:** `~/crawl/output/april_fine_paper_trading_middle_east_fze_AE_20260522.json` \u2705\n**Blob uploaded:** `crawl-gulf/april_fine_paper_trading_middle_east_fze_AE_20260522.json` \u2192 stcrawlosint/osint-staging \u2705\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**2 actionable findings** from 3/57 sources via Tor (Netherlands exit node) (17 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Website scans (URLScan) | 7 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: djgusa.com\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| urlscan | 11 | djgusa.com; Check Car Seat Expiration Date | Maxi-Cosi Car Seats; Safety 1st Baby Products | Baby Car Seats, High Chairs & Mor (+8 more) |\n| duckduckgo_tor | 10 | April Fine Paper Trading (Middle East) Fze; April Fine Paper Trading (Middle East) FZE; April Fine Paper Trading Middle East FZE - Kompass (+7 more) |\n| hudsonrock_cavalier | 1 | djgusa.com |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- djgusa.com \u2014 *hudsonrock_cavalier*\n\n**WEB MENTION** (10)\n- April Fine Paper Trading (Middle East) Fze \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.a]\n- April Fine Paper Trading (Middle East) FZE \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fpaperworld%2Dmiddle%2Deast.ae.messefrankfurt.com%2Fdubai%]\n- April Fine Paper Trading Middle East FZE - Kompass \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fae.kompass.com%2Fc%2Fapril%2Dfine%2Dpaper%2Dtrading%2Dmid]\n- APRIL FINE PAPER TRADING (MIDDLE EAST) FZE in Dubai \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.info%2Dclipper.com%2Fen%2Fcompany%2Funited%2Darab%2De]\n- April Fine Paper Trading (Middle East) FZE - AmpWord \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.ampword.com%2Fcompanies%2Fdetails%2Fapril%2Dfine%2Dpa]\n- April Fine Paper Trading (Middle East) FZE - ATN UAE \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.atninfo.com%2Fco%2Fapril%2Dfine%2Dpaper%2Dtrading%2Dm]\n- April Fine Paper Trading Middle East FZE - Cybo \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.cybo.com%2FAE%2Dbiz%2Fapril%2Dfine%2Dpaper%2Dtrading%]\n- April Fine Paper Trading Middle East Fze - Al Garhoud \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Femaratfinder.com%2Fcompany%2Fen%2Fapril%2Dfine%2Dpaper%2D]\n- April Fine Paper Trading (Middle East) FZE - 996CO \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.996co.com%2Fare%2Fcompany%2F11436267&rut=3744626eae4d]\n- APRIL FINE PAPER TRADING MIDDLE EAST FZE in UAE - ReachUAE Business ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.reachuae.com%2Fapril%2Dfine%2Dpaper%2Dtrading%2Dmiddl]\n\n**DOMAIN SCAN SUMMARY** (1)\n- djgusa.com \u2014 *urlscan*\n\n**WEBSITE SCAN** (7)\n- Check Car Seat Expiration Date | Maxi-Cosi Car Seats \u2014 *urlscan* [https://www.maxicosi.com/us-en/car-seat-expiration]\n- Safety 1st Baby Products | Baby Car Seats, High Chairs & More \u2014 *urlscan* [https://www.safety1st.com/us-en/]\n- Welcome to Dorel Juvenile's B2B Marketplace \u2014 *urlscan* [https://b2b.djgusa.com/]\n- Safety 1st Car Seats, High Chairs, Strollers & Child Care Products \u2014 *urlscan* [https://int.safety1st.com/international/]\n- int.safety1st.com \u2014 *urlscan* [https://int.safety1st.com/international/]\n- cosco.mcstaging-b2b.djgusa.com \u2014 *urlscan* [https://cosco.mcstaging-b2b.djgusa.com/]\n- safety1st.mcstaging-b2b.djgusa.com \u2014 *urlscan* [https://safety1st.mcstaging-b2b.djgusa.com/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "APRIL Fine Paper Trading (Middle East) FZE",
+    "entity_trade_names": "DOREL JUVENILE GROUP, INC",
+    "entity_country": "AE",
+    "entity_website": "https://djgusa.com",
+    "entity_industry": "Buyer (customer of",
+    "key_individuals": [
+      {
+        "name": "Cathy Carter",
+        "title": "President and Chief Executive Officer"
+      },
+      {
+        "name": "Nicolas Duran",
+        "title": "President and Chief Executive Officer (removed/resigned)"
+      },
+      {
+        "name": "Steven E. Willeke",
+        "title": "Director (Board signatory)"
+      },
+      {
+        "name": "Taty Abella",
+        "title": "Director (Board signatory)"
+      },
+      {
+        "name": "Timothy P. Gallogly",
+        "title": "Director (Board signatory)"
+      },
+      {
+        "name": "Jeffrey Schwartz",
+        "title": "Director (Board signatory)"
+      },
+      {
+        "name": "Diogo Pires",
+        "title": "Director / Treasurer (newly appointed)"
+      },
+      {
+        "name": "Tim Gallogly",
+        "title": "Director"
+      },
+      {
+        "name": "TIMOTHY PHILIP GALLOGLY",
+        "title": "Director"
+      },
+      {
+        "name": "Bey Soo Khiang"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "gulf": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 2,
+  "dark_web_sources": 57
+}

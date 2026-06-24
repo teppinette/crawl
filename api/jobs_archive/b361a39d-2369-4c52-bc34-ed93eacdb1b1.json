@@ -1,0 +1,52 @@
+{
+  "job_id": "b361a39d-2369-4c52-bc34-ed93eacdb1b1",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "china",
+  "entity_name": "TIANJIN RED TRIANGLE INTERNATIONAL TRADING CO.,LTD.",
+  "country": "CN",
+  "created_at": "2026-05-08T16:52:49.291131+00:00",
+  "updated_at": "2026-05-08T17:00:34.559016+00:00",
+  "blob_path": null,
+  "report_summary": "**DONE:** TIANJIN RED TRIANGLE INTERNATIONAL TRADING CO., LTD., CN -- Risk: 1 LOW RISK\n\n## Research Summary\n\n**Entity (3 name forms):**\n- \u5929\u6d25\u6e24\u5316\u7ea2\u4e09\u89d2\u56fd\u9645\u8d38\u6613\u6709\u9650\u516c\u53f8 (current simplified Chinese)\n- \u5929\u6d25\u7ea2\u4e09\u89d2\u56fd\u9645\u8d38\u6613\u6709\u9650\u516c\u53f8 (former name)\n- TIANJIN RED TRIANGLE INTERNATIONAL TRADING CO., LTD. (English)\n\n**USCC:** 91120116797292337E\n**Parent:** Tianjin Bohai Yongli Chemical Industry \u2192 Tianjin Bohai Chemical Group \u2192 **Tianjin SASAC (100% state-owned)**\n\n### Key Findings:\n\n| # | Workstream | Status | Key Observations |\n|---|-----------|--------|----------------|\n| 1A | Corporate Registry | \u2705 | Founded 2007 (Mar 1). RMB 20M fully paid. 26 employees. RMB 4.615B revenue (2024). \"Red Triangle\" brand dates to 1917. |\n| 2A | Beneficial Ownership | \u2705 | **Tianjin SASAC** = true UBO. Du Daosheng is state-appointed director, not private UBO. Transparent SOE chain. |\n| 3A | Sanctions Screening | \u2705 | **Clean across all lists** \u2014 OFAC SDN, BIS Entity/MEU, NS-CMIC, UFLPA. Parent group also clean. |\n| 4A | Adverse Media | \u2705 | Minor \u2014 18 total court records (mostly contract disputes). No bankruptcies, dishonesty listings, or enforcement. |\n| 5A | Litigation | \u2705 | 2018 contract dispute with Liaoning Huaxin \u2014 resolved via appeal. Minor commercial disputes expected for trading company. |\n| 6A | PEP Check | \u26a0\ufe0f | Du Daosheng, Ding Aihu, Xu Junkai = **de facto PEP** (SOE appointees). Standard for Chinese state-owned enterprises. |\n| 7A | Trade Risk | \u2705 LOW | Commercial chemical trading (soda ash, fertilizers, coal). No dual-use concerns. Hazardous chemical license held. |\n| 8A | Risk Assessment | \u2705 **Score: 1 (LOW RISK)** | Well-established, well-capitalized SOE. Clean sanctions. Minimal adverse media. Standard monitoring only. |\n\n### Country-Specific Checks (region_china):\n| Check | Result |\n|-------|--------|\n| **NECIPS/GSXT** | \u2705 Active \u2014 USCC verified, legal rep Xu Junkai |\n| **Qichacha/Tianyancha** | \u2705 Full records obtained \u2014 SOE structure confirmed |\n| **UFLPA Entity List** | \u2705 **NOT LISTED** \u2014 Tianjin-based, no Xinjiang operations |\n| **BIS MEU List** | \u2705 **NOT LISTED** \u2014 Civilian chemical trading company |\n| **NS-CMIC List** | \u2705 **NOT LISTED** \u2014 Not a military-connected entity |\n\n### Key Individuals:\n| Person | Role | PEP? | Sanctions? |\n|--------|------|------|-----------|\n| **DU DAOSHENG** (\u675c\u9053\u80dc) | Director | \u26a0\ufe0f De facto (SOE) | \u2705 Clean |\n| **DING AIHU** (\u4e01\u7231\u62a4) | General Manager | \u26a0\ufe0f De facto (SOE) | \u2705 Clean |\n| **XU JUNKAI** (\u8bb8\u519b\u51ef) | Chairman/Legal Rep (since Dec 2023) | \u26a0\ufe0f De facto (SOE) | \u2705 Clean |\n\n\u2705 Output: `/home/copapadmin/crawl/output/tianjin_red_triangle_international_trading_co_ltd_cn_20260508.json` (16,174 bytes)\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**81 findings** from 6/45 sources via Tor (Netherlands exit node)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Breach records | 50 |\n| SSL certificates (crt.sh) | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n| Website scans (URLScan) | 2 |\n\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "china: Report file not found on remote VM (china)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "TIANJIN RED TRIANGLE INTERNATIONAL TRADING CO.,LTD.",
+    "entity_country": "CN",
+    "entity_address": "\u5929\u6d25\u81ea\u8d38\u8bd5\u9a8c\u533a\uff08\u5929\u6d25\u6e2f\u4fdd\u7a0e\u533a\uff09\u6d77\u6ee8\u4e5d\u8def66\u53f7505\u5ba4 (Room 505, No. 66 Haibin 9th Road, Tianjin Free Trade Zone, Tianjin Port Bonded Area)",
+    "entity_website": "https://www.tjsoda.com/",
+    "entity_industry": "Corporation",
+    "entity_tax_id": "91120116797292337E",
+    "key_individuals": [
+      {
+        "name": "Du Daosheng",
+        "title": "DIRECTOR"
+      },
+      {
+        "name": "Ding Aihu",
+        "title": "GENERAL MANAGER"
+      },
+      {
+        "name": "Du Daosheng",
+        "title": "UBO"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "china": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (china)"
+    }
+  },
+  "errors": [
+    "china: Report file not found on remote VM (china)"
+  ],
+  "dark_web_findings": 81,
+  "dark_web_sources": 45
+}

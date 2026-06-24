@@ -1,0 +1,71 @@
+{
+  "job_id": "0b58be43-2bbc-48ff-9730-8b91cd705b48",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "DEEPAK NITRITE LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-21T12:39:49.598060+00:00",
+  "updated_at": "2026-05-21T12:44:35.247244+00:00",
+  "blob_path": "osint-staging/cir/india/deepak_nitrite_limited_IN_20260521.json",
+  "report_summary": "**DONE: Deepak Nitrite Limited, India \u2014 Risk: 1 CLEAR \u2014 BSE 506401 / NSE DEEPAKNTR; CIN L24110GJ1970PLC001735; Revenue \u20b98,370 Cr FY25 consolidated; NIL borrowings Mar 31, 2026; ICRA AA Stable + A1+; all 12 directors confirmed**\n\n`~/crawl/output/deepak_nitrite_limited_IN_20260521.json` \u2014 11.1 KB, valid, research date 2026-05-21.\n\nKey highlights:\n- **NIL debt** as of March 31, 2026 \u2014 confirmed in SEBI regulatory disclosure filed Apr 2026\n- **Vipul Shantilal Shah (DIN 00174680)** confirmed at both DNL and Deepak Phenolics (cross-reference \u2713)\n- **Sector headwind** Q1 FY26 (EBITDA -39% YoY) due to tariff/import pressure \u2014 Q2 recovering (+5% EBITDA)\n- **100% WOS Deepak Phenolics** (\u20b95,860 Cr FY25) covered in separate May 12 report\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**11 actionable findings** from 8/57 sources via Tor (Netherlands exit node) (27 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Adverse media | 8 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 14 |\n| Website scans (URLScan) | 3 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: www.godeepak.com\n- ADVERSE MEDIA: Sodium Nitrite From India: Preliminary Results and ... - Federal Register\n- ADVERSE MEDIA: Deepak Nitrite (NSE:DEEPAKNTR) Company Profile & Description\n- ADVERSE MEDIA: Deepak Nitrite Limited: Financial Data Forecasts Estimates and ...\n- ADVERSE MEDIA: (DPNT.NS) | Stock Price & Latest News | Reuters\n- ADVERSE MEDIA: Deepak Nitrite Share Price - Business Standard\n- ADVERSE MEDIA: Sanjay Bakulchandra Upadhyay - Director Insights, Profile, and ... (SANJAY BAKULCHANDRA UPADHYAY)\n- ADVERSE MEDIA: SANJAY BAKULCHANDRA UPADHYAY | ZaubaCorp (SANJAY BAKULCHANDRA UPADHYAY)\n- ADVERSE MEDIA: Tofler | Director page (SANJAY BAKULCHANDRA UPADHYAY)\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | DEEPAKNTR.NSE - (Deepak Nitrite Limited); Deepak Nitrite March 2020 Price to book : 3.9 times \nDeepak ; First Attempt at DD - Deepak Nitrite (+12 more) |\n| urlscan | 11 | www.godeepak.com; Deepak Group \u2013 Leading Chemical Intermediates Company; deepaknitrite.com (+8 more) |\n| duckduckgo_tor | 10 | Deepak Group - Leading Chemical Intermediates Company; Deepak Nitrite - Wikipedia; Deepak Nitrite Share Price - The Economic Times (+7 more) |\n| duckduckgo_adverse | 8 | Sodium Nitrite From India: Preliminary Results and ... - Fed; Deepak Nitrite (NSE:DEEPAKNTR) Company Profile & Description; Deepak Nitrite Limited: Financial Data Forecasts Estimates a (+5 more) |\n| dehashed | 1 |  (+1 more) |\n| hudsonrock_cavalier | 1 | www.godeepak.com |\n| court_records_tor | 1 | Sodium Nitrite From India: Preliminary Results and ... - Fed |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- www.godeepak.com \u2014 *hudsonrock_cavalier*\n\n**ADVERSE MEDIA** (8)\n- Sodium Nitrite From India: Preliminary Results and ... - Federal Register \u2014 *duckduckgo_adverse* [/l/?uddg=https%3A%2F%2Fwww.federalregister.gov%2Fdocuments%2F2026%2F05%2F13%2F20]\n- Deepak Nitrite (NSE:DEEPAKNTR) Company Profile & Description \u2014 *duckduckgo_adverse* [/l/?uddg=https%3A%2F%2Fstockanalysis.com%2Fquote%2Fnse%2FDEEPAKNTR%2Fcompany%2F&]\n- Deepak Nitrite Limited: Financial Data Forecasts Estimates and ... \u2014 *duckduckgo_adverse* [/l/?uddg=https%3A%2F%2Fin.marketscreener.com%2Fquote%2Fstock%2FDEEPAK%2DNITRITE%]\n- (DPNT.NS) | Stock Price & Latest News | Reuters \u2014 *duckduckgo_adverse* [/l/?uddg=https%3A%2F%2Fwww.reuters.com%2Fmarkets%2Fcompanies%2FDPNT.NS%2F&rut=fb]\n- Deepak Nitrite Share Price - Business Standard \u2014 *duckduckgo_adverse* [/l/?uddg=https%3A%2F%2Fwww.business%2Dstandard.com%2Fmarkets%2Fdeepak%2Dnitrite%]\n- Sanjay Bakulchandra Upadhyay - Director Insights, Profile, and ... \u2014 *duckduckgo_adverse* (searched: SANJAY BAKULCHANDRA UPADHYAY) [/l/?uddg=https%3A%2F%2Fwww.filesure.in%2Fdirector%2Fsanjay%2Dbakulchandra%2Dupad]\n- SANJAY BAKULCHANDRA UPADHYAY | ZaubaCorp \u2014 *duckduckgo_adverse* (searched: SANJAY BAKULCHANDRA UPADHYAY) [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2FSANJAY%2DBAKULCHANDRA%2DUPADHYAY%2D01]\n- Tofler | Director page \u2014 *duckduckgo_adverse* (searched: SANJAY BAKULCHANDRA UPADHYAY) [/l/?uddg=https%3A%2F%2Fwww.tofler.in%2Fsanjay%2Dbakulchandra%2Dupadhyay%2Fdirect]\n\n**WEB MENTION** (10)\n- Deepak Group - Leading Chemical Intermediates Company \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.godeepak.com%2F&rut=f4717398737ab92a99d4bfae03887312f]\n- Deepak Nitrite - Wikipedia \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FDeepak_Nitrite&rut=206501980d05]\n- Deepak Nitrite Share Price - The Economic Times \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Feconomictimes.indiatimes.com%2Fdeepak%2Dnitrite%2Dltd%2Fs]\n- Deepak Nitrite (NSE:DEEPAKNTR) Company Profile & Description \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fstockanalysis.com%2Fquote%2Fnse%2FDEEPAKNTR%2Fcompany%2F&]\n- Deepak Nitrite Limited (DEEPAKNTR.NS) Stock Price, News, Quote ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ffinance.yahoo.com%2Fquote%2FDEEPAKNTR.NS%2F&rut=1a089b22d]\n- Deepak Nitrite Ltd. - Moneycontrol \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.moneycontrol.com%2Findia%2Fstockpricequote%2Fchemical]\n- DEEPAK NITRITE LIMITED - MarketScreener.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.marketscreener.com%2Fquote%2Fstock%2FDEEPAK%2DNITRITE]\n- Deepak Nitrite Ltd Live Stock Price , Deepakntr Live Share Price ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fbeta.bseindia.com%2Fstock%2Dshare%2Dprice%2Fdeepak%2Dnitr]\n- Deepak Nitrite Ltd, DEEPAKNTR:NSI summary - FT.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fmarkets.ft.com%2Fdata%2Fequities%2Ftearsheet%2Fsummary%3F]\n- DEEPAK NITRITE LIMITED Company Profile | Mumbai, Maharashtra ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.d]\n\n**LEGAL RECORD** (1)\n- Sodium Nitrite From India: Preliminary Results and ... - Federal Register \u2014 *court_records_tor* [/l/?uddg=https%3A%2F%2Fwww.federalregister.gov%2Fdocuments%2F2026%2F05%2F13%2F20]\n\n**SOCIAL MENTION** (14)\n- DEEPAKNTR.NSE - (Deepak Nitrite Limited) \u2014 *reddit* [https://reddit.com/r/StockMarketIndia/comments/1q00p2x/deepakntrnse_deepak_nitri]\n- Deepak Nitrite March 2020 Price to book : 3.9 times \nDeepak Nitrite Peak cycle 2021: 16.7 times \nTod \u2014 *reddit* [https://reddit.com/r/BhartiyaStockMarket/comments/1p8j05o/deepak_nitrite_march_2]\n- First Attempt at DD - Deepak Nitrite \u2014 *reddit* [https://reddit.com/r/IndianStreetBets/comments/og92g5/first_attempt_at_dd_deepak]\n- Not so hidden gem - Deepak Nitrite DD \u2014 *reddit* [https://reddit.com/r/IndianStreetBets/comments/meff11/not_so_hidden_gem_deepak_n]\n- Which is more better for long term (10+ year) ATUL vs DEEPAK NITRITE \u2014 *reddit* [https://reddit.com/r/IndianStockMarket/comments/n7oeyt/which_is_more_better_for_]\n- Deepak Nitrite: Bullish or Nah? \u2014 *reddit* [https://reddit.com/r/IndianStreetBets/comments/j842bd/deepak_nitrite_bullish_or_]\n- Can someone please review my German CV \u2014 *reddit* [https://reddit.com/r/Germany_Jobs/comments/1syvp8k/can_someone_please_review_my_]\n- Caught 2 quick scalps in Dixon and Deepak Nitrate \u2014 *reddit* [https://reddit.com/r/NSEbets/comments/1r1ow4w/caught_2_quick_scalps_in_dixon_and]\n- Deepak Nitrate - with shortage of Sulphur focus on this stock \u2014 *reddit* [https://reddit.com/r/stock_trading_India/comments/1sk5lpx/deepak_nitrate_with_sh]\n- The US\u2013Iran\u2013Israel conflict \u2014 *reddit* [https://reddit.com/r/Tradejini_Cubeplus/comments/1rrj8c8/the_usiranisrael_confli]\n- US\u2013India Trade Reset (2025\u201326): From 50% Shock to 18% Relief \u2014 *reddit* [https://reddit.com/r/stock_trading_India/comments/1qu36o8/usindia_trade_reset_20]\n- List of better 30 Indian companies to invest in October, 2025 (my opinion) \u2014 *reddit* [https://reddit.com/r/IndianStockMarket/comments/1o8vndy/list_of_better_30_indian]\n- r/UpdateIndia \u2013 Stocks in News* \u2014 *reddit* [https://reddit.com/r/UpdateINDIA/comments/1pb367r/rupdateindia_stocks_in_news/]\n- Weekly Earnings Report: Indian Market (November 10 - 14, 2025) \u2014 *reddit* [https://reddit.com/r/IndianMarketUpdate/comments/1oyk5vz/weekly_earnings_report_]\n\n**DOMAIN SCAN SUMMARY** (1)\n- www.godeepak.com \u2014 *urlscan*\n\n**WEBSITE SCAN** (3)\n- Deepak Group \u2013 Leading Chemical Intermediates Company \u2014 *urlscan* [https://www.godeepak.com/]\n- deepaknitrite.com \u2014 *urlscan* [http://deepaknitrite.com/]\n- Chemical Intermediate Company India \u2014 *urlscan* [https://www.godeepak.com/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "DEEPAK NITRITE LIMITED",
+    "entity_country": "IN",
+    "entity_address": "2nd Floor, Fermenter House, Alembic City, Alembic Avenue Road, Gorwa, Vadodara, Gujarat 390003",
+    "entity_tax_id": "L24110GJ1970PLC001735",
+    "key_individuals": [
+      {
+        "name": "DEEPAK CHIMANLAL MEHTA"
+      },
+      {
+        "name": "MAULIK DEEPAK MEHTA"
+      },
+      {
+        "name": "SANJAY BAKULCHANDRA UPADHYAY"
+      },
+      {
+        "name": "AJAY CHIMANLAL MEHTA"
+      },
+      {
+        "name": "GIRISH RAGHUNATH SATARKAR"
+      },
+      {
+        "name": "SANJAY KHATAU ASHER"
+      },
+      {
+        "name": "DILEEP CHINUBHAI CHOKSI"
+      },
+      {
+        "name": "PRAKASH DINKAR SAMUDRA"
+      },
+      {
+        "name": "VIPUL SHANTILAL SHAH"
+      },
+      {
+        "name": "PURVI SHETH"
+      },
+      {
+        "name": "MEGHAV DEEPAK MEHTA"
+      },
+      {
+        "name": "SOMSEKHAR NANDA"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 11,
+  "dark_web_sources": 57
+}

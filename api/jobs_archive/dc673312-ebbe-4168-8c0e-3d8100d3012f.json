@@ -1,0 +1,61 @@
+{
+  "job_id": "dc673312-ebbe-4168-8c0e-3d8100d3012f",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "ASOCIACION EDITORIAL BRU\u00d1O",
+  "country": "PE",
+  "created_at": "2026-05-22T20:37:45.969815+00:00",
+  "updated_at": "2026-05-22T20:41:31.119207+00:00",
+  "blob_path": null,
+  "report_summary": "Duplicate \u2014 `americas/asociacion_editorial_bruno_PE_20260522.json` uploaded today at 20:35 UTC.\n\n| | |\n|---|---|\n| **File** | `americas/asociacion_editorial_bruno_PE_20260522.json` |\n| **Risk** | **2 / CLEAR** |\n| **Entity** | Catholic De La Salle Brothers educational publisher \u2014 Bre\u00f1a, Lima |\n| **UBO** | Instituto de los Hermanos La Salle (founded 1680, 80+ countries) |\n| **All 6 individuals** | \u2705 Screened \u2014 ALL CLEAR |\n| **Sanctions** | ALL CLEAR \u00b7 0 breaches |\n\nNo re-research warranted.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**7 actionable findings** from 5/57 sources via Tor (Netherlands exit node) (26 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| SSL certificates (crt.sh) | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: www.editorialbruno.com.pe\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Mi pap\u00e1 me regal\u00f3 algunos libros de su antigua biblioteca...; Huelga en El Mundo contra el \u201cERE salvaje\u201d en Unidad Editori; Opinion - Sobre pedofilia, relaciones sexuales con menores y (+12 more) |\n| duckduckgo_tor | 10 | Asociaci\u00f3n Editorial Bru\u00f1o | Bienvenidos; Bru\u00f1o | Editorial; Asociaci\u00f3n Editorial Bru\u00f1o | LinkedIn (+7 more) |\n| court_records_tor | 5 | ASOCIACION EDITORIAL BRU\u00d1O - 20100072247 - Bre\u00f1a, Lima; Asociacion Editorial Bru\u00f1o | Editorial Bru\u00f1o - UniversidadPe; ASOCIACION EDITORIAL BRU\u00d1O - Datos Per\u00fa (+2 more) |\n| crtsh | 3 | www.editorialbruno.com.pe; certificate_transparency (+1 more) |\n| hudsonrock_cavalier | 1 | www.editorialbruno.com.pe |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- www.editorialbruno.com.pe \u2014 *hudsonrock_cavalier*\n\n**WEB MENTION** (10)\n- Asociaci\u00f3n Editorial Bru\u00f1o | Bienvenidos \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.editorialbruno.com.pe%2F&rut=bd4c04ff8523c5c5688721dd]\n- Bru\u00f1o | Editorial \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Feditorialbruno.pe%2F&rut=b130233a9e90c82cf023aa45885f367b]\n- Asociaci\u00f3n Editorial Bru\u00f1o | LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fpe.linkedin.com%2Fcompany%2Fasociaci%25C3%25B3n%2Deditori]\n- Asociaci\u00f3n Editorial Bru\u00f1o | (01) 2024747 | Lima - pe.todosnegocios.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fpe.todosnegocios.com%2Fasociaci%25C3%25B3n%2Deditorial%2D]\n- Editorial Bru\u00f1o | Lima - Facebook \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.facebook.com%2Feditorialbrunoperu%2F&rut=fd802da025a2]\n- Asociacion Editorial Bru\u00f1o - Editor de libros en Lima AV ARICA 751 ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ffirmania.com.pe%2Fbrena%2Fasociacion%2Deditorial%2Dbru%25]\n- Asociacion Editorial Bru\u00f1o | Editorial Bru\u00f1o - UniversidadPeru \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.universidadperu.com%2Fempresas%2Fasociacion%2Deditori]\n- ASOCIACION EDITORIAL BRU\u00d1O - 20100072247 - Bre\u00f1a, Lima \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fcompuempresa.com%2Finfo%2Fasociacion%2Deditorial%2Dbru%2D]\n- Asociaci\u00f3n Editorial Bru\u00f1o - Av. Arica 751, Bre\u00f1a 15083, Peru - Cybo \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fes.cybo.com%2FPE%2Dbiz%2Fasociaci%25C3%25B3n%2Deditorial%]\n- Editorial Bru\u00f1o, Avenida Arica 751, Bre\u00f1a, Lima (2026) \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.schoolandcollegelistings.com%2FPE%2FLima%2F1387027461]\n\n**LEGAL RECORD** (5)\n- ASOCIACION EDITORIAL BRU\u00d1O - 20100072247 - Bre\u00f1a, Lima \u2014 *court_records_tor* [/l/?uddg=https%3A%2F%2Fcompuempresa.com%2Finfo%2Fasociacion%2Deditorial%2Dbru%2D]\n- Asociacion Editorial Bru\u00f1o | Editorial Bru\u00f1o - UniversidadPeru \u2014 *court_records_tor* [/l/?uddg=https%3A%2F%2Fwww.universidadperu.com%2Fempresas%2Fasociacion%2Deditori]\n- ASOCIACION EDITORIAL BRU\u00d1O - Datos Per\u00fa \u2014 *court_records_tor* [/l/?uddg=https%3A%2F%2Fwww.datosperu.org%2Fempresa%2Dasociacion%2Deditorial%2Dbr]\n- Asociacion Editorial Bru\u00f1o - Companies - IndexBox Platform \u2014 *court_records_tor* [/l/?uddg=https%3A%2F%2Fapp.indexbox.io%2Fcompanies%2Fprofile%2F3985192%2F&rut=ab]\n- Asociacion Editorial Bru\u00f1o \u2014 *court_records_tor* [/l/?uddg=https%3A%2F%2Fapps.osce.gob.pe%2Fperfilprov%2Dui%2Fficha%2F20100072247&]\n\n**SOCIAL MENTION** (15)\n- Mi pap\u00e1 me regal\u00f3 algunos libros de su antigua biblioteca... \u2014 *reddit* [https://reddit.com/r/libros/comments/1te63g4/mi_pap\u00e1_me_regal\u00f3_algunos_libros_de]\n- Huelga en El Mundo contra el \u201cERE salvaje\u201d en Unidad Editorial. El grupo quiere despedir a 224 traba \u2014 *reddit* [https://reddit.com/r/podemos/comments/4fyrzs/huelga_en_el_mundo_contra_el_ere_sa]\n- Opinion - Sobre pedofilia, relaciones sexuales con menores y la falsa moral de la izquierda- Los ref \u2014 *reddit* [https://reddit.com/r/monte_video/comments/1r0ozps/opinion_sobre_pedofilia_relaci]\n- Bueno, Rusia camcela vuelos y vacaciones de sus ciudadanos en Venezuela de forma indefinida \u2014 *reddit* [https://reddit.com/r/PuebloVenezolano/comments/1pajvv0/bueno_rusia_camcela_vuelo]\n- Arquitectura Integral: Un Di\u00e1logo entre la Idea Construida, la Resiliencia Urbana y la \u00c9tica Digital \u2014 *reddit* [https://reddit.com/r/BOLLYWOODLEZ/comments/1sdbc73/arquitectura_integral_un_di\u00e1l]\n- Temario Completo del CINFO - Odontolog\u00eda UNC \u2014 *reddit* [https://reddit.com/r/OdontologiaArgentina/comments/1rf0wmo/temario_completo_del_]\n- Please, Help me with my prompt \ud83e\udd7a \u2014 *reddit* [https://reddit.com/r/notebooklm/comments/1pl402r/please_help_me_with_my_prompt/]\n- Por qu\u00e9 los eventos presenciales de videojuegos siguen importando (Lecciones del Tokyo Game Show) \u2014 *reddit* [https://reddit.com/r/VideojuegosMX/comments/1odli19/por_qu\u00e9_los_eventos_presenci]\n- \u00a1Se me dificulta la aritm\u00e9tica para prepararme para la universidad!, \u00a1Necesito libros, v\u00eddeos, herra \u2014 *reddit* [https://reddit.com/r/preuniversitario/comments/1ncax3p/se_me_dificulta_la_aritm\u00e9]\n- \u00a1Se me dificulta la geometr\u00eda para prepararme para la universidad!, necesito ayuda con geometr\u00eda de  \u2014 *reddit* [https://reddit.com/r/preuniversitario/comments/1lsm4jz/se_me_dificulta_la_geomet]\n- Analia Romero, jueza designada a la causa de las elecciones, decidi\u00f3 dar un paso al costado ya que a \u2014 *reddit* [https://reddit.com/r/BocaJuniors/comments/18biy5b/analia_romero_jueza_designada_]\n- Ayuda con libro \u2014 *reddit* [https://reddit.com/r/Wallapop/comments/1jri9j2/ayuda_con_libro/]\n- FMF and U.S. Soccer withdraw bid for 2027 Women\u2019s World Cup. Will instead launch a bid for the 2031  \u2014 *reddit* [https://reddit.com/r/LigaMX/comments/1cgb5ku/fmf_and_us_soccer_withdraw_bid_for_]\n- Se baj\u00f3 la segunda jueza \u2014 *reddit* [https://reddit.com/r/BocaJuniors/comments/18biym5/se_baj\u00f3_la_segunda_jueza/]\n- R\u00c9PUBLIQUE, LA VIDA EN PI\u00c9. Definir qu\u00e9 es el movimiento de protesta Nuit Debout resulta dif\u00edcil. En \u2014 *reddit* [https://reddit.com/r/podemos/comments/4f1jjq/r\u00e9publique_la_vida_en_pi\u00e9_definir_q]\n\n**CERTIFICATE SUMMARY** (1)\n- www.editorialbruno.com.pe \u2014 *crtsh*\n\n**SSL CERTIFICATE** (1)\n-  \u2014 *crtsh*\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "americas: Report file not found on remote VM (americas)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "ASOCIACION EDITORIAL BRU\u00d1O",
+    "entity_country": "PE",
+    "entity_website": "http://www.editorialbruno.com.pe/",
+    "key_individuals": [
+      {
+        "name": "Miguel \u00c1ngel Luna Garc\u00eda",
+        "title": "Associate"
+      },
+      {
+        "name": "Jorge Antonio Aguilar Reyna",
+        "title": "Associate"
+      },
+      {
+        "name": "Renzo Jacobo Meza Rodriguez",
+        "title": "Associate"
+      },
+      {
+        "name": "M\u00e1ximo Sagredo Sagredo",
+        "title": "Associate"
+      },
+      {
+        "name": "Augusto Benedicto Gonzales Vilca",
+        "title": "Associate"
+      },
+      {
+        "name": "Instituto de los Hermanos La Salle",
+        "title": "UBO"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (americas)"
+    }
+  },
+  "errors": [
+    "americas: Report file not found on remote VM (americas)"
+  ],
+  "dark_web_findings": 7,
+  "dark_web_sources": 57
+}

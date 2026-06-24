@@ -1,0 +1,140 @@
+{
+  "job_id": "fb811f2d-f84c-4e6d-983d-a8eb42863ca5",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "KUBO COMBUSTION EFFICIENCY CHEMICALS PRIVATE LIMITED",
+  "country_code": "IN",
+  "created_at": "2026-05-04T16:19:06.008528+00:00",
+  "updated_at": "2026-05-04T16:20:40.521332+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:19:12.711601+00:00",
+      "verified": true,
+      "legal_name": "KUBO COMBUSTION EFFICIENCY CHEMICALS PRIVATE LIMITED",
+      "cin": "U24100MH1978PTC020754",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "07 November, 1978",
+      "directors": [
+        "Sudhir Kumar",
+        "Jayant Pratapsinh Ramaiya"
+      ],
+      "registered_address": "401 AMIT INDUSTRIAL ESTATE61 DR RAO ROAD, MUMBAI, Maharashtra, India, 400012",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:19:12.632544+00:00",
+      "found": true,
+      "name": "Kubo Combustion Efficiency Chemicals Pvt Ltd",
+      "linkedin_url": "https://kr.linkedin.com/company/kubo-combustion-efficiency-chemicals-pvt-ltd",
+      "industry": "Law Practice",
+      "company_size": "2-10 employees",
+      "locations": [
+        "Dr SS Rao Road Mumbai, Maharashtra 400012, IN"
+      ],
+      "about": "",
+      "followers": 20,
+      "employees_on_linkedin": 12,
+      "organization_type": null,
+      "website": "https://www.kubochem.com/",
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "neeta adagale",
+          "link": "https://in.linkedin.com/in/neeta-adagale-8ba083104?trk=org-employees"
+        },
+        {
+          "name": "Soni Sahab",
+          "link": "https://in.linkedin.com/in/soni-sahab-aab409179?trk=org-employees"
+        },
+        {
+          "name": "Nitin Magar",
+          "link": "https://in.linkedin.com/in/nitin-magar-21b6291a0?trk=org-employees"
+        },
+        {
+          "name": "Prasad ambavale",
+          "link": "https://in.linkedin.com/in/prasad-ambavale-262156204?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:20:40.520677+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 60,
+      "sources_searched": 37,
+      "sources_with_results": 2,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "KUBO COMBUSTION EFFICIENCY CHEMICALS PRIVATE LIMITED",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

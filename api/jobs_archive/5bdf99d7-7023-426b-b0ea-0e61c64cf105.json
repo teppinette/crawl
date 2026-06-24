@@ -1,0 +1,32 @@
+{
+  "job_id": "5bdf99d7-7023-426b-b0ea-0e61c64cf105",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "COPAP INC",
+  "country": "CA",
+  "created_at": "2026-05-15T12:46:29.025818+00:00",
+  "updated_at": "2026-05-15T12:46:50.925075+00:00",
+  "blob_path": "osint-staging/cir/americas/copap_inc_CA_20260514.json",
+  "report_summary": "Duplicate \u2014 `americas/copap_inc_CA_20260514.json` uploaded 2026-05-14T13:31 UTC. Seventh submission for this entity across two days.\n\n| | |\n|---|---|\n| **File** | `americas/copap_inc_CA_20260514.json` |\n| **Risk** | **2 / CLEAR \u2014 TIER 1** |\n| **Website** | copap.com \u2713 |\n| **Corp #** | 10836141 (CBCA, est. 1990) |\n| **Revenue** | ~USD 500M |\n| **Sanctions** | ALL CLEAR |\n\nFull COPAP Group suite (6 reports) in `osint-staging/americas/`.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 0/0 sources via Tor (Netherlands exit node)\n\nNo dark web exposure detected. Entity and owners clean across all 0 sources.\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "COPAP INC",
+    "entity_country": "CA",
+    "entity_website": "copap.com",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 0
+}

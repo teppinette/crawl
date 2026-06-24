@@ -1,0 +1,52 @@
+{
+  "job_id": "c974bf5d-b617-4734-9858-1aba7b01eebc",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "china",
+  "entity_name": "TIANJIN RED TRIANGLE INTERNATIONAL TRADING CO.,LTD.",
+  "country": "CN",
+  "created_at": "2026-05-08T18:12:34.930749+00:00",
+  "updated_at": "2026-05-08T18:14:29.485524+00:00",
+  "blob_path": null,
+  "report_summary": "Already completed at 16:52 UTC today. Report is current with all checks done.\n\n**DONE:** `/home/copapadmin/crawl/output/tianjin_red_triangle_international_trading_co_ltd_cn_20260508.json`\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**78 findings** from 4/45 sources via Tor (Netherlands exit node)\n\n| Category | Count |\n|----------|-------|\n| Breach records | 50 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n| Website scans (URLScan) | 2 |\n\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "china: Report file not found on remote VM (china)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "TIANJIN RED TRIANGLE INTERNATIONAL TRADING CO.,LTD.",
+    "entity_country": "CN",
+    "entity_address": "\u5929\u6d25\u81ea\u8d38\u8bd5\u9a8c\u533a\uff08\u5929\u6d25\u6e2f\u4fdd\u7a0e\u533a\uff09\u6d77\u6ee8\u4e5d\u8def66\u53f7505\u5ba4 (Room 505, No. 66 Haibin 9th Road, Tianjin Free Trade Zone, Tianjin Port Bonded Area)",
+    "entity_website": "https://www.tjsoda.com/",
+    "entity_industry": "Corporation",
+    "entity_tax_id": "91120116797292337E",
+    "key_individuals": [
+      {
+        "name": "Du Daosheng",
+        "title": "DIRECTOR"
+      },
+      {
+        "name": "Ding Aihu",
+        "title": "GENERAL MANAGER"
+      },
+      {
+        "name": "Du Daosheng",
+        "title": "UBO"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "china": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (china)"
+    }
+  },
+  "errors": [
+    "china: Report file not found on remote VM (china)"
+  ],
+  "dark_web_findings": 78,
+  "dark_web_sources": 45
+}

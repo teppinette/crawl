@@ -1,0 +1,50 @@
+{
+  "job_id": "abd35c5e-335b-47df-8de5-394a029425e1",
+  "scenario": "cir",
+  "status": "failed",
+  "region": "china",
+  "entity_name": "TIANJIN RED TRIANGLE INTERNATIONAL TRADING CO.,LTD.",
+  "country": "CN",
+  "created_at": "2026-05-08T17:52:33.214550+00:00",
+  "updated_at": "2026-05-21T18:05:45.561487+00:00",
+  "blob_path": null,
+  "report_summary": "Already completed at 16:52 UTC today. Report is current.\n\n**DONE:** `/home/copapadmin/crawl/output/tianjin_red_triangle_international_trading_co_ltd_cn_20260508.json` \u2014 Score 1 (LOW RISK)",
+  "error": "orphan_timeout (stale 18733min, reaped 2026-05-21)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "TIANJIN RED TRIANGLE INTERNATIONAL TRADING CO.,LTD.",
+    "entity_country": "CN",
+    "entity_address": "\u5929\u6d25\u81ea\u8d38\u8bd5\u9a8c\u533a\uff08\u5929\u6d25\u6e2f\u4fdd\u7a0e\u533a\uff09\u6d77\u6ee8\u4e5d\u8def66\u53f7505\u5ba4 (Room 505, No. 66 Haibin 9th Road, Tianjin Free Trade Zone, Tianjin Port Bonded Area)",
+    "entity_website": "https://www.tjsoda.com/",
+    "entity_industry": "Corporation",
+    "entity_tax_id": "91120116797292337E",
+    "key_individuals": [
+      {
+        "name": "Du Daosheng",
+        "title": "DIRECTOR"
+      },
+      {
+        "name": "Ding Aihu",
+        "title": "GENERAL MANAGER"
+      },
+      {
+        "name": "Du Daosheng",
+        "title": "UBO"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "china": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (china)"
+    }
+  },
+  "errors": [
+    "china: Report file not found on remote VM (china)"
+  ]
+}

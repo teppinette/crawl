@@ -1,0 +1,45 @@
+{
+  "job_id": "baf4ae08-6bd8-435a-9ecc-926aefd60bac",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "gulf",
+  "entity_name": "ARTICA INTERNATIONAL",
+  "country": "AE",
+  "created_at": "2026-04-27T20:19:47.991431+00:00",
+  "updated_at": "2026-04-27T20:25:06.146678+00:00",
+  "blob_path": "osint-staging/cir/gulf/artica_international_AE_20260427.json",
+  "report_summary": "**DONE: Artica International DMCC, AE \u2014 Risk: 3 MONITOR \u2014 All sanctions CLEAR; MONITOR for 70% UBO (Priya Gupta) identity unverifiable + Priya Aggarwal name discrepancy in Indian sister co; Pakistan trade exposure (FATF)**\n\n---\n\n### Research Summary \u2014 All Workstreams Executed\n\n| Check | Result |\n|---|---|\n| Corporate registry | \u2705 DMCC-090302 \u00b7 Founded Nov 2014 \u00b7 AG Tower JLT \u00b7 Active |\n| Business activity | Paper / tissue / hygiene / packaging materials trader (non-chemical) |\n| Directors | Vedansh Gupta (MD, 30%) \u00b7 Priya Gupta (UBO, 70%) |\n| OFAC SDN | \u2705 CLEAR |\n| OFAC Consolidated | \u2705 CLEAR (entity + all UBOs + related Indian entities) |\n| UK OFSI | \u2705 CLEAR |\n| EU / UN | \u26a0\ufe0f Not verified \u2014 manual check recommended |\n| Adverse media | \u2705 None found |\n| Litigation | No accessible records (UAE courts not public) |\n| PEP | \u2705 None identified |\n| Trade risk / dual-use | \u2705 None \u2014 paper/hygiene products, no CBRN concern |\n\n### Key Findings\n\n**\u2705 Positives**\n- Vedansh Gupta (founder/MD) extensively documented in open sources \u2014 LinkedIn, podcast, business directories \u2014 consistent with a genuine SME operator since 2014\n- DMCC is one of UAE's most regulated free zones \u2014 annual licence renewal, AML obligations, DMCC oversight\n- 192 total trade shipments recorded; consistent with active, ongoing business\n- Indian-origin paper trader serving S. Asia + Africa \u2014 common, commercially coherent profile\n\n**\u26a0\ufe0f MONITOR Flags**\n1. **Priya Gupta 70% UBO** \u2014 cannot be confirmed via open OSINT; the related Indian entity (Coniferous Multitrade Pvt Ltd) lists **Priya Aggarwal** (not Priya Gupta) as co-director alongside Vedansh Gupta \u2192 name discrepancy requires KYC clarification\n2. **Pakistan primary export market** \u2014 FATF grey list; paper trade is low risk but FATF status warrants standard AML diligence on downstream Pakistani buyers\n3. **EU/UN sanctions unverified** \u2014 API unreachable; manual check before onboarding\n\n### Recommended EDD\n- Obtain passport / Emirates ID for both UBOs (clarify Priya Gupta vs. Priya Aggarwal)\n- Verify current DMCC trade licence\n- Manual EU + UN sanctions list check\n\n**File:** `~/crawl/output/artica_international_AE_20260427.json` (15 KB, valid)\n**Blob:** \u2705 `gulf/artica_international_AE_20260427.json` \u2014 20:24:46 UTC",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "ARTICA INTERNATIONAL",
+    "entity_country": "AE",
+    "entity_address": "Unit No: AG-PF-169, AG Tower, Plot No: JLT-PH1-I1A, Jumeirah Lakes Towers, Dubai, United Arab Emirates",
+    "entity_tax_id": "DMCC-090302",
+    "key_individuals": [
+      {
+        "name": "Vedansh Gupta",
+        "title": "Managing Director"
+      },
+      {
+        "name": "Vedansh Gupta",
+        "title": "UBO (30.00%)"
+      },
+      {
+        "name": "Priya Gupta",
+        "title": "UBO (70.00%)"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "gulf": {
+      "status": "completed",
+      "error": null
+    }
+  }
+}

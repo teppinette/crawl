@@ -1,0 +1,46 @@
+{
+  "job_id": "191c0e52-ed24-4bb2-a641-1ccd9d6f8130",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "gulf",
+  "entity_name": "NIMIR CHEMICALS PAKISTAN LTD",
+  "country": "PK",
+  "created_at": "2026-05-22T19:59:32.001978+00:00",
+  "updated_at": "2026-05-22T20:07:38.901507+00:00",
+  "blob_path": "osint-staging/cir/gulf/nimir_chemicals_pakistan_ltd_PK_20260522.json",
+  "report_summary": "Blob uploaded (HTTP 201). Research complete.\n\n---\n\n**DONE: NIMIR CHEMICALS PAKISTAN LIMITED (NCPL), PK \u2014 Risk: 3 MONITOR**\n\n---\n\n## Summary\n\n| Check | Result |\n|---|---|\n| **SECP** | \u2705 **VERIFIED** \u2014 #0020644, Incorporated 30/11/1989, CRO Lahore |\n| **FBR ATL** | \u26a0\ufe0f UNVERIFIED \u2014 portal error; ATS Group FBR risk overhang |\n| **PACRA Rating** | \u2705 **A-/A2 Stable** \u2014 maintained Sep 2025 (3rd consecutive surveillance) |\n| **Market position** | \u2705 **Pakistan's ONLY domestic PA manufacturer** |\n| **Raw material supplier** | \u2705 SABIC Saudi Arabia (world's largest petrochemical company) |\n| **Anjum Nisar (57.5%)** | \u26a0\ufe0f Former FPCCI President \u2014 **PEP-equivalent; EDD required** |\n| **Tariq Nisar (42.5%)** | \u2705 No adverse |\n| **Khalid Mumtaz Qazi** | \u26a0\ufe0f Cross-director with NICL (PSX-listed) \u2014 conflict risk to disclose |\n| **\"Saqib\"** | \u2705 Likely Saqib Anjum (son of Anjum Nisar, executive director) |\n| **ATS Group FBR** | \u26a0\ufe0f ATS Synthetic had Rs. 840M FBR enforcement (2024) \u2014 risk overhang |\n| **Court case** | \u2139\ufe0f NCPL vs. Federal Govt (plaintiff, challenging PA import duty) \u2014 not criminal |\n| **Financial health** | \u26a0\ufe0f 53% utilization CY24; 33.8% revenue decline 1HCY25; leveraged balance sheet |\n| **No independent directors** | \u26a0\ufe0f All-family board \u2014 governance weakness |\n| **Form AB** | \u26a0\ufe0f Filed to April 2023 only \u2014 2+ years behind |\n| **Sanctions** | \u2705 No match (OFAC/UN/EU/UK) |\n| **NAB** | \u2705 No cases |\n| **Dark Web** | \u2705 0 findings |\n\n**Corporate heritage**: Ravi Chemicals (1989) \u2192 Hoechst AG JV (1994) \u2192 Celanese (1997) \u2192 Knightsbridge Chemicals London (1999) \u2192 Nisar/ATS Group (2011)\n\n**Before transacting**: FBR NTN certificate, SECP cert, EDD on Anjum Nisar, full name for \"Saqib,\" clarify cross-directorship conflict management, FCCP case status.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 2/53 sources via Tor (Netherlands exit node) (24 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 53 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Given on \"Buy the dip\" low historic psx index due to Iran wa; Is your team's owner a Nepo Baby? An Analysis of Current NFL; Archival Newspaper Cuttings: Calcutta 'Direct Action Day', 1 (+12 more) |\n| duckduckgo_tor | 10 | Home - Nimir Group of Companies; Home | Nimir Chemicals Pakistan Limited; Nimir Chemicals Pakistan Limited - LinkedIn (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (9)\n- Home - Nimir Group of Companies \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fnimir.com.pk%2F&rut=46bf3158807f530719396895009716aefcf66]\n- Home | Nimir Chemicals Pakistan Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fnimirchemicals.com%2F&rut=2dfa5d9f2e978076ec443b11e744722]\n- Nimir Chemicals Pakistan Limited - LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fpk.linkedin.com%2Fcompany%2Fnimir%2Dchemicals%2Dpakistan%]\n- Nimir Chemcoats - Leading Construction Chemicals in Pakistan \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.nimirchemcoats.com.pk%2F&rut=ef4e310648276a0cb7c2cdf3]\n- Nimir Chemicals Pakistan Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.n]\n- Nimir Chemical Pakistan | Address, Profile, Numbers \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fb2c.com.pk%2Fcompany%2Fnimir%2Dchemical%2Dpakistan&rut=64]\n- NICL - Stock quote for Nimir Industrial Chemicals Limited - Pakistan ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fdps.psx.com.pk%2Fcompany%2FNICL&rut=5d15a619913592437567c]\n- NICL.PK | Nimir Industrial Chemicals Ltd. Financial Statements - WSJ \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.wsj.com%2Fmarket%2Ddata%2Fquotes%2FPK%2FNICL%2Ffinanc]\n- Nimir Chemicals Pakistan Ltd. | (042) 35718001 | Lahore \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.bizsouthasia.com%2FPK%2Fnimir%2Dchemicals%2Dpakistan%]\n\n**SOCIAL MENTION** (15)\n- Given on \"Buy the dip\" low historic psx index due to Iran war I came across this pdf's calculations  \u2014 *reddit* [https://reddit.com/r/FIREPakistan/comments/1sf02iw/given_on_buy_the_dip_low_hist]\n- Is your team's owner a Nepo Baby? An Analysis of Current NFL Head Coach Searches \u2014 *reddit* [https://reddit.com/r/nfl/comments/1qhzxtv/is_your_teams_owner_a_nepo_baby_an_ana]\n- Archival Newspaper Cuttings: Calcutta 'Direct Action Day', 1946. Also On the left - \"Jinnah Declines \u2014 *reddit* [https://reddit.com/r/IndianHistory/comments/1sk0w00/archival_newspaper_cuttings_]\n- Can someone explain what happened ? \u2014 *reddit* [https://reddit.com/r/FIREPakistan/comments/1r2p1e6/can_someone_explain_what_happ]\n- Finding Hidden Value in Companies \u2014 *reddit* [https://reddit.com/r/FIREPakistan/comments/1nnb001/finding_hidden_value_in_compa]\n- Pray for the loved ones! Let\u2019s keep ourselves United as one \u261d\ufe0f! \u2014 *reddit* [https://reddit.com/r/CriticalThinkingIndia/comments/1otyqf5/pray_for_the_loved_o]\n- Nimir Industrial Chemicals Pakistan Limited \u2014 *reddit* [https://reddit.com/r/PkVacancy/comments/2qw1n3/nimir_industrial_chemicals_pakist]\n- Undervalued Gems In PSX \u2014 *reddit* [https://reddit.com/r/FIREPakistan/comments/1q7aebs/undervalued_gems_in_psx/]\n- The Declaration of Montreal | International Association for the Study of Pain  (Access to Pain Care  \u2014 *reddit* [https://reddit.com/r/OldGoatsPenofPain/comments/1tan9bq/the_declaration_of_montr]\n- Declaration of Montreal \u2014 *reddit* [https://reddit.com/r/GreenIsLovely/comments/1tan88w/declaration_of_montreal/]\n- Industries of Bangladesh \u2014 *reddit* [https://reddit.com/r/bcs_preparation/comments/1sw7aa4/industries_of_bangladesh/]\n- \ud83d\udce6 Chinese Export Documentation Master Guide The Ultimate Compliance Playbook for Furniture Importers \u2014 *reddit* [https://reddit.com/r/china__furniture/comments/1scf30q/chinese_export_documentat]\n- Chinese Export Documentation Master Guide The Ultimate Compliance Playbook for Furniture Importers ( \u2014 *reddit* [https://reddit.com/r/FoshanFurnitures/comments/1s66cbh/chinese_export_documentat]\n- (ADD TO IT) REVIEW (critique?) my list of 1206 artists and bands \u2014 *reddit* [https://reddit.com/r/Music/comments/1rbv63w/add_to_it_review_critique_my_list_of]\n- India\u2019s Urea Producers Slash Output as Middle East Conflict Disrupts LNG Supplies \u2014 *reddit* [https://reddit.com/r/jrmining/comments/1rlgnug/indias_urea_producers_slash_outpu]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "NIMIR CHEMICALS PAKISTAN LTD",
+    "entity_country": "PK",
+    "entity_address": "First Floor, Amin Arcade, 7-Durand Road, Lahore, Punjab",
+    "key_individuals": [
+      {
+        "name": "Anjum Nisar"
+      },
+      {
+        "name": "Tariq Nisar"
+      },
+      {
+        "name": "Saqib"
+      },
+      {
+        "name": "Khalid Mumtaz Qazi"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "gulf": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 53
+}

@@ -1,0 +1,110 @@
+{
+  "job_id": "8fd41574-35db-44eb-9052-446ca56d2722",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "SOHAM POLYMERS PRIVATE LIMITED (UNIT I)",
+  "country_code": "IN",
+  "created_at": "2026-05-04T15:19:19.203813+00:00",
+  "updated_at": "2026-05-04T15:20:37.371447+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:19:26.826470+00:00",
+      "verified": true,
+      "legal_name": "SOHAM POLYMERS PRIVATE LIMITED",
+      "cin": "U24110MH1995PTC088223",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "09 May, 1995",
+      "directors": [
+        "Vrushali Satish Modak",
+        "Satish Shridhar Modak",
+        "Soham Satish Modak"
+      ],
+      "registered_address": "FLAT NO. 102, A WING, 1ST FLOOR, OM APARTMENT, SUNDERVAN COMPLEX - SHASTRI NAGAR, ANDHERI WEST, MUMBAI, Mumbai City, Maharashtra - 400053",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:19:22.096652+00:00",
+      "found": false,
+      "note": "LinkedIn company page not found via search"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:20:37.370858+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 60,
+      "sources_searched": 37,
+      "sources_with_results": 2,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "SOHAM POLYMERS PRIVATE LIMITED (UNIT I)",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

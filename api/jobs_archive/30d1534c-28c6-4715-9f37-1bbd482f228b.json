@@ -1,0 +1,57 @@
+{
+  "job_id": "30d1534c-28c6-4715-9f37-1bbd482f228b",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "KLJ POLYMERS AND CHEMICALS LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-20T21:23:21.457678+00:00",
+  "updated_at": "2026-05-20T21:28:01.143253+00:00",
+  "blob_path": "osint-staging/cir/india/klj_polymers_and_chemicals_limited_IN_20260520.json",
+  "report_summary": "**DONE: K.L.J. Polymers and Chemicals Limited, India \u2014 Risk: 2 CLEAR \u2014 KLJ Group flagship; CIN U24119DL1989PLC036883; India's largest plasticizer maker; Revenue \u20b92,050 Cr FY25; \u20b9675.81 Cr transparent bank charges (SBI/HDFC/Axis); 2 new directors Apr 2025 not in subject block**\n\n`~/crawl/output/klj_polymers_and_chemicals_limited_IN_20260520.json` \u2014 11.2 KB, valid, all 8 workstreams complete.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**1 actionable findings** from 2/57 sources via Tor (Netherlands exit node) (10 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Web mentions (Tor-routed) | 10 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: kljgroup.com\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | KLJ Group; K L J POLYMERS AND CHEMICALS LIMITED | ZaubaCorp; KLJ Polymers And Chemicals Ltd. - IndiaMART (+7 more) |\n| hudsonrock_cavalier | 1 | kljgroup.com |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- kljgroup.com \u2014 *hudsonrock_cavalier*\n\n**WEB MENTION** (10)\n- KLJ Group \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fkljindia.com%2F&rut=8effcacbd2b978eda676350b1360fb781875b]\n- K L J POLYMERS AND CHEMICALS LIMITED | ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2FK%2DL%2DJ%2DPOLYMERS%2DAND%2DCHEMICAL]\n- KLJ Polymers And Chemicals Ltd. - IndiaMART \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Fklj%2Dpolymers%2Dcgemical%2Dlimited%2]\n- K L J POLYMERS AND CHEMICALS LIMITED - 2026 Company Profile ... - Tracxn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Fk%2Dl%2Dj%2Dp]\n- Contact KLJ Group \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fkljgroup.com%2Fcontactus.html&rut=910bdf058fca59ca4b0130f]\n- K L J Polymers And Chemicals Limited - 2026 Insights \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fcompany%2Fk%2Dl%2Dj%2Dpolymers%]\n- K L J Polymers AND Chemicals Limited - The Economic Times \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Feconomictimes.indiatimes.com%2Fcompany%2Fk%2Dl%2Dj%2Dpoly]\n- K L J Polymers and Chemicals Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.k]\n- K L J Polymers And Chemicals Limited (India) \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FIN%2FK_L_J_Polym]\n- Company Profile - Klj Polymers And Chemicals Ltd \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fchemdmart.com%2Fcompany%2Dprofile%2Fklj%2Dpolymers%2Dand%]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "KLJ POLYMERS AND CHEMICALS LIMITED",
+    "entity_country": "IN",
+    "entity_address": "KLJ HOUSE, 8A, 3RD FLOOR, SHIVAJI MARG, NAJAFGARH ROAD, NEW DELHI, Delhi 110015",
+    "entity_website": "https://kljgroup.com/",
+    "entity_tax_id": "36883",
+    "key_individuals": [
+      {
+        "name": "KAMAL JAIN"
+      },
+      {
+        "name": "KANHAIYA LAL JAIN"
+      },
+      {
+        "name": "MANGI LAL SETHIA"
+      },
+      {
+        "name": "JITENDRA KUMAR BEGANI"
+      },
+      {
+        "name": "SHASHI KATYAL"
+      },
+      {
+        "name": "SURAJ MAL SURANA"
+      },
+      {
+        "name": "BABULAL BHUTORIA"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 1,
+  "dark_web_sources": 57
+}

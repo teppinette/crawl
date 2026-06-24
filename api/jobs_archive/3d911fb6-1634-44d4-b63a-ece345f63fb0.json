@@ -1,0 +1,32 @@
+{
+  "job_id": "3d911fb6-1634-44d4-b63a-ece345f63fb0",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "SCRIBE COLOMBIA SAS",
+  "country": "CO",
+  "created_at": "2026-05-22T16:23:54.720064+00:00",
+  "updated_at": "2026-05-22T16:39:35.036269+00:00",
+  "blob_path": "osint-staging/cir/americas/scribe_colombia_sas_CO_20260522.json",
+  "report_summary": "Duplicate \u2014 `americas/scribe_colombia_sas_CO_20260522.json` uploaded today at 16:32 UTC.\n\n| | |\n|---|---|\n| **File** | `americas/scribe_colombia_sas_CO_20260522.json` |\n| **Risk** | **2 / CLEAR** |\n| **NIT** | 900442933-8 |\n| **Address** | Carrera 38 10A 35, Edificio Vintage, Medell\u00edn, Antioquia |\n| **Activity** | School/office supplies (notebooks, markers, backpacks) \u2014 scribe.com.co |\n| **ADB \"match\"** | Likely false positive \u2014 WB/IDB NO HIT |\n| **\ud83d\udd34 HIGH item** | No legal representatives in brief \u2014 obtain C\u00e1mara de Comercio certificate |\n\nNo re-research warranted.\n---\n\n## DARK WEB SCREENING \u2014 CRITICAL\n**3 actionable findings** from 4/45 sources via Tor (Netherlands exit node) (16 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| World Bank Debarment | 1 |\n| Credential compromise | 1 |\n| Social media mentions | 15 |\n| Website scans (URLScan) | 1 |\n\n**Key findings:**\n- WORLD BANK DEBARMENT: \n- CREDENTIAL COMPROMISE: www.scribe.com.co\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Fraude paquete en aduana. Grupo log\u00edstico Colombia internaci; \u00bfAlguien a trabajado en ALO CREDIT COLOMBIA SAS?; Fixed it (+12 more) |\n| urlscan | 11 | www.scribe.com.co; Scribe | \u00datiles escolares y productos de oficina al mejor pr (+9 more) |\n| hudsonrock_cavalier | 1 | www.scribe.com.co |\n| adb_sanctions | 1 | debarment_record |\n\n### All findings detail\n\n**WORLD BANK DEBARMENT** (1)\n-  \u2014 *adb_sanctions* [https://www.adb.org/who-we-are/integrity/sanctions]\n\n**CREDENTIAL COMPROMISE** (1)\n- www.scribe.com.co \u2014 *hudsonrock_cavalier*\n\n**SOCIAL MENTION** (15)\n- Fraude paquete en aduana. Grupo log\u00edstico Colombia internacional sas \u2014 *reddit* [https://reddit.com/r/Colombia/comments/1snfmgv/fraude_paquete_en_aduana_grupo_lo]\n- \u00bfAlguien a trabajado en ALO CREDIT COLOMBIA SAS? \u2014 *reddit* [https://reddit.com/r/ColombiaEmpleo/comments/1pjebhs/alguien_a_trabajado_en_alo_]\n- Fixed it \u2014 *reddit* [https://reddit.com/r/shittyskylines/comments/1thjzcv/fixed_it/]\n- \ud83d\udce2 Liebherr-Colombia SAS is [hiring] a Technical Support Engineer at Liebherr-Colombia SAS! \u2014 *reddit* [https://reddit.com/r/jobboardsearch/comments/1ny0oys/liebherrcolombia_sas_is_hir]\n- \u00bfQu\u00e9 brokers aceptan cuentas para empresas en Colombia (SAS, LTDA, etc.)? \u2014 *reddit* [https://reddit.com/r/ColombiaFinanciera/comments/1m6fqxz/qu\u00e9_brokers_aceptan_cue]\n- \ud83d\udce2 Liebherr-Colombia SAS is hiring a Service Technician at Liebherr-Colombia SAS! \u2014 *reddit* [https://reddit.com/r/jobboardsearch/comments/1mxzm1x/liebherrcolombia_sas_is_hir]\n- \ud83d\udce2 Liebherr-Colombia SAS is hiring a Administrative Assistant (Temporary) at Liebherr-Colombia SAS! \u2014 *reddit* [https://reddit.com/r/jobboardsearch/comments/1kzfiwu/liebherrcolombia_sas_is_hir]\n- Peter McAleese preparing for an assualt on Pablo Escobar's Villa, Colombia - 1989. Peter served with \u2014 *reddit* [https://reddit.com/r/MilitaryPorn/comments/lpnkm7/peter_mcaleese_preparing_for_a]\n- \u201cPatria Grande Achieved\u201d - The United Republic of Colombia as of 1824, on the final day of the gover \u2014 *reddit* [https://reddit.com/r/imaginarymaps/comments/1rz9o3g/patria_grande_achieved_the_u]\n- The rarest find and biggest disappointment! \u2014 *reddit* [https://reddit.com/r/MarvelLegends/comments/1la5hbh/the_rarest_find_and_biggest_]\n- I want to set up a Special air service Detachment on battle scribe and it gave me a list of theatre  \u2014 *reddit* [https://reddit.com/r/boltaction/comments/1e4ic8v/i_want_to_set_up_a_special_air_]\n- Natural Colombian emerald ethically sourced and and returning a percentage of the retail to the hist \u2014 *reddit* [https://reddit.com/r/jewelry/comments/1anywxf/natural_colombian_emerald_ethicall]\n- I won a short story contest, but they ask me for money to publish it. \u2014 *reddit* [https://reddit.com/r/writing/comments/11w7vkh/i_won_a_short_story_contest_but_th]\n- Ross is getting pricey lol \u2014 *reddit* [https://reddit.com/r/transformers/comments/1rycccm/ross_is_getting_pricey_lol/]\n- I've had a mommy makeover, dental bone graft + Implant, botox, kybella, and HIFU across 5 countries. \u2014 *reddit* [https://reddit.com/r/PlasticSurgery/comments/1ryutdx/ive_had_a_mommy_makeover_de]\n\n**DOMAIN SCAN SUMMARY** (1)\n- www.scribe.com.co \u2014 *urlscan*\n\n**WEBSITE SCAN** (1)\n- Scribe | \u00datiles escolares y productos de oficina al mejor precio \u2014 *urlscan* [https://www.scribe.com.co/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "SCRIBE COLOMBIA SAS",
+    "entity_country": "CO",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 3,
+  "dark_web_sources": 45
+}

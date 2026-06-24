@@ -1,0 +1,20 @@
+{
+  "job_id": "d8c6411e-40ab-42ae-b35f-7711e23be677",
+  "scenario": "dark-web",
+  "status": "failed",
+  "region": "darkweb",
+  "entity_name": "Companhia Dorel Brasil Produtos Infantis Sigma Trading",
+  "country": "",
+  "created_at": "2026-05-22T16:50:56.004530+00:00",
+  "updated_at": "2026-05-22T16:51:00.238840+00:00",
+  "blob_path": "osint-staging/dark-web/companhia_dorel_brasil_produtos_infantis_sigma_trading_20260522.json",
+  "report_summary": "0 findings from dark web sources",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_name": "Companhia Dorel Brasil Produtos Infantis Sigma Trading",
+    "owners": "Martin Schwartz, Jeffrey Schwartz, Mauro Simas de Souza",
+    "country_code": "BR"
+  }
+}

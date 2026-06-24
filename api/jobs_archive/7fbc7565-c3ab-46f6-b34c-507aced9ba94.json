@@ -1,0 +1,32 @@
+{
+  "job_id": "7fbc7565-c3ab-46f6-b34c-507aced9ba94",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "IMICAR IMPRESOS Y CARTONAJES S.A.",
+  "country": "CL",
+  "created_at": "2026-05-22T19:23:07.265069+00:00",
+  "updated_at": "2026-05-22T19:29:30.339519+00:00",
+  "blob_path": "osint-staging/cir/americas/imicar_impresos_y_cartonajes_sa_CL_20260522.json",
+  "report_summary": "Done.\n\n---\n\n**DONE: IMICAR Impresos y Cartonajes S.A., CL \u2014 Risk: 2 CLEAR \u2014 RUT 83297700-4; founded May 19, 1973 by Roberto Stanley Carbone; 52 years; 100-500 employees; corrugated cardboard packaging for wine/fruit/industry; Las Encinas 441, Cerrillos, Santiago; all sanctions CLEAR; 13 dark web findings (expected: legitimate directories only)**\n\n---\n\n## \ud83d\udccb CIR: IMICAR IMPRESOS Y CARTONAJES S.A.\n`imicar_impresos_y_cartonajes_sa_CL_20260522.json` \u2192 `osint-staging/americas/`\n\n| Field | Value |\n|---|---|\n| **RUT** | **83297700-4** |\n| Trade name | **Imicar S.A.** (imicar.cl) |\n| Founded | **May 19, 1973** \u2014 52 years |\n| Founder | Roberto Stanley Carbone (family-run) |\n| Employees | **100-500** (Gran Empresa) |\n| Location | Las Encinas 441, **Cerrillos, Santiago** |\n| Products | Corrugated cardboard boxes \u2014 Industry \u00b7 **Wine** \u00b7 **Fruit** \u00b7 Monotapa |\n| Sanctions | ALL CLEAR |\n\n> *\"M\u00e1s de 45 a\u00f1os presentes en el mercado del cart\u00f3n corrugado\"*\n\n**Note:** Second major Chilean corrugated packaging company researched today alongside Contenedores San Fernando SpA \u2014 both serve Chile's fruit/wine export industry.\n\n**Open items:** Chilean RES extract + director KYC (both LOW)\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**3 actionable findings** from 4/45 sources via Tor (Netherlands exit node) (12 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| SSL certificates (crt.sh) | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Website scans (URLScan) | 1 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: www.imicar.cl\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | Imicar - Impresos y Cartonajes S.A.; IMICAR S.A. | LinkedIn; Impresos Y Cartonajes S.A. Company Profile - Chile - EMIS (+7 more) |\n| urlscan | 4 | www.imicar.cl; Imicar \u2013 Impresos y Cartonajes S.A. (+2 more) |\n| crtsh | 2 | www.imicar.cl; certificate_transparency |\n| hudsonrock_cavalier | 1 | www.imicar.cl |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- www.imicar.cl \u2014 *hudsonrock_cavalier*\n\n**WEB MENTION** (10)\n- Imicar - Impresos y Cartonajes S.A. \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.imicar.cl%2F&rut=20b7eded9e0c9b92ecea4ea10c7010ce8c6e]\n- IMICAR S.A. | LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fcl.linkedin.com%2Fcompany%2Fimicar%2Ds%2Da%2D&rut=a4df9a8]\n- Impresos Y Cartonajes S.A. Company Profile - Chile - EMIS \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FCL%2FImpresos_Y_]\n- Impresos y Cartonajes S.A. - DE RedConecta \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fred%2Dconecta.com%2Fempresa%2F23133%2Fimpresos%2Dy%2Dcart]\n- Impresos Y Cartonajes S.a. - Directorio de empresas de Chile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.directorio%2Dchile.com%2F14759%2Dimpresos%2Dy%2Dcarto]\n- Imicar S.A. - Cerrillos Santiago - cardboard boxes - Mercantil.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.mercantil.com%2Fempresa%2Fimicar%2Dsa%2Fcerrillos%2F3]\n- IMICAR S.A. - RUT 83.297.700-4 - Cerrillos, Santiago, Region Metropolitana \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fchilepymes.com%2Finfo%2Fimpresos%2Dy%2Dcartonajes%2Ds%2Da]\n- IMICAR S.A. - cenem.cl \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fcenem.cl%2F2022%2F04%2F06%2Fimicar%2Ds%2Da%2F&rut=f75746f]\n- IMICAR S.A.: Contact Details and Business Profile - RocketReach \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Frocketreach.co%2Fimicar%2Dsa%2Dprofile_b5f47d0cf42d2b06&r]\n- Impresos Y Cartonajes S.A. | (2) 2369 9515 | Santiago de Chile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fcl.todosnegocios.com%2Fimpresos%2Dy%2Dcartonajes%2Ds%2Da%]\n\n**CERTIFICATE SUMMARY** (1)\n- www.imicar.cl \u2014 *crtsh*\n\n**SSL CERTIFICATE** (1)\n-  \u2014 *crtsh*\n\n**DOMAIN SCAN SUMMARY** (1)\n- www.imicar.cl \u2014 *urlscan*\n\n**WEBSITE SCAN** (1)\n- Imicar \u2013 Impresos y Cartonajes S.A. \u2014 *urlscan* [https://www.imicar.cl/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "IMICAR IMPRESOS Y CARTONAJES S.A.",
+    "entity_country": "CL",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 3,
+  "dark_web_sources": 45
+}

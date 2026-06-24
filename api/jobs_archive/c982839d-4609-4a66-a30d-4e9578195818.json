@@ -1,0 +1,33 @@
+{
+  "job_id": "c982839d-4609-4a66-a30d-4e9578195818",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "europe",
+  "entity_name": "COUNT Energy Distribution B.V.",
+  "country": "NL",
+  "created_at": "2026-05-06T03:19:42.619142+00:00",
+  "updated_at": "2026-05-06T03:24:30.920762+00:00",
+  "blob_path": "osint-staging/cir/europe/count_energy_distribution_bv_BE_20260506.json",
+  "report_summary": "**DONE: COUNT Energy Distribution B.V., NL \u2192 actual BE \u2014 Risk: 2 CLEAR \u2014 All sanctions clean; Belgian entity (KBO 0861.333.769), formerly Noahs Ark Chemicals BVBA (2003), acquired by COUNT Group March 2021; directors Jeroen Baaima & Jeffrey Bollebakker (same as COUNT Energy Trading SA, previously cleared); Bhardwaj SDN hits are false positives for unrelated individuals.**\n\n---\n\n## \ud83d\udccb Research Summary\n\n| Field | Finding |\n|---|---|\n| **\u26a0\ufe0f Country** | **BELGIUM (BE)** \u2014 brief says NL; actual jurisdiction is Belgian KBO |\n| **KBO** | **0861.333.769** / VAT: BE0861333769 |\n| **Legal form** | Besloten Vennootschap (Belgian B.V.) \u2014 note: identical abbreviation to Dutch B.V. |\n| **Founded** | October 28, 2003 (as Noahs Ark Chemicals BVBA) |\n| **Acquired** | March 2021 by COUNT Energy Trading BV (Netherlands) |\n| **Renamed** | January 2022 to COUNT Energy Distribution B.V. |\n| **Address** | De Keyserlei 58-60, Bus 19, 2018 Antwerpen, Belgium |\n| **Sector** | NACE 46120 \u2014 Wholesale agents of fuels, ores, metals and chemicals |\n\n---\n\n### \ud83d\udee1\ufe0f All 8 Workstreams\n\n**1A \u2013 Registry:** Belgian KBO confirmed. Three-stage name history: Noahs Ark Chemicals BVBA \u2192 Noahs Ark Chemicals B.V. \u2192 COUNT Energy Distribution B.V. Most recent gazette filings: March 2026, November 2024.\n\n**2A \u2013 Ownership:** COUNT Energy Trading B.V. (Rotterdam, NL) via 4 corporate shareholders (Belgian gazette). Full chain mirrors COUNT Energy Trading SA: COUNT Energy Trading Holding B.V. \u2192 Garenne entities \u2192 Jeroen Baaima (probable UBO).\n\n**3A \u2013 Sanctions (5 lists): ALL CLEAN.** Entity, Baaima, Bollebakker \u2014 NO HITS. **BHARDWAJ NAME FLAG \u2014 FALSE POSITIVE:** Anuj Bhardwaj (SDGT/terrorism/MEHDI GROUP) and Vikrant Bhardwaj (TCO/human smuggling) are entirely different people from Dr Bharat Bhardwaj of Cambridge (Noahs Ark Chemicals founder, sold 2021).\n\n**4A \u2013 Adverse Media:** None. Acquisition news only (positive commercial transaction).\n\n**5A \u2013 Litigation:** None found.\n\n**6A \u2013 PEP:** Baaima and Bollebakker \u2014 NOT PEPs (confirmed from previous COUNT research).\n\n**7A \u2013 Trade Risk:** NACE 46120 \u2014 standard elevated vigilance for chemicals sector; no sanctioned-country exposure identified.\n\n**8A \u2013 Key Actions:**\n1. \ud83d\udd34 **Correct COPAP system** \u2014 change country from NL to BE\n2. \ud83d\udcc4 **Belgian UBO declaration** \u2014 confirm 4 shareholder companies\n3. \ud83d\udccb **Product list** \u2014 specific chemical portfolio for compliance assessment",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "COUNT Energy Distribution B.V.",
+    "entity_country": "NL",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "europe": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 0,
+  "dark_web_error": "enrichment interrupted by gateway restart \u2014 resubmit for dark web"
+}

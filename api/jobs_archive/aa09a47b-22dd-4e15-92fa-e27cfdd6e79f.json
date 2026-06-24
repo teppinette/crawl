@@ -1,0 +1,56 @@
+{
+  "job_id": "aa09a47b-22dd-4e15-92fa-e27cfdd6e79f",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "europe",
+  "entity_name": "PMG ENERGIES SA, GEN\u00c8VE",
+  "country": "CH",
+  "created_at": "2026-05-22T20:04:43.277603+00:00",
+  "updated_at": "2026-05-22T20:10:37.835739+00:00",
+  "blob_path": null,
+  "report_summary": "**DONE: PMG Energies SA, Geneva, CH \u2014 Risk: 3 MONITOR \u2014 All 6 individuals CLEAN (incl. Malamen family); IBIA board-level company; Black Sea/Ukraine bunker supplier; Zefix CHE-UID pending.**\n\nFile: `~/crawl/output/pmg_energies_sa_CH_20260522.json` \u2705\nBlob: `europe/pmg_energies_sa_CH_20260522.json` \u2705 (20:09 UTC)\n\n---\n\n## \ud83d\udccb Research Summary\n\n| Field | Finding |\n|---|---|\n| **Founded** | 2002, Geneva SA |\n| **Sector** | Physical bunker fuel supply + cargo trading \u2014 Black Sea/Danube specialist |\n| **IBIA** | \u2705 Board member: Anna Malamen-Stefanou (CFO, elected by global industry vote, April 2022) |\n| **Offices** | Geneva / London / Dubai / **Constan\u021ba, Romania** / Athens |\n| **Operations** | Romania, Bulgaria, **Sulina, Ukraine** \u2014 physical bunker delivery via double-hull barges |\n| **Compliance** | ISO 8217:2017, MARPOL Annex VI, IMO 2023, explicit AML/anti-corruption ESG policies |\n\n---\n\n### \ud83d\udee1\ufe0f All 8 Workstreams\n\n**1A \u2013 Registry:** Zefix JavaScript-rendered \u2014 CHE-UID not retrieved. Company confirmed active via website, IBIA membership, recent news (Jan 2025).\n\n**2A \u2013 Ownership:** Malamen family (Dmitry + Anna Malamen-Stefanou) probable controllers. Bernard Jahrmann + Philippe Ziegler as additional directors (possibly independent). Full share register via Zefix extract required.\n\n**3A \u2013 Sanctions: ALL CLEAN** \u2014 All 6 individuals including Anna Malamen-Stefanou (discovered from website). No hits on OFAC, OpenSanctions, UN SC.\n\n**4A \u2013 Media: POSITIVE** \u2014 IBIA board election, Dubai bunkering convention, Middle Distillates Conference. No adverse coverage.\n\n**5A\u20137A:** Swiss SECO sanctions included in OpenSanctions \u2014 clean. FINMA not applicable.\n\n**6A \u2013 PEP:** All NOT PEPs. IBIA board = industry body (not government).\n\n**7A \u2013 Trade Risk: \u26a0\ufe0f BLACK SEA SECTOR FLAG** \u2014 \"Malamen Dmitry\" (Russian-first-name director) + Black Sea bunker supply. Critically: **Ukraine/Sulina operations confirm anti-Russia alignment**. But sector requires vessel vetting against OFAC/EU shadow fleet lists. EDD questionnaire on Dmitry Malamen nationality + PMG vessel vetting procedures required.\n\n**8A \u2013 Note:** PMG is a bunker fuel SUPPLIER, not a PVC chemicals buyer. COPAP's relationship may be as a recipient of PMG's marine fuel services \u2014 clarify commercial relationship direction.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 2/57 sources via Tor (Netherlands exit node) (25 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 57 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Energy shortage for 2023???; Are these types of fan worth it?; Allez voir Mairo en concert (+12 more) |\n| duckduckgo_tor | 10 | PMG Energies SA, Gen\u00e8ve | business-monitor.ch; Home | Pmg Energies; PMG Energies SA, Geneva, Switzerland, Schweizer Handelsregis (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- PMG Energies SA, Gen\u00e8ve | business-monitor.ch \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fbusiness%2Dmonitor.ch%2Ffr%2Fcompanies%2F1128579%2Dpmg%2D]\n- Home | Pmg Energies \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.pmgenergies.com%2F&rut=4d805d12d6385f05339a616e9e04e2]\n- PMG Energies SA, Geneva, Switzerland, Schweizer Handelsregister CHE-158 ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.northdata.com%2FPMG%2520Energies%2520SA%2C%2520Gen%25]\n- PMG Energies SA - Zefix \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zefix.ch%2Fen%2Fsearch%2Fentity%2Flist%2Ffirm%2F15343]\n- PMG Energies - LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2Fpmg%2Denergies&rut=0dfbba1ce]\n- PMG Energies SA in Geneva | local.ch \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.local.ch%2Fen%2Fd%2Fgeneva%2F1204%2Fpmg%2Denergies%2D]\n- PMG Energies SA, Gen\u00e8ve - Firmenprofil | Unternehmensindex.ch \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.unternehmensindex.ch%2Fge%2Fgen%2Dve%2Fpmg%2Denergies]\n- PMG Energies SA - register-lei.ch \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fregister%2Dlei.ch%2Fd%2F984500CA80954P9C0089%2F&rut=54e67]\n- PMG Energies SA \u00e0 Gen\u00e8ve - Contact et renseignements | Lixt \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.lixt.ch%2Ffr%2Fregistre%2Ddu%2Dcommerce%2Fpmg%2Denerg]\n- PMG Energies SA - LEI: 984500CA80954P9C0089 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Flei.bloomberg.com%2Fleis%2Fview%2F984500CA80954P9C0089&ru]\n\n**SOCIAL MENTION** (15)\n- Energy shortage for 2023??? \u2014 *reddit* [https://reddit.com/r/rolex/comments/y91qhj/energy_shortage_for_2023/]\n- Are these types of fan worth it? \u2014 *reddit* [https://reddit.com/r/ShopeePH/comments/1mftslz/are_these_types_of_fan_worth_it/]\n- Allez voir Mairo en concert \u2014 *reddit* [https://reddit.com/r/frenchrap/comments/1j1re1t/allez_voir_mairo_en_concert/]\n- ~1940 Vacheron &amp; Constantin &amp; G\u00fcbelin Platinum Alternative Time Display \"Bras en l'Air\" Art  \u2014 *reddit* [https://reddit.com/r/VACHERONISTAS/comments/1kf23s5/1940_vacheron_constantin_g\u00fcb]\n- NEW TUNES! Alix Perez, Visages, Vibe Chemistry, Bcee, Phace, Koven &amp; more.. And a deep dark hidd \u2014 *reddit* [https://reddit.com/r/DnB/comments/zjxsv5/new_tunes_alix_perez_visages_vibe_chemi]\n- Water leaking out of pipe on tankless water heater. \u2014 *reddit* [https://reddit.com/r/askaplumber/comments/1fk59sv/water_leaking_out_of_pipe_on_t]\n- Schrodinger's Chocolate. Claiming to be 100% vegan chocolate but contains BUTTERfat and 100% Swiss M \u2014 *reddit* [https://reddit.com/r/facepalm/comments/yjjsaw/schrodingers_chocolate_claiming_to]\n- /r/QOTSA Official Band of the Week 42: RED HOT CHILI PEPPERS \u2014 *reddit* [https://reddit.com/r/qotsa/comments/lneigb/rqotsa_official_band_of_the_week_42_r]\n- Grey market dealers are getting desperate \u2014 *reddit* [https://reddit.com/r/WatchesCirclejerk/comments/ybktzq/grey_market_dealers_are_g]\n- Follow up: 35 Twilight Masquerade boosters, and a TF ETB \u2014 *reddit* [https://reddit.com/r/PokemonTCG/comments/1d1e1v6/follow_up_35_twilight_masquerad]\n- 100% vegan chocolate containing 100% Swiss Milk (crosspost. Not OP) \u2014 *reddit* [https://reddit.com/r/onejob/comments/yjik7e/100_vegan_chocolate_containing_100_s]\n- La mati\u00e8re noire \u2014 *reddit* [https://reddit.com/r/SciencePure/comments/19fcygs/la_mati\u00e8re_noire/]\n- [Sell][USA] Even Bigger Discounts - Sample/Mini Bundle, Dior, PMG, CT, Holifrog \u2014 *reddit* [https://reddit.com/r/makeupexchange/comments/125d4fb/sellusa_even_bigger_discoun]\n- La Tunisie, la corruption et ses compagnies p\u00e9troli\u00e8res \u2014 *reddit* [https://reddit.com/r/francophonie/comments/187gnez/la_tunisie_la_corruption_et_s]\n- [SELL][US/INT'L] Chanel camelia &amp; lipstick, Tom Ford, Besame Snow White palette, Colourpop eyesh \u2014 *reddit* [https://reddit.com/r/makeupexchange/comments/jper2k/sellusintl_chanel_camelia_li]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "europe: Report file not found on remote VM (europe)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "PMG ENERGIES SA, GEN\u00c8VE",
+    "entity_country": "CH",
+    "key_individuals": [
+      {
+        "name": "Bernard Jahrmann",
+        "title": "Director"
+      },
+      {
+        "name": "Malamen Dmitry",
+        "title": "Director"
+      },
+      {
+        "name": "Ziegler Philippe Robert Joseph Arthur Marie",
+        "title": "Director"
+      },
+      {
+        "name": "Andreas Savva",
+        "title": "Officer"
+      },
+      {
+        "name": "Aurelien Humbert",
+        "title": "Authorized Signer"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "europe": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (europe)"
+    }
+  },
+  "errors": [
+    "europe: Report file not found on remote VM (europe)"
+  ],
+  "dark_web_findings": 0,
+  "dark_web_sources": 57
+}

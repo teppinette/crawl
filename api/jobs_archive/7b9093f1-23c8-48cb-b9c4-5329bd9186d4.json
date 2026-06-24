@@ -1,0 +1,79 @@
+{
+  "job_id": "7b9093f1-23c8-48cb-b9c4-5329bd9186d4",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "THE SAFIRE OFFSET PRINTERS",
+  "country_code": "IN",
+  "created_at": "2026-05-04T15:30:41.203408+00:00",
+  "updated_at": "2026-05-04T15:32:42.574055+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:30:43.065132+00:00",
+      "verified": false,
+      "legal_name": null,
+      "cin": null,
+      "entity_status": null,
+      "company_type": null,
+      "incorporation_date": null,
+      "directors": null,
+      "registered_address": null,
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:30:47.773487+00:00",
+      "found": true,
+      "name": "The Safire Industries",
+      "linkedin_url": "https://in.linkedin.com/company/the-safire-industries",
+      "industry": "Machinery Manufacturing",
+      "company_size": "2-10 employees",
+      "locations": [
+        "59, N. R. K. R. ROAD AYYANAR COLONY Sivakasi, Tamil Nadu 626123, IN"
+      ],
+      "about": "",
+      "followers": 8,
+      "employees_on_linkedin": 6,
+      "organization_type": null,
+      "website": "https://www.safireprint.com/",
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "Shiva Sankar",
+          "link": "https://in.linkedin.com/in/shiva-sankar-81b8555b?trk=org-employees"
+        },
+        {
+          "name": "P SIVASAKTHI",
+          "link": "https://in.linkedin.com/in/p-sivasakthi-214736192?trk=org-employees"
+        },
+        {
+          "name": "Shiva Vijay",
+          "link": "https://in.linkedin.com/in/shivavijay?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:32:42.573431+00:00",
+      "risk_level": "CLEAN",
+      "total_findings": 0,
+      "sources_searched": 0,
+      "sources_with_results": 0,
+      "by_type": {},
+      "key_findings": [],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "THE SAFIRE OFFSET PRINTERS",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

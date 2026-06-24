@@ -1,0 +1,19 @@
+{
+  "job_id": "9ec9fdae-2daa-4776-baeb-de4bcd4097c8",
+  "scenario": "dark-web",
+  "status": "completed",
+  "region": "darkweb",
+  "entity_name": "Asociacion Editorial Bruno Peru La Salle educational publisher",
+  "country": "",
+  "created_at": "2026-05-22T20:32:43.100300+00:00",
+  "updated_at": "2026-05-22T20:33:43.650522+00:00",
+  "blob_path": "osint-staging/dark-web/asociacion_editorial_bruno_peru_la_salle_educational_publisher_20260522.json",
+  "report_summary": "25 findings from dark web sources",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_name": "Asociacion Editorial Bruno Peru La Salle educational publisher",
+    "country_code": "PE"
+  }
+}

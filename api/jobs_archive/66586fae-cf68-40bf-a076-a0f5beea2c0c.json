@@ -1,0 +1,31 @@
+{
+  "job_id": "66586fae-cf68-40bf-a076-a0f5beea2c0c",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "COPAP USA",
+  "country": "US",
+  "created_at": "2026-05-14T13:42:44.453839+00:00",
+  "updated_at": "2026-05-14T13:43:08.928456+00:00",
+  "blob_path": "osint-staging/cir/americas/copap_usa_US_20260514.json",
+  "report_summary": "Duplicate \u2014 same entity researched 9 minutes ago. `americas/copap_usa_US_20260514.json` is the authoritative report, uploaded 2026-05-14T13:36 UTC.\n\n| | |\n|---|---|\n| **Entity** | COPAP USA, INC. (Delaware #6729632) |\n| **Risk** | **2 / CLEAR** |\n| **President** | Naveen Chandra \u2014 Wharton MBA, 22yr ICC Chemical |\n| **Parent** | COPAP Inc. (Canada) \u2014 David Sela, ~USD 500M group |\n| **Sanctions** | ALL CLEAR |\n\nNo action required. Part of the same COPAP Group batch (COPAP Inc. CA + COPAP Trading Sigma CA + COPAP USA US) \u2014 all researched and uploaded today.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 0/0 sources via Tor (Netherlands exit node)\n\nNo dark web exposure detected. Entity and owners clean across all 0 sources.\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "COPAP USA",
+    "entity_country": "US",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 0
+}

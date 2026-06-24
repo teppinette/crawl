@@ -1,0 +1,165 @@
+{
+  "job_id": "ccf551d5-5dd4-43a8-aca0-29fafa474abf",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "ASA INTERNATIONAL",
+  "country_code": "PK",
+  "created_at": "2026-05-04T14:34:01.429544+00:00",
+  "updated_at": "2026-05-04T14:34:50.587662+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:34:05.591043+00:00",
+      "verified": true,
+      "legal_name": "ASA INTERNATIONAL GENERAL TRADING & CONTRACTING CO. (PVT.) LIMITED",
+      "registration_number": "0056573",
+      "entity_status": "Incorporated",
+      "company_type": "Private Limited Company",
+      "cro": "CRO Islamabad",
+      "registration_date": "05/06/2006",
+      "fbr": null,
+      "all_matches": [
+        {
+          "legal_name": "ASA INTERNATIONAL GENERAL TRADING & CONTRACTING CO. (PVT.) LIMITED",
+          "status": "Incorporated",
+          "cro": "CRO Islamabad",
+          "registration_number": "0056573",
+          "registration_date": "05/06/2006",
+          "form_ab_filed_upto": "31/10/2009",
+          "mandatory_filing": "N/A",
+          "company_type": "Private Limited Company"
+        },
+        {
+          "legal_name": "ASA INTERNATIONAL SERVICES (PVT.) LIMITED",
+          "status": "Incorporated",
+          "cro": "CRO Islamabad",
+          "registration_number": "0057737",
+          "registration_date": "21/08/2006",
+          "form_ab_filed_upto": "30/10/2010",
+          "mandatory_filing": "N/A",
+          "company_type": "Private Limited Company"
+        }
+      ],
+      "source": "SECP eServices (direct gov query)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:34:09.073512+00:00",
+      "found": true,
+      "name": "ASA International",
+      "linkedin_url": "https://nl.linkedin.com/company/asa-international-asai-",
+      "industry": "Financial Services",
+      "company_size": "10,001+ employees",
+      "locations": [
+        "35th Floor, Rembrandt Tower Amstelplein 1 Amsterdam, North Holland 1096 HA, NL",
+        "207 Brooklands Road Weybridge, England, GB",
+        "ASA Tower, 23/3 Bir Uttam A.N.M. Nuruzzaman Sarak Shyamoli,Mohammedpur Dhaka, 1207, BD"
+      ],
+      "about": "ASA International is one of the world\u2019s largest microfinance institutions, driving financial inclusion across Asia and Africa. Our mission: empower low-income women entrepreneurs by delivering affordable, socially responsible financial services that transform businesses, households, and communities. We operate in 13 countries, serving 2.5+ million clients through over 2,200 branches, with a gross loan portfolio north of USD 539 million and a dedicated team of more than 14,000 staff (as of 30 Jun",
+      "followers": 14945,
+      "employees_on_linkedin": 1016,
+      "organization_type": "Public Company",
+      "website": "https://www.asa-international.com/",
+      "specialties": "Impact Investment, Financial Inclusion, Financial Services, microfinance, Female Empowerment, and Socioeconomic Progress",
+      "notable_employees": [
+        {
+          "name": "Steven van Zuylen",
+          "link": "https://nl.linkedin.com/in/steven-van-zuylen-262452?trk=org-employees"
+        },
+        {
+          "name": "Geert Embrechts",
+          "link": "https://nl.linkedin.com/in/geert-embrechts-8716941?trk=org-employees"
+        },
+        {
+          "name": "Rob Keijsers",
+          "link": "https://nl.linkedin.com/in/robkeijsers?trk=org-employees"
+        },
+        {
+          "name": "Greg Patterson, ASA, ARM",
+          "link": "https://www.linkedin.com/in/gregpattersonasa?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:34:50.586903+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 70,
+      "sources_searched": 37,
+      "sources_with_results": 6,
+      "by_type": {
+        "web_mention": 10,
+        "adverse_media": 2,
+        "breach_record": 50,
+        "un_sanctions_notice": 4,
+        "debarment_record": 1,
+        "legal_record": 3
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "ASA INTERNATIONAL",
+    "country_code": "PK",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

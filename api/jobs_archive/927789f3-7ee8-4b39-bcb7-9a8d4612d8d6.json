@@ -1,0 +1,37 @@
+{
+  "job_id": "927789f3-7ee8-4b39-bcb7-9a8d4612d8d6",
+  "scenario": "cir",
+  "status": "failed",
+  "region": "americas",
+  "entity_name": "First Polychem LLC",
+  "country": "US",
+  "created_at": "2026-05-14T12:46:07.342051+00:00",
+  "updated_at": "2026-05-21T18:05:45.571199+00:00",
+  "blob_path": "osint-staging/cir/americas/first_polychem_llc_US_20260514.json",
+  "report_summary": "Third submission for this entity today (11:24, 12:41, 12:46 UTC) \u2014 identical brief. Report already complete and in blob storage.\n\n| | |\n|---|---|\n| **File** | `americas/first_polychem_llc_US_20260514.json` |\n| **Uploaded** | 2026-05-14T11:28 UTC |\n| **Risk** | **2 / CLEAR** |\n| **Brahim Benzakour** | \u2705 CLEAR |\n| **Lamyae Hanafi Benzakour** | \u2705 CLEAR |\n| **Dark web** | 0 findings |\n\nNo new research. Upstream dispatch loop is firing duplicates \u2014 same pattern as Cartocor (4\u00d7) and RPB (2\u00d7) earlier. Recommend checking job completion acknowledgement on the gateway side.",
+  "error": "orphan_timeout (stale 10399min, reaped 2026-05-21)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "First Polychem LLC",
+    "entity_country": "US",
+    "entity_website": "firstpolychem.com",
+    "key_individuals": [
+      {
+        "name": "Brahim Benzakour"
+      },
+      {
+        "name": "Lamyae Hanafi Benzakour"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": null
+    }
+  }
+}

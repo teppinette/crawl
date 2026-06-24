@@ -1,0 +1,39 @@
+{
+  "job_id": "b55240dc-091b-4211-a654-5da245badf45",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "SRIRAM ENTERPRISES",
+  "country": "IN",
+  "created_at": "2026-05-20T21:28:32.453239+00:00",
+  "updated_at": "2026-05-20T21:31:38.935648+00:00",
+  "blob_path": "osint-staging/cir/india/sriram_enterprises_IN_20260520.json",
+  "report_summary": "**DONE: Sriram Enterprises, India \u2014 Risk: 3 MONITOR \u2014 West Bengal partnership; GSTIN 19AARFS8853J1Z6 Active (Jan 2024); \u26a0\ufe0f \"COASTAL BANK\" is data artifact; \u26a0\ufe0f 'Works Contract' classification (not chemicals); 4-state presence; limited information**\n\n`~/crawl/output/sriram_enterprises_IN_20260520.json` \u2014 7.4 KB, valid, all 8 workstreams complete.\n\n**Key actions:** Remove \"COASTAL BANK\" prefix; identify actual partners from partnership deed; clarify whether entity is chemicals trader or works contractor.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 2/41 sources via Tor (Netherlands exit node) (24 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 41 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Final Ledger; We\u2019re offering our enterprise AI agent platform free for ear; Top 8 SaaS Development Companies in India to Look out for in (+12 more) |\n| duckduckgo_tor | 10 | Shriram Enterprises - Experts in Industrial EPC Services & T; Sriram Enterprises - Innovative Machine Manufacturing Soluti; Home - Sriram Enterprises (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- Shriram Enterprises - Experts in Industrial EPC Services & Turnkey ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.shriram%2Denterprises.in%2F&rut=0692350854d1ab63d3b93]\n- Sriram Enterprises - Innovative Machine Manufacturing Solutions ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.sriraam.net%2Fabout%2Dus&rut=68ba02fcad591fae3f120669]\n- Home - Sriram Enterprises \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.sriramenterprisessre.com%2F&rut=3f3b49ebed2ffade3b9d3]\n- Shriram Enterprises: Lab Equipment, Chemicals & Research Solutions \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.shrientpl.com%2F&rut=3ec36469bb77a88eeff245b85a4e3002]\n- Sriram Enterprises \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.s]\n- Sriram Enterprises Polycarbonate Sheets Coimbatore,Avinashi,Erode,Tiruppur \u2014 *duckduckgo_tor* [/l/?uddg=http%3A%2F%2Fsriramenterprises.net%2F&rut=0f8c7f6d4cdf777c8ddc87d6e973d]\n- Sriram Enterprises in Bengaluru Karnataka India - Company Profile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tradeindia.com%2Fsriram%2Denterprises%2D4761171%2F&ru]\n- Sriram Enterprises - Manufacturer from Pitampura, New Delhi, India ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Fsriramenterprises%2Fknow%2Dus.html&ru]\n- Sriram Enterprises | Chennai, Tamil Nadu - The Company Check \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Forg%2Fsriram%2Denterprises%2Fdf]\n- Sriram Enterprises - India Manufacturer & Women Entrepreneur | GlobalLinker \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.globallinker.com%2Fseller%2Fsriram%2Denterprises%2D43]\n\n**SOCIAL MENTION** (14)\n- Final Ledger \u2014 *reddit* [https://reddit.com/r/u_TreyinHada/comments/1t6005x/final_ledger/]\n- We\u2019re offering our enterprise AI agent platform free for early design partners \u2014 *reddit* [https://reddit.com/r/SaaSMarketing/comments/1t909cn/were_offering_our_enterprise]\n- Top 8 SaaS Development Companies in India to Look out for in 2026 \u2014 *reddit* [https://reddit.com/r/AIaskandtalk/comments/1sxv01e/top_8_saas_development_compan]\n- Top 7 Software Companies in Chennai (2026 List) \u2014 *reddit* [https://reddit.com/r/AISaaSTalks/comments/1smvger/top_7_software_companies_in_ch]\n- Netran\u0101r\u0101ya\u1e47a: Patron, Context, and Legacy in the Kerala Mathematical Tradition \u2014 *reddit* [https://reddit.com/r/IndicKnowledgeSystems/comments/1smt26n/netran\u0101r\u0101ya\u1e47a_patron]\n- Indian-Origin ACM Fellows (1993\u20132025): A Complete Record \u2014 *reddit* [https://reddit.com/r/IndicKnowledgeSystems/comments/1rjf42h/indianorigin_acm_fel]\n- CRWV + NVDA = BLACKGOLD -- CoreWeave BRINGS THOUSANDS OF Nvidia Grace (the expensive big boys) Black \u2014 *reddit* [https://reddit.com/r/CRWV/comments/1mrw6sp/crwv_nvda_blackgold_coreweave_brings_]\n- I wanted to share my little contraption... The Giliakind. I call it the \"kingdom of the gaps\". \u2014 *reddit* [https://reddit.com/r/SubSimGPT2Interactive/comments/1og5ok9/i_wanted_to_share_my]\n- AST SPACEMOBILE - The Starlink of Smartphones \u2014 *reddit* [https://reddit.com/r/ASTSpaceMobile/comments/q6tqw8/ast_spacemobile_the_starlink]\n- I wanted to use the pixel pack for something, so i created a schedule tracker \u2014 *reddit* [https://reddit.com/r/SubSimGPT2Interactive/comments/1oj2j8l/i_wanted_to_use_the_]\n- Device Trust from Android Enterprise | Securing access for modern enterprises \u2014 *reddit* [https://reddit.com/r/MDM_solution/comments/1oi3r9f/device_trust_from_android_ent]\n- Still relying on passwords and identity checks alone? | Webinar \u2014 *reddit* [https://reddit.com/r/SysAdminBlogs/comments/1oi3fuh/still_relying_on_passwords_a]\n- Passwords aren\u2019t enough anymore \u2014 *reddit* [https://reddit.com/r/Techmotion/comments/1ohbw4z/passwords_arent_enough_anymore/]\n- HCTI I'm expecting some bulish news today \u2014 *reddit* [https://reddit.com/r/hctistock/comments/1m7z59y/hcti_im_expecting_some_bulish_ne]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "SRIRAM ENTERPRISES",
+    "entity_country": "IN",
+    "entity_address": "Unit No. 60327, 6th Floor, M K Point, Bentick Street, Kolkata, West Bengal 700001",
+    "entity_tax_id": "19AARFS8853J1Z6",
+    "key_individuals": [
+      {
+        "name": "COASTAL BANK K Venkataraman",
+        "title": "Director (DIN: 02443410)"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 41
+}

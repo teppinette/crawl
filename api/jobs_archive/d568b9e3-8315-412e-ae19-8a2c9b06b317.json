@@ -1,0 +1,53 @@
+{
+  "job_id": "d568b9e3-8315-412e-ae19-8a2c9b06b317",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "Royce Pack Private Limited",
+  "country": "IN",
+  "created_at": "2026-04-28T19:39:11.993086+00:00",
+  "updated_at": "2026-04-28T19:44:02.500976+00:00",
+  "blob_path": "osint-staging/cir/india/royce_pack_private_limited_IN_20260428.json",
+  "report_summary": "Valid JSON saved to `~/crawl/output/royce_pack_private_limited_IN_20260428.json`.\n\n---\n\n## Research Complete \u2014 Royce Pack Private Limited\n\n**Risk: 3/5 \u2014 MONITOR**\n\n### Workstream Summary\n\n| WS | Workstream | Finding | Status |\n|---|---|---|---|\n| **1A** | Entity Verification | CIN U74999DL2020PTC362678 confirmed. Active, ROC Delhi. Incorporated 11 Mar 2020. Revenue \u20b925\u201350 Cr. Operational base Ghaziabad (UP). | \u2705 |\n| **2A** | Key Individual Verification | Piyush Tantia (DIN 02300471) \u2014 5 active companies, 17 years governance. Shubham Tantia (DIN 10548721) \u2014 recent appointment Mar 2024. No PEP, no adverse media, no court records. | \u2705 |\n| **2B** | Ownership Chain | 100% family-owned (Tantia family). Sushil Kumar Tantia (patriarch, DIN 00973670) \u2192 Piyush Tantia \u2192 Shubham Tantia. No offshore structures. | \u2705 |\n| **3A** | Sanctions Screening | **CLEAR (OSINT)** \u2014 No OFAC/EU/UN/UK hits. OpenSanctions: no results. \u26a0\ufe0f Recommend browser-based OFAC SSAN confirmation. | \u2705 OSINT |\n| **4A** | Litigation | **None found** \u2014 IndianKanoon: no results for company or directors. No NCLT/SEBI/MCA enforcement. | \u2705 |\n| **5A** | Adverse Media | **None found** \u2014 No English-language adverse media. Hindi/Marathi media check not completed (manual recommended). | \u2705 |\n| **6** | PEP Check | **CLEAR** \u2014 All principals are private-sector entrepreneurs with no government/political affiliations. | \u2705 |\n| **7** | Trade & Sanctions Adjacency | **Low** \u2014 Products are standard commercial packaging materials. No dual-use, no sanctioned-country exposure. | \u2705 |\n| **8A** | Risk Assessment | **MONITOR** \u2014 Primary concern is financial health, not compliance. | \u2705 |\n\n### \ud83d\udd34 Primary Risk: Financial Distress (Score 5/5)\n\nThe single most important finding:\n\n| Metric | FY2024 | Verdict |\n|---|---|---|\n| Revenue growth | **\u221233.56%** | Sharp contraction |\n| EBITDA growth | **\u2212125.74%** | Turned deeply negative |\n| Net profit growth | **\u2212397.86%** | Severe loss |\n| Gross margin | **\u22122.62%** | Selling below cost |\n| **Debt-to-Equity** | **41.51** | \u26a0\ufe0f Extreme leverage |\n| Registered charges | **None** | Unexplained given D/E |\n\nThe company had a remarkable FY2022 boom (revenue +211%, EBITDA +1,101%) followed by a hard reversal \u2014 classic over-leverage after a demand surge. With D/E of 41.51 against only \u20b910 lakh paid-up equity, the company's solvency depends entirely on borrowed funds. Combined with current LDPE/PP price spikes (+70% from Hormuz crisis), input cost pressure on packaging converters is severe right now.\n\n### Key Corporate Facts\n\n- **5 affiliated entities**, all at same address: Flat 507/72 Laxmi Bhawan, Nehru Place\n- Tantia family group spans packaging (Royce Pack), IT (SAT System), agro (Rover Commodities), construction (U-Turn), plus two freshly incorporated 2025 entities (Paavni Buildwell, K2 Krishi Udyog \u2014 industry \"Unknown\")\n- Operational GST in Ghaziabad (UP) \u2014 registered in Delhi \u2014 address discrepancy consistent with manufacturing suburb vs. registered office",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "Royce Pack Private Limited",
+    "entity_country": "IN",
+    "entity_address": "Flat No-507/72, Laxmi Bhawan, Nehru Place, South Delhi, New Delhi, Delhi, India 110019",
+    "entity_tax_id": "AAKCR1269F",
+    "key_individuals": [
+      {
+        "name": "Mr. Shubham Tantia",
+        "title": "Director"
+      },
+      {
+        "name": "Piyush Tantia",
+        "title": "Director"
+      },
+      {
+        "name": "Shubham Tantia",
+        "title": "Director"
+      },
+      {
+        "name": "Mr. Piyush Tantia",
+        "title": "UBO (100.00%)"
+      },
+      {
+        "name": "Mr. Shubham Tantia",
+        "title": "UBO"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "job_id": "1d14cbcc-c923-430a-bdd6-9c6596fc58ce",
+  "scenario": "cir",
+  "status": "failed",
+  "region": "americas",
+  "entity_name": "KAPACHIM MAROC",
+  "country": "MA",
+  "created_at": "2026-05-22T21:24:11.186302+00:00",
+  "updated_at": "2026-05-22T21:24:26.155491+00:00",
+  "blob_path": null,
+  "report_summary": null,
+  "error": "americas: Error reading SSH protocol banner[Errno 104] Connection reset by peer",
+  "retry_count": 1,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "KAPACHIM MAROC",
+    "entity_trade_names": "KAPACHIM MAROC",
+    "entity_country": "MA",
+    "entity_website": "https://kapachim.com",
+    "entity_type": "PRODUCTION OF RAW MATERIAL FOR DETERGENTS",
+    "entity_industry": "PRODUCTION OF RAW MATERIAL FOR DETERGENTS",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "copap_products": "RAW MATERIAL FOR DETERGENTS",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "failed",
+      "error": "Error reading SSH protocol banner[Errno 104] Connection reset by peer"
+    }
+  },
+  "errors": [
+    "americas: Error reading SSH protocol banner[Errno 104] Connection reset by peer",
+    "americas: Error reading SSH protocol banner[Errno 104] Connection reset by peer"
+  ]
+}

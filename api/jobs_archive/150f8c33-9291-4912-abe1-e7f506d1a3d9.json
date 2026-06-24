@@ -1,0 +1,54 @@
+{
+  "job_id": "150f8c33-9291-4912-abe1-e7f506d1a3d9",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "PAYAL POLYPLAST PRIVATE LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-21T17:44:14.088971+00:00",
+  "updated_at": "2026-05-21T17:48:16.823935+00:00",
+  "blob_path": null,
+  "report_summary": "Second Payal Polyplast submission \u2014 previously researched and filed.\n\nData quality note confirmed: **Hitesh Garg is AUDITOR, NOT director** (previously documented).\n\n**DONE (existing file): Payal Polyplast Private Limited \u2014 Risk: 3 MONITOR \u2014 CIN U24100DL2010PTC202156; CARE A-; Negative Outlook (Jul 2025); Revenue \u20b91,682 Cr FY25; EBITDA -60%, PAT -69% YoY; Hitesh Garg is auditor not director**\n\n`~/crawl/output/payal_polyplast_pvt_ltd_IN_20260520.json` \u2014 valid, filed May 20, 2026.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**2 actionable findings** from 4/49 sources via Tor (Netherlands exit node) (21 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 8 |\n| Website scans (URLScan) | 3 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: payalgroup.com\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| urlscan | 11 | payalgroup.com; Leading Plasticizer, Industrial Chemical Manufacturer India ; Payal Group (+8 more) |\n| duckduckgo_tor | 10 | Payal Group - Leading Plasticizer, Industrial Chemical Manuf; PAYAL POLYPLAST PRIVATE LIMITED - Company Profile; Payal Polyplast Private Limited - Service Provider of Payal  (+7 more) |\n| reddit | 9 | [Serial][UWDFF Alcubierre] Part 57; My final (?) predictions for nominations for the 83rd Golden; I spent 6 months analysing 847 startups that build products  (+6 more) |\n| hudsonrock_cavalier | 1 | payalgroup.com |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- payalgroup.com \u2014 *hudsonrock_cavalier*\n\n**WEB MENTION** (10)\n- Payal Group - Leading Plasticizer, Industrial Chemical Manufacturer India \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.payalgroup.com%2F&rut=de73f2f98ffe0e174a7985304d8527a]\n- PAYAL POLYPLAST PRIVATE LIMITED - Company Profile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Fpayal%2Dpolyp]\n- Payal Polyplast Private Limited - Service Provider of Payal Chlorinated ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Fcompany%2F14805817%2F&rut=e932a1d9dc6]\n- PAYAL POLYPLAST PRIVATE LIMITED | ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2Fcompany%2FPAYAL%2DPOLYPLAST%2DPRIVATE]\n- PAYAL POLYPLAST PRIVATE LIMITED Company Profile | Bharuch, Gujarat ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.p]\n- Payal Polyplast: Leading Plastic Manufacturer in India \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.meetindia.in%2Fpartner%2Fpayal%2Dpolyplast%2Dpvt%2Dlt]\n- Company Profile - Payal Polyplast Pvt Ltd - chemdmart.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fchemdmart.com%2Fcompany%2Dprofile%2Fpayal%2Dpolyplast%2Dp]\n- PAYAL POLYPLAST PRIVATE LIMITED Details | Company Profile | Directors ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.companydetails.in%2Fcompany%2Fpayal%2Dpolyplast%2Dpri]\n- Payal Polyplast Private Limited Company Profile - EMIS \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FIN%2FPayal_Polyp]\n- Payal Polyplast Pvt. Ltd. in Delhi, Delhi, India - Company Profile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tradeindia.com%2Fpayal%2Dpolyplast%2Dpvt%2Dltd%2D2552]\n\n**SOCIAL MENTION** (8)\n- [Serial][UWDFF Alcubierre] Part 57 \u2014 *reddit* [https://reddit.com/r/PerilousPlatypus/comments/id5onr/serialuwdff_alcubierre_par]\n- My final (?) predictions for nominations for the 83rd Golden Globes \u2014 *reddit* [https://reddit.com/r/oscarrace/comments/1paup40/my_final_predictions_for_nominat]\n- I spent 6 months analysing 847 startups that build products customers said they wanted. 92% failed a \u2014 *reddit* [https://reddit.com/r/SaaS/comments/1ozns1k/i_spent_6_months_analysing_847_startu]\n- 27M | Bangalore/Pune/MH | Looking for adventurous girl \u2014 *reddit* [https://reddit.com/r/marriagemate_dot_in/comments/1qgbm4e/27m_bangalorepunemh_lo]\n- 26M | BLR | Need an extrovert girl \u2014 *reddit* [https://reddit.com/r/reddmatch/comments/1ljankq/26m_blr_need_an_extrovert_girl/]\n- Patriarchy In Indian Society [e f f o r t p o s t] (1/n) \u2014 *reddit* [https://reddit.com/r/librandu/comments/llq6lg/patriarchy_in_indian_society_e_f_f]\n- Other then Pandiya (Jeevan) in Kaaka Kaaka. His role in Thiruttu Payale was good where he plays as a \u2014 *reddit* [https://reddit.com/r/kollywood/comments/1622fco/other_then_pandiya_jeevan_in_kaa]\n- [OC][UWDFF Alcubierre] Part 57-66 \u2014 *reddit* [https://reddit.com/r/HFY/comments/jdukvj/ocuwdff_alcubierre_part_5766/]\n\n**DOMAIN SCAN SUMMARY** (1)\n- payalgroup.com \u2014 *urlscan*\n\n**WEBSITE SCAN** (3)\n- Leading Plasticizer, Industrial Chemical Manufacturer India - Payal Polyplast \u2014 *urlscan* [https://www.payalgroup.com/]\n- Payal Group \u2014 *urlscan* [https://www.payalgroup.com/]\n- Contact Us - Payal Group \u2014 *urlscan* [https://www.payalgroup.com/contact-us/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "india: Report file not found on remote VM (india)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "PAYAL POLYPLAST PRIVATE LIMITED",
+    "entity_trade_names": "PAYAL POLYPLAST PVT LTD",
+    "entity_country": "IN",
+    "entity_address": "E-24, 1ST FLOOR NETAJI SUBHASH MARG, DARYA GANJ, NEW DELHI, DL 110002, IN",
+    "entity_website": "https://payalgroup.com",
+    "entity_type": "MANUFACTURING",
+    "entity_industry": "MANUFACTURING",
+    "entity_tax_id": "U24100DL2010PTC202156",
+    "key_individuals": [
+      {
+        "name": "Nikhil Chandra Gupta",
+        "title": "Director"
+      },
+      {
+        "name": "Surendra Singh Negi",
+        "title": "Director"
+      },
+      {
+        "name": "Hitesh Garg",
+        "title": "Auditor"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (india)"
+    }
+  },
+  "errors": [
+    "india: Report file not found on remote VM (india)"
+  ],
+  "dark_web_findings": 2,
+  "dark_web_sources": 49
+}

@@ -1,0 +1,60 @@
+{
+  "job_id": "34485879-8d41-4c11-9ddc-f593cffddb77",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "ALTRA AGRO CHEM PVT. LTD.",
+  "country": "IN",
+  "created_at": "2026-05-21T15:09:41.488224+00:00",
+  "updated_at": "2026-05-21T15:14:13.045284+00:00",
+  "blob_path": "osint-staging/cir/india/altra_agro_chem_pvt_ltd_IN_20260521.json",
+  "report_summary": "**DONE: Altra Agro-Chem Private Limited, India \u2014 Risk: 2 CLEAR \u2014 Dombivli MIDC chemicals manufacturer; CIN U24100MH2019PTC327706; \u20b930 Cr paid-up (fully subscribed); AGM Sep 30, 2025 current; no charges; Altra Group (25+ year chemicals lineage)**\n\n`~/crawl/output/altra_agro_chem_pvt_ltd_IN_20260521.json` \u2014 8.3 KB, valid, research date 2026-05-21.\n\nSubject block fixes needed:\n- \u274c \"MITHUN **GANAGRAM**\" \u2192 \u2705 \"MITHUN **GANGARAM** PATIL\" (fix typo + remove duplicate)\n- \u2795 Add **KUNAL HARESH MEHTA** (confirmed director in FalconEBiz, not in subject block)\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 2/57 sources via Tor (Netherlands exit node) (25 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 57 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Madhya agro bharat pvt ltd breakout.; I used to see palm oil in Kurkure's ingredients..; r/CeraChemPvtLtd Lounge (+12 more) |\n| duckduckgo_tor | 10 | Altra Agro-Chem Pvt. Ltd. | UJIN Pharma LTD; ALTRA AGRO-CHEM PRIVATE LIMITED - Company Profile; ALTRA AGRO-CHEM PRIVATE LIMITED - ZaubaCorp (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- Altra Agro-Chem Pvt. Ltd. | UJIN Pharma LTD \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.ujinpharma.com%2Faltraagrochempvtltd&rut=35db08e1c2de]\n- ALTRA AGRO-CHEM PRIVATE LIMITED - Company Profile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Faltra%2Dagro%]\n- ALTRA AGRO-CHEM PRIVATE LIMITED - ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2Fcompany%2FALTRA%2DAGRO%2DCHEM%2DPRIVA]\n- Altra Agro-Chem Private Limited - IndiaMART \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Faltra%2Dagrochem%2Dprivate%2Dlimited%]\n- ALTRA AGRO-CHEM PRIVATE LIMITED Details | Company Profile | Directors ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.companydetails.in%2Fcompany%2Faltra%2Dagro%2Dchem%2Dp]\n- Altra Agro-chem Private Limited / U24100mh2019ptc327706 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.falconebiz.com%2Fcompany%2FALTRA%2DAGRO%2DCHEM%2DPRIV]\n- Altra Agro-Chem Private Limited - 2026 Insights - The Company Check \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fcompany%2Faltra%2Dagrochem%2Dpr]\n- ALTRA AGRO-CHEM PRIVATE LIMITED - Dun & Bradstreet \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.a]\n- ALTRA AGRO-CHEM PRIVATE LIMITED - IndiaFilings \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiafilings.com%2Fsearch%2Faltra%2Dagro%2Dchem%2Dpri]\n- Altra Agro-Chem Financials | Company Details | Tofler \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tofler.in%2Faltra%2Dagro%2Dchem%2Dprivate%2Dlimited%2]\n\n**SOCIAL MENTION** (15)\n- Madhya agro bharat pvt ltd breakout. \u2014 *reddit* [https://reddit.com/r/StockMarketIndia/comments/1mdebuw/madhya_agro_bharat_pvt_lt]\n- I used to see palm oil in Kurkure's ingredients.. \u2014 *reddit* [https://reddit.com/r/SnacksIndia/comments/1s17cpz/i_used_to_see_palm_oil_in_kurk]\n- r/CeraChemPvtLtd Lounge \u2014 *reddit* [https://reddit.com/r/CeraChemPvtLtd/comments/13j0qtf/rcerachempvtltd_lounge/]\n- TTD Laddu issue - yellow media and Fake news peddlers, wait for your karma ..! \u2014 *reddit* [https://reddit.com/r/andhra_pradesh/comments/1pe1irh/ttd_laddu_issue_yellow_medi]\n- TCG Lifesciences Pvt. Ltd. expands its footprint to the United States with the establishment of its  \u2014 *reddit* [https://reddit.com/r/News_Chemical/comments/lcipwb/tcg_lifesciences_pvt_ltd_expa]\n- Innovative Report on 2,6-Diaminopyridine Market with Competitive Analysis, New Business Developments \u2014 *reddit* [https://reddit.com/r/BizInsightReports/comments/ck61ks/innovative_report_on_26di]\n- New Research on Natural Coconut Oil Industry: Future of investment opportunities, market share &amp; \u2014 *reddit* [https://reddit.com/r/BizInsightReports/comments/c54rvm/new_research_on_natural_c]\n- Innovative microbial cultures developed by EcolAgro Venture Pvt. Ltd. \u2014 *reddit* [https://reddit.com/r/environment/comments/c2e8ju/innovative_microbial_cultures_d]\n- Oleate Esters Market Likely to Emerge over a Period of 2019 - 2024: Kao Corporation, Mohini Organics \u2014 *reddit* [https://reddit.com/r/TechInsightreports/comments/bzo8fv/oleate_esters_market_lik]\n- How to unscrew the lid?  Special wrench? \u2014 *reddit* [https://reddit.com/r/landscaping/comments/1o4wq7u/how_to_unscrew_the_lid_special]\n- \u0939\u092e\u093e\u0930\u093e \u0930\u093e\u091c\u094d\u092f \u0932\u0942\u091f \u0932\u093f\u092f\u093e \u0917\u092f\u093e \u0939\u0948 \u2014 *reddit* [https://reddit.com/r/Uttarakhand/comments/1nevti7/\u0939\u092e\u0930_\u0930\u091c\u092f_\u0932\u091f_\u0932\u092f_\u0917\u092f_\u0939/]\n- How is Xam idea for chem class 12? \u2014 *reddit* [https://reddit.com/r/CBSE/comments/1tavbo5/how_is_xam_idea_for_chem_class_12/]\n- Can I use rooting Harmone powder? \u2014 *reddit* [https://reddit.com/r/succulents/comments/1sfst7r/can_i_use_rooting_harmone_powde]\n- Job - State Marketing Manager - Bengaluru/Bangalore - Parle Agro Pvt Ltd - 3-to-5 years of experienc \u2014 *reddit* [https://reddit.com/r/reddit.com/comments/k26cr/job_state_marketing_manager_benga]\n- SHARES OF NIKHIL GADKARI'S CIAN AGRO INDUSTRIES HAVE SURGED 1714% IN JUST 13 MONTHS. \u2014 *reddit* [https://reddit.com/r/IndiaTax/comments/1n452mp/shares_of_nikhil_gadkaris_cian_ag]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "ALTRA AGRO CHEM PVT. LTD.",
+    "entity_country": "IN",
+    "entity_address": "Plot No. 45, MIDC Phase-II, Jindal Compound, Manpada, Dombivli East, Thane, Maharashtra 421204, India",
+    "entity_tax_id": "U24100MH2019PTC327706",
+    "key_individuals": [
+      {
+        "name": "MITHUN GANAGRAM PATIL",
+        "title": "Shareholder"
+      },
+      {
+        "name": "PRACHI MITHUN PATIL",
+        "title": "Shareholder"
+      },
+      {
+        "name": "VILAS SAMBHAJI HAJARE",
+        "title": "Officer"
+      },
+      {
+        "name": "Mithun Gangaram Patil",
+        "title": "Director"
+      },
+      {
+        "name": "PRASHANT BALARAM THAKUR"
+      },
+      {
+        "name": "SAUMYA GOPAL BHATT"
+      },
+      {
+        "name": "ASMI AMEY GADGIL"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 57
+}

@@ -1,0 +1,39 @@
+{
+  "job_id": "c02c2c63-e1f9-408e-adcc-565d84cbb8ae",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "First Polychem LLC",
+  "country": "US",
+  "created_at": "2026-05-14T12:41:35.128158+00:00",
+  "updated_at": "2026-05-14T12:43:30.008829+00:00",
+  "blob_path": "osint-staging/cir/americas/first_polychem_llc_US_20260514.json",
+  "report_summary": "**No action required.** The authoritative report is already live and covers all workstreams 1A\u20138A including both named key individuals.\n\n| | |\n|---|---|\n| **File** | `americas/first_polychem_llc_US_20260514.json` |\n| **Uploaded** | 2026-05-14T11:28:27 UTC |\n| **Risk** | **2 / CLEAR** |\n| **EIN** | 27-1333595 |\n| **Website** | firstpolychem.com \u2713 confirmed |\n| **Brahim Benzakour** (50%) | Sanctions CLEAR \u00b7 PEP NO \u00b7 No adverse media |\n| **Lamyae Hanafi Benzakour** (50%) | Sanctions CLEAR \u00b7 PEP NO \u00b7 No adverse media |\n| **Dark web** | 0 findings |\n\nThe brief omits address, tax ID, and UBO percentages compared to the 11:24 submission, but refers to the same entity. No new research is warranted within a 77-minute window. The existing report is the definitive output.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 5/49 sources via Tor (Netherlands exit node)\n\nNo dark web exposure detected. Entity and owners clean across all 49 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 |  (+15 more) |\n| duckduckgo_tor | 10 |  (+10 more) |\n| dehashed | 1 |  (+1 more) |\n| hudsonrock_cavalier | 1 |  (+1 more) |\n| adb_sanctions | 1 |  (+1 more) |\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "First Polychem LLC",
+    "entity_country": "US",
+    "entity_website": "firstpolychem.com",
+    "key_individuals": [
+      {
+        "name": "Brahim Benzakour"
+      },
+      {
+        "name": "Lamyae Hanafi Benzakour"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 49
+}

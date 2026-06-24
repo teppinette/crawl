@@ -1,0 +1,139 @@
+{
+  "job_id": "59fc4061-61ee-42b7-afd9-2a126cf65348",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "NIMIR CHEMICALS PAKISTAN LTD",
+  "country_code": "PK",
+  "created_at": "2026-05-04T15:27:50.422513+00:00",
+  "updated_at": "2026-05-04T15:28:55.147050+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:27:57.748347+00:00",
+      "verified": true,
+      "legal_name": "NIMIR CHEMICALS PAKISTAN LIMITED",
+      "registration_number": "0020644",
+      "entity_status": "Incorporated",
+      "company_type": null,
+      "cro": "CRO Lahore",
+      "registration_date": "30/11/1989",
+      "fbr": null,
+      "all_matches": null,
+      "source": "SECP eServices (direct gov query)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:28:17.540579+00:00",
+      "found": true,
+      "name": "Nimir Chemicals Pakistan Limited",
+      "linkedin_url": "https://se.linkedin.com/company/nimir-chemicals-pakistan-limited",
+      "industry": "Chemical Manufacturing",
+      "company_size": "201-500 employees",
+      "locations": [
+        "First Floor, Amin Arcade, 7-Durand Road Lahore, PK",
+        "14.8 Km, Sheikhpura-Faisalabad Road, Munza Bhikhi Distt. Sheikhupura, PK"
+      ],
+      "about": "Nimir Chemicals Pakistan Limited (NCPL) is a leading petrochemicals company in Pakistan having ample capacity to feed the entire domestic demand of the downstream industries. The company currently has about 260 employees. The core business of NCPL is the manufacturing and marketing of :- Phthalic Anhydride Di Octyle Phthalate Maleic Anhydride Alkyd Resins NCPL proudly servers its valuable customers with petrochemicals products that exceeds in quality from its international competitors. Statement",
+      "followers": 10307,
+      "employees_on_linkedin": 291,
+      "organization_type": "Privately Held",
+      "website": "https://www.nimirchemicals.com/",
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "Muhammad Ismail Ahmad",
+          "link": "https://pk.linkedin.com/in/muhammad-ismail-ahmad-582b1814?trk=org-employees"
+        },
+        {
+          "name": "Irfan Ahmad",
+          "link": "https://pk.linkedin.com/in/irfan-ahmad-3223091a?trk=org-employees"
+        },
+        {
+          "name": "Mohsin Musaddiq",
+          "link": "https://pk.linkedin.com/in/mohsin-musaddiq-540bb525?trk=org-employees"
+        },
+        {
+          "name": "Mohsin Shuaib",
+          "link": "https://pk.linkedin.com/in/mohsin-shuaib-81197626?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:28:55.146416+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 60,
+      "sources_searched": 37,
+      "sources_with_results": 2,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "NIMIR CHEMICALS PAKISTAN LTD",
+    "country_code": "PK",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

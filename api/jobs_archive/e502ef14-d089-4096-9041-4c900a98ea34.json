@@ -1,0 +1,20 @@
+{
+  "job_id": "e502ef14-d089-4096-9041-4c900a98ea34",
+  "scenario": "dark-web",
+  "status": "completed",
+  "region": "darkweb",
+  "entity_name": "Engen Petroleum Pty Limited South Africa",
+  "country": "",
+  "created_at": "2026-05-22T16:43:35.124344+00:00",
+  "updated_at": "2026-05-22T16:44:39.176388+00:00",
+  "blob_path": "osint-staging/dark-web/engen_petroleum_pty_limited_south_africa_20260522.json",
+  "report_summary": "43 findings from dark web sources",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_name": "Engen Petroleum Pty Limited South Africa",
+    "domain": "engen.co.za",
+    "country_code": "ZA"
+  }
+}

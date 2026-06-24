@@ -1,0 +1,19 @@
+{
+  "job_id": "46169ce1-57c9-470a-abfd-10deb5a5d141",
+  "scenario": "dark-web",
+  "status": "completed",
+  "region": "darkweb",
+  "entity_name": "Contenedores San Fernando SPA Chile",
+  "country": "",
+  "created_at": "2026-05-22T18:24:25.544760+00:00",
+  "updated_at": "2026-05-22T18:25:38.250186+00:00",
+  "blob_path": "osint-staging/dark-web/contenedores_san_fernando_spa_chile_20260522.json",
+  "report_summary": "25 findings from dark web sources",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_name": "Contenedores San Fernando SPA Chile",
+    "country_code": "CL"
+  }
+}

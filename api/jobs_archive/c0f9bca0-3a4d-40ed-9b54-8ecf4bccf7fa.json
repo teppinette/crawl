@@ -1,0 +1,32 @@
+{
+  "job_id": "c0f9bca0-3a4d-40ed-9b54-8ecf4bccf7fa",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "china",
+  "entity_name": "JIANGSU HUALUN GALAXY CHEMICAL COMMERCIAL HOLDING CO., LTD",
+  "country": "CN",
+  "created_at": "2026-05-04T17:11:28.786967+00:00",
+  "updated_at": "2026-05-04T17:16:10.572677+00:00",
+  "blob_path": "osint-staging/cir/china/jiangsu_hualun_galaxy_chemical_commercial_holding_co_ltd_cn_20260430.json",
+  "report_summary": "Already updated minutes ago \u2014 report refreshed with today's date and all 4 country-specific checks confirmed clean.\n\n**DONE:** `/home/copapadmin/crawl/output/jiangsu_hualun_galaxy_chemical_commercial_holding_co_ltd_cn_20260430.json` (20,904 bytes, updated 2026-05-04)\n\nAll checks: \u2705 GSXT active | \u2705 Qichacha verified | \u2705 UFLPA not listed | \u2705 BIS MEU not listed | \u2705 NS-CMIC not listed\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 findings** from 0/0 sources via Tor (Netherlands exit node)\n\nNo dark web exposure detected. Entity and owners clean across all 0 sources.\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "JIANGSU HUALUN GALAXY CHEMICAL COMMERCIAL HOLDING CO., LTD",
+    "entity_country": "CN",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "china": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 0
+}

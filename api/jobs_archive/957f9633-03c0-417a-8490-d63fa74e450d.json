@@ -1,0 +1,73 @@
+{
+  "job_id": "957f9633-03c0-417a-8490-d63fa74e450d",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "PASUPATI ACRYLON LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-21T11:51:08.270716+00:00",
+  "updated_at": "2026-05-21T11:53:42.199077+00:00",
+  "blob_path": "osint-staging/cir/india/pasupati_acrylon_limited_IN_20260520.json",
+  "report_summary": "Second Pasupati Acrylon submission \u2014 identical to 21:11 UTC yesterday. File is complete.\n\n**DONE (existing file): Pasupati Acrylon Limited \u2014 Risk: 3 MONITOR \u2014 BSE 500456 / NSE PASUPTAC; FY2024 revenue -30%, profit -63%; TTM Dec 2025 ~\u20b9892 Cr (recovery); \u26a0\ufe0f Indian Bank \u20b9240 Cr charge from 1995**\n\n`~/crawl/output/pasupati_acrylon_limited_IN_20260520.json` \u2014 12.1 KB, valid.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**4 actionable findings** from 5/57 sources via Tor (Netherlands exit node) (22 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Adverse media | 2 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 11 |\n| Website scans (URLScan) | 1 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: pasupatiacrylon.com\n- ADVERSE MEDIA: Pasupati Acrylon Ltd Share Price Today, 54.99, Pasupati Acrylon Ltd ...\n- ADVERSE MEDIA: PASUPTAC Stock Price and Chart \u2014 NSE:PASUPTAC \u2014 TradingView\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | India Daybook \u2013 Stocks in News*; *\ud83c\udf39\ud83c\uddee\ud83c\uddf3India Daybook \u2013 Stocks in News*; Top 10 Indian Stock Market News - March 12, 2025 (+12 more) |\n| urlscan | 11 | pasupatiacrylon.com; Success! (+9 more) |\n| duckduckgo_tor | 10 | Home - Pasupati Acrylon; Pasupati Acrylon Ltd. Share Price Today | Pasupati Acrylon L; Pasupati Acrylon Ltd. - Trendlyne (+7 more) |\n| duckduckgo_adverse | 2 | Pasupati Acrylon Ltd Share Price Today, 54.99, Pasupati Acry; PASUPTAC Stock Price and Chart \u2014 NSE:PASUPTAC \u2014 TradingView |\n| hudsonrock_cavalier | 1 | pasupatiacrylon.com |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- pasupatiacrylon.com \u2014 *hudsonrock_cavalier*\n\n**ADVERSE MEDIA** (2)\n- Pasupati Acrylon Ltd Share Price Today, 54.99, Pasupati Acrylon Ltd ... \u2014 *duckduckgo_adverse* [/l/?uddg=https%3A%2F%2Fwww.business%2Dstandard.com%2Fmarkets%2Fpasupati%2Dacrylo]\n- PASUPTAC Stock Price and Chart \u2014 NSE:PASUPTAC \u2014 TradingView \u2014 *duckduckgo_adverse* [/l/?uddg=https%3A%2F%2Fwww.tradingview.com%2Fsymbols%2FNSE%2DPASUPTAC%2F&rut=b16]\n\n**WEB MENTION** (10)\n- Home - Pasupati Acrylon \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fpasupatiacrylon.com%2F&rut=f934521d2e8450d2caa9646202cd40]\n- Pasupati Acrylon Ltd. Share Price Today | Pasupati Acrylon Live NSE/BSE \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.valueresearchonline.com%2Fstocks%2F43737%2Fpasupati%2]\n- Pasupati Acrylon Ltd. - Trendlyne \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftrendlyne.com%2Fequity%2F2087%2FPASUPTAC%2Fpasupati%2Dacr]\n- Pasupati Acrylon Ltd. - Moneycontrol \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.moneycontrol.com%2Findia%2Fstockpricequote%2Ftextiles]\n- Pasupati Acrylon Share Price - The Economic Times \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Feconomictimes.indiatimes.com%2Fpasupati%2Dacrylon%2Dltd%2]\n- PASUPATI ACRYLON LIMITED - ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2FPASUPATI%2DACRYLON%2DLIMITED%2DL50102]\n- Pasupati Acrylon Ltd share price | About Pasupati Acrylon | Key ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.screener.in%2Fcompany%2FPASUPTAC%2F&rut=fe260b5b57d4e]\n- Pasupati Acrylon Limited (PASUPTAC.NS) - Yahoo Finance \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ffinance.yahoo.com%2Fquote%2FPASUPTAC.NS%2F&rut=b79fb180b2]\n- Pasupati Acrylon Ltd - INDmoney \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indmoney.com%2Fstocks%2Fpasupati%2Dacrylon%2Dltd%2Dsh]\n- Pasupati Acrylon Ltd (PASUPTAC) Share Price - Business Today \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.businesstoday.in%2Fstocks%2Fpasupati%2Dacrylon%2Dltd%]\n\n**SOCIAL MENTION** (11)\n- India Daybook \u2013 Stocks in News* \u2014 *reddit* [https://reddit.com/r/UpdateINDIA/comments/1lufl40/india_daybook_stocks_in_news/]\n- *\ud83c\udf39\ud83c\uddee\ud83c\uddf3India Daybook \u2013 Stocks in News* \u2014 *reddit* [https://reddit.com/r/UpdateINDIA/comments/1lf1ry4/india_daybook_stocks_in_news/]\n- Top 10 Indian Stock Market News - March 12, 2025 \u2014 *reddit* [https://reddit.com/r/IndianStreetBets/comments/1j9b1fa/top_10_indian_stock_marke]\n- India Daybook \u2013 Stocks in News*  \u2014 *reddit* [https://reddit.com/r/IndianStreetBets/comments/1f31z4i/india_daybook_stocks_in_n]\n- Pasupati Acrylon Share Price Target 2025,2030,2035,2040 \u2014 *reddit* [https://reddit.com/r/StockMarketIndia/comments/1ja81gq/pasupati_acrylon_share_pr]\n- Date of Sabhavinoda of Daivajna Damodara, A Prot\u00e9g\u00e9 of King Srinivasa Malla of Nepal Between A.D. 16 \u2014 *reddit* [https://reddit.com/r/IndicKnowledgeSystems/comments/1q5t0zi/date_of_sabhavinoda_]\n- what are ur views on these outlier stocks for 6 month to 2 year hold ? reasons being increased profi \u2014 *reddit* [https://reddit.com/r/IndianStocks/comments/1pe3tg3/what_are_ur_views_on_these_ou]\n- India Daybook - Stocks in news* \u2014 *reddit* [https://reddit.com/r/DalalStreetTalks/comments/1kvl9t8/india_daybook_stocks_in_n]\n- *\ud83c\uddee\ud83c\uddf3India Daybook \u2013 Stocks in News* \u2014 *reddit* [https://reddit.com/r/UpdateINDIA/comments/1kvl93m/india_daybook_stocks_in_news/]\n- Top 10 Indian Stock Market News - March 25, 2025 \u2014 *reddit* [https://reddit.com/r/IndianStreetBets/comments/1jjbcio/top_10_indian_stock_marke]\n- Vibhajjavada and Sarv\u0101stiv\u0101da\u2014Part 23 \u2014 *reddit* [https://reddit.com/r/Theravadan/comments/1dzo0n5/vibhajjavada_and_sarv\u0101stiv\u0101dapa]\n\n**DOMAIN SCAN SUMMARY** (1)\n- pasupatiacrylon.com \u2014 *urlscan*\n\n**WEBSITE SCAN** (1)\n- Success! \u2014 *urlscan* [http://mail.wipesfn6.pasupatiacrylon.com/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "PASUPATI ACRYLON LIMITED",
+    "entity_trade_names": "PASUPATI ACRYLON LTD",
+    "entity_country": "IN",
+    "entity_address": "THAKURDWARA, KASHIPUR ROAD, DISTT. MORADABAD, 244601, Uttar Pradesh, India",
+    "entity_website": "https://pasupatiacrylon.com",
+    "entity_type": "MANUFACTURING",
+    "entity_industry": "MANUFACTURING",
+    "entity_tax_id": "L50102UP1982PLC015532",
+    "key_individuals": [
+      {
+        "name": "VINEET JAIN"
+      },
+      {
+        "name": "SATYA PRAKASH GUPTA"
+      },
+      {
+        "name": "KAMLESH GUPTA"
+      },
+      {
+        "name": "SUDHIR AGARWAL"
+      },
+      {
+        "name": "SANJIV NAIR"
+      },
+      {
+        "name": "RAJ GANESH VISWANATHAN"
+      },
+      {
+        "name": "SATHYAMOORTHY SRINIVASAN"
+      },
+      {
+        "name": "SUBHASH CHANDRA MALIK"
+      },
+      {
+        "name": "SATISH KUMAR BANSAL"
+      },
+      {
+        "name": "BHARAT KAPOOR"
+      },
+      {
+        "name": "DEVESHWER KUMAR KAPILA"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "copap_products": "Acrylon / Acrylic fibre (petrochemical downstream); monthly consumption USD 4,200,000 at USD 1,200/MT (~3,500 MT/month)",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 4,
+  "dark_web_sources": 57
+}

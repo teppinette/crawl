@@ -1,0 +1,71 @@
+{
+  "job_id": "fe2ffb25-6184-4335-a233-bf6ed43cd9d2",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "Deepak Phenolics Limited",
+  "country": "IN",
+  "created_at": "2026-05-12T11:26:59.326778+00:00",
+  "updated_at": "2026-05-12T11:41:37.920872+00:00",
+  "blob_path": "osint-staging/cir/india/deepak_phenolics_limited_IN_20260512.json",
+  "report_summary": "**DONE: Deepak Phenolics Limited, India \u2014 Risk: 2 CLEAR \u2014 Wholly-owned subsidiary of ICRA AA rated Deepak Nitrite Ltd; CIN U24100GJ2011PLC064669; Revenue \u20b95,860 Cr FY25; zero debt; 14 individuals profiled; zero sanctions; minor GST dispute \u20b94.30 Cr**\n\n---\n\n`~/crawl/output/deepak_phenolics_limited_IN_20260512.json` \u2014 27.7 KB, valid JSON, 10 sources, all 8 workstreams + 5 India-specific requirements complete\n\n---\n\n## Key Findings\n\n### Entity\n- **CIN:** U24100GJ2011PLC064669 \u00b7 Tax ID \"64669\" = registration suffix \u2713 \u00b7 Incorporated March 29, 2011\n- **Former name:** Deepak Clean Tech Limited\n- **Status:** Active \u00b7 Compliant \u00b7 Unlisted Public Limited \u00b7 ROC Ahmedabad\n- **Capital:** Auth \u20b9560 Cr \u00b7 Paid-up \u20b9280 Cr \u00b7 Employees: 459\n- **Wholly-owned subsidiary** of Deepak Nitrite Ltd (NSE: DEEPAKNTR, BSE: 506401) \u2014 ICRA AA Stable rated, nil borrowings as of March 2026\n\n### Financials \u2014 Exemplary Balance Sheet\n| Year | Revenue | Net Profit | Net Worth | D/E |\n|---|---|---|---|---|\n| FY2025 | **\u20b95,860 Cr** | \u2014 | \u2014 | **0.0** |\n| FY2024 | \u20b95,003 Cr | \u20b9474 Cr | \u20b92,153 Cr | **0.0** |\n| FY2023 | \u20b94,971 Cr | \u20b9445 Cr | \u20b91,755 Cr | 0.0 |\n| FY2022 | \u20b94,303 Cr | \u20b9624 Cr | \u20b91,372 Cr | 0.2 |\n| FY2020 | \u20b92,010 Cr | \u20b967 Cr | \u20b9645 Cr | 1.3 |\n\nD/E went from 1.3 \u2192 0.0 in 4 years post-commissioning. Interest coverage: 71.7x.\n\n### Operations\n- **Dahej, Gujarat:** 200 KTPA phenol \u00b7 120 KTPA acetone \u00b7 260 KTPA cumene (KBR technology, commissioned Nov 2018) \u2014 India's largest phenol complex\n- **Manali, Chennai:** 36,000 TPA secondary facility\n- **CAPEX ongoing:** New Phenol/Acetone/IPA capacity for PC resin integration; Nitric Acid plant Q4 FY26\n\n### Directors \u2014 14 Profiled (12 subject block + 2 new)\n\n| # | Name | DIN | Role | Status |\n|---|---|---|---|---|\n| 1 | Deepak Chimanlal Mehta | 00028377 | Managing Director / Chairman | \u2713 Current |\n| 2 | Maulik Deepak Mehta | 05227290 | Director; Deputy MD at parent Deepak Nitrite (May 2026) | \u2713 Current |\n| 3 | Ila Deepak Mehta | 00230412 | Director | \u2713 Current |\n| 4 | Meghav Deepak Mehta | 05229853 | Whole-Time Director / CEO | \u2713 Current |\n| 5 | Kishor Jhalaria | 02373095 | Whole-Time Director (operations) | \u2713 Current |\n| 6 | Sanjay Bakulchandra Upadhyay | 01776546 | Director / CFO-level | \u2713 Current |\n| 7 | Ashok Balasubramanian | 06861345 | Director | \u2713 Current |\n| 8 | Sanjay Khatau Asher | TBC | Independent Director (Crawford Bayley & Co.) | Confirmed on DCTL/DNL boards |\n| 9 | Sandeshkumar Jagannath Anand | 00001792 | Director | \u2713 Current |\n| 10 | Milin Kaimas Mehta | 01297508 | Director | \u2713 Current |\n| 11 | Chirag Kirtibhai Shukla | TBC | Director | Unconfirmed in MCA databases |\n| 12 | Shripad Prabhakar Gumaste | TBC | Director | Unconfirmed in MCA databases |\n| 13 \u26a0\ufe0f | **Maheswar Sahu** | **00034051** | **Director \u2014 NOT IN SUBJECT BLOCK** | Appointed May 20, 2025 |\n| 14 \u26a0\ufe0f | **Vipul Shantilal Shah** | **00174680** | **Director \u2014 NOT IN SUBJECT BLOCK** | Appointed Jun 8, 2025 |\n\n### Adverse / Flags\n| Item | Severity |\n|---|---|\n| GST appellate order Mar 2026 \u2014 \u20b94.30 Cr ITC + penalty | \ud83d\udfe1 LOW \u2014 being appealed |\n| Production suspension Apr 3-15, 2026 (pricing-driven, resumed) | \ud83d\udfe2 OPERATIONAL |\n| Open MCA charges \u20b9480 Cr vs. nil balance sheet borrowings | \ud83d\udfe1 LOW \u2014 likely discharge lag |\n| 2 directors not in subject block (Sahu, Shah) | \u26a0\ufe0f ADMIN \u2014 subject block update needed |\n| Chirag Shukla & Shripad Gumaste DIns unconfirmed | \u26a0\ufe0f ADMIN \u2014 MCA21 lookup recommended |\n\n**All sanctions CLEAR \u00b7 No PEP \u00b7 Anti-dumping litigation is standard/defensive for India's only large domestic phenol producer**\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**77 findings** from 5/57 sources via Tor (Netherlands exit node)\n\n| Category | Count |\n|----------|-------|\n| Breach records | 50 |\n| Adverse media | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "Deepak Phenolics Limited",
+    "entity_country": "IN",
+    "entity_address": "4th Floor, Fermenter House, Alembic City, Alembic Avenue Road, Gorwa, Vadodara, Gujarat 390003",
+    "entity_tax_id": "64669",
+    "key_individuals": [
+      {
+        "name": "Deepak Chimanlal Mehta"
+      },
+      {
+        "name": "Maulik Deepak Mehta"
+      },
+      {
+        "name": "Ila Deepak Mehta"
+      },
+      {
+        "name": "Meghav Deepak Mehta"
+      },
+      {
+        "name": "Kishor Jhalaria"
+      },
+      {
+        "name": "Sanjay Bakulchandra Upadhyay"
+      },
+      {
+        "name": "Chirag Kirtibhai Shukla"
+      },
+      {
+        "name": "Ashok Balasubramanian"
+      },
+      {
+        "name": "Sanjay Khatau Asher"
+      },
+      {
+        "name": "Sandeshkumar Jagannath Anand"
+      },
+      {
+        "name": "Shripad Prabhakar Gumaste"
+      },
+      {
+        "name": "Milin Kaimas Mehta"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 77,
+  "dark_web_sources": 57
+}

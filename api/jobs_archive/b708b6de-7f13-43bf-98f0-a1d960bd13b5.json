@@ -1,0 +1,63 @@
+{
+  "job_id": "b708b6de-7f13-43bf-98f0-a1d960bd13b5",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "ACCORD CHEMCORP PRIVATE LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-21T14:51:00.088197+00:00",
+  "updated_at": "2026-05-21T14:54:23.238086+00:00",
+  "blob_path": null,
+  "report_summary": "**DONE: Accord Chemcorp Private Limited, India \u2014 Risk: 2 CLEAR \u2014 11-year Borivali Mumbai specialty chemicals; CIN U24233MH2014PTC256724; Revenue \u20b9258 Cr FY25; AGM Sep 30, 2024 current; Shah family (Jinesh MD + wife Meghna + son Yash)**\n\n`~/crawl/output/accord_chemcorp_pvt_ltd_IN_20260521.json` \u2014 7.2 KB, valid, research date 2026-05-21.\n\nSubject block cleanup:\n- **7 entries \u2192 3 unique individuals**: \"Jinesh Shah\" = Jinesh Mahendra Shah; \"Meghna Shah\" = Meghna Jinesh Shah; + Yash Jinesh Shah\n- **\"Not disclosed - UBO\" \u00d7 2**: Obtain formal UBO declaration (Companies Act Section 90) \u2014 Shah family are de facto beneficial owners\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 2/57 sources via Tor (Netherlands exit node) (24 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 57 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | [Fischer] Among\u00a0Jimmy Butler's transgressions, according to ; After a 23 year old member of the Coast Guard went overboard; My ex-wife\u2019s boyfriend is abusing my kids, and the custody h (+12 more) |\n| duckduckgo_tor | 10 | Accord Chemical Corporation - Trusted Petrochemical Trading ; Accord Chem Corp Pvt Ltd | LinkedIn; ACCORD CHEMCORP PRIVATE LIMITED | ZaubaCorp (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- Accord Chemical Corporation - Trusted Petrochemical Trading & Customs ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.accordchemicals.com%2F&rut=8d492c59f5612763458bbee7a5]\n- Accord Chem Corp Pvt Ltd | LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fin.linkedin.com%2Fcompany%2Faccord%2Dchemcorp%2Dpvt%2Dltd]\n- ACCORD CHEMCORP PRIVATE LIMITED | ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2FACCORD%2DCHEMCORP%2DPRIVATE%2DLIMITED]\n- ACCORD CHEMCORP PRIVATE LIMITED - Company Profile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Faccord%2Dchem]\n- Accord Chemcorp Private Limited / U24233mh2014ptc256724 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.falconebiz.com%2Fcompany%2FACCORD%2DCHEMCORP%2DPRIVAT]\n- ACCORD CHEMCORP PRIVATE LIMITED Details | Company Profile | Directors ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.companydetails.in%2Fcompany%2Faccord%2Dchemcorp%2Dpri]\n- Accord Chemcorp Private Limited - The Economic Times \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Feconomictimes.indiatimes.com%2Fcompany%2Faccord%2Dchemcor]\n- Accord Chemical Corporation - celesttechnologies.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fcelesttechnologies.com%2Faccord%2Dchemical%2Dcorporation.]\n- Company Profile - Accord Chemcorp Pvt Ltd - chemdmart.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fchemdmart.com%2Fcompany%2Dprofile%2Faccord%2Dchemcorp%2Dp]\n- Accord Chemcorp Private Limited - 2025 Insights - The Company Check \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fcompany%2Faccord%2Dchemcorp%2Dp]\n\n**SOCIAL MENTION** (14)\n- [Fischer] Among\u00a0Jimmy Butler's transgressions, according to league sources, have been multiple insta \u2014 *reddit* [https://reddit.com/r/nba/comments/1i0k80b/fischer_among_jimmy_butlers_transgress]\n- After a 23 year old member of the Coast Guard went overboard in the Pacific, Kristi Noem diverted re \u2014 *reddit* [https://reddit.com/r/circled/comments/1r7g0b1/after_a_23_year_old_member_of_the_]\n- My ex-wife\u2019s boyfriend is abusing my kids, and the custody hearing isn\u2019t until after I\u2019m supposed to \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1rzhqik/my_exwifes_boyfriend]\n- Whoops \u2014 *reddit* [https://reddit.com/r/funny/comments/1ow5k1r/whoops/]\n- They copied ChatGPT word-for-word and left the ending in. Wild. \u2014 *reddit* [https://reddit.com/r/ChatGPT/comments/1ovv0kg/they_copied_chatgpt_wordforword_an]\n- [New Updates]: My (22m) gf (23f) is secretly visiting my abusive parents with our son (3m) and doesn \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1st7wn0/new_updates_my_22m_g]\n- AITAH for telling my wife that I will lose respect for her if she doesn't apologize? \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1pucrk1/aitah_for_telling_my]\n- TikTok's most popular influencer sold his company for $975m... to a sketchy Chinese \"printing\" compa \u2014 *reddit* [https://reddit.com/r/wallstreetbets/comments/1qtig67/tiktoks_most_popular_influe]\n- OOP\u2019s wife suffered from total amnesia. A year later, a crisis forces him to make a choice about his \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1tgg4y5/oops_wife_suffered_f]\n- The Golden Treasure Part II [100% Proof Apes Get Paid] \u2014 *reddit* [https://reddit.com/r/Superstonk/comments/1ohiz4y/the_golden_treasure_part_ii_100]\n- [New Final Update]: AITAH for not siding with my wife over our son's ex-girlfriend\u2019s pregnancy \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1qbihpj/new_final_update_ait]\n- DB may be having mental health crisis. I was asked to leave. Don\u2019t feel ok doing so. Help please! \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1qx2cdt/db_may_be_having_men]\n- [New Updates]: AITAH for not siding with my wife over our son's ex-girlfriend\u2019s pregnancy \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1oeo1ts/new_updates_aitah_fo]\n- Sky is not the limit for being delusional: According to Butters, we will all be their serfs in 2037  \u2014 *reddit* [https://reddit.com/r/Buttcoin/comments/1ncmg54/sky_is_not_the_limit_for_being_de]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "india: Report file not found on remote VM (india)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "ACCORD CHEMCORP PRIVATE LIMITED",
+    "entity_country": "IN",
+    "entity_address": "A-405, 4TH FLOOR, KANAKIA WESTERN EDGE - II, CSL W.E. HIGHWAY, BEHIND METRO STORE, BORIVALI (EAST), MUMBAI, Maharashtra, 400066",
+    "entity_tax_id": "256724",
+    "key_individuals": [
+      {
+        "name": "Jinesh Shah",
+        "title": "Director"
+      },
+      {
+        "name": "Meghna Shah",
+        "title": "Director"
+      },
+      {
+        "name": "JINESH MAHENDRA SHAH"
+      },
+      {
+        "name": "MEGHNA JINESH SHAH"
+      },
+      {
+        "name": "YASH JINESH SHAH"
+      },
+      {
+        "name": "Not disclosed in document",
+        "title": "UBO"
+      },
+      {
+        "name": "Not disclosed in document",
+        "title": "UBO"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (india)"
+    }
+  },
+  "errors": [
+    "india: Report file not found on remote VM (india)"
+  ],
+  "dark_web_findings": 0,
+  "dark_web_sources": 57
+}

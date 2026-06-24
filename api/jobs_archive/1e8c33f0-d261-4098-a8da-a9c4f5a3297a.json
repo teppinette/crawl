@@ -1,0 +1,54 @@
+{
+  "job_id": "1e8c33f0-d261-4098-a8da-a9c4f5a3297a",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "ABP PRIVATE LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-21T14:45:54.102569+00:00",
+  "updated_at": "2026-05-21T14:50:08.185630+00:00",
+  "blob_path": "osint-staging/cir/india/abp_private_limited_IN_20260521.json",
+  "report_summary": "**DONE: ABP Private Limited, India \u2014 Risk: 1 CLEAR \u2014 104-year Ananda Bazar Patrika media institution; CIN U22219WB1922PTC004503; Revenue \u20b91,080 Cr FY24; 10 GSTINs; all 6 directors confirmed; Aveek Kumar Sarkar = Padma Bhushan**\n\n`~/crawl/output/abp_private_limited_IN_20260521.json` \u2014 6.3 KB, valid, research date 2026-05-21, all 8 workstreams complete.\n\nOne of only two 100+ year old companies in this research batch (alongside Mathrubhumi, also 1922). Brands include Ananda Bazar Patrika, The Telegraph, ABP News TV, and ABP Network.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**2 actionable findings** from 4/57 sources via Tor (Netherlands exit node) (26 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n| Website scans (URLScan) | 1 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: www.abp.in\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Official User Flairs Thread; I looked into Private Jet broker training programs. My findi; Looking for my first switch as a full time employee but not  (+12 more) |\n| urlscan | 11 | www.abp.in; Welcome to ABP (+9 more) |\n| duckduckgo_tor | 10 | ABP PRIVATE LIMITED - ZaubaCorp; ABP Private Limited - The Economic Times; Abp Private Limited Company Profile - India | Financials & K (+7 more) |\n| hudsonrock_cavalier | 1 | www.abp.in |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- www.abp.in \u2014 *hudsonrock_cavalier*\n\n**WEB MENTION** (10)\n- ABP PRIVATE LIMITED - ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2FABP%2DPRIVATE%2DLIMITED%2DU22219WB192]\n- ABP Private Limited - The Economic Times \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Feconomictimes.indiatimes.com%2Fcompany%2Fabp%2Dprivate%2D]\n- Abp Private Limited Company Profile - India | Financials & Key ... - EMIS \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FIN%2FAbp_Private]\n- Welcome to ABP \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.abp.in%2F&rut=70d06f5da4bc0826c8d37540dbc305ceff04848]\n- Abp Private Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.a]\n- ABP PRIVATE LIMITED - IndiaFilings \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiafilings.com%2Fsearch%2Fabp%2Dprivate%2Dlimited%2]\n- ABP Group - Wikipedia \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FABP_Group&rut=13e3cbceffc0be73b]\n- ABP Network \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.abpnetwork.com%2Fget_in_touch&rut=c90bfe684eb67e9d001]\n- ABP NETWORK PRIVATE LIMITED - Company Profile - Tracxn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Fabp%2Dnetwork]\n- Abp Private Limited - 2026 Insights | The Company Check \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fcompany%2Fabp%2Dprivate%2Dlimit]\n\n**SOCIAL MENTION** (15)\n- Official User Flairs Thread \u2014 *reddit* [https://reddit.com/r/CreditCards/comments/14pt05t/official_user_flairs_thread/]\n- I looked into Private Jet broker training programs. My findings. \u2014 *reddit* [https://reddit.com/r/PrivateJetCharters/comments/1sts60x/i_looked_into_private_j]\n- Looking for my first switch as a full time employee but not getting any offers. Please help in updat \u2014 *reddit* [https://reddit.com/r/developersIndia/comments/1t2sx7u/looking_for_my_first_switc]\n- The complete guide to cat food brands in Europe: ingredients, manufacturers, and pricing across all  \u2014 *reddit* [https://reddit.com/r/HealthyAnimals/comments/1rbn5h6/the_complete_guide_to_cat_f]\n- Elon Musk says Americans are \"too retarded\" for skilled jobs. Musk is calling for mass layoffs in bo \u2014 *reddit* [https://reddit.com/r/WorkReform/comments/1hrvhf5/elon_musk_says_americans_are_to]\n- European Pet Food Manufacturing: A Comprehensive Factory Analysis (Information heavy) \u2014 *reddit* [https://reddit.com/r/HealthyAnimals/comments/1p6mxye/european_pet_food_manufactu]\n- [DISC] Install an ad-blocker. Protect yourself on aggregator sites. \u2014 *reddit* [https://reddit.com/r/manga/comments/c0l1ot/disc_install_an_adblocker_protect_you]\n- DnDBeyond just nuked their Campaign page by suddenly setting a 2048 character limit to Public and Pr \u2014 *reddit* [https://reddit.com/r/DnD/comments/1m8i69o/dndbeyond_just_nuked_their_campaign_pa]\n- Abpro Holdings, Inc. Initial Public Offering Released - Here\u2019s What You Should Know \u2014 *reddit* [https://reddit.com/r/SECFilingsAI/comments/1or0dko/abpro_holdings_inc_initial_pu]\n- CRB Exam Help - CRB Test Help - CRB Exam Helper - CRB Test Taker - Take my online CRB Exam - do my o \u2014 *reddit* [https://reddit.com/r/takemyrealestateexam/comments/1o3ekdn/crb_exam_help_crb_tes]\n- Biden plans to limit private prisons and transfer of military equipment to police \u2014 *reddit* [https://reddit.com/r/politics/comments/l5byxr/biden_plans_to_limit_private_priso]\n- Kourtney Kardashian, who went over her monthly water limit by 101,000 gallons and whose preferred wa \u2014 *reddit* [https://reddit.com/r/Fauxmoi/comments/1j0zqpe/kourtney_kardashian_who_went_over_]\n- Lost my money and trust to a fake job scam run by my friend \u2013 don\u2019t ignore the red flags like I did \u2014 *reddit* [https://reddit.com/r/mlmstories/comments/1k1zw7d/lost_my_money_and_trust_to_a_fa]\n- Trump's border czar is now privately telling Republicans to temper their expectations for a mass dep \u2014 *reddit* [https://reddit.com/r/LeopardsAteMyFace/comments/1hz8vah/trumps_border_czar_is_no]\n- DEC 16, 2024 RIO.V RIO2 REPORTS ON FENIX GOLD MINE PROGRESS \u2014 *reddit* [https://reddit.com/r/Treaty_Creek/comments/1hg72iq/dec_16_2024_riov_rio2_reports]\n\n**DOMAIN SCAN SUMMARY** (1)\n- www.abp.in \u2014 *urlscan*\n\n**WEBSITE SCAN** (1)\n- Welcome to ABP \u2014 *urlscan* [https://www.abp.in/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "ABP PRIVATE LIMITED",
+    "entity_country": "IN",
+    "entity_address": "6 Prafulla Sarkar Street, Kolkata, West Bengal, 700001, India",
+    "entity_website": "https://www.abp.in/",
+    "entity_tax_id": "004503",
+    "key_individuals": [
+      {
+        "name": "Aveek Kumar Sarkar"
+      },
+      {
+        "name": "Arup Kumar Sarkar"
+      },
+      {
+        "name": "Dipankar Das Purkayastha"
+      },
+      {
+        "name": "Atideb Sarkar"
+      },
+      {
+        "name": "Zahra Basrai"
+      },
+      {
+        "name": "Dhruba Mukherjee"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 2,
+  "dark_web_sources": 57
+}

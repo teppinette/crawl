@@ -1,0 +1,50 @@
+{
+  "job_id": "13c897bc-2541-4a8f-aee7-58cf14027935",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "PRAKASH CHEMICALS INTERNATIONAL PRIVATE LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-20T20:47:32.029675+00:00",
+  "updated_at": "2026-05-20T20:54:18.071302+00:00",
+  "blob_path": null,
+  "report_summary": "**DONE: Prakash Chemicals International Private Limited, India \u2014 Risk: 3 MONITOR \u2014 Vadodara specialty chemicals exporter; CIN U24231GJ2002PTC040891; Revenue \u20b91,340 Cr FY25; Profit +32%; \ud83d\udea8 \u20b9742 Cr open charges, ZERO satisfied (23-year accumulation); \u20b9592 Cr from unidentified lenders**\n\n---\n\n`~/crawl/output/prakash_chemicals_international_pvt_ltd_IN_20260520.json` \u2014 11 KB, valid JSON, 10 sources, all 8 workstreams complete\n\n---\n\n## Key Findings\n\n### Entity\n- **CIN:** U24231GJ2002PTC040891 \u00b7 Incorporated June 21, 2002 \u00b7 Active \u00b7 ROC Ahmedabad\n- **MD:** Manish Kumarpal Shah (Gold Medalist MBA, founding MD \u2014 23 years)\n- **Websites:** pciplindia.com \u00b7 pciplexport.com\n- **Revenue FY2025:** \u20b91,340 Cr \u00b7 **Profit +32.15%** \u00b7 Employees: 197\n\n### \ud83d\udea8 Critical Charge Alert \u2014 \u20b9742 Cr, ZERO Satisfied\n\n| Lender | Amount | Date | Modified |\n|---|---|---|---|\n| **\"Others\" (unidentified)** | **\u20b9246 Cr** | **2005** | **May 2023** |\n| **\"Others\" (unidentified)** | **\u20b9346 Cr** | **2019** | **Mar 2023** |\n| HDFC Bank | \u20b950 Cr | 2021 | \u2014 |\n| HDFC Bank | \u20b9100 Cr | 2023 | \u2014 |\n\n**\u20b9592 Cr from unidentified \"Others\" lenders.** The 2005 charge (now 20 years old) has never been satisfied. All \u20b9742 Cr has been rolling continuously. Related entity **Prakash Financial Services (Gujarat) Limited** may be an internal NBFC providing these facilities.\n\n**Sanctions CLEAR \u00b7 No PEP \u00b7 Zero litigation \u00b7 Zero adverse media \u00b7 Operationally strong but opaque debt structure requires urgent clarification**\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 2/53 sources via Tor (Netherlands exit node) (21 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 53 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | \ud83c\uddee\ud83c\uddf3India Daybook \u2013 Stocks in News*; India Daybook \u2013 Stocks in News*; *\ud83c\uddee\ud83c\uddf3India Daybook \u2013 Stocks in News* (+12 more) |\n| duckduckgo_tor | 10 | Home: Prakash Chemicals International; Prakash Chemicals International Private Limited - Trader - W; Prakash Chemicals Private Limited (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- Home: Prakash Chemicals International \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fpciplindia.com%2F&rut=5a62c91c1e490be60f38390e55d893efa19]\n- Prakash Chemicals International Private Limited - Trader - Wholesaler ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Fprakash%2Dchemicals%2Dinternational%2]\n- Prakash Chemicals Private Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fprakashchemicals.co.in%2F&rut=5075055f96654e96e518dba602f]\n- Prakash Chemicals International Private Limited - LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2Fprakashchemicalsinternationa]\n- Prakash Chemicals International Private Limited - FY 2026 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fcompany%2Fprakash%2Dchemicals%2]\n- Prakash Chemicals International Private Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2FPRAKASH%2DCHEMICALS%2DINTERNATIONAL%2]\n- Prakash Chemicals International Private Limited (India) \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FIN%2FPrakash_Che]\n- PRAKASH CHEMICALS INTERNATIONAL PRIVATE LIMITED Company Profile ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.p]\n- Prakash Chemicals International Pvt., Ltd. - PCIPL (part of Prakash ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.chemicalbook.in%2Fmanufacturer%2Fprakash%2Dchemicals%]\n- Company Profile - Prakash Chemicals International Pvt Ltd \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fchemdmart.com%2Fcompany%2Dprofile%2Fprakash%2Dchemicals%2]\n\n**SOCIAL MENTION** (11)\n- \ud83c\uddee\ud83c\uddf3India Daybook \u2013 Stocks in News* \u2014 *reddit* [https://reddit.com/r/UpdateINDIA/comments/1nhbiyr/india_daybook_stocks_in_news/]\n- India Daybook \u2013 Stocks in News* \u2014 *reddit* [https://reddit.com/r/UpdateINDIA/comments/1m086tp/india_daybook_stocks_in_news/]\n- *\ud83c\uddee\ud83c\uddf3India Daybook \u2013 Stocks in News* \u2014 *reddit* [https://reddit.com/r/UpdateINDIA/comments/1jk59y7/india_daybook_stocks_in_news/]\n- Some of the corporate funding to our so-called \"Independent media\". \u2014 *reddit* [https://reddit.com/r/IndiaSpeaks/comments/ospxpj/some_of_the_corporate_funding_t]\n- \" You sucked a horse's dick at the behest of an international p*dophile and human trafficker on his  \u2014 *reddit* [https://reddit.com/r/SubredditDrama/comments/1ozyjr6/you_sucked_a_horses_dick_at]\n- The Iranian schoolgirls mass poisoning incident was a series of chemical attacks on students in doze \u2014 *reddit* [https://reddit.com/r/wikipedia/comments/1rma1iq/the_iranian_schoolgirls_mass_poi]\n- Are some of us Aspies? \u2014 *reddit* [https://reddit.com/r/cripplingalcoholism/comments/czd20d/are_some_of_us_aspies/]\n- You wanted Disclosure.... I am a whistleblower recently \"retired\" from the inside. And you're only g \u2014 *reddit* [https://reddit.com/r/UFOs/comments/1p92xe7/you_wanted_disclosure_i_am_a_whistleb]\n- Trump fought to keep the ballroom fundraising contract secret. Here\u2019s what\u2019s in it. \u2014 *reddit* [https://reddit.com/r/law/comments/1ssi0wi/trump_fought_to_keep_the_ballroom_fund]\n- Whoops \u2014 *reddit* [https://reddit.com/r/funny/comments/1ow5k1r/whoops/]\n- I [F22] just found out my fiance [M22] and I are related, and we don't know what to do. \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1q9qg4i/i_f22_just_found_out]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "india: Report file not found on remote VM (india)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "PRAKASH CHEMICALS INTERNATIONAL PRIVATE LIMITED",
+    "entity_country": "IN",
+    "entity_address": "Prakash House, 39/40 Krishna Industrial Estate, Gorwa Road, Vadodara, Gujarat 390016, India",
+    "entity_tax_id": "U24231GJ2002PTC040891",
+    "key_individuals": [
+      {
+        "name": "Manish Kumarpal Shah"
+      },
+      {
+        "name": "Dilip Kumarpal Shah"
+      },
+      {
+        "name": "Ujjval Manish Shah"
+      },
+      {
+        "name": "Pinakin Kumarbhai Shah"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (india)"
+    }
+  },
+  "errors": [
+    "india: Report file not found on remote VM (india)"
+  ],
+  "dark_web_findings": 0,
+  "dark_web_sources": 53
+}

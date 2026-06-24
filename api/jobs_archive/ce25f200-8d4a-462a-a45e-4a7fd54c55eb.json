@@ -1,0 +1,21 @@
+{
+  "job_id": "ce25f200-8d4a-462a-a45e-4a7fd54c55eb",
+  "scenario": "dark-web",
+  "status": "failed",
+  "region": "darkweb",
+  "entity_name": "First Polychem LLC",
+  "country": "",
+  "created_at": "2026-05-14T11:25:09.620560+00:00",
+  "updated_at": "2026-05-14T11:25:13.434843+00:00",
+  "blob_path": "osint-staging/dark-web/first_polychem_llc_20260514.json",
+  "report_summary": "0 findings from dark web sources",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_name": "First Polychem LLC",
+    "owners": "Brahim Benzakour, Lamyae Hanafi Benzakour",
+    "domain": "firstpolychem.com",
+    "country_code": "US"
+  }
+}

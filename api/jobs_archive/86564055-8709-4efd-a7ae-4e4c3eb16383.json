@@ -1,0 +1,53 @@
+{
+  "job_id": "86564055-8709-4efd-a7ae-4e4c3eb16383",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "REPLIKA PRESS PVT LTD",
+  "country": "IN",
+  "created_at": "2026-05-20T18:09:57.527179+00:00",
+  "updated_at": "2026-05-20T18:12:26.625224+00:00",
+  "blob_path": "osint-staging/cir/india/replika_press_pvt_ltd_IN_20260520.json",
+  "report_summary": "Exact duplicate of 17:04 UTC request. File is complete.\n\n**DONE (existing file): Replika Press Private Limited \u2014 Risk: 3 MONITOR \u2014 India's leading commercial printer; CIN U74899DL1994PTC063845; Revenue \u20b9613 Cr FY25; EBITDA -50% YoY**\n\n`~/crawl/output/replika_press_pvt_ltd_IN_20260520.json` \u2014 15.2 KB, valid.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**22 actionable findings** from 4/57 sources via Tor (Netherlands exit node) (11 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Breach records | 20 |\n| SSL certificates (crt.sh) | 1 |\n| Web mentions (Tor-routed) | 10 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: replikapress.com\n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| dehashed | 50 | breach_record; breach_record; breach_record (+47 more) |\n| duckduckgo_tor | 10 | Replika Press Pvt. Ltd.; REPLIKA PRESS PVT. LTD. | LinkedIn; Replika Press Private Limited - Manufacturer from Kundli, In (+7 more) |\n| crtsh | 4 | replikapress.com; certificate_transparency (+2 more) |\n| hudsonrock_cavalier | 1 | replikapress.com |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- replikapress.com \u2014 *hudsonrock_cavalier*\n\n**BREACH RECORD** (20)\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n\n**WEB MENTION** (10)\n- Replika Press Pvt. Ltd. \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.replikapress.com%2F&rut=e0c01660b3ebe96996fb4921c894f]\n- REPLIKA PRESS PVT. LTD. | LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fin.linkedin.com%2Fcompany%2Freplika%2Dpress%2Dpvt.%2Dltd.]\n- Replika Press Private Limited - Manufacturer from Kundli, India | About Us \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Freplika%2Dpress%2Dprivate%2Dlimited%2]\n- Replika Press Pvt. Ltd. in Sonipat, Haryana, India - Company Profile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tradeindia.com%2Freplika%2Dpress%2Dpvt%2Dltd%2D272806]\n- REPLIKA PRESS PRIVATE LIMITED - Company Profile - Tracxn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Freplika%2Dpre]\n- Replika Press (Pvt.) Ltd., Sonepat, India | PublishersGlobal.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.publishersglobal.com%2Fdirectory%2Fsupplier%2Dprofile]\n- Replika Press Pvt - Overview, News & Similar companies - ZoomInfo \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zoominfo.com%2Fc%2Freplika%2Dpress%2Dpvt%2Dltd%2F3523]\n- Replika Press Pvt Company Profile | Management and Employees List \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.datanyze.com%2Fcompanies%2Freplika%2Dpress%2Dpvt%2F35]\n- Company Profile | Replika Press Pvt. Ltd. \u2014 *duckduckgo_tor* [/l/?uddg=http%3A%2F%2Freplikapress.com%2Fcompany%2Dprofile.php&rut=c4d977ff8c69f]\n- REPLIKA PRESS PVT. LTD. - Company Profile & Staff Directory | ContactOut \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fcontactout.com%2Fcompany%2Freplika%2Dpress%2Dpvt%2Dltd%2D]\n\n**CERTIFICATE SUMMARY** (1)\n- replikapress.com \u2014 *crtsh*\n\n**SSL CERTIFICATE** (1)\n-  \u2014 *crtsh*\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "REPLIKA PRESS PVT LTD",
+    "entity_country": "IN",
+    "entity_address": "CSC-5, Ground Floor, Block-QD, Pitampura, North West Delhi, Delhi 110034, India",
+    "entity_tax_id": "063845",
+    "key_individuals": [
+      {
+        "name": "Sanandan Seth"
+      },
+      {
+        "name": "Renu Seth"
+      },
+      {
+        "name": "Vikaran Seth"
+      },
+      {
+        "name": "Bhuvnesh Seth"
+      },
+      {
+        "name": "Attika Seth"
+      },
+      {
+        "name": "Shilpa Seth"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 22,
+  "dark_web_sources": 57
+}

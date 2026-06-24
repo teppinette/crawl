@@ -1,0 +1,19 @@
+{
+  "job_id": "4b3ec8e9-f6ac-4bb6-b580-03fe0d7fee90",
+  "scenario": "dark-web",
+  "status": "completed",
+  "region": "darkweb",
+  "entity_name": "Tubosa SAS Colombia pipes tuberias",
+  "country": "",
+  "created_at": "2026-05-22T19:32:55.417107+00:00",
+  "updated_at": "2026-05-22T19:33:25.248424+00:00",
+  "blob_path": "osint-staging/dark-web/tubosa_sas_colombia_pipes_tuberias_20260522.json",
+  "report_summary": "10 findings from dark web sources",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_name": "Tubosa SAS Colombia pipes tuberias",
+    "country_code": "CO"
+  }
+}

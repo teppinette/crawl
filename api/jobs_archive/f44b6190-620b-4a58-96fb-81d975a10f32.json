@@ -1,0 +1,43 @@
+{
+  "job_id": "f44b6190-620b-4a58-96fb-81d975a10f32",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "KEMPLAST INDUSTRIES",
+  "country": "IN",
+  "created_at": "2026-05-20T17:19:06.802042+00:00",
+  "updated_at": "2026-05-20T17:21:25.711827+00:00",
+  "blob_path": "osint-staging/cir/india/kemplast_industries_IN_20260520.json",
+  "report_summary": "Duplicate \u2014 researched at 16:35 UTC today. This version has a slightly different address and slightly different subject block format (includes PAN and LEI in addition to GSTIN) but is the same entity.\n\n**DONE (existing file): Kemplast Industries, India \u2014 Risk: 3 MONITOR \u2014 Gujarat partnership firm (Ravi Rambhai Patel); GSTIN 24AABFK9083C1ZI Active; IEC 0301071225; \u26a0\ufe0f BOTH DINs are confirmed data artifacts (Sumit Maheshwari = India Infoline, Ramkumar Shankar = Chemplast Sanmar); \u26a0\ufe0f 2015 Gujarat HC criminal case re: HCl sale**\n\n`~/crawl/output/kemplast_industries_IN_20260520.json` \u2014 16.5 KB, valid, all applicable workstreams complete.\n\n**Additional data from this submission:**\n- PAN: **AABFK9083C** (matches GSTIN prefix \u2713)\n- LEI: **984500E7DD5641B4AE64** (noted in existing file \u2014 possibly expired, verify on GLEIF.org)\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 1/45 sources via Tor (Netherlands exit node) (10 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 45 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | Kemplast Process Solutions | #1 Authorized Dealer for Siemen; Home - Kemplast Systems | Plastic Flexible Packaging & Biode; Kemplast (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- Kemplast Process Solutions | #1 Authorized Dealer for Siemens, WIKA ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.kemplast.in%2F&rut=13e392fc5153d1d0265f92266b83c2e72a]\n- Home - Kemplast Systems | Plastic Flexible Packaging & Biodegradable ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.kemplast.net%2F&rut=9dc1d97e652c28ddef663de567f94906e]\n- Kemplast \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fkemplastindia.com%2Fproducts&rut=396d4ac1a3ac64d10952c46e]\n- Kemplast Industries - LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2Fkemplast%2Dindustries&rut=31]\n- Kemplast Industries \u00b7 M/S Kemplast Industries \u00b7 Survey No. 1462 (Old Sr ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fopencorpdata.com%2Flei%2F984500E7DD5641B4AE64&rut=fedca35]\n- Kemplast Industries in Gandhinagar, Gujarat, India - Company Profile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tradeindia.com%2Fkemplast%2Dindustries%2D5153834%2F&r]\n- Kemplast - Overview, News & Similar companies | ZoomInfo.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zoominfo.com%2Fc%2Fkemplast%2Dinc%2F1309793164&rut=76]\n- Contact Kemplast Process Solutions | Authorized Dealer India ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.kemplast.in%2Fcontact&rut=78d86774e460045341eb4c61966]\n- Kemplast Process Solutions | LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fin.linkedin.com%2Fcompany%2Fkemplast%2Dprocess%2Dsolution]\n- Kemplast Industries, Gandhinagar - Manufacturer of Chlorinated Paraffin ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dial4trade.com%2Fkemplast%2Dindustries%2F&rut=bb33c68]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "KEMPLAST INDUSTRIES",
+    "entity_country": "IN",
+    "entity_address": "Survey No. 1462, Chhatral, Taluka Kalol, District Gandhinagar, Gujarat, India",
+    "entity_tax_id": "GST: 24AABFK9083C1ZI | PAN: AABFK9083C | LEI: 984500E7DD5641B4AE64",
+    "key_individuals": [
+      {
+        "name": "India Infoline Mr Sumit Maheshwari",
+        "title": "Director (DIN: 06920646)"
+      },
+      {
+        "name": "Reappointment of Mr Ramkumar Shankar",
+        "title": "Director (DIN: 00018391)"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 45
+}

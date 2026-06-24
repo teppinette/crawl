@@ -1,0 +1,143 @@
+{
+  "job_id": "64832b11-bd1b-440f-952d-0e79c042ef74",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "KAMSONS POLYMERS LIMITED",
+  "country_code": "IN",
+  "created_at": "2026-05-04T15:11:27.869038+00:00",
+  "updated_at": "2026-05-04T15:12:37.076668+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:11:37.529253+00:00",
+      "verified": true,
+      "legal_name": "KAMSONS POLYMERS LIMITED",
+      "cin": "U24230MH2005PLC151012",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "04 February, 2005",
+      "directors": [
+        "Navin Raman Mehra",
+        "Kunal Mehra",
+        "others"
+      ],
+      "registered_address": "1003 EMBASSY CHAMBER 10TH FLOOR, 3RD ROAD CTS-E/85 859 B-2 PLOT NO 5 OPP SIMRAN PLAZA KHAR, (WEST), Mumbai City, MUMBAI, Maharashtra, India, 400052",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:11:34.395503+00:00",
+      "found": true,
+      "name": "Kamsons",
+      "linkedin_url": "https://in.linkedin.com/company/kamsonsindia",
+      "industry": "Chemical Manufacturing",
+      "company_size": "51-200 employees",
+      "locations": [
+        "Mumbai, Maharashtra, IN",
+        "Navi Mumbai, Maharashtra, IN",
+        "Ambernath, Maharashtra, IN"
+      ],
+      "about": "Kamsons Polymers & Chemicals has been a trusted name in the industry for over 25 years, specializing in the manufacturing and export of high-quality water-based acrylic emulsions and polyurethane dispersions (PUDs). Our advanced formulations cater to a wide range of applications, including paints, coatings, adhesives, textiles, and construction chemicals. With a commitment to innovation and sustainability, we provide eco-friendly, high-performance solutions tailored to meet the evolving needs of",
+      "followers": 240,
+      "employees_on_linkedin": 14,
+      "organization_type": "Privately Held",
+      "website": "https://www.kamsons.com/",
+      "specialties": "Emulsions, Paints, Construction Chemicals, Packaging, Printing Inks, Emulsions India, Styrene Monomer, Butyl Monomer, Emulsion export, Emulsion Manufacturing, Resins, Coatings, Polyurethane Dispersions, and Specialty Acrylics",
+      "notable_employees": [
+        {
+          "name": "Dhiren Bontra",
+          "link": "https://in.linkedin.com/in/dhiren-bontra-68689930?trk=org-employees"
+        },
+        {
+          "name": "NAVIN MEHRA",
+          "link": "https://in.linkedin.com/in/navin-mehra-43935a55?trk=org-employees"
+        },
+        {
+          "name": "Chetan Patel",
+          "link": "https://in.linkedin.com/in/chetan-patel-9136a655?trk=org-employees"
+        },
+        {
+          "name": "Chetan Patel",
+          "link": "https://in.linkedin.com/in/chetan-patel-01721894?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:12:37.076055+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 60,
+      "sources_searched": 37,
+      "sources_with_results": 2,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "KAMSONS POLYMERS LIMITED",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

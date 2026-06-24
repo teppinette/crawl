@@ -1,0 +1,31 @@
+{
+  "job_id": "61c761c0-5b43-4caa-a829-5a90f7ebfc2e",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "SIGMA TRADE FINANCE INC",
+  "country": "CA",
+  "created_at": "2026-05-15T12:46:41.126950+00:00",
+  "updated_at": "2026-05-15T12:47:07.434566+00:00",
+  "blob_path": "osint-staging/cir/americas/sigma_trade_finance_inc_CA_20260514.json",
+  "report_summary": "Duplicate \u2014 `americas/sigma_trade_finance_inc_CA_20260514.json` uploaded 2026-05-14T16:28 UTC.\n\n| | |\n|---|---|\n| **File** | `americas/sigma_trade_finance_inc_CA_20260514.json` |\n| **Risk** | **2 / CLEAR** |\n| **Corp #** | 8103470 \u2014 bilingual: SIGMA TRADE FINANCE INC. / COMMERCE FINANCE SIGMA INC. |\n| **Function** | Supply chain financing \u2014 Latin America cross-border transactions |\n| **Named Seller** | Confirmed in COPAP General Conditions of Sale |\n| **Sanctions** | ALL CLEAR |\n\nNo re-research warranted. The gateway dispatch loop continues firing duplicates \u2014 this is the 4th batch of COPAP Group repeats across 2026-05-14 and 2026-05-15. All six group reports are current in `osint-staging/americas/`.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 0/0 sources via Tor (Netherlands exit node)\n\nNo dark web exposure detected. Entity and owners clean across all 0 sources.\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "SIGMA TRADE FINANCE INC",
+    "entity_country": "CA",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 0
+}

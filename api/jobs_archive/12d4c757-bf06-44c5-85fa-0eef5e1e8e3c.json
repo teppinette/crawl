@@ -1,0 +1,38 @@
+{
+  "job_id": "12d4c757-bf06-44c5-85fa-0eef5e1e8e3c",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "PLASTHIM OU",
+  "country": "ET",
+  "created_at": "2026-05-22T18:05:27.863270+00:00",
+  "updated_at": "2026-05-22T18:18:48.571452+00:00",
+  "blob_path": "osint-staging/cir/americas/plasthim_ou_EE_20260522.json",
+  "report_summary": "Uploaded. Done.\n\n---\n\n**DONE: PLASTHIM O\u00dc, EE \u2014 Risk: 3 MONITOR \u2014 Estonian polymer trader (PET/PP/PE/PVC/PS); Russian-compound name; director S.G. (initials only \u2014 CANNOT screen for sanctions); virtual office Tallinn; CIS suppliers (Turkmenistan/Uzbekistan); brief says \"ET\" but is Estonia (\"EE\")**\n\n---\n\n## \ud83d\udccb CIR: PLASTHIM O\u00dc\n`plasthim_ou_EE_20260522.json` \u2192 `osint-staging/americas/`\n\n---\n\n### \ud83c\udfe2 Workstream 1A \u2014 Estonian Registry\n\n| Field | Value |\n|---|---|\n| **Reg #** | **12986288** |\n| Legal form | O\u00dc (Osa\u00fching \u2014 Estonian LLC) |\n| Status | **Active** \u2014 e-krediidiinfo, \u00c4rip\u00e4ev Radar, Lursoft, digibaas.ee confirmed |\n| Address | R\u00e4vala pst 8-810, Kesklinna, **Tallinn** 10143 *(virtual office address)* |\n| Website | plasthim.ee |\n| **Brief note** | Country code \"ET\" in brief = data entry error; correct code is **\"EE\" (Estonia)** |\n\n---\n\n### \ud83d\udcbc Business \u2014 \"Plasthim polymers\"\n\nPolymer raw materials trading intermediary \u2014 buys from global manufacturers, resells to plastic product manufacturers.\n\n**Products:** PET \u00b7 PP \u00b7 PE (LDPE/HDPE/LLDPE) \u00b7 **PVC** \u00b7 PS\n\n**Supplier countries:** China \u00b7 Korea \u00b7 India \u00b7 Saudi Arabia \u00b7 UAE \u00b7 Egypt \u00b7 **Turkmenistan \u00b7 Uzbekistan**\n\n> \u26a0\ufe0f Non-native English website (\"polyethelyne terpephthalate\") + Russian-compound name + CIS supply chain = indicators of Russian/CIS-connected ownership\n\n---\n\n### \ud83d\udc65 Workstream 2A \u2014 UBO: \ud83d\udd34 CRITICAL GAP\n\n> **Director: \"S. G.\" \u2014 INITIALS ONLY** (restricted in Estonian public registry per GDPR). Full name available in paid \u00c4riregister extract (~\u20ac15-30). **Cannot screen for sanctions without full name.**\n\n---\n\n### \ud83d\udea8 Workstream 3A \u2014 Sanctions\n\n| Check | Result |\n|---|---|\n| PLASTHIM O\u00dc entity | \u2705 NO DIRECT HIT on OFAC/OpenSanctions |\n| Director S.G. | \u274c **CANNOT SCREEN \u2014 initials only** |\n| OFAC 50% rule | \u274c **CANNOT ASSESS** \u2014 UBO unknown |\n\n**Russia/Ukraine sanctions context:** If S.G. is a Russian/Belarusian national under EU/OFAC sanctions (EO 14024, EU Council Regulations), Plasthim O\u00dc would be sanctioned under the 50% rule. Estonia has been used as an EU gateway by Russian-connected entities. **Risk escalates to REVIEW (4) if S.G. is Russian/Belarusian.**\n\n---\n\n### \ud83d\udcbb Dark Web: 10 findings \u2014 ALL legitimate business directories. 0 breaches.\n\n---\n\n### \ud83d\udccc Open Items\n\n| Priority | Item |\n|---|---|\n| \ud83d\udd34 **CRITICAL** | Obtain **full name of S.G.** \u2192 screen against OFAC/EU/UN/UK OFSI; determine nationality |\n| \ud83d\udd34 **HIGH** | Confirm **no Russian/Belarusian-origin polymers** in supply chain |\n| \ud83d\udd34 **HIGH** | Order **paid Estonian \u00c4riregister extract** \u2014 full director names, shareholder structure |\n| \ud83d\udfe1 MEDIUM | Confirm end-use of polymers does not include Russia/Belarus customers |\n| \ud83d\udfe2 LOW | Verify physical business operations beyond virtual office |\n\n**Recommendation: DO NOT PROCEED until S.G. full identity is established and cleared.** If S.G. is confirmed non-sanctioned with no Russian/Belarusian nexus, risk may be downgraded to 2/CLEAR.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**1 actionable findings** from 2/45 sources via Tor (Netherlands exit node) (10 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Web mentions (Tor-routed) | 10 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: plasthim.ee\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | Plasthim polymers; PLASTHIM O\u00dc (12986288) - Overview - Inforegister.ee; Plasthim OU Company Profile | Tallinn, Harjumaa | Competitor (+7 more) |\n| hudsonrock_cavalier | 1 | plasthim.ee |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- plasthim.ee \u2014 *hudsonrock_cavalier*\n\n**WEB MENTION** (10)\n- Plasthim polymers \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fplasthim.ee%2Fen%2F&rut=643b580f3c35939874dbac67ffd755f0e]\n- PLASTHIM O\u00dc (12986288) - Overview - Inforegister.ee \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.inforegister.ee%2Fen%2F12986288%2DPLASTHIM%2DOU%2F&ru]\n- Plasthim OU Company Profile | Tallinn, Harjumaa | Competitors ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.p]\n- e-\u00c4riregister - Plasthim O\u00dc \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fariregister.rik.ee%2Feng%2Fcompany%2F12986288&rut=65553a4]\n- Plasthim OU Company Profile - Estonia - EMIS \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FEE%2FPlasthim_OU]\n- Plasthim O\u00dc | Estonian companies | Lursoft IT \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Feecompanies.lursoft.lv%2Fen%2Fcompany%2Fplasthim%2Dou%2F1]\n- PLASTIM SAS - Fa\u00e7onnage et Finition de Produits en Mati\u00e8res Plastiques \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fplastimsas.site%2F&rut=da1221bd5c6d08835a5f63fafe3ede9577]\n- Plasthim O\u00dc (12986288) - teatmik.ee \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.teatmik.ee%2Fen%2Fpersonlegal%2F12986288%2DPlasthim%2]\n- Soci\u00e9t\u00e9 PLASTIM SAS \u00e0 38110 MONTAGNIEU - L'Annuaire des ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fannuaire%2Dentreprises.data.gouv.fr%2Fentreprise%2Fplasti]\n- Plasthim O\u00dc | Company Information | Digibaas.ee \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.digibaas.ee%2Fen%2Fpersonlegal%2F12986288%2DPlasthim%]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "PLASTHIM OU",
+    "entity_country": "ET",
+    "entity_address": "R\u00e4vala pst 8-810, Kesklinna linnaosa, Tallinn, 10143, Harju maakond, Estonia",
+    "entity_tax_id": "12986288",
+    "key_individuals": [
+      {
+        "name": "S. G. (initials only \u2014 full name restricted in public registry view)"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 1,
+  "dark_web_sources": 45
+}

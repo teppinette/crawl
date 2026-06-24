@@ -1,0 +1,43 @@
+{
+  "job_id": "5c753aee-25ad-4427-aaed-d10fd271166c",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "gulf",
+  "entity_name": "Agro China Pakistan Pvt Ltd",
+  "country": "PK",
+  "created_at": "2026-05-01T11:48:27.300727+00:00",
+  "updated_at": "2026-05-01T11:50:12.004905+00:00",
+  "blob_path": null,
+  "report_summary": "Same entity, same research \u2014 file and blob already live.\n\n**DONE: Agro China Pakistan Pvt Ltd, PK \u2014 Risk: 3 MONITOR \u2014 All 5 sanctions lists CLEAR**\n\n| Item | Status |\n|---|---|\n| All workstreams (1A\u20138A) | \u2705 Completed 2026-04-29 16:06 UTC |\n| JSON | \u2705 `~/crawl/output/agro_china_pakistan_PK_20260429.json` (15 KB) |\n| Blob | \u2705 `gulf/agro_china_pakistan_PK_20260429.json` \u2014 live since 2026-04-29 16:06:30 UTC |\n| Key individuals | Muhammad Usman Ali \u00b7 Muhammad Farooq Hasnain \u2014 \u2705 CLEAR on all lists |\n| Website | topsungroup.pk \u2014 \u2705 verified parent group (Topsun Group Pakistan) |\n---\n\n## DARK WEB SCREENING \u2014 CRITICAL\n**68 findings** from 4/45 sources via Tor (Netherlands exit node)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Breach records | 50 |\n| SSL certificates (crt.sh) | 6 |\n| Web mentions (Tor-routed) | 10 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: topsungroup.pk\n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "gulf: Report file not found on remote VM (gulf)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "Agro China Pakistan Pvt Ltd",
+    "entity_country": "PK",
+    "registration_number": "4334750-9",
+    "entity_website": "https://topsungroup.pk",
+    "key_individuals": [
+      {
+        "name": "Muhammad Usman Ali",
+        "role": "CEO"
+      },
+      {
+        "name": "Muhammad Farooq Hasnain",
+        "role": "COO"
+      }
+    ],
+    "research_focus": "Verify NTN 4334750-9, SECP registration, directors, UBOs, full dark web screening with Interpol, World Bank debarment, certificate transparency"
+  },
+  "region_status": {
+    "gulf": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (gulf)"
+    }
+  },
+  "errors": [
+    "gulf: Report file not found on remote VM (gulf)"
+  ],
+  "dark_web_findings": 68,
+  "dark_web_sources": 45
+}

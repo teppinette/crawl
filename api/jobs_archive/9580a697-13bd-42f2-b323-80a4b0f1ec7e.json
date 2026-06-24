@@ -1,0 +1,55 @@
+{
+  "job_id": "9580a697-13bd-42f2-b323-80a4b0f1ec7e",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "china",
+  "entity_name": "JIANGSU HUALUN GALAXY CHEMICAL COMMERCIAL HOLDING CO., LTD",
+  "country": "CN",
+  "created_at": "2026-04-30T19:23:31.369520+00:00",
+  "updated_at": "2026-04-30T19:35:24.507455+00:00",
+  "blob_path": "osint-staging/cir/china/jiangsu_hualun_galaxy_chemical_commercial_holding_co_ltd_cn_20260430.json",
+  "report_summary": "**DONE:** JIANGSU HUALUN GALAXY CHEMICAL COMMERCIAL HOLDING CO., LTD, CN -- Risk: 2 MONITOR\n\n## Research Summary\n\n**Entity (3 name forms):**\n- \u6c5f\u82cf\u534e\u4f26\u94f6\u6cb3\u5316\u5de5\u5546\u4e1a\u63a7\u80a1\u6709\u9650\u516c\u53f8 (Simplified)\n- Jiangsu Hualun Yinhe Huagong Shangye Konggu Youxian Gongsi (Pinyin)\n- JIANGSU HUALUN GALAXY CHEMICAL COMMERCIAL HOLDING CO., LTD (English)\n\n**USCC:** 91321012084395686G | **Parent:** Hualun Advanced Materials (Jiangsu) Co., Ltd. (100%)\n\n### Key Findings by Workstream:\n\n| # | Workstream | Status | Observations |\n|---|-----------|--------|-------------|\n| 1A | Corporate Registry | \u2705 | Wholly-owned subsidiary of Hualun Advanced Materials. Address verified: Jiangdu EZ, Yangzhou. |\n| 2A | Beneficial Ownership | \u2705 | **WU YIBIAO** (\u5434\u4e49\u5f6a) = UBO, 51% direct, ~52.34% comprehensive. Private enterprise, no SOE/VIE/military. |\n| 3A | Sanctions Screening | \u2705 | **Clean** \u2014 no OFAC SDN, BIS Entity, NS-CMIC, or UFLPA hits for entity, parent, or individuals. |\n| 4A | Adverse Media | \u26a0\ufe0f | Historical DIBAL-H leak/fire accident. Minor contract disputes. No corruption or environmental penalties. |\n| 5A | Litigation | \u2705 | Minor \u2014 RMB 2.08M contract dispute (Sinochem v. Hualun sales co.), shareholder dispute (resolved). |\n| 6A | PEP Check | \u26a0\ufe0f | WU YIBIAO = **de facto PEP** (CCP enterprise structure). Others (LIN LIU, LILIANG HOU, YIJING YIN, HAILIN XIE) = commercial staff, no confirmed PEP. |\n| 7A | Trade Risk | \u26a0\ufe0f | Electronic-grade chemical exports. RMB 6B semiconductor supply chain investment. No dual-use concerns. |\n| 8A | Risk Assessment | \u2705 | **Score: 2 (MONITOR)** \u2014 Low risk. Established private chemical group. Clean sanctions. |\n\n### Key Individuals:\n| Person | Role | Sanctions | PEP |\n|--------|------|-----------|-----|\n| **LIN LIU** (\u5218\u6797) | General Manager | \u2705 Clean | \u274c No |\n| **LILIANG HOU** (\u4faf\u7acb\u826f) | Chief Economist | \u2705 Clean | \u274c No |\n| **YIJING YIN** (\u6bb7\u5b9c\u9759) | VP | \u2705 Clean | \u274c No |\n| **HAILIN XIE** (\u8c22\u6d77\u6797) | VP | \u2705 Clean | \u274c No |\n| **WU YIBIAO** (\u5434\u4e49\u5f6a) | UBO / Chairman (Parent) | \u2705 Clean | \u26a0\ufe0f De facto (CCP context) |\n\n**Output:** `/home/copapadmin/crawl/output/jiangsu_hualun_galaxy_chemical_commercial_holding_co_ltd_cn_20260430.json` (18,452 bytes)\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**60 findings** from 2/41 sources via Tor (Netherlands exit node)\n\n| Category | Count |\n|----------|-------|\n| Web mentions (Tor-routed) | 10 |\n\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "JIANGSU HUALUN GALAXY CHEMICAL COMMERCIAL HOLDING CO., LTD",
+    "entity_country": "CN",
+    "entity_address": "East End, Sanjiang Avenue, Jiangdu Economic Development Zone, Yangzhou, Jiangsu Province, China 225200",
+    "entity_tax_id": "91321012084395686G",
+    "key_individuals": [
+      {
+        "name": "Lin Liu",
+        "title": "General Manager"
+      },
+      {
+        "name": "Liliang Hou",
+        "title": "Chief Economist"
+      },
+      {
+        "name": "Yijing Yin",
+        "title": "Vice-General Manager"
+      },
+      {
+        "name": "Hailin Xie",
+        "title": "Vice-General Manager"
+      },
+      {
+        "name": "Hualun Advanced Materials (Jiangsu) Co., Ltd.",
+        "title": "UBO (100.00%)"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "china": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 60,
+  "dark_web_sources": 41
+}

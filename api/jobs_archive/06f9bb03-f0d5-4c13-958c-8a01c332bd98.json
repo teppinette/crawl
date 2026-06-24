@@ -1,0 +1,144 @@
+{
+  "job_id": "06f9bb03-f0d5-4c13-958c-8a01c332bd98",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "SANJAY CHEMICALS (INDIA) PRIVATE LIMITED",
+  "country_code": "IN",
+  "created_at": "2026-05-04T14:39:42.614312+00:00",
+  "updated_at": "2026-05-04T14:40:31.566024+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:39:50.948451+00:00",
+      "verified": true,
+      "legal_name": "SANJAY CHEMICALS (INDIA) PRIVATE LIMITED",
+      "cin": "U51434MH2000PTC129290",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "20 October, 2000",
+      "directors": [
+        "Vijayraj Multanmal Parmar",
+        "Dilip Vijayraj Parmar",
+        "others"
+      ],
+      "registered_address": "Unit G-1, 5th Floor, Kanmoor House Condominium 281/287, Narsi Natha Street, Mumbai, Maharashtra, India, 400009",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:39:49.385041+00:00",
+      "found": true,
+      "name": "Sanjay Chemicals (India) Pvt. Ltd.",
+      "linkedin_url": "https://in.linkedin.com/company/sanjay-chemicals-india-pvt.-ltd.",
+      "industry": "Wholesale Chemical and Allied Products",
+      "company_size": "51-200 employees",
+      "locations": [
+        "5th Floor, Kanmoor House 281/287 Narshi Natha Street Masjid Mumbai, Maharashtra 400009, IN",
+        "Riddhi Siddhi Chamber, Office No.201 Near Indian Bank, Telephone Exchange Road, GIDC, Char Rasta Vapi, Gujarat 396195, IN",
+        "201, Masetty Plaza P.G Road SECUNDERABAD, Andhra Pradesh 500003, IN",
+        "Unit No.2478 Dmcc Business Centre Level No.1, Jewellary And Gemplex 3 Dubai, Dubai, AE"
+      ],
+      "about": "We are a four decade old company established by Mr. Vijayraj Parmar, with a long standing expertise in delivering a wide range of products and exemplary service. Journey began by trading solvents and chemicals in a single market. Years of dedication and hard work have established our name as the most trusted importers amongst the big ones. Our process has been certified by CRISIL and ISO. With a legacy passed down generations, we have grown and expanded our business across Indian and internation",
+      "followers": 2999,
+      "employees_on_linkedin": 86,
+      "organization_type": "Privately Held",
+      "website": "https://www.sanjaychemindia.com/",
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "Vaibhav Shah",
+          "link": "https://in.linkedin.com/in/vaibhav-shah-20544724?trk=org-employees"
+        },
+        {
+          "name": "suraj shigavan",
+          "link": "https://in.linkedin.com/in/suraj-shigavan-71657530?trk=org-employees"
+        },
+        {
+          "name": "Nitanta Raka Parmar",
+          "link": "https://in.linkedin.com/in/nitanta-raka-parmar-2b703541?trk=org-employees"
+        },
+        {
+          "name": "Rupesh Pawar",
+          "link": "https://in.linkedin.com/in/rupesh-pawar-061248110?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:40:31.565341+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 60,
+      "sources_searched": 37,
+      "sources_with_results": 2,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "SANJAY CHEMICALS (INDIA) PRIVATE LIMITED",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

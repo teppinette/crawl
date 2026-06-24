@@ -1,0 +1,31 @@
+{
+  "job_id": "7d4edadf-424b-4a3e-bea2-5daf5e3d3faf",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "europe",
+  "entity_name": "COPAP Europe",
+  "country": "FR",
+  "created_at": "2026-05-14T13:42:44.520456+00:00",
+  "updated_at": "2026-05-14T13:43:13.956983+00:00",
+  "blob_path": "osint-staging/cir/europe/copap_europe_sas_FR_20260514.json",
+  "report_summary": "Same entity \u2014 research complete.\n\n**DONE: COPAP Europe SAS, FR \u2014 Risk: 3 MONITOR \u2014 All sanctions lists clean; SIREN 514560614; UBO/director identity not confirmed (French RBE restricted); negative EBITDA/gross margin FY2024 despite \u20ac49.8M revenue; KBIS extract required.**\n\nFile: `~/crawl/output/copap_europe_sas_FR_20260514.json` \u2705\nBlob: `europe/copap_europe_sas_FR_20260514.json` \u2705\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 0/0 sources via Tor (Netherlands exit node)\n\nNo dark web exposure detected. Entity and owners clean across all 0 sources.\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "COPAP Europe",
+    "entity_country": "FR",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "priority": "standard"
+  },
+  "region_status": {
+    "europe": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 0
+}

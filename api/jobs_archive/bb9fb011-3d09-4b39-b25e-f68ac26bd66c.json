@@ -1,0 +1,32 @@
+{
+  "job_id": "bb9fb011-3d09-4b39-b25e-f68ac26bd66c",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "TUBOSA S.A.S.",
+  "country": "CO",
+  "created_at": "2026-05-22T19:29:14.772564+00:00",
+  "updated_at": "2026-05-22T19:36:37.632938+00:00",
+  "blob_path": "osint-staging/cir/americas/tubosa_sas_CO_20260522.json",
+  "report_summary": "Done.\n\n---\n\n**DONE: Tubosa S.A.S., CO \u2014 Risk: 2 CLEAR \u2014 NIT 9008963004; PVC pipe manufacturer, Yumbo Valle del Cauca; agricultural irrigation focus; COP16 Cali (Oct 2025); ProColombia B2B export platform; all sanctions CLEAR (incl. SDNTK); 0 dark web findings; RUES extract needed for shareholders**\n\n---\n\n## \ud83d\udccb CIR: TUBOSA S.A.S.\n`tubosa_sas_CO_20260522.json` \u2192 `osint-staging/americas/`\n\n| Field | Value |\n|---|---|\n| **NIT** | **9008963004** (updated May 22, 2026) |\n| Address | Calle 14B 20E 80 CENCAR, **Yumbo, Valle del Cauca** |\n| Activity | Fabricaci\u00f3n de art\u00edculos de pl\u00e1stico n.c.p. |\n| Website | tubosa.com |\n| Key product | PVC pipes \u2014 **agricultural irrigation line** (Valle del Cauca focus) |\n| **COP16** | \u2705 Attended UN Biodiversity Conference, Cali, Oct-Nov 2025 |\n| **ProColombia** | \u2705 Listed on official B2B export marketplace |\n| **Financial 2024** | Sales \u2191 \u00b7 Equity \u2191 \u00b7 Profits \u2193 |\n\n**Sanctions: OFAC SDN + SDNTK (Colombia) + UN + EU: ALL CLEAR**\n\n**Open items:** RUES extract (HIGH) \u00b7 SARLAFT compliance confirmation (MEDIUM) \u00b7 DIAN tax standing (LOW)\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**2 actionable findings** from 3/45 sources via Tor (Netherlands exit node) (13 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Website scans (URLScan) | 3 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: tubosa.com\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| urlscan | 11 | tubosa.com; Tubosa | Alta experiencia en el mercado de PVC; Tubosa (+8 more) |\n| duckduckgo_tor | 10 | Tubosa | Alta experiencia en el mercado de PVC; Tubosa S.A.S Company Profile - Colombia | Financials & Key .; Tubosa S a S (+7 more) |\n| hudsonrock_cavalier | 1 | tubosa.com |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- tubosa.com \u2014 *hudsonrock_cavalier*\n\n**WEB MENTION** (10)\n- Tubosa | Alta experiencia en el mercado de PVC \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftubosa.com%2F&rut=845839618e2b2ad6e666479d2954b659e6f091f]\n- Tubosa S.A.S Company Profile - Colombia | Financials & Key ... - EMIS \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FCO%2FTubosa_SAS_]\n- Tubosa S a S \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.t]\n- TUBOSA SAS - LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fco.linkedin.com%2Fcompany%2Ftubosasas&rut=89c107be74c41ed]\n- Tubosa S A S - Tel\u00e9fono, NIT y direcci\u00f3n | Empresite \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fempresite.eleconomistaamerica.co%2FTUBOSA%2DSAS.html&rut=]\n- Distribuidor de Tuberia PVC | TUBOSA | CELTA | GEOMATRIX \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftuberiasca.co%2F&rut=409b62878f635d6df77b3fed00f07782a870]\n- Tubosa Colombia | Yumbo - Facebook \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.facebook.com%2FTubosaColombia%2F&rut=d4e093e9c61cf82a]\n- Tubosa Sas - CL. 3A # 24 85, Villa Barraza, Cartagena de Indias ... - Cybo \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.cybo.com%2FCO%2Dbiz%2Ftubosa%2Dsas&rut=8f42dcb18db6dc]\n- TUBOSA S.A.S - negocios.ccb.org.co \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fnegocios.ccb.org.co%2Fdirectorio%2Dde%2Dempresas%2F5534%2]\n- TUBOSA S.A.S | | Colombian B2B Marketplace \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fb2bmarketplace.procolombia.co%2Fen%2Ftubosa%2Ds..s%2D1512]\n\n**DOMAIN SCAN SUMMARY** (1)\n- tubosa.com \u2014 *urlscan*\n\n**WEBSITE SCAN** (3)\n- Tubosa | Alta experiencia en el mercado de PVC \u2014 *urlscan* [https://tubosa.com/]\n- Tubosa \u2014 *urlscan* [https://tubosa.com/]\n- tubosa.com \u2014 *urlscan* [https://tubosa.com/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "TUBOSA S.A.S.",
+    "entity_country": "CO",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 2,
+  "dark_web_sources": 45
+}

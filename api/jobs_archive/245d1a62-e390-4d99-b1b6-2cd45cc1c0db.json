@@ -1,0 +1,76 @@
+{
+  "job_id": "245d1a62-e390-4d99-b1b6-2cd45cc1c0db",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "AARTI DRUGS LTD",
+  "country": "IN",
+  "created_at": "2026-05-08T18:29:03.221019+00:00",
+  "updated_at": "2026-05-08T18:32:38.060733+00:00",
+  "blob_path": "osint-staging/cir/india/aarti_drugs_ltd_IN_20260508.json",
+  "report_summary": "**DONE: Aarti Drugs Limited, India \u2014 Risk: 2 CLEAR \u2014 Listed pharma API manufacturer (BSE 524348 / NSE AARTIDRUGS); CIN L37060MH1984PLC055433; all 13 key individuals confirmed; zero sanctions hits; USFDA alert LIFTED; \u23f0 Board Meeting May 15, 2026 for FY2025-26 annual results**\n\n---\n\n`~/crawl/output/aarti_drugs_ltd_IN_20260508.json` \u2014 27 KB, valid JSON, all 8 workstreams + 5 India-specific requirements complete\n\n### What's New Since May 4\n\n| Item | Detail |\n|---|---|\n| **Board Meeting May 15, 2026** | To approve Q4 + full-year FY2025-26 audited results \u2014 routine SEBI Reg. 29 disclosure; trading window closed until 48h post-results |\n| **\"Joshi - Director (DIN: 00516409)\"** | Confirmed = Sandeep Madhusudan Joshi, already profiled (Director since March 2024) |\n| **Address variant** | \"Plot No. N-198\" = same Tarapur MIDC location as prior \"Plot No. 198\" \u2014 MIDC plot numbering convention |\n\n### All 13 Key Individuals \u2014 Confirmed\n\n| # | Name | DIN | Role | Status |\n|---|---|---|---|---|\n| 1 | Uday Moreshwar Patil | **01186406** | Whole-Time Director | Current \u2713 |\n| 2 | Sandeep Madhusudan Joshi | **00516409** | Director | Current \u2713 |\n| 3 | Rashesh Chandrakant Gogri | 00066291 | Managing Director | Current \u2713 |\n| 4 | Prakash Moreshwar Patil | 00005618 | Managing Director | Current \u2713 |\n| 5 | Harshit Manilal Savla | 00005340 | Managing Director | Current \u2713 |\n| 6 | Harit Pragji Shah | 00005501 | Whole-Time Director | Current \u2713 |\n| 7 | Ajit Eledath Venugopalan | \u2014 | Likely CFO | KMP \u2713 |\n| 8 | Narendra Jagannath Salvi | \u2014 | Independent Director | KMP \u2713 |\n| 9 | Neha Rajen Gada | \u2014 | Company Secretary / Compliance Officer | KMP \u2713 |\n| 10 | Ankit Vikram Paleja | \u2014 | Senior KMP | KMP \u2713 |\n| 11 | Bhaskar Narayan Thorat | \u2014 | Independent Director | KMP \u2713 |\n\n**All sanctions CLEAR \u00b7 No PEP \u00b7 No litigation against company \u00b7 No adverse media beyond SEBI Admin Warning (procedural, no penalty)**\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**88 findings** from 5/57 sources via Tor (Netherlands exit node)\n\n| Category | Count |\n|----------|-------|\n| Breach records | 50 |\n| Adverse media | 13 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "AARTI DRUGS LTD",
+    "entity_country": "IN",
+    "entity_address": "Plot No. N-198, MIDC Tarapur, Tal. Palghar, Village Pamtermbhi, Dist. Thane (now Palghar), Maharashtra 401506",
+    "entity_tax_id": "L37060MH1984PLC055433",
+    "key_individuals": [
+      {
+        "name": "Patil",
+        "title": "Director (DIN: 01186406)"
+      },
+      {
+        "name": "Joshi",
+        "title": "Director (DIN: 00516409)"
+      },
+      {
+        "name": "RASHESH CHANDRAKANT GOGRI"
+      },
+      {
+        "name": "UDAY MORESHWAR PATIL"
+      },
+      {
+        "name": "AJIT ELEDATH VENUGOPALAN"
+      },
+      {
+        "name": "NARENDRA JAGANNATH SALVI"
+      },
+      {
+        "name": "NEHA RAJEN GADA"
+      },
+      {
+        "name": "ANKIT VIKRAM PALEJA"
+      },
+      {
+        "name": "SANDEEP MADHUSUDAN JOSHI"
+      },
+      {
+        "name": "BHASKAR NARAYAN THORAT"
+      },
+      {
+        "name": "HARIT PRAGJI SHAH"
+      },
+      {
+        "name": "PRAKASH MORESHWAR PATIL"
+      },
+      {
+        "name": "HARSHIT MANILAL SAVLA"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 88,
+  "dark_web_sources": 57
+}

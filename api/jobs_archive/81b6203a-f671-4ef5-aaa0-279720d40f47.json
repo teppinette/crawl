@@ -1,0 +1,144 @@
+{
+  "job_id": "81b6203a-f671-4ef5-aaa0-279720d40f47",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "MARVEL VINYLS LIMITED",
+  "country_code": "IN",
+  "created_at": "2026-05-04T15:29:00.737471+00:00",
+  "updated_at": "2026-05-04T15:29:37.321566+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:29:08.258922+00:00",
+      "verified": true,
+      "legal_name": "MARVEL VINYLS LIMITED.",
+      "cin": "U74899MP1985PLC066740",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "30 May, 1985",
+      "directors": [
+        "Pankaj Chawla",
+        "Pavan Kumar Chawla",
+        "others"
+      ],
+      "registered_address": "84 Industrial Area, Malanpur Distt. Bhind, Bhind, Bhind, Bhind, Madhya Pradesh, India, 477001",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:29:12.648921+00:00",
+      "found": true,
+      "name": "Marvel Vinyls Limited",
+      "linkedin_url": "https://in.linkedin.com/company/marvel-vinyls-limited",
+      "industry": "Plastics Manufacturing",
+      "company_size": "1,001-5,000 employees",
+      "locations": [
+        "G-73 Connaught Circus New Delhi, Delhi 110001, IN",
+        "Marvel Vinyls Limited Site 4 Sahibabad Gazhiabad, U.P, IN",
+        "Marvel Vinyls Limited Malanpur Gwalior, M.P, IN",
+        "Marvel Vinyls Limited Mumbai Mumbai, Maharashtra, IN"
+      ],
+      "about": "Marvel Vinyls Limited, an ISO 9001 company, is a renowned manufacturer of PVC films, sheetings, flooring, synthetic leather and textiles in India. With the widest product range in the industry, Marvel operates 5 manufacturing units in three geographical locations across the country. Marvel has proved to be the industry leader with its state of the art infrastructure consisting of 6 Calendaring lines, 3 Transfer Coating lines (Italian and German), an ever increasing count of loom knitting machine",
+      "followers": 4433,
+      "employees_on_linkedin": 231,
+      "organization_type": "Public Company",
+      "website": "https://www.marvelvinyls.com/",
+      "specialties": "PVC Floor Coverings, Synthetic Leather, PVC Sheets and Films, Technical Textiles, Specialty Textile Coatings, Insulation Mats, PVC Leather, Plasticizers, Electrical Safety Mats, PVC Insulation Mats, PU Coated Leather, Leatherette, TPU Leather, Cool Vinyl Leatherette, Breathable Nano Perforation , Perforation, Foam Lamination, Antibacterial Leatherette, Non-Toxic Leatherette, DOP Plasticizer, DBP/DIBP Plasticizer, and DINP Plasticizer",
+      "notable_employees": [
+        {
+          "name": "Dr Arpit Sharma",
+          "link": "https://in.linkedin.com/in/drarpitsharma?trk=org-employees"
+        },
+        {
+          "name": "Alok Misra",
+          "link": "https://in.linkedin.com/in/alok-misra-624883a?trk=org-employees"
+        },
+        {
+          "name": "Gurvinder Singh",
+          "link": "https://in.linkedin.com/in/gurvinder-singh-71646816?trk=org-employees"
+        },
+        {
+          "name": "Amit K Dwivedi",
+          "link": "https://in.linkedin.com/in/amit-k-dwivedi-a9baa420?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:29:37.320959+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 60,
+      "sources_searched": 37,
+      "sources_with_results": 2,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "MARVEL VINYLS LIMITED",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

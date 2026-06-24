@@ -1,0 +1,32 @@
+{
+  "job_id": "7fa2bbd8-1e80-4004-9a1f-880cb1a43b46",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "europe",
+  "entity_name": "Count Energy Trading",
+  "country": "CH",
+  "created_at": "2026-04-27T16:09:46.217704+00:00",
+  "updated_at": "2026-04-27T16:18:05.507471+00:00",
+  "blob_path": "osint-staging/cir/europe/count_energy_trading_CH_20260427.json",
+  "report_summary": "Uploaded. Done.\n\n---\n\n**DONE: COUNT Energy Trading SA, CH \u2014 Risk: 2 CLEAR \u2014 All sanctions lists CLEAN; legitimate Dutch-origin petrochemical trading group, Geneva SA since January 2021; PwC auditor; ESG-active; ownership partially opaque (Dutch holding chain unconfirmed); recommend UBO declaration before onboarding.**\n\n---\n\n## \ud83d\udccb Research Summary\n\n| Field | Finding |\n|---|---|\n| **Full legal name** | COUNT Energy Trading SA |\n| **Reg. number** | **CH-550.1.193.995-6** \u2713 (matches provided tax ID) |\n| **UID** | CHE-289.089.801 |\n| **LEI** | 506700KA77XLMOUW7028 |\n| **Incorporated** | 11 January 2021, Geneva (GE) |\n| **Legal form** | Soci\u00e9t\u00e9 Anonyme (SA) / Aktiengesellschaft |\n| **Share capital** | CHF 100,000 |\n| **Auditor** | **PricewaterhouseCoopers SA, Geneva** (since June 2024) |\n| **Last registry change** | October 20, 2025 |\n| **Group HQ** | Waalhaven O.z. 77, Rotterdam, Netherlands |\n| **Group founded** | January 2017, Rotterdam |\n\n---\n\n### \ud83d\udee1\ufe0f All 8 Workstreams\n\n**1A \u2013 Registry:** CH-550.1.193.995-6 confirmed \u2713 Geneva canton SA. 184 co-tenants at Rue du Rh\u00f4ne 100 (standard Geneva domicile). PwC auditor since June 2024. Last change Oct 2025 \u2014 details unknown, request certified extract.\n\n**2A \u2013 Beneficial Ownership:** COUNT Energy Trading Holding B.V. (Rotterdam, KvK 85080667) \u2192 COUNT Energy Trading SA. Garenne Holding B.V. + Garenne Beheer B.V. co-located at same Rotterdam address \u2014 probable personal holding vehicles. UBO likely Jeroen Baaima (CEO/Chairman). **Ownership partially opaque** \u2014 Swiss SA share register not public; Dutch KvK extract needed.\n\n**3A \u2013 Sanctions (6 lists):**\n- \u2705 OFAC SDN \u2014 **CLEAN** (18,698 records; entity + all 4 directors)\n- \u2705 OpenSanctions \u2014 **CLEAN** (1.27M records; \"Baalman\" hit is unrelated US person)\n- \u2705 UN SC \u2014 **CLEAN**\n- \u2705 Swiss SECO \u2014 included in OpenSanctions, **CLEAN**\n\n**4A \u2013 Adverse Media:** None found. Positive signals only: ESG reporting, Clariter \u20ac1.5B circular chemistry deal, Stage V barge.\n\n**5A \u2013 Litigation:** None found. Swiss and Dutch court records not publicly searchable \u2014 Betreibungsauskunft available commercially.\n\n**6A \u2013 PEP:** All 4 directors \u2014 **NOT PEPs.** Jeroen Baaima: Dutch private sector CEO, no government connections.\n\n**7A \u2013 Trade Risk:** No sanctioned-country exposure identified. Product focus: European ARA markets (benzene barge), Norwegian gas (Westgass), sustainable circular products. Inherent sector risk (petroleum trader) \u2014 standard EDD questionnaire on product origins recommended.\n\n**8A \u2013 Group Profile:**\n- COUNT Energy Trading (Netherlands, 2017) \u2192 COUNT Distribution (2021) \u2192 COUNT Westgass Norway (2021) \u2192 Geneva SA + Zug SA (2021)\n- Products: primary petrochemicals, petroleum products, biofuels, natural gas, circular oils/solvents\n\n---\n\n### \u26a1 Priority Actions\n1. **Dutch KvK extract** for COUNT Energy Trading Holding B.V. and Garenne entities \u2192 confirm UBO\n2. **UBO Declaration** with passport copies (Jeroen Baaima minimum)\n3. **EDD questionnaire**: Russia/Iran product origin confirmation post-Feb 2022\n4. **Review October 2025 SHAB change** \u2014 obtain certified Swiss registry extract",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "Count Energy Trading",
+    "entity_country": "CH",
+    "entity_address": "Rue du Rh\u00f4ne 100, 1204 Gen\u00e8ve, Switzerland",
+    "entity_tax_id": "CH-550.1.193.995-6",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "europe": {
+      "status": "completed",
+      "error": null
+    }
+  }
+}

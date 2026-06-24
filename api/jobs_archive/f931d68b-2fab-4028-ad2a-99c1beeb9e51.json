@@ -1,0 +1,44 @@
+{
+  "job_id": "f931d68b-2fab-4028-ad2a-99c1beeb9e51",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "gulf",
+  "entity_name": "KEMSOL LIMITED",
+  "country": "AE",
+  "created_at": "2026-05-22T18:56:32.814992+00:00",
+  "updated_at": "2026-05-22T19:02:12.309062+00:00",
+  "blob_path": "osint-staging/cir/gulf/kemsol_limited_AE_20260522.json",
+  "report_summary": "Blob uploaded (HTTP 201). Research complete.\n\n---\n\n**DONE: KEMSOL LIMITED, AE \u2014 Risk: 2 CLEAR \u2705**\n\n---\n\n## Summary\n\n**Kemsol Limited** is one of the cleanest entities researched today. 25-year-old Indian (Gujarati Shah family) petrochemical trading company in JAFZA with nothing adverse anywhere.\n\n| Check | Result |\n|---|---|\n| **Free zone** | \u2705 JAFZA License #61228 \u2014 world's most regulated free zone |\n| **Founded** | 2000 \u2014 25 years operating history |\n| **Volume** | 100,000 MT/year, 70 products |\n| **Principal suppliers** | \u2705 Samsung, Sasol, SIPCHEM, Saudi Polymers, Tricon, IRPC, Jubilant, Jacobi Carbons |\n| **GPCA member** | \u2705 (2012 Annual Report confirmed) |\n| **GTR MENA** | \u2705 Registered company (2019) |\n| **Domain age** | \u2705 8,229 days (since 2003) \u2014 definitively not a shell |\n| **Ashit Gunvantlal Shah** | \u2705 No PEP, no sanctions, no adverse |\n| **Aditya Shah (Director)** | \u2705 No PEP, no sanctions, no adverse |\n| **OFAC/UN/EU/UK** | \u2705 No matches |\n| **DIFC Courts** | \u2705 No judgments |\n| **Dark Web** | \u2705 0 findings |\n| **Adverse media** | \u2705 None entity-specific |\n| **Iran evasion** | \u2705 No indicators |\n\n**Standard KYC only** \u2014 trade license, company cert, passport copies for two directors, UBO declaration. No EDD required.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**2 actionable findings** from 3/45 sources via Tor (Netherlands exit node) (11 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Website scans (URLScan) | 1 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: kemsoluae.com\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | KEMSOL; Kemsol Limited; Kemsol Limited - LinkedIn (+7 more) |\n| urlscan | 3 | kemsoluae.com; dns1.kemsoluae.com (+1 more) |\n| hudsonrock_cavalier | 1 | kemsoluae.com |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- kemsoluae.com \u2014 *hudsonrock_cavalier*\n\n**WEB MENTION** (10)\n- KEMSOL \u2014 *duckduckgo_tor* [/l/?uddg=http%3A%2F%2Fwww.kemsoluae.com%2F&rut=82a641842040e4dc8dac21f1095a7e2e2]\n- Kemsol Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.k]\n- Kemsol Limited - LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fae.linkedin.com%2Fcompany%2Fkemsol%2Dlimited&rut=c444095f]\n- Kemsol Limited Information - RocketReach \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Frocketreach.co%2Fkemsol%2Dlimited%2Dprofile_b454557ffc9fc]\n- Kemsol Limited - Company Profile & Staff Directory | ContactOut \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fcontactout.com%2Fcompany%2FKemsol%2DLimited%2D29496&rut=e]\n- KEMSOL LIMITED, Dubai, (United Arab Emirates), Verif \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.verif.com%2Fen%2Fcompany%2FKemsol%2DLimited%2D68d9df1]\n- Kemsol Limited in Jebel Ali - YellowPages-UAE \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.yellowpages%2Duae.com%2Fkemsol%2Dlimited%2D108039&rut]\n- Kemsol Limited in Jebel Ali, Dubai, United Arab Emirates - TradeIndia \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tradeindia.com%2Fkemsol%2Dlimited%2D2946226%2F&rut=67]\n- Kemsol Limited - Import export company | Dubai Companies list \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fdubaicompanieslist.com%2Fbusiness%2Fkemsol%2Dlimited%2F&r]\n- Company Profile - Kemsol Ltd - ChemDmart \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fchemdmart.com%2Fcompany%2Dprofile%2Fkemsol%2Dltd&rut=5143]\n\n**DOMAIN SCAN SUMMARY** (1)\n- kemsoluae.com \u2014 *urlscan*\n\n**WEBSITE SCAN** (1)\n- dns1.kemsoluae.com \u2014 *urlscan* [http://dns1.kemsoluae.com/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "KEMSOL LIMITED",
+    "entity_trade_names": "KEMSOL LIMITED",
+    "entity_country": "AE",
+    "entity_website": "https://kemsoluae.com",
+    "entity_type": "PETROCHEMICAL TRADING AND DISTRIBUTION",
+    "entity_industry": "PETROCHEMICAL TRADING AND DISTRIBUTION",
+    "key_individuals": [
+      {
+        "name": "Aditya Shah"
+      },
+      {
+        "name": "Ashit Gunvantlal Shah"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "copap_products": "MIXED XYLENE, SOLVENT C9, SOLVENT C10",
+    "priority": "standard"
+  },
+  "region_status": {
+    "gulf": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 2,
+  "dark_web_sources": 45
+}

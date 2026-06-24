@@ -1,0 +1,50 @@
+{
+  "job_id": "4f9ff42c-18e5-4f4f-a2b7-ddcf54cf8168",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "KUBO COMBUSTION EFFICIENCY CHEMICALS PRIVATE LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-21T12:04:34.146173+00:00",
+  "updated_at": "2026-05-21T12:06:16.190372+00:00",
+  "blob_path": null,
+  "report_summary": "Fourth Kubo Combustion submission (third today). This version now includes the full CIN U24100MH1978PTC020754 as the Tax ID (vs just \"020754\" in earlier versions). File is complete.\n\n**DONE (existing file): Kubo Combustion Efficiency Chemicals Private Limited \u2014 Risk: 3 MONITOR \u2014 \u26a0\ufe0f Last confirmed AGM Sep 2022; verify MCA compliance**\n\n`~/crawl/output/kubo_combustion_efficiency_chemicals_pvt_ltd_IN_20260520.json` \u2014 7.2 KB, valid.\n---\n\n## DARK WEB SCREENING \u2014 MEDIUM\n**1 actionable findings** from 2/53 sources via Tor (Netherlands exit node) (9 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Adverse media | 1 |\n| Web mentions (Tor-routed) | 9 |\n\n**Key findings:**\n- ADVERSE MEDIA: Mustansir Hasanali Dahodwala - Director Insights, Profile, and ... (Mustansir Hasanali Dahodwala)\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | Kubochem - Quality Chemicals for Industries \\; Kubo Combustion Efficiency Chemicals Private Limited; Kubo Combustion Efficiency Chemicals Pvt Ltd - ChemicalBook  (+7 more) |\n| duckduckgo_adverse | 1 | Mustansir Hasanali Dahodwala - Director Insights, Profile, a |\n\n### All findings detail\n\n**ADVERSE MEDIA** (1)\n- Mustansir Hasanali Dahodwala - Director Insights, Profile, and ... \u2014 *duckduckgo_adverse* (searched: Mustansir Hasanali Dahodwala) [/l/?uddg=https%3A%2F%2Fwww.filesure.in%2Fdirector%2Fmustansir%2Dhasanali%2Ddahod]\n\n**WEB MENTION** (9)\n- Kubochem - Quality Chemicals for Industries \\ \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fkubochem.com%2F&rut=d9c1173879a71de9588fbde254c8706ea8eff]\n- Kubo Combustion Efficiency Chemicals Private Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Fkubo%2Dcombustion%2F&rut=8636041fea6c]\n- Kubo Combustion Efficiency Chemicals Pvt Ltd - ChemicalBook India \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.chemicalbook.in%2Fmanufacturer%2Fkubo%2Dcombustion%2D]\n- Kubo Combustion Efficiency Chemicals Private Limited (India) \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FIN%2FKubo_Combus]\n- KUBO COMBUSTION EFFICIENCY CHEMICALS PRIVATE LIMITED Company Profile ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.k]\n- Kubo Combustion Efficiency Chemicals Private Limited -... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fcompany%2Fkubo%2Dcombustion%2De]\n- KUBO COMBUSTION EFFICIENCY CHEMICALS PRIVATE LIMITED - Tracxn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Fkubo%2Dcombus]\n- Kubo Combustion Efficiency Chemicals Pvt. Ltd. - Home \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fguide26051.guidechem.com%2F&rut=1c9aa612dc529531e7d84fb63]\n- Company Profile - Kubo Combustion Efficiency Chemicals Pvt Ltd \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fchemdmart.com%2Fcompany%2Dprofile%2Fkubo%2Dcombustion%2De]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "india: Report file not found on remote VM (india)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "KUBO COMBUSTION EFFICIENCY CHEMICALS PRIVATE LIMITED",
+    "entity_country": "IN",
+    "entity_address": "401 AMIT INDUSTRIAL ESTATE, 61 DR RAO ROAD, PAREL, MUMBAI, Maharashtra, 400012, India",
+    "entity_tax_id": "U24100MH1978PTC020754",
+    "key_individuals": [
+      {
+        "name": "Sudhir Kumar"
+      },
+      {
+        "name": "Jayant Pratapsinh Ramaiya"
+      },
+      {
+        "name": "Mustansir Hasanali Dahodwala"
+      },
+      {
+        "name": "Asha Jetander Kumar"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (india)"
+    }
+  },
+  "errors": [
+    "india: Report file not found on remote VM (india)"
+  ],
+  "dark_web_findings": 1,
+  "dark_web_sources": 53
+}

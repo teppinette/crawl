@@ -1,0 +1,60 @@
+{
+  "job_id": "8d441da7-b9c8-4589-aeac-356d604ee1d4",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "CRESCENT ORGANICS PVT LTD",
+  "country": "IN",
+  "created_at": "2026-05-20T17:56:47.299726+00:00",
+  "updated_at": "2026-05-20T17:59:04.405009+00:00",
+  "blob_path": "osint-staging/cir/india/crescent_organics_pvt_ltd_IN_20260520.json",
+  "report_summary": "Third submission \u2014 identical to 17:36 UTC. File is complete.\n\n**DONE (existing file): Crescent Organics Private Limited \u2014 Risk: 4 HIGH \u2014 \u20b91,008.93 Cr open charges, FY2023 net loss**\n\n`~/crawl/output/crescent_organics_pvt_ltd_IN_20260520.json` \u2014 17.7 KB, valid.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**30 actionable findings** from 7/57 sources via Tor (Netherlands exit node) (29 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Breach records | 24 |\n| Adverse media | 3 |\n| SSL certificates (crt.sh) | 1 |\n| Web mentions (Tor-routed) | 9 |\n| Social media mentions | 15 |\n| Website scans (URLScan) | 4 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: crescentindia.com\n- ADVERSE MEDIA: ASHITKUMAR GUNVANTRAI SHAH | ZaubaCorp (ASHITKUMAR GUNVANTRAI SHAH)\n- ADVERSE MEDIA: ASHITKUMAR GUNVANTRAI SHAH - 56229 Director Info | MyCorporateInfo (ASHITKUMAR GUNVANTRAI SHAH)\n- ADVERSE MEDIA: ASHITKUMAR GUNVANTRAI SHAH | DIN : 00056229 - IndiaFilings (ASHITKUMAR GUNVANTRAI SHAH)\n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n- BREACH RECORD: \n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| dehashed | 50 | breach_record; breach_record; breach_record (+47 more) |\n| reddit | 15 | Today I became an Employed Jobless Programmer.; Filed an RTI against NHAI about the Devanahalli toll plaza. ; Does it matter if company is not registered as Pvt Ltd? (+12 more) |\n| duckduckgo_tor | 10 | Crescent; Crescent Organics Pvt Ltd | LinkedIn; Crescent Organics Pvt Ltd - RXCHEMICALS (+7 more) |\n| urlscan | 8 | crescentindia.com; www.crescentindia.com; Crescent Group of Companies - Crescent India (+5 more) |\n| duckduckgo_adverse | 3 | ASHITKUMAR GUNVANTRAI SHAH | ZaubaCorp; ASHITKUMAR GUNVANTRAI SHAH - 56229 Director Info | MyCorpora; ASHITKUMAR GUNVANTRAI SHAH | DIN : 00056229 - IndiaFilings |\n| crtsh | 2 | crescentindia.com; certificate_transparency |\n| hudsonrock_cavalier | 1 | crescentindia.com |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- crescentindia.com \u2014 *hudsonrock_cavalier*\n\n**ADVERSE MEDIA** (3)\n- ASHITKUMAR GUNVANTRAI SHAH | ZaubaCorp \u2014 *duckduckgo_adverse* (searched: ASHITKUMAR GUNVANTRAI SHAH) [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2FASHITKUMAR%2DGUNVANTRAI%2DSHAH%2D0005]\n- ASHITKUMAR GUNVANTRAI SHAH - 56229 Director Info | MyCorporateInfo \u2014 *duckduckgo_adverse* (searched: ASHITKUMAR GUNVANTRAI SHAH) [/l/?uddg=https%3A%2F%2Fmycorporateinfo.com%2Fdirector%2Fashitkumar%2Dgunvantrai%]\n- ASHITKUMAR GUNVANTRAI SHAH | DIN : 00056229 - IndiaFilings \u2014 *duckduckgo_adverse* (searched: ASHITKUMAR GUNVANTRAI SHAH) [/l/?uddg=https%3A%2F%2Fwww.indiafilings.com%2Fsearch%2Fashitkumar%2Dgunvantrai%2]\n\n**BREACH RECORD** (24)\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n-  \u2014 *dehashed*\n- ... and 4 more\n\n**WEB MENTION** (9)\n- Crescent \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.crescentindia.com%2F&rut=28b1dd3ad1551bfadf0e152920c5]\n- Crescent Organics Pvt Ltd | LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fin.linkedin.com%2Fcompany%2Fthe%2Dcrescent%2Dgroup&rut=82]\n- Crescent Organics Pvt Ltd - RXCHEMICALS \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Frxchemicals.com%2Faccount%2Fcrescent%2Dorganics%2Dpvt%2Dl]\n- Crescent Organics Private Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.c]\n- CRESCENT ORGANICS PRIVATE LIMITED | ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2FCRESCENT%2DORGANICS%2DPRIVATE%2DLIMIT]\n- Crescent Organics Private Limited - Service Provider from ... - IndiaMART \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Fcrescent%2Dorganics%2Fprofile.html&ru]\n- CRESCENT ORGANICS PVT.LTD. Details | Company Profile | Directors ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.companydetails.in%2Fcompany%2Fcrescent%2Dorganics%2Dp]\n- Crescent Organics Pvt Ltd - Company Profile and News \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.bloomberg.com%2Fprofile%2Fcompany%2F9536474Z%3AIN&rut]\n- Crescent Organics Pvt. Ltd. in Mumbai, Maharashtra, India - Company Profile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tradeindia.com%2Fcrescent%2Dorganics%2Dpvt%2Dltd%2D14]\n\n**SOCIAL MENTION** (15)\n- Today I became an Employed Jobless Programmer. \u2014 *reddit* [https://reddit.com/r/ProgrammerHumor/comments/ypbtax/today_i_became_an_employed_]\n- Filed an RTI against NHAI about the Devanahalli toll plaza. Here's why more of us should be doing th \u2014 *reddit* [https://reddit.com/r/bangalore/comments/1tdwdov/filed_an_rti_against_nhai_about_]\n- Does it matter if company is not registered as Pvt Ltd? \u2014 *reddit* [https://reddit.com/r/developersIndia/comments/1t6ur1f/does_it_matter_if_company_]\n- Workex as a director of a pvt ltd \u2014 *reddit* [https://reddit.com/r/CATpreparation/comments/1t479ah/workex_as_a_director_of_a_p]\n- DGCA Ranking of FTOs updated. Avyanna Aviation Pvt Ltd receives Category 'A'. \u2014 *reddit* [https://reddit.com/r/indianaviation/comments/1sug5el/dgca_ranking_of_ftos_update]\n- Affordable Kailash Mansarovar Tour Packages by Himalayan Asia Treks and Expedition Pvt Ltd \u2014 *reddit* [https://reddit.com/r/Kailashyatrafromnepal/comments/1thfhfj/affordable_kailash_m]\n- BOYCOTT \u2014 *reddit* [https://reddit.com/r/loblawsisoutofcontrol/comments/1bff9rm/boycott/]\n- Zoetic BPO Service Pvt Ltd Real or Fake \u2013 Complete Review (2026) \u2014 *reddit* [https://reddit.com/r/BPO_Opportunities/comments/1t9xrip/zoetic_bpo_service_pvt_l]\n- Reviews for Tramping Himalaya Adventures Pvt. Ltd? \u2014 *reddit* [https://reddit.com/r/everestbasecamphike/comments/1sip90c/reviews_for_tramping_h]\n- Cops bust two Bengaluru based companies Ethical Infotech Pvt Ltd &amp; Gayathri Tech Park in Whitefi \u2014 *reddit* [https://reddit.com/r/bangalore/comments/vucwxh/cops_bust_two_bengaluru_based_com]\n- The Question Your \u20b96,999 Registration Platform Will Never Ask: Is Pvt Ltd Even Right for You? \u2014 *reddit* [https://reddit.com/r/StartUpIndia/comments/1ofkoag/the_question_your_6999_regist]\n- The Hashgraph Group\nWe are delighted to announce that #Hashgraph Labs India Pvt. Ltd. - the India-do \u2014 *reddit* [https://reddit.com/r/Hedera/comments/1qd65j6/the_hashgraph_group_we_are_delighte]\n- Hiring: Chief Marketing Officer at Emancipation Edutech Pvt. Ltd. \u2014 *reddit* [https://reddit.com/r/RedditJobBoard/comments/1qd0wrf/hiring_chief_marketing_offi]\n- Hiring: 2D Animator at Emancipation Edutech Pvt. Ltd. \u2014 *reddit* [https://reddit.com/r/RedditJobBoard/comments/1qcw1sb/hiring_2d_animator_at_emanc]\n- Hiring: Production Supervisor at COZY CASUALS INDIA PVT LTD \u2014 *reddit* [https://reddit.com/r/RedditJobBoard/comments/1q9fia5/hiring_production_superviso]\n\n**CERTIFICATE SUMMARY** (1)\n- crescentindia.com \u2014 *crtsh*\n\n**SSL CERTIFICATE** (1)\n-  \u2014 *crtsh*\n\n**DOMAIN SCAN SUMMARY** (1)\n- crescentindia.com \u2014 *urlscan*\n\n**WEBSITE SCAN** (4)\n- www.crescentindia.com \u2014 *urlscan* [https://ddec1-0-en-ctp.trendmicro.com/wis/clicktime/v1/query?url=http%3a%2f%2fww]\n- Crescent Group of Companies - Crescent India \u2014 *urlscan* [https://www.crescentindia.com/]\n- crescentindia.com \u2014 *urlscan* [https://crescentindia.com/tempora-eos/documents.zip]\n- Crescent India \u2014 *urlscan* [https://www.crescentindia.com/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "CRESCENT ORGANICS PVT LTD",
+    "entity_trade_names": "Crescent Organics Pvt Ltd",
+    "entity_country": "IN",
+    "entity_address": "WINDSOR, 2ND FLOOR, CST ROAD, KALINA, SANTACRUZ (EAST), MUMBAI MH 400098, Maharashtra, India",
+    "entity_website": "https://crescentindia.com",
+    "entity_type": "Chemical Trading Industry",
+    "entity_industry": "Chemical Trading Industry",
+    "entity_tax_id": "060197",
+    "key_individuals": [
+      {
+        "name": "G. D. Shah",
+        "title": "Director"
+      },
+      {
+        "name": "A. G. Shah",
+        "title": "Director"
+      },
+      {
+        "name": "GUNVANTRAI DIPCHAND SHAH"
+      },
+      {
+        "name": "ASHITKUMAR GUNVANTRAI SHAH"
+      },
+      {
+        "name": "DILIP PRANLAL SHETH"
+      },
+      {
+        "name": "ADITYA ASHIT SHAH"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "copap_products": "Chemicals",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 30,
+  "dark_web_sources": 57
+}

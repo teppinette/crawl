@@ -1,0 +1,62 @@
+{
+  "job_id": "5a8b91d5-a043-4f61-8f1f-1a4a3bc94a1b",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "MANIPAL TECHNOLOGIES LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-21T12:56:12.031347+00:00",
+  "updated_at": "2026-05-21T12:59:16.749355+00:00",
+  "blob_path": "osint-staging/cir/india/manipal_technologies_limited_IN_20260521.json",
+  "report_summary": "Second Manipal Technologies submission \u2014 identical to 12:24 UTC today. File is complete.\n\n**DONE (existing file): Manipal Technologies Limited \u2014 Risk: 1 CLEAR \u2014 CIN U22219KA2000PLC026222; Manipal Group security printing/tech; Revenue \u20b92,260 Cr FY25; 9 GSTINs; all 9 directors confirmed**\n\n`~/crawl/output/manipal_technologies_limited_IN_20260521.json` \u2014 7.8 KB, valid.\n---\n\n## DARK WEB SCREENING \u2014 MEDIUM\n**3 actionable findings** from 4/57 sources via Tor (Netherlands exit node) (25 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Adverse media | 2 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n\n**Key findings:**\n- ADVERSE MEDIA: Cyber Fraud Scam: Manipal Technologies Loses 1.04 Crore\n- ADVERSE MEDIA: Home - Manipal Technologies Limited\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | TIL Manipal Technologies Limited is an Indian printing power; I Finished the Gen 3 National Dex on original hardware!; [UPDATE 2] Manipal Institute of Technology has ignored stude (+12 more) |\n| duckduckgo_tor | 10 | Home - Manipal Technologies Limited; Homepage - Manipal Technologies; Manipal Technologies Limited - LinkedIn (+7 more) |\n| duckduckgo_adverse | 2 | Cyber Fraud Scam: Manipal Technologies Loses 1.04 Crore; Home - Manipal Technologies Limited |\n| court_records_tor | 1 | Home - Manipal Technologies Limited |\n\n### All findings detail\n\n**ADVERSE MEDIA** (2)\n- Cyber Fraud Scam: Manipal Technologies Loses 1.04 Crore \u2014 *duckduckgo_adverse* [/l/?uddg=https%3A%2F%2Fwww.deccanherald.com%2Findia%2Fkarnataka%2Fmanipal%2Dtech]\n- Home - Manipal Technologies Limited \u2014 *duckduckgo_adverse* [/l/?uddg=https%3A%2F%2Fmanipaltechnologies.com%2F&rut=bca36be4db48431aeba9fecb69]\n\n**WEB MENTION** (10)\n- Home - Manipal Technologies Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fmanipaltechnologies.com%2F&rut=bca36be4db48431aeba9fecb69]\n- Homepage - Manipal Technologies \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fstaging.themanipalgroup.com%2F&rut=eec64569e22b671835b67d]\n- Manipal Technologies Limited - LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fin.linkedin.com%2Fcompany%2Fmanipal%2Dtechnologies%2Dlimi]\n- MANIPAL TECHNOLOGIES LIMITED - Company Profile - Tracxn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Fmanipal%2Dtec]\n- MANIPAL TECHNOLOGIES LIMITED Company Profile | Manipal, Karnataka ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.m]\n- MANIPAL TECHNOLOGIES LIMITED - ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2FMANIPAL%2DTECHNOLOGIES%2DLIMITED%2DU2]\n- Manipal Technologies Limited Company Profile - India - EMIS \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FIN%2FManipal_Tec]\n- Manipal Payment and Identity Solutions \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fmpimanipal.com%2F&rut=f3bed4cf9f6506aae78f63d5e92621bd207]\n- Manipal Technologies Limited - 2026 Insights - The Company Check \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fcompany%2Fmanipal%2Dtechnologie]\n- Manipal Groups \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.manipal.com%2F&rut=4e395d58be3bcc7142b1ea13e26910c922]\n\n**LEGAL RECORD** (1)\n- Home - Manipal Technologies Limited \u2014 *court_records_tor* [/l/?uddg=https%3A%2F%2Fmanipaltechnologies.com%2F&rut=bca36be4db48431aeba9fecb69]\n\n**SOCIAL MENTION** (15)\n- TIL Manipal Technologies Limited is an Indian printing powerhouse \u2014 *reddit* [https://reddit.com/r/manipal/comments/1qioiil/til_manipal_technologies_limited_i]\n- I Finished the Gen 3 National Dex on original hardware! \u2014 *reddit* [https://reddit.com/r/pokemon/comments/1nl5cqh/i_finished_the_gen_3_national_dex_]\n- [UPDATE 2] Manipal Institute of Technology has ignored student concerns about online exam conduction \u2014 *reddit* [https://reddit.com/r/india/comments/gu40ag/update_2_manipal_institute_of_technol]\n- Finished 3rd sem, What can I improve to get a summer internship? \u2014 *reddit* [https://reddit.com/r/Btechtards/comments/1q1ybwe/finished_3rd_sem_what_can_i_imp]\n- MIT Manipal Bangalore campus hostel prices are crazy fr, \u2014 *reddit* [https://reddit.com/r/JEE/comments/1lja0zt/mit_manipal_bangalore_campus_hostel_pr]\n- Reclusa vs The End (Mario vs Sonic) \u201cDie Alone\u201d Megapost! \u2014 *reddit* [https://reddit.com/r/DeathBattleMatchups/comments/1kyeer6/reclusa_vs_the_end_mar]\n- [seeking job/Internship]: AI/ML, GenAI , multi-agent pipelines developer \u2014 *reddit* [https://reddit.com/r/CodingJobs/comments/1tfs02p/seeking_jobinternship_aiml_gena]\n- Can you please analyse my resume \u2014 *reddit* [https://reddit.com/r/CareerAdvice101/comments/1s0ffk8/can_you_please_analyse_my_]\n- Dj sanghvi clg btw \u2014 *reddit* [https://reddit.com/r/mht_cet/comments/1t1h6vm/dj_sanghvi_clg_btw/]\n- Resume review and job seeking \u2014 *reddit* [https://reddit.com/r/indiafreshers/comments/1tfmo86/resume_review_and_job_seekin]\n- [for hire] AI/ML, python, multi-agentic pipelines \u2014 *reddit* [https://reddit.com/r/FresherTechJobsIndia/comments/1tfmpud/for_hire_aiml_python_]\n- Can my projects get selected off campus ? \u2014 *reddit* [https://reddit.com/r/CareerAdvice101/comments/1sv1i2e/can_my_projects_get_select]\n- Top 10 Best Corporate Healthcare Service Providers in India \u2014 *reddit* [https://reddit.com/r/healthinfra/comments/1tgizxb/top_10_best_corporate_healthca]\n- [for hire] Seeking job in AI/ML, GenAI development \u2014 *reddit* [https://reddit.com/r/StartUpIndia/comments/1tfs3or/for_hire_seeking_job_in_aiml_]\n- [available] AI/ML, multi-agent systems, automation specialist. \u2014 *reddit* [https://reddit.com/r/DevsForHire/comments/1tfmk1a/available_aiml_multiagent_syst]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "MANIPAL TECHNOLOGIES LIMITED",
+    "entity_country": "IN",
+    "entity_address": "Udayavani Building, Press Corner, Manipal, Udupi, Karnataka 576104, India",
+    "entity_tax_id": "026222",
+    "key_individuals": [
+      {
+        "name": "Abhay Anant Gupte"
+      },
+      {
+        "name": "Tonse Satish Upendra Pai"
+      },
+      {
+        "name": "Sachin Tonse Pai"
+      },
+      {
+        "name": "Prabhakara Dayananda Kamath"
+      },
+      {
+        "name": "Tonse Gautham Pai"
+      },
+      {
+        "name": "Binod Kumar Mandal"
+      },
+      {
+        "name": "Padmaja Shailen Ruparel"
+      },
+      {
+        "name": "Sujir Prabhakar"
+      },
+      {
+        "name": "Manjunatha Dattatri Hardur"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 3,
+  "dark_web_sources": 57
+}

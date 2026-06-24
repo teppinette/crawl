@@ -1,0 +1,58 @@
+{
+  "job_id": "b63d6348-76b4-4bea-b91f-2ff8d03f4ebc",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "Royce Pack Private Limited",
+  "country": "IN",
+  "created_at": "2026-04-29T21:56:16.355953+00:00",
+  "updated_at": "2026-04-29T22:00:55.035151+00:00",
+  "blob_path": "osint-staging/cir/india/royce_pack_private_limited_IN_20260429.json",
+  "report_summary": "**DONE: Royce Pack Private Limited, India \u2014 Risk: 3 MONITOR \u2014 Financially stressed packaging SME; Vipin Girdhar confirmed past director with DEACTIVATED DIN 09081580; no sanctions hits on any individual including historical directors; primary concern remains financial distress (D/E 41.51, negative EBITDA)**\n\n---\n\n## What Changed vs. Prior Runs\n\nThis third run added **Vipin Girdhar** as a newly specified key individual and expanded the full historical director roster. Key new findings:\n\n### Vipin Girdhar (DIN 09081580)\n| Field | Finding |\n|---|---|\n| DIN Status | \u26a0\ufe0f **DEACTIVATED** (IndiaFilings, last updated Dec 2024) |\n| Appointment | 05 December 2020 |\n| Cessation | Approx. 2023\u20132024 (before Shubham Tantia's March 2024 appointment) |\n| Other companies | None \u2014 Royce Pack was his only corporate affiliation |\n| PEP / SDN | CLEAR |\n| Adverse media | None |\n| Nature | Likely a **nominee/early-stage director** \u2014 DIN deactivation is typical for individuals who served briefly and did not maintain annual DIR-3 KYC compliance |\n\n**Note on DIN deactivation:** In India, MCA deactivates DIins annually if the director fails to file the DIR-3 KYC form by April 30. This is a minor compliance flag, not a legal disqualification, but it's consistent with someone who is no longer actively involved in corporate governance.\n\n### Full Confirmed Historical Director Roster\n\n| Director | DIN | Status | Notes |\n|---|---|---|---|\n| Piyush Tantia | 02300471 | **Current** (founder) | Active, 5 companies |\n| Shubham Tantia | 10548721 | **Current** (from Mar 2024) | Active |\n| **Vipin Girdhar** | **09081580** | Past \u26a0\ufe0f DIN **DEACTIVATED** | Only Royce Pack; likely nominee |\n| Sima Gupta | 00401511 | Past | Active DIN; 9 companies; Ghaziabad-based |\n| Vikram Mishra | 07217694 | Past | 2 companies |\n| Atul Gupta | 08382456 | Past | 2 companies |\n| Manoj Kumbhat | 03322827 | Past | 1 company |\n---\n\n## DARK WEB SCREENING \u2014 CRITICAL\n**61 findings** from 3/41 sources via Tor (Netherlands exit node)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Web mentions (Tor-routed) | 10 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: roycepack.com\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "Royce Pack Private Limited",
+    "entity_country": "IN",
+    "entity_address": "Flat No-507/72, Laxmi Bhawan, Nehru Place, South Delhi, New Delhi, Delhi 110019",
+    "entity_tax_id": "AAKCR1269F",
+    "key_individuals": [
+      {
+        "name": "Mr. Shubham Tantia",
+        "title": "Director"
+      },
+      {
+        "name": "Piyush Tantia",
+        "title": "Director"
+      },
+      {
+        "name": "Shubham Tantia",
+        "title": "Director"
+      },
+      {
+        "name": "Vipin Girdhar"
+      },
+      {
+        "name": "Mr. Piyush Tantia",
+        "title": "UBO (100.00%)"
+      },
+      {
+        "name": "Mr. Shubham Tantia",
+        "title": "UBO"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 61,
+  "dark_web_sources": 41
+}

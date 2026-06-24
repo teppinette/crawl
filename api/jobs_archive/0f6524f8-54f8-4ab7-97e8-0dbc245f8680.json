@@ -1,0 +1,304 @@
+{
+  "job_id": "0f6524f8-54f8-4ab7-97e8-0dbc245f8680",
+  "scenario": "cir",
+  "status": "failed",
+  "region": "americas",
+  "entity_name": "COPAP INC",
+  "country": "US",
+  "created_at": "2026-05-12T18:12:51.383348+00:00",
+  "updated_at": "2026-05-12T18:12:51.383348+00:00",
+  "blob_path": null,
+  "report_summary": null,
+  "error": "DATA SANITIZATION FAILURE \u2014 blocked terms detected in payload: Field 'entity_legal_name' contains blocked term 'copap'; Field 'entity_trade_names' contains blocked term 'copap'; Field 'entity_website' contains blocked term 'copap'. This data must NEVER reach OpenClaw.",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "COPAP INC",
+    "entity_trade_names": "Copap Europe SAS",
+    "entity_country": "US",
+    "entity_address": "305-755 Boulevard Saint-Jean, Pointe-Claire, QC H9R 5M9, Canada",
+    "entity_website": "https://copap.com",
+    "entity_type": "Ind\u00fastria de Embalagens Pl\u00e1sticas (Plastic Packaging Manufacturer) \u2013 Buyer/Importer of petrochemical",
+    "entity_industry": "Supplier",
+    "entity_tax_id": "344562-3",
+    "key_individuals": [
+      {
+        "name": "Henri Armand Szlezynger",
+        "title": "Director"
+      },
+      {
+        "name": "Murilo Cruz Garcia",
+        "title": "Director"
+      },
+      {
+        "name": "Marc Buckingham Szlezynger",
+        "title": "Director"
+      },
+      {
+        "name": "Ricardo Antonio Weiss",
+        "title": "Director"
+      },
+      {
+        "name": "Jos\u00e9 Borges Matias",
+        "title": "Director"
+      },
+      {
+        "name": "Weber Ferreira Porto",
+        "title": "Director"
+      },
+      {
+        "name": "Laurent J. Barbe",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "David Sela",
+        "title": "Director"
+      },
+      {
+        "name": "WALTER COSTA DA CRUZ FILHO",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "LUIZ GONZAGA SOUSA FONTES",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "ANTONIO ROBERTO PADUA DA CRUZ",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "JOSE EDSON MEDEIROS DE OLIVEIRA",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "RAPHAEL VAZ DA CRUZ",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "PRISCILA MEDEIROS MARCONATO",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "Daniel Zilberknop",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "Roberto Noronha Santos",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "Baltazar Manfro",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "Fernando Orrantia Dworak",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "Laurent Barb\u00e9",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "Adolfo Goncalves Staehle",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "Luis Fernando Trujillo Arango",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "TANVI GOEL KASTURIA",
+        "title": "Director"
+      },
+      {
+        "name": "ANKIT KASTURIA",
+        "title": "Director"
+      },
+      {
+        "name": "Laurent Jean Barb\u00e9",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "Fernando Jamarne Banduc",
+        "title": "Director"
+      },
+      {
+        "name": "Juan Pablo Sitnisky Grunwald",
+        "title": "Director"
+      },
+      {
+        "name": "Christian Sitnisky Grunwald",
+        "title": "Director"
+      },
+      {
+        "name": "Nicol\u00e1s Dur\u00e1n Alvarez",
+        "title": "Director"
+      },
+      {
+        "name": "Jeffrey Schwartz",
+        "title": "Director"
+      },
+      {
+        "name": "Jos\u00e9 Antonio Cuadra Montero",
+        "title": "Secretary"
+      },
+      {
+        "name": "Yu Ling Lay He",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "LAURENT JEAN BARBE",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "Denys Lamarre",
+        "title": "Director"
+      },
+      {
+        "name": "Boris Sela",
+        "title": "Shareholder"
+      },
+      {
+        "name": "Christian Barb\u00e9",
+        "title": "Shareholder"
+      },
+      {
+        "name": "Gabriel Zunenshine",
+        "title": "Officer"
+      },
+      {
+        "name": "Suzanne Sun (\u5b59\u4e2d\u79c0)",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "DAVID B. SELA",
+        "title": "Director"
+      },
+      {
+        "name": "\u5b59\u4e2d\u79c0",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "zhouwei",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "Amit Padwa",
+        "title": "Officer"
+      },
+      {
+        "name": "Akshay Malhotra",
+        "title": "Officer"
+      },
+      {
+        "name": "Patricia Silva",
+        "title": "Officer"
+      },
+      {
+        "name": "Raffaele Lacroix",
+        "title": "Officer"
+      },
+      {
+        "name": "Matteo Cecchi",
+        "title": "Officer"
+      },
+      {
+        "name": "Vanessa B\u00fcrkle",
+        "title": "Officer"
+      },
+      {
+        "name": "Sonia Nukumizu",
+        "title": "Officer"
+      },
+      {
+        "name": "Naveen Chandra",
+        "title": "Officer"
+      },
+      {
+        "name": "Sami Khouri",
+        "title": "Officer"
+      },
+      {
+        "name": "Justin Bang",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "Nick Bastiaansen",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "Matthew Hamerman",
+        "title": "Officer"
+      },
+      {
+        "name": "Evan Fitzgibbon",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "Matthew Joseph Caballero",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "Hantz Prosper",
+        "title": "Director"
+      },
+      {
+        "name": "Ronald Carri\u00e8re",
+        "title": "director"
+      },
+      {
+        "name": "Christian Mois\u00e9s Sitnisky Grunwald",
+        "title": "Director / Authorized Signer"
+      },
+      {
+        "name": "David Sela",
+        "title": "UBO (85.00%)"
+      },
+      {
+        "name": "Laurent Jean Barb\u00e9",
+        "title": "UBO (15.00%)"
+      },
+      {
+        "name": "Unknown",
+        "title": "UBO"
+      },
+      {
+        "name": "David Sela",
+        "title": "UBO"
+      },
+      {
+        "name": "Boris Sela",
+        "title": "UBO"
+      },
+      {
+        "name": "Laurent Barb\u00e9",
+        "title": "UBO"
+      },
+      {
+        "name": "Christian Barb\u00e9",
+        "title": "UBO"
+      },
+      {
+        "name": "The Chernovtsi Trust",
+        "title": "UBO (30.17%)"
+      },
+      {
+        "name": "Fiducie de Montmirail",
+        "title": "UBO (54.83%)"
+      },
+      {
+        "name": "Rantanplan Industries Inc.",
+        "title": "UBO (15.00%)"
+      },
+      {
+        "name": "Sela Industries Inc.",
+        "title": "UBO (100.00%)"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "copap_products": "Products (petrochemical/industrial goods) purchased via COPAP INC. from third-party suppliers; specific products described in individual Purchase Orders",
+    "priority": "standard"
+  }
+}

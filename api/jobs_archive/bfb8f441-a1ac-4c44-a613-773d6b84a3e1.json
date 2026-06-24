@@ -1,0 +1,84 @@
+{
+  "job_id": "bfb8f441-a1ac-4c44-a613-773d6b84a3e1",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "NIMIR INDUSTRIALCHEMICALS LIMITED",
+  "country_code": "PK",
+  "created_at": "2026-05-04T14:35:21.933530+00:00",
+  "updated_at": "2026-05-04T14:37:23.300163+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:35:26.935946+00:00",
+      "verified": false,
+      "legal_name": null,
+      "registration_number": null,
+      "entity_status": null,
+      "company_type": null,
+      "cro": null,
+      "registration_date": null,
+      "fbr": null,
+      "all_matches": null,
+      "source": "SECP eServices (direct gov query)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:35:28.472314+00:00",
+      "found": true,
+      "name": "NIMIR",
+      "linkedin_url": "https://pk.linkedin.com/company/nimirofficial",
+      "industry": "Chemical Manufacturing",
+      "company_size": "201-500 employees",
+      "locations": [
+        "122 \u2013 B, New Muslim Town Lahore, Punjab 42000, PK"
+      ],
+      "about": "Since 1964, NIMIR has been one of the largest manufacturers of industrial chemicals in Pakistan.",
+      "followers": 22980,
+      "employees_on_linkedin": 396,
+      "organization_type": "Public Company",
+      "website": "https://nimir.com.pk/",
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "AFTAB MUBEEN ALVI",
+          "link": "https://pk.linkedin.com/in/aftab-mubeen-alvi-9800b510?trk=org-employees"
+        },
+        {
+          "name": "Moin Badar Qureshi",
+          "link": "https://pk.linkedin.com/in/moin-badar-qureshi-55651317?trk=org-employees"
+        },
+        {
+          "name": "Syed Waqas Hussain Shah",
+          "link": "https://pk.linkedin.com/in/syed-waqas-hussain-shah-35430a1a?trk=org-employees"
+        },
+        {
+          "name": "Jamshed Khan",
+          "link": "https://pk.linkedin.com/in/jamshed-khan-aa89921a?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:37:23.299534+00:00",
+      "risk_level": "CLEAN",
+      "total_findings": 0,
+      "sources_searched": 0,
+      "sources_with_results": 0,
+      "by_type": {},
+      "key_findings": [],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "NIMIR INDUSTRIALCHEMICALS LIMITED",
+    "country_code": "PK",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

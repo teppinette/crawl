@@ -1,0 +1,88 @@
+{
+  "job_id": "4414786f-c421-4e8e-a8ff-97f9d150f07a",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "DORF KETAL CHEMICALS  INDIA LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-21T11:28:58.650589+00:00",
+  "updated_at": "2026-05-21T11:34:18.339342+00:00",
+  "blob_path": "osint-staging/cir/india/dorf_ketal_chemicals_india_limited_IN_20260520.json",
+  "report_summary": "Near-duplicate of the 20:55 UTC request yesterday. This version has a slightly updated subject block (now 16 individuals with Mahesh Subramaniyam correctly typed) vs yesterday's version. The existing file covers all material findings.\n\n**DONE (existing file): Dorf-Ketal Chemicals India Limited \u2014 Risk: 1 CLEAR \u2014 \u20b96,240 Cr FY25 revenue; DRHP filed Jan 2025 for \u20b95,000 Cr IPO; zero charges; 8 countries**\n\n`~/crawl/output/dorf_ketal_chemicals_india_limited_IN_20260520.json` \u2014 14 KB, valid, research date 2026-05-20.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 0/0 sources via Tor (Netherlands exit node)\n\nNo dark web exposure detected. Entity and owners clean across all 0 sources.\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "DORF KETAL CHEMICALS  INDIA LIMITED",
+    "entity_country": "IN",
+    "entity_address": "Plot No. 2, Block-F, Sector 12 N, Adani Port & SEZ Ltd., Mundra, Kachchh - 370421, Gujarat, India",
+    "entity_tax_id": "U24100GJ1992PLC102619",
+    "key_individuals": [
+      {
+        "name": "Sudhir Menon",
+        "title": "Director"
+      },
+      {
+        "name": "Subodh Menon",
+        "title": "Director"
+      },
+      {
+        "name": "Vijaykumar Malpani",
+        "title": "Officer"
+      },
+      {
+        "name": "Rajdeep Shahane",
+        "title": "Officer"
+      },
+      {
+        "name": "Navnit S. Gajja",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "Subodh Vijayaraghava Menon"
+      },
+      {
+        "name": "Perumangode Neelkandhan Ramaswamy"
+      },
+      {
+        "name": "Mahesh Subramaniyam"
+      },
+      {
+        "name": "Pramod Menon"
+      },
+      {
+        "name": "Yogesh Gangadhar Ranade"
+      },
+      {
+        "name": "Vijaykumar Bhanwarlal Malpani"
+      },
+      {
+        "name": "Rajesh Vasudeo Desai"
+      },
+      {
+        "name": "Ganapati Dadasaheb Yadav"
+      },
+      {
+        "name": "Parsotambhai Devsibhai Vaghela"
+      },
+      {
+        "name": "Deepak Rasiklal Parikh"
+      },
+      {
+        "name": "Bhavna Thakur"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 0
+}

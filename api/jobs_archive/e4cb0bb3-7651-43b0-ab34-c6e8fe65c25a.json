@@ -1,0 +1,18 @@
+{
+  "job_id": "e4cb0bb3-7651-43b0-ab34-c6e8fe65c25a",
+  "scenario": "dark-web",
+  "status": "completed",
+  "region": "darkweb",
+  "entity_name": "FZD Logistics",
+  "country": "",
+  "created_at": "2026-05-05T03:59:46.803874+00:00",
+  "updated_at": "2026-05-05T04:00:22.978435+00:00",
+  "blob_path": "osint-staging/dark-web/fzd_logistics_20260505.json",
+  "report_summary": "60 findings from dark web sources",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_name": "FZD Logistics"
+  }
+}

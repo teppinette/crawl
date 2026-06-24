@@ -1,0 +1,67 @@
+{
+  "job_id": "27cd887b-321d-47ec-a57f-316d27df6398",
+  "scenario": "cir",
+  "status": "failed",
+  "region": "gulf",
+  "entity_name": "APRIL Fine Paper Trading (Middle East) FZE",
+  "country": "AE",
+  "created_at": "2026-05-22T00:12:47.140096+00:00",
+  "updated_at": "2026-05-22T00:12:47.140096+00:00",
+  "blob_path": null,
+  "report_summary": null,
+  "error": "DATA SANITIZATION FAILURE \u2014 blocked terms detected in payload: Field 'entity_industry' contains blocked term 'copap'. This data must NEVER reach OpenClaw.",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "APRIL Fine Paper Trading (Middle East) FZE",
+    "entity_trade_names": "DOREL JUVENILE GROUP, INC",
+    "entity_country": "AE",
+    "entity_website": "https://djgusa.com;",
+    "entity_industry": "Buyer (customer of COPAP)",
+    "key_individuals": [
+      {
+        "name": "Cathy Carter",
+        "title": "President and Chief Executive Officer"
+      },
+      {
+        "name": "Nicolas Duran",
+        "title": "President and Chief Executive Officer (removed/resigned)"
+      },
+      {
+        "name": "Steven E. Willeke",
+        "title": "Director (Board signatory)"
+      },
+      {
+        "name": "Taty Abella",
+        "title": "Director (Board signatory)"
+      },
+      {
+        "name": "Timothy P. Gallogly",
+        "title": "Director (Board signatory)"
+      },
+      {
+        "name": "Jeffrey Schwartz",
+        "title": "Director (Board signatory)"
+      },
+      {
+        "name": "Diogo Pires",
+        "title": "Director / Treasurer (newly appointed)"
+      },
+      {
+        "name": "Tim Gallogly",
+        "title": "Director"
+      },
+      {
+        "name": "TIMOTHY PHILIP GALLOGLY",
+        "title": "Director"
+      },
+      {
+        "name": "Bey Soo Khiang"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  }
+}

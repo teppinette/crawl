@@ -1,0 +1,83 @@
+{
+  "job_id": "2cfe7a1b-e6c4-48d6-93c3-c0aa802aab15",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "C J SHAH & CO.",
+  "country_code": "IN",
+  "created_at": "2026-05-04T14:15:57.742247+00:00",
+  "updated_at": "2026-05-04T14:17:59.146492+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:15:59.210604+00:00",
+      "verified": false,
+      "legal_name": null,
+      "cin": null,
+      "entity_status": null,
+      "company_type": null,
+      "incorporation_date": null,
+      "directors": null,
+      "registered_address": null,
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:16:04.594996+00:00",
+      "found": true,
+      "name": "C J Shah & Co.",
+      "linkedin_url": "https://in.linkedin.com/company/c-j-shah-co",
+      "industry": "Chemical Manufacturing",
+      "company_size": "201-500 employees",
+      "locations": [
+        "105, Bajaj Bhavan, Nariman Point MUMBAI, Maharashtra 400021, IN"
+      ],
+      "about": "CJ Shah and Co. established in 1961 is one of the leading chemical distributors in India with offices and representatives all over the country. We have been catering to the needs of paints / coatings, printing ink, pharmaceutical, agro chemical, plasticizer, water treatment, rubber, chemical and plastic industries for more than 50 years.",
+      "followers": 2268,
+      "employees_on_linkedin": 71,
+      "organization_type": "Partnership",
+      "website": "https://www.cjshahgroup.in/",
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "Dharmesh N Machchhar",
+          "link": "https://in.linkedin.com/in/dharmesh-n-machchhar-b040b424?trk=org-employees"
+        },
+        {
+          "name": "Zarna Jogi",
+          "link": "https://in.linkedin.com/in/zarna-jogi-2881043a?trk=org-employees"
+        },
+        {
+          "name": "Nirav Desai",
+          "link": "https://in.linkedin.com/in/nirav-desai-2a037446?trk=org-employees"
+        },
+        {
+          "name": "Pradip Shinde",
+          "link": "https://in.linkedin.com/in/pradip-shinde-96885771?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:17:59.145936+00:00",
+      "risk_level": "CLEAN",
+      "total_findings": 0,
+      "sources_searched": 0,
+      "sources_with_results": 0,
+      "by_type": {},
+      "key_findings": [],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "C J SHAH & CO.",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

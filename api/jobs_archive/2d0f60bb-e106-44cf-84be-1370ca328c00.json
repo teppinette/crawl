@@ -1,0 +1,37 @@
+{
+  "job_id": "2d0f60bb-e106-44cf-84be-1370ca328c00",
+  "status": "completed",
+  "region": "gulf",
+  "entity_name": "AquaChemie LLC",
+  "country": "AE",
+  "created_at": "2026-04-13T15:54:13.337235+00:00",
+  "updated_at": "2026-04-13T16:00:22.851774+00:00",
+  "blob_path": "osint-staging/gulf/aquachemie_llc_ae_20260413.json",
+  "report_summary": "JSON is valid. Blob upload failed \u2014 no Azure session active (`az login` required; no managed identity or SAS token found). File is staged locally.\n\n---\n\n**DONE: AquaChemie LLC, AE \u2014 Risk: 3 MONITOR \u2014 Free zone opacity (JAFZA+DMCC), Iraq/Basra entity, dual-use chemical portfolio; no sanctions hits (OFAC/UK OFSI clear); MD identity unverified via OSINT**\n\n---\n\n### Research Summary\n\n**Workstreams completed: 1A\u20137 (all executed)**\n\n| Check | Result |\n|---|---|\n| Corporate registry | Active; founded 2",
+  "error": null,
+  "seed_data": {
+    "entity_legal_name": "AquaChemie LLC",
+    "entity_trade_names": null,
+    "entity_country": "AE",
+    "entity_jurisdiction": null,
+    "entity_address": null,
+    "entity_website": "https://aquachemie.com",
+    "entity_type": null,
+    "entity_industry": "Chemical distribution",
+    "entity_tax_id": null,
+    "copap_relationship": "Customer",
+    "copap_products": "Caustic Soda, Calcium Hypochlorite",
+    "copap_incoterms": null,
+    "key_individuals": [
+      {
+        "name": "Deepak Bhatia",
+        "title": "Managing Director"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "source_report": null,
+    "workstreams": null,
+    "priority": "standard"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "job_id": "e9ef1d6c-e5f8-49dd-87ab-ff179574ce56",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "china",
+  "entity_name": "HONG KONG HUEN NAM INTERNATIONAL LIMITED",
+  "country": "HK",
+  "created_at": "2026-04-27T13:31:42.075773+00:00",
+  "updated_at": "2026-04-27T13:38:31.178153+00:00",
+  "blob_path": "osint-staging/cir/china/hong_kong_huen_nam_international_limited_hk_20260427.json",
+  "report_summary": "**DONE:** HONG KONG HUEN NAM INTERNATIONAL LIMITED, HK -- Risk: 3 MONITOR -- Key individuals identified (MA LIN, PHUNG THU HUYEN), no sanctions hits, opaque ownership structure, requires paid ICRIS search for full verification\n\n## Updated Research Summary (With Key Individuals)\n\n**Entity:** HONG KONG HUEN NAM INTERNATIONAL LIMITED (\u9999\u6e2f\u8431\u5d50\u570b\u969b\u6709\u9650\u516c\u53f8)  \n**CR No.:** 3327994  \n**Incorporated:** 17 Oct 2023\n\n### Key Individuals \u2014 Research Results:\n\n| Individual | Role | Findings |\n|------------|------|----------|\n| **MA LIN** (\u9a6c\u6797) | CEO / Authorized Representative | Also known as Lin Ma. Served as non-independent director at **Amber International Holding** (Nasdaq crypto fintech) Aug-Dec 2025. Previously Co-COO at Amber Group. Professional background in legal/strategic transactions. **No sanctions hits.** |\n| **PHUNG THU HUYEN** (Ph\u00f9ng Thu Huy\u1ec1n) | Key Principal | Vietnamese national. Also listed as CEO/Director of **Nam International Company Limited** (HK). **No sanctions hits.** Connection to Vietnam trade requires further diligence. |\n\n### Updated Risk Assessment:\n\n| Workstream | Status | Key Observations |\n|------------|--------|------------------|\n| **1A Corporate Registry** | \u2705 | Live company, incorporated 17 Oct 2023, private limited by shares. Address is shared/virtual office. |\n| **2A Beneficial Ownership** | \u26a0\ufe0f | MA LIN presumed controlling party but **ownership % unverified**. PHUNG THU HUYEN's exact role unclear. |\n| **3A Sanctions Screening** | \u2705 | **No hits** for entity, MA LIN, or PHUNG THU HUYEN on OFAC SDN, EU, UN sanctions lists. |\n| **4A Adverse Media** | \u2705 | Shell red flags (opaque, virtual office, recent incorporation). MA LIN's crypto background is noteworthy but not adverse. |\n| **5A Litigation** | \u2705 | No litigation records found for entity or individuals. |\n| **6A PEP Check** | \u26a0\ufe0f | Neither individual confirmed as PEP. MA LIN's Amber Group role was in private sector. |\n| **7A Trade Risk** | \u26a0\ufe0f | MEDIUM \u2014 Vietnamese-connected principal, HK shell indicators, unclear business scope. |\n| **8A Risk Assessment** | \u2705 | **Score: 3 (MONITOR)** \u2014 enhanced due diligence recommended. |\n\n### Output Saved:\n\u2705 `/home/copapadmin/crawl/output/hong_kong_huen_nam_international_limited_hk_20260427.json` (12,261 bytes \u2014 updated with key individuals)",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "HONG KONG HUEN NAM INTERNATIONAL LIMITED",
+    "entity_country": "HK",
+    "entity_tax_id": "75809750-000-10-25-0",
+    "key_individuals": [
+      {
+        "name": "Ma Lin",
+        "title": "CEO / Authorized Representative"
+      },
+      {
+        "name": "Phung Thu Huyen",
+        "title": "Key Principal"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "china": {
+      "status": "completed",
+      "error": null
+    }
+  }
+}

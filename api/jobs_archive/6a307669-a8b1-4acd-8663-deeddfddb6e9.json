@@ -1,0 +1,32 @@
+{
+  "job_id": "6a307669-a8b1-4acd-8663-deeddfddb6e9",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "ENASPOL A.S.",
+  "country": "CZ",
+  "created_at": "2026-05-22T22:17:28.310374+00:00",
+  "updated_at": "2026-05-22T22:18:46.986677+00:00",
+  "blob_path": "osint-staging/cir/americas/enaspol_as_CZ_20260522.json",
+  "report_summary": "Duplicate \u2014 `americas/enaspol_as_CZ_20260522.json` uploaded today at 22:10 UTC.\n\n| | |\n|---|---|\n| **File** | `americas/enaspol_as_CZ_20260522.json` |\n| **Risk** | **2 / CLEAR** |\n| **I\u010cO** | 25006339 \u00b7 Velv\u011bty 79, Rtyn\u011b nad B\u00edlinou, Northern Bohemia |\n| **Position** | Leading European surfactant manufacturer |\n| **Scale** | 160 employees \u00b7 60+ countries \u00b7 120+ products \u00b7 **55 years** |\n| **Ownership** | Family-owned |\n| German subsidiary | Enaspol GmbH |\n| Wikipedia | \u2705 Czech Wikipedia article |\n| **Sanctions** | ALL CLEAR \u00b7 **0 breaches** |\n| **\ud83d\udfe1 MEDIUM** | OR.justice.cz extract \u2192 identify family UBOs |\n\nNo re-research warranted.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**1 actionable findings** from 3/45 sources via Tor (Netherlands exit node) (16 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 6 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: www.enaspol.com\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | Surfactants & Industrial Chemicals Manufacturing | ENASPOL a; V\u00fdroba tenzid\u016f a pr\u016fmyslov\u00e9 chemie | ENASPOL a.s.; Enaspol a.s. - LinkedIn (+7 more) |\n| reddit | 6 | Alpha Olefin Sulfonate (AOS) Market Size and Growth Factors ; Report on Natural Surfactants Market Market 2019 Contains Si; Lignin and Lignin-Based Products : Global Market Size, Scope (+3 more) |\n| hudsonrock_cavalier | 1 | www.enaspol.com |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- www.enaspol.com \u2014 *hudsonrock_cavalier*\n\n**WEB MENTION** (10)\n- Surfactants & Industrial Chemicals Manufacturing | ENASPOL a.s. \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.enaspol.com%2F&rut=fc710f5c67f7af0272f89f85c87e2564a2]\n- V\u00fdroba tenzid\u016f a pr\u016fmyslov\u00e9 chemie | ENASPOL a.s. \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.enaspol.cz%2F&rut=c860157e3a8c20b2adb2a35e1d38370804f]\n- Enaspol a.s. - LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fcz.linkedin.com%2Fcompany%2Fenaspol&rut=3b8f5d44529e3c97e]\n- Enaspol - Wikipedie \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fcs.wikipedia.org%2Fwiki%2FEnaspol&rut=b73b64ffdd99909648b]\n- Enaspol a.s. Company Profile | Rtyn\u011b nad B\u00edlinou, \u00dasteck\u00fd kraj ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.e]\n- Enaspol A.S. Company Profile - Czech Republic | Financials & Key ... - EMIS \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FCZ%2FEnaspol_AS_]\n- Enaspol a.s. (Rtyn\u011b nad B\u00edlinou, Velv\u011bty) \u2022 Firmy.cz \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fen.firmy.cz%2Fcompany%2F178419%2Denaspol%2Da%2Ds%2Drtyne%]\n- Enaspol a.s. , Rtyn\u011b nad B\u00edlinou I\u010cO 25006339 - Kurzy.cz \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Frejstrik%2Dfirem.kurzy.cz%2F25006339%2Fenaspol%2Das%2F&ru]\n- Company Profile - Enaspol As \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fchemdmart.com%2Fcompany%2Dprofile%2Fenaspol%2Das&rut=e657]\n- Enaspol a.s.: Contact Details and Business Profile - RocketReach \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Frocketreach.co%2Fenaspol%2Das%2Dprofile_b5d9e504f42e5f4f&]\n\n**SOCIAL MENTION** (6)\n- Alpha Olefin Sulfonate (AOS) Market Size and Growth Factors Research and Projection 2024: Enaspol A. \u2014 *reddit* [https://reddit.com/r/TrendingMarketReports/comments/cnjhkq/alpha_olefin_sulfonat]\n- Report on Natural Surfactants Market Market 2019 Contains Size, Gross Margin, Revenue and Trends For \u2014 *reddit* [https://reddit.com/r/ChemicalInsightReport/comments/duoui3/report_on_natural_sur]\n- Lignin and Lignin-Based Products : Global Market Size, Scope, Growth, and Analysis 2019-2024 \u2014 *reddit* [https://reddit.com/r/ChemicalInsightReport/comments/cppcne/lignin_and_ligninbase]\n- Know the Future Opportunities of Sodium Salt Lignosulphonate Market and its detail analysis by Focus \u2014 *reddit* [https://reddit.com/r/TrendingMarketReports/comments/ch4syk/know_the_future_oppor]\n- Cocamide Diethanolamide Market Likely to Emerge over a Period of 2019 - 2025: Lubrizol, AkzoNobel, C \u2014 *reddit* [https://reddit.com/r/BizInsightReports/comments/cgq7yk/cocamide_diethanolamide_m]\n- Global Sodium Salt Lignosulphonate Market Set Explosive Growth to 2023 - VertexMarketInsights.Com \u2014 *reddit* [https://reddit.com/r/u_vertex143/comments/c92njn/global_sodium_salt_lignosulphon]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "ENASPOL A.S.",
+    "entity_country": "CZ",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 1,
+  "dark_web_sources": 45
+}

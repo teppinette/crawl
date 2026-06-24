@@ -1,0 +1,34 @@
+{
+  "job_id": "c0588852-f3b9-438d-804a-6d5817626adb",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "HARESH PETROCHEM PVT LTD",
+  "country": "IN",
+  "created_at": "2026-05-21T16:52:37.481016+00:00",
+  "updated_at": "2026-05-21T16:55:15.701994+00:00",
+  "blob_path": "osint-staging/cir/india/haresh_petrochem_pvt_ltd_IN_20260521.json",
+  "report_summary": "**DONE: Haresh Petrochem Private Limited, India \u2014 Risk: 2 CLEAR \u2014 21-year Mumbai petrochem company; CIN U24100MH2004PTC145264; Revenue \u20b91,310 Cr FY25 (grew from >\u20b9500 Cr in FY24); AGM Sep 30, 2025 current; Kasat family**\n\n`~/crawl/output/haresh_petrochem_pvt_ltd_IN_20260521.json` \u2014 5.5 KB, valid, research date 2026-05-21.\n\n\u26a0\ufe0f Admin: Both directors missing from subject block \u2014 add **Kunal Kanayalal Kasat** and **Poonam Kunal Kasat**.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 2/37 sources via Tor (Netherlands exit node) (24 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 37 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Kilburn Engineering: Kilburn\u2019s wholly owned subsidiary M.E. ; My Experience at Trezix Software Pvt Ltd (Trezix.io): A Caut; Tibalaji Petrochem Pvt Ltd: US sanctions Indian company, sev (+12 more) |\n| duckduckgo_tor | 10 | Haresh Petrochem Pvt. Ltd. - Home; HARESH PETROCHEM PVT.LTD. Details | Company Profile | Direct; Haresh Petrochem Private Limited - Company Profile (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- Haresh Petrochem Pvt. Ltd. - Home \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fhareshgroup.lookchem.com%2F&rut=2a6c954cb82cf3169dbf8772e]\n- HARESH PETROCHEM PVT.LTD. Details | Company Profile | Directors Profile ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.companydetails.in%2Fcompany%2Fharesh%2Dpetrochem%2Dpv]\n- Haresh Petrochem Private Limited - Company Profile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Fharesh%2Dpetr]\n- Haresh Petrochem Pvt. Ltd. in Mumbai, Maharashtra, India - Company Profile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tradeindia.com%2Fharesh%2Dpetrochem%2Dpvt%2Dltd%2D293]\n- HARESH PETROCHEM PRIVATE LIMITED | ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2Fcompany%2FHARESH%2DPETROCHEM%2DPRIVAT]\n- Haresh Petrochem Private Limited - Wholesaler / Distributor ... - IndiaMART \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Fharesh%2Dpetrochem%2Faboutus.html&rut]\n- Haresh Petrochem Private Limited - 2026 Insights - The Company Check \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fcompany%2Fharesh%2Dpetrochem%2D]\n- Haresh Petrochem Private Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.h]\n- Haresh Petrochem Private Limited / U24100mh2004ptc145264 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.falconebiz.com%2Fcompany%2FHARESH%2DPETROCHEM%2DPRIVA]\n- Sanctioning Entities Trading in Iranian Petroleum and Petrochemicals ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.state.gov%2Freleases%2Foffice%2Dof%2Dthe%2Dspokespers]\n\n**SOCIAL MENTION** (14)\n- Kilburn Engineering: Kilburn\u2019s wholly owned subsidiary M.E. Energy Pvt Ltd has received an order wor \u2014 *reddit* [https://reddit.com/r/SmallCapStocks/comments/1o66yy4/kilburn_engineering_kilburn]\n- My Experience at Trezix Software Pvt Ltd (Trezix.io): A Cautionary Tale \u2014 *reddit* [https://reddit.com/r/IndiaEmployerReview/comments/1dzmpf8/my_experience_at_trezi]\n- Tibalaji Petrochem Pvt Ltd: US sanctions Indian company, seven others for Iran energy dealings \u2014 *reddit* [https://reddit.com/r/GeopoliticsIndia/comments/xth39s/tibalaji_petrochem_pvt_ltd]\n- Invictus Energy: Cabora Bassa, AMOG and the Multi-Billion-Dollar Opportunity \u2014 *reddit* [https://reddit.com/r/ASX_Bets/comments/1n8usej/invictus_energy_cabora_bassa_amog]\n- Looking for a PUSH \u2014 *reddit* [https://reddit.com/r/Bangalorestartups/comments/1snagbh/looking_for_a_push/]\n- Reactor Supplier in Saudi Arabia \u2013 Complete Guide \u2014 *reddit* [https://reddit.com/r/blissflowsystem/comments/1sthd7r/reactor_supplier_in_saudi_]\n- What Is a Choke Valve and How Does It Work? \u2014 *reddit* [https://reddit.com/r/blissflowsystem/comments/1rg0obr/what_is_a_choke_valve_and_]\n- Cse placement \u2014 *reddit* [https://reddit.com/r/RGIPT_/comments/1m1decx/cse_placement/]\n- Help Needed \ud83d\udea7\ud83d\udea7 \u2014 *reddit* [https://reddit.com/r/MechanicAdviceIndia/comments/1lrp18s/help_needed/]\n- What are the differences between petrochemical and plastics engineering? \u2014 *reddit* [https://reddit.com/r/Cristol/comments/1psvqpw/what_are_the_differences_between_p]\n- Update India Stocks in News: 28th Nov 2025 \u2014 *reddit* [https://reddit.com/r/UpdateINDIA/comments/1p8nkgv/update_india_stocks_in_news_28]\n- US sanctions 6 Indian firms over Iranian oil purchase \u2014 *reddit* [https://reddit.com/r/IndianStreetBets/comments/1mdv7ho/us_sanctions_6_indian_fir]\n- Trump Administration sanctioned 7 India-based entities for Iran petroleum trade \u2014 *reddit* [https://reddit.com/r/Vimarsa/comments/1mdhy4f/trump_administration_sanctioned_7_]\n- RGIPT Placements Breakdown | Branch-wise Stats, Companies &amp; More \u2014 *reddit* [https://reddit.com/r/rgipt_Insider/comments/1kxdlq5/rgipt_placements_breakdown_b]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "HARESH PETROCHEM PVT LTD",
+    "entity_country": "IN",
+    "entity_address": "B 3701, 37th Floor, Plot No 46, Kohinoor Square, N C Kelkar Marg, Opp. Shivsena Bhavan, Dadar, Shivaji Park, Mumbai, Maharashtra, India",
+    "entity_tax_id": "U24100MH2004PTC145264",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 37
+}

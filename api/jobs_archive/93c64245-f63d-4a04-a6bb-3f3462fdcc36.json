@@ -1,0 +1,34 @@
+{
+  "job_id": "93c64245-f63d-4a04-a6bb-3f3462fdcc36",
+  "scenario": "cir",
+  "status": "failed",
+  "region": "americas",
+  "entity_name": "EMPAQUES INDUSTRIALES DE COLOMBIA S.A.S",
+  "country": "CO",
+  "created_at": "2026-05-22T21:14:16.165223+00:00",
+  "updated_at": "2026-05-22T21:14:50.374324+00:00",
+  "blob_path": null,
+  "report_summary": null,
+  "error": "americas: No existing session",
+  "retry_count": 1,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "EMPAQUES INDUSTRIALES DE COLOMBIA S.A.S",
+    "entity_country": "CO",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "failed",
+      "error": "No existing session"
+    }
+  },
+  "errors": [
+    "americas: Error reading SSH protocol banner[Errno 104] Connection reset by peer",
+    "americas: No existing session"
+  ]
+}

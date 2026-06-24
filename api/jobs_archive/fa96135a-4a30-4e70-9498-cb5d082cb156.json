@@ -1,0 +1,45 @@
+{
+  "job_id": "fa96135a-4a30-4e70-9498-cb5d082cb156",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "CONVERTIDORA DEL PACIFICO E.I.R.L",
+  "country": "PE",
+  "created_at": "2026-05-22T16:18:05.073833+00:00",
+  "updated_at": "2026-05-22T16:45:12.629254+00:00",
+  "blob_path": "osint-staging/cir/americas/convertidora_del_pacifico_eirl_PE_20260522.json",
+  "report_summary": "Third submission for this entity today. `americas/convertidora_del_pacifico_eirl_PE_20260522.json` \u2014 uploaded 16:36 UTC, Risk 2/CLEAR. No re-research warranted.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**1 actionable findings** from 3/53 sources via Tor (Netherlands exit node) (25 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: www.convertidoradelpacifico.com\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Mientras tanto en el norte...; Q1 earnings season starts today!! Who\u2019s beating and making t; \u00bfQu\u00e9 opinan del documento de la oposici\u00f3n? (+12 more) |\n| duckduckgo_tor | 10 | Convertidora del Pac\u00edfico EIRL | Papeleria y Cartones; Convertidora del Pac\u00edfico E.I.R.L. - Dun & Bradstreet; Convertidora del Pacifico E.I.R.L. - UniversidadPeru (+7 more) |\n| hudsonrock_cavalier | 1 | www.convertidoradelpacifico.com |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- www.convertidoradelpacifico.com \u2014 *hudsonrock_cavalier*\n\n**WEB MENTION** (10)\n- Convertidora del Pac\u00edfico EIRL | Papeleria y Cartones \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.convertidoradelpacifico.com%2F&rut=4ce11a95b367937c69]\n- Convertidora del Pac\u00edfico E.I.R.L. - Dun & Bradstreet \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.c]\n- Convertidora del Pacifico E.I.R.L. - UniversidadPeru \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.universidadperu.com%2Fempresas%2Fconvertidora%2Dpacif]\n- CONVERTIDORA DEL PACIFICO E.I.R.L. - Computrabajo Per\u00fa \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fpe.computrabajo.com%2Fempresas%2Fofertas%2Dde%2Dtrabajo%2]\n- Convertidora del Pac\u00edfico | LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fpe.linkedin.com%2Fcompany%2Fconvertidoradelpacifico&rut=1]\n- CONVERTIDORA DEL PACIFICO E.I.R.L. - 20301734574 - Ate, Lima - Compuempresa \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fcompuempresa.com%2Finfo%2Fconvertidora%2Ddel%2Dpacifico%2]\n- CONVERTIDORA DEL PACIFICO E.I.R.L. - apps.osce.gob.pe \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fapps.osce.gob.pe%2Fperfilprov%2Dui%2Fficha%2F20301734574&]\n- CONVERTIDORA DEL PACIFICO E.I.R.L - Datos Per\u00fa \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.datosperu.org%2Fempresa%2Dconvertidora%2Ddel%2Dpacifi]\n- Convertidora Del Pacifico E.I.R.L. (Peru) - EMIS \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FPE%2FConvertidor]\n- Convertidora del Pac\u00edfico | Lima - Facebook \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.facebook.com%2Fconvertidora%2F&rut=bdfd97ca5643531365]\n\n**SOCIAL MENTION** (15)\n- Mientras tanto en el norte... \u2014 *reddit* [https://reddit.com/r/mexico/comments/1fhqmog/mientras_tanto_en_el_norte/]\n- Q1 earnings season starts today!! Who\u2019s beating and making the biggest move? \u2014 *reddit* [https://reddit.com/r/TheVisualInvestors/comments/1sl2284/q1_earnings_season_star]\n- \u00bfQu\u00e9 opinan del documento de la oposici\u00f3n? \u2014 *reddit* [https://reddit.com/r/RepublicadeChile/comments/1tb2wdc/qu\u00e9_opinan_del_documento_]\n- Tengo una idea | Todos los clubes Argentina: Album de figuritas (Explico mi idea en la descripcion) \u2014 *reddit* [https://reddit.com/r/fulbo/comments/1t0k5is/tengo_una_idea_todos_los_clubes_arge]\n- Alcune critiche al libro di Yasmina Pani sulla schwa \u2014 *reddit* [https://reddit.com/r/Libri/comments/1bx5gs1/alcune_critiche_al_libro_di_yasmina_]\n- FS: Bowman 1950-55, Topps 1966-72 \u2014 *reddit* [https://reddit.com/r/baseballcards_vintage/comments/1sq28m6/fs_bowman_195055_top]\n- Para ustedes cuando comienza el Per\u00fa? \u2014 *reddit* [https://reddit.com/r/PERU/comments/1ri4yv4/para_ustedes_cuando_comienza_el_per\u00fa/]\n- Drop Watch: 05.02.25 \u2014 *reddit* [https://reddit.com/r/hiphopheads/comments/1kcs3cc/drop_watch_050225/]\n- My Hand-made map of Asia in 1937 \u2014 *reddit* [https://reddit.com/r/MapPorn/comments/1it4qnw/my_handmade_map_of_asia_in_1937/]\n- Do you adjust your long-term portfolio before quarterly earnings reports are released? \u2014 *reddit* [https://reddit.com/r/Stocks_Picks/comments/1soywe3/do_you_adjust_your_longterm_p]\n- 17 TOPICS WERE CANDIDATES FOR THIS WEEK'S TRASH TALK THREAD \u2014 *reddit* [https://reddit.com/r/MLS/comments/3g4gwn/17_topics_were_candidates_for_this_week]\n- Diachronic map of the Spanish Empire, including territorial claims. \u2014 *reddit* [https://reddit.com/r/MapPorn/comments/1rpaefm/diachronic_map_of_the_spanish_empi]\n- Age of Caudillos doesn't disappear with the new DLC \u2014 *reddit* [https://reddit.com/r/victoria3/comments/1pp1yso/age_of_caudillos_doesnt_disappea]\n- Il \"Beato Amumbo\" \u2014 *reddit* [https://reddit.com/r/TooBigToFailPodcast/comments/1o9tvwk/il_beato_amumbo/]\n- [Megathread] CES 2026: Tutte le novit\u00e0 hardware da Las Vegas \u2014 *reddit* [https://reddit.com/r/ItalyHardware/comments/1q4iz0b/megathread_ces_2026_tutte_le]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "americas: agent returned empty response (stderr: [plugins] plugins.allow is empty; discovered non-bundled plugins may auto-load: crawl-gateway (/home/copapadmin/.openclaw/extensions/crawl-gateway/index.js). Set plugins.allow to explicit trusted ids.\nGateway agent failed; falling back to embedded: Error: gateway timeout after 930000ms\nGateway targe)",
+  "retry_count": 1,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "CONVERTIDORA DEL PACIFICO E.I.R.L",
+    "entity_country": "PE",
+    "entity_website": "https://www.convertidoradelpacifico.com/",
+    "key_individuals": [
+      {
+        "name": "Jorge W. Fiestas Sarmiento",
+        "title": "Gerente General"
+      },
+      {
+        "name": "Jade W. Fiestas Sarmiento",
+        "title": "Gerente General"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "errors": [
+    "americas: agent returned empty response (stderr: [plugins] plugins.allow is empty; discovered non-bundled plugins may auto-load: crawl-gateway (/home/copapadmin/.openclaw/extensions/crawl-gateway/index.js). Set plugins.allow to explicit trusted ids.\nGateway agent failed; falling back to embedded: Error: gateway timeout after 930000ms\nGateway targe)"
+  ],
+  "dark_web_findings": 1,
+  "dark_web_sources": 53
+}

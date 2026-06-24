@@ -1,0 +1,42 @@
+{
+  "job_id": "d23a46c6-5109-473c-9d04-9bbbcabae627",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "AARTI IND. LTD.",
+  "country": "IN",
+  "created_at": "2026-05-21T17:35:54.931421+00:00",
+  "updated_at": "2026-05-21T17:37:05.103647+00:00",
+  "blob_path": null,
+  "report_summary": "Third Aarti Industries submission. File is complete.\n\n**DONE (existing file): Aarti Industries Limited \u2014 Risk: 2 CLEAR \u2014 BSE 524208 / NSE AARTIIND; Revenue \u20b99,018 Cr FY26; \u26a0\ufe0f \"AmpVolts Narendrabhai Chauhan\" (DIN 01241021) = data artifact**\n\n`~/crawl/output/aarti_industries_ltd_IN_20260520.json` \u2014 valid, filed May 20, 2026.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 2/41 sources via Tor (Netherlands exit node) (20 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 41 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Aarti Ind: Bullish momentum will continue.; AartiInd #Nifty #BankNifty #Nifty50; *\ud83c\uddee\ud83c\uddf3 India Daybook ~ Stocks in News* (+12 more) |\n| duckduckgo_tor | 10 | Aarti Industries | Leading Speciality Chemical Manufacturer ; AARTIIND Stock Price | Aarti Industries Ltd. Stock Quote (In; Aarti Industries Ltd - Fortune India (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- Aarti Industries | Leading Speciality Chemical Manufacturer in India \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.aarti%2Dindustries.com%2F&rut=61c725b2c29d43d8344cbd8]\n- AARTIIND Stock Price | Aarti Industries Ltd. Stock Quote (India: NSE ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.marketwatch.com%2Finvesting%2Fstock%2Faartiind%3Fcoun]\n- Aarti Industries Ltd - Fortune India \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.fortuneindia.com%2Fcompanies%2Faarti%2Dindustries%2Dl]\n- Aarti Industries Ltd - INDmoney \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indmoney.com%2Fstocks%2Faarti%2Dindustries%2Dltd%2Dsh]\n- Aarti Ind Share Price, Aarti Ind Stock Price, Aarti Industries Ltd ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.moneycontrol.com%2Findia%2Fstockpricequote%2Fchemical]\n- Aarti Industries Limited (AARTIIND.NS) Stock Price, News, Quote ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ffinance.yahoo.com%2Fquote%2FAARTIIND.NS%2F&rut=9e014c70a4]\n- Aarti Industries (NSE:AARTIIND) Stock Price & Overview \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fstockanalysis.com%2Fquote%2Fnse%2FAARTIIND%2F&rut=a692d58]\n- Aarti Industries Ltd. - LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2Faarti%2Dindustries&rut=951a2]\n- Aarti Inds - Aarti Industries Share Price - The Economic Times \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Feconomictimes.indiatimes.com%2Faarti%2Dindustries%2Dltd%2]\n- Aarti Industries Ltd (AARTIIND) Stock Price & News - Google \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.google.com%2Ffinance%2Fbeta%2Fquote%2FAARTIIND%3ANSE&]\n\n**SOCIAL MENTION** (10)\n- Aarti Ind: Bullish momentum will continue. \u2014 *reddit* [https://reddit.com/r/IndianStreetBets/comments/1bvfabj/aarti_ind_bullish_momentu]\n- AartiInd #Nifty #BankNifty #Nifty50 \u2014 *reddit* [https://reddit.com/r/stock_trading_India/comments/169nrh6/aartiind_nifty_banknif]\n- *\ud83c\uddee\ud83c\uddf3 India Daybook ~ Stocks in News* \u2014 *reddit* [https://reddit.com/r/IndianStocks/comments/1r3f2d7/india_daybook_stocks_in_news/]\n- *\ud83c\udf39\ud83c\uddee\ud83c\uddf3India Daybook \u2013 Stocks in News* \u2014 *reddit* [https://reddit.com/r/NSEbets/comments/1r3f2pg/india_daybook_stocks_in_news/]\n- India Daybook \u2013 Stocks in News* \u2014 *reddit* [https://reddit.com/r/UpdateINDIA/comments/1oqn53q/india_daybook_stocks_in_news/]\n- \ud83c\uddee\ud83c\uddf3India Daybook \u2013 Stocks in News* \u2014 *reddit* [https://reddit.com/r/UpdateINDIA/comments/1nhbiyr/india_daybook_stocks_in_news/]\n- Top Trending on Stocktwits right now \u2014 *reddit* [https://reddit.com/r/StocktwitsIndia/comments/1n78aev/top_trending_on_stocktwits]\n- *\ud83c\uddee\ud83c\uddf3India Daybook \u2013 Stocks in News* \u2014 *reddit* [https://reddit.com/r/DalalStreetTalks/comments/1kgnuy5/india_daybook_stocks_in_n]\n- NSE launches new index \u2014 *reddit* [https://reddit.com/r/StockMarketIndia/comments/1j9b8fa/nse_launches_new_index/]\n- Book profit as soon as company declares merger or demerger \u2014 *reddit* [https://reddit.com/r/IndianStreetBets/comments/1cttc9q/book_profit_as_soon_as_co]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "india: Report file not found on remote VM (india)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "AARTI IND. LTD.",
+    "entity_country": "IN",
+    "entity_address": "Plot No. 801/23, GIDC Estate, Phase III, Vapi, Gujarat, India, 396195",
+    "entity_tax_id": "L24110GJ1984PLC007301",
+    "key_individuals": [
+      {
+        "name": "AmpVolts Narendrabhai Chauhan",
+        "title": "Director (DIN: 01241021)"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (india)"
+    }
+  },
+  "errors": [
+    "india: Report file not found on remote VM (india)"
+  ],
+  "dark_web_findings": 0,
+  "dark_web_sources": 41
+}

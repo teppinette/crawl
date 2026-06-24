@@ -1,0 +1,144 @@
+{
+  "job_id": "e691088a-f9ba-4c44-8974-313440b919c7",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "OC SPECIALITIES CHEMICALS PVT. LTD.",
+  "country_code": "IN",
+  "created_at": "2026-05-04T15:59:42.283366+00:00",
+  "updated_at": "2026-05-04T16:00:35.229440+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:59:53.091617+00:00",
+      "verified": true,
+      "legal_name": "OC SPECIALITIES CHEMICALS PRIVATE LIMITED",
+      "cin": "U24100MH2019PTC325214",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "09 May, 2019",
+      "directors": [
+        "Pushpak Mangilal Shah",
+        "Manish Mangilal Shah",
+        "Vikas Mangilal Shah"
+      ],
+      "registered_address": "207 THE SUMMIT PREMISES CHS. WESTERN EXPRESS HIGHWAY VILE PARLE EAST, Mumbai City, MUMBAI, Maharashtra, India, 400057",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:59:53.977754+00:00",
+      "found": true,
+      "name": "OC SPECIALITIES PVT. LTD.",
+      "linkedin_url": "https://in.linkedin.com/company/oc-specialities-pvt.-ltd.",
+      "industry": "Chemical Manufacturing",
+      "company_size": "201-500 employees",
+      "locations": [
+        "Western Exp Highway, Vile Parle East 205 The Summit - Business Bay Mumbai, Maharashtra 400057, IN",
+        "Mumbai, IN",
+        "205 THE SUMMIT, WESTERN EXPRESS HWY Mumbai, Maharashtra 400057, in"
+      ],
+      "about": "OC SPECIALITIES is an emerging specialty chemical company focusing on providing customized solutions based on innovative research to service Crop Science, Life Science and Fine Chemical Industry. OC SPECIALITIES is an upcoming innovative solution provider with comprehensive relationships with both suppliers & customers",
+      "followers": 3666,
+      "employees_on_linkedin": 214,
+      "organization_type": "Privately Held",
+      "website": "https://www.ocspl.com/",
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "Pushpak Shah",
+          "link": "https://in.linkedin.com/in/pushpak-shah-87793a15?trk=org-employees"
+        },
+        {
+          "name": "Kannan Ramanathan",
+          "link": "https://in.linkedin.com/in/kannan-ramanathan-84668423?trk=org-employees"
+        },
+        {
+          "name": "Kausar Sayyad",
+          "link": "https://in.linkedin.com/in/kausar-sayyad-234a9b28?trk=org-employees"
+        },
+        {
+          "name": "Trishul Thorat, PhD",
+          "link": "https://in.linkedin.com/in/trishul-thorat-phd-b2ba8437?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T16:00:35.228515+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 61,
+      "sources_searched": 37,
+      "sources_with_results": 3,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50,
+        "debarment_record": 1
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "OC SPECIALITIES CHEMICALS PVT. LTD.",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

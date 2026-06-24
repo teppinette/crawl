@@ -1,0 +1,19 @@
+{
+  "job_id": "b5946169-8045-47f1-9006-554f7c6d3976",
+  "scenario": "dark-web",
+  "status": "completed",
+  "region": "darkweb",
+  "entity_name": "Plasthim OU Estonia 12986288",
+  "country": "",
+  "created_at": "2026-05-22T18:10:36.966352+00:00",
+  "updated_at": "2026-05-22T18:12:04.986007+00:00",
+  "blob_path": "osint-staging/dark-web/plasthim_ou_estonia_12986288_20260522.json",
+  "report_summary": "10 findings from dark web sources",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_name": "Plasthim OU Estonia 12986288",
+    "country_code": "EE"
+  }
+}

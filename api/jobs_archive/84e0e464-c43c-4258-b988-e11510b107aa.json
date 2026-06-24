@@ -1,0 +1,72 @@
+{
+  "job_id": "84e0e464-c43c-4258-b988-e11510b107aa",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "AARTI DRUGS LTD",
+  "country": "IN",
+  "created_at": "2026-04-30T20:18:39.141933+00:00",
+  "updated_at": "2026-04-30T20:20:12.530065+00:00",
+  "blob_path": "osint-staging/cir/india/aarti_drugs_ltd_IN_20260430.json",
+  "report_summary": "Third request for this entity today \u2014 Tax ID 55433 = registration number 055433 = CIN L37060MH1984PLC055433, same company researched at 19:29 and 20:04 UTC. File is current and complete.\n\n**DONE: Aarti Drugs Limited, India \u2014 Risk: 2 CLEAR \u2014 Listed pharma API manufacturer (BSE 524348 / NSE AARTIDRUGS); CIN L37060MH1984PLC055433; all 12 key individuals profiled; no sanctions, no PEP; SEBI Admin Warning (Mar 2025, no penalty); \u20b92,387 Cr revenue FY25**\n\nOutput file unchanged: **`~/crawl/output/aarti_drugs_ltd_IN_20260430.json`** (29 KB, all 8 workstreams complete, 11 individuals profiled, 8 sources)\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**66 findings** from 3/41 sources via Tor (Netherlands exit node)\n\n| Category | Count |\n|----------|-------|\n| Adverse media | 6 |\n| Web mentions (Tor-routed) | 10 |\n\n**Key findings:**\n- ADVERSE MEDIA: Aarti Drugs company information, history, management and director ...\n- ADVERSE MEDIA: Aarti Drugs Ltd share price | About Aarti Drugs - Screener\n- ADVERSE MEDIA: Aarti Drugs Share Price - The Financial Express\n- ADVERSE MEDIA: Aarti Drugs Share Price, Aarti Drugs Stock Price, Aarti Drugs Ltd ...\n- ADVERSE MEDIA: Aarti Drugs Ltd. shareholding: Promoter, FII, DII and mutual fund\n- ADVERSE MEDIA: Aarti Drugs Ltd (AARTIDRUGS) Stock, Price, News, Quotes, Forecast ... - MSN\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "AARTI DRUGS LTD",
+    "entity_country": "IN",
+    "entity_address": "PLOT NO 198, MIDC TARAPUR, TAL. PALGHAR, VILLAGE PAMTERMBHI, DIST THANE, Maharashtra, 401506",
+    "entity_tax_id": "55433",
+    "key_individuals": [
+      {
+        "name": "Patil",
+        "title": "Director (DIN: 01186406)"
+      },
+      {
+        "name": "RASHESH CHANDRAKANT GOGRI"
+      },
+      {
+        "name": "UDAY MORESHWAR PATIL"
+      },
+      {
+        "name": "AJIT ELEDATH VENUGOPALAN"
+      },
+      {
+        "name": "NARENDRA JAGANNATH SALVI"
+      },
+      {
+        "name": "NEHA RAJEN GADA"
+      },
+      {
+        "name": "ANKIT VIKRAM PALEJA"
+      },
+      {
+        "name": "SANDEEP MADHUSUDAN JOSHI"
+      },
+      {
+        "name": "BHASKAR NARAYAN THORAT"
+      },
+      {
+        "name": "HARIT PRAGJI SHAH"
+      },
+      {
+        "name": "PRAKASH MORESHWAR PATIL"
+      },
+      {
+        "name": "HARSHIT MANILAL SAVLA"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 66,
+  "dark_web_sources": 41
+}

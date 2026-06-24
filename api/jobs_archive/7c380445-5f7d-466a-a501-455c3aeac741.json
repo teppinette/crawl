@@ -1,0 +1,140 @@
+{
+  "job_id": "7c380445-5f7d-466a-a501-455c3aeac741",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "PLASTICHEM IND CORPORATION",
+  "country_code": "IN",
+  "created_at": "2026-05-04T14:43:53.338112+00:00",
+  "updated_at": "2026-05-04T14:45:30.439643+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:44:02.319204+00:00",
+      "verified": true,
+      "legal_name": null,
+      "cin": "U25202MP1982PTC001962",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "21 April, 1982",
+      "directors": [
+        "Lalit Agrawal",
+        "Ghanshyam Das Agrawal"
+      ],
+      "registered_address": "NAYA, TALAB, SATNA, Madhya Pradesh - 485001",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:44:00.026004+00:00",
+      "found": true,
+      "name": "Vinmar Plastichem M\u00e9xico",
+      "linkedin_url": "https://mx.linkedin.com/company/vinmar-plastichem",
+      "industry": "Plastics Manufacturing",
+      "company_size": "51-200 employees",
+      "locations": [
+        "Boulevard Manuel \u00c1vila Camacho 685 1-A Naucalpan de Juarez, M\u00e9xico 53050, MX"
+      ],
+      "about": "Vinmar Plastichem se especializa en la comercializaci\u00f3n de resinas pl\u00e1sticas, con m\u00e1s de 35 a\u00f1os de experiencia en la Industria del Pl\u00e1stico, adem\u00e1s es una filial de Vinmar International empresa privada con presencia global y oficinas en mas de 35 pa\u00edses con mas de 45 a\u00f1os de experiencia en la industria de qu\u00edmicos y pl\u00e1sticos.",
+      "followers": 925,
+      "employees_on_linkedin": 22,
+      "organization_type": "Privately Held",
+      "website": "https://www.vpm.vinmar.com/",
+      "specialties": "Polietilenos, Polipropilenos, Polipropilenos Compuestos, Estir\u00e9nicos, Pl\u00e1sticos de Ingenier\u00eda, Elastomeros Termopl\u00e1sticos, Resinas y compuestos para Rotomoldeo , Concentrado de carbonato de calcio, and Masterbatch",
+      "notable_employees": [
+        {
+          "name": "Betty Ramirez",
+          "link": "https://mx.linkedin.com/in/betty-ramirez-5b710a1b?trk=org-employees"
+        },
+        {
+          "name": "Miguel Angel Valencia Flores",
+          "link": "https://mx.linkedin.com/in/miguel-angel-valencia-flores-279a9029?trk=org-employees"
+        },
+        {
+          "name": "Estefani Gordillo Flores",
+          "link": "https://mx.linkedin.com/in/estefani-gordillo-flores-3706834a?trk=org-employees"
+        },
+        {
+          "name": "Oswaldo Lz",
+          "link": "https://mx.linkedin.com/in/oswaldo-lz-8536895a?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:45:30.438975+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 60,
+      "sources_searched": 37,
+      "sources_with_results": 2,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "PLASTICHEM IND CORPORATION",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

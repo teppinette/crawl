@@ -1,0 +1,91 @@
+{
+  "job_id": "68dd5135-6fc0-43df-8866-d145acf59e47",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "ADVANCE CHEMICAL INDUSTRIES",
+  "country": "IN",
+  "created_at": "2026-05-21T11:43:44.629073+00:00",
+  "updated_at": "2026-05-21T11:45:44.312250+00:00",
+  "blob_path": "osint-staging/cir/india/advance_chemical_industries_IN_20260520.json",
+  "report_summary": "Second Advance Chemical Industries submission \u2014 identical to 20:56 UTC yesterday. File is complete.\n\n**DONE (existing file): Advance Chemical Industries \u2014 Risk: 3 MONITOR \u2014 Rajasthan partnership; HCl/Cl2/Br2 manufacturer; \u26a0\ufe0f Both DINs are data artifacts; \u26a0\ufe0f 2015 Gujarat HC criminal case re: HCl sale**\n\n`~/crawl/output/advance_chemical_industries_IN_20260520.json` \u2014 11.2 KB, valid.\n---\n\n## DARK WEB SCREENING \u2014 CRITICAL\n**2 actionable findings** from 4/57 sources via Tor (Netherlands exit node) (25 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| World Bank Debarment | 1 |\n| Adverse media | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n\n**Key findings:**\n- WORLD BANK DEBARMENT: \n- ADVERSE MEDIA: Kolkata: More than a year after Rashika Jain's death, husband ... (Kushal Agarwal)\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Science AMA Series: Beef without cows, sushi without fish, a; TIFU by eating a $6,300 piece of Dove chocolate; Science Discussion Series: Batteries seem to power everythin (+12 more) |\n| duckduckgo_tor | 10 | Home - Advance Chemical; ACI Limited - Wikipedia; Company Profile - ACI PLC (+7 more) |\n| adb_sanctions | 1 | debarment_record |\n| duckduckgo_adverse | 1 | Kolkata: More than a year after Rashika Jain's death, husban |\n\n### All findings detail\n\n**WORLD BANK DEBARMENT** (1)\n-  \u2014 *adb_sanctions* [https://www.adb.org/who-we-are/integrity/sanctions]\n\n**ADVERSE MEDIA** (1)\n- Kolkata: More than a year after Rashika Jain's death, husband ... \u2014 *duckduckgo_adverse* (searched: Kushal Agarwal) [/l/?uddg=https%3A%2F%2Findianexpress.com%2Farticle%2Fcities%2Fkolkata%2Fkolkata%]\n\n**WEB MENTION** (10)\n- Home - Advance Chemical \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.advancechemicals.in%2F&rut=8b1ffa770c1229e3b924add0ce]\n- ACI Limited - Wikipedia \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FACI_Limited&rut=1f647e2c7df8573]\n- Company Profile - ACI PLC \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.aci%2Dbd.com%2Fabout%2Dus%2Fcompany%2Dprofile.html&ru]\n- Home | Advance Chemicals \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fadvancechemicals.com.au%2F&rut=b31e39aaac9bf5999e72506ca0]\n- Advanced Chemical Industries - LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2Fadvanced%2Dchemical%2Dindust]\n- Precious Metal Refinery | Gold Refinery | Advanced Chemical Company ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fadvchem.com%2F&rut=66b03d2d5b0ca1a09aa59784e0dc4a55dd128a]\n- Advance Chemical Industries - Manufacturer of Hydrochloric Acid ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Fadvance%2Dchemical%2Dindustries%2F&ru]\n- Advancing Chemistry Inc. | Chemical Production \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.advancingchem.com%2F&rut=c601505f2847bf5961e0bb2ffab1]\n- ADVANCE CHEMICAL INDUSTRIES Company Profile | Delhi, Delhi ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.a]\n- Advanced Chemical Industries - Company Profile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Faciegypt.en.ec21.com%2Fcompany_info.html&rut=e0a8d9032685]\n\n**SOCIAL MENTION** (15)\n- Science AMA Series: Beef without cows, sushi without fish, and milk without animals. We're cellular  \u2014 *reddit* [https://reddit.com/r/science/comments/737klj/science_ama_series_beef_without_cow]\n- TIFU by eating a $6,300 piece of Dove chocolate \u2014 *reddit* [https://reddit.com/r/tifu/comments/87tv21/tifu_by_eating_a_6300_piece_of_dove_ch]\n- Science Discussion Series: Batteries seem to power everything today- cell phones, cars, homes, even  \u2014 *reddit* [https://reddit.com/r/science/comments/bj3fpd/science_discussion_series_batteries]\n- How to Justify No Firearms in a Magical World? \u2014 *reddit* [https://reddit.com/r/magicbuilding/comments/1lnwty7/how_to_justify_no_firearms_i]\n- Mitton Cavitation in Industrial Wastewater Treatment \u2013 Real-World Chemical Reduction vs DAF, Electro \u2014 *reddit* [https://reddit.com/r/Wastewater/comments/1sxgo1b/mitton_cavitation_in_industrial]\n- Chemical engineering Vs industrial engineering \u2014 *reddit* [https://reddit.com/r/ChemicalEngineering/comments/1rrq10r/chemical_engineering_v]\n- A toxic pollutant produced by burning fossil fuels can be captured from the exhaust gas stream and c \u2014 *reddit* [https://reddit.com/r/science/comments/e05350/a_toxic_pollutant_produced_by_burni]\n- Aduro Appoints Industry Veteran to Advance Petroleum Applications \u2014 *reddit* [https://reddit.com/r/Aduro/comments/1t68mmt/aduro_appoints_industry_veteran_to_a]\n- OpenAI just dropped their blueprint for the Superintelligence Transition: \"Public Wealth Funds\", 4-D \u2014 *reddit* [https://reddit.com/r/singularity/comments/1se6obs/openai_just_dropped_their_blue]\n- Made this graphic for the new Expedition 3 steps! :) \u2014 *reddit* [https://reddit.com/r/ArcRaiders/comments/1rixsu1/made_this_graphic_for_the_new_e]\n- AITA For Refusing my SIL's vegetarian \"restrictions\" \u2014 *reddit* [https://reddit.com/r/AmItheAsshole/comments/ji6fut/aita_for_refusing_my_sils_veg]\n- All workshop upgrades to help after expedition. Happy raids! \u2014 *reddit* [https://reddit.com/r/ArcRaiders/comments/1rio8lb/all_workshop_upgrades_to_help_a]\n- I\u2019m the lead scientist at DECIEM, creators of The Ordinary, NIOD, and more. Ask Me Anything! \u2014 *reddit* [https://reddit.com/r/IAmA/comments/k0vc1m/im_the_lead_scientist_at_deciem_creato]\n- Deloitte - 2026 Chemical Industry Outlook \u2013 As a prompt for a discussion on the future of the Americ \u2014 *reddit* [https://reddit.com/r/ChemicalEngineering/comments/1p0webv/deloitte_2026_chemical]\n- Resources to learn about real-world chemical engineering work and industry? \u2014 *reddit* [https://reddit.com/r/ChemicalEngineering/comments/1qmgeyc/resources_to_learn_abo]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "ADVANCE CHEMICAL INDUSTRIES",
+    "entity_country": "IN",
+    "entity_address": "E-278-279 A and B, M.I.A., Alwar, Rajasthan, 301030",
+    "entity_tax_id": "08AAKFA0586D1ZL",
+    "key_individuals": [
+      {
+        "name": "Naresh Agarwal",
+        "title": "shareholder"
+      },
+      {
+        "name": "Kushal Agarwal",
+        "title": "shareholder"
+      },
+      {
+        "name": "Abhishek Agarwal",
+        "title": "shareholder"
+      },
+      {
+        "name": "Naresh Dhawan",
+        "title": "auditor"
+      },
+      {
+        "name": "Shivlal Goyal",
+        "title": "Director"
+      },
+      {
+        "name": "Jai Prakash",
+        "title": "Director"
+      },
+      {
+        "name": "Vijender Goel",
+        "title": "Director"
+      },
+      {
+        "name": "Bharat Shah",
+        "title": "Officer"
+      },
+      {
+        "name": "S N Mundra",
+        "title": "Officer"
+      },
+      {
+        "name": "Kailash Goyal",
+        "title": "Director"
+      },
+      {
+        "name": "Surender Goyal",
+        "title": "Director"
+      },
+      {
+        "name": "Kanta Goyal",
+        "title": "Director"
+      },
+      {
+        "name": "Ankit Shivlal Goyal",
+        "title": "Director"
+      },
+      {
+        "name": "Rajesh Arora",
+        "title": "Officer"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 2,
+  "dark_web_sources": 57
+}

@@ -1,0 +1,42 @@
+{
+  "job_id": "1679b45b-a5ff-4eee-a86d-376d62904c90",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "RAMNIKLAL S. GOSALIA AND COMPANY",
+  "country": "IN",
+  "created_at": "2026-05-21T16:57:02.400468+00:00",
+  "updated_at": "2026-05-21T16:58:12.760962+00:00",
+  "blob_path": null,
+  "report_summary": "Second Ramniklal S. Gosalia submission \u2014 identical to 16:53 UTC. File is complete.\n\n**DONE (existing file): Ramniklal S. Gosalia And Company \u2014 Risk: 2 CLEAR \u2014 GSTIN 27AADFR2284G1Z6 Active; 75-year heritage; $100M turnover; Mumbai chemicals/polymers importer-distributor**\n\n`~/crawl/output/ramniklal_gosalia_and_company_IN_20260521.json` \u2014 6.2 KB, valid.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**2 actionable findings** from 4/37 sources via Tor (Netherlands exit node) (14 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 3 |\n| Website scans (URLScan) | 1 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: rsgchemicals.com\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| duckduckgo_tor | 10 | RSG CHEMICALS - A leading chemical & polymers distribution c; RAMNIKLAL S GOSALIA AND COMPANY | Sanctions Finder; Ramniklal S Gosalia & Company (+7 more) |\n| reddit | 3 | After Russia tariff penalty, Trump administration sanctions ; The US has sanctioned eight India-based companies and five I; US Sanctions Six Indian Firms for Trading Iranian Oil Produc |\n| urlscan | 3 | rsgchemicals.com; RSG CHEMICALS \u2013 A leading chemical & polymers distribution c (+1 more) |\n| hudsonrock_cavalier | 1 | rsgchemicals.com |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- rsgchemicals.com \u2014 *hudsonrock_cavalier*\n\n**WEB MENTION** (10)\n- RSG CHEMICALS - A leading chemical & polymers distribution company \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Frsgchemicals.com%2F&rut=52ee83d73ffb2d12a65033517d3b5c7ea]\n- RAMNIKLAL S GOSALIA AND COMPANY | Sanctions Finder \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fsanctions%2Dfinder.com%2Fsanction%2Fd766c9e8%2Df77b%2D453]\n- Ramniklal S Gosalia & Company \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.r]\n- RAMNIKLAL S GOSALIA & CO from Mumbai, India | About Us \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Framniklal%2Ds%2Dgosalia%2Dcompany%2Fa]\n- Sanctioning Entities That Have Traded in Iran's Petroleum \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.state.gov%2Freleases%2F2025%2F07%2Fsanctioning%2Denti]\n- RAMNIKLAL S. GOSALIA & CO. - About US \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Framniklal.lookchem.com%2Fabout.html&rut=8f365ed95ac2f576e]\n- 6 Indian Firms Sanctioned by U.S. Over Trade in \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fnriinternet.com%2FNRIpress.in%2FNews%2F2025%2F6%2DIndian%]\n- Who are the 6 Indian firms sanctioned by the US and what's at stake? \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiatoday.in%2Fbusiness%2Fstory%2F6%2Dindian%2Dfirms]\n- Ramniklal S. Gosalia & Co. in Mumbai, Maharashtra, India - Company Profile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tradeindia.com%2Framniklal%2Ds%2Dgosalia%2Dco%2D12820]\n- Company Profile - Ramniklal S Gosalia And Co - chemdmart.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fchemdmart.com%2Fcompany%2Dprofile%2Framniklal%2Ds%2Dgosal]\n\n**SOCIAL MENTION** (3)\n- After Russia tariff penalty, Trump administration sanctions 6 India-based companies for trading oil  \u2014 *reddit* [https://reddit.com/r/IndiaSpeaks/comments/1mdr44z/after_russia_tariff_penalty_tr]\n- The US has sanctioned eight India-based companies and five Indian nationals as part of its latest Ir \u2014 *reddit* [https://reddit.com/r/anti_fake_news_india/comments/1meby8f/the_us_has_sanctioned]\n- US Sanctions Six Indian Firms for Trading Iranian Oil Products \u2014 *reddit* [https://reddit.com/r/DefenceProfessionals/comments/1me9ddf/us_sanctions_six_indi]\n\n**DOMAIN SCAN SUMMARY** (1)\n- rsgchemicals.com \u2014 *urlscan*\n\n**WEBSITE SCAN** (1)\n- RSG CHEMICALS \u2013 A leading chemical & polymers distribution company \u2014 *urlscan* [https://rsgchemicals.com/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "india: Report file not found on remote VM (india)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "RAMNIKLAL S. GOSALIA AND COMPANY",
+    "entity_trade_names": "RAMNIKLAL S GOSALIA & CO.",
+    "entity_country": "IN",
+    "entity_address": "2nd Floor, Block No-D, Shivsagar Business Premises Co-Op-Soc Ltd, Dr Annie Besant Road, Worli, Mumbai, Maharashtra 400018, India",
+    "entity_website": "https://rsgchemicals.com",
+    "entity_type": "DEALERS AND IMPORTERS OF CHEMICALS, SOLVENTS AND POLYMERS",
+    "entity_industry": "DEALERS AND IMPORTERS OF CHEMICALS, SOLVENTS AND POLYMERS",
+    "entity_tax_id": "27AADFR2284G1Z6",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "copap_products": "CHEMICALS, SOLVENTS AND POLYMERS",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (india)"
+    }
+  },
+  "errors": [
+    "india: Report file not found on remote VM (india)"
+  ],
+  "dark_web_findings": 2,
+  "dark_web_sources": 37
+}

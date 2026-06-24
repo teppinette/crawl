@@ -1,0 +1,34 @@
+{
+  "job_id": "ab6e7319-7632-4f05-994f-96147c239f4b",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "SURESH PAPER PVT. LTD.",
+  "country": "IN",
+  "created_at": "2026-05-21T16:52:06.016455+00:00",
+  "updated_at": "2026-05-21T16:54:13.084137+00:00",
+  "blob_path": "osint-staging/cir/india/suresh_paper_pvt_ltd_IN_20260521.json",
+  "report_summary": "**DONE: Suresh Paper Private Limited, India \u2014 Risk: 2 CLEAR \u2014 37-year Jagatpuri Delhi paper company; CIN U74899DL1988PTC031722; Revenue \u20b924.1 Cr FY25; AGM Sep 30, 2025 current; no charges; Mittal family**\n\n`~/crawl/output/suresh_paper_pvt_ltd_IN_20260521.json` \u2014 5.2 KB, valid, research date 2026-05-21.\n\n\u26a0\ufe0f Admin: Add all 3 directors to subject block \u2014 Yogender Mittal, Poonam Mittal, Ankush Mittal (none were in the original submission).\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 2/37 sources via Tor (Netherlands exit node) (21 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 37 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | What is a business plan?; How do I assess a person for a business partnership?; What is wrong with the culture of architecture? (+12 more) |\n| duckduckgo_tor | 10 | SURESH PAPER PVT. LTD. | A Paper Trading Company; SURESH PAPER PRIVATE LTD - ZaubaCorp; Suresh Paper Pvt Ltd in Chatta Shahji Road, Delhi - Best Pap (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- SURESH PAPER PVT. LTD. | A Paper Trading Company \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.sureshpaper.com%2Fabout&rut=1654adcd8c347205cb6008249]\n- SURESH PAPER PRIVATE LTD - ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2Fcompany%2FSURESH%2DPAPER%2DPRIVATE%2D]\n- Suresh Paper Pvt Ltd in Chatta Shahji Road, Delhi - Best Paper ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.justdial.com%2FDelhi%2FSuresh%2DPaper%2DPvt%2DLtd%2DN]\n- Suresh Paper Private Limited / U74899dl1988ptc031722 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.falconebiz.com%2Fcompany%2FSURESH%2DPAPER%2DPRIVATE%2]\n- SURESH PAPER PRIVATE LTD - Company Profile - Tracxn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Fsuresh%2Dpape]\n- SURESH PAPER PRIVATE LTD Details | Company Profile | Directors Profile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.companydetails.in%2Fcompany%2Fsuresh%2Dpaper%2Dprivat]\n- Suresh Paper Private Ltd Financials | Company Details - Tofler \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tofler.in%2Fsuresh%2Dpaper%2Dprivate%2Dltd%2Fcompany%]\n- Suresh Paper Private Ltd Company Profile - India - EMIS \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FIN%2FSuresh_Pape]\n- SURESH PAPER PRIVATE LTD - The Economic Times \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Feconomictimes.indiatimes.com%2Fcompany%2Fsuresh%2Dpaper%2]\n- SURESH PAPER PVT. LTD. | Import Data | Export Data | Customs Data | NBD ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fen.nbd.ltd%2Ftrader%2Finfo%2F26IN0595038492&rut=1ba7dcae6]\n\n**SOCIAL MENTION** (11)\n- What is a business plan? \u2014 *reddit* [https://reddit.com/r/designstartup/comments/om3lp3/what_is_a_business_plan/]\n- How do I assess a person for a business partnership? \u2014 *reddit* [https://reddit.com/r/designstartup/comments/ogtv1y/how_do_i_assess_a_person_for_]\n- What is wrong with the culture of architecture? \u2014 *reddit* [https://reddit.com/r/AgencyOfArchitecture/comments/ogtsos/what_is_wrong_with_the]\n- You Can Sell a Pvt Ltd Company Even If the Business Failed \u2014 *reddit* [https://reddit.com/r/StartUpIndia/comments/1t7vj69/you_can_sell_a_pvt_ltd_compan]\n- Today I became an Employed Jobless Programmer. \u2014 *reddit* [https://reddit.com/r/ProgrammerHumor/comments/ypbtax/today_i_became_an_employed_]\n- Registered a Pvt Ltd company in full Josh\u2026 now I\u2019m stuck. Need guidance. \u2014 *reddit* [https://reddit.com/r/IndianStockMarket/comments/1t00ysr/registered_a_pvt_ltd_com]\n- Why is Prestige Golden Grove rera against\n\"Aspire Spaces Pvt. Ltd.\" \u2014 *reddit* [https://reddit.com/r/Hyderabad_highrises/comments/1sapa4r/why_is_prestige_golden]\n- Two A-listers, amazing songs\u2026 and still a forgettable film? \u2014 *reddit* [https://reddit.com/r/bollywood/comments/1srra2t/two_alisters_amazing_songs_and_s]\n- My experience at CodeTrade India Pvt Ltd: read this before you join \u2014 *reddit* [https://reddit.com/r/amdavadcompanyreviews/comments/1smul88/my_experience_at_cod]\n- LLP \u2192 Pvt Ltd for fundraising: convert vs dissolve &amp; restart? \u2014 *reddit* [https://reddit.com/r/indianstartups/comments/1qbsk0e/llp_pvt_ltd_for_fundraising]\n- Anyone went back to proprietorship from Pvt Ltd or LLP? \u2014 *reddit* [https://reddit.com/r/IndiaBusiness/comments/1o6cn2w/anyone_went_back_to_propriet]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "SURESH PAPER PVT. LTD.",
+    "entity_country": "IN",
+    "entity_address": "F-24, Gali No. 10, Parwana Road, Jagatpuri, Delhi - 110051, India",
+    "entity_tax_id": "031722",
+    "key_individuals": [],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 37
+}

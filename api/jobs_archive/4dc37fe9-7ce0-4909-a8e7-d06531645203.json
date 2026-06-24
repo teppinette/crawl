@@ -1,0 +1,20 @@
+{
+  "job_id": "4dc37fe9-7ce0-4909-a8e7-d06531645203",
+  "scenario": "dark-web",
+  "status": "completed",
+  "region": "darkweb",
+  "entity_name": "Plaschem Comercio Resinas Termoplasticas Brazil Itajai SC thermoplastic resin",
+  "country": "",
+  "created_at": "2026-05-22T21:55:58.367636+00:00",
+  "updated_at": "2026-05-22T21:56:46.285401+00:00",
+  "blob_path": "osint-staging/dark-web/plaschem_comercio_resinas_termoplasticas_brazil_itajai_sc_thermoplastic_resin_20260522.json",
+  "report_summary": "28 findings from dark web sources",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_name": "Plaschem Comercio Resinas Termoplasticas Brazil Itajai SC thermoplastic resin",
+    "domain": "plaschem.com.br",
+    "country_code": "BR"
+  }
+}

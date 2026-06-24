@@ -1,0 +1,20 @@
+{
+  "job_id": "a1024164-50cc-43ad-b607-13ecd7b4883c",
+  "scenario": "dark-web",
+  "status": "failed",
+  "region": "darkweb",
+  "entity_name": "ATS Synthetic Pvt Ltd Pakistan",
+  "country": "",
+  "created_at": "2026-05-22T17:36:29.708005+00:00",
+  "updated_at": "2026-05-22T17:36:33.856281+00:00",
+  "blob_path": "osint-staging/dark-web/ats_synthetic_pvt_ltd_pakistan_20260522.json",
+  "report_summary": "0 findings from dark web sources",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_name": "ATS Synthetic Pvt Ltd Pakistan",
+    "owners": "Sohail Nisar, Nadeem Nisar, Anjum Nisar, Nisar Elahi",
+    "country_code": "PK"
+  }
+}

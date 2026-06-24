@@ -1,0 +1,62 @@
+{
+  "job_id": "d2b0a8f6-5fd9-41fd-aaac-65a0d43c37ac",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "MARVEL VINYLS LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-21T11:29:47.236754+00:00",
+  "updated_at": "2026-05-21T11:35:51.561943+00:00",
+  "blob_path": "osint-staging/cir/india/marvel_vinyls_limited_IN_20260520.json",
+  "report_summary": "**DONE (updated file): Marvel Vinyls Limited \u2014 Risk: 2 CLEAR \u2014 BSE 531394; Revenue \u20b9236 Cr FY25; Laxman Rawat (CS Feb 2025) confirmed; Amit Kumar not in available databases \u2014 verify; registration \"021085\" noted as alternate reference**\n\n`~/crawl/output/marvel_vinyls_limited_IN_20260520.json` \u2014 12.9 KB, valid, updated.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 0/0 sources via Tor (Netherlands exit node)\n\nNo dark web exposure detected. Entity and owners clean across all 0 sources.\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "MARVEL VINYLS LIMITED",
+    "entity_country": "IN",
+    "entity_address": "84 Industrial Area, Malanpur Distt. Bhind, Madhya Pradesh, 477001",
+    "entity_tax_id": "021085",
+    "key_individuals": [
+      {
+        "name": "Pavan Kumar Chawla"
+      },
+      {
+        "name": "Pankaj Chawla"
+      },
+      {
+        "name": "Ankit Chawla"
+      },
+      {
+        "name": "Priyavadan Chandrashankar Raval"
+      },
+      {
+        "name": "Parmod Chopra"
+      },
+      {
+        "name": "Kirti Bhardwaj"
+      },
+      {
+        "name": "Alok Siddhi Misra"
+      },
+      {
+        "name": "Amit Kumar"
+      },
+      {
+        "name": "Laxman Rawat"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 0
+}

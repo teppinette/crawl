@@ -1,0 +1,62 @@
+{
+  "job_id": "351f8d9e-3761-466d-9e02-68918f832aec",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "MARVEL VINYLS LIMITED",
+  "country": "IN",
+  "created_at": "2026-05-21T11:37:48.606429+00:00",
+  "updated_at": "2026-05-21T11:39:49.885827+00:00",
+  "blob_path": "osint-staging/cir/india/marvel_vinyls_limited_IN_20260520.json",
+  "report_summary": "Third Marvel Vinyls submission \u2014 identical to 11:29 UTC. File is current.\n\n**DONE (existing file): Marvel Vinyls Limited \u2014 Risk: 2 CLEAR \u2014 BSE 531394; Amit Kumar (unconfirmed \u2014 verify); Laxman Rawat (CS confirmed)**\n\n`~/crawl/output/marvel_vinyls_limited_IN_20260520.json` \u2014 12.9 KB, valid, updated.\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 2/57 sources via Tor (Netherlands exit node) (23 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 57 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Disney &amp; Marvel Releasing \"Iron Man\" Edition Vinyl LP Of; Incomplete and Growing List of Participating Subreddits; [USA][H] Pokemon Games, Jungle Green N64, Switch Lite, Modde (+12 more) |\n| duckduckgo_tor | 10 | Marvel Vinyls Limited | LinkedIn; MARVEL VINYLS LIMITED. - Company Profile - Tracxn; Company Overview - MARVEL VINYLS LIMITED (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- Marvel Vinyls Limited | LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fin.linkedin.com%2Fcompany%2Fmarvel%2Dvinyls%2Dlimited&rut]\n- MARVEL VINYLS LIMITED. - Company Profile - Tracxn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Fmarvel%2Dviny]\n- Company Overview - MARVEL VINYLS LIMITED \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fmarvelvinyls.trustpass.alibaba.com%2F&rut=15329a3f3e98484]\n- Marvel Vinyls Ltd. - Service Provider from New Delhi, India | About Us \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.indiamart.com%2Fcompany%2F1733361%2Faboutus.html&rut=]\n- Marvel Vinyls Limited | Delhi - Facebook \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.facebook.com%2Fmarvelvinyls%2F&rut=02b30dc5c9baf8f5b4]\n- MARVEL VINYLS LTD.. Details | Company Profile | Directors Profile ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.companydetails.in%2Fcompany%2Fmarvel%2Dvinyls%2Dltd&r]\n- Marvel Vinyls Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.m]\n- Marvel Vinyls Limited - Company Profile and Products | Metoree \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fus.metoree.com%2Fcompanies%2F194271%2F&rut=6372880507781c]\n- Marvel Vinyls Limited in New Delhi, Delhi, India - Company Profile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tradeindia.com%2Fmarvel%2Dvinyls%2Dlimited%2D28254576]\n- Marvel Vinyls Share Price, Marvel Vinyls Stock Price, Marvel Vinyls Ltd ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.moneycontrol.com%2Findia%2Fstockpricequote%2Fplastics]\n\n**SOCIAL MENTION** (13)\n- Disney &amp; Marvel Releasing \"Iron Man\" Edition Vinyl LP Of 50 Cent's Get Rich Or Die Tryin' Decemb \u2014 *reddit* [https://reddit.com/r/hiphopheads/comments/9pv812/disney_marvel_releasing_iron_ma]\n- Incomplete and Growing List of Participating Subreddits \u2014 *reddit* [https://reddit.com/r/ModCoord/comments/1401qw5/incomplete_and_growing_list_of_pa]\n- [USA][H] Pokemon Games, Jungle Green N64, Switch Lite, Modded &amp; Unmodded Consoles, Sega Nomad, N \u2014 *reddit* [https://reddit.com/r/gameswap/comments/v8kkdz/usah_pokemon_games_jungle_green_n6]\n- Retailers be lying! \u2014 *reddit* [https://reddit.com/r/vinyl/comments/1mwskl2/retailers_be_lying/]\n- [USA] [H] Pok\u00e9mon Games, Switch Consoles, Super Bowling 64, Loose Carts/Disks/Manuals, Guides, Custo \u2014 *reddit* [https://reddit.com/r/gameswap/comments/199twmt/usa_h_pok\u00e9mon_games_switch_consol]\n- Marvelous 3 - \u201cHey! Album\u201d - Orange Vinyl Limited to 1,000 \u2014 *reddit* [https://reddit.com/r/VinylReleases/comments/12ziv3q/marvelous_3_hey_album_orange]\n- [USA][H] Pok\u00e9mon Games, Jungle Green N64, 3DS XL, Modded Consoles &amp; Handhelds, Nintendo/Sony Gam \u2014 *reddit* [https://reddit.com/r/gameswap/comments/vz3bhk/usah_pok\u00e9mon_games_jungle_green_n6]\n- [USA][H] Pok\u00e9mon Games, Pok\u00e9mon XD, Jungle Green N64, 3DS XL, Modded Consoles, Nintendo/Sony Games,  \u2014 *reddit* [https://reddit.com/r/gameswap/comments/ywazba/usah_pok\u00e9mon_games_pok\u00e9mon_xd_jung]\n- [USA-NC] [H] PS Vita, Pok\u00e9mon Games, Switch Tablets, Super Bowling 64, Loose Carts/Disks/Manuals, Gu \u2014 *reddit* [https://reddit.com/r/gameswap/comments/12sfd3z/usanc_h_ps_vita_pok\u00e9mon_games_swi]\n- [USA][H] Xbox Series S, Pok\u00e9mon Games, Jungle Green N64, Modded Consoles, Nintendo/Sony Games, Loose \u2014 *reddit* [https://reddit.com/r/gameswap/comments/znnwcm/usah_xbox_series_s_pok\u00e9mon_games_j]\n- [USA][H] Xbox Series S, Pok\u00e9mon Games, Switch Tablets, Loose Carts/Disks/Manuals, Guides, Custom Con \u2014 *reddit* [https://reddit.com/r/gameswap/comments/10g9y7h/usah_xbox_series_s_pok\u00e9mon_games_]\n- [USA-Seattle] [H] Limited Run PS4/Switch games, printing plates/cards, random games for many systems \u2014 *reddit* [https://reddit.com/r/gameswap/comments/wa1q8x/usaseattle_h_limited_run_ps4switch]\n- Marvel Amazing Fantasy #15 Spider-Man (Illuminated) &amp; The Amazing Spider-Man #50 (Black and Whit \u2014 *reddit* [https://reddit.com/r/Spiderman/comments/1efya44/marvel_amazing_fantasy_15_spider]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "MARVEL VINYLS LIMITED",
+    "entity_country": "IN",
+    "entity_address": "84 Industrial Area, Malanpur Distt. Bhind, Madhya Pradesh, 477001",
+    "entity_tax_id": "021085",
+    "key_individuals": [
+      {
+        "name": "Pavan Kumar Chawla"
+      },
+      {
+        "name": "Pankaj Chawla"
+      },
+      {
+        "name": "Ankit Chawla"
+      },
+      {
+        "name": "Priyavadan Chandrashankar Raval"
+      },
+      {
+        "name": "Parmod Chopra"
+      },
+      {
+        "name": "Kirti Bhardwaj"
+      },
+      {
+        "name": "Alok Siddhi Misra"
+      },
+      {
+        "name": "Amit Kumar"
+      },
+      {
+        "name": "Laxman Rawat"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 57
+}

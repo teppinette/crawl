@@ -1,0 +1,142 @@
+{
+  "job_id": "1d9a7902-348d-4d43-a1c4-5aaebf778912",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "COLGATE-PALMOLIVE (PAKISTAN) LTD.",
+  "country_code": "PK",
+  "created_at": "2026-05-04T14:51:54.812260+00:00",
+  "updated_at": "2026-05-04T14:53:00.969824+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:52:02.045216+00:00",
+      "verified": true,
+      "legal_name": "COLGATE-PALMOLIVE (PAKISTAN) LIMITED",
+      "registration_number": "0005832",
+      "entity_status": "Incorporated",
+      "company_type": null,
+      "cro": "CRO Karachi",
+      "registration_date": "19/07/1977",
+      "fbr": null,
+      "all_matches": null,
+      "source": "SECP eServices (direct gov query)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:52:01.676458+00:00",
+      "found": true,
+      "name": "Colgate-Palmolive",
+      "linkedin_url": "https://www.linkedin.com/company/colgate-palmolive",
+      "industry": "Manufacturing",
+      "company_size": "10,001+ employees",
+      "locations": [
+        "300 Park Ave New York, New York 10022, US",
+        "Main Street Mumbai, Maharashtra 400076, IN",
+        "909 River Rd Piscataway Township, NJ 08854, US",
+        "Beim Strohhause 17 Hamburg, HH 20097, DE",
+        "528 Commissioner St Boksburg, Gauteng 1459, ZA"
+      ],
+      "about": "Make More Smiles. We are Colgate-Palmolive, a caring, innovative growth company that is reimagining a healthier future for all people, their pets and our planet. For over 200 years, we've poured our care into creating a future where everyone has more reasons to smile. CP People develop, produce, distribute and sell essential health & hygiene products and pet nutrition offerings through brands such as Colgate, Palmolive, elmex, Tom\u2019s of Maine, hello, Sorriso, Speed Stick, Softsoap, Irish Spring, ",
+      "followers": 2803629,
+      "employees_on_linkedin": 30688,
+      "organization_type": "Public Company",
+      "website": "https://www.colgatepalmolive.com/",
+      "specialties": "Oral Care, Personal Care, Pet Nutrition, Home Care, Skin Care, Manufacturing, Sales, Marketing, Brand Management, and Supply Chain",
+      "notable_employees": [
+        {
+          "name": "Lisa Edwards",
+          "link": "https://www.linkedin.com/in/lisaedwardssf?trk=org-employees"
+        },
+        {
+          "name": "Alexander Schuchman",
+          "link": "https://www.linkedin.com/in/alexander-schuchman-90152?trk=org-employees"
+        },
+        {
+          "name": "Kevin Jordan-Deen",
+          "link": "https://www.linkedin.com/in/kevinjordandeen?trk=org-employees"
+        },
+        {
+          "name": "CJ (Cees-Jan) Keyzer",
+          "link": "https://nl.linkedin.com/in/cj-keyzer?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T14:53:00.969179+00:00",
+      "risk_level": "HIGH",
+      "total_findings": 60,
+      "sources_searched": 37,
+      "sources_with_results": 2,
+      "by_type": {
+        "web_mention": 10,
+        "breach_record": 50
+      },
+      "key_findings": [
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        },
+        {
+          "source": "duckduckgo_tor",
+          "type": "web_mention",
+          "snippet": ""
+        }
+      ],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "COLGATE-PALMOLIVE (PAKISTAN) LTD.",
+    "country_code": "PK",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

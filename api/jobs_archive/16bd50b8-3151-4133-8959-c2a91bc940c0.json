@@ -1,0 +1,75 @@
+{
+  "job_id": "16bd50b8-3151-4133-8959-c2a91bc940c0",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "THE MATHRUBHUMI PRINTING & PUBLISHING CO. LTD.",
+  "country": "IN",
+  "created_at": "2026-05-21T14:06:20.341791+00:00",
+  "updated_at": "2026-05-21T14:08:02.645271+00:00",
+  "blob_path": null,
+  "report_summary": "Second Mathrubhumi submission \u2014 identical to 14:02 UTC. File is complete.\n\n**DONE (existing file): The Mathrubhumi Printing & Publishing Co. Ltd. \u2014 Risk: 1 CLEAR \u2014 104-year Kerala media institution; CIN U22110KL1922PLC001522; Revenue \u20b9596 Cr FY25; AGM Sep 22, 2025 current; all 12 directors confirmed**\n\n`~/crawl/output/mathrubhumi_printing_publishing_IN_20260521.json` \u2014 10.2 KB, valid.\n---\n\n## DARK WEB SCREENING \u2014 CRITICAL\n**3 actionable findings** from 5/57 sources via Tor (Netherlands exit node) (25 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| World Bank Debarment | 1 |\n| Credential compromise | 1 |\n| Adverse media | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n\n**Key findings:**\n- WORLD BANK DEBARMENT: \n- CREDENTIAL COMPROMISE: media.mathrubhumi.com\n- ADVERSE MEDIA: Maniamkode Krishnamohan Jinachandran - Profile - The Company Check (MANIAMKODE KRISHNAMOHAN JINACHANDRAN)\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | KSP1 likely has an upcoming update in the works &amp; KSP1 a; Iconic Brands from Kerala Across Industries; TIL Joan L. Mitchell, the inventor of the JPEG image format  (+12 more) |\n| duckduckgo_tor | 10 | Mathrubhumi Contacts; MATHRUBHUMI PRINTING AND PUBLISHING CO LTD - ZaubaCorp; Mathrubhumi Printing and Publishing Co Ltd (+7 more) |\n| hudsonrock_cavalier | 1 | media.mathrubhumi.com |\n| adb_sanctions | 1 | debarment_record |\n| duckduckgo_adverse | 1 | Maniamkode Krishnamohan Jinachandran - Profile - The Company |\n\n### All findings detail\n\n**WORLD BANK DEBARMENT** (1)\n-  \u2014 *adb_sanctions* [https://www.adb.org/who-we-are/integrity/sanctions]\n\n**CREDENTIAL COMPROMISE** (1)\n- media.mathrubhumi.com \u2014 *hudsonrock_cavalier*\n\n**ADVERSE MEDIA** (1)\n- Maniamkode Krishnamohan Jinachandran - Profile - The Company Check \u2014 *duckduckgo_adverse* (searched: MANIAMKODE KRISHNAMOHAN JINACHANDRAN) [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fpeople%2Dprofile%2Fmaniamkode%2]\n\n**WEB MENTION** (10)\n- Mathrubhumi Contacts \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fmedia.mathrubhumi.com%2Fstatic%2FContactUs.html&rut=5a5c9]\n- MATHRUBHUMI PRINTING AND PUBLISHING CO LTD - ZaubaCorp \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.zaubacorp.com%2Fcompany%2FMATHRUBHUMI%2DPRINTING%2DAN]\n- Mathrubhumi Printing and Publishing Co Ltd \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.companydetails.in%2Fcompany%2Fmathrubhumi%2Dprinting%]\n- Mathrubhumi Printing AND Publishing CO LTD - The Economic Times \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Feconomictimes.indiatimes.com%2Fcompany%2Fmathrubhumi%2Dpr]\n- The Mathru Bhumi Printing And Publishing Company Limited... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.thecompanycheck.com%2Fcompany%2Fthe%2Dmathru%2Dbhumi%]\n- Mathrubhumi Printing & Publishing Co Ltd - Company Profile and News \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.bloomberg.com%2Fprofile%2Fcompany%2F6589052Z%3AIN&rut]\n- The Mathru Bhumi Printing and Publishing Company Limited \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.tofler.in%2Fthe%2Dmathru%2Dbhumi%2Dprinting%2Dand%2Dp]\n- Mathrubhumi Printing And Publishing Company Ltd \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.justdial.com%2FKozhikode%2FMathrubhumi%2DPrinting%2DA]\n- The Mathru Bhumi Printing and Publishing Company Limited ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.falconebiz.com%2Fcompany%2FMATHRUBHUMI%2DPRINTING%2DA]\n- THE MATHRU BHUMI PRINTING AND PUBLISHING COMPANY LIMITED - Tracxn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Ftracxn.com%2Fd%2Flegal%2Dentities%2Findia%2Fthe%2Dmathru%]\n\n**SOCIAL MENTION** (15)\n- KSP1 likely has an upcoming update in the works &amp; KSP1 and KSP2 are changing publisher; from Pri \u2014 *reddit* [https://reddit.com/r/KerbalSpaceProgram/comments/1tj2wjs/ksp1_likely_has_an_upco]\n- Iconic Brands from Kerala Across Industries \u2014 *reddit* [https://reddit.com/r/donttalkaboutpoland/comments/1iy1sfq/iconic_brands_from_ker]\n- TIL Joan L. Mitchell, the inventor of the JPEG image format studied condensed matter physics (gradua \u2014 *reddit* [https://reddit.com/r/todayilearned/comments/1olnbg5/til_joan_l_mitchell_the_inve]\n- Canada should ban China\u2019s Huawei Technologies Co Ltd from supplying equipment to Canadian 5G network \u2014 *reddit* [https://reddit.com/r/worldnews/comments/ailyqh/canada_should_ban_chinas_huawei_t]\n- Was I a jerk for not sharing my location with my wife \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1skxwe4/was_i_a_jerk_for_not]\n- Nintendo &amp; The Pokemon Company\u2019s new patents are vile. \u2014 *reddit* [https://reddit.com/r/gaming/comments/1ndw6gp/nintendo_the_pokemon_companys_new_p]\n- [GIVEAWAY] 64 Gigabytes of Holiday Cheer! \u2014 *reddit* [https://reddit.com/r/pcmasterrace/comments/1pg7l5y/giveaway_64_gigabytes_of_holi]\n- The moment every author looks forward to. \u2014 *reddit* [https://reddit.com/r/litrpg/comments/1svvxjm/the_moment_every_author_looks_forwa]\n- This is the condition of the National newspaper in India. The Economic Times is owned and published  \u2014 *reddit* [https://reddit.com/r/IndianFocus/comments/1t4f4q2/this_is_the_condition_of_the_n]\n- I [25f] posted a bunch of creepy texts guys have sent me, onto Facebook and Instagram \u2014 *reddit* [https://reddit.com/r/BestofRedditorUpdates/comments/1ohzrj8/i_25f_posted_a_bunch]\n- TikTok's most popular influencer sold his company for $975m... to a sketchy Chinese \"printing\" compa \u2014 *reddit* [https://reddit.com/r/wallstreetbets/comments/1qtig67/tiktoks_most_popular_influe]\n- Mark my words: This is gonna be the biggest flop ever \u2014 *reddit* [https://reddit.com/r/FortNiteBR/comments/1t08wlb/mark_my_words_this_is_gonna_be_]\n- Epstein and Trump: 20 years of sex trafficking and pedophilia \u2014 *reddit* [https://reddit.com/r/NoFilterNews/comments/1m44nzv/epstein_and_trump_20_years_of]\n- Sigh, can these people just jump into the sun already. \u2014 *reddit* [https://reddit.com/r/Gamingcirclejerk/comments/1nr3o7v/sigh_can_these_people_jus]\n- TIL Rolls Royce didn't start selling cars with body work until 1946. Up until then, they only sold t \u2014 *reddit* [https://reddit.com/r/todayilearned/comments/3i702j/til_rolls_royce_didnt_start_s]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": "india: Report file not found on remote VM (india)",
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "THE MATHRUBHUMI PRINTING & PUBLISHING CO. LTD.",
+    "entity_country": "IN",
+    "entity_address": "MATHRUBHUMI BLDGS, K P KESAVA MENON ROAD, CALICUT (KOZHIKODE), Kerala, 673001",
+    "entity_website": "https://media.mathrubhumi.com/static/AboutMathrubhumi.h",
+    "entity_tax_id": "U22110KL1922PLC001522",
+    "key_individuals": [
+      {
+        "name": "MANIAMKODE JINACHANDRAN VIJAYAPADMAN"
+      },
+      {
+        "name": "PARAYARUKANDY VETTATH CHANDRAN"
+      },
+      {
+        "name": "MANIYAMKODE VEERENDRAKUMAR SHREYAMS KUMAR"
+      },
+      {
+        "name": "MANIAMKODE KRISHNAMOHAN JINACHANDRAN"
+      },
+      {
+        "name": "RADHA BHASKARA MENON"
+      },
+      {
+        "name": "PARAYARUKANDY VETTATH HEMALATHA"
+      },
+      {
+        "name": "PARAYARUKANDY VETTATH NIDHISH"
+      },
+      {
+        "name": "MANIYAMKODE SRAYAMSKUMAR MAYURA"
+      },
+      {
+        "name": "MELARKODE RAMAKRISHNA GANESH"
+      },
+      {
+        "name": "DEVIKA MANIYANKODE SREYAMSKUMAR"
+      },
+      {
+        "name": "JAIKISH JAYARAJ"
+      },
+      {
+        "name": "MEGHA VIJAYAPADMAN"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": "Report file not found on remote VM (india)"
+    }
+  },
+  "errors": [
+    "india: Report file not found on remote VM (india)"
+  ],
+  "dark_web_findings": 3,
+  "dark_web_sources": 57
+}

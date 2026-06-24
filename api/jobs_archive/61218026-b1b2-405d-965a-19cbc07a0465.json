@@ -1,0 +1,72 @@
+{
+  "job_id": "61218026-b1b2-405d-965a-19cbc07a0465",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "india",
+  "entity_name": "AARTI DRUGS LTD",
+  "country": "IN",
+  "created_at": "2026-04-30T19:29:35.921988+00:00",
+  "updated_at": "2026-04-30T19:35:58.894911+00:00",
+  "blob_path": "osint-staging/cir/india/aarti_drugs_ltd_IN_20260430.json",
+  "report_summary": "**DONE: Aarti Drugs Limited, India \u2014 Risk: 2 CLEAR \u2014 41-year listed pharma API manufacturer; \u20b92,387 Cr revenue, \u20b9168 Cr PAT, D/E 0.2x; SEBI Administrative Warning (March 2025, procedural, no penalty); routine commercial litigation; no sanctions/PEP**\n\n---\n\n## Research Summary \u2014 Aarti Drugs Limited\n\n`~/crawl/output/aarti_drugs_ltd_IN_20260430.json` | 8 sources | JSON valid\n\n---\n\n### All Workstreams\n\n| WS | Finding | Status |\n|---|---|---|\n| **1A Entity** | CIN L37060MH1984PLC055433 \u00b7 Active 41 years \u00b7 BSE 524348 / NSE AARTIDRUGS \u00b7 Inc. 28 Sep 1984 \u00b7 Revenue \u20b92,387 Cr FY25 \u00b7 1,012 employees \u00b7 Former name: Aarti Drugs Private Limited | \u2705 |\n| **2A Individuals** | 7 current directors confirmed: Prakash Patil (41y), Harshit Savla (38y), Harit Shah (30y), Rashesh Gogri (13y), Uday Patil (25y), Hasmukh Dedhia (1y), Sandeep Joshi (1y) \u00b7 No PEP/SDN hits | \u2705 |\n| **2B Ownership** | Publicly listed \u2014 promoter 16.59%, public 83.42% \u00b7 Full SEBI disclosure \u00b7 Aarti Group (Gogri family) promoters | \u2705 |\n| **3A Sanctions** | **CLEAR** \u2014 No OFAC/UN/EU/UK hits for company or any individual | \u2705 |\n| **4A Litigation** | 5 cases identified. **Customs tariff WP (dismissed Jul 2025)**; ITAT income tax (2017, historical); CESTAT excise (2001-2015, historical). Routine commercial litigation. | \u2705 |\n| **5A Adverse Media** | **2 items:** (1) SEBI Administrative Warning March 6, 2025 \u2014 procedural PIT compliance gap, **no penalty**; (2) SEBI Recovery Release (Nov 2025) against third-party investor in 2015 case \u2014 now closed, Aarti Drugs was victim not respondent | \u2705 |\n| **6 PEP** | **CLEAR** \u2014 all principals are private-sector pharma industry professionals | \u2705 |\n| **7 Trade Risk** | LOW \u2014 standard API/chemical manufacturing; no sanctioned-country exposure; export subject to DCGI/DGFT regulations | \u2705 |\n| **8A Risk** | **2/5 CLEAR** \u2014 Solid, regulated, listed company | \u2705 |\n\n### Financial Snapshot (FY2025 Consolidated)\n\n| Metric | FY25 | FY24 | Trend |\n|---|---|---|---|\n| Revenue | \u20b92,387 Cr | \u20b92,529 Cr | \u2193 \u22125.6% |\n| Operating Margin | 12.2% | 12.7% | \u2193 modest |\n| PAT | \u20b9168 Cr | \u20b9172 Cr | \u2193 \u22122.0% |\n| Net Worth | \u20b91,369 Cr | \u20b91,282 Cr | \u2191 +6.8% |\n| D/E | 0.2\u00d7 | 0.2\u00d7 | Stable |\n| ROCE | 15.2% | 17.6% | \u2193 |\n| ROE | 12.3% | 13.4% | \u2193 |\n| EPS | \u20b918.4 | \u20b918.7 | Stable |\n\n### Key Context on DIN 01186406\nThe subject block listed \"Patil - Director (DIN: 01186406)\" \u2014 confirmed as **Uday Moreshwar Patil**, Whole-Time Director since October 2000. He is distinct from Prakash Moreshwar Patil (MD, DIN 00005618). Both Patils appear to be members of the same founding family, together forming a long-tenured management team.\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**65 findings** from 3/41 sources via Tor (Netherlands exit node)\n\n| Category | Count |\n|----------|-------|\n| Adverse media | 5 |\n| Web mentions (Tor-routed) | 10 |\n\n**Key findings:**\n- ADVERSE MEDIA: Aarti Drugs Share Price, Aarti Drugs Stock Price, Aarti Drugs Ltd ...\n- ADVERSE MEDIA: Aarti Drugs Ltd share price | About Aarti Drugs - Screener\n- ADVERSE MEDIA: Aarti Drugs Ltd Share Price | NSE: ADRG Stock - Investing.com UK\n- ADVERSE MEDIA: Aarti Drugs Share Price - The Financial Express\n- ADVERSE MEDIA: Aarti Drugs Ltd (AARTIDRUGS) Stock, Price, News, Quotes, Forecast ... - MSN\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "AARTI DRUGS LTD",
+    "entity_country": "IN",
+    "entity_address": "PLOT NO 198, MIDC TARAPUR, TAL. PALGHAR, VILLAGE PAMTERMBHI, DIST THANE, Maharashtra 401506",
+    "entity_tax_id": "055433",
+    "key_individuals": [
+      {
+        "name": "Patil",
+        "title": "Director (DIN: 01186406)"
+      },
+      {
+        "name": "PRAKASH MORESHWAR PATIL"
+      },
+      {
+        "name": "HARSHIT MANILAL SAVLA"
+      },
+      {
+        "name": "HARIT PRAGJI SHAH"
+      },
+      {
+        "name": "RASHESH CHANDRAKANT GOGRI"
+      },
+      {
+        "name": "UDAY MORESHWAR PATIL"
+      },
+      {
+        "name": "AJIT ELEDATH VENUGOPALAN"
+      },
+      {
+        "name": "NARENDRA JAGANNATH SALVI"
+      },
+      {
+        "name": "NEHA RAJEN GADA"
+      },
+      {
+        "name": "ANKIT VIKRAM PALEJA"
+      },
+      {
+        "name": "SANDEEP MADHUSUDAN JOSHI"
+      },
+      {
+        "name": "BHASKAR NARAYAN THORAT"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "india": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 65,
+  "dark_web_sources": 41
+}

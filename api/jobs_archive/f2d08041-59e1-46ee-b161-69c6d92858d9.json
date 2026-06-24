@@ -1,0 +1,87 @@
+{
+  "job_id": "f2d08041-59e1-46ee-b161-69c6d92858d9",
+  "scenario": "verify",
+  "status": "completed",
+  "entity_name": "ALCHEMIE FINECHEM PVT LTD",
+  "country_code": "IN",
+  "created_at": "2026-05-04T15:53:20.921253+00:00",
+  "updated_at": "2026-05-04T15:55:22.270572+00:00",
+  "checks": {
+    "registry": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:53:29.210843+00:00",
+      "verified": true,
+      "legal_name": "ALCHEMIE FINECHEM PRIVATE LIMITED",
+      "cin": "U24100MH2021PTC360973",
+      "entity_status": "Active",
+      "company_type": "Private Limited Company",
+      "incorporation_date": "24 May, 2021",
+      "directors": [
+        "Monil Harish Vikam",
+        "Kalpesh Hasmukh Mehta",
+        "Sandeep Gupta"
+      ],
+      "registered_address": "Gala No.127,1st Floor Udyog Kshetra Mulund Goregoan Link Road Mulund West, Mumbai City, Mumbai, Maharashtra, India, 400080",
+      "source": "MCA21 via Tofler.in (Bright Data proxy)"
+    },
+    "linkedin_company": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:53:33.314959+00:00",
+      "found": true,
+      "name": "Alchemie Finechem Private Limited",
+      "linkedin_url": "https://in.linkedin.com/company/alchemie-finechem",
+      "industry": "Chemical Manufacturing",
+      "company_size": "51-200 employees",
+      "locations": [
+        "Embassy Park 247, Tower C, 401, 4th Floor, LBS Marg, Vikhroli (W) Mumbai, Maharashtra 400083, IN"
+      ],
+      "about": "Alchemie Finechem Private Limited (AFPL) was established by the Chairman Emeritus of the Aarti Group, Shri Chandrakant V Gogri in 1975. We manufacture products catering to the perfumery, food color, and dye and pigment industries, among others. Our expertise is in the processes of esterification, alkylation, distillation, condensation, etc. Our manufacturing unit is in Dombivli, Thane (Maharashtra) with an installed production capacity of approximately 22,000 TPA. The large CAPEX plans in the me",
+      "followers": 3985,
+      "employees_on_linkedin": 179,
+      "organization_type": "Privately Held",
+      "website": "https://www.alchemie-finechem.com/",
+      "specialties": null,
+      "notable_employees": [
+        {
+          "name": "Harshat Dave",
+          "link": "https://in.linkedin.com/in/harshat-dave-29a46015?trk=org-employees"
+        },
+        {
+          "name": "Mr. Sameer Telavane",
+          "link": "https://in.linkedin.com/in/mr-sameer-telavane-7946a932?trk=org-employees"
+        },
+        {
+          "name": "Kushan Modi",
+          "link": "https://in.linkedin.com/in/kushan-modi-31484150?trk=org-employees"
+        },
+        {
+          "name": "Umesh Wagh",
+          "link": "https://in.linkedin.com/in/umesh-wagh-32607762?trk=org-employees"
+        }
+      ],
+      "source": "LinkedIn via Bright Data Web Scraper API"
+    },
+    "linkedin_persons": {
+      "status": "skipped"
+    },
+    "dark_web": {
+      "status": "completed",
+      "completed_at": "2026-05-04T15:55:22.269937+00:00",
+      "risk_level": "CLEAN",
+      "total_findings": 0,
+      "sources_searched": 0,
+      "sources_with_results": 0,
+      "by_type": {},
+      "key_findings": [],
+      "source": "Crawl Dark Web Gateway (37 sources via Tor)"
+    }
+  },
+  "seed_data": {
+    "entity_name": "ALCHEMIE FINECHEM PVT LTD",
+    "country_code": "IN",
+    "persons": [],
+    "domain": "",
+    "ntn": "",
+    "cin": ""
+  }
+}

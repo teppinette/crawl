@@ -1,0 +1,193 @@
+{
+  "job_id": "6b363f7f-7bd6-4ae9-b824-5b97ce296b3a",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "americas",
+  "entity_name": "DOREL JUVENILE CHILE S.A.",
+  "country": "CL",
+  "created_at": "2026-05-22T18:34:09.516589+00:00",
+  "updated_at": "2026-05-22T18:39:51.644885+00:00",
+  "blob_path": "osint-staging/cir/americas/dorel_juvenile_chile_sa_CL_20260522.json",
+  "report_summary": "Done.\n\n---\n\n**DONE: Dorel Juvenile Chile S.A., CL \u2014 Risk: 2 CLEAR \u2014 RUT 76171658-1; INFANTI brand (Latin American market leader); dorel.cl confirmed; all 39 individuals screened \u2014 ALL CLEAR; Jeffrey Schwartz + Rafael Camarano + Nicol\u00e1s Dur\u00e1n cross-confirmed from Dorel Brasil/US research**\n\n---\n\n## \ud83d\udccb CIR: DOREL JUVENILE CHILE S.A.\n`dorel_juvenile_chile_sa_CL_20260522.json` \u2192 `osint-staging/americas/`\n\n| Field | Value |\n|---|---|\n| **RUT** | **76171658-1** |\n| Website | dorel.cl \u2192 **doreljuvenile.cl** |\n| Primary brand | **INFANTI** \u2014 Latin American market leader |\n| Parent | Dorel Industries Inc. (Canada \u2014 Schwartz family) |\n| **All 39 individuals** | \u2705 Screened \u2014 **ALL CLEAR** |\n\n**Cross-confirmed directors** from today's Dorel batch:\n- **Jeffrey Schwartz** \u2014 Dorel co-founder (also in Dorel Brasil + Dorel Juvenile US)\n- **Rafael Anjos Camarano** \u2014 also Director in Companhia Dorel Brasil\n- **Nicol\u00e1s Dur\u00e1n \u00c1lvarez** \u2014 also Director in Companhia Dorel Brasil\n\n**Brazilian management overlap** (Ribeiro Do Lago, Przewodowski Coimbra, Girata Luizon) confirms integrated Dorel Latin American structure.\n\n**Open items:** Chilean RES extract (LOW) \u00b7 Confirm SIGMA TRADING concern from Dorel Brasil brief does not affect this entity (LOW)\n---\n\n## DARK WEB SCREENING \u2014 HIGH\n**3 actionable findings** from 5/57 sources via Tor (Netherlands exit node) (28 informational excluded)\n\n| Category | Count |\n|----------|-------|\n| Credential compromise | 1 |\n| Adverse media | 1 |\n| Web mentions (Tor-routed) | 10 |\n| Social media mentions | 15 |\n| Website scans (URLScan) | 3 |\n\n**Key findings:**\n- CREDENTIAL COMPROMISE: dorel.cl\n- ADVERSE MEDIA: FERNANDO JAMARNE BANDUC - Cargos en empresas (Fernando Jamarne Banduc)\n\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | Stacey\u2019s oral health.; Respond with a picture of your rap celeb crush from childhoo; Last night I posted a juvenile Many-colored Rush Tyrant. Her (+12 more) |\n| duckduckgo_tor | 10 | Dorel Juvenile - Nuestra Misi\u00f3n es acompa\u00f1ar y apoyar en \u00e9st; Dorel Juvenile Chile S.A.; Dorel Juvenile Chile S.A. \u2014 Automotriz en Santiago (+7 more) |\n| urlscan | 4 | dorel.cl; firewall.itxperts.cl; Seguimiento INTEX (+1 more) |\n| hudsonrock_cavalier | 1 | dorel.cl |\n| duckduckgo_adverse | 1 | FERNANDO JAMARNE BANDUC - Cargos en empresas |\n\n### All findings detail\n\n**CREDENTIAL COMPROMISE** (1)\n- dorel.cl \u2014 *hudsonrock_cavalier*\n\n**ADVERSE MEDIA** (1)\n- FERNANDO JAMARNE BANDUC - Cargos en empresas \u2014 *duckduckgo_adverse* (searched: Fernando Jamarne Banduc) [/l/?uddg=https%3A%2F%2Fwww.empresia.es%2Fpersona%2Fjamarne%2Dbanduc%2Dfernando%2]\n\n**WEB MENTION** (10)\n- Dorel Juvenile - Nuestra Misi\u00f3n es acompa\u00f1ar y apoyar en \u00e9ste, el ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fdoreljuvenile.cl%2F&rut=ead0b6d8acf556b670cc815a0c28db855]\n- Dorel Juvenile Chile S.A. \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.d]\n- Dorel Juvenile Chile S.A. \u2014 Automotriz en Santiago \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.encuentraempresas.cl%2Fempresa%2Ddorel%2Djuvenile%2Dc]\n- Dorel Juvenile - LinkedIn Chile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fcl.linkedin.com%2Fcompany%2Fdorel%2Djuvenile&rut=5a15d914]\n- DOREL JUVENILE CHILE S.A. con RUT 76171658-1 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.portalchile.org%2Fempresa%2Fdorel%2Djuvenile%2Dchile%]\n- About | Dorel Juvenile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fdoreljuvenile.com%2Fes%2Des%2Fabout&rut=85ca875e41f8cf4ee]\n- Dorel Juvenile - Facebook \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.facebook.com%2Fdoreljuvenileofficial%2F&rut=4cf282b57]\n- Dorel Juvenile Chile S.A. \u00b7 Av. El Retiro 9800 Parque ... - OpenCorpData \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fopencorpdata.com%2Flei%2F2549006XPTW3VWQZFW35&rut=b83f392]\n- Portal de empleos Dorel Juvenile \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fdoreljuvenile.trabajando.cl%2F&rut=05fdd91c4f671c30ec4817]\n- Dorel Juvenile Chile, Santiago, CL | Informaci\u00f3n de la empresa \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.infobel.com%2Fes%2Fchile%2Fdorel_juvenile_chile%2Fsan]\n\n**SOCIAL MENTION** (15)\n- Stacey\u2019s oral health. \u2014 *reddit* [https://reddit.com/r/RHOP/comments/1oke4jw/staceys_oral_health/]\n- Respond with a picture of your rap celeb crush from childhood or current (saw this in the Rnb sub so \u2014 *reddit* [https://reddit.com/r/HipHopImages/comments/1s6jtvd/respond_with_a_picture_of_you]\n- Last night I posted a juvenile Many-colored Rush Tyrant. Here is an adult one from 1 or 2 months ago \u2014 *reddit* [https://reddit.com/r/birding/comments/z7xspb/last_night_i_posted_a_juvenile_many]\n- The Gypsy Hill Killings, the murders of 5 women in 1976, were unsolved for 40 years. In 2013, DNA li \u2014 *reddit* [https://reddit.com/r/UnresolvedMysteries/comments/rqfblf/the_gypsy_hill_killings]\n- FFRF just shut down a judge\u2019s attempt to push Christianity on detained kids \u2014 *reddit* [https://reddit.com/r/atheism/comments/1sgxi3y/ffrf_just_shut_down_a_judges_attem]\n- The WWE Cruiserweight Classic: All 32 Participants, Matches &amp; More Information - Pick Your Cruis \u2014 *reddit* [https://reddit.com/r/SquaredCircle/comments/4qj0g8/the_wwe_cruiserweight_classic]\n- Temnodontosaurus, apex ichthyosaurs of the Jurassic seas \u2014 *reddit* [https://reddit.com/r/Naturewasmetal/comments/1mx89qa/temnodontosaurus_apex_ichth]\n- Things to do in Houston the weekend of May 21st - 25th \u2014 *reddit* [https://reddit.com/r/houston/comments/1tk0ec6/things_to_do_in_houston_the_weeken]\n- # To Bro Or Not To Bro \ud83c\udfad : 1500 Pickups, Over Dozen Countries, Success Rate 35.5% Recorded \u2014 *reddit* [https://reddit.com/r/AsianMasculinity/comments/1ruqpdj/to_bro_or_not_to_bro_1500]\n- SCP-2678: 'A City All of Blood' \u2014 *reddit* [https://reddit.com/r/SCPDeclassified/comments/1o8typd/scp2678_a_city_all_of_bloo]\n- Blubber bawl \u2014 *reddit* [https://reddit.com/r/chile/comments/1seplxc/blubber_bawl/]\n- Moby Dick (Artist: Maskottitanium) \u2014 *reddit* [https://reddit.com/r/Monsterverse/comments/1pi4wz8/moby_dick_artist_maskottitani]\n- \ud83d\udcbc 44 new consultancies with the United Nations - Tue 05 May \u2014 *reddit* [https://reddit.com/r/UNjobs/comments/1t4ptn6/44_new_consultancies_with_the_unite]\n- Why I think names for mecha (as a class) are often generic \u2014 *reddit* [https://reddit.com/r/Mecha/comments/1t2e4cx/why_i_think_names_for_mecha_as_a_cla]\n- Latest News Snapshot \u2014 Issue No. 17 \u2014 *reddit* [https://reddit.com/r/EuropeNewsNoComments/comments/1s1cb3o/latest_news_snapshot_]\n\n**DOMAIN SCAN SUMMARY** (1)\n- dorel.cl \u2014 *urlscan*\n\n**WEBSITE SCAN** (3)\n- firewall.itxperts.cl \u2014 *urlscan* [https://firewall.itxperts.cl/login?redir=%2F]\n- Seguimiento INTEX \u2014 *urlscan* [https://seguimiento.intex-chile.cl/]\n- Safety 1st Chile \u2014 *urlscan* [https://safety1st.cl/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "DOREL JUVENILE CHILE S.A.",
+    "entity_trade_names": "DOREL JUVENILE CHILE S.A.",
+    "entity_country": "CL",
+    "entity_website": "https://dorel.cl",
+    "entity_industry": "Buyer under Credit Insurance Policy \u2014 retail/wholesale of strollers, car seats, and other baby produ",
+    "entity_tax_id": "76171658-1",
+    "key_individuals": [
+      {
+        "name": "Fernando Jamarne Banduc",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "Juan Pablo Sitnisky Grunwald",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "Jose Antonio Cuadra Montero",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "Victor Rodolfo Torres Valenzuela",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "Jeffrey Schwartz",
+        "title": "Director"
+      },
+      {
+        "name": "Christian Sitnisky Grunwald",
+        "title": "Director"
+      },
+      {
+        "name": "Rafael Camarano",
+        "title": "Director"
+      },
+      {
+        "name": "Jos\u00e9 Antonio Cuadra Montero",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "Claudio Ortiz Romo",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "Patricio Eduardo B\u00e1ez Guerra",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "Margarita Carolina Noem\u00ed Vald\u00e9s Chazeau",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "Maria Jose Saldias Araya",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "Karina Andrea Nahuelfil Matus",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "Vicente Gu\u00ed\u00f1ez Reyes",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "Ivan Torrealba Acevedo",
+        "title": "Officer"
+      },
+      {
+        "name": "Luis Maldonado Croquevielle",
+        "title": "Officer"
+      },
+      {
+        "name": "Rafael Anjos Camarano",
+        "title": "Director"
+      },
+      {
+        "name": "Hans Christian Kokott Gundermann",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "Claudio Andr\u00e9s Ortiz Romo",
+        "title": "Officer"
+      },
+      {
+        "name": "Alexander Cahn Sauerteig",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "Lenny Margarita M\u00e1rquez L\u00f3pez",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "Felipe Cousino Prieto",
+        "title": "Director"
+      },
+      {
+        "name": "Gustavo Luiz Przewodowski Coimbra",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "Christian Mois\u00e9s Sitnisky Grunwald",
+        "title": "Director"
+      },
+      {
+        "name": "Nicol\u00e1s Dur\u00e1n \u00c1lvarez",
+        "title": "Director"
+      },
+      {
+        "name": "Yu Ling Lay He",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "Nicol\u00e1s Dur\u00e1n Alvarez",
+        "title": "Director"
+      },
+      {
+        "name": "Juan Pablo Roberto Sitnisky Grunwald",
+        "title": "Authorized Signer"
+      },
+      {
+        "name": "Carolina Vald\u00e9s",
+        "title": "Officer"
+      },
+      {
+        "name": "Vanesa Mendoza",
+        "title": "Officer"
+      },
+      {
+        "name": "Mario Tobar",
+        "title": "Officer"
+      },
+      {
+        "name": "Ver\u00f3nica Torrealba Costabal",
+        "title": "Notario P\u00fablico Suplente (authorizing notary)"
+      },
+      {
+        "name": "Hans Kokott Gundermann",
+        "title": "Authorized Attorney for Deed Execution"
+      },
+      {
+        "name": "Laura Tressler Iglesias",
+        "title": "Authorized Attorney for Deed Execution"
+      },
+      {
+        "name": "Mar\u00eda Jos\u00e9 Sald\u00edas Araya",
+        "title": "Apoderado Clase B / Clase C.dos / Clase D / Clase E"
+      },
+      {
+        "name": "Alejandra Arancibia Chaigneau",
+        "title": "Authorized to formalize deed"
+      },
+      {
+        "name": "Luciano Ribeiro Do Lago",
+        "title": "Apoderado Clase B / Clase C.uno / Clase D / Clase E / Clase F"
+      },
+      {
+        "name": "Maria Jos\u00e9 Saldias Araya",
+        "title": "Apoderado Clase B / Clase C.dos / Clase D / Clase E"
+      },
+      {
+        "name": "Bruna Franciany Girata Luizon",
+        "title": "Apoderado Clase C.dos"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "americas": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 3,
+  "dark_web_sources": 57
+}

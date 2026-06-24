@@ -1,0 +1,47 @@
+{
+  "job_id": "10871622-3df9-49d4-adcf-f4cbed2637a2",
+  "scenario": "cir",
+  "status": "completed",
+  "region": "europe",
+  "entity_name": "A.S.C. HEMIK D.O.O.",
+  "country": "RS",
+  "created_at": "2026-05-22T18:07:51.482019+00:00",
+  "updated_at": "2026-05-22T18:14:27.783346+00:00",
+  "blob_path": "osint-staging/cir/europe/asc_hemik_doo_RS_20260522.json",
+  "report_summary": "**DONE: A.S.C. HEMIK D.O.O., RS \u2014 Risk: 3 MONITOR \u2014 All sanctions clean (OFAC, OS, UN SC); Serbian D.O.O., MB 17317962, Belgrade (Zvezdara); chemical trading company; three key individuals (Le\u010di\u0107 family + Vujanovi\u0107) all clean; \u26a0\ufe0f APR registry inaccessible (eID migration May 15, 2026); Serbia-Russia non-alignment flag; product portfolio unconfirmed.**\n\n---\n\n## \ud83d\udccb Research Summary\n\n| Field | Finding |\n|---|---|\n| **Legal form** | D.O.O. (Dru\u0161tvo sa ograni\u010denom odgovorno\u0161\u0107u) \u2014 Serbian LLC |\n| **MB (registration)** | **17317962** |\n| **Address** | Vojvode Brane 57, Beograd (Zvezdara), 11050 |\n| **Sector** | Chemical trading/distribution (inferred from \"Hemik\" = chemist) |\n| **Address type** | Residential/commercial \u2014 consistent with trading office, not manufacturing |\n\n---\n\n### \ud83d\udee1\ufe0f All 8 Workstreams\n\n**1A \u2013 Registry:** \u26a0\ufe0f **APR MIGRATED TO eID.gov.rs AUTHENTICATION (May 15, 2026 \u2014 7 days ago)** \u2014 all automated search URLs now return errors. MB 17317962 confirmed from COPAP brief but not independently verified from APR. Registry extract must be requested directly from counterparty.\n\n**2A \u2013 Ownership:** Probable family business: Jovan Le\u010di\u0107 + Tatjana Karanovi\u0107 Le\u010di\u0107 (wife) + Jovan Vujanovi\u0107. Ownership percentages unconfirmed \u2014 APR extract required.\n\n**3A \u2013 Sanctions: ALL CLEAN** \u2014 OFAC, OpenSanctions (1.27M records), UN SC: NO HITS on entity, Le\u010di\u0107, Karanovi\u0107 Le\u010di\u0107, Vujanovi\u0107.\n\n**4A \u2013 Adverse Media:** None found. Search severely limited (Brave API + APR both unavailable). Manual Serbian media search required.\n\n**5A \u2013 Litigation:** Not accessed (portal.sud.rs requires registration).\n\n**6A \u2013 PEP:** All three individuals \u2014 **NOT PEPs.** No government connections.\n\n**7A \u2013 Trade Risk:** \ud83c\uddf7\ud83c\uddf8 **Serbia non-alignment with EU/US Russia sanctions** \u2014 standard elevated-vigilance flag. Serbia legally trades with Russian entities. EDD questionnaire for Russia/Belarus exposure required. Product list unknown \u2014 must confirm before contracting.\n\n**8A \u2013 Priority Actions:**\n1. APR registry extract (certified Izvod) \u2014 cannot verify legal status without it\n2. Ownership percentages for all 3 individuals\n3. Serbia-Russia EDD questionnaire\n4. Product list + HS codes\n5. Serbian media search when Brave API restored\n---\n\n## DARK WEB SCREENING \u2014 CLEAN\n**0 actionable findings** from 2/49 sources via Tor (Netherlands exit node) (25 informational excluded)\n\nNo dark web exposure detected. Entity and owners clean across all 49 sources.\n### Sources with findings\n\n| Source | Findings | Details |\n|--------|----------|---------|\n| reddit | 15 | I build unnecessary products and tOdAY i MAdE a dEViCE sO Yo; LuIgI dIeS iN gO-cArT aCcIdEnT; aLl mY fRiEnDs sAy mY cAt iS uGlY wHaT dO y'AlL tHiNk (+12 more) |\n| duckduckgo_tor | 10 | A.S.C. Hemik D.O.O. Beograd (Serbia); A.S.C. HEMIK DOO BEOGRAD Company Profile | Nova Pazova | Com; A.S.C. HEMIK doo - LinkedIn (+7 more) |\n\n### All findings detail\n\n**WEB MENTION** (10)\n- A.S.C. Hemik D.O.O. Beograd (Serbia) \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.emis.com%2Fphp%2Fcompany%2Dprofile%2FYU%2FASC_Hemik_D]\n- A.S.C. HEMIK DOO BEOGRAD Company Profile | Nova Pazova | Competitors ... \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.dnb.com%2Fbusiness%2Ddirectory%2Fcompany%2Dprofiles.a]\n- A.S.C. HEMIK doo - LinkedIn \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Frs.linkedin.com%2Fcompany%2Fa%2Ds%2Dc%2Dhemik%2Ddoo&rut=f]\n- A.S.C. HEMIK DOO BEOGRAD - CompanyWall Business \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.companywall.rs%2Ffirma%2Fasc%2Dhemik%2Ddoo%2Dbeograd%]\n- PDFA.S.C. Hemik d.o.o. \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fplasticker.de%2Fdocs%2Frecybase%2F19580_1673518964.pdf&ru]\n- A.S.C. Hemik - Crunchbase Company Profile & Funding \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.crunchbase.com%2Forganization%2Fa%2Ds%2Dc%2Dhemik&rut]\n- A.s.c. Hemik, Tadeu\u0161a Ko\u0161\u0107u\u0161ka, 86/22 - rs.kompass.com \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Frs.kompass.com%2Fc%2Fa%2Ds%2Dc%2Dhemik%2Frs0064675%2F&rut]\n- A.S.C. Hemik Doo Beograd - National Company | \u5168\u7403\u516c\u53f8\u6570\u636e\u96c6\u5f00\u653e\u5e73\u53f0 \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fdatabasesets.com%2Fnational%2Dcompany%2Fid%2F153038500&ru]\n- A.S.C. Hemik doo , Yugoslavia , Rubber & Plastics - Company List \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fwww.listcompany.org%2FA_S_C_Hemik_Doo_Info.html&rut=9ffda]\n- A.S.C. HEMIK DOO BEOGRAD - Companies - IndexBox Platform \u2014 *duckduckgo_tor* [/l/?uddg=https%3A%2F%2Fapp.indexbox.io%2Fcompanies%2Fprofile%2F737310%2F&rut=a64]\n\n**SOCIAL MENTION** (15)\n- I build unnecessary products and tOdAY i MAdE a dEViCE sO YoU cAn tyPe LIkE thIS. \u2014 *reddit* [https://reddit.com/r/funny/comments/xp3572/i_build_unnecessary_products_and_toda]\n- LuIgI dIeS iN gO-cArT aCcIdEnT \u2014 *reddit* [https://reddit.com/r/PeopleFuckingDying/comments/116pb81/luigi_dies_in_gocart_ac]\n- aLl mY fRiEnDs sAy mY cAt iS uGlY wHaT dO y'AlL tHiNk \u2014 *reddit* [https://reddit.com/r/cats/comments/rg4j0y/all_my_friends_say_my_cat_is_ugly_what]\n- PoOR fuCkinG cAT iS LUrED to tHe BeD aNd DisMemBerEd iNtO PieCeS, LiVe \u2014 *reddit* [https://reddit.com/r/PeopleFuckingDying/comments/1im6e08/poor_fucking_cat_is_lur]\n- cHrIsTiAnS iN aMeRiCa ArE sO oPpReSsEd AnD pErSeCuTeD... \u2014 *reddit* [https://reddit.com/r/PoliticalHumor/comments/1pgdo35/christians_in_america_are_s]\n- ShE cAn Do NoThInG bUt WaTcH aS hEr ArM gEtS rIpPeD oFf! \u2014 *reddit* [https://reddit.com/r/PeopleFuckingDying/comments/12m4vkp/she_can_do_nothing_but_]\n- cRuEl mAn cRuShEd hEaD oF a sLeEpiNg dOg uSiNg a gIaNt hAmMeR \u2014 *reddit* [https://reddit.com/r/PeopleFuckingDying/comments/9b6nf5/cruel_man_crushed_head_o]\n- iS NoW a gOoD TiME tO diScUsS gUn cONtRoL \u2014 *reddit* [https://reddit.com/r/GunMemes/comments/1nf1r5i/is_now_a_good_time_to_discuss_gun]\n- OfFiCeR sHoOtS iNtO a CrOwD oF cHiLdReN, hItTiNg ThReE \u2014 *reddit* [https://reddit.com/r/PeopleFuckingDying/comments/emeuve/officer_shoots_into_a_cr]\n- I a m s o p r o u d o f t h i s c o m m u n i t y \u2014 *reddit* [https://reddit.com/r/PewdiepieSubmissions/comments/absmin/i_a_m_s_o_p_r_o_u_d_o_]\n- bUsInEsS mUrDeRs cOmPeTitiOn aNd dIsPLAyS CoRpsE aS wArniNg tO oThErs \u2014 *reddit* [https://reddit.com/r/PeopleFuckingDying/comments/yjojzh/business_murders_competi]\n- STEroiD aBuSE LeADs tO cHiLD\u2019s StARvaTiOn \u2014 *reddit* [https://reddit.com/r/PeopleFuckingDying/comments/bkzn0p/steroid_abuse_leads_to_c]\n- pOor kItTen dOeS cOcAINe aNd lOsES gRAsP oN reALiTY \u2014 *reddit* [https://reddit.com/r/PeopleFuckingDying/comments/euskzi/poor_kitten_does_cocaine]\n- \u201cbUt He OnLy WaNtS tO dEpOrT cRiMiNaLs!\u201d He could just claim anyone he deports is a criminal and the \u2014 *reddit* [https://reddit.com/r/PoliticalCompassMemes/comments/1k0o70s/but_he_only_wants_to]\n- \u0f3c \u3064 \u25d5_\u25d5 \u0f3d\u3064 S P A C E D O U T \u0f3c \u3064 \u25d5_\u25d5 \u0f3d\u3064 \u2014 *reddit* [https://reddit.com/r/battlestations/comments/c3s69o/\u3064_\u3064_s_p_a_c_e_d_o_u_t_\u3064_\u3064/]\n\n*Full dark web data in blob: `dark_web_screening` + `dark_web_intelligence`*\n\n---",
+  "error": null,
+  "retry_count": 0,
+  "review": null,
+  "seed_data": {
+    "entity_legal_name": "A.S.C. HEMIK D.O.O.",
+    "entity_trade_names": "A.S.C. Hemik doo",
+    "entity_country": "RS",
+    "entity_address": "Vojvode Brane 57, Beograd (Zvezdara), 11050, Central Serbia",
+    "entity_type": "private",
+    "entity_industry": "private",
+    "entity_tax_id": "17317962",
+    "key_individuals": [
+      {
+        "name": "Jovan Le\u010di\u0107"
+      },
+      {
+        "name": "Tatjana Karanovi\u0107 Le\u010di\u0107"
+      },
+      {
+        "name": "Jovan Vujanovi\u0107"
+      }
+    ],
+    "known_affiliates": [],
+    "known_suppliers": [],
+    "copap_relationship": "Unknown",
+    "priority": "standard"
+  },
+  "region_status": {
+    "europe": {
+      "status": "completed",
+      "error": null
+    }
+  },
+  "dark_web_findings": 0,
+  "dark_web_sources": 49
+}
