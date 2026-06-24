@@ -404,22 +404,31 @@ class CountryRegRequest(BaseModel):
 
 @router.post("/sources/country_registry/lookup")
 async def country_registry_lookup(req: CountryRegRequest, country: str):
-    """Loopback to /api/v1/verify with the given country_code. Source attribution
-    captured in extracted.validation_source. Returns source_id="<cc>_registry"
-    keyed to the per-country sources_catalog entry."""
+    """Loopback to /api/v1/verify with the given country_code + cross-check
+    against OpenCorporates as a secondary source (Flavor B). Returns:
+
+    {
+      "primary":    {<gov registry record>, source_id="<cc>_registry"},
+      "aggregator": {<OpenCorporates record>, source_id="opencorporates"}   # only if OC token is set + OC returns data
+    }
+
+    The collector agent persists BOTH blocks as separate evidence rows with
+    distinct source_ids — banker auditors can compare gov vs aggregator
+    record per field.
+    """
     cc = (country or "").upper().strip()
     if len(cc) != 2:
         raise HTTPException(status_code=400, detail="country must be ISO-2 code")
+
+    # PRIMARY: gov registry via /verify loopback
     payload = {"entity_name": req.entity_name, "country_code": cc}
     if req.registration_number:
-        # The /verify dispatcher reads multiple aliases — reg_number is the
-        # canonical generic one (CIN for IN, USCC for CN, company_number for GB).
         payload["reg_number"] = req.registration_number
         payload["company_number"] = req.registration_number
         payload["cin"] = req.registration_number
     out = _loopback_verify(payload)
     vs = out.get("validation_source") or {}
-    return {
+    primary_block = {
         "source_id": f"{cc.lower()}_registry",
         "source_url": vs.get("primary_url") or vs.get("url")
                       or f"https://crawl-verify-gateway/{cc.lower()}",
@@ -437,6 +446,62 @@ async def country_registry_lookup(req: CountryRegRequest, country: str):
         "directors": out.get("directors") or out.get("partners") or [],
         "validation_source": vs,
         "note": out.get("note"),
+    }
+
+    # AGGREGATOR (Flavor B): always cross-check OpenCorporates. Independent of
+    # primary success — we want the dual-source comparison for audit. ~250ms
+    # added latency per call. Returns None when OC has no record or token
+    # missing; agent should skip the persist in that case.
+    aggregator_block = None
+    try:
+        oc_key = get_secret("opencorporates-token") or ""
+        if oc_key:
+            oc_url = "https://api.opencorporates.com/v0.4/companies/search"
+            oc_params = {
+                "q": req.registration_number or req.entity_name,
+                "jurisdiction_code": cc.lower(),
+                "api_token": oc_key,
+                "per_page": 3,
+            }
+            oc_r = requests.get(oc_url, params=oc_params,
+                                headers={"User-Agent": _UA, "Accept": "application/json"},
+                                timeout=15)
+            if oc_r.status_code == 200:
+                oc_data = oc_r.json()
+                companies = (((oc_data.get("results") or {}).get("companies")) or [])
+                if companies:
+                    best = (companies[0] or {}).get("company") or {}
+                    aggregator_block = {
+                        "source_id": "opencorporates",
+                        "source_url": best.get("opencorporates_url")
+                                      or f"https://opencorporates.com/companies/{cc.lower()}",
+                        "fetched_at": _now_iso(),
+                        "found": True,
+                        "legal_name": best.get("name"),
+                        "status": best.get("current_status"),
+                        "registration_number": best.get("company_number"),
+                        "registration_date": best.get("incorporation_date"),
+                        "company_type": best.get("company_type"),
+                        "registered_address": (best.get("registered_address_in_full")
+                                               or (best.get("registered_address") or {}).get("locality")),
+                        "jurisdiction": (best.get("jurisdiction_code") or cc).upper(),
+                        "all_matches_count": len(companies),
+                        "validation_source": {
+                            "primary": "OpenCorporates (paid API, cross-check tier)",
+                            "primary_url": best.get("opencorporates_url"),
+                            "confidence": "low",
+                            "tier": "COMMERCIAL_AGGREGATOR",
+                            "note": "Aggregator — useful for cross-checking gov registry data, not primary-tier source",
+                        },
+                    }
+    except Exception as e:
+        log.warning("OpenCorporates cross-check failed for %s/%s: %s",
+                    cc, req.entity_name[:30], e)
+        # aggregator_block stays None — primary still returns
+
+    return {
+        "primary": primary_block,
+        "aggregator": aggregator_block,
     }
 
 
