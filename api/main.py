@@ -3330,45 +3330,60 @@ async def verify_entity(
     loop = asyncio.get_event_loop()
 
     # --------------- PAKISTAN ---------------
+    # 2026-06-25 cutover: SECP NameSearch now runs on crawl-verify via
+    # Multilogin PK sticky residential (verify_pk.secp_verify). The
+    # legacy Gulf-VM + Bright Data path (_secp_query_via_ssh below) used
+    # `country-ae` exit which SECP refused (TLS RST → silent timeouts).
+    # That function is left in source for reference but no longer called.
     if country_code == "PK":
-        secp_fut = loop.run_in_executor(_ssh_pool, _secp_query_via_ssh, entity_name)
+        # Run SECP (crawl-verify Multilogin) and FBR ATL (if NTN supplied)
+        # in parallel.
+        secp_fut = loop.run_in_executor(
+            _ssh_pool, _verify_vm_call,
+            {"entity_name": entity_name, "country_code": "PK"},
+        )
         fbr_fut = loop.run_in_executor(
-            _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "PK", "ntn": ntn}
+            _ssh_pool, _verify_vm_call,
+            {"entity_name": entity_name, "country_code": "PK", "ntn": ntn},
         ) if ntn else None
 
         secp = await secp_fut
         fbr = (await fbr_fut) if fbr_fut else None
 
-        regs = secp.get("results", [])
-        verified = secp.get("found", False)
-        r = regs[0] if regs else {}
-
+        verified = bool(secp.get("verified"))
         now = datetime.now(timezone.utc).isoformat()
         resp = {
-            "entity_name": entity_name, "country_code": "PK", "verified": verified,
-            "legal_name": r.get("legal_name"),
-            "registration_number": r.get("registration_number"),
-            "status": r.get("status"), "company_type": r.get("company_type"),
-            "cro": r.get("cro"), "registration_date": r.get("registration_date"),
-            "form_ab_filed_upto": r.get("form_ab_filed_upto"),
+            "entity_name": entity_name, "country_code": "PK",
+            "verified": verified,
+            "legal_name": secp.get("legal_name"),
+            "registration_number": secp.get("registration_number"),
+            "status": secp.get("status"),
+            "company_type": secp.get("company_type"),
+            "cro": secp.get("cro"),
+            "registration_date": secp.get("registration_date"),
+            "form_ab_filed_upto": secp.get("form_ab_filed_upto"),
+            "mandatory_filing": secp.get("mandatory_filing"),
+            "name_match": secp.get("name_match"),
+            "rejected_candidate": secp.get("rejected_candidate"),
+            "tried_variants": secp.get("tried_variants"),
+            "all_matches": secp.get("all_matches") if (secp.get("total_matches") or 0) > 1 else None,
             "fbr": fbr,
-            "all_matches": regs if len(regs) > 1 else None,
-            "validation_source": {
+            "validation_source": secp.get("validation_source") or {
                 "registry": "Securities and Exchange Commission of Pakistan (SECP)",
                 "url": "https://eservices.secp.gov.pk/eServices/NameSearch.jsp",
-                "method": "Direct POST to SECP ControllerServlet via Gulf VM (SSH)",
+                "transport": "Multilogin (PK sticky residential)",
                 "verified_at": now,
             },
+            "note": secp.get("note"),
             "timestamp": now,
         }
-        if verified:
-            resp["summary"] = (
-                f"{r['legal_name']} — SECP #{r['registration_number']} — "
-                f"{r.get('company_type') or r['status']} — {r['cro']} — Reg: {r['registration_date']}")
-        else:
-            resp["summary"] = f"No SECP registration found for '{entity_name}'"
-            if secp.get("error"):
-                resp["error"] = secp["error"]
+        resp["summary"] = (
+            secp.get("summary")
+            or (f"No SECP registration found for '{entity_name}'"
+                if not verified else None)
+        )
+        if secp.get("error"):
+            resp["error"] = secp["error"]
         return _persist_verify(resp)
 
     # --------------- INDIA ---------------
