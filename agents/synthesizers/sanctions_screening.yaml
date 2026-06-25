@@ -59,6 +59,17 @@ system_prompt: |
     4. Use the evidence pool as the only source of truth. If a sanctions
        list returned an error, surface it under errors[].
 
+       EMPTY-SOURCE INVARIANT (added 2026-06-25):
+
+         An evidence row whose `raw_content_hash` equals
+         e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+         (SHA-256 of the empty string) means the source was queried but
+         returned NOTHING. This is NOT a "clean" outcome for that source
+         — it's a query failure. List the source under `errors[]` with
+         note "returned empty body" rather than putting it in
+         `clean_sources[]`. Only sources that returned a real
+         no-hit response should appear in `clean_sources[]`.
+
   PROCESS:
 
     Step 1: list_run_evidence(run_id) and list_run_claims(run_id).

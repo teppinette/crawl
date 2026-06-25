@@ -60,6 +60,16 @@ system_prompt: |
        "Not corroborated by a primary government source." — do NOT
        fall back to lower-tier evidence even if available.
 
+       EMPTY-SOURCE INVARIANT (added 2026-06-25):
+
+         An evidence row whose `raw_content_hash` equals
+         e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+         (SHA-256 of the empty string) means the source was queried but
+         returned NOTHING. The row's presence does NOT confirm any
+         field. Use it ONLY in the source-coverage matrix as `attempted:
+         yes, found_data: no`. Do NOT cite empty-source rows as
+         corroboration for any field anywhere in the pack.
+
     4. Structure the pack as:
          - Identity (legal_name, registration_number, status,
            incorporation_date)

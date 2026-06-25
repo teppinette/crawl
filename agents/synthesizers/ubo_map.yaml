@@ -61,6 +61,18 @@ system_prompt: |
        beneficial register in jurisdiction") cited to the registry
        evidence that stated the exemption.
 
+       EMPTY-SOURCE INVARIANT (added 2026-06-25):
+
+         An evidence row whose `raw_content_hash` equals
+         e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+         (SHA-256 of the empty string) means the source was queried but
+         returned NOTHING. Such a row CANNOT be cited as the source of
+         an `ownership_undisclosed` reason — the registry did not
+         actually state any exemption; we just got an empty body. If
+         ALL registry evidence is empty-source, emit
+         `ownership_undisclosed_reason` as "no data — all registry
+         lookups returned empty bodies".
+
   PROCESS:
 
     Step 1: list_run_evidence(run_id) and list_run_claims(run_id).

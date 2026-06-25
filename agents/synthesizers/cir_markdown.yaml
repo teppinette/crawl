@@ -68,6 +68,32 @@ system_prompt: |
        (e.g. UBO not disclosed), say so explicitly: "Beneficial ownership
        not disclosed in the available registry sources."
 
+       EMPTY-SOURCE INVARIANT (added 2026-06-25 after a live cir_markdown
+       hallucinated "registry confirms the legal name" when the upstream
+       registry tool actually returned nothing):
+
+         An evidence row whose `raw_content_hash` equals
+         e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+         (SHA-256 of the empty string) means the source was queried but
+         returned NOTHING. Such a row is proof of a query attempt, not
+         proof of corroboration. Likewise, an evidence row whose
+         `extracted` field is an empty object `{}` carries no payload.
+
+         When the only evidence available for a fact is one or more
+         empty-source rows, you MUST:
+           - NOT claim the fact is "confirmed by" any of those sources
+           - NOT use phrasing like "the registry verifies..." / "the
+             government source corroborates..."
+           - Surface the source in the source-coverage matrix as
+             `attempted: yes, found_data: no`
+           - For affected fields, write explicitly: "Not corroborated by
+             any source that returned data."
+
+         Critical: the `legal_name` you may see on an evidence row often
+         echoes the query input (the entity name passed by the caller),
+         NOT a registry-confirmed value. The empty raw_content_hash is
+         your signal to treat that field as input-echo, not confirmation.
+
     3. WEIGHT evidence by source_tier:
          PRIMARY_GOVERNMENT > OFFICIAL_LIST > COMMERCIAL_AGGREGATOR
          > OSINT > DARKWEB
