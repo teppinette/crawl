@@ -3052,6 +3052,81 @@ def _verify_cache_put(key: str, resp: dict):
     _VERIFY_CACHE[key] = (time.time(), clean)
 
 
+# Countries where the bespoke verify path has well-known structural
+# coverage gaps (free-zone, SAE, small Ltd Sti, small SARLs, etc.).
+# When the primary path returns verified=False AND the country is in
+# this set, we fall back to Deep Lookup to recover at least the
+# founding year + headquarters as enrichment-tier data. The verified
+# flag stays False — Deep Lookup is not a government source. The
+# response carries an `enrichment_fallback` block with explicit
+# source attribution.
+_VERIFY_ENRICH_FALLBACK_COUNTRIES = {"AE", "MA", "EG", "TR"}
+
+
+async def _deep_lookup_founding_fallback(entity_name: str,
+                                          country_code: str) -> dict | None:
+    """Deep Lookup enrichment for countries with no usable free-tier
+    registry for the long tail (free-zone AE, SAE EG, small TR Ltd Sti,
+    small MA SARLs). Returns a structured `enrichment_fallback` block
+    or None if Deep Lookup is disabled / errors out / returns no profile.
+
+    Cap: 120s (Deep Lookup's preview polling budget is 40 cycles × 3s).
+    Cold-cache calls regularly take 60-120s for BD to fill the
+    enrichment fields (founded / HQ / industry). Failures are swallowed
+    — verify returns its original verified=False unchanged.
+    """
+    if not entity_name or not country_code:
+        return None
+    log.info("Deep Lookup fallback firing for %s/%s", entity_name, country_code)
+    try:
+        dl = await asyncio.wait_for(
+            enrichment._query_deep_lookup(entity_name, country_code),
+            timeout=120,
+        )
+    except (asyncio.TimeoutError, Exception) as e:
+        log.warning("Deep Lookup fallback for %s/%s failed: %s",
+                    entity_name, country_code, str(e)[:200])
+        return None
+    if dl.get("status") != "ok" or not dl.get("profile"):
+        log.info("Deep Lookup fallback for %s/%s: no profile (status=%s)",
+                 entity_name, country_code, dl.get("status"))
+        return None
+    log.info("Deep Lookup fallback for %s/%s: profile found", entity_name, country_code)
+
+    p = dl["profile"] or {}
+    # Extract a 4-digit year from the `founded` field (Deep Lookup
+    # returns various formats: "1995", "Founded 1995", "1995-03-12", ...)
+    founded_raw = p.get("founded")
+    founding_year = None
+    if founded_raw:
+        m = re.search(r"\b(\d{4})\b", str(founded_raw))
+        if m and 1800 <= int(m.group(1)) <= 2100:
+            founding_year = int(m.group(1))
+
+    return {
+        "founding_year": founding_year,
+        "founded_raw": founded_raw,
+        "legal_name_match": p.get("name"),
+        "headquarters": p.get("headquarters"),
+        "industry": p.get("industry"),
+        "website": p.get("website"),
+        "ceo": p.get("ceo"),
+        "employee_count": p.get("employee_count"),
+        "revenue": p.get("revenue"),
+        "citations": (dl.get("citations") or [])[:5],
+        "source": "Bright Data Deep Lookup",
+        "source_url": "https://brightdata.com/products/deep-lookup",
+        "tier": "ENRICHMENT_AGGREGATOR",
+        "note": (
+            f"Bespoke {country_code} verify path returned no match "
+            f"(known structural gap for free-zone / small Ltd / SAE / "
+            f"SARL entities). Founding year recovered via Deep Lookup "
+            f"enrichment — not a primary government source. "
+            f"verified flag remains False."
+        ),
+    }
+
+
 @app.post("/api/v1/lookup")
 async def lookup_entity(
     request: Request,
@@ -3487,17 +3562,25 @@ async def verify_entity(
             _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "TR", "vkn": vkn}
         )
         now = datetime.now(timezone.utc).isoformat()
-        return _persist_verify({
+        verified = result.get("found", False)
+        resp = {
             "entity_name": entity_name, "country_code": "TR",
-            "verified": result.get("found", False),
+            "verified": verified,
             "legal_name": result.get("legal_name"),
             "vkn": result.get("vkn"),
             "tax_office": result.get("tax_office"),
             "status": result.get("status"),
             "validation_source": result.get("validation_source"),
             "timestamp": now,
-            "summary": result.get("legal_name", f"VKN {vkn}") if result.get("found") else f"VKN {vkn} not verified",
-        })
+            "summary": result.get("legal_name", f"VKN {vkn}") if verified else f"VKN {vkn} not verified",
+        }
+        if not verified:
+            fb = await _deep_lookup_founding_fallback(entity_name, "TR")
+            if fb:
+                resp["enrichment_fallback"] = fb
+                if fb.get("founding_year") and not resp.get("founding_year"):
+                    resp["founding_year"] = fb["founding_year"]
+        return _persist_verify(resp)
 
     # --------------- UAE ---------------
     if country_code == "AE":
@@ -3522,6 +3605,12 @@ async def verify_entity(
              f"TRN {result.get('trn', 'N/A')} — {result.get('status', '?')}")
             if result.get("verified", result.get("found"))
             else f"{entity_name} — no match via TRN/GLEIF/OC for AE")
+        if not out.get("verified"):
+            fb = await _deep_lookup_founding_fallback(entity_name, "AE")
+            if fb:
+                out["enrichment_fallback"] = fb
+                if fb.get("founding_year") and not out.get("founding_year"):
+                    out["founding_year"] = fb["founding_year"]
         return _persist_verify(out)
 
     # --------------- CHINA ---------------
@@ -4482,9 +4571,10 @@ async def verify_entity(
             _ssh_pool, _verify_vm_call, {"entity_name": entity_name, "country_code": "EG", "commercial_reg": commercial_reg}
         )
         now = datetime.now(timezone.utc).isoformat()
-        return _persist_verify({
+        verified = result.get("found", False)
+        resp = {
             "entity_name": entity_name, "country_code": "EG",
-            "verified": result.get("found", False),
+            "verified": verified,
             "legal_name": result.get("entity_name") or result.get("legal_name"),
             "commercial_reg": result.get("commercial_reg"),
             "lei": result.get("lei"),
@@ -4495,8 +4585,15 @@ async def verify_entity(
             "summary": (
                 f"{result.get('entity_name', entity_name)} — "
                 f"LEI {result.get('lei', 'N/A')} — {result.get('status', 'Unknown')}"
-            ) if result.get("found") else f"{entity_name} not found in GLEIF (EG)",
-        })
+            ) if verified else f"{entity_name} not found in GLEIF (EG)",
+        }
+        if not verified:
+            fb = await _deep_lookup_founding_fallback(entity_name, "EG")
+            if fb:
+                resp["enrichment_fallback"] = fb
+                if fb.get("founding_year") and not resp.get("founding_year"):
+                    resp["founding_year"] = fb["founding_year"]
+        return _persist_verify(resp)
 
     # --------------- MOROCCO (GLEIF + OC) ---------------
     if country_code == "MA":
@@ -4518,6 +4615,12 @@ async def verify_entity(
              f"LEI {result.get('lei', 'N/A')} — {result.get('status', 'Unknown')}")
             if result.get("verified", result.get("found"))
             else f"{entity_name} not found in GLEIF (MA)")
+        if not out.get("verified"):
+            fb = await _deep_lookup_founding_fallback(entity_name, "MA")
+            if fb:
+                out["enrichment_fallback"] = fb
+                if fb.get("founding_year") and not out.get("founding_year"):
+                    out["founding_year"] = fb["founding_year"]
         return _persist_verify(out)
 
     # --------------- SPAIN (VIES) ---------------
