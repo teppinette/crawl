@@ -3171,6 +3171,225 @@ async def lookup_entity(
     return await verify_entity(_StubReq(), _key=_key)
 
 
+# ---------------------------------------------------------------------------
+# Bulk verify — fan-out wrapper around /api/v1/verify for throughput.
+# ---------------------------------------------------------------------------
+# Bulk job state is file-backed so it survives across the 4 uvicorn workers
+# (in-memory dicts would be per-worker, so a poll could 404 on a different
+# worker than the submit). Same JOBS_DIR pattern as the legacy CIR jobs.
+BULK_JOBS_DIR = JOBS_DIR / "bulk"
+BULK_JOBS_DIR.mkdir(parents=True, exist_ok=True)
+_BULK_FILE_LOCK = threading.Lock()
+_BULK_JOB_TTL_SECONDS = 24 * 3600
+
+
+def _bulk_job_path(job_id: str) -> Path:
+    return BULK_JOBS_DIR / f"{job_id}.json"
+
+
+def _bulk_jobs_reap():
+    """Remove bulk job files older than the TTL. Called opportunistically on
+    each new submission to keep the directory bounded."""
+    cutoff = time.time() - _BULK_JOB_TTL_SECONDS
+    try:
+        for p in BULK_JOBS_DIR.glob("*.json"):
+            if p.stat().st_mtime < cutoff:
+                p.unlink(missing_ok=True)
+    except Exception:
+        pass
+
+
+def _bulk_read(job_id: str) -> dict | None:
+    p = _bulk_job_path(job_id)
+    if not p.exists():
+        return None
+    with _BULK_FILE_LOCK:
+        try:
+            with open(p) as f:
+                return json.load(f)
+        except Exception:
+            return None
+
+
+def _bulk_write(job_id: str, job: dict):
+    p = _bulk_job_path(job_id)
+    with _BULK_FILE_LOCK:
+        # Atomic-ish: write to tmp then rename
+        tmp = p.with_suffix(".json.tmp")
+        with open(tmp, "w") as f:
+            json.dump(job, f, default=str)
+        tmp.replace(p)
+
+
+def _bulk_append_result(job_id: str, result: dict, is_error: bool):
+    """Re-read, append, write back. Locked so concurrent worker appends
+    don't race-clobber. The file is small (one bulk job, <500 entries
+    at ~2KB each = ~1MB worst case), so re-read overhead is negligible
+    next to the verify call latency."""
+    with _BULK_FILE_LOCK:
+        p = _bulk_job_path(job_id)
+        if not p.exists():
+            return
+        with open(p) as f:
+            job = json.load(f)
+        job["completed"] = (job.get("completed") or 0) + 1
+        if is_error:
+            job["error_count"] = (job.get("error_count") or 0) + 1
+        job.setdefault("results", []).append(result)
+        if job["completed"] < job["total"]:
+            job["status"] = "partial"
+        tmp = p.with_suffix(".json.tmp")
+        with open(tmp, "w") as f:
+            json.dump(job, f, default=str)
+        tmp.replace(p)
+
+
+async def _bulk_verify_one(entity: dict, _key: str) -> dict:
+    """Run a single verify_entity call with a stubbed Request, returning
+    the JSONable response body. Swallows exceptions into an error block so
+    one bad entity doesn't fail the whole bulk job."""
+    correlation_id = entity.get("correlation_id")
+    body = {k: v for k, v in entity.items() if k != "correlation_id"}
+
+    class _StubReq:
+        async def json(self):
+            return body
+
+    try:
+        resp = await verify_entity(_StubReq(), _key=_key)
+        # FastAPI handlers return Response or JSONResponse; extract dict
+        if hasattr(resp, "body"):
+            payload = json.loads(resp.body)
+        elif isinstance(resp, dict):
+            payload = resp
+        else:
+            payload = {"_unexpected_response_type": str(type(resp))}
+    except HTTPException as e:
+        payload = {"error": e.detail, "http_status": e.status_code,
+                   "verified": False}
+    except Exception as e:
+        log.exception("bulk verify entity failed: %s", entity.get("entity_name"))
+        payload = {"error": str(e)[:300], "verified": False}
+
+    return {
+        "correlation_id": correlation_id,
+        "country_code": entity.get("country_code"),
+        "entity_name": entity.get("entity_name"),
+        "verify_response": payload,
+    }
+
+
+async def _bulk_verify_run(job_id: str, entities: list[dict],
+                            concurrency: int, _key: str):
+    """Background fan-out: gather verify_entity results with bounded
+    concurrency, updating the bulk job file as each completes."""
+    sem = asyncio.Semaphore(max(1, min(concurrency, 30)))
+
+    async def _bounded(ent):
+        async with sem:
+            r = await _bulk_verify_one(ent, _key)
+            is_err = bool((r.get("verify_response") or {}).get("error"))
+            _bulk_append_result(job_id, r, is_err)
+            return r
+
+    try:
+        await asyncio.gather(*[_bounded(e) for e in entities],
+                              return_exceptions=False)
+        # Final transition
+        job = _bulk_read(job_id)
+        if job is not None:
+            job["status"] = "complete"
+            job["completed_at"] = datetime.now(timezone.utc).isoformat()
+            _bulk_write(job_id, job)
+    except Exception as e:
+        log.exception("bulk job %s failed", job_id)
+        job = _bulk_read(job_id)
+        if job is not None:
+            job["status"] = "failed"
+            job["error"] = str(e)[:300]
+            _bulk_write(job_id, job)
+
+
+class _BulkEntity(BaseModel):
+    correlation_id: Optional[str] = Field(None, max_length=128)
+    country_code: str = Field(..., min_length=2, max_length=2)
+    entity_name: Optional[str] = Field(None, max_length=500)
+    # Country-specific aliases — same set as /lookup
+    reg_number: Optional[str] = Field(None, max_length=128)
+    cin: Optional[str] = Field(None, max_length=128)
+    uscc: Optional[str] = Field(None, max_length=128)
+    cuit: Optional[str] = Field(None, max_length=128)
+    cnpj: Optional[str] = Field(None, max_length=128)
+    cik: Optional[str] = Field(None, max_length=128)
+    trn: Optional[str] = Field(None, max_length=128)
+    ntn: Optional[str] = Field(None, max_length=128)
+    vkn: Optional[str] = Field(None, max_length=128)
+    uen: Optional[str] = Field(None, max_length=128)
+    brn: Optional[str] = Field(None, max_length=128)
+    nocache: Optional[bool] = False
+
+
+class _BulkVerifyRequest(BaseModel):
+    entities: list[_BulkEntity] = Field(..., min_length=1, max_length=500)
+    options: Optional[dict] = Field(default_factory=dict)
+
+
+@app.post("/api/v1/verify/bulk")
+async def verify_bulk(req: _BulkVerifyRequest,
+                       _key: str = Depends(verify_api_key)):
+    """Bulk-submit a batch of verify requests. Fan out internally up to 10
+    in parallel (or `options.concurrency` if specified, max 30). Returns
+    a bulk_job_id immediately; poll GET /api/v1/verify/bulk/{id}.
+
+    Use this when calling /api/v1/verify in a tight loop (e.g. Onboarding
+    iterating over a 160-entity batch) — submitting via bulk avoids
+    client-side throttling and lets the gateway pipeline ssh pools +
+    Multilogin sessions optimally."""
+    _bulk_jobs_reap()
+
+    concurrency = int((req.options or {}).get("concurrency") or 10)
+    job_id = str(uuid.uuid4())
+    entities = [e.model_dump() for e in req.entities]
+
+    _bulk_write(job_id, {
+        "bulk_job_id": job_id,
+        "status": "pending",
+        "total": len(entities),
+        "completed": 0,
+        "error_count": 0,
+        "results": [],
+        "created_at": datetime.now(timezone.utc).isoformat(),
+    })
+
+    # Fire-and-poll. Background task drives the fan-out + status updates.
+    asyncio.create_task(_bulk_verify_run(job_id, entities, concurrency, _key))
+
+    return {
+        "bulk_job_id": job_id,
+        "status": "pending",
+        "total": len(entities),
+        "next_steps": {
+            "poll": f"/api/v1/verify/bulk/{job_id}",
+            "expected_completion_seconds": int(len(entities) * 15 / concurrency),
+        },
+    }
+
+
+@app.get("/api/v1/verify/bulk/{bulk_job_id}")
+async def verify_bulk_status(bulk_job_id: str,
+                              _key: str = Depends(verify_api_key)):
+    """Poll a bulk verify job. Returns current status + every completed
+    result so far (idempotent — same content if polled twice)."""
+    job = _bulk_read(bulk_job_id)
+    if job is None:
+        raise HTTPException(
+            status_code=404,
+            detail=f"bulk_job_id {bulk_job_id} not found "
+                   f"(expired after 24h or never created)",
+        )
+    return job
+
+
 @app.post("/api/v1/verify")
 async def verify_entity(
     request: Request,
