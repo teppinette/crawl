@@ -46,13 +46,10 @@ TEAMS_WEBHOOK = get_secret("teams-webhook-url")
 
 SSH_KEY = os.path.expanduser("~/.ssh/crawldevvm_key.pem")
 
-VMS = {
-    "americas": {"ip": "172.206.2.41", "user": "copapadmin"},
-    "europe":   {"ip": "172.189.56.218", "user": "copapadmin"},
-    "gulf":     {"ip": "20.233.46.58", "user": "copadmin"},
-    "china":    {"ip": "184.0.0.4", "user": "copapadmin"},
-    "india":    {"ip": "20.193.150.43", "user": "copapadmin"},
-}
+# 2026-06-26 — Regional VMs deallocated as part of COPAPCrawl→COPAP AI
+# consolidation. VMS map kept (empty) so functions that iterate over it
+# become silent no-ops; report still renders cleanly with 0/0 regions.
+VMS = {}
 
 # API keys — loaded from Azure Key Vault (managed identity)
 ANTHROPIC_ADMIN_KEY = get_secret("anthropic-admin-key")
