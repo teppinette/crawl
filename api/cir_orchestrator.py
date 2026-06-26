@@ -123,16 +123,59 @@ async def _orchestrate(run_id: str, country_code: str, entity_name: str,
         f"parameter."
         + (f" Registration number: {registration_id}" if registration_id else "")
     )
+
+    # PHASE 1b: darkweb_collector runs in parallel with the country collector.
+    # OSINT screening is best-effort — failures get logged but do not kill the
+    # run. Country-collector failure still kills the run.
+    darkweb_id = _load_agent_id("darkweb_collector")
+    instr_darkweb = (
+        f"Screen entity_name='{entity_name}' country='{cc}' for run_id='{run_id}'. "
+        f"Run exactly one darkweb_scan with depth='heavy' and persist one evidence "
+        f"row tagged source_id='darkweb_screen'. evidence_add and collector_complete "
+        f"BOTH require run_id='{run_id}' as the path parameter."
+    )
+
+    async def _run_country():
+        local_client = _agents_client()
+        return await loop.run_in_executor(
+            None, _run_agent_sync, local_client, collector_id, instr_collect, 300,
+        )
+
+    async def _run_darkweb():
+        if not darkweb_id:
+            log.warning("orchestrator: darkweb_collector not deployed, skipping")
+            return ("SKIPPED", "no deployed darkweb_collector")
+        local_client = _agents_client()
+        return await loop.run_in_executor(
+            None, _run_agent_sync, local_client, darkweb_id, instr_darkweb, 300,
+        )
+
     try:
-        status, err = await loop.run_in_executor(None, _run_agent_sync, client, collector_id, instr_collect, 300)
+        country_res, darkweb_res = await asyncio.gather(
+            _run_country(), _run_darkweb(), return_exceptions=True,
+        )
     except Exception as e:
-        log.exception("orchestrator: collector exception")
-        evidence_db.update_run_status(run_id, "failed", error=f"collector exception: {e}")
+        log.exception("orchestrator: phase-1 gather exception")
+        evidence_db.update_run_status(run_id, "failed", error=f"phase-1 exception: {e}")
         return
+
+    if isinstance(country_res, Exception):
+        log.exception("orchestrator: country collector exception")
+        evidence_db.update_run_status(run_id, "failed",
+                                      error=f"collector exception: {country_res}")
+        return
+    status, err = country_res
     if not status.endswith("COMPLETED"):
         evidence_db.update_run_status(run_id, "failed",
                                       error=f"collector {status}: {err or ''}")
         return
+
+    if isinstance(darkweb_res, Exception):
+        log.warning("orchestrator: darkweb collector exception: %s", darkweb_res)
+    else:
+        dw_status, dw_err = darkweb_res
+        if not dw_status.endswith("COMPLETED") and dw_status != "SKIPPED":
+            log.warning("orchestrator: darkweb collector %s: %s", dw_status, dw_err or "")
 
     # PHASE 2: claim extractor
     extractor_id = _load_agent_id("claim_extractor")
