@@ -2469,6 +2469,47 @@ async def health():
     }
 
 
+@app.get("/api/v1/debug/pg-ping")
+async def debug_pg_ping(host: str):
+    """Probe PG reachability + auth from the container. Pass ?host=fqdn."""
+    import socket, time
+    t0 = time.time()
+    try:
+        ip = socket.gethostbyname(host)
+    except Exception as e:
+        return {"ok": False, "stage": "dns", "host": host, "error": str(e)[:200]}
+    t1 = time.time()
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock.settimeout(5)
+    try:
+        sock.connect((ip, 5432))
+        sock.close()
+    except Exception as e:
+        return {"ok": False, "stage": "tcp", "host": host, "ip": ip,
+                "dns_ms": int((t1-t0)*1000), "error": str(e)[:200]}
+    t2 = time.time()
+    try:
+        import psycopg2
+        from keyvault import get_secret
+        pw = get_secret("db-password")
+        conn = psycopg2.connect(host=host, port=5432, dbname="postgres",
+                                user="crawladmin", password=pw,
+                                sslmode="require", connect_timeout=10)
+        cur = conn.cursor()
+        cur.execute("SELECT version();")
+        ver = cur.fetchone()[0][:80]
+        cur.close()
+        conn.close()
+        return {"ok": True, "host": host, "ip": ip,
+                "dns_ms": int((t1-t0)*1000),
+                "tcp_ms": int((t2-t1)*1000),
+                "auth_ms": int((time.time()-t2)*1000),
+                "version": ver}
+    except Exception as e:
+        return {"ok": False, "stage": "auth", "host": host, "ip": ip,
+                "error": str(e)[:300]}
+
+
 @app.get("/api/v1/debug/darkweb-ping")
 async def debug_darkweb_ping():
     """One-shot reachability probe from this container to crawl-darkweb VM."""
