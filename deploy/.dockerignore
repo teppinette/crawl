@@ -1,0 +1,51 @@
+# Build context excludes — keep image lean + avoid baking state into it
+
+# Runtime state — comes from Azure Files mount at runtime
+api/jobs/
+api/jobs_archive/
+api/output/
+output/
+raw_responses/
+data/
+logs/
+
+# Local-only / scratch
+*.pyc
+__pycache__/
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Editor / OS noise
+.vscode/
+.idea/
+.DS_Store
+*.swp
+
+# Build artifacts (we're not the build host)
+.venv/
+venv/
+node_modules/
+dist/
+build/
+
+# Don't bake CLAUDE.md or memory into the image
+CLAUDE.md*
+.claude/
+
+# Don't bake any SSH key or cert from the host
+**/*.pem
+**/*.key
+**/known_hosts
+.ssh/
+
+# Old gateway service unit etc.
+api/cir-api.service
+api/openapi.json
+
+# Plugin source that runs on regional VMs only (deprecated)
+plugins/
+
+# Service skeleton dirs
+services/
