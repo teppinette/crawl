@@ -114,9 +114,25 @@ SAS_TOKEN_PATH = Path(os.path.expanduser("~/crawl/config/blob_sas_token"))
 _BLOB_SAS_TOKEN = get_secret("blob-sas-token") or (
     SAS_TOKEN_PATH.read_text().strip() if SAS_TOKEN_PATH.exists() else ""
 )
-LOCAL_OUTPUT_DIR = Path(os.path.expanduser("~/crawl/output"))
+# Container-friendly: env-override → module-relative default.
+# - On crawldevvm (where api/ is at /home/copapadmin/crawl/api/),
+#   this resolves to /home/copapadmin/crawl/output and
+#   /home/copapadmin/crawl/api/jobs — same as the original hardcoded
+#   paths, no behavioural change for the VM gateway.
+# - In the Container App (api/ is at /app/api/), it resolves to
+#   /app/output and /app/api/jobs which the Dockerfile pre-creates +
+#   chowns to the non-root runtime user.
+# - Either can be overridden via CRAWL_OUTPUT_DIR / CRAWL_JOBS_DIR
+#   env vars (used when an Azure Files mount points elsewhere).
+LOCAL_OUTPUT_DIR = Path(
+    os.environ.get("CRAWL_OUTPUT_DIR")
+    or str(Path(__file__).resolve().parent.parent / "output")
+)
 LOCAL_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-JOBS_DIR = Path("/home/copapadmin/crawl/api/jobs")
+JOBS_DIR = Path(
+    os.environ.get("CRAWL_JOBS_DIR")
+    or str(Path(__file__).resolve().parent / "jobs")
+)
 JOBS_DIR.mkdir(parents=True, exist_ok=True)
 
 # Thread pool for blocking SSH work — keeps the async event loop free
