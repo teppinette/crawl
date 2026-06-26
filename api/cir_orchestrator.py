@@ -58,10 +58,18 @@ def _load_agent_id(agent_name: str) -> Optional[str]:
 
 def _agents_client():
     """Lazy import + construct Foundry Agents client."""
+    import os
     from azure.identity import ManagedIdentityCredential
     from azure.ai.agents import AgentsClient
-    return AgentsClient(endpoint=_PROJECT_ENDPOINT,
-                        credential=ManagedIdentityCredential())
+    # Container Apps + user-assigned MI requires client_id explicitly,
+    # same as keyvault.py. Falls through to no-arg constructor (system-
+    # assigned MI on crawldevvm) when AZURE_CLIENT_ID is unset.
+    client_id = os.environ.get("AZURE_CLIENT_ID")
+    if client_id:
+        cred = ManagedIdentityCredential(client_id=client_id)
+    else:
+        cred = ManagedIdentityCredential()
+    return AgentsClient(endpoint=_PROJECT_ENDPOINT, credential=cred)
 
 
 def _run_agent_sync(client, agent_id: str, instruction: str, timeout: int = 300) -> tuple[str, Optional[str]]:
