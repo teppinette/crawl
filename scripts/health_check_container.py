@@ -69,15 +69,25 @@ def write_event(source: str, ok: bool, code: int, error: str):
         cur = conn.cursor()
         cur.execute(
             """INSERT INTO pipeline_events
-                 (source, status, status_code, error_message, event_time)
+                 (event_time, event_type, component, status, details)
                VALUES (%s, %s, %s, %s, %s)""",
-            (source, "ok" if ok else "fail",
-             code, error or None,
-             datetime.now(timezone.utc)),
+            (datetime.now(timezone.utc),
+             "health_check",
+             source,
+             "ok" if ok else "fail",
+             json.dumps({"status_code": code, "error": error or None,
+                         "source_url": url_for(source)})),
         )
         conn.commit()
     finally:
         conn.close()
+
+
+def url_for(source: str) -> str:
+    for s, u, _ in CHECKS:
+        if s == source:
+            return u
+    return ""
 
 
 def teams_alert(failures: list[dict]):
