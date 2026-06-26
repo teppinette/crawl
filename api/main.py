@@ -101,8 +101,8 @@ VM_CONFIG = {
 }
 
 DARKWEB_VM = {
-    "ip": "20.86.161.6",
-    "port": 8450,
+    "ip": os.environ.get("DARKWEB_VM_IP", "20.86.161.6"),
+    "port": int(os.environ.get("DARKWEB_VM_PORT", "8450")),
     "api_key": get_secret("darkweb-api-key"),
 }
 
