@@ -27,7 +27,15 @@ def _get_client():
     try:
         from azure.identity import ManagedIdentityCredential
         from azure.keyvault.secrets import SecretClient
-        cred = ManagedIdentityCredential()
+        # Container Apps + user-assigned MI needs the client_id explicitly.
+        # On crawldevvm with system-assigned MI, AZURE_CLIENT_ID is unset and
+        # ManagedIdentityCredential() finds the system MI via IMDS — same code
+        # path as before, no behavioural change for the VM.
+        client_id = os.environ.get("AZURE_CLIENT_ID")
+        if client_id:
+            cred = ManagedIdentityCredential(client_id=client_id)
+        else:
+            cred = ManagedIdentityCredential()
         _client = SecretClient(vault_url=VAULT_URL, credential=cred)
         # Test connectivity
         _client.get_secret("cir-api-key")
