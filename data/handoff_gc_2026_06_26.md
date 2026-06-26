@@ -5,9 +5,20 @@
 
 ---
 
-## Summary
+## Read this first — you're still using the old gateway
 
-The crawl gateway is now an Azure Container App in the COPAP AI subscription. The underlying VM (`crawldevvm` / 20.94.45.219) and supporting VM (`crawl-verify`) are being deallocated after a side-by-side observation window.
+Per our access logs from `104.209.146.16` (your App Service), **your app made 40,623 requests to the OLD gateway in the last 24 hours**:
+
+| Method | Endpoint | Hits / 24h |
+|---|---|---:|
+| `POST` | `/api/v2/screening` | **38,233** |
+| `POST` | `/tools/adverse_media` | **2,409** |
+
+This is ~28 requests/minute non-stop. You probably have a background scan, scheduled job, or screening-on-onboard pipeline running these. **When we deallocate the old gateway, this traffic will hard-fail with connection timeouts** unless you've updated the URL on your side.
+
+The earlier "we're off /api/v1/research" reply was correct as far as that one endpoint goes — but **/api/v2/screening and /tools/adverse_media are different endpoints that you didn't mention and we missed initially.** They're still very much in active use.
+
+This message is the explicit ping to update those two specific endpoints' URLs before deallocation.
 
 ## New URL
 
@@ -15,56 +26,61 @@ The crawl gateway is now an Azure Container App in the COPAP AI subscription. Th
 https://crawl-gateway-v2.orangemoss-d67e0a38.eastus2.azurecontainerapps.io
 ```
 
-> **Coming soon (target):** `https://crawl.copap.com` as a custom domain. DNS setup pending — see "Custom domain" section below. Once live, you should migrate to that and never need to chase the random Azure subdomain again.
+> **Coming soon:** `https://crawl.copap.com` as a custom domain — DNS setup pending. If you'd rather wait for that to avoid updating twice, fine — but tell us so we don't deallocate prematurely.
 
 ## What's the same
 
-- All endpoints (`/api/v1/verify`, `/api/v1/cir/run`, `/api/v1/lookup`, `/api/v1/verify/bulk`, etc.) — **identical shapes, no contract changes**
+- Endpoints, payloads, response shapes — **identical** to the old gateway. Drop-in URL replacement, no code changes.
 - API key (`cir-api-key`) — same value, still valid
-- Response payloads — no changes
-- Authentication header (`X-API-Key`) — unchanged
+- Auth header (`X-API-Key`) — unchanged
 
 ## What's different
 
 - The URL itself
-- Underlying compute is Azure Container Apps in COPAP AI sub (was a VM in COPAPCrawl)
-- TLS — now a real Microsoft-issued cert (no more self-signed cert warnings)
-- `/api/v1/research` will return 410 Gone after we deallocate the old VM (you're already off this per your 2026-06-25 reply, just noting)
+- Underlying compute is Azure Container Apps in COPAP AI subscription (was a VM in COPAPCrawl)
+- TLS — real Microsoft-issued cert (no more self-signed cert warnings)
+- `/api/v1/research` returns 410 Gone after deallocation (you're already off this)
 - `osint-staging` blob in COPAPCrawl will stop receiving new CIRs (you confirmed this is fine)
 
 ## What we need from you
 
-- If anything on your side **still** references the old endpoint (`crawldevvm` / `20.94.45.219` / `crawldevvm:8443`), update it to the new URL
-- If nothing on your side calls crawl at all anymore (per your last reply), no action needed — just acknowledge
-- Ping us if anything breaks during the observation window
-
-## Timeline
-
-- **Now:** Both old (`crawldevvm`) and new (Container App) running side-by-side
-- **+1 week clean:** Deallocate old crawldevvm + old crawl-verify in COPAPCrawl
-- **+further confirmation:** Retire the COPAPCrawl subscription entirely
+1. **Find every place in your code/config that references the old endpoint** (`crawldevvm`, `crawldevvm:8443`, `20.94.45.219`) — specifically the ones hitting `/api/v2/screening` and `/tools/adverse_media`
+2. Update to the new URL
+3. Confirm with us when done so we can set the deallocation window
+4. If you'd rather wait for `crawl.copap.com` instead of updating twice, **say so** — we won't deallocate until you give the go-ahead
 
 ## Quick verification
 
 ```bash
-curl -k -H "X-API-Key: <your-key>" \
-  https://crawl-gateway-v2.orangemoss-d67e0a38.eastus2.azurecontainerapps.io/api/v1/health
+# Health check (no auth required)
+curl https://crawl-gateway-v2.orangemoss-d67e0a38.eastus2.azurecontainerapps.io/api/v1/health
+
+# Your screening call — should return same shape as old gateway
+curl -X POST \
+  -H "X-API-Key: <your-key>" \
+  -H "Content-Type: application/json" \
+  -d '{"entity_name":"Test Corp","country_code":"US"}' \
+  https://crawl-gateway-v2.orangemoss-d67e0a38.eastus2.azurecontainerapps.io/api/v2/screening
 ```
 
-Should return `{"status":"ok", "service":"crawl-research-gateway", ...}` with HTTP 200.
+## Timeline
+
+- **Now:** Old gateway (`crawldevvm:8443`) and new (Container App) both running
+- **+1 week clean traffic on new + you confirm cutover** → deallocate old crawldevvm + old crawl-verify
+- **+further:** retire COPAPCrawl subscription entirely
+
+**Important:** the deallocation timer doesn't start until *you* confirm you've cut over the screening + adverse media calls. We're not going to break your production by accident.
 
 ## Custom domain — pending DNS setup
 
-Once you create one DNS record at your DNS provider, we'll bind a managed cert and you can use `https://crawl.copap.com` permanently.
-
-**DNS records to create:**
+If you'd rather migrate once to `crawl.copap.com` instead of twice (once to the Azure subdomain, again to the custom one), you can wait. Two DNS records needed at your provider:
 
 | Type | Host | Value |
 |---|---|---|
 | `CNAME` | `crawl` (→ `crawl.copap.com`) | `crawl-gateway-v2.orangemoss-d67e0a38.eastus2.azurecontainerapps.io` |
 | `TXT` | `asuid.crawl` | `262E199387C0C630D6C05A0575FB0ED4423A4154FDBB6568CD1EE1E469352A32` |
 
-The TXT record proves Azure that we own the subdomain. After both records propagate (~5–30 min), we bind the custom domain to the Container App and Azure auto-issues a managed cert (Let's Encrypt). Total downtime: zero (the existing Azure URL keeps working).
+After both propagate (5–30 min), we bind the custom domain and Azure auto-issues a managed cert. Zero downtime — the Azure subdomain keeps working in parallel.
 
 ## Contact
 
