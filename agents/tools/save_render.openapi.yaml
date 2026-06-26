@@ -7,7 +7,7 @@ info:
     audit pack) produced by a synthesizer agent. Stores in renders table
     keyed to run_id; one run can have many renders of different types.
 servers:
-  - url: http://20.94.45.219:8400/api/v1
+  - url: https://crawl-gateway-v2.orangemoss-d67e0a38.eastus2.azurecontainerapps.io/api/v1
 paths:
   /evidence/runs/{run_id}/render/{render_type}:
     post:

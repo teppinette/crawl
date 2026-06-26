@@ -6,7 +6,7 @@ info:
     Mark synthesis done. Transitions cir_runs.status from 'synthesizing'
     to 'complete'. Sets completed_at timestamp.
 servers:
-  - url: http://20.94.45.219:8400/api/v1
+  - url: https://crawl-gateway-v2.orangemoss-d67e0a38.eastus2.azurecontainerapps.io/api/v1
 paths:
   /evidence/runs/{run_id}/synthesizer_complete:
     post:

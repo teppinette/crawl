@@ -9,9 +9,9 @@ info:
     SHA256 hash of raw_content is computed server-side for tamper detection.
 
 servers:
-  - url: http://20.94.45.219:8400/api/v1
+  - url: https://crawl-gateway-v2.orangemoss-d67e0a38.eastus2.azurecontainerapps.io/api/v1
     description: Crawl Research Gateway (TLS)
-  - url: http://20.94.45.219:8400/api/v1
+  - url: https://crawl-gateway-v2.orangemoss-d67e0a38.eastus2.azurecontainerapps.io/api/v1
     description: Crawl Research Gateway (plain)
 
 security:

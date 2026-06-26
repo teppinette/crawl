@@ -7,8 +7,8 @@ info:
     have been queried (success or failure recorded as evidence rows). Sets
     cir_runs.status = 'extracting' so the claim_extractor agent can pick it up.
 servers:
-  - url: http://20.94.45.219:8400/api/v1
-  - url: http://20.94.45.219:8400/api/v1
+  - url: https://crawl-gateway-v2.orangemoss-d67e0a38.eastus2.azurecontainerapps.io/api/v1
+  - url: https://crawl-gateway-v2.orangemoss-d67e0a38.eastus2.azurecontainerapps.io/api/v1
 security:
   - ApiKeyAuth: []
 paths:

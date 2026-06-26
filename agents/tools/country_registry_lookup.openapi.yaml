@@ -14,7 +14,7 @@ info:
     is tier-tagged against its own sources_catalog entry.
 
 servers:
-  - url: http://20.94.45.219:8400/api/v1
+  - url: https://crawl-gateway-v2.orangemoss-d67e0a38.eastus2.azurecontainerapps.io/api/v1
 
 paths:
   /sources/country_registry/lookup:
