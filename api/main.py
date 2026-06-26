@@ -58,7 +58,7 @@ from cir_orchestrator import router as cir_orch_router
 # import multilogin_fbr
 # import multilogin_dgft
 # import multilogin_bizfile
-VERIFY_VM_URL = "http://180.20.0.4:8460"
+VERIFY_VM_URL = os.environ.get("VERIFY_VM_URL", "http://180.20.0.4:8460")
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger("crawl-gateway")
