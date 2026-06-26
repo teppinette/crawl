@@ -2469,6 +2469,23 @@ async def health():
     }
 
 
+@app.get("/api/v1/debug/darkweb-ping")
+async def debug_darkweb_ping():
+    """One-shot reachability probe from this container to crawl-darkweb VM."""
+    import requests as _r
+    vm = DARKWEB_VM
+    url = f"http://{vm['ip']}:{vm['port']}/health"
+    t0 = time.time()
+    try:
+        r = _r.get(url, timeout=10)
+        return {"ok": r.status_code == 200, "code": r.status_code,
+                "target": url, "elapsed_ms": int((time.time()-t0)*1000),
+                "body": r.text[:200]}
+    except Exception as e:
+        return {"ok": False, "target": url,
+                "elapsed_ms": int((time.time()-t0)*1000), "error": str(e)[:300]}
+
+
 @app.get("/api/v1/scenarios")
 async def list_scenarios():
     """List available research scenarios and their configurations."""
