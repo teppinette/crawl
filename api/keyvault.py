@@ -14,7 +14,7 @@ for _name in ("azure.core.pipeline.policies.http_logging_policy",
 
 logger = logging.getLogger(__name__)
 
-VAULT_URL = "https://crawlkeyvault.vault.azure.net/"
+VAULT_URL = os.environ.get("CRAWL_KV_URL", "https://crawlkeyvault.vault.azure.net/")
 
 _client = None
 _cache = {}
