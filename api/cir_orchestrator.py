@@ -95,6 +95,65 @@ def _run_agent_sync(client, agent_id: str, instruction: str, timeout: int = 300)
     return "TIMEOUT", f"agent {agent_id} did not finish within {timeout}s"
 
 
+def _darkweb_fallback_persist(run_id: str, entity_name: str, country: str):
+    """Call /sources/darkweb/scan from inside the container and persist
+    one darkweb_screen evidence row via evidence_db.add_evidence. Used when
+    the Foundry darkweb_collector agent reports COMPLETED but failed to
+    actually write the evidence row (occasional gpt-4.1-mini noise)."""
+    import os
+    import requests as _r
+    base = os.environ.get(
+        "CRAWL_GATEWAY_INTERNAL_URL",
+        "http://127.0.0.1:8400",
+    )
+    api_key = os.environ.get("CIR_API_KEY", "")
+    if not api_key:
+        try:
+            from keyvault import get_secret
+            api_key = get_secret("cir-api-key") or ""
+        except Exception:
+            api_key = ""
+    if not api_key:
+        log.warning("orchestrator: darkweb fallback skipped — no cir-api-key")
+        return
+    try:
+        r = _r.post(
+            f"{base}/api/v1/sources/darkweb/scan",
+            headers={"X-API-Key": api_key, "Content-Type": "application/json"},
+            json={"entity_name": entity_name, "country": country,
+                  "depth": "heavy"},
+            timeout=300,
+        )
+    except Exception as e:
+        log.warning("orchestrator: darkweb fallback scan failed: %s", e)
+        return
+    if r.status_code != 200:
+        log.warning("orchestrator: darkweb fallback scan HTTP %d", r.status_code)
+        return
+    data = r.json() or {}
+    extracted = {
+        "summary": data.get("summary") or {},
+        "findings_by_source": data.get("findings_by_source") or {},
+        "findings": data.get("findings") or [],
+    }
+    try:
+        evidence_db.add_evidence(
+            run_id,
+            source_id="darkweb_screen",
+            source_url=data.get("source_url", ""),
+            source_query=entity_name,
+            status_code=200,
+            extracted=extracted,
+            language_original="en",
+            parser_version="darkweb_scan_v1_fallback",
+            error=data.get("error"),
+        )
+        log.info("orchestrator: darkweb fallback persisted evidence for %s",
+                 run_id[:8])
+    except Exception as e:
+        log.warning("orchestrator: darkweb fallback persist failed: %s", e)
+
+
 async def _orchestrate(run_id: str, country_code: str, entity_name: str,
                        registration_id: str = ""):
     """Background orchestration — collector → extractor → synthesizer."""
@@ -176,6 +235,25 @@ async def _orchestrate(run_id: str, country_code: str, entity_name: str,
         dw_status, dw_err = darkweb_res
         if not dw_status.endswith("COMPLETED") and dw_status != "SKIPPED":
             log.warning("orchestrator: darkweb collector %s: %s", dw_status, dw_err or "")
+
+    # FALLBACK for darkweb_collector reporting COMPLETED but not actually
+    # writing the evidence row. gpt-4.1-mini occasionally produces a final
+    # message claiming success without firing the evidence_add tool. If
+    # we're missing the darkweb_screen row, call the scan endpoint directly
+    # and persist server-side via evidence_db.add_evidence.
+    try:
+        existing = evidence_db.list_evidence(run_id)
+        has_dw = any((e.get("source_id") == "darkweb_screen") for e in existing)
+    except Exception:
+        has_dw = True  # Can't tell — assume OK, skip fallback
+    if not has_dw:
+        log.warning("orchestrator: darkweb_collector completed without writing "
+                    "evidence; falling back to direct scan + persist")
+        try:
+            await loop.run_in_executor(None, _darkweb_fallback_persist,
+                                       run_id, entity_name, cc)
+        except Exception:
+            log.exception("orchestrator: darkweb fallback failed (non-fatal)")
 
     # PHASE 2: claim extractor
     extractor_id = _load_agent_id("claim_extractor")
