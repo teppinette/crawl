@@ -1556,6 +1556,13 @@ def main():
     parser.add_argument("--dry-run", action="store_true", help="Scan only, no Teams/blob")
     parser.add_argument("--report-only", action="store_true", help="Regenerate report from last scan")
     args = parser.parse_args()
+    # Allow Container Apps Job env to flip dry-run / report-only without
+    # touching the args list (Azure CLI's --args list-of-strings handling
+    # is finicky on manual `job start` invocations).
+    if os.environ.get("WEEKLY_DRY_RUN") == "1":
+        args.dry_run = True
+    if os.environ.get("WEEKLY_REPORT_ONLY") == "1":
+        args.report_only = True
 
     log.info("=" * 60)
     log.info("Weekly COPAP scan starting")
