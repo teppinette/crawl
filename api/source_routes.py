@@ -510,7 +510,8 @@ async def country_registry_lookup(req: CountryRegRequest, country: str):
 # Dark-web umbrella scan — proxies to crawl-darkweb gateway (37 Tor sources)
 # ---------------------------------------------------------------------------
 
-_DARKWEB_BASE = "http://20.86.161.6:8450"
+_DARKWEB_BASE = os.environ.get("DARKWEB_BASE_URL",
+    f"http://{os.environ.get('DARKWEB_VM_IP', '20.86.161.6')}:{os.environ.get('DARKWEB_VM_PORT', '8450')}")
 
 
 class DarkwebScanRequest(BaseModel):
