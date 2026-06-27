@@ -24,6 +24,7 @@ Auth: wired at app.include_router(...) in main.py via dependencies=[].
 """
 
 import logging
+import re
 from typing import Optional
 
 from fastapi import APIRouter, HTTPException
@@ -172,12 +173,25 @@ class AddClaimRequest(BaseModel):
     quoted_values: Optional[dict] = None
 
 
+_UUID_RE = re.compile(
+    r"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+)
+
+
 @router.post("/evidence/runs/{run_id}/claims")
 async def add_run_claim(run_id: str, req: AddClaimRequest):
     """Persist one claim with linked evidence. Called by claim_extractor."""
     run = evidence_db.get_run(run_id)
     if not run:
         raise HTTPException(status_code=404, detail="run not found")
+    bad = [e for e in (req.evidence_ids or []) if not _UUID_RE.match(e or "")]
+    if bad:
+        raise HTTPException(
+            status_code=422,
+            detail=f"malformed evidence_id(s): {bad}. Expected UUID format "
+                   "8-4-4-4-12 hex chars. Re-check the evidence_id you copied "
+                   "from list_run_evidence — last segment is exactly 12 hex chars.",
+        )
     try:
         claim_id = evidence_db.add_claim(
             run_id,
