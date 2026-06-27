@@ -22,3 +22,7 @@ azure-keyvault-secrets==4.11.0
 azure-storage-blob==12.28.0
 # python-multipart used by fastapi for form-data POSTs (bulk verify etc.)
 python-multipart==0.0.20
+# fpdf2 used by scripts/weekly_copap_scan.py PDF report generation.
+# Only needed by the Container Apps Job, but Container Apps Jobs share
+# the gateway image — adding ~1 MB to keep the build simple.
+fpdf2==2.8.7
