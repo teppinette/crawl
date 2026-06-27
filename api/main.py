@@ -108,8 +108,8 @@ DARKWEB_VM = {
 
 SSH_KEY_PATH = os.path.expanduser("~/.ssh/crawldevvm_key.pem")
 SSH_KNOWN_HOSTS = os.path.expanduser("~/.ssh/crawl_known_hosts")
-BLOB_ACCOUNT = "stcrawlosint"
-BLOB_CONTAINER = "osint-staging"
+BLOB_ACCOUNT = os.environ.get("BLOB_ACCOUNT", "stcrawlosint")
+BLOB_CONTAINER = os.environ.get("BLOB_CONTAINER", "osint-staging")
 SAS_TOKEN_PATH = Path(os.path.expanduser("~/crawl/config/blob_sas_token"))
 _BLOB_SAS_TOKEN = get_secret("blob-sas-token") or (
     SAS_TOKEN_PATH.read_text().strip() if SAS_TOKEN_PATH.exists() else ""

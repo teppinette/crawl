@@ -14,6 +14,7 @@ Matches the agents/tools/*.openapi.yaml specs.
 
 import datetime
 import logging
+import os
 from typing import Optional
 
 import requests
@@ -558,8 +559,10 @@ async def darkweb_scan(req: DarkwebScanRequest):
     if blob_path:
         try:
             sas = get_secret("blob-sas-token") or ""
-            clean = blob_path.replace("osint-staging/", "", 1)
-            blob_url = f"https://stcrawlosint.blob.core.windows.net/osint-staging/{clean}?{sas}"
+            blob_account = os.environ.get("BLOB_ACCOUNT", "stcrawlosint")
+            blob_container = os.environ.get("BLOB_CONTAINER", "osint-staging")
+            clean = blob_path.replace(f"{blob_container}/", "", 1)
+            blob_url = f"https://{blob_account}.blob.core.windows.net/{blob_container}/{clean}?{sas}"
             br = requests.get(blob_url, timeout=30)
             if br.status_code == 200 and br.text.strip():
                 full = br.json()
