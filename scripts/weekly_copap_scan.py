@@ -30,25 +30,30 @@ from urllib.parse import quote_plus, unquote, urlparse, parse_qs
 import requests
 
 # ── Paths ──
-BASE_DIR = Path("/home/copapadmin/crawl")
+# Container-friendly: under /app when packaged, override via env for VM run.
+BASE_DIR = Path(os.environ.get("CRAWL_BASE_DIR",
+                "/app" if Path("/app/api").exists() else
+                "/home/copapadmin/crawl"))
 CONFIG_FILE = BASE_DIR / "config" / "copap_weekly_entities.json"
-DATA_DIR = BASE_DIR / "data" / "copap-weekly"
-LOG_FILE = BASE_DIR / "logs" / "weekly_copap_scan.log"
-REPORT_DIR = BASE_DIR / "output" / "copap-weekly"
-SSH_KEY = Path.home() / ".ssh" / "crawldevvm_key.pem"
+DATA_DIR = Path(os.environ.get("CRAWL_WEEKLY_DATA_DIR",
+                str(BASE_DIR / "data" / "copap-weekly")))
+LOG_FILE = Path(os.environ.get("CRAWL_WEEKLY_LOG_FILE",
+                str(BASE_DIR / "logs" / "weekly_copap_scan.log")))
+REPORT_DIR = Path(os.environ.get("CRAWL_WEEKLY_REPORT_DIR",
+                  str(BASE_DIR / "output" / "copap-weekly")))
+DATA_DIR.mkdir(parents=True, exist_ok=True)
+LOG_FILE.parent.mkdir(parents=True, exist_ok=True)
+REPORT_DIR.mkdir(parents=True, exist_ok=True)
 
-# ── Dark web VM ──
-DARKWEB_IP = "20.86.161.6"
-DARKWEB_USER = "copapadmin"
-DARKWEB_PORT = 8450
-
-# ── Gateway API (local, for CIR) ──
-GATEWAY_URL = "http://127.0.0.1:8400"
-GATEWAY_MAIN_PY = BASE_DIR / "api" / "main.py"
+# ── Gateway API (Container App preferred; falls back to local for crawldevvm) ──
+GATEWAY_URL = os.environ.get(
+    "CRAWL_GATEWAY_URL",
+    "http://127.0.0.1:8400",
+)
 
 # ── Blob storage ──
-BLOB_ACCOUNT = "stcrawlosint"
-BLOB_CONTAINER = "osint-staging"
+BLOB_ACCOUNT = os.environ.get("BLOB_ACCOUNT", "stcrawlosint")
+BLOB_CONTAINER = os.environ.get("BLOB_CONTAINER", "osint-staging")
 
 # ── Logging ──
 logging.basicConfig(
@@ -102,72 +107,21 @@ def _save_baseline(data: dict):
 
 
 # ─────────────────────────────────────────────────────────────────────
-# Dark Web Scanning (direct SSH to dark web VM, bypasses gateway block)
+# Dark Web Scanning (via Container App /sources/darkweb/scan)
+#
+# Migration note 2026-06-27: was previously SSH'd to the dark-web VM,
+# patched blocked-term filter in darkweb_gateway.py, ran scan, restored.
+# Now we call the gateway endpoint directly. /sources/darkweb/scan does
+# not run through the COPAP sanitizer, so the disable-block dance is
+# unnecessary in the new path.
 # ─────────────────────────────────────────────────────────────────────
 
-def _ssh_darkweb_disable_block() -> bool:
-    """SSH to dark web VM: back up gateway, remove 'copap' from blocked terms, restart."""
-    ssh_cmd = [
-        "ssh", "-i", str(SSH_KEY),
-        "-o", "StrictHostKeyChecking=yes",
-        "-o", "ConnectTimeout=10",
-        f"{DARKWEB_USER}@{DARKWEB_IP}",
-        """
-        GATEWAY=/home/copapadmin/crawl/api/darkweb_gateway.py
-        cp "$GATEWAY" "$GATEWAY.weekly_bak"
-        sed -i 's/"copap", //' "$GATEWAY"
-        sudo systemctl restart darkweb-gateway
-        sleep 3
-        echo "BLOCK_DISABLED_OK"
-        """
-    ]
-    try:
-        result = subprocess.run(ssh_cmd, capture_output=True, text=True, timeout=30)
-        if "BLOCK_DISABLED_OK" in result.stdout:
-            log.info("Dark web: blocked terms disabled for self-scan")
-            return True
-        log.error(f"Dark web disable failed: {result.stderr[:200]}")
-        return False
-    except Exception as e:
-        log.error(f"Dark web disable error: {e}")
-        return False
+def _gateway_darkweb_scan(entity_name: str, country: str,
+                          domain: str | None, api_key: str) -> dict:
+    """One darkweb scan via Container App.
 
-
-def _ssh_darkweb_restore_block():
-    """SSH to dark web VM: restore blocked terms backup, restart."""
-    ssh_cmd = [
-        "ssh", "-i", str(SSH_KEY),
-        "-o", "StrictHostKeyChecking=yes",
-        "-o", "ConnectTimeout=10",
-        f"{DARKWEB_USER}@{DARKWEB_IP}",
-        """
-        GATEWAY=/home/copapadmin/crawl/api/darkweb_gateway.py
-        if [ -f "$GATEWAY.weekly_bak" ]; then
-            cp "$GATEWAY.weekly_bak" "$GATEWAY"
-            rm "$GATEWAY.weekly_bak"
-            sudo systemctl restart darkweb-gateway
-            echo "BLOCK_RESTORED_OK"
-        else
-            echo "NO_BACKUP_FOUND"
-        fi
-        """
-    ]
-    try:
-        result = subprocess.run(ssh_cmd, capture_output=True, text=True, timeout=30)
-        if "BLOCK_RESTORED_OK" in result.stdout:
-            log.info("Dark web: blocked terms restored")
-        else:
-            log.warning(f"Dark web restore: {result.stdout.strip()}")
-    except Exception as e:
-        log.error(f"Dark web restore error: {e}")
-
-
-def _ssh_darkweb_scan_single(entity_name: str, country: str, domain: str | None) -> dict:
-    """Run a single dark web scan (assumes block already disabled).
-
-    The dark web API returns a summary with job_id. The full findings are
-    in /home/copapadmin/crawl/output/<job_id>.json on the VM. We run the
-    scan, extract the job_id, then cat the output file to get findings.
+    Returns {summary, findings, findings_by_source, error?} in the same
+    shape the rest of this script's downstream code expects.
     """
     payload = {
         "entity_name": entity_name,
@@ -176,65 +130,33 @@ def _ssh_darkweb_scan_single(entity_name: str, country: str, domain: str | None)
     }
     if domain:
         payload["domain"] = domain
-
-    payload_json = json.dumps(payload).replace("'", "'\\''")
-
-    # Step 1: Run scan and get job_id
-    ssh_cmd = [
-        "ssh", "-i", str(SSH_KEY),
-        "-o", "StrictHostKeyChecking=yes",
-        "-o", "ConnectTimeout=10",
-        f"{DARKWEB_USER}@{DARKWEB_IP}",
-        f"curl -s -X POST http://127.0.0.1:{DARKWEB_PORT}/api/v1/research "
-        f"-H 'Content-Type: application/json' "
-        f"-H 'X-API-Key: dwk_crawl_2026Q2_f8a3b7e1d9c4' "
-        f"-d '{payload_json}'"
-    ]
-
+    url = f"{GATEWAY_URL}/api/v1/sources/darkweb/scan"
     try:
-        result = subprocess.run(ssh_cmd, capture_output=True, text=True, timeout=300)
-        if result.returncode != 0:
-            log.error(f"Dark web SSH failed for {entity_name}: {result.stderr[:200]}")
-            return {"error": result.stderr[:200], "findings": []}
-
-        output = result.stdout.strip()
-        start = output.find("{")
-        end = output.rfind("}") + 1
-        if start < 0 or end <= start:
-            log.error(f"No JSON in dark web response for {entity_name}: {output[:200]}")
-            return {"error": "no JSON in response", "findings": []}
-
-        api_resp = json.loads(output[start:end])
-        job_id = api_resp.get("job_id", "")
-        findings_count = api_resp.get("findings_count", 0)
-        log.info(f"  {entity_name}: job_id={job_id}, findings_count={findings_count}")
-
-        if not job_id:
-            return {"error": "no job_id", "findings": [], "summary": api_resp.get("summary", {})}
-
-        # Step 2: Fetch full findings from output file on VM
-        fetch_cmd = [
-            "ssh", "-i", str(SSH_KEY),
-            "-o", "StrictHostKeyChecking=yes",
-            "-o", "ConnectTimeout=10",
-            f"{DARKWEB_USER}@{DARKWEB_IP}",
-            f"cat /home/copapadmin/crawl/output/{job_id}.json"
-        ]
-        fetch_result = subprocess.run(fetch_cmd, capture_output=True, text=True, timeout=30)
-        if fetch_result.returncode == 0 and fetch_result.stdout.strip():
-            full_data = json.loads(fetch_result.stdout)
-            return full_data
-        else:
-            # Fallback: return API summary with empty findings
-            log.warning(f"Could not fetch findings file for {entity_name} (job {job_id})")
-            return {"error": None, "findings": [], "summary": api_resp.get("summary", {})}
-
-    except subprocess.TimeoutExpired:
-        log.error(f"Dark web scan timed out for {entity_name}")
-        return {"error": "timeout", "findings": []}
+        r = requests.post(
+            url, json=payload,
+            headers={"X-API-Key": api_key, "Content-Type": "application/json"},
+            timeout=600,
+        )
     except Exception as e:
-        log.error(f"Dark web scan error for {entity_name}: {e}")
+        log.error(f"darkweb scan request error for {entity_name}: {e}")
         return {"error": str(e), "findings": []}
+    if r.status_code != 200:
+        log.error(f"darkweb scan HTTP {r.status_code} for {entity_name}: {r.text[:200]}")
+        return {"error": f"HTTP {r.status_code}", "findings": []}
+    try:
+        data = r.json()
+    except Exception as e:
+        log.error(f"darkweb scan JSON decode error for {entity_name}: {e}")
+        return {"error": str(e), "findings": []}
+    findings = data.get("findings") or []
+    log.info(f"  {entity_name}: {len(findings)} findings, "
+             f"{data.get('summary',{}).get('sources_with_results',0)} sources")
+    return {
+        "findings": findings,
+        "summary": data.get("summary") or {},
+        "findings_by_source": data.get("findings_by_source") or {},
+        "error": data.get("error"),
+    }
 
 
 def _filter_noise(findings: list, entity_name: str) -> list:
@@ -304,49 +226,30 @@ def _filter_noise(findings: list, entity_name: str) -> list:
     return filtered
 
 
-def scan_darkweb_batch(entities: list[dict]) -> dict[str, dict]:
-    """Scan all entities on dark web in one batch.
-
-    Disables blocked terms once, scans all entities, restores once.
-    Much faster than per-entity restart (1 restart vs N restarts).
-    """
+def scan_darkweb_batch(entities: list[dict], api_key: str) -> dict[str, dict]:
+    """Scan all entities on dark web via the Container App gateway."""
     results = {}
-
-    # Disable block once
-    if not _ssh_darkweb_disable_block():
-        log.error("Cannot disable dark web block — skipping all dark web scans")
-        for e in entities:
-            results[e["name"]] = {
-                "entity": e["name"], "source": "darkweb",
-                "scan_time": datetime.now(timezone.utc).isoformat(),
-                "total_findings": 0, "findings": [], "error": "block disable failed",
-            }
-        return results
-
-    try:
-        for entity in entities:
-            log.info(f"Dark web: {entity['name']}")
-            raw = _ssh_darkweb_scan_single(entity["name"], entity["country"], entity.get("domain"))
-
-            findings = raw.get("findings", [])
-            findings = _filter_noise(findings, entity["name"])
-            for f in findings:
-                fp = hashlib.md5(json.dumps(f, sort_keys=True, default=str).encode()).hexdigest()[:12]
-                f["_fingerprint"] = fp
-
-            results[entity["name"]] = {
-                "entity": entity["name"],
-                "source": "darkweb",
-                "scan_time": datetime.now(timezone.utc).isoformat(),
-                "total_findings": len(findings),
-                "findings": findings,
-                "error": raw.get("error"),
-            }
-            time.sleep(2)  # Pace requests to dark web VM
-    finally:
-        # Always restore, even if scans fail
-        _ssh_darkweb_restore_block()
-
+    for entity in entities:
+        log.info(f"Dark web: {entity['name']}")
+        raw = _gateway_darkweb_scan(
+            entity["name"], entity["country"], entity.get("domain"), api_key,
+        )
+        findings = raw.get("findings", [])
+        findings = _filter_noise(findings, entity["name"])
+        for f in findings:
+            fp = hashlib.md5(
+                json.dumps(f, sort_keys=True, default=str).encode()
+            ).hexdigest()[:12]
+            f["_fingerprint"] = fp
+        results[entity["name"]] = {
+            "entity": entity["name"],
+            "source": "darkweb",
+            "scan_time": datetime.now(timezone.utc).isoformat(),
+            "total_findings": len(findings),
+            "findings": findings,
+            "error": raw.get("error"),
+        }
+        time.sleep(1)  # Light pacing for the gateway
     return results
 
 
@@ -480,250 +383,189 @@ def scan_media(entity: dict) -> dict:
 # CIR (OpenClaw) Research — full counterparty intelligence
 # ─────────────────────────────────────────────────────────────────────
 
-def _gateway_disable_block() -> bool:
-    """Temporarily remove copap-related entries from _BLOCKED_TERMS in main.py, restart gateway."""
-    try:
-        content = GATEWAY_MAIN_PY.read_text()
-        # Back up
-        bak = GATEWAY_MAIN_PY.with_suffix(".py.weekly_bak")
-        bak.write_text(content)
-
-        # Replace the specific _BLOCKED_TERMS line that contains copap entries
-        # Only target the line inside the list definition, not other occurrences
-        old_line = '    "copap", "copapadmin", "copap ai", "copap trading",'
-        new_line = '    # copap terms temporarily disabled for self-scan'
-        content = content.replace(old_line, new_line, 1)
-        GATEWAY_MAIN_PY.write_text(content)
-
-        # Clear Python bytecode cache so workers load the modified source
-        pycache_dir = GATEWAY_MAIN_PY.parent / "__pycache__"
-        if pycache_dir.exists():
-            import shutil
-            shutil.rmtree(pycache_dir)
-
-        # Stop service and kill any orphan uvicorn workers, then start fresh
-        subprocess.run(
-            ["sudo", "systemctl", "stop", "crawl-gateway"],
-            capture_output=True, text=True, timeout=15,
-        )
-        # Kill any orphan workers that survived the stop
-        subprocess.run(
-            "sudo kill $(pgrep -x uvicorn) 2>/dev/null; true",
-            shell=True, capture_output=True, text=True, timeout=10,
-        )
-        time.sleep(2)
-        subprocess.run(
-            ["sudo", "systemctl", "start", "crawl-gateway"],
-            capture_output=True, text=True, timeout=30,
-        )
-
-        # Wait for workers to become ready (uvicorn takes ~5-8s after restart)
-        for attempt in range(8):
-            time.sleep(3)
-            try:
-                resp = requests.get(f"{GATEWAY_URL}/api/v1/health", timeout=5)
-                if resp.status_code == 200:
-                    log.info("Gateway: blocked terms disabled for self-scan, service restarted")
-                    return True
-            except Exception:
-                pass
-
-        log.error("Gateway failed to restart after block disable")
-        _gateway_restore_block()
-        return False
-    except Exception as e:
-        log.error(f"Gateway block disable error: {e}")
-        return False
-
-
-def _gateway_restore_block():
-    """Restore original main.py and restart gateway."""
-    try:
-        bak = GATEWAY_MAIN_PY.with_suffix(".py.weekly_bak")
-        if bak.exists():
-            bak.rename(GATEWAY_MAIN_PY)
-            # Clear bytecode cache
-            pycache_dir = GATEWAY_MAIN_PY.parent / "__pycache__"
-            if pycache_dir.exists():
-                import shutil
-                shutil.rmtree(pycache_dir)
-            # Stop service, kill orphans, start fresh
-            subprocess.run(
-                ["sudo", "systemctl", "stop", "crawl-gateway"],
-                capture_output=True, text=True, timeout=15,
-            )
-            subprocess.run(
-                "sudo kill $(pgrep -x uvicorn) 2>/dev/null; true",
-                shell=True, capture_output=True, text=True, timeout=10,
-            )
-            time.sleep(2)
-            subprocess.run(
-                ["sudo", "systemctl", "start", "crawl-gateway"],
-                capture_output=True, text=True, timeout=30,
-            )
-            time.sleep(5)
-            log.info("Gateway: blocked terms restored, service restarted")
-        else:
-            log.warning("Gateway: no backup file found to restore")
-    except Exception as e:
-        log.error(f"Gateway restore error: {e}")
-
-
 def _submit_cir(entity: dict, api_key: str) -> str | None:
-    """Submit CIR job, return job_id."""
+    """Submit CIR via /api/v1/cir/run. Returns run_id (UUID)."""
     payload = {
-        "entity_legal_name": entity["name"],
-        "entity_country": entity["country"],
+        "country_code": (entity.get("country") or "")[:2].upper(),
+        "entity_name": entity["name"],
     }
-    if entity.get("domain"):
-        payload["entity_website"] = entity["domain"]
-
     try:
         resp = requests.post(
-            f"{GATEWAY_URL}/api/v1/research",
+            f"{GATEWAY_URL}/api/v1/cir/run",
             json=payload,
             headers={"X-API-Key": api_key},
             timeout=30,
         )
         if resp.status_code == 200:
             data = resp.json()
-            job_id = data.get("job_id")
-            log.info(f"  CIR submitted: {entity['name']} -> job_id={job_id}")
-            return job_id
-        else:
-            log.error(f"  CIR submit failed for {entity['name']}: HTTP {resp.status_code} {resp.text[:200]}")
-            return None
+            run_id = data.get("run_id")
+            log.info(f"  CIR submitted: {entity['name']} -> run_id={run_id}")
+            return run_id
+        log.error(f"  CIR submit HTTP {resp.status_code} for {entity['name']}: "
+                  f"{resp.text[:200]}")
     except Exception as e:
         log.error(f"  CIR submit error for {entity['name']}: {e}")
-        return None
+    return None
 
 
-def _poll_cir(job_id: str, api_key: str, timeout_sec: int = 600) -> dict:
-    """Poll CIR job until completed or failed. Returns job data."""
+def _poll_cir(run_id: str, api_key: str, timeout_sec: int = 900) -> dict:
+    """Poll /evidence/runs/{run_id} until status is terminal."""
     deadline = time.time() + timeout_sec
     while time.time() < deadline:
         try:
-            resp = requests.get(
-                f"{GATEWAY_URL}/api/v1/research/{job_id}",
-                headers={"X-API-Key": api_key},
-                timeout=15,
+            r = requests.get(
+                f"{GATEWAY_URL}/api/v1/evidence/runs/{run_id}",
+                headers={"X-API-Key": api_key}, timeout=15,
             )
-            if resp.status_code == 200:
-                data = resp.json()
-                status = data.get("status", "")
-                if status in ("completed", "failed"):
-                    return data
+            if r.status_code == 200:
+                d = r.json()
+                if d.get("status") in ("complete", "failed", "error"):
+                    return d
         except Exception:
             pass
-        time.sleep(15)  # CIR takes 3-10 minutes
-
+        time.sleep(15)
     return {"status": "timeout", "error": "polling timeout"}
 
 
-def _fetch_cir_blob(blob_path: str) -> dict:
-    """Fetch CIR blob JSON from osint-staging."""
-    sas_token = ""
-    sas_file = BASE_DIR / "config" / "blob_sas_token"
-    if sas_file.exists():
-        sas_token = sas_file.read_text().strip()
-    if not sas_token:
-        sas_token = _get_secret("blob-sas-token")
-
-    # Strip container prefix if already in blob_path (e.g. "osint-staging/cir/..." -> "cir/...")
-    clean_path = blob_path
-    if clean_path.startswith(f"{BLOB_CONTAINER}/"):
-        clean_path = clean_path[len(BLOB_CONTAINER) + 1:]
-
-    url = f"https://{BLOB_ACCOUNT}.blob.core.windows.net/{BLOB_CONTAINER}/{clean_path}?{sas_token}"
+def _fetch_cir_run_data(run_id: str, api_key: str) -> dict:
+    """Pull evidence rows + renders for a finished /cir/run."""
+    out = {"evidence": [], "renders": []}
     try:
-        resp = requests.get(url, timeout=30)
-        if resp.status_code == 200:
-            return resp.json()
-        else:
-            log.warning(f"Blob fetch HTTP {resp.status_code} for {clean_path}")
+        r = requests.get(
+            f"{GATEWAY_URL}/api/v1/evidence/runs/{run_id}/evidence",
+            headers={"X-API-Key": api_key}, timeout=30,
+        )
+        if r.status_code == 200:
+            out["evidence"] = r.json().get("evidence", [])
     except Exception as e:
-        log.error(f"Blob fetch error for {clean_path}: {e}")
+        log.warning(f"  evidence fetch error: {e}")
+    try:
+        r = requests.get(
+            f"{GATEWAY_URL}/api/v1/evidence/runs/{run_id}/renders",
+            headers={"X-API-Key": api_key}, timeout=30,
+        )
+        if r.status_code == 200:
+            out["renders"] = r.json().get("renders", [])
+    except Exception as e:
+        log.warning(f"  renders fetch error: {e}")
+    return out
+
+
+def _render_payload(renders: list, render_type: str) -> dict:
+    """Pluck a synthesizer's input_payload by render_type."""
+    for r in renders:
+        if r.get("render_type") == render_type:
+            return (r.get("payload") or {}).get("input_payload") or {}
     return {}
 
 
-def _extract_cir_findings(blob: dict) -> dict:
-    """Extract key CIR findings from blob for the weekly report."""
-    if not blob:
-        return {}
+def _extract_cir_findings(run_data: dict) -> dict:
+    """Map /cir/run output (evidence + renders) to the legacy `findings`
+    shape the rest of the weekly report consumes. Keeps the PDF
+    generation, delta computation, and Teams card code unchanged.
 
+    Sources by render_type:
+      - cir_markdown          → executive_summary, risk_assessment (narrative)
+      - banker_audit_pack     → corporate_registry, sanctions, key_people
+      - sanctions_screening   → sanctions hits + clean sources
+      - ubo_map               → key_people (entities + people)
+    """
     findings = {}
+    renders = run_data.get("renders", [])
+    if not renders:
+        return findings
 
-    # Executive summary
-    exec_summary = blob.get("executive_summary", "")
-    if exec_summary:
-        findings["executive_summary"] = exec_summary[:2000]
+    md_payload = _render_payload(renders, "cir_markdown")
+    sanc_payload = _render_payload(renders, "sanctions_screening")
+    pack_payload = _render_payload(renders, "banker_audit_pack")
+    ubo_payload = _render_payload(renders, "ubo_map")
 
-    # Risk assessment
-    risk = blob.get("risk_assessment", "")
-    if risk:
-        findings["risk_assessment"] = risk[:1500]
+    # cir_markdown → narrative
+    markdown = md_payload.get("markdown") or ""
+    if markdown:
+        # Pull Executive Summary block (## Executive Summary ... next ##)
+        parts = markdown.split("\n## ")
+        for p in parts:
+            head, _, body = p.partition("\n")
+            head_l = head.lower().strip()
+            if "executive summary" in head_l:
+                findings["executive_summary"] = body.strip()[:2000]
+            elif "risk" in head_l and "executive" not in head_l:
+                findings["risk_assessment"] = body.strip()[:1500]
 
-    # Risk score
-    risk_score = blob.get("risk_score")
-    if risk_score is not None:
-        findings["risk_score"] = risk_score
-
-    # Corporate registry
-    corp_reg = blob.get("corporate_registry", {})
-    if corp_reg:
+    # banker_audit_pack → identity / ownership / officers / sanctions
+    identity = pack_payload.get("identity") or {}
+    if identity:
+        # Legacy shape: registration_date / status / registered_address /
+        # business_type. Map from new identity fields.
+        legal_name_obj = identity.get("legal_name")
+        legal_name = legal_name_obj.get("value") if isinstance(legal_name_obj, dict) else legal_name_obj
         findings["corporate_registry"] = {
-            "status": corp_reg.get("registration_status", corp_reg.get("status", "")),
-            "registration_date": corp_reg.get("registration_date", corp_reg.get("date_of_incorporation", "")),
-            "registered_address": corp_reg.get("registered_address", corp_reg.get("address", "")),
-            "business_type": corp_reg.get("business_type", corp_reg.get("entity_type", "")),
+            "status": identity.get("status", ""),
+            "registration_date": (
+                identity.get("incorporation_date")
+                if isinstance(identity.get("incorporation_date"), str)
+                else ""
+            ),
+            "registered_address": "",
+            "business_type": "",
+            "legal_name": legal_name or "",
+            "registration_number": (
+                identity.get("registration_number")
+                if isinstance(identity.get("registration_number"), str)
+                else ""
+            ),
         }
-
-    # Key individuals / directors / UBOs
+    officers = pack_payload.get("officers") or []
     key_people = []
-    for section in ["key_individuals", "beneficial_ownership", "related_entities"]:
-        items = blob.get(section)
-        if isinstance(items, list):
-            for person in items[:10]:
-                if isinstance(person, dict):
-                    name = person.get("name", person.get("individual_name", ""))
-                    role = person.get("title", person.get("role", person.get("relationship", "")))
-                    if name:
-                        key_people.append({"name": name, "role": role})
-                elif isinstance(person, str):
-                    key_people.append({"name": person, "role": ""})
-        elif isinstance(items, str) and items.strip():
-            findings[f"{section}_text"] = items[:500]
+    for o in officers[:15]:
+        if isinstance(o, dict):
+            name = o.get("name") or o.get("officer_name") or ""
+            role = o.get("role") or o.get("title") or ""
+            if name:
+                key_people.append({"name": name, "role": role})
 
+    # ubo_map → also feeds key_people (nodes that are people)
+    nodes = ubo_payload.get("nodes") or []
+    seen_names = {p["name"] for p in key_people}
+    for n in nodes:
+        if not isinstance(n, dict):
+            continue
+        if n.get("kind") in ("person", "ubo", "director"):
+            nm = n.get("label") or n.get("id") or ""
+            if nm and nm not in seen_names:
+                key_people.append({"name": nm, "role": n.get("kind")})
+                seen_names.add(nm)
     if key_people:
         findings["key_people"] = key_people[:15]
 
-    # Sanctions from CIR
-    sanctions = blob.get("sanctions_screening", {})
-    if sanctions:
-        findings["sanctions"] = sanctions
+    # sanctions screening
+    if sanc_payload:
+        findings["sanctions"] = {
+            "status": sanc_payload.get("status", ""),
+            "hits": sanc_payload.get("hits", []),
+            "clean_sources": sanc_payload.get("clean_sources", []),
+            "summary": sanc_payload.get("summary", ""),
+        }
 
-    # Adverse media from CIR
-    adverse = blob.get("adverse_media", {})
-    if adverse:
-        findings["adverse_media"] = adverse
+    # Note: /cir/run does not produce explicit "adverse_media" or
+    # "litigation" sections — those would have to come from a separate
+    # scan. The weekly report's adverse_media data comes from scan_media()
+    # which calls /tools/adverse_media independently.
 
-    # Litigation
-    litigation = blob.get("litigation", {})
-    if litigation:
-        findings["litigation"] = litigation
-
-    # Fingerprint the whole thing for delta detection
+    # Fingerprint for delta detection
     fp_str = json.dumps(findings, sort_keys=True, default=str)
     findings["_fingerprint"] = hashlib.md5(fp_str.encode()).hexdigest()[:12]
-
     return findings
 
 
 def scan_cir_batch(entities: list[dict]) -> dict[str, dict]:
-    """Run CIR (OpenClaw) research for all entities.
+    """Run CIR research for all entities via /api/v1/cir/run.
 
-    Disables gateway blocked terms once, submits all jobs, polls for
-    completion, fetches blobs, extracts findings, restores block.
+    The new gateway does NOT enforce the COPAP sanitizer on this path so
+    no block-disable/restore dance is needed. Submits all runs in
+    parallel, polls each to completion, fetches evidence + renders, maps
+    to the legacy 'findings' shape that downstream PDF code expects.
     """
     results = {}
     api_key = _get_secret("cir-api-key")
@@ -737,97 +579,76 @@ def scan_cir_batch(entities: list[dict]) -> dict[str, dict]:
             }
         return results
 
-    # Disable blocked terms on gateway
-    if not _gateway_disable_block():
-        log.error("CIR: cannot disable gateway block — skipping all CIR scans")
-        for e in entities:
-            results[e["name"]] = {
-                "entity": e["name"], "source": "cir",
+    # Submit all CIR runs
+    runs = {}  # entity_name -> run_id
+    for entity in entities:
+        log.info(f"CIR: {entity['name']}")
+        run_id = _submit_cir(entity, api_key)
+        if run_id:
+            runs[entity["name"]] = run_id
+        else:
+            results[entity["name"]] = {
+                "entity": entity["name"], "source": "cir",
                 "scan_time": datetime.now(timezone.utc).isoformat(),
-                "error": "gateway block disable failed", "findings": {},
+                "error": "submit failed", "findings": {},
             }
-        return results
+        time.sleep(2)  # Pace submissions
 
-    try:
-        # Submit all CIR jobs
-        jobs = {}  # entity_name -> job_id
-        for entity in entities:
-            log.info(f"CIR: {entity['name']}")
-            job_id = _submit_cir(entity, api_key)
-            if job_id:
-                jobs[entity["name"]] = job_id
-            else:
-                results[entity["name"]] = {
-                    "entity": entity["name"], "source": "cir",
-                    "scan_time": datetime.now(timezone.utc).isoformat(),
-                    "error": "submit failed", "findings": {},
-                }
-            time.sleep(2)  # Pace submissions
+    # Poll all runs for completion (round-robin)
+    pending = dict(runs)
+    completed = {}
+    deadline = time.time() + 1200  # 20 min max for 7 entities
 
-        # Poll all jobs for completion (parallel polling via round-robin)
-        pending = dict(jobs)
-        completed = {}
-        deadline = time.time() + 900  # 15 min max
+    while pending and time.time() < deadline:
+        for entity_name, run_id in list(pending.items()):
+            try:
+                resp = requests.get(
+                    f"{GATEWAY_URL}/api/v1/evidence/runs/{run_id}",
+                    headers={"X-API-Key": api_key}, timeout=15,
+                )
+                if resp.status_code == 200:
+                    data = resp.json()
+                    status = data.get("status", "")
+                    if status == "complete":
+                        completed[entity_name] = data
+                        del pending[entity_name]
+                        log.info(f"  CIR completed: {entity_name}")
+                    elif status in ("failed", "error"):
+                        completed[entity_name] = data
+                        del pending[entity_name]
+                        log.warning(f"  CIR failed: {entity_name}: "
+                                    f"{data.get('error', '?')}")
+            except Exception:
+                pass
+        if pending:
+            time.sleep(20)
 
-        while pending and time.time() < deadline:
-            for entity_name, job_id in list(pending.items()):
-                try:
-                    resp = requests.get(
-                        f"{GATEWAY_URL}/api/v1/research/{job_id}",
-                        headers={"X-API-Key": api_key},
-                        timeout=15,
-                    )
-                    if resp.status_code == 200:
-                        data = resp.json()
-                        status = data.get("status", "")
-                        if status == "completed":
-                            completed[entity_name] = data
-                            del pending[entity_name]
-                            log.info(f"  CIR completed: {entity_name}")
-                        elif status == "failed":
-                            completed[entity_name] = data
-                            del pending[entity_name]
-                            log.warning(f"  CIR failed: {entity_name}: {data.get('error', '?')}")
-                except Exception:
-                    pass
+    for entity_name in pending:
+        completed[entity_name] = {"status": "timeout", "error": "polling timeout"}
+        log.warning(f"  CIR timed out: {entity_name}")
 
-            if pending:
-                time.sleep(20)
-
-        # Mark timed-out jobs
-        for entity_name in pending:
-            completed[entity_name] = {"status": "timeout", "error": "polling timeout"}
-            log.warning(f"  CIR timed out: {entity_name}")
-
-        # Fetch blobs and extract findings
-        for entity_name, job_data in completed.items():
-            blob_path = job_data.get("blob_path", "")
-            findings = {}
-            error = job_data.get("error")
-
-            if job_data.get("status") == "completed" and blob_path:
-                blob = _fetch_cir_blob(blob_path)
-                if blob:
-                    findings = _extract_cir_findings(blob)
-                    log.info(f"  CIR blob fetched: {entity_name} ({len(findings)} sections)")
-                else:
-                    error = error or "blob fetch failed"
-
-            results[entity_name] = {
-                "entity": entity_name,
-                "source": "cir",
-                "scan_time": datetime.now(timezone.utc).isoformat(),
-                "status": job_data.get("status", "unknown"),
-                "job_id": jobs.get(entity_name, ""),
-                "blob_path": blob_path,
-                "findings": findings,
-                "error": error,
-            }
-
-    finally:
-        # Always restore blocked terms
-        _gateway_restore_block()
-
+    # Fetch evidence + renders and extract findings
+    for entity_name, run_summary in completed.items():
+        run_id = runs.get(entity_name, "")
+        findings = {}
+        error = run_summary.get("error")
+        if run_summary.get("status") == "complete" and run_id:
+            run_data = _fetch_cir_run_data(run_id, api_key)
+            findings = _extract_cir_findings(run_data)
+            log.info(f"  CIR data fetched: {entity_name} "
+                     f"({len(findings)} sections, "
+                     f"{len(run_data.get('renders', []))} renders)")
+            if not findings:
+                error = error or "no renders produced"
+        results[entity_name] = {
+            "entity": entity_name,
+            "source": "cir",
+            "scan_time": datetime.now(timezone.utc).isoformat(),
+            "status": run_summary.get("status", "unknown"),
+            "run_id": run_id,
+            "findings": findings,
+            "error": error,
+        }
     return results
 
 
@@ -1756,10 +1577,11 @@ def main():
     # ── Run scans ──
     scan_data = {e["name"]: {} for e in entities}
 
-    # Dark web: batch all entities (disable block once, scan all, restore once)
+    # Dark web: all entities via Container App /sources/darkweb/scan
+    api_key = _get_secret("cir-api-key")
     dw_entities = [e for e in entities if "darkweb" in e.get("scan", ["darkweb", "screening", "media"])]
     if dw_entities:
-        dw_results = scan_darkweb_batch(dw_entities)
+        dw_results = scan_darkweb_batch(dw_entities, api_key)
         for name, result in dw_results.items():
             scan_data[name]["darkweb"] = result
 

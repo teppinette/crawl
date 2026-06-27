@@ -40,6 +40,11 @@ CLAUDE.md*
 **/known_hosts
 .ssh/
 
+# Don't bake the local fallback blob SAS — KV is the source of truth.
+# (Other files in config/ are baked: copap_weekly_entities.json,
+# brd-ca.crt, ATL_IT.xlsx, ca-bundle-with-bd.crt.)
+config/blob_sas_token
+
 # Old gateway service unit etc.
 api/cir-api.service
 api/openapi.json

@@ -54,6 +54,7 @@ RUN pip install --no-cache-dir -r /app/requirements.txt
 COPY api/      /app/api/
 COPY agents/   /app/agents/
 COPY scripts/  /app/scripts/
+COPY config/   /app/config/
 
 # Mount points for Azure Files (created at deploy time):
 #   /app/api/jobs           — bulk verify file-backed cross-worker storage
