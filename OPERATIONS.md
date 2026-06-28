@@ -328,6 +328,17 @@ Logs of recent agent runs are in `crawlmonitor.tool_call_log` (records
 every tool call with input/output/timing). Foundry-side run state needs
 the AgentsClient (see `api/cir_orchestrator.py` for the auth pattern).
 
+**A collector run ends `incomplete` / the CIR fails with `collector incomplete`.**
+Two distinct causes (both fixed in image v1.9, commit `142f1e4`):
+- `reason: content_filter` — Azure OpenAI's prompt-shield blocked the run
+  BEFORE any tool call (looks like a 3s "hang"). Triggered by *assertive*
+  instruction phrasing. Keep the `cir_orchestrator.py` phase instructions
+  PLAIN (see §13). Inspect the reason with the AgentsClient:
+  `run = client.runs.get(...); run.incomplete_details`.
+- The orchestrator used to treat only COMPLETED/FAILED as terminal, so an
+  `incomplete` run was polled until the 300s timeout. `_run_agent_sync` now
+  recognises `incomplete` + retries the country collector 3×.
+
 ### Container App reports KV "secret not found"
 Means either (a) secret really not in KV, or (b) MI lacks Secrets User
 role. Check:
@@ -339,9 +350,22 @@ az role assignment list --scope $(az keyvault show -g COPAPAI_Resource_Group -n 
 
 ### Verify endpoint returning empty / wrong results
 1. Test via Container App: `curl -X POST $BASE/api/v1/verify -H "X-API-Key:$API_KEY" -d '{"entity_name":"X","country_code":"PK"}'`
-2. If that fails, hit crawl-verify-new directly: `ssh ... 172.20.0.26; curl 127.0.0.1:8460/health`
-3. Logs: `journalctl --user-unit verify-gateway -n 200 --no-pager`
-4. Multilogin daemon status: `sudo systemctl status mlx xvfb`
+2. If that fails, hit crawl-verify-new directly: `ssh -i ~/.ssh/crawl_admin_key.pem copapadmin@172.20.0.26; curl 127.0.0.1:8460/health`
+3. Logs: `journalctl -u verify-gateway -n 200 --no-pager` (system unit `/etc/systemd/system/verify-gateway.service`)
+4. Multilogin daemon status: `sudo systemctl status mlx`
+5. **Multilogin `"MLX launch failed: can't lock profile"`** (verify returns
+   `found:false` in ~2s for CN/PK/IN/SG/TR/AE — the only Multilogin countries;
+   the rest use free gov APIs): **stale pool locks** left after a VM
+   move/restart that never released (no browser actually running). Fix on
+   crawl-verify-new:
+   ```bash
+   cp ~/mlx/profiles.lock ~/mlx/profiles.lock.bak.$(date +%Y%m%d)
+   sudo systemctl stop verify-gateway mlx
+   : > ~/mlx/profiles.lock         # truncate the stale checkout list
+   sudo systemctl start mlx; sleep 12; sudo systemctl start verify-gateway
+   ```
+   Confirm: a CN `/verify` now launches a profile and scrapes the gov registry
+   (the log shows e.g. `Tianyancha (...) via CN residential proxy`).
 
 ### Dark-web scan timing out
 1. Check the VM is up: `az vm get-instance-view -g COPAPAI_Resource_Group -n crawl-darkweb-new --query "instanceView.statuses[].displayStatus"`
@@ -383,6 +407,17 @@ az containerapp job update -g COPAPAI_Resource_Group -n crawl-weekly-copap-scan 
 
 ## 13 — Known wrinkles + workarounds
 
+- **Keep agent instructions PLAIN — assertive phrasing trips the content
+  filter.** The orchestrator's collector instruction once read *"Execute every
+  step… ALL evidence_add and collector_complete calls REQUIRE run_id=… as the
+  path parameter."* Azure OpenAI's prompt-shield flagged that as a
+  jailbreak/injection → the run ended `incomplete (reason: content_filter)`
+  in ~3s before any tool call (verified: the same agent runs fine with a plain
+  instruction; the system prompt already enforces run_id). All three phase
+  instructions in `cir_orchestrator.py` (collect / darkweb / extract) were
+  de-risked (commit `142f1e4`, image `v1.9`). If you re-add detail to an
+  instruction and CIRs start failing `incomplete` for one country, suspect
+  this first.
 - **`darkweb_collector` occasionally COMPLETES without firing `evidence_add`** —
   gpt-4.1-mini variability. Mitigated by orchestrator-side fallback in
   `cir_orchestrator._darkweb_fallback_persist` which detects the missing
