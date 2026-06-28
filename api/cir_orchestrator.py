@@ -86,10 +86,16 @@ def _run_agent_sync(client, agent_id: str, instruction: str, timeout: int = 300)
             log.info("orchestrator: agent %s status %s", agent_id[:12], run.status)
             last_status = run.status
         s = str(run.status)
-        if s.endswith(("COMPLETED", "FAILED", "CANCELLED", "EXPIRED")):
+        # NOTE: gpt-4.1-mini occasionally ends a run as "incomplete" (raw
+        # string, not a RunStatus.* enum) — a transient terminal state. It must
+        # be recognised as terminal, else we poll uselessly until `timeout`
+        # (was burning the full 300s per failed collector). Match case-insensitively.
+        if s.upper().endswith(("COMPLETED", "FAILED", "CANCELLED", "EXPIRED", "INCOMPLETE")):
             err = None
             if run.last_error:
                 err = f"{run.last_error.code}: {run.last_error.message}"
+            elif s.upper().endswith("INCOMPLETE"):
+                err = f"run ended incomplete ({getattr(run, 'incomplete_details', None)})"
             return s, err
         time.sleep(3)
     return "TIMEOUT", f"agent {agent_id} did not finish within {timeout}s"
@@ -175,11 +181,14 @@ async def _orchestrate(run_id: str, country_code: str, entity_name: str,
         return
 
     client = _agents_client()
+    # NB: keep this instruction PLAIN. The previous assertive phrasing
+    # ("Execute every step… ALL … calls REQUIRE … as the path parameter")
+    # tripped Azure OpenAI's prompt-shield/content filter → the run ended
+    # `incomplete (reason: content_filter)` before any tool call (confirmed:
+    # the same agent runs fine with a plain instruction). The agent's system
+    # prompt already mandates run_id on evidence_add/collector_complete.
     instr_collect = (
-        f"Collect evidence for entity_name='{entity_name}' with run_id='{run_id}'. "
-        f"Execute every step in your system prompt. ALL evidence_add and "
-        f"collector_complete calls REQUIRE run_id='{run_id}' as the path "
-        f"parameter."
+        f"Collect evidence for entity_name='{entity_name}' with run_id='{run_id}'."
         + (f" Registration number: {registration_id}" if registration_id else "")
     )
 
@@ -189,16 +198,27 @@ async def _orchestrate(run_id: str, country_code: str, entity_name: str,
     darkweb_id = _load_agent_id("darkweb_collector")
     instr_darkweb = (
         f"Screen entity_name='{entity_name}' country='{cc}' for run_id='{run_id}'. "
-        f"Run exactly one darkweb_scan with depth='heavy' and persist one evidence "
-        f"row tagged source_id='darkweb_screen'. evidence_add and collector_complete "
-        f"BOTH require run_id='{run_id}' as the path parameter."
+        f"Run one darkweb_scan with depth='heavy' and persist one evidence "
+        f"row tagged source_id='darkweb_screen'."
     )
 
     async def _run_country():
+        # The country collector is the only phase that can kill the run, and
+        # gpt-4.1-mini intermittently returns "incomplete" before firing a
+        # single tool call (the agent itself is sound — verified in isolation).
+        # Retry up to 3x on any non-COMPLETED terminal status; each attempt is
+        # a fresh thread/run so a transient incomplete doesn't fail the CIR.
         local_client = _agents_client()
-        return await loop.run_in_executor(
-            None, _run_agent_sync, local_client, collector_id, instr_collect, 300,
-        )
+        last = ("UNKNOWN", None)
+        for attempt in range(3):
+            last = await loop.run_in_executor(
+                None, _run_agent_sync, local_client, collector_id, instr_collect, 300,
+            )
+            if str(last[0]).upper().endswith("COMPLETED"):
+                return last
+            log.warning("orchestrator: country collector attempt %d/3 -> %s (%s); retrying",
+                        attempt + 1, last[0], last[1])
+        return last
 
     async def _run_darkweb():
         if not darkweb_id:
@@ -261,11 +281,9 @@ async def _orchestrate(run_id: str, country_code: str, entity_name: str,
         evidence_db.update_run_status(run_id, "failed", error="no deployed claim_extractor")
         return
     instr_extract = (
-        f"Extract claims for run_id='{run_id}'. Load the evidence pool with "
-        f"list_run_evidence(run_id='{run_id}'). Identify typed claims and "
-        f"persist each via add_claim — REMEMBER add_claim REQUIRES "
-        f"run_id='{run_id}' as the path parameter. When done call "
-        f"extractor_complete(run_id='{run_id}')."
+        f"Extract claims for run_id='{run_id}'. Load the evidence with "
+        f"list_run_evidence(run_id='{run_id}'), persist each typed claim via "
+        f"add_claim(run_id='{run_id}'), then call extractor_complete(run_id='{run_id}')."
     )
     status, err = await loop.run_in_executor(None, _run_agent_sync, client, extractor_id, instr_extract, 300)
     if not status.endswith("COMPLETED"):
