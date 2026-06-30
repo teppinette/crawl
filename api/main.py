@@ -538,6 +538,11 @@ app = FastAPI(
         "no identifying information about the requesting organization ever "
         "reaches the research agents."
     ),
+    # Public API documentation disabled (Intruder F1 "API Documentation Exposed").
+    # Foundry agents call routes by fixed contract, not via Swagger discovery.
+    docs_url=None,
+    redoc_url=None,
+    openapi_url=None,
 )
 
 # Multilogin modules run on crawl-verify VM (180.20.0.4:8460)
@@ -573,6 +578,8 @@ app.include_router(cir_orch_router, dependencies=[Depends(verify_api_key)])
 async def schema_version_middleware(request: Request, call_next):
     """Inject X-API-Version and X-Schema-Version headers on v2 responses."""
     response = await call_next(request)
+    # HSTS on every response (Intruder F3 "Missing HSTS Header"). Ingress is HTTPS-only.
+    response.headers["Strict-Transport-Security"] = "max-age=63072000; includeSubDomains"
     path = request.url.path
     if path.startswith("/api/v2/"):
         response.headers["X-API-Version"] = V2_VERSION
