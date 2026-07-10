@@ -82,6 +82,7 @@ JURISDICTION_MAP = {
     "NG": "europe", "UA": "europe", "BG": "europe", "DE": "europe",
     "NL": "europe", "GB": "europe", "FR": "europe", "IT": "europe",
     "ES": "europe", "CH": "europe", "SE": "europe", "NO": "europe",
+    "GR": "europe",
     "AE": "gulf", "EG": "gulf", "PK": "gulf", "IQ": "gulf",
     "SA": "gulf", "QA": "gulf", "BH": "gulf", "KW": "gulf",
     "OM": "gulf", "JO": "gulf",
@@ -478,7 +479,7 @@ REGION_HINT_MAP = {
     "southeast asia": ["SG", "TH", "MY", "VN", "PH", "ID", "MM"],
     "east asia": ["CN", "HK", "JP", "KR", "TW"],
     "south asia": ["IN", "PK"],
-    "europe": ["DE", "NL", "GB", "FR", "IT", "ES", "TR"],
+    "europe": ["DE", "NL", "GB", "FR", "IT", "ES", "TR", "GR"],
     "americas": ["US", "CA", "BR", "MX", "CO"],
     "india": ["IN"],
     "china": ["CN", "HK"],
@@ -3082,6 +3083,7 @@ _VERIFY_SOURCES = {
     "AU": "ABR (Australian Business Register) — ABN, ACN, legal name, entity type, status, GST (free JSONP API)",
     "JP": "Houjin Bangou (NTA) — corporate number, legal name (JP+EN), kind, status, address (free API, needs app ID)",
     "NL": "KvK (Kamer van Koophandel) — KVK number, legal name, status, legal form, address (free public search)",
+    "GR": "GEMI (Γ.Ε.ΜΗ., General Commercial Registry) — GEMI number, ΑΦΜ, status, legal form, address (JS SPA via Multilogin) + VIES/EL confirmation",
     "IT": "VIES (EU VAT) — P.IVA, legal name, status, address (free EU tax validation)",
     "AR": "AFIP (CUIT) — CUIT, legal name, tax status, address, economic activities (free API)",
     "EG": "GLEIF LEI Registry — LEI, legal name (AR+EN), status, commercial reg, address (free API, ~322 entities)",
@@ -4794,6 +4796,36 @@ async def verify_entity(
                 f"{result.get('entity_name', entity_name)} — "
                 f"KVK {result.get('kvk_number', 'N/A')} — {result.get('status', 'Unknown')}"
             ) if result.get("found") else f"{entity_name} not found in KvK",
+        })
+
+    # --------------- GREECE (GEMI + VIES/EL) ---------------
+    if country_code == "GR":
+        gemi_number = (body.get("gemi_number") or body.get("reg_number") or "").strip()
+        afm = (body.get("afm") or body.get("vat_id") or "").strip()
+        result = await loop.run_in_executor(
+            _ssh_pool, _verify_vm_call,
+            {"entity_name": entity_name, "country_code": "GR",
+             "gemi_number": gemi_number, "afm": afm}
+        )
+        now = datetime.now(timezone.utc).isoformat()
+        return _persist_verify({
+            "entity_name": entity_name, "country_code": "GR",
+            "verified": result.get("found", False),
+            "legal_name": result.get("legal_name") or result.get("entity_name"),
+            "business_registration_number": result.get("business_registration_number"),
+            "gemi_number": result.get("gemi_number"),
+            "afm": result.get("afm"),
+            "vat_id": result.get("vat_id"),
+            "legal_form": result.get("legal_form"),
+            "status": result.get("status"),
+            "registered_address": result.get("registered_address") or result.get("headquarters"),
+            "vies_confirmed": result.get("vies_confirmed"),
+            "validation_source": result.get("validation_source"),
+            "timestamp": now,
+            "summary": result.get("summary") or (
+                f"{result.get('legal_name', entity_name)} — "
+                f"ΓΕΜΗ {result.get('gemi_number', 'N/A')} — {result.get('status', 'Unknown')}"
+            ) if result.get("found") else f"{entity_name} (GR) not found in GEMI",
         })
 
     # --------------- ITALY (VIES) ---------------

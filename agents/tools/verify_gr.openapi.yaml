@@ -1,0 +1,90 @@
+openapi: 3.0.3
+info:
+  title: Verify GR (Greece — GEMI)
+  version: "1.0.0"
+  description: >
+    Verify a Greek company against the official General Commercial Registry
+    (Γ.Ε.ΜΗ. / GEMI, publicity.businessportal.gr) through Multilogin's
+    anti-detect browser with a GR exit IP (the registry is a JS SPA behind
+    anti-bot protection, so plain requests fail). Returns the GEMI number,
+    ΑΦΜ (Greek VAT), active-status, legal form and registered address. When an
+    ΑΦΜ is found or supplied, the result is cross-confirmed against the EU VIES
+    VAT system (country code EL) as an authoritative check on the registered
+    name, address and active status. Reusable Tier-1 government-registry
+    capability — one adapter, callable by any agent or app.
+servers:
+  - url: https://crawl-gateway-v2.orangemoss-d67e0a38.eastus2.azurecontainerapps.io/api/v1
+security:
+  - ApiKeyAuth: []
+paths:
+  /verify:
+    post:
+      operationId: verify_gr
+      summary: Verify a Greek company against GEMI (+ VIES/EL confirmation)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [entity_name, country_code]
+              properties:
+                entity_name:
+                  type: string
+                  description: Full legal name (Greek or Latin), e.g. "Γ. ΣΤΑΥΡΑΚΑΝΤΩΝΑΚΗΣ Α.Ε.Β.Ε."
+                country_code:
+                  type: string
+                  enum: [GR]
+                  description: Must be GR.
+                gemi_number:
+                  type: string
+                  description: Optional ΑΡ.ΓΕΜΗ (GEMI number) — navigates the company page directly.
+                afm:
+                  type: string
+                  description: Optional ΑΦΜ (Greek VAT, 9 digits) — used for VIES(EL) confirmation.
+                reg_number:
+                  type: string
+                  description: Generic registry-id alias (GEMI number) accepted by all adapters.
+                nocache:
+                  type: boolean
+                  description: Force a fresh lookup, bypassing the 24h verify cache.
+      responses:
+        '200':
+          description: Registry record (or not-found), uniform verify shape.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [entity_name, country_code, verified]
+                properties:
+                  entity_name: { type: string, description: Legal name from the registry when found }
+                  country_code: { type: string, example: GR }
+                  verified: { type: boolean }
+                  found: { type: boolean }
+                  legal_name: { type: string }
+                  business_registration_number: { type: string, description: GEMI number (or ΑΦΜ if that is all that resolved) }
+                  gemi_number: { type: string }
+                  afm: { type: string, description: Greek VAT, 9 digits }
+                  vat_id: { type: string, example: EL123456789 }
+                  legal_form: { type: string, example: AEBE }
+                  status: { type: string, enum: [ACTIVE, SUSPENDED, IN_LIQUIDATION, DISSOLVED, BANKRUPT, UNKNOWN, NOT_FOUND] }
+                  registered_address: { type: string }
+                  headquarters: { type: string }
+                  vies_confirmed: { type: boolean, description: True when VIES(EL) corroborated the ΑΦΜ }
+                  source: { type: string }
+                  validation_source:
+                    type: object
+                    properties:
+                      primary: { type: string }
+                      primary_url: { type: string }
+                      how_to_reproduce: { type: string }
+                      verified_at: { type: string, format: date-time }
+                      enrichment: { type: string }
+                  summary: { type: string }
+        '401': { description: Missing/invalid API key }
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
