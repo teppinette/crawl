@@ -31,10 +31,43 @@ except Exception:  # pragma: no cover
     _HAS_PN = False
 
 
+def _twilio_lookup(e164):
+    """Paid enrichment: Twilio Lookup v2 line-type intelligence — mobile /
+    landline / VOIP + carrier. VOIP for a company that should have a landline
+    is a fraud tell. Key-gated (crawl-kv twilio-account-sid + twilio-auth-token);
+    returns None when unconfigured. Never raises."""
+    if not e164:
+        return None
+    try:
+        from keyvault import get_secret
+        sid = get_secret("twilio-account-sid")
+        tok = get_secret("twilio-auth-token")
+    except Exception:
+        sid = tok = None
+    if not sid or not tok:
+        return None
+    try:
+        r = requests.get(
+            "https://lookups.twilio.com/v2/PhoneNumbers/%s" % e164,
+            params={"Fields": "line_type_intelligence"},
+            auth=(sid, tok), headers={"User-Agent": _UA}, timeout=_GEO_TIMEOUT)
+        if r.status_code >= 400:
+            log.info("twilio lookup %s for %s", r.status_code, e164)
+            return None
+        j = r.json()
+    except Exception as e:
+        log.info("twilio lookup failed for %s: %s", e164, e)
+        return None
+    lti = j.get("line_type_intelligence") or {}
+    return {"valid": j.get("valid"), "line_type": lti.get("type"),
+            "carrier": lti.get("carrier_name"), "country": j.get("country_code")}
+
+
 def check_phone(raw_phone, country_code):
     """Phone country-consistency. country_code = ISO-2 of the counterparty
     (e.g. 'TW'). VERIFIED when the number is valid AND its region matches the
-    counterparty country; REVIEW on a country mismatch or an invalid number."""
+    counterparty country; REVIEW on a country mismatch or an invalid number.
+    When a Twilio key is configured, enriches with line-type/carrier + flags VOIP."""
     raw = (raw_phone or "").strip()
     cc = (country_code or "").strip().upper() or None
     out = {"phone": raw, "verdict": "REVIEW", "valid": False, "region": None,
