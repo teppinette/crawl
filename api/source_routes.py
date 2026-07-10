@@ -24,6 +24,7 @@ from pydantic import BaseModel, Field
 import evidence_db
 import source_gleif
 import source_domain
+import source_contact
 from keyvault import get_secret
 
 log = logging.getLogger("crawl-gateway")
@@ -418,6 +419,33 @@ async def domain_trust_check(req: DomainTrustRequest):
         )
     except Exception as e:
         log.warning("domain_trust check failed: %s", e)
+        raise HTTPException(status_code=502, detail=str(e)[:200])
+    out["fetched_at"] = _now_iso()
+    return out
+
+
+# ---------------------------------------------------------------------------
+# Contact verify — phone + address country-consistency (companion to domain_trust)
+# ---------------------------------------------------------------------------
+
+class ContactVerifyRequest(BaseModel):
+    entity_name: Optional[str] = Field(None, max_length=500)
+    country_code: Optional[str] = Field(None, max_length=8)
+    phones: Optional[list] = Field(None)
+    addresses: Optional[list] = Field(None)
+
+
+@router.post("/sources/contact_verify/check")
+async def contact_verify_check(req: ContactVerifyRequest):
+    """Verify a counterparty's contact data off its docs: PHONE (valid + country
+    matches the counterparty country) and ADDRESS (geolocates to that country).
+    Reusable Tier-1 capability; the fraud LLM scores it, risk consumes it."""
+    try:
+        out = source_contact.check(
+            entity_name=req.entity_name, country_code=req.country_code,
+            phones=req.phones, addresses=req.addresses)
+    except Exception as e:
+        log.warning("contact_verify failed: %s", e)
         raise HTTPException(status_code=502, detail=str(e)[:200])
     out["fetched_at"] = _now_iso()
     return out

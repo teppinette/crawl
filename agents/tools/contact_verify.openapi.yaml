@@ -1,0 +1,77 @@
+openapi: 3.0.3
+info:
+  title: Contact Verify
+  version: "1.0.0"
+  description: >
+    Verify a counterparty's CONTACT data pulled off its trade/KYC docs — PHONE
+    (valid + its country matches the counterparty's country) and ADDRESS
+    (geolocates to the counterparty's country). Country-consistency is the bar:
+    a Taiwan counterparty with a +86 phone, or an address that geocodes to a
+    different country, is REVIEW. Companion to domain_trust (email/website).
+    Reusable Tier-1 capability; the copap-ds fraud LLM scores the result and the
+    risk assessment consumes it as a line item.
+servers:
+  - url: https://crawl-gateway-v2.orangemoss-d67e0a38.eastus2.azurecontainerapps.io/api/v1
+security:
+  - ApiKeyAuth: []
+paths:
+  /sources/contact_verify/check:
+    post:
+      operationId: contact_verify_check
+      summary: Verify counterparty phone(s) + address(es) for country consistency
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                entity_name: { type: string }
+                country_code: { type: string, description: ISO-2 country of the counterparty, e.g. TW }
+                phones: { type: array, items: { type: string } }
+                addresses: { type: array, items: { type: string } }
+      responses:
+        '200':
+          description: Per-item verdicts + overall
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [source_id, verdict, fetched_at]
+                properties:
+                  source_id: { type: string, example: contact_verify }
+                  verdict: { type: string, enum: [VERIFIED, REVIEW, NO_DATA] }
+                  country_code: { type: string }
+                  fetched_at: { type: string, format: date-time }
+                  phones:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        phone: { type: string }
+                        verdict: { type: string, enum: [VERIFIED, REVIEW] }
+                        valid: { type: boolean }
+                        region: { type: string, description: ISO-2 region the number belongs to }
+                        e164: { type: string }
+                        reasons: { type: array, items: { type: string } }
+                  addresses:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        address: { type: string }
+                        verdict: { type: string, enum: [VERIFIED, REVIEW] }
+                        geo:
+                          type: object
+                          nullable: true
+                          properties:
+                            country_code: { type: string }
+                            country: { type: string }
+                            state: { type: string }
+                            city: { type: string }
+                            lat: { type: string }
+                            lon: { type: string }
+                        reasons: { type: array, items: { type: string } }
+components:
+  securitySchemes:
+    ApiKeyAuth: { type: apiKey, in: header, name: X-API-Key }
