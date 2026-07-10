@@ -227,6 +227,56 @@ def _whoisxml(domain):
     }
 
 
+def verify_email(email):
+    """WhoisXML Email Verification API v3 — is the mailbox deliverable / free /
+    disposable? A legit domain can still carry an undeliverable or disposable
+    mailbox (a fraud tell). Key-gated (crawl-kv whoisxml-api-key). Never raises."""
+    if not email or "@" not in email:
+        return None
+    try:
+        from keyvault import get_secret
+        key = get_secret("whoisxml-api-key")
+    except Exception:
+        key = None
+    if not key:
+        return None
+    try:
+        r = requests.get(
+            "https://emailverification.whoisxmlapi.com/api/v3",
+            params={"apiKey": key, "emailAddress": email},
+            headers={"User-Agent": _UA}, timeout=_RDAP_TIMEOUT)
+        if r.status_code >= 400:
+            return None
+        d = r.json() or {}
+    except Exception as e:
+        log.info("email verify failed for %s: %s", email, e)
+        return None
+
+    def _ok(v):  # WhoisXML returns "true"/"false" strings or bools
+        return str(v).lower() == "true"
+    smtp = _ok(d.get("smtpCheck"))
+    fmt = _ok(d.get("formatCheck"))
+    dns = _ok(d.get("dnsCheck"))
+    disposable = _ok(d.get("disposableCheck"))
+    free = _ok(d.get("freeCheck"))
+    has_mx = bool(d.get("mxRecords"))
+    reasons = []
+    if not fmt:
+        reasons.append("Malformed email address")
+    if disposable:
+        reasons.append("Flag: disposable / throwaway mailbox")
+    if not smtp and has_mx:
+        reasons.append("Flag: mailbox failed SMTP deliverability check")
+    if not has_mx:
+        reasons.append("Flag: domain has no mail server (MX)")
+    if free:
+        reasons.append("Public free-webmail address")
+    verdict = "VERIFIED" if (fmt and smtp and not disposable) else "REVIEW"
+    return {"email": email, "verdict": verdict, "smtp": smtp, "format": fmt,
+            "dns": dns, "disposable": disposable, "free": free,
+            "has_mx": has_mx, "reasons": reasons}
+
+
 def fetch_registry(domain):
     """Registry-of-record for a domain: RDAP first (free), WhoisXML fallback
     (paid, all TLDs) when RDAP returns no registration date. Tags the source
@@ -401,6 +451,13 @@ def check(entity_name, domain=None, website=None, emails=None):
     email_domains = {d for d, m in domains.items() if "email" in m["sources"]}
     website_matches_email = (wd in email_domains) if (wd and email_domains) else None
 
+    # Per-email deliverability (WhoisXML Email Verification, key-gated).
+    email_verifications = []
+    for em in (emails or []):
+        ev = verify_email(em)
+        if ev:
+            email_verifications.append(ev)
+
     return {
         "source_id": "domain_trust",
         "source_url": "https://rdap.org",
@@ -408,6 +465,7 @@ def check(entity_name, domain=None, website=None, emails=None):
                                       for r in results)),
         "verdict": overall,
         "domains": results,
+        "email_verifications": email_verifications,
         "freemail_emails": sorted(set(freemail)),
         "website_matches_email": website_matches_email,
     }
