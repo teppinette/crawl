@@ -74,7 +74,23 @@ paths:
                         status:
                           type: array
                           items: { type: string }
+                        registrant: { type: string, nullable: true, description: registrant org (WhoisXML; RDAP redacts for gTLDs) }
+                        registry_source: { type: string, enum: [rdap, whoisxml], description: which registry answered }
                         site_alive: { type: boolean }
+                        resolved_ip: { type: string, nullable: true, description: A-record IP the domain resolves to (proof of existence for ccTLDs not in RDAP) }
+                        ip_geolocation:
+                          type: object
+                          nullable: true
+                          description: where the domain is hosted — compared to the entity address by the domain_location agent
+                          properties:
+                            country: { type: string }
+                            country_code: { type: string }
+                            region: { type: string }
+                            city: { type: string }
+                            isp: { type: string }
+                            org: { type: string }
+                            lat: { type: number }
+                            lon: { type: number }
                         name_match: { type: boolean }
                         name_hits:
                           type: array

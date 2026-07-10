@@ -26,6 +26,7 @@ the GLEIF / OpenSanctions / OFSI source adapters.
 
 import logging
 import re
+import socket
 from datetime import date, datetime
 
 import requests
@@ -173,7 +174,75 @@ def fetch_website_meta(domain):
     return out
 
 
-def _domain_verdict(legal_name, domain, rdap, web):
+def _dns_resolve(domain):
+    """Return the A-record IP if the domain resolves, else None. Free proof
+    that a domain EXISTS even when its ccTLD registry isn't in RDAP (e.g. .tw)."""
+    try:
+        return socket.gethostbyname(domain)
+    except Exception:
+        return None
+
+
+def _whoisxml(domain):
+    """Full WHOIS via WhoisXML API — covers every TLD including ccTLDs that
+    RDAP (rdap.org) does not (.tw, .cn ccTLD variants, many others). Returns a
+    dict shaped like fetch_rdap() + registrant, or None if unconfigured/failed.
+    Key: crawl-kv secret 'whoisxml-api-key' (paid; free tier ~500/mo)."""
+    try:
+        from keyvault import get_secret
+        key = get_secret("whoisxml-api-key")
+    except Exception:
+        key = None
+    if not key:
+        return None
+    try:
+        r = requests.get(
+            "https://www.whoisxmlapi.com/whoisserver/WhoisService",
+            params={"apiKey": key, "domainName": domain, "outputFormat": "JSON"},
+            headers={"User-Agent": _UA}, timeout=_RDAP_TIMEOUT,
+        )
+        if r.status_code >= 400:
+            log.info("whoisxml %s for %s", r.status_code, domain)
+            return None
+        rec = (r.json() or {}).get("WhoisRecord") or {}
+    except Exception as e:
+        log.info("whoisxml failed for %s: %s", domain, e)
+        return None
+    reg = rec.get("registryData") or rec
+    registrant = (rec.get("registrant") or {}).get("organization") \
+        or (reg.get("registrant") or {}).get("organization")
+    status = reg.get("status") or rec.get("status") or ""
+    if isinstance(status, str):
+        status = [s for s in re.split(r"[,\s]+", status) if s][:8]
+    return {
+        "registrar": rec.get("registrarName") or reg.get("registrarName"),
+        "created": rec.get("createdDate") or reg.get("createdDate")
+                   or rec.get("creationDate"),
+        "expires": rec.get("expiresDate") or reg.get("expiresDate"),
+        "status": status or [],
+        "registrant": registrant,
+        "nameservers": [],
+        "raw_available": True,
+        "via": "whoisxml",
+    }
+
+
+def fetch_registry(domain):
+    """Registry-of-record for a domain: RDAP first (free), WhoisXML fallback
+    (paid, all TLDs) when RDAP returns no registration date. Tags the source
+    it used in 'via'."""
+    rdap = fetch_rdap(domain)
+    rdap["via"] = "rdap"
+    if rdap.get("created"):
+        return rdap
+    wx = _whoisxml(domain)
+    if wx and wx.get("created"):
+        return wx
+    # neither had a registration date — keep whatever RDAP gave (usually empty)
+    return wx or rdap
+
+
+def _domain_verdict(legal_name, domain, rdap, web, resolved_ip=None):
     today = date.today()
     created = _parse_date(rdap.get("created"))
     age_days = (today - created).days if created else None
@@ -182,32 +251,73 @@ def _domain_verdict(legal_name, domain, rdap, web):
     very_new = age_days is not None and age_days < 30
     matched, hits = name_matches_domain(legal_name, domain)
 
-    reasons = []
+    base = {
+        "domain": domain, "registered": created.isoformat() if created else None,
+        "age_days": age_days, "expires": rdap.get("expires"),
+        "registrar": rdap.get("registrar"), "registrant": rdap.get("registrant"),
+        "status": rdap.get("status"), "site_alive": web.get("alive"),
+        "site_title": web.get("title"), "name_match": matched, "name_hits": hits,
+        "registry_source": rdap.get("via"),
+    }
     if not created:
-        return {
-            "domain": domain, "verdict": "UNVERIFIED", "registered": None,
-            "age_days": None, "expires": rdap.get("expires"),
-            "registrar": rdap.get("registrar"), "status": rdap.get("status"),
-            "site_alive": web.get("alive"), "name_match": matched, "name_hits": hits,
-            "reasons": ["No registration record found (domain may not exist, "
-                        "or the registry did not answer)"],
-        }
-    reasons.append("Domain name matches the company (%s)" % ", ".join(hits)
-                   if matched else "Domain name does not clearly match the company name")
+        # No registry record. If the domain RESOLVES it still EXISTS — the
+        # normal case for a ccTLD not in RDAP (.tw) when no paid WHOIS key is
+        # configured. DNS resolution is proof of existence.
+        if resolved_ip:
+            reasons = ["Registry record unavailable (ccTLD not in RDAP / no WHOIS "
+                       "key) but the domain RESOLVES via DNS to %s" % resolved_ip]
+            if matched:
+                reasons.insert(0, "Domain name matches the company (%s)" % ", ".join(hits))
+                base["verdict"] = "VERIFIED"
+            else:
+                reasons.append("Domain name does not clearly match the company name")
+                base["verdict"] = "REVIEW"
+            base["reasons"] = reasons
+            return base
+        base["verdict"] = "UNVERIFIED"
+        base["reasons"] = ["No registration record and the domain did not resolve "
+                           "(may not exist)"]
+        return base
+
+    reasons = ["Domain name matches the company (%s)" % ", ".join(hits)
+               if matched else "Domain name does not clearly match the company name"]
+    if rdap.get("via") == "whoisxml":
+        reasons.append("Registry data via WhoisXML (full ccTLD coverage)")
     if hold:
         reasons.append("Flag: registry hold/dispute")
     if very_new:
         reasons.append("Flag: registered <30 days ago")
     if not web.get("alive"):
         reasons.append("Soft flag: website did not resolve (does not block verification)")
-    verdict = "VERIFIED" if (matched and not hold and not very_new) else "REVIEW"
+    base["verdict"] = "VERIFIED" if (matched and not hold and not very_new) else "REVIEW"
+    base["reasons"] = reasons
+    return base
+
+
+def _geolocate_ip(ip):
+    """Free IP geolocation (ip-api.com, no key). Returns
+    {country, country_code, region, city, isp, org, lat, lon} or None.
+    Feeds the domain-location comprehension agent: does where the domain is
+    hosted line up with where the entity says it operates?"""
+    if not ip:
+        return None
+    try:
+        r = requests.get(
+            "http://ip-api.com/json/%s" % ip,
+            params={"fields": "status,country,countryCode,regionName,city,isp,org,lat,lon"},
+            headers={"User-Agent": _UA}, timeout=8,
+        )
+        j = r.json()
+    except Exception as e:
+        log.info("geolocate failed for %s: %s", ip, e)
+        return None
+    if (j.get("status") or "").lower() != "success":
+        return None
     return {
-        "domain": domain, "verdict": verdict,
-        "registered": created.isoformat(), "age_days": age_days,
-        "expires": rdap.get("expires"), "registrar": rdap.get("registrar"),
-        "status": rdap.get("status"), "site_alive": web.get("alive"),
-        "site_title": web.get("title"), "name_match": matched, "name_hits": hits,
-        "reasons": reasons,
+        "country": j.get("country"), "country_code": j.get("countryCode"),
+        "region": j.get("regionName"), "city": j.get("city"),
+        "isp": j.get("isp"), "org": j.get("org"),
+        "lat": j.get("lat"), "lon": j.get("lon"),
     }
 
 
@@ -242,12 +352,17 @@ def check(entity_name, domain=None, website=None, emails=None):
     results = []
     for dom, meta in domains.items():
         try:
-            rdap = fetch_rdap(dom)
+            registry = fetch_registry(dom)          # RDAP → WhoisXML fallback
             web = fetch_website_meta(dom)
-            v = _domain_verdict(entity_name or "", dom, rdap, web)
+            ip = _dns_resolve(dom)                   # proof of existence + IP
+            geo = _geolocate_ip(ip) if ip else None  # where it's hosted
+            v = _domain_verdict(entity_name or "", dom, registry, web, resolved_ip=ip)
+            v["resolved_ip"] = ip
+            v["ip_geolocation"] = geo
         except Exception as e:
             log.warning("domain_trust check failed for %s: %s", dom, e)
-            v = {"domain": dom, "verdict": "UNVERIFIED", "reasons": [str(e)[:160]]}
+            v = {"domain": dom, "verdict": "UNVERIFIED", "reasons": [str(e)[:160]],
+                 "resolved_ip": None, "ip_geolocation": None}
         v["sources"] = sorted(meta["sources"])
         v["emails"] = sorted(meta["emails"])
         results.append(v)
@@ -264,7 +379,8 @@ def check(entity_name, domain=None, website=None, emails=None):
     return {
         "source_id": "domain_trust",
         "source_url": "https://rdap.org",
-        "found": bool(results and any(r.get("registered") for r in results)),
+        "found": bool(results and any(r.get("registered") or r.get("resolved_ip")
+                                      for r in results)),
         "verdict": overall,
         "domains": results,
         "freemail_emails": sorted(set(freemail)),
