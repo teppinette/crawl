@@ -265,13 +265,18 @@ def verify_email(email):
         reasons.append("Malformed email address")
     if disposable:
         reasons.append("Flag: disposable / throwaway mailbox")
-    if not smtp and has_mx:
-        reasons.append("Flag: mailbox failed SMTP deliverability check")
     if not has_mx:
         reasons.append("Flag: domain has no mail server (MX)")
     if free:
         reasons.append("Public free-webmail address")
-    verdict = "VERIFIED" if (fmt and smtp and not disposable) else "REVIEW"
+    # SMTP mailbox probes are unreliable — many mail servers (esp. CN/TW) refuse
+    # verification, so smtp=false with a real MX is almost always the server
+    # blocking the probe, NOT a bad mailbox. Treat as a SOFT note, not a fail.
+    if not smtp and has_mx:
+        reasons.append("Note: mailbox not SMTP-confirmable (server may block probes) — not a fail")
+    # VERIFIED = valid format + real mail server + not disposable. SMTP does NOT
+    # gate the verdict. REVIEW only for malformed / no-MX / disposable.
+    verdict = "VERIFIED" if (fmt and has_mx and not disposable) else "REVIEW"
     return {"email": email, "verdict": verdict, "smtp": smtp, "format": fmt,
             "dns": dns, "disposable": disposable, "free": free,
             "has_mx": has_mx, "reasons": reasons}
