@@ -433,6 +433,7 @@ class ContactVerifyRequest(BaseModel):
     country_code: Optional[str] = Field(None, max_length=8)
     phones: Optional[list] = Field(None)
     addresses: Optional[list] = Field(None)
+    emails: Optional[list] = Field(None)
 
 
 @router.post("/sources/contact_verify/check")
@@ -443,7 +444,7 @@ async def contact_verify_check(req: ContactVerifyRequest):
     try:
         out = source_contact.check(
             entity_name=req.entity_name, country_code=req.country_code,
-            phones=req.phones, addresses=req.addresses)
+            phones=req.phones, addresses=req.addresses, emails=req.emails)
     except Exception as e:
         log.warning("contact_verify failed: %s", e)
         raise HTTPException(status_code=502, detail=str(e)[:200])
