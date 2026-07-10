@@ -99,11 +99,53 @@ def check_phone(raw_phone, country_code):
     else:
         out["reasons"] = ["Valid; country %s consistent with the counterparty" % (region or cc or "?")]
         out["verdict"] = "VERIFIED"
+    # Paid enrichment (Twilio Lookup): line type + carrier; flag VOIP.
+    tw = _twilio_lookup(out.get("e164"))
+    if tw:
+        out["line_type"] = tw.get("line_type")
+        out["carrier"] = tw.get("carrier")
+        if (tw.get("line_type") or "").lower() == "voip":
+            out["reasons"].append("Flag: VOIP line (higher fraud risk than a fixed line)")
     return out
 
 
+def _parse_geo(hit):
+    a = hit.get("address") or {}
+    return {
+        "country_code": (a.get("country_code") or "").upper() or None,
+        "country": a.get("country"),
+        "state": a.get("state") or a.get("region"),
+        "city": a.get("city") or a.get("town") or a.get("village") or a.get("county"),
+        "lat": hit.get("lat"), "lon": hit.get("lon"),
+        "display": hit.get("display_name"),
+    }
+
+
 def _geocode(address):
-    """OSM Nominatim → {country_code, country, state, city, lat, lon} or None."""
+    """Address -> {country_code, country, state, city, lat, lon}. Prefers the
+    PAID LocationIQ geocoder (accurate + no rate-limit, needed for a book-wide
+    scan) when crawl-kv 'locationiq-token' is set; falls back to the free OSM
+    Nominatim. Both are OSM data; LocationIQ is the reliable/accurate tier."""
+    # Paid tier: LocationIQ (OSM-based).
+    try:
+        from keyvault import get_secret
+        liq = get_secret("locationiq-token")
+    except Exception:
+        liq = None
+    if liq:
+        try:
+            r = requests.get(
+                "https://us1.locationiq.com/v1/search",
+                params={"key": liq, "q": address, "format": "json",
+                        "addressdetails": 1, "limit": 1, "normalizeaddress": 1},
+                headers={"User-Agent": _UA}, timeout=_GEO_TIMEOUT)
+            if r.status_code < 400:
+                j = r.json()
+                if j:
+                    return _parse_geo(j[0])
+        except Exception as e:
+            log.info("locationiq geocode failed: %s", e)
+    # Free fallback: Nominatim.
     try:
         r = requests.get(
             _NOMINATIM,
@@ -113,17 +155,7 @@ def _geocode(address):
     except Exception as e:
         log.info("geocode failed: %s", e)
         return None
-    if not j:
-        return None
-    a = j[0].get("address") or {}
-    return {
-        "country_code": (a.get("country_code") or "").upper() or None,
-        "country": a.get("country"),
-        "state": a.get("state") or a.get("region"),
-        "city": a.get("city") or a.get("town") or a.get("village") or a.get("county"),
-        "lat": j[0].get("lat"), "lon": j[0].get("lon"),
-        "display": j[0].get("display_name"),
-    }
+    return _parse_geo(j[0]) if j else None
 
 
 def check_address(raw_address, country_code):

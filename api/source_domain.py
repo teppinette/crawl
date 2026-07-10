@@ -295,18 +295,43 @@ def _domain_verdict(legal_name, domain, rdap, web, resolved_ip=None):
 
 
 def _geolocate_ip(ip):
-    """Free IP geolocation (ip-api.com, no key). Returns
-    {country, country_code, region, city, isp, org, lat, lon} or None.
-    Feeds the domain-location comprehension agent: does where the domain is
-    hosted line up with where the entity says it operates?"""
+    """IP geolocation → {country, country_code, region, city, isp, org, lat, lon}.
+    Prefers the WhoisXML IP Geolocation API (the paid subscription) when
+    crawl-kv 'whoisxml-api-key' is set; falls back to free ip-api.com."""
     if not ip:
         return None
+    # Paid tier: WhoisXML IP Geolocation.
+    try:
+        from keyvault import get_secret
+        key = get_secret("whoisxml-api-key")
+    except Exception:
+        key = None
+    if key:
+        try:
+            r = requests.get(
+                "https://ip-geolocation.whoisxmlapi.com/api/v1",
+                params={"apiKey": key, "ipAddress": ip},
+                headers={"User-Agent": _UA}, timeout=_RDAP_TIMEOUT)
+            if r.status_code < 400:
+                d = r.json() or {}
+                loc = d.get("location") or {}
+                asn = d.get("as") or {}
+                if loc.get("country"):
+                    return {
+                        "country": loc.get("country"), "country_code": loc.get("country"),
+                        "region": loc.get("region"), "city": loc.get("city"),
+                        "isp": d.get("isp"), "org": asn.get("name") or d.get("isp"),
+                        "lat": loc.get("lat"), "lon": loc.get("lng"),
+                        "source": "whoisxml",
+                    }
+        except Exception as e:
+            log.info("whoisxml ip-geo failed for %s: %s", ip, e)
+    # Free fallback: ip-api.com.
     try:
         r = requests.get(
             "http://ip-api.com/json/%s" % ip,
             params={"fields": "status,country,countryCode,regionName,city,isp,org,lat,lon"},
-            headers={"User-Agent": _UA}, timeout=8,
-        )
+            headers={"User-Agent": _UA}, timeout=8)
         j = r.json()
     except Exception as e:
         log.info("geolocate failed for %s: %s", ip, e)
@@ -317,7 +342,7 @@ def _geolocate_ip(ip):
         "country": j.get("country"), "country_code": j.get("countryCode"),
         "region": j.get("regionName"), "city": j.get("city"),
         "isp": j.get("isp"), "org": j.get("org"),
-        "lat": j.get("lat"), "lon": j.get("lon"),
+        "lat": j.get("lat"), "lon": j.get("lon"), "source": "ip-api",
     }
 
 
