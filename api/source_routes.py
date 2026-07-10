@@ -23,6 +23,7 @@ from pydantic import BaseModel, Field
 
 import evidence_db
 import source_gleif
+import source_domain
 from keyvault import get_secret
 
 log = logging.getLogger("crawl-gateway")
@@ -392,6 +393,34 @@ async def gleif_lei_lookup(req: GLEIFRequest):
         "ultimate_parent": out.get("ultimate_parent_lei"),
         "note": out.get("note"),
     }
+
+
+# ---------------------------------------------------------------------------
+# Domain trust — RDAP registry + website check with a name-match verdict
+# ---------------------------------------------------------------------------
+
+class DomainTrustRequest(BaseModel):
+    entity_name: str = Field(..., max_length=500)
+    domain: Optional[str] = Field(None, max_length=253)
+    website: Optional[str] = Field(None, max_length=500)
+    emails: Optional[list] = Field(None)
+
+
+@router.post("/sources/domain_trust/check")
+async def domain_trust_check(req: DomainTrustRequest):
+    """RDAP registry + website check for a company's own domain(s), derived
+    from {domain, website, emails}, with a name-match verdict
+    (VERIFIED / REVIEW / UNVERIFIED). Reusable Tier-1 verification capability."""
+    try:
+        out = source_domain.check(
+            req.entity_name, domain=req.domain,
+            website=req.website, emails=req.emails,
+        )
+    except Exception as e:
+        log.warning("domain_trust check failed: %s", e)
+        raise HTTPException(status_code=502, detail=str(e)[:200])
+    out["fetched_at"] = _now_iso()
+    return out
 
 
 # ---------------------------------------------------------------------------

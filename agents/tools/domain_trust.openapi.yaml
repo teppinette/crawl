@@ -1,0 +1,93 @@
+openapi: 3.0.3
+info:
+  title: Domain Trust
+  version: "1.0.0"
+  description: >
+    Registry-of-record (RDAP) + website check for a company's OWN domain, with
+    a name-match verdict. Given a company name plus any of {domain, website,
+    emails}, derives the corporate domain(s) (skipping public webmail like
+    gmail/qq), queries the public domain registry over RDAP, probes the
+    website, and returns a per-domain verdict: VERIFIED (a real registered
+    domain whose name matches the company; unreachable website is a soft flag
+    only), REVIEW (registered but name mismatch or a risk flag — registry
+    hold / <30 days old), or UNVERIFIED (no registration record). Reusable
+    Tier-1 verification capability; results feed onboarding, CIR, entity_risk.
+servers:
+  - url: https://crawl-gateway-v2.orangemoss-d67e0a38.eastus2.azurecontainerapps.io/api/v1
+security:
+  - ApiKeyAuth: []
+paths:
+  /sources/domain_trust/check:
+    post:
+      operationId: domain_trust_check
+      summary: RDAP + website domain-trust check with a name-match verdict
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [entity_name]
+              properties:
+                entity_name: { type: string, example: FEILI GROUP(FUJIAN) CO., LTD }
+                domain: { type: string, description: explicit domain, e.g. feiligroup.com }
+                website: { type: string, description: website URL/host if known }
+                emails:
+                  type: array
+                  items: { type: string }
+                  description: emails on file; corporate domains are derived from these
+      responses:
+        '200':
+          description: Per-domain trust verdicts plus an overall verdict
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [source_id, source_url, fetched_at, verdict]
+                properties:
+                  source_id: { type: string, example: domain_trust }
+                  source_url: { type: string }
+                  fetched_at: { type: string, format: date-time }
+                  found: { type: boolean, description: any registered domain found }
+                  verdict:
+                    type: string
+                    enum: [VERIFIED, REVIEW, UNVERIFIED, NO_DOMAIN]
+                    description: best (most-verified) per-domain verdict
+                  website_matches_email:
+                    type: boolean
+                    nullable: true
+                  freemail_emails:
+                    type: array
+                    items: { type: string }
+                    description: contact emails on public webmail (no corporate domain)
+                  domains:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        domain: { type: string }
+                        verdict: { type: string, enum: [VERIFIED, REVIEW, UNVERIFIED] }
+                        registered: { type: string, nullable: true, description: registration date }
+                        age_days: { type: integer, nullable: true }
+                        expires: { type: string, nullable: true }
+                        registrar: { type: string, nullable: true }
+                        status:
+                          type: array
+                          items: { type: string }
+                        site_alive: { type: boolean }
+                        name_match: { type: boolean }
+                        name_hits:
+                          type: array
+                          items: { type: string }
+                        sources:
+                          type: array
+                          items: { type: string }
+                        emails:
+                          type: array
+                          items: { type: string }
+                        reasons:
+                          type: array
+                          items: { type: string }
+components:
+  securitySchemes:
+    ApiKeyAuth: { type: apiKey, in: header, name: X-API-Key }
