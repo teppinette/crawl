@@ -223,6 +223,10 @@ def _whoisxml(domain):
         "registrant": registrant,
         "nameservers": [],
         "raw_available": True,
+        # WhoisXML tells us WHY it has no data: UNSUPPORTED_TLD means the
+        # registry (e.g. .gr FORTH, some .tw) publishes NO public WHOIS at all —
+        # not a key/credit gap. Thread it through so the verdict is honest.
+        "data_error": rec.get("dataError"),
         "via": "whoisxml",
     }
 
@@ -297,6 +301,27 @@ def fetch_registry(domain):
     return wx or rdap
 
 
+def _cert_org(domain):
+    """TLS-certificate owner fallback for domains with no WHOIS registrant
+    (restricted ccTLDs like .gr). An OV/EV certificate carries the vetted legal
+    entity in its subject Organization (O=) — direct ownership proof. A DV cert
+    (Let's Encrypt etc.) has no O=, so this returns None (still fine: the domain
+    is validated to exist). Never raises."""
+    import ssl, socket
+    try:
+        ctx = ssl.create_default_context()
+        with socket.create_connection((domain, 443), timeout=8) as sock:
+            with ctx.wrap_socket(sock, server_hostname=domain) as ss:
+                cert = ss.getpeercert() or {}
+    except Exception:
+        return None
+    for tup in cert.get("subject", ()):
+        for k, v in tup:
+            if k == "organizationName" and v:
+                return v
+    return None
+
+
 def _domain_verdict(legal_name, domain, rdap, web, resolved_ip=None):
     today = date.today()
     created = _parse_date(rdap.get("created"))
@@ -315,12 +340,35 @@ def _domain_verdict(legal_name, domain, rdap, web, resolved_ip=None):
         "registry_source": rdap.get("via"),
     }
     if not created:
-        # No registry record. If the domain RESOLVES it still EXISTS — the
-        # normal case for a ccTLD not in RDAP (.tw) when no paid WHOIS key is
-        # configured. DNS resolution is proof of existence.
+        # No registry record. If the domain RESOLVES it still EXISTS. Say WHY
+        # there's no record accurately: a restricted ccTLD (.gr FORTH, some .tw)
+        # publishes NO public WHOIS to anyone — WhoisXML returns UNSUPPORTED_TLD.
+        # That is NOT a key/credit gap, so don't imply one. DNS resolution is
+        # proof of existence either way.
+        tld = domain.rsplit(".", 1)[-1].lower()
+        unsupported = (rdap.get("data_error") or "").upper() == "UNSUPPORTED_TLD"
+        if unsupported:
+            no_record = (".%s is a restricted ccTLD — its registry publishes no "
+                         "public WHOIS/registration data (not a key or credit issue)" % tld)
+        else:
+            no_record = "no registry record available for this domain"
         if resolved_ip:
-            reasons = ["Registry record unavailable (ccTLD not in RDAP / no WHOIS "
-                       "key) but the domain RESOLVES via DNS to %s" % resolved_ip]
+            reasons = ["%s, but the domain RESOLVES via DNS to %s (proof it exists)"
+                       % (no_record[0].upper() + no_record[1:], resolved_ip)]
+            # WHOIS registrant is unavailable — try the TLS cert org as an
+            # independent owner signal. An OV/EV cert names the legal entity.
+            cert_org = _cert_org(domain)
+            if cert_org:
+                base["cert_org"] = cert_org
+                _co = re.sub(r"[^a-z0-9]", "", cert_org.lower())
+                _toks = [t for t in re.split(r"[^a-z0-9]+", (legal_name or "").lower()) if len(t) >= 4]
+                if _toks and any(t in _co for t in _toks):
+                    reasons.insert(0, "TLS certificate is issued to '%s' — matches the "
+                                      "company (ownership proof)" % cert_org)
+                    base["verdict"] = "VERIFIED"
+                    base["reasons"] = reasons
+                    return base
+                reasons.append("TLS certificate names a different organisation: '%s'" % cert_org)
             if matched:
                 reasons.insert(0, "Domain name matches the company (%s)" % ", ".join(hits))
                 base["verdict"] = "VERIFIED"
