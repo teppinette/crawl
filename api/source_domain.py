@@ -24,9 +24,13 @@ Free public APIs (rdap.org bootstrap + direct HTTP) — direct requests, like
 the GLEIF / OpenSanctions / OFSI source adapters.
 """
 
+import hashlib
+import json as _json
 import logging
+import os
 import re
 import socket
+import time
 from datetime import date, datetime
 
 import requests
@@ -38,6 +42,64 @@ _RDAP = "https://rdap.org/domain/{domain}"
 _RDAP_TIMEOUT = 15
 _WEB_TIMEOUT = 10
 _TITLE_RE = re.compile(r"<title[^>]*>([^<]{1,500})</title>", re.IGNORECASE | re.DOTALL)
+
+# ── WhoisXML credit conservation ────────────────────────────────────────────
+# The paid WhoisXML products (WHOIS / Email-Verify / IP-Geo) are metered and
+# were being drained: every check re-hit them with no cache, and restricted
+# ccTLDs (.gr) spent a WHOIS credit only to get UNSUPPORTED_TLD back. Fixes:
+#   1. File-backed TTL cache on the shared Azure Files mount (survives restarts,
+#      shared across replicas) so the same domain/email/IP is never re-billed
+#      inside the TTL window.
+#   2. A learned + seeded no-public-WHOIS TLD set so those TLDs skip the WHOIS
+#      call entirely and fall straight to the TLS-cert anchor.
+_CACHE_DIR = os.path.join(os.environ.get("CRAWL_JOBS_DIR", "/tmp"), "wxcache")
+# TLDs whose registry publishes NO public WHOIS to anyone. Seeded with the ones
+# we know; grown at runtime whenever WhoisXML answers UNSUPPORTED_TLD.
+_NO_WHOIS_TLDS_SEED = {"gr"}
+
+
+def _cache_path(kind, key):
+    h = hashlib.sha256(("%s:%s" % (kind, key)).encode("utf-8")).hexdigest()
+    return os.path.join(_CACHE_DIR, kind, h + ".json")
+
+
+def _cache_get(kind, key, ttl_days):
+    """Return a cached value if present and younger than ttl_days, else None."""
+    try:
+        p = _cache_path(kind, key)
+        if (time.time() - os.stat(p).st_mtime) > ttl_days * 86400:
+            return None
+        with open(p) as f:
+            return _json.load(f)
+    except Exception:
+        return None
+
+
+def _cache_put(kind, key, value):
+    try:
+        p = _cache_path(kind, key)
+        os.makedirs(os.path.dirname(p), exist_ok=True)
+        tmp = p + ".tmp"
+        with open(tmp, "w") as f:
+            _json.dump(value, f)
+        os.replace(tmp, p)
+    except Exception:
+        pass
+
+
+def _tld(domain):
+    return (domain or "").rsplit(".", 1)[-1].lower()
+
+
+def _tld_has_no_whois(domain):
+    t = _tld(domain)
+    if t in _NO_WHOIS_TLDS_SEED:
+        return True
+    return _cache_get("nowhois", t, 180) is not None
+
+
+def _mark_tld_no_whois(domain):
+    _cache_put("nowhois", _tld(domain), {"tld": _tld(domain)})
 
 # Legal-form / generic words to ignore when matching a name to a domain label.
 _STOPWORDS = {
@@ -184,6 +246,22 @@ def _dns_resolve(domain):
 
 
 def _whoisxml(domain):
+    """Cache-fronted WhoisXML WHOIS. Registration data barely changes, so a
+    90-day cache eliminates repeat billing for the same domain. Also records a
+    TLD as no-public-WHOIS when WhoisXML answers UNSUPPORTED_TLD, so future
+    domains on that TLD skip the paid call entirely."""
+    cached = _cache_get("whois", domain, 90)
+    if cached is not None:
+        return cached
+    result = _whoisxml_live(domain)
+    if result is not None:
+        _cache_put("whois", domain, result)
+        if (result.get("data_error") or "").upper() == "UNSUPPORTED_TLD":
+            _mark_tld_no_whois(domain)
+    return result
+
+
+def _whoisxml_live(domain):
     """Full WHOIS via WhoisXML API — covers every TLD including ccTLDs that
     RDAP (rdap.org) does not (.tw, .cn ccTLD variants, many others). Returns a
     dict shaped like fetch_rdap() + registrant, or None if unconfigured/failed.
@@ -232,6 +310,20 @@ def _whoisxml(domain):
 
 
 def verify_email(email):
+    """Cache-fronted WhoisXML Email Verification (30-day TTL) so the same
+    mailbox is billed at most once a month."""
+    if not email or "@" not in email:
+        return None
+    cached = _cache_get("email", email.lower(), 30)
+    if cached is not None:
+        return cached
+    result = _verify_email_live(email)
+    if result is not None:
+        _cache_put("email", email.lower(), result)
+    return result
+
+
+def _verify_email_live(email):
     """WhoisXML Email Verification API v3 — is the mailbox deliverable / free /
     disposable? A legit domain can still carry an undeliverable or disposable
     mailbox (a fraud tell). Key-gated (crawl-kv whoisxml-api-key). Never raises."""
@@ -293,6 +385,12 @@ def fetch_registry(domain):
     rdap = fetch_rdap(domain)
     rdap["via"] = "rdap"
     if rdap.get("created"):
+        return rdap
+    # Known no-public-WHOIS TLD (.gr FORTH etc): don't spend a WhoisXML credit
+    # on a call that can only return UNSUPPORTED_TLD. Flag it so the verdict
+    # falls to the TLS-cert anchor, same as a live UNSUPPORTED_TLD response.
+    if _tld_has_no_whois(domain):
+        rdap["data_error"] = "UNSUPPORTED_TLD"
         return rdap
     wx = _whoisxml(domain)
     if wx and wx.get("created"):
@@ -437,6 +535,20 @@ def _domain_verdict(legal_name, domain, rdap, web, resolved_ip=None):
 
 
 def _geolocate_ip(ip):
+    """Cache-fronted IP geolocation (30-day TTL). A host's geo is stable, so
+    caching keeps the WhoisXML IP-Geo product from being billed per lookup."""
+    if not ip:
+        return None
+    cached = _cache_get("ipgeo", ip, 90)
+    if cached is not None:
+        return cached
+    result = _geolocate_ip_live(ip)
+    if result is not None:
+        _cache_put("ipgeo", ip, result)
+    return result
+
+
+def _geolocate_ip_live(ip):
     """IP geolocation → {country, country_code, region, city, isp, org, lat, lon}.
     Prefers the WhoisXML IP Geolocation API (the paid subscription) when
     crawl-kv 'whoisxml-api-key' is set; falls back to free ip-api.com."""

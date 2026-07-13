@@ -264,18 +264,25 @@ def _rank(v):
     return {"VERIFIED": 0, "REVIEW": 1}.get(v, 2)
 
 
-def check(entity_name=None, country_code=None, phones=None, addresses=None, emails=None):
+def check(entity_name=None, country_code=None, phones=None, addresses=None,
+          emails=None, verify_emails=True):
     """Verify a counterparty's contact data — phone, address, email. Returns
     per-item verdicts + an overall (worst) verdict. Reusable by onboarding, the
-    copap-ds fraud LLM, and CIR."""
+    copap-ds fraud LLM, and CIR.
+
+    `verify_emails=False` skips the WhoisXML Email Verification call — used by
+    the recurring bulk scan so email verification only runs at onboarding time
+    and on an explicit backfill, not on every hourly sweep (credit conservation).
+    Phone (offline libphonenumber) + address (geocode) always run."""
     phone_results = [r for r in (check_phone(p, country_code) for p in (phones or [])) if r]
     addr_results = [r for r in (check_address(a, country_code) for a in (addresses or [])) if r]
     email_results = []
-    try:
-        from source_domain import verify_email
-        email_results = [r for r in (verify_email(e) for e in (emails or [])) if r]
-    except Exception as e:
-        log.info("email verify unavailable: %s", e)
+    if verify_emails:
+        try:
+            from source_domain import verify_email
+            email_results = [r for r in (verify_email(e) for e in (emails or [])) if r]
+        except Exception as e:
+            log.info("email verify unavailable: %s", e)
     all_v = [r["verdict"] for r in phone_results + addr_results + email_results]
     overall = min(all_v, key=_rank) if all_v else "NO_DATA"
     # worst wins for the headline (any REVIEW -> overall REVIEW)
