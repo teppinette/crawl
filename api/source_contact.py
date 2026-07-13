@@ -8,8 +8,11 @@ a "Taiwan" counterparty with a +86 China phone, or an address that geocodes to a
 different country, is a REVIEW flag — the exact contact-data signal fraud review
 (copap-ds fraud LLM) then scores and the risk assessment consumes as a line item.
 
-Deterministic + offline for phone (libphonenumber); free geocode (OSM Nominatim,
-no key) for address. Never raises.
+Deterministic + offline for phone (libphonenumber). Address geocoding uses a
+tiered ladder — Azure Maps (primary: best foreign-language / non-Latin script +
+named-place / industrial-estate coverage) -> LocationIQ (paid OSM; backstops
+regions Azure lacks, e.g. mainland China) -> OSM Nominatim (free last resort).
+Never raises.
 """
 
 import logging
@@ -109,7 +112,21 @@ def check_phone(raw_phone, country_code):
     return out
 
 
-def _parse_geo(hit):
+# ISO-2 country -> Azure Maps response `language` tag. Controls the language of
+# the returned place names; the query script itself is auto-detected. Defaults to
+# en-US. Extend as the book grows — an unmapped country just gets English names,
+# it does NOT affect the country_code used for the consistency check.
+_AZ_LANG = {
+    "GR": "el-GR", "CN": "zh-CN", "TW": "zh-TW", "HK": "zh-HK", "JP": "ja-JP",
+    "KR": "ko-KR", "RU": "ru-RU", "SA": "ar-SA", "AE": "ar-SA", "EG": "ar-SA",
+    "IN": "en-IN", "PK": "en-IN", "TH": "th-TH", "VN": "vi-VN", "TR": "tr-TR",
+    "BR": "pt-BR", "PT": "pt-PT", "ES": "es-ES", "MX": "es-MX", "AR": "es-ES",
+    "FR": "fr-FR", "DE": "de-DE", "IT": "it-IT", "NL": "nl-NL", "PL": "pl-PL",
+    "ID": "id-ID", "GB": "en-GB", "US": "en-US",
+}
+
+
+def _parse_geo(hit, provider="nominatim"):
     a = hit.get("address") or {}
     return {
         "country_code": (a.get("country_code") or "").upper() or None,
@@ -118,34 +135,81 @@ def _parse_geo(hit):
         "city": a.get("city") or a.get("town") or a.get("village") or a.get("county"),
         "lat": hit.get("lat"), "lon": hit.get("lon"),
         "display": hit.get("display_name"),
+        "provider": provider,
     }
 
 
-def _geocode(address):
-    """Address -> {country_code, country, state, city, lat, lon}. Prefers the
-    PAID LocationIQ geocoder (accurate + no rate-limit, needed for a book-wide
-    scan) when crawl-kv 'locationiq-token' is set; falls back to the free OSM
-    Nominatim. Both are OSM data; LocationIQ is the reliable/accurate tier."""
-    # Paid tier: LocationIQ (OSM-based).
+def _parse_geo_azure(res):
+    a = res.get("address") or {}
+    pos = res.get("position") or {}
+    return {
+        "country_code": (a.get("countryCode") or "").upper() or None,
+        "country": a.get("country"),
+        "state": a.get("countrySubdivisionName") or a.get("countrySubdivision"),
+        "city": (a.get("municipality") or a.get("municipalitySubdivision")
+                 or a.get("countrySecondarySubdivision")),
+        "lat": pos.get("lat"), "lon": pos.get("lon"),
+        "display": a.get("freeformAddress"),
+        "provider": "azure_maps", "score": res.get("score"),
+    }
+
+
+def _azure_geocode(address, country_code=None):
+    """Primary geocoder: Azure Maps Search. Best foreign-language / non-Latin
+    coverage and it resolves named places + industrial estates the OSM tiers
+    miss. Key-gated (crawl-kv 'azure-maps-key'); returns None when unconfigured.
+    Deliberately does NOT pass countrySet — the caller relies on the resolved
+    country to run the consistency check, so we must geocode freely."""
+    try:
+        from keyvault import get_secret
+        key = get_secret("azure-maps-key")
+    except Exception:
+        key = None
+    if not key:
+        return None
+    lang = _AZ_LANG.get((country_code or "").strip().upper(), "en-US")
+    try:
+        r = requests.get(
+            "https://atlas.microsoft.com/search/address/json",
+            params={"api-version": "1.0", "subscription-key": key,
+                    "query": address, "language": lang, "limit": 1},
+            headers={"User-Agent": _UA}, timeout=_GEO_TIMEOUT)
+        if r.status_code < 400:
+            res = (r.json().get("results") or [])
+            if res:
+                return _parse_geo_azure(res[0])
+    except Exception as e:
+        log.info("azure maps geocode failed: %s", e)
+    return None
+
+
+def _locationiq_geocode(address):
+    """Tier 2: paid LocationIQ (OSM data). Backstops Azure where TomTom coverage
+    is thin (notably mainland China). Key-gated (crawl-kv 'locationiq-token')."""
     try:
         from keyvault import get_secret
         liq = get_secret("locationiq-token")
     except Exception:
         liq = None
-    if liq:
-        try:
-            r = requests.get(
-                "https://us1.locationiq.com/v1/search",
-                params={"key": liq, "q": address, "format": "json",
-                        "addressdetails": 1, "limit": 1, "normalizeaddress": 1},
-                headers={"User-Agent": _UA}, timeout=_GEO_TIMEOUT)
-            if r.status_code < 400:
-                j = r.json()
-                if j:
-                    return _parse_geo(j[0])
-        except Exception as e:
-            log.info("locationiq geocode failed: %s", e)
-    # Free fallback: Nominatim.
+    if not liq:
+        return None
+    try:
+        r = requests.get(
+            "https://us1.locationiq.com/v1/search",
+            params={"key": liq, "q": address, "format": "json",
+                    "addressdetails": 1, "limit": 1, "normalizeaddress": 1},
+            headers={"User-Agent": _UA}, timeout=_GEO_TIMEOUT)
+        if r.status_code < 400:
+            j = r.json()
+            if j:
+                return _parse_geo(j[0], provider="locationiq")
+    except Exception as e:
+        log.info("locationiq geocode failed: %s", e)
+    return None
+
+
+def _nominatim_geocode(address):
+    """Tier 3: free OSM Nominatim, last resort."""
     try:
         r = requests.get(
             _NOMINATIM,
@@ -153,9 +217,22 @@ def _geocode(address):
             headers={"User-Agent": _UA}, timeout=_GEO_TIMEOUT)
         j = r.json()
     except Exception as e:
-        log.info("geocode failed: %s", e)
+        log.info("nominatim geocode failed: %s", e)
         return None
-    return _parse_geo(j[0]) if j else None
+    return _parse_geo(j[0], provider="nominatim") if j else None
+
+
+def _geocode(address, country_code=None):
+    """Address -> {country_code, country, state, city, lat, lon, provider}.
+    Tiered ladder, best-first: Azure Maps -> LocationIQ -> Nominatim. Returns the
+    first tier that yields a hit with a resolvable country; None if all miss."""
+    for fn in (lambda: _azure_geocode(address, country_code),
+               lambda: _locationiq_geocode(address),
+               lambda: _nominatim_geocode(address)):
+        g = fn()
+        if g and g.get("country_code"):
+            return g
+    return None
 
 
 def check_address(raw_address, country_code):
@@ -167,7 +244,7 @@ def check_address(raw_address, country_code):
     if not raw or len(raw) < 6:
         return None
     out = {"address": raw[:200], "verdict": "REVIEW", "geo": None, "reasons": []}
-    geo = _geocode(raw)
+    geo = _geocode(raw, cc)
     out["geo"] = geo
     if not geo or not geo.get("country_code"):
         out["reasons"] = ["Address could not be geolocated"]
@@ -206,9 +283,16 @@ def check(entity_name=None, country_code=None, phones=None, addresses=None, emai
         overall = "REVIEW"
     elif all_v:
         overall = "VERIFIED"
+    # source_url reflects the geocoder that actually resolved the address
+    # (Azure Maps primary), so callers can see which tier answered.
+    _prov_url = {"azure_maps": "https://atlas.microsoft.com",
+                 "locationiq": "https://locationiq.com",
+                 "nominatim": "https://nominatim.openstreetmap.org"}
+    _used = next((r["geo"].get("provider") for r in addr_results
+                  if r.get("geo") and r["geo"].get("provider")), "azure_maps")
     return {
         "source_id": "contact_verify",
-        "source_url": "https://nominatim.openstreetmap.org",
+        "source_url": _prov_url.get(_used, "https://atlas.microsoft.com"),
         "country_code": (country_code or "").upper() or None,
         "verdict": overall,
         "phones": phone_results,
