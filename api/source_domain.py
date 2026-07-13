@@ -301,13 +301,17 @@ def fetch_registry(domain):
     return wx or rdap
 
 
-def _cert_org(domain):
-    """TLS-certificate owner fallback for domains with no WHOIS registrant
-    (restricted ccTLDs like .gr). An OV/EV certificate carries the vetted legal
-    entity in its subject Organization (O=) — direct ownership proof. A DV cert
-    (Let's Encrypt etc.) has no O=, so this returns None (still fine: the domain
-    is validated to exist). Never raises."""
+def _tls_cert(domain):
+    """Full TLS-certificate facts — the reverse-logic verification anchor for
+    domains with no public WHOIS (restricted ccTLDs like .gr FORTH). The live
+    certificate proves the site EXISTS, is served over HTTPS, and — via its
+    SAN/CN — that the operator CONTROLS the domain. An OV/EV cert additionally
+    names the vetted legal entity in subject Organization (O=) = ownership proof;
+    a DV cert (Let's Encrypt) has no O= but still proves control. Returns issuer,
+    validity window, subject org, SANs, and covers_domain. None on failure;
+    never raises."""
     import ssl, socket
+    from datetime import datetime as _dt
     try:
         ctx = ssl.create_default_context()
         with socket.create_connection((domain, 443), timeout=8) as sock:
@@ -315,11 +319,32 @@ def _cert_org(domain):
                 cert = ss.getpeercert() or {}
     except Exception:
         return None
-    for tup in cert.get("subject", ()):
-        for k, v in tup:
-            if k == "organizationName" and v:
-                return v
-    return None
+
+    def _org(field):
+        for tup in cert.get(field, ()):
+            for k, v in tup:
+                if k == "organizationName" and v:
+                    return v
+        return None
+
+    def _when(s):
+        try:
+            return _dt.strptime(s, "%b %d %H:%M:%S %Y %Z").date().isoformat()
+        except Exception:
+            return None
+
+    sans = [v for typ, v in cert.get("subjectAltName", ()) if typ == "DNS"]
+    covers = any(s.lower() == domain.lower()
+                 or (s.startswith("*.") and domain.lower().endswith(s[1:].lower()))
+                 for s in sans)
+    return {
+        "issuer": _org("issuer"),
+        "subject_org": _org("subject"),
+        "valid_from": _when(cert.get("notBefore")),
+        "valid_to": _when(cert.get("notAfter")),
+        "sans": sans[:10],
+        "covers_domain": covers,
+    }
 
 
 def _domain_verdict(legal_name, domain, rdap, web, resolved_ip=None):
@@ -355,20 +380,34 @@ def _domain_verdict(legal_name, domain, rdap, web, resolved_ip=None):
         if resolved_ip:
             reasons = ["%s, but the domain RESOLVES via DNS to %s (proof it exists)"
                        % (no_record[0].upper() + no_record[1:], resolved_ip)]
-            # WHOIS registrant is unavailable — try the TLS cert org as an
-            # independent owner signal. An OV/EV cert names the legal entity.
-            cert_org = _cert_org(domain)
-            if cert_org:
-                base["cert_org"] = cert_org
-                _co = re.sub(r"[^a-z0-9]", "", cert_org.lower())
-                _toks = [t for t in re.split(r"[^a-z0-9]+", (legal_name or "").lower()) if len(t) >= 4]
-                if _toks and any(t in _co for t in _toks):
-                    reasons.insert(0, "TLS certificate is issued to '%s' — matches the "
-                                      "company (ownership proof)" % cert_org)
-                    base["verdict"] = "VERIFIED"
-                    base["reasons"] = reasons
-                    return base
-                reasons.append("TLS certificate names a different organisation: '%s'" % cert_org)
+            # WHOIS is unavailable — the TLS certificate is the reverse-logic
+            # anchor: it proves the site exists, is served over HTTPS, and (via
+            # SAN/CN) that the operator controls the domain. Always attach the
+            # cert facts so the consumer never has to render a blank; an OV/EV
+            # cert additionally names the legal entity (ownership proof).
+            cert = _tls_cert(domain)
+            if cert:
+                base["tls_cert"] = cert
+                if cert.get("covers_domain"):
+                    _iss = cert.get("issuer") or "an unnamed CA"
+                    reasons.append(
+                        "HTTPS certificate issued by %s, valid %s → %s, covers %s — "
+                        "domain control verified via SSL (stands in for WHOIS on a "
+                        "registry with no public records)"
+                        % (_iss, cert.get("valid_from") or "?",
+                           cert.get("valid_to") or "?", domain))
+                cert_org = cert.get("subject_org")
+                if cert_org:
+                    base["cert_org"] = cert_org
+                    _co = re.sub(r"[^a-z0-9]", "", cert_org.lower())
+                    _toks = [t for t in re.split(r"[^a-z0-9]+", (legal_name or "").lower()) if len(t) >= 4]
+                    if _toks and any(t in _co for t in _toks):
+                        reasons.insert(0, "TLS certificate is issued to '%s' — matches the "
+                                          "company (ownership proof)" % cert_org)
+                        base["verdict"] = "VERIFIED"
+                        base["reasons"] = reasons
+                        return base
+                    reasons.append("TLS certificate names a different organisation: '%s'" % cert_org)
             if matched:
                 reasons.insert(0, "Domain name matches the company (%s)" % ", ".join(hits))
                 base["verdict"] = "VERIFIED"

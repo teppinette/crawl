@@ -91,6 +91,40 @@ paths:
                             org: { type: string }
                             lat: { type: number }
                             lon: { type: number }
+                        cert_org: { type: string, nullable: true, description: subject Organisation (O=) from an OV/EV TLS cert — the vetted legal owner; null for DV certs }
+                        tls_cert:
+                          type: object
+                          nullable: true
+                          description: >-
+                            Live TLS-certificate facts — the reverse-logic verification anchor when the
+                            registry publishes no WHOIS (restricted ccTLDs like .gr). The cert proves the
+                            site exists, is served over HTTPS, and (via covers_domain) that the operator
+                            controls the domain. Populated on the no-WHOIS branch; use INSTEAD of a blank.
+                          properties:
+                            issuer:
+                              type: string
+                              nullable: true
+                              description: certificate authority Organisation, for example Lets Encrypt
+                            subject_org:
+                              type: string
+                              nullable: true
+                              description: subject Organisation, OV/EV certs only
+                            valid_from:
+                              type: string
+                              nullable: true
+                              description: >-
+                                cert notBefore as an ISO date. For DV certs this is the last
+                                renewal, not the domain age
+                            valid_to:
+                              type: string
+                              nullable: true
+                              description: cert notAfter as an ISO date
+                            covers_domain:
+                              type: boolean
+                              description: cert SAN or CN covers the domain, a domain-control proof
+                            sans:
+                              type: array
+                              items: { type: string }
                         name_match: { type: boolean }
                         name_hits:
                           type: array
