@@ -356,6 +356,45 @@ def _enrich_from_detail_page(result: dict, body: str, html: str, source_url: str
         if 1 < len(ac) < 100:
             result["actual_controller"] = ac
 
+    # Outbound investments (对外投资) — affiliate/investee companies. These are
+    # the seed set for depth-1 affiliate expansion (the sibling-cluster problem:
+    # one legal rep controlling several "SHANDONG ZHONGCHENG …" entities). Capture
+    # the investee company name + this entity's investment ratio where shown.
+    affiliates = []
+    aff_block = re.search(r"对外投资[^\n]{0,30}\n(.+?)(?=\n\s*(?:分支机构|股东信息|股东与出资|主要人员|经营异常|工商信息|历史|$))",
+                          body, re.DOTALL)
+    if aff_block:
+        lines = [l.strip() for l in aff_block.group(1).split("\n") if l.strip()]
+        for i, ln in enumerate(lines):
+            # Investee name: contains a corp suffix, reasonable length, not a header/ratio line
+            if re.search(r"(公司|有限|集团|中心|厂|合伙)", ln) and 4 <= len(ln) < 80 and "投资比例" not in ln:
+                pct = None
+                for j in range(i + 1, min(i + 3, len(lines))):
+                    pm = re.search(r"(\d+(?:\.\d+)?)\s*%", lines[j])
+                    if pm:
+                        pct = float(pm.group(1)); break
+                if any(a["name"] == ln for a in affiliates):
+                    continue
+                affiliates.append({"name": ln, "investment_pct": pct})
+                if len(affiliates) >= 30:
+                    break
+    if affiliates:
+        result["affiliates"] = affiliates
+
+    # Branches (分支机构) — branch entities of this company.
+    branches = []
+    br_block = re.search(r"分支机构[^\n]{0,30}\n(.+?)(?=\n\s*(?:对外投资|股东信息|主要人员|经营异常|工商信息|历史|$))",
+                         body, re.DOTALL)
+    if br_block:
+        for ln in [l.strip() for l in br_block.group(1).split("\n") if l.strip()]:
+            if re.search(r"(公司|分公司|有限|厂)", ln) and 4 <= len(ln) < 80:
+                if ln not in branches:
+                    branches.append(ln)
+                if len(branches) >= 30:
+                    break
+    if branches:
+        result["branches"] = branches
+
     # Strengthen validation_source — point at the actual detail page
     vs = result.get("validation_source") or {}
     vs["url"] = source_url

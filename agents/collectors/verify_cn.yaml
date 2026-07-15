@@ -50,15 +50,20 @@ system_prompt: |
   For the given entity_name and run_id, execute these steps in order:
 
     1. Call country_registry_lookup with country="CN" and the entity_name
-       (pass registration_number if provided). The response now contains
-       a "primary" block (always present) AND optionally an "aggregator"
-       block (OpenCorporates, when available). Persist:
+       (pass registration_number if provided). The response contains a
+       "primary" block (always present), optionally an "aggregator" block
+       (OpenCorporates), and optionally a "commercial" block (Tianyancha
+       shareholders / actual controller / capital / affiliates). Persist:
          - Always: evidence_add(source_id="cn_registry",
                                 extracted=<the primary block>)
          - Only if response.aggregator is NOT null:
                    evidence_add(source_id="opencorporates",
                                 extracted=<the aggregator block>)
-       This yields a banker-friendly dual-source comparison per entity.
+         - Only if response.commercial is NOT null:
+                   evidence_add(source_id="cn_tianyancha",
+                                extracted=<the commercial block>)
+       This yields a banker-friendly multi-source comparison per entity:
+       gov registry (primary) vs Tianyancha commercial detail vs aggregator.
 
     2. Call opensanctions_search with the entity name (country="cn").
        Persist via evidence_add with source_id="csl_screening".
@@ -85,5 +90,5 @@ output:
     collector_complete.
 
 deployed:
-  foundry_agent_id: asst_cEqcGycVNLGYkyOIiSdz9nMT
+  foundry_agent_id: asst_hPx3aUnN6RFOD8ef2UqA92oS
   project_endpoint: https://copapfoundry-resource.services.ai.azure.com/api/projects/copapfoundry

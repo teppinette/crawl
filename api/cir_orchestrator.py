@@ -160,6 +160,115 @@ def _darkweb_fallback_persist(run_id: str, entity_name: str, country: str):
         log.warning("orchestrator: darkweb fallback persist failed: %s", e)
 
 
+_CN_CORP_MARKERS = ("公司", "有限", "集团", "厂", "中心", "合伙", "企业")
+
+
+def _affiliate_expansion(run_id: str, cc: str, entity_name: str,
+                         max_seeds: int = 5):
+    """Depth-1 affiliate/UBO expansion. Reads the CN commercial evidence already
+    collected, pulls CORPORATE seeds (对外投资 affiliates, corporate shareholders,
+    branches), and re-queries the registry for each — persisting one
+    `cn_affiliates` evidence row per seed. The registry lookup applies the
+    _name_match_cn 0.75 gate internally, so a non-matching name returns
+    found=false and is stored as an empty-source row (no fabrication). Bounded to
+    max_seeds; drops beyond the cap are logged. CN-only for now (the only
+    collector producing affiliate signals).
+
+    Seed people (legal rep / individual shareholders) are NOT re-queried here:
+    the registry search is by company name, so a person's name can't resolve to
+    their other companies via this path — that person→companies linkage needs a
+    Tianyancha person endpoint we don't yet call (noted as a follow-up)."""
+    if cc != "CN":
+        return
+    import os
+    import requests as _r
+    try:
+        rows = evidence_db.list_evidence(run_id)
+    except Exception as e:
+        log.warning("orchestrator: affiliate expansion could not load evidence: %s", e)
+        return
+
+    seeds: list[tuple[str, str]] = []  # (name, relation)
+    seen = {entity_name.strip()}
+
+    def _add_seed(name, relation):
+        n = (name or "").strip()
+        if not n or n in seen or not any(m in n for m in _CN_CORP_MARKERS):
+            return
+        seen.add(n)
+        seeds.append((n, relation))
+
+    for row in rows:
+        if row.get("source_id") not in ("cn_tianyancha", "cn_registry"):
+            continue
+        ex = row.get("extracted") or {}
+        for a in (ex.get("affiliates") or []):
+            _add_seed(a.get("name") if isinstance(a, dict) else a, "outbound_investment")
+        for s in (ex.get("shareholders") or []):
+            _add_seed(s.get("name") if isinstance(s, dict) else s, "corporate_shareholder")
+        for b in (ex.get("branches") or []):
+            _add_seed(b if isinstance(b, str) else (b or {}).get("name"), "branch")
+
+    if not seeds:
+        log.info("orchestrator: affiliate expansion — no corporate seeds for %s", run_id[:8])
+        return
+    if len(seeds) > max_seeds:
+        log.info("orchestrator: affiliate expansion capped %d→%d seeds for %s (dropped: %s)",
+                 len(seeds), max_seeds, run_id[:8],
+                 ", ".join(n for n, _ in seeds[max_seeds:]))
+        seeds = seeds[:max_seeds]
+
+    base = os.environ.get("CRAWL_GATEWAY_INTERNAL_URL", "http://127.0.0.1:8400")
+    api_key = os.environ.get("CIR_API_KEY", "")
+    if not api_key:
+        try:
+            from keyvault import get_secret
+            api_key = get_secret("cir-api-key") or ""
+        except Exception:
+            api_key = ""
+
+    for name, relation in seeds:
+        try:
+            r = _r.post(
+                f"{base}/api/v1/sources/country_registry/lookup",
+                params={"country": "CN"},
+                headers={"X-API-Key": api_key, "Content-Type": "application/json"},
+                json={"entity_name": name},
+                timeout=120,
+            )
+            data = r.json() if r.status_code < 500 else {}
+        except Exception as e:
+            log.warning("orchestrator: affiliate lookup failed for %s: %s", name[:30], e)
+            data = {}
+        primary = (data or {}).get("primary") or {}
+        found = bool(primary.get("found"))
+        try:
+            if found:
+                evidence_db.add_evidence(
+                    run_id, source_id="cn_affiliates",
+                    source_url=primary.get("source_url", ""),
+                    source_query=name, status_code=200,
+                    extracted={**primary, "subject": entity_name,
+                               "relation_to_subject": relation, "depth": 1},
+                    language_original="zh", parser_version="affiliate_expansion_v1",
+                )
+            else:
+                # queried, no registry match — empty-source row (raw_content=None
+                # → sentinel hash), so it can't be cited as corroboration.
+                evidence_db.add_evidence(
+                    run_id, source_id="cn_affiliates",
+                    source_url=primary.get("source_url", ""),
+                    source_query=name, status_code=200,
+                    extracted={}, language_original="zh",
+                    parser_version="affiliate_expansion_v1",
+                    error=f"no registry match for affiliate seed ({relation})",
+                )
+        except Exception as e:
+            log.warning("orchestrator: affiliate persist failed for %s: %s", name[:30], e)
+    log.info("orchestrator: affiliate expansion persisted %d seed(s) for %s",
+             len(seeds), run_id[:8])
+
+
 async def _orchestrate(run_id: str, country_code: str, entity_name: str,
                        registration_id: str = ""):
     """Background orchestration — collector → extractor → synthesizer."""
@@ -202,6 +311,16 @@ async def _orchestrate(run_id: str, country_code: str, entity_name: str,
         f"row tagged source_id='darkweb_screen'."
     )
 
+    # PHASE 1c: web_profile_collector — official-website discovery + crawl via
+    # the self-hosted SearXNG + Crawl4AI (free tools only). Best-effort like the
+    # dark-web collector: failure is logged, never kills the run.
+    web_id = _load_agent_id("web_profile_collector")
+    instr_web = (
+        f"Collect the website profile for entity_name='{entity_name}' "
+        f"country='{cc}' with run_id='{run_id}'. Run one web_profile call and "
+        f"persist one evidence row tagged source_id='web_profile'."
+    )
+
     async def _run_country():
         # The country collector is the only phase that can kill the run, and
         # gpt-4.1-mini intermittently returns "incomplete" before firing a
@@ -229,9 +348,18 @@ async def _orchestrate(run_id: str, country_code: str, entity_name: str,
             None, _run_agent_sync, local_client, darkweb_id, instr_darkweb, 300,
         )
 
+    async def _run_web():
+        if not web_id:
+            log.warning("orchestrator: web_profile_collector not deployed, skipping")
+            return ("SKIPPED", "no deployed web_profile_collector")
+        local_client = _agents_client()
+        return await loop.run_in_executor(
+            None, _run_agent_sync, local_client, web_id, instr_web, 180,
+        )
+
     try:
-        country_res, darkweb_res = await asyncio.gather(
-            _run_country(), _run_darkweb(), return_exceptions=True,
+        country_res, darkweb_res, web_res = await asyncio.gather(
+            _run_country(), _run_darkweb(), _run_web(), return_exceptions=True,
         )
     except Exception as e:
         log.exception("orchestrator: phase-1 gather exception")
@@ -256,6 +384,14 @@ async def _orchestrate(run_id: str, country_code: str, entity_name: str,
         if not dw_status.endswith("COMPLETED") and dw_status != "SKIPPED":
             log.warning("orchestrator: darkweb collector %s: %s", dw_status, dw_err or "")
 
+    # web_profile is best-effort too — log but never fail the run.
+    if isinstance(web_res, Exception):
+        log.warning("orchestrator: web collector exception: %s", web_res)
+    else:
+        w_status, w_err = web_res
+        if not w_status.endswith("COMPLETED") and w_status != "SKIPPED":
+            log.warning("orchestrator: web collector %s: %s", w_status, w_err or "")
+
     # FALLBACK for darkweb_collector reporting COMPLETED but not actually
     # writing the evidence row. gpt-4.1-mini occasionally produces a final
     # message claiming success without firing the evidence_add tool. If
@@ -274,6 +410,14 @@ async def _orchestrate(run_id: str, country_code: str, entity_name: str,
                                        run_id, entity_name, cc)
         except Exception:
             log.exception("orchestrator: darkweb fallback failed (non-fatal)")
+
+    # PHASE 1d: depth-1 affiliate / UBO expansion (best-effort, non-fatal).
+    # Runs BEFORE the extractor so the new cn_affiliates evidence rows are turned
+    # into relationship claims and flow into the UBO map.
+    try:
+        await loop.run_in_executor(None, _affiliate_expansion, run_id, cc, entity_name)
+    except Exception:
+        log.exception("orchestrator: affiliate expansion failed (non-fatal)")
 
     # PHASE 2: claim extractor
     extractor_id = _load_agent_id("claim_extractor")

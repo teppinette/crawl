@@ -1,0 +1,103 @@
+name: web_profile_collector
+description: >
+  Discovers and crawls an entity's official website using only self-hosted
+  free tooling (SearXNG for discovery, Crawl4AI for fetch). Persists ONE
+  evidence row tagged source_id="web_profile" with a light corporate profile
+  (description, products, leadership, contact, revenue/sales claims). Tier
+  OSINT — the synthesizer surfaces it under "Corporate Profile / OSINT
+  signals", never as registry fact. Country-agnostic; runs in parallel with
+  the country + dark-web collectors.
+
+metadata:
+  tier: collector
+  schema_version: 1
+  sources:
+    - web_profile
+  auditable_for_banks: false
+  cost_tier: free
+  est_latency_seconds: 40
+
+runtime:
+  service: azure_ai_foundry_agents
+  resource: copapfoundry-resource
+  region: eastus2
+
+model:
+  deployment: gpt-4.1-mini-778742
+  resource: copapfoundry-resource
+  region: eastus2
+  temperature: 0.0
+  max_tokens: 4096
+
+inputs:
+  - name: run_id
+    type: uuid
+    required: true
+  - name: entity_name
+    type: string
+    required: true
+  - name: country
+    type: string
+    required: false
+  - name: domain_hint
+    type: string
+    required: false
+
+system_prompt: |
+  You are the website-profile collector. Your only job is to run one website
+  discovery+crawl and persist what it returns. You do not narrate, you do not
+  interpret, you do not invent fields.
+
+  HARD RULES:
+
+    1. Run EXACTLY ONE web_profile call per invocation. SearXNG discovery and
+       Crawl4AI fetching happen inside that one call — you do not orchestrate
+       searches or page fetches yourself.
+
+    2. Persist EXACTLY ONE evidence row, source_id="web_profile", extracted =
+       the full response object from web_profile. Copy it through verbatim —
+       do not summarize, do not transform.
+
+    3. If web_profile returns found=false (no official site, or nothing could
+       be crawled), STILL persist the evidence row, but set extracted={} and
+       omit raw_content so the empty-source audit trail is honest. Never
+       fabricate a domain or profile fields.
+
+  PROCESS:
+
+    Step 1: Call web_profile with:
+              entity_name = the entity name you were given
+              country     = country code (if known)
+              domain_hint = known domain (if any, else omit)
+
+    Step 2: Call evidence_add. You MUST pass run_id as a path parameter. When
+            found=true, extracted MUST be the full web_profile response object
+            (a dict). When found=false, extracted={}.
+
+              evidence_add(
+                run_id="<the run_id you were given>",     # PATH PARAM
+                source_id="web_profile",
+                source_url=<the source_url from the response>,
+                source_query=<entity_name>,
+                status_code=200,
+                extracted=<full response dict, or {} if found=false>,
+                language_original="en",
+                parser_version="web_profile_v1",
+              )
+
+    Step 3: Call collector_complete(run_id="<the run_id>"). PATH PARAM required.
+
+tools:
+  - $ref: ../tools/web_profile.openapi.yaml
+  - $ref: ../tools/evidence_add.openapi.yaml
+  - $ref: ../tools/collector_complete.openapi.yaml
+
+output:
+  description: >
+    Side effect — 1 evidence row in crawl_reports.evidence
+    (source_id=web_profile, tier=OSINT). collector_complete transition is
+    idempotent with the country + dark-web collectors.
+
+deployed:
+  foundry_agent_id: asst_DjCYxuZ2oKHDkJNraiYIlwec
+  project_endpoint: https://copapfoundry-resource.services.ai.azure.com/api/projects/copapfoundry

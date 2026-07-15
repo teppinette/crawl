@@ -111,6 +111,40 @@ def get_run(run_id: str) -> dict | None:
     }
 
 
+def find_runs(entity_name: str = None, country: str = None,
+              status: str = None, limit: int = 20) -> list[dict]:
+    """Find CIR runs by entity_name (case-insensitive substring) and/or country
+    /status, newest first. Lets onboarding locate a run for an entity without
+    already knowing the run_id."""
+    where, params = [], []
+    if entity_name:
+        where.append("entity_name ILIKE %s")
+        params.append(f"%{entity_name}%")
+    if country:
+        where.append("country = %s")
+        params.append(country.upper())
+    if status:
+        where.append("status = %s")
+        params.append(status)
+    clause = ("WHERE " + " AND ".join(where)) if where else ""
+    params.append(max(1, min(int(limit), 100)))
+    rows = _fetchall(
+        f"""SELECT id, job_id, entity_name, country, status, started_at,
+                   completed_at, evidence_count, claim_count
+            FROM cir_runs {clause}
+            ORDER BY started_at DESC NULLS LAST
+            LIMIT %s""",
+        tuple(params),
+    )
+    return [{
+        "run_id": str(r[0]), "job_id": r[1], "entity_name": r[2],
+        "country": r[3], "status": r[4],
+        "started_at": r[5].isoformat() if r[5] else None,
+        "completed_at": r[6].isoformat() if r[6] else None,
+        "evidence_count": r[7], "claim_count": r[8],
+    } for r in rows]
+
+
 # --------------------------------------------------------------------------
 # Evidence
 # --------------------------------------------------------------------------

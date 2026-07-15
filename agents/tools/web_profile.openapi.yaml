@@ -1,0 +1,65 @@
+openapi: 3.0.3
+info:
+  title: Website Profile (SearXNG + Crawl4AI)
+  version: "1.0.0"
+  description: >
+    Discover the entity's official website via self-hosted SearXNG and crawl it
+    via self-hosted Crawl4AI (no paid web APIs). Returns a light corporate
+    profile: domain, description, products, leadership, contact (emails/phones),
+    and any revenue/sales claims. When no plausible official site is found, or
+    the crawl yields nothing, found=false and the collector persists an
+    empty-source evidence row so nothing is fabricated. Tier: OSINT.
+
+servers:
+  - url: https://crawl-gateway-v2.orangemoss-d67e0a38.eastus2.azurecontainerapps.io/api/v1
+
+paths:
+  /sources/web/profile:
+    post:
+      operationId: web_profile
+      summary: Discover + crawl the entity's official website (free tools only)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [entity_name]
+              properties:
+                entity_name: { type: string, maxLength: 500 }
+                country: { type: string, maxLength: 10 }
+                domain_hint:
+                  type: string
+                  maxLength: 253
+                  description: Known company domain, if any — skips SearXNG discovery.
+      responses:
+        '200':
+          description: Corporate web profile (or found=false when no site).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  source_id: { type: string, example: web_profile }
+                  source_url: { type: string }
+                  found: { type: boolean }
+                  domain: { type: string }
+                  name_match: { type: boolean }
+                  description: { type: string }
+                  products: { type: string }
+                  leadership:
+                    type: array
+                    items: { type: string }
+                  contact:
+                    type: object
+                    properties:
+                      emails: { type: array, items: { type: string } }
+                      phones: { type: array, items: { type: string } }
+                  revenue_claims:
+                    type: array
+                    items: { type: string }
+                  pages_crawled:
+                    type: array
+                    items: { type: string }
+                  reason: { type: string }
+                  validation_source: { type: object }

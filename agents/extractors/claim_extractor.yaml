@@ -73,10 +73,27 @@ system_prompt: |
             - registration: legal_name, registration_number, status,
               incorporation_date, registered_address  (one claim per fact)
             - director / ubo / shareholder: per-person claims with role
-              and (where available) ownership percentage
+              and (where available) ownership percentage. The actual_controller
+              field (source_id=cn_tianyancha) is a ubo claim.
+            - financial: registered_capital — from cn_tianyancha
+              registered_capital_parsed {value, unit, currency}. One claim.
+            - relationship: affiliates from source_id=cn_affiliates — one claim
+              per affiliate, predicate="is_affiliate_of", object carrying the
+              affiliate legal_name + relation_to_subject (outbound_investment /
+              corporate_shareholder / branch). These feed the UBO map.
             - sanction: per-sanctions-list hit
-            - adverse_media: per-finding
+            - adverse_media: per-finding. cn_tianyancha adverse_flags
+              (operation_anomaly / judgment_debtor / admin_penalty / court_case
+              with flagged=true) are adverse_media claims (confidence medium).
+            - website: from source_id=web_profile — domain, contact, leadership,
+              revenue_claims. Confidence LOW (OSINT). Do NOT treat website
+              revenue_claims as verified financials.
             - dark_web_finding: per-source (breach, exposure, etc.)
+
+            SKIP empty-source rows: any evidence row with extracted={} (e.g. a
+            cn_affiliates seed with no registry match, or a web_profile with
+            found=false) was queried but returned nothing — do NOT invent a
+            claim from it and do NOT cite it as corroboration.
 
     Step 3: For each claim, call add_claim. You MUST pass run_id as the
             path parameter (the UUID you were given as input). The full call
@@ -121,5 +138,5 @@ output:
     claim_evidence rows linking them. Run status -> 'synthesizing'.
 
 deployed:
-  foundry_agent_id: asst_iplLmjIS1o5uFfbDDf2ZRBcS
+  foundry_agent_id: asst_vORflZSNDObfSu8f7x5PFi8Q
   project_endpoint: https://copapfoundry-resource.services.ai.azure.com/api/projects/copapfoundry

@@ -25,6 +25,7 @@ import evidence_db
 import source_gleif
 import source_domain
 import source_contact
+import source_web
 from keyvault import get_secret
 
 log = logging.getLogger("crawl-gateway")
@@ -560,10 +561,74 @@ async def country_registry_lookup(req: CountryRegRequest, country: str):
                     cc, req.entity_name[:30], e)
         # aggregator_block stays None — primary still returns
 
+    # COMMERCIAL (CN Tianyancha rich fields). verify_cn._enrich_from_detail_page
+    # already harvests shareholders (+pct), actual controller, officers, capital,
+    # business scope, adverse flags, former names, affiliates + branches — but the
+    # primary_block projection above forwards none of them. Surface them as a
+    # distinct evidence row tiered honestly as COMMERCIAL_AGGREGATOR (Tianyancha),
+    # NOT laundered under the PRIMARY_GOVERNMENT gov-registry source_id.
+    # CN-only today (the only collector that produces these); other countries
+    # emit no commercial block (avoids an unknown source_id FK violation).
+    commercial_block = None
+    if cc == "CN":
+        _rich = {k: out.get(k) for k in (
+            "shareholders", "actual_controller", "officers", "business_scope",
+            "industry", "adverse_flags", "former_names",
+            "registered_capital_parsed", "address_parts", "affiliates", "branches",
+        ) if out.get(k) not in (None, [], {}, "")}
+        if _rich:
+            commercial_block = {
+                "source_id": "cn_tianyancha",
+                "source_url": vs.get("url") or vs.get("primary_url")
+                              or "https://www.tianyancha.com",
+                "fetched_at": _now_iso(),
+                "found": True,
+                "legal_name": out.get("legal_name") or out.get("entity_name"),
+                **_rich,
+                "validation_source": {
+                    "primary": "Tianyancha (commercial aggregator, cross-check tier)",
+                    "primary_url": vs.get("url"),
+                    "confidence": "medium",
+                    "tier": "COMMERCIAL_AGGREGATOR",
+                    "note": ("Tianyancha-derived shareholders/capital/affiliates — "
+                             "corroborate against gov registry, do not treat as primary"),
+                },
+            }
+
     return {
         "primary": primary_block,
         "aggregator": aggregator_block,
+        "commercial": commercial_block,
     }
+
+
+# ---------------------------------------------------------------------------
+# Website profile — SearXNG discovery + Crawl4AI fetch (free, self-hosted only)
+# ---------------------------------------------------------------------------
+
+class WebProfileRequest(BaseModel):
+    entity_name: str = Field(..., max_length=500)
+    country: Optional[str] = Field("", max_length=10)
+    domain_hint: Optional[str] = Field("", max_length=253)
+
+
+@router.post("/sources/web/profile")
+async def web_profile(req: WebProfileRequest):
+    """Discover the entity's official website via SearXNG and crawl it via
+    Crawl4AI (both self-hosted on copapai-aux — no paid web APIs). Returns a
+    light corporate profile {domain, description, products, leadership, contact,
+    revenue_claims}. found=false (empty-source) when there is no site — the
+    collector then persists an empty evidence row so nothing is fabricated."""
+    try:
+        return source_web.check(
+            req.entity_name,
+            country=(req.country or None),
+            domain_hint=(req.domain_hint or None),
+        )
+    except Exception as e:
+        log.warning("web_profile failed for %s: %s", req.entity_name[:40], e)
+        return {"source_id": "web_profile", "source_url": "", "found": False,
+                "reason": f"web_profile error: {str(e)[:160]}"}
 
 
 # ---------------------------------------------------------------------------

@@ -98,6 +98,16 @@ async def create_run(req: RunCreateRequest):
     )
 
 
+@router.get("/evidence/runs")
+async def find_runs(entity: Optional[str] = None, country: Optional[str] = None,
+                    status: Optional[str] = None, limit: int = 20):
+    """Find CIR runs by entity name (substring), country, and/or status —
+    newest first. Lets onboarding locate a run_id for an entity so it can then
+    pull /evidence + /claims. Returns {runs: [...]}. """
+    return {"runs": evidence_db.find_runs(entity_name=entity, country=country,
+                                          status=status, limit=limit)}
+
+
 @router.get("/evidence/runs/{run_id}")
 async def get_run(run_id: str):
     run = evidence_db.get_run(run_id)

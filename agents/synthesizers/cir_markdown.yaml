@@ -118,8 +118,21 @@ system_prompt: |
             - Executive Summary (3-5 sentences)
             - Registry Facts (legal_name, registration, address, status,
               directors, UBOs — all from PRIMARY_GOVERNMENT / OFFICIAL_LIST)
+            - Corporate Profile — Website / Financials / Affiliates:
+                * Financials: registered_capital (financial claims). State the
+                  value + currency; do NOT present website revenue_claims as
+                  audited financials — label them "self-reported (website)".
+                * Website: domain, products, leadership, contact from the
+                  web_profile source (OSINT — mark confidence, note if the
+                  domain was NOT name-matched).
+                * Affiliates & corporate network: is_affiliate_of relationships
+                  (cn_affiliates) — outbound investments, corporate shareholders,
+                  branches. Name each with its relation. This is the UBO/sibling
+                  network; flag if a controller or address is shared.
+              Omit any sub-item with no cited evidence — never pad.
             - Sanctions Screening
-            - Adverse Media (if any)
+            - Adverse Media (if any) — include cn_tianyancha adverse_flags
+              (operation anomaly / judgment debtor / penalties) as medium-tier.
             - OSINT signals (dark web findings, leaked databases)
             - Risk Assessment (your judgment, with cited evidence)
             - Source coverage matrix (which sources were queried, what tier,
@@ -152,5 +165,5 @@ output:
     (rejected assertions caught by the validator).
 
 deployed:
-  foundry_agent_id: asst_g8FUKKDB9yHl9aglW2esu0z0
+  foundry_agent_id: asst_oHuq2TNRO1g9oZr5Mpn86UiD
   project_endpoint: https://copapfoundry-resource.services.ai.azure.com/api/projects/copapfoundry
