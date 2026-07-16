@@ -270,11 +270,26 @@ def _affiliate_expansion(run_id: str, cc: str, entity_name: str,
 
 
 async def _orchestrate(run_id: str, country_code: str, entity_name: str,
-                       registration_id: str = ""):
+                       registration_id: str = "", cn_name: str = ""):
     """Background orchestration — collector → extractor → synthesizer."""
     log.info("orchestrator: starting run %s for %s/%s", run_id[:8], entity_name, country_code)
     cc = country_code.upper()
     loop = asyncio.get_event_loop()
+
+    # ENTITY RESOLUTION (identifiers-first). The China registry (Tianyancha) is
+    # indexed by Chinese name — a Latin/English entity_name cannot match it, which
+    # silently produced empty CIRs (registration_id="" → the whole deep/relationship
+    # path never fired). Resolve the name the COUNTRY collector searches with, in
+    # priority order: explicit Chinese name (中文名) > raw entity_name. A provided
+    # USCC (registration_id) is handled deterministically downstream by the collector
+    # and bypasses name matching. When only a non-Chinese name is given with no
+    # identifier, we do NOT guess here — the collector's cross-script gate returns
+    # UNRESOLVED rather than a wrong entity (LLM auto-propose is a staged follow-on).
+    search_name = entity_name
+    if cc == "CN" and cn_name and cn_name.strip():
+        search_name = cn_name.strip()
+        log.info("orchestrator: run %s — CN registry search resolved to Chinese name "
+                 "'%s' (display entity: '%s')", run_id[:8], search_name, entity_name)
 
     # PHASE 1: country collector. ISO-2 normally maps to verify_<cc>_collector.
     # Historical exception: GB collector was created as verify_uk_collector
@@ -297,7 +312,7 @@ async def _orchestrate(run_id: str, country_code: str, entity_name: str,
     # the same agent runs fine with a plain instruction). The agent's system
     # prompt already mandates run_id on evidence_add/collector_complete.
     instr_collect = (
-        f"Collect evidence for entity_name='{entity_name}' with run_id='{run_id}'."
+        f"Collect evidence for entity_name='{search_name}' with run_id='{run_id}'."
         + (f" Registration number: {registration_id}" if registration_id else "")
     )
 
@@ -520,6 +535,11 @@ class CIRRunRequest(BaseModel):
     entity_name: str = Field(..., max_length=500)
     registration_id: Optional[str] = Field(None, max_length=100,
         description="Optional USCC/CIN/CIK/etc. for deterministic lookup")
+    cn_name: Optional[str] = Field(None, max_length=500,
+        description="Optional Chinese registered name (中文名) for CN entities. "
+                    "The China registry (Tianyancha) is indexed by Chinese name, so "
+                    "a Latin/English entity_name cannot match it — pass this to "
+                    "resolve deterministically (identifiers-first).")
 
 
 class CIRRunResponse(BaseModel):
@@ -541,13 +561,15 @@ async def cir_run(req: CIRRunRequest):
 
     run_id = evidence_db.create_run(
         entity_name=req.entity_name, country=cc,
-        meta={"source": "cir_orchestrator", "registration_id": req.registration_id or ""},
+        meta={"source": "cir_orchestrator", "registration_id": req.registration_id or "",
+              "cn_name": req.cn_name or ""},
     )
     # Kick off background orchestration — caller doesn't wait
     asyncio.create_task(_orchestrate(
         run_id=run_id, country_code=cc,
         entity_name=req.entity_name,
         registration_id=req.registration_id or "",
+        cn_name=req.cn_name or "",
     ))
     return CIRRunResponse(
         run_id=run_id,

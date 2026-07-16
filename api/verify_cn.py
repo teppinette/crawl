@@ -656,10 +656,23 @@ def _parse_tianyancha_result(entity_name: str, uscc: str, body: str) -> dict:
     has_cjk_query = bool(re.search(r"[一-鿿]", entity_name or ""))
     query_uscc_matches = bool(uscc) and (found_uscc == uscc)
 
+    returned_has_cjk = bool(re.search(r"[一-鿿]", name or ""))
+
     if name and has_cjk_query and not query_uscc_matches:
         name_match_score, name_match_reason = _name_match_cn(entity_name, name)
         if name_match_score < _CN_NAME_MATCH_THRESHOLD:
             name_mismatch = True
+    elif name and returned_has_cjk and not has_cjk_query and not query_uscc_matches:
+        # Cross-script, unanchored: a non-Chinese query string returned a
+        # Chinese-named entity and we have no USCC to anchor on. The CJK matcher
+        # can't compare a Latin query to a Chinese name, so we CANNOT verify the
+        # two refer to the same company. Do not blind-accept — that would risk
+        # surfacing the wrong entity into a compliance dossier. Flag unresolved
+        # (never guess); the caller should first resolve the Chinese registered
+        # name (identifiers-first / bridge) and re-query with a CJK name or USCC.
+        name_match_score = 0.0
+        name_match_reason = "cross-script unverifiable (non-CJK query vs CJK result, no USCC anchor)"
+        name_mismatch = True
 
     if (name or found_uscc or legal_rep) and not name_mismatch:
         result["found"] = True
@@ -685,17 +698,25 @@ def _parse_tianyancha_result(entity_name: str, uscc: str, body: str) -> dict:
             "verified_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         }
     elif name_mismatch:
-        # Tianyancha had a candidate but it doesn't match the searched entity.
-        # Return the candidate so the operator can inspect, but verified=false.
+        # Tianyancha had a candidate but we could not confirm it is the searched
+        # entity. Return the candidate so the operator can inspect, verified=false.
         result["found"] = False
         result["verified"] = False
-        result["note"] = (
-            f"Tianyancha returned a candidate that does not match '{entity_name}': "
-            f"'{name}' (similarity={name_match_score:.2f}, threshold={_CN_NAME_MATCH_THRESHOLD}). "
-            "Likely a different entity — Tianyancha's first search hit can be a "
-            "related but distinct company. Re-query with the exact registered "
-            "name or a USCC to confirm."
-        )
+        if not has_cjk_query and returned_has_cjk:
+            result["note"] = (
+                f"Could not resolve '{entity_name}' against the Chinese registry: the "
+                f"query is not in Chinese, so it cannot be name-matched to the returned "
+                f"candidate '{name}'. Resolve the Chinese registered name (中文名) or a "
+                f"USCC first, then re-query — not guessing to avoid a wrong-entity match."
+            )
+        else:
+            result["note"] = (
+                f"Tianyancha returned a candidate that does not match '{entity_name}': "
+                f"'{name}' (similarity={name_match_score:.2f}, threshold={_CN_NAME_MATCH_THRESHOLD}). "
+                "Likely a different entity — Tianyancha's first search hit can be a "
+                "related but distinct company. Re-query with the exact registered "
+                "name or a USCC to confirm."
+            )
         result["candidate"] = {
             "legal_name": name,
             "uscc": found_uscc,
