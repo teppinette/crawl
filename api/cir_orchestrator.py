@@ -910,52 +910,63 @@ async def _orchestrate(run_id: str, country_code: str, entity_name: str,
                                       error="no deployed synthesizers")
         return
 
-    async def _run_one(rtype: str, aid: str, instr: str):
-        try:
-            local_client = _agents_client()
-            status, err = await loop.run_in_executor(
-                None, _run_agent_sync, local_client, aid, instr, 600,
-            )
-            return (rtype, status, err)
-        except Exception as e:
-            return (rtype, "EXCEPTION", str(e)[:200])
+    # Each synthesizer RETRIES until its render actually persists — a COMPLETED
+    # status is not proof (gpt-4.1-mini can end a run without ever firing
+    # save_render, which produced runs marked 'complete' with an empty /renders).
+    # Success = the render row is present. cir_markdown is the primary banker
+    # narrative, so it is REQUIRED and gets an extra attempt.
+    REQUIRED_RENDER = "cir_markdown"
 
-    results = await asyncio.gather(*[_run_one(rt, aid, instr)
-                                     for rt, aid, instr in synth_tasks])
-    # P2: a synthesizer reporting COMPLETED is NOT proof it saved its render —
-    # gpt-4.1-mini can end a run without ever firing save_render, producing a
-    # run marked 'complete' with an empty /renders. Judge success by the renders
-    # ACTUALLY persisted, not by the reported status.
-    try:
-        saved = {r.get("render_type") for r in evidence_db.list_renders(run_id)}
-    except Exception:
-        saved = None
-    if saved is not None:
-        produced = [rt for rt, s, e in results if rt in saved]
-        silent = [rt for rt, s, e in results
-                  if s.endswith("COMPLETED") and rt not in saved]
-        if silent:
-            log.warning("orchestrator: %d synthesizer(s) reported COMPLETED but saved "
-                        "no render: %s", len(silent), silent)
-        failed = [(rt, s, e) for rt, s, e in results if rt not in saved]
-    else:
-        produced = [rt for rt, s, e in results if s.endswith("COMPLETED")]
-        failed = [(rt, s, e) for rt, s, e in results if not s.endswith("COMPLETED")]
+    async def _run_synth(rtype: str, aid: str, instr: str, attempts: int):
+        last = ("UNKNOWN", None)
+        for attempt in range(attempts):
+            try:
+                local_client = _agents_client()
+                last = await loop.run_in_executor(
+                    None, _run_agent_sync, local_client, aid, instr, 600,
+                )
+            except Exception as e:
+                last = ("EXCEPTION", str(e)[:200])
+                log.warning("orchestrator: synth %s attempt %d/%d raised: %s; retrying",
+                            rtype, attempt + 1, attempts, last[1])
+                continue
+            try:
+                saved_now = any(r.get("render_type") == rtype
+                                for r in evidence_db.list_renders(run_id))
+            except Exception:
+                saved_now = str(last[0]).upper().endswith("COMPLETED")  # can't verify; trust once
+            if saved_now:
+                return (rtype, "SAVED", None)
+            log.warning("orchestrator: synth %s attempt %d/%d -> %s (%s), no render "
+                        "saved; retrying", rtype, attempt + 1, attempts, last[0], last[1])
+        return (rtype, "NO_RENDER", last[1])
 
-    if not produced:
-        # No render actually persisted — the CIR would be empty. Fail loud so the
-        # run is retryable, rather than marking an empty run 'complete'.
+    results = await asyncio.gather(*[
+        _run_synth(rt, aid, instr, 3 if rt == REQUIRED_RENDER else 2)
+        for rt, aid, instr in synth_tasks])
+
+    dispatched = {rt for rt, _, _ in synth_tasks}
+    saved_types = {rt for rt, s, e in results if s == "SAVED"}
+    failed = [(rt, s, e) for rt, s, e in results if s != "SAVED"]
+
+    # REQUIRE cir_markdown: if it was dispatched but never persisted after retries,
+    # fail the run (retryable at the CIR level) rather than complete without the
+    # primary narrative.
+    if REQUIRED_RENDER in dispatched and REQUIRED_RENDER not in saved_types:
+        evidence_db.update_run_status(run_id, "failed",
+            error=f"required render '{REQUIRED_RENDER}' not produced after retries: {failed}")
+        return
+    if not saved_types:
         evidence_db.update_run_status(run_id, "failed",
             error=f"no synthesizer produced a render: {failed}")
         return
     if failed:
-        # Partial — cir_markdown persisting is enough for the banker-facing output.
         log.warning("orchestrator: %d synthesizer(s) produced no render: %s",
                     len(failed), failed)
 
     evidence_db.update_run_status(run_id, "complete")
     log.info("orchestrator: run %s complete, %d of %d renders produced",
-             run_id[:8], len(produced), len(results))
+             run_id[:8], len(saved_types), len(results))
 
 
 class CIRRunRequest(BaseModel):
