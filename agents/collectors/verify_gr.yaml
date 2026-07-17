@@ -1,0 +1,17 @@
+extends: _base.yaml
+name: verify_gr_collector
+vars:
+  country_name: Greece
+  registry_detail: GEMI (Γ.Ε.ΜΗ., General Commercial Registry) — GEMI number, ΑΦΜ, status, legal form, address (JS SPA via Multilogin) + VIES/EL confirmation
+metadata:
+  country: GR
+  sources:
+  - gr_registry
+  - csl_screening
+  - gleif_lei
+  est_latency_seconds: 14
+
+audit:
+  version: 1.0.0
+  content_hash: sha256:7233b73e79e115a8483dd9df2075c7ebd2254d66ae796a3e4865ab32ae0b1fd0
+  stamped_git_sha: fa45f0d

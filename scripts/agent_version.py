@@ -135,12 +135,16 @@ def cmd_stamp(check: bool) -> int:
                         f"(version still {version or '?'}). Bump audit.version, then stamp.")
             continue
 
-        # write mode
+        # write mode — idempotent: only touch a file whose content actually changed
+        # (or that is missing a stamp). stamped_git_sha then marks the commit where
+        # this content was introduced, not merely the last time stamp ran.
         if have and have != want and version:
             print(f"  ⚠ {rel}: content changed since v{version} — "
                   f"bump audit.version if this is a behaviour change")
-        _write_audit_block(path, version or "1.0.0", want, sha)
-        stamped += 1
+        needs_write = (have != want) or (not version) or (not audit.get("stamped_git_sha"))
+        if needs_write:
+            _write_audit_block(path, version or "1.0.0", want, sha)
+            stamped += 1
 
     if check:
         if problems:
@@ -152,6 +156,45 @@ def cmd_stamp(check: bool) -> int:
         return 0
 
     print(f"stamped {stamped} agents @ git {sha}")
+    return 0
+
+
+VERIFY_PY = ROOT / "verify-gateway"
+# collectors whose VM verification runs via a NON-verify_<cc>.py path (documented, not drift)
+ALT_PY = {
+    "in": "multilogin_dgft.py / sandbox_india.py / multilogin_tofler.py",
+    "sg": "multilogin_bizfile.py",
+}
+
+
+def cmd_coverage() -> int:
+    """Lockstep guard: every collector agent must have a VM verify path, and every
+    VM verify_<cc>.py must have a collector agent. Catches the GR-style gap that let
+    a country exist in one layer but not the other."""
+    collectors = {p.name[len("verify_"):-len(".yaml")]
+                  for p in (AGENTS / "collectors").glob("verify_*.yaml")}
+    pymods = {p.name[len("verify_"):-len(".py")]
+              for p in VERIFY_PY.glob("verify_??.py")}
+    missing_collector = sorted(pymods - collectors)
+    missing_py = sorted(c for c in (collectors - pymods) if c not in ALT_PY)
+    alt = sorted(c for c in (collectors - pymods) if c in ALT_PY)
+
+    print(f"collectors: {len(collectors)}   verify-gateway py: {len(pymods)}   "
+          f"in-lockstep: {len(collectors & pymods)}")
+    if alt:
+        print("  via alternate VM path (OK): "
+              + "; ".join(f"{c} -> {ALT_PY[c]}" for c in alt))
+    problems = []
+    if missing_collector:
+        problems.append(f"VM python but NO collector agent: {', '.join(missing_collector)}")
+    if missing_py:
+        problems.append(f"collector agent but NO VM verify path: {', '.join(missing_py)}")
+    if problems:
+        print("COVERAGE DRIFT:")
+        for p in problems:
+            print(f"  ✗ {p}")
+        return 1
+    print("✓ collectors and verify-gateway modules are in lockstep")
     return 0
 
 
@@ -200,6 +243,8 @@ def main() -> int:
         return cmd_stamp(check="--check" in args)
     if args[0] == "manifest":
         return cmd_manifest()
+    if args[0] == "coverage":
+        return cmd_coverage()
     if args[0] == "render":
         if len(args) < 2:
             print("usage: agent_version.py render <agent.yaml>")
