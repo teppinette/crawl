@@ -29,6 +29,11 @@ def init(get_secret):
     _ANTHROPIC_KEY = get_secret("anthropic-api-key")
     if _ANTHROPIC_KEY:
         log.info("TR GIB VKN ready (direct Playwright, no Multilogin)")
+    try:
+        _tr_init_fallback(get_secret)
+        log.info("TR name-only fallback ready: GLEIF (primary) + OpenCorporates (secondary)")
+    except Exception as _e:
+        log.warning("TR GLEIF/OC fallback init failed: %s", _e)
 
 
 def _solve_captcha(img_b64: str) -> str:
@@ -179,3 +184,106 @@ def gib_vkn_verify(vkn: str, entity_name: str = "", max_retries: int = 3) -> dic
     if error:
         return {"vkn": safe_vkn, "found": False, "error": str(error)[:200]}
     return result
+
+# ---------------------------------------------------------------------------
+# GLEIF + OpenCorporates fallback (added 2026-06-24 for Onboarding's TR entries
+# that don't have VKNs). Ticaret Sicil scraping requires session + CAPTCHA;
+# GLEIF covers TR banks/listed/large-corps with LEIs (~250); OC TR fills the
+# SME tail.
+# ---------------------------------------------------------------------------
+
+try:
+    from curl_cffi import requests as cffi_requests
+    import source_gleif as _tr_gleif
+    _TR_OC_URL = "https://api.opencorporates.com/v0.4/companies/search"
+    _TR_OC_TOKEN = ""
+
+    def _tr_init_fallback(get_secret):
+        global _TR_OC_TOKEN
+        _TR_OC_TOKEN = get_secret("opencorporates-token") or ""
+        _tr_gleif.init(get_secret)
+
+    def _tr_try_oc(entity_name: str, vkn_or_reg: str) -> dict:
+        if not _TR_OC_TOKEN:
+            return {}
+        try:
+            r = cffi_requests.get(
+                _TR_OC_URL,
+                params={
+                    "q": vkn_or_reg or entity_name,
+                    "jurisdiction_code": "tr",
+                    "api_token": _TR_OC_TOKEN,
+                    "per_page": 5,
+                },
+                timeout=20, impersonate="chrome120",
+            )
+            if r.status_code != 200:
+                return {}
+            data = r.json()
+            companies = (((data.get("results") or {}).get("companies")) or [])
+            if not companies:
+                return {}
+            best = (companies[0] or {}).get("company") or {}
+            return {
+                "found": True,
+                "verified": True,
+                "legal_name": best.get("name"),
+                "entity_name": best.get("name"),
+                "vkn": best.get("company_number"),
+                "registration_number": best.get("company_number"),
+                "status": best.get("current_status"),
+                "incorporation_date": best.get("incorporation_date"),
+                "registered_address": (best.get("registered_address_in_full")
+                                       or (best.get("registered_address") or {}).get("locality")),
+                "company_type": best.get("company_type"),
+                "jurisdiction": "TR",
+                "validation_source": {
+                    "primary": "OpenCorporates (paid API, TR jurisdiction)",
+                    "primary_url": (best.get("opencorporates_url")
+                                    or "https://opencorporates.com/companies/tr"),
+                    "confidence": "medium",
+                    "tier": "COMMERCIAL_AGGREGATOR",
+                    "how_to_reproduce": f"Visit opencorporates.com → jurisdiction TR → search '{vkn_or_reg or entity_name}'",
+                },
+                "summary": f"{best.get('name','')} — OpenCorporates (TR)",
+            }
+        except Exception as e:
+            log.warning("OC fallback for TR failed: %s", e)
+            return {}
+
+    def gleif_oc_verify(entity_name: str = "", vkn: str = "") -> dict:
+        """No-VKN path: GLEIF primary, OpenCorporates TR secondary.
+        Mirrors verify_ae / verify_eg / verify_ma / verify_ar pattern."""
+        r = _tr_gleif.gleif_verify(
+            "TR", entity_name=entity_name, reg_number=vkn,
+        )
+        if r.get("verified") or r.get("found"):
+            return r
+        oc = _tr_try_oc(entity_name, vkn)
+        if oc:
+            return oc
+        return {
+            "found": False,
+            "verified": False,
+            "note": (
+                "TR entity verification via GLEIF (primary) + OpenCorporates "
+                "(secondary). Ticaret Sicil requires session + CAPTCHA + IP locality. "
+                "GLEIF covers banks/listed/large-corps with LEIs; OC fills the SME tail. "
+                "This entity not found in either."
+            ),
+            "validation_source": {
+                "primary": "GLEIF (api.gleif.org)",
+                "primary_url": "https://api.gleif.org/api/v1/lei-records",
+                "how_to_reproduce": (
+                    f"GET https://api.gleif.org/api/v1/lei-records"
+                    f"?filter[entity.legalName]={entity_name} -> no match; "
+                    f"OpenCorporates TR jurisdiction also no match"
+                ),
+            },
+        }
+except ImportError:
+    def gleif_oc_verify(entity_name: str = "", vkn: str = "") -> dict:
+        return {"found": False, "verified": False,
+                "note": "GLEIF/OC fallback not available on this verify-gateway install"}
+    def _tr_init_fallback(get_secret):
+        pass

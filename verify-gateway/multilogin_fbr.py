@@ -53,7 +53,7 @@ _pool_initialized = False
 def init(get_secret):
     """Initialize credentials from Key Vault. Call once at startup."""
     global _MLX_EMAIL, _MLX_PASSWORD, _MLX_FOLDER_ID
-    global _MLX_PROXY_USER, _MLX_PROXY_PASS, _ANTHROPIC_KEY
+    global _MLX_PROXY_USER, _MLX_PROXY_PASS, _FOUNDRY_OCR_KEY
     global _POOL_PROFILE_IDS
 
     _MLX_EMAIL = get_secret("multilogin-email") or "teppinette@copap.com"
@@ -61,7 +61,7 @@ def init(get_secret):
     _MLX_FOLDER_ID = get_secret("multilogin-folder-id")
     _MLX_PROXY_USER = get_secret("multilogin-proxy-user")
     _MLX_PROXY_PASS = get_secret("multilogin-proxy-pass")
-    _ANTHROPIC_KEY = get_secret("anthropic-api-key")
+    _FOUNDRY_OCR_KEY = get_secret("foundry-mistral-ocr-key")
 
     pool_json = get_secret("multilogin-pool-profiles")
     if pool_json:
@@ -147,42 +147,24 @@ def _stop_profile(profile_id: str):
 
 
 def _solve_captcha(canvas_data_url: str) -> str:
-    """Solve FBR numeric CAPTCHA using Claude Haiku vision."""
+    """Solve FBR numeric CAPTCHA using Foundry mistral-small-2503 vision."""
     img_data = canvas_data_url.split(",")[1]
     resp = requests.post(
-        "https://api.anthropic.com/v1/messages",
+        "https://copapfoundry-resource.services.ai.azure.com/models/chat/completions?api-version=2024-05-01-preview",
+        headers={"api-key": _FOUNDRY_OCR_KEY, "Content-Type": "application/json"},
         json={
-            "model": "claude-haiku-4-5-20251001",
+            "model": "mistral-small-2503",
             "max_tokens": 20,
-            "messages": [
-                {
-                    "role": "user",
-                    "content": [
-                        {
-                            "type": "image",
-                            "source": {
-                                "type": "base64",
-                                "media_type": "image/png",
-                                "data": img_data,
-                            },
-                        },
-                        {
-                            "type": "text",
-                            "text": "What are the digits shown in this CAPTCHA image? Reply with ONLY the digits, nothing else.",
-                        },
-                    ],
-                }
-            ],
-        },
-        headers={
-            "x-api-key": _ANTHROPIC_KEY,
-            "anthropic-version": "2023-06-01",
-            "Content-Type": "application/json",
+            "temperature": 0,
+            "messages": [{"role": "user", "content": [
+                {"type": "text", "text": "What are the digits shown in this CAPTCHA image? Reply with ONLY the digits, nothing else."},
+                {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{img_data}"}},
+            ]}],
         },
         timeout=15,
     )
     resp.raise_for_status()
-    return resp.json()["content"][0]["text"].strip()
+    return resp.json()["choices"][0]["message"]["content"].strip()
 
 
 # ---------------------------------------------------------------------------

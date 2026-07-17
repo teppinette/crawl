@@ -33,6 +33,7 @@ _MLX_PROXY_USER_CN = None
 _MLX_PROXY_PASS_CN = None
 _POOL_PROFILE_IDS = []
 _CLI_PATH = Path("/home/copapadmin/mlx/deps/cli/xcli")
+_MLX_LOCK_FILE = Path("/home/copapadmin/mlx/profiles.lock")
 
 _token_lock = threading.Lock()
 _cached_token = None
@@ -54,7 +55,7 @@ def init(get_secret):
     try:
         result = subprocess.run(
             [str(_CLI_PATH), "proxy-get", "--country-code", "cn",
-             "--protocol", "http", "--type", "rotating"],
+             "--protocol", "http", "--type", "sticky"],
             capture_output=True, text=True, timeout=15,
         )
         if result.stdout.strip():
@@ -170,7 +171,8 @@ def _do_cn_lookup(port: int, entity_name: str, uscc: str, profile_id: str) -> di
 
 
 def _navigate_and_extract(page, entity_name: str, uscc: str) -> dict:
-    """Search Tianyancha for company. Falls back to Baidu if Tianyancha fails."""
+    """Search Tianyancha for company, then enrich with detail page if name matches.
+    Falls back to Baidu if Tianyancha blocks the search results."""
     search_term = uscc if uscc else entity_name
 
     # Tianyancha works with CN proxy, no login needed for search results
@@ -180,7 +182,7 @@ def _navigate_and_extract(page, entity_name: str, uscc: str) -> dict:
     body = page.inner_text("body")
 
     # Check if redirected to login
-    if "扫码登录" in body or "登录/注册" in body and "法定代表人" not in body:
+    if ("扫码登录" in body or "登录/注册" in body) and "法定代表人" not in body:
         # Tianyancha blocked — try Baidu as fallback
         log.info("Tianyancha needs login, falling back to Baidu")
         page.goto(f"https://www.baidu.com/s?wd={search_term}", timeout=60000, wait_until="domcontentloaded")
@@ -188,7 +190,395 @@ def _navigate_and_extract(page, entity_name: str, uscc: str) -> dict:
         body = page.inner_text("body")
         return _parse_baidu_result(entity_name, uscc, body)
 
-    return _parse_tianyancha_result(entity_name, uscc, body)
+    result = _parse_tianyancha_result(entity_name, uscc, body)
+
+    # If snippet match succeeded, navigate to the company detail page for richer
+    # KYC fields (founding date if missing from snippet, full directors/officers,
+    # shareholders, business scope, adverse flags). Skipped on name_mismatch or
+    # not_found — no point fetching the wrong company's detail.
+    if result.get("found") and not result.get("name_match_failed"):
+        try:
+            detail_url = _find_tianyancha_detail_url(page, result.get("uscc"))
+            if detail_url:
+                log.info("Tianyancha: fetching detail page %s", detail_url)
+                page.goto(detail_url, timeout=60000, wait_until="domcontentloaded")
+                time.sleep(8)
+                detail_body = page.inner_text("body")
+                detail_html = page.content()
+                _enrich_from_detail_page(result, detail_body, detail_html, detail_url)
+        except Exception as e:
+            log.warning("Tianyancha detail enrichment failed: %s — returning snippet record", e)
+
+    return result
+
+
+def _find_tianyancha_detail_url(page, uscc: str = "") -> str | None:
+    """Find the first company detail URL on a Tianyancha search results page.
+    Detail URLs look like '/company/<id>' or '/firm/<hash>.html'. Prefer the
+    one whose surrounding text shows our USCC if we have one."""
+    try:
+        candidates = page.locator("a[href^='/company/'], a[href^='/firm/']").all()
+        if not candidates:
+            return None
+        # If we have a USCC, look for the link near the USCC text
+        if uscc:
+            for a in candidates[:30]:
+                href = a.get_attribute("href") or ""
+                # Walk up to a containing block and check for the USCC
+                try:
+                    parent = a.locator("xpath=ancestor::*[self::div or self::li][1]")
+                    txt = parent.inner_text(timeout=2000) or ""
+                    if uscc in txt:
+                        return f"https://www.tianyancha.com{href}"
+                except Exception:
+                    pass
+        # Otherwise just take the first candidate
+        href = candidates[0].get_attribute("href") or ""
+        return f"https://www.tianyancha.com{href}" if href else None
+    except Exception:
+        return None
+
+
+def _enrich_from_detail_page(result: dict, body: str, html: str, source_url: str):
+    """Pull richer KYC fields from a Tianyancha company detail page.
+    Mutates result in place. Best-effort — missing fields stay absent."""
+
+    # Founding date — multiple format variants seen on detail pages
+    if not result.get("established_date"):
+        for pat in (
+            r"成立日期[：:]\s*(\d{4}-\d{2}-\d{2})",
+            r"成立日期[：:]\s*(\d{4}年\d{1,2}月\d{1,2}日)",
+            r"成立[：:]\s*(\d{4}-\d{2}-\d{2})",
+        ):
+            m = re.search(pat, body)
+            if m:
+                result["established_date"] = m.group(1).strip()
+                break
+
+    # Business scope (经营范围) — typically followed by text until 注册资本 or 工商信息
+    scope_m = re.search(r"经营范围[：:]\s*([^\n]{10,2000}?)(?=\n\s*(?:注册资本|工商信息|登记机关|股东|主要人员|经营异常|$))", body, re.DOTALL)
+    if scope_m:
+        scope = re.sub(r"\s+", " ", scope_m.group(1)).strip().rstrip("。.,，")
+        if len(scope) > 20:
+            result["business_scope"] = scope[:1500]
+
+    # Industry / 行业 line if present
+    industry_m = re.search(r"行业[：:]\s*([^\n]{2,200})", body)
+    if industry_m:
+        result["industry"] = industry_m.group(1).strip()
+
+    # Officers (主要人员) — capture name + role pairs
+    # Pattern on the detail page is typically a stack:
+    #   <name>\n<role>\n<name>\n<role>\n...
+    officers = []
+    officers_block = re.search(r"主要人员[^\n]{0,30}\n(.+?)(?=\n\s*(?:股东信息|股东与出资|对外投资|分支机构|经营异常|工商信息|$))",
+                               body, re.DOTALL)
+    if officers_block:
+        block = officers_block.group(1)
+        # Cleaner: walk pairs of (Chinese name 2-4 chars, role on next line)
+        lines = [l.strip() for l in block.split("\n") if l.strip()]
+        for i, ln in enumerate(lines[:-1]):
+            # Chinese name candidate (2-6 CJK chars, optional middle dot for hyphenated)
+            if re.match(r"^[一-鿿·]{2,6}$", ln):
+                role = lines[i+1] if i+1 < len(lines) else ""
+                if role and len(role) < 30 and re.search(r"[一-鿿]", role):
+                    officers.append({"name": ln, "role": role})
+                    if len(officers) >= 30:
+                        break
+    if officers:
+        result["officers"] = officers
+        # Promote first 法定代表人 if not already set
+        if not result.get("legal_representative"):
+            for o in officers:
+                if "法定代表人" in o.get("role", "") or "法人" in o.get("role", ""):
+                    result["legal_representative"] = o["name"]
+                    break
+
+    # Shareholders (股东信息) — capture name + percentage if present
+    shareholders = []
+    sh_block = re.search(r"股东(?:信息|与出资)[^\n]{0,30}\n(.+?)(?=\n\s*(?:对外投资|分支机构|经营异常|工商信息|主要人员|$))",
+                         body, re.DOTALL)
+    if sh_block:
+        block = sh_block.group(1)
+        # Lines like: <名称>\n<出资比例>%\n<出资额>
+        # Or:         <名称>  <比例>  <出资额>
+        lines = [l.strip() for l in block.split("\n") if l.strip()]
+        for i, ln in enumerate(lines):
+            if re.search(r"[一-鿿]{3,}", ln) and len(ln) < 80 and "出资" not in ln and "%" not in ln:
+                # Look for a % on the next 1-2 lines
+                pct = None
+                for j in range(i+1, min(i+3, len(lines))):
+                    pm = re.search(r"(\d+(?:\.\d+)?)\s*%", lines[j])
+                    if pm:
+                        pct = float(pm.group(1)); break
+                if any(s["name"] == ln for s in shareholders):
+                    continue
+                shareholders.append({"name": ln, "ownership_pct": pct})
+                if len(shareholders) >= 30:
+                    break
+    if shareholders:
+        result["shareholders"] = shareholders
+
+    # Adverse-status flags as dedicated booleans (banker auditors want these explicit)
+    adverse_flags = {}
+    for label, key in [
+        ("经营异常", "operation_anomaly"),
+        ("严重违法", "severe_violation"),
+        ("失信被执行人", "judgment_debtor"),
+        ("被执行人", "enforcement_target"),
+        ("吊销", "license_revoked"),
+        ("注销", "deregistered"),
+        ("行政处罚", "admin_penalty"),
+        ("司法案件", "court_case"),
+    ]:
+        # Only flag if the label appears AND there's a count or detail nearby (not just the section heading)
+        if label in body:
+            cm = re.search(rf"{label}[^\n]{{0,20}}?(\d+)\s*条", body)
+            if cm:
+                adverse_flags[key] = {"flagged": True, "count": int(cm.group(1))}
+            elif f"暂未发现{label}" in body or f"没有{label}" in body or f"无{label}" in body:
+                adverse_flags[key] = {"flagged": False}
+            else:
+                adverse_flags[key] = {"flagged": True}
+    if adverse_flags:
+        result["adverse_flags"] = adverse_flags
+
+    # Former names
+    former_m = re.search(r"曾用名[：:]\s*([^\n]{2,500})", body)
+    if former_m:
+        names = [n.strip() for n in re.split(r"[、,，]", former_m.group(1)) if n.strip()]
+        if names:
+            result["former_names"] = names[:10]
+
+    # Actual controller / UBO (实际控制人)
+    ac_m = re.search(r"实际控制人[：:\s]+([^\n]{2,200})", body)
+    if ac_m:
+        ac = ac_m.group(1).strip()
+        if 1 < len(ac) < 100:
+            result["actual_controller"] = ac
+
+    # Outbound investments (对外投资) — affiliate/investee companies. These are
+    # the seed set for depth-1 affiliate expansion (the sibling-cluster problem:
+    # one legal rep controlling several "SHANDONG ZHONGCHENG …" entities). Capture
+    # the investee company name + this entity's investment ratio where shown.
+    affiliates = []
+    aff_block = re.search(r"对外投资[^\n]{0,30}\n(.+?)(?=\n\s*(?:分支机构|股东信息|股东与出资|主要人员|经营异常|工商信息|历史|$))",
+                          body, re.DOTALL)
+    if aff_block:
+        lines = [l.strip() for l in aff_block.group(1).split("\n") if l.strip()]
+        for i, ln in enumerate(lines):
+            # Investee name: contains a corp suffix, reasonable length, not a header/ratio line
+            if re.search(r"(公司|有限|集团|中心|厂|合伙)", ln) and 4 <= len(ln) < 80 and "投资比例" not in ln:
+                pct = None
+                for j in range(i + 1, min(i + 3, len(lines))):
+                    pm = re.search(r"(\d+(?:\.\d+)?)\s*%", lines[j])
+                    if pm:
+                        pct = float(pm.group(1)); break
+                if any(a["name"] == ln for a in affiliates):
+                    continue
+                affiliates.append({"name": ln, "investment_pct": pct})
+                if len(affiliates) >= 30:
+                    break
+    if affiliates:
+        result["affiliates"] = affiliates
+
+    # Branches (分支机构) — branch entities of this company.
+    branches = []
+    br_block = re.search(r"分支机构[^\n]{0,30}\n(.+?)(?=\n\s*(?:对外投资|股东信息|主要人员|经营异常|工商信息|历史|$))",
+                         body, re.DOTALL)
+    if br_block:
+        for ln in [l.strip() for l in br_block.group(1).split("\n") if l.strip()]:
+            if re.search(r"(公司|分公司|有限|厂)", ln) and 4 <= len(ln) < 80:
+                if ln not in branches:
+                    branches.append(ln)
+                if len(branches) >= 30:
+                    break
+    if branches:
+        result["branches"] = branches
+
+    # Strengthen validation_source — point at the actual detail page
+    vs = result.get("validation_source") or {}
+    vs["url"] = source_url
+    vs["how_to_reproduce"] = f"Visit {source_url}"
+    vs["detail_page_fetched"] = True
+    result["validation_source"] = vs
+
+
+_CN_CORP_SUFFIXES = [
+    "集团股份有限公司", "集团控股有限公司", "股份有限公司",
+    "有限责任公司", "集团有限公司", "控股有限公司", "有限公司",
+    "(集团)", "（集团）",
+]
+
+_CN_PROVINCES = [
+    # National prefix used by SOEs ("中国" + brand + industry). Strip so the
+    # brand is the discriminator, not the shared 中国 prefix.
+    "中国",
+    "北京", "上海", "天津", "重庆",
+    "河北", "山西", "辽宁", "吉林", "黑龙江", "江苏", "浙江", "安徽",
+    "福建", "江西", "山东", "河南", "湖北", "湖南", "广东", "海南",
+    "四川", "贵州", "云南", "陕西", "甘肃", "青海",
+    "内蒙古", "广西", "西藏", "宁夏", "新疆",
+]
+
+
+def _parse_cn_address(address: str) -> dict | None:
+    """Parse a Chinese registered address into structured components.
+
+    Input shapes seen:
+      浙江省宁波市宁海县强蛟镇长山西路98号（自主申报）
+      上海市浦东新区张江高科技园区博云路2号
+      广东省深圳市南山区科技园路9号
+
+    Output (best-effort, fields omitted if not extractable):
+      {province, city, district, street, notes}
+    """
+    if not address:
+        return None
+    out = {}
+    s = address.strip()
+
+    # Strip + capture parenthesized notes (full + half width)
+    n_match = re.search(r"[（(]([^）)]{1,80})[）)]", s)
+    if n_match:
+        out["notes"] = n_match.group(1).strip()
+        s = re.sub(r"[（(][^）)]{1,80}[）)]", "", s).strip()
+
+    # Province — direct-administered municipalities (北京/上海/天津/重庆) double
+    # as province AND city in CN admin code, so handle them specially
+    for p in _CN_PROVINCES:
+        if p == "中国":
+            continue
+        if s.startswith(p):
+            out["province"] = p
+            s = s[len(p):]
+            s = re.sub(r"^(?:省|市|自治区|自治州|特别行政区)", "", s)
+            break
+
+    # City — match "XX市" prefix (1-4 chars before 市)
+    city_m = re.match(r"^([一-鿿]{2,5})市", s)
+    if city_m:
+        out["city"] = city_m.group(1)
+        s = s[city_m.end():]
+
+    # District — 区 / 县 / 自治县 / 旗 / 新区. Longer suffixes first so
+    # 大鹏新区 → 大鹏 + 新区, not 大鹏新 + 区.
+    district_m = re.match(r"^([一-鿿]{2,5}?)(?:新区|高新区|开发区|自治县|自治旗|区|县|旗)", s)
+    if district_m:
+        out["district"] = district_m.group(1)
+        s = s[district_m.end():]
+
+    # Whatever remains is the street + number
+    s = s.strip().lstrip("，,、")
+    if s:
+        out["street"] = s
+
+    return out or None
+
+
+def _parse_cn_capital(capital_str: str) -> dict | None:
+    """Parse a Chinese registered-capital string into structured fields.
+
+    Examples:
+      2000万人民币               -> {value: 2000, unit: 万, currency: CNY, ...}
+      911719.7565万人民币        -> {value: 911719.7565, unit: 万, currency: CNY}
+      1亿美元                    -> {value: 1, unit: 亿, currency: USD}
+    """
+    if not capital_str:
+        return None
+    raw = capital_str.strip()
+    m = re.search(r"([\d,\.]+)\s*(万|亿)?\s*(人民币|美元|港币|欧元|英镑|日元)?", raw)
+    if not m:
+        return {"raw": raw}
+    val_s = m.group(1).replace(",", "")
+    try:
+        val = float(val_s)
+    except ValueError:
+        return {"raw": raw}
+    unit = m.group(2) or None
+    cur_cn = m.group(3) or "人民币"
+    cur_map = {"人民币": "CNY", "美元": "USD", "港币": "HKD",
+               "欧元": "EUR", "英镑": "GBP", "日元": "JPY"}
+    return {
+        "raw": raw,
+        "value": val,
+        "unit": unit,
+        "unit_multiplier": {"万": 10000, "亿": 100_000_000}.get(unit, 1),
+        "currency": cur_map.get(cur_cn, cur_cn),
+    }
+
+
+def _normalize_cn_name(name: str) -> str:
+    """Strip corporate suffixes, parens, and leading geography to expose brand."""
+    if not name:
+        return ""
+    n = name
+    # Strip parens and contents (handles half-width + full-width)
+    n = re.sub(r"[(（][^()（）]*[)）]", "", n)
+    # Strip corporate suffixes (longest first — already ordered)
+    for s in _CN_CORP_SUFFIXES:
+        n = n.replace(s, "")
+    # Strip leading province
+    for p in _CN_PROVINCES:
+        if n.startswith(p):
+            n = n[len(p):]
+            n = re.sub(r"^(?:省|市|自治区|自治州|地区)", "", n)
+            break
+    # Strip leading "XX市" (2-3 char prefecture city)
+    n = re.sub(r"^[一-鿿]{2,3}市", "", n)
+    return n.strip()
+
+
+def _cn_brand(normalized: str) -> str:
+    """First 2-4 CJK chars of a normalized name. This is typically the brand;
+    industry descriptors (科技/集团/贸易/...) follow."""
+    chars = [c for c in normalized if "一" <= c <= "鿿"]
+    return "".join(chars[:4])
+
+
+def _name_match_cn(query: str, returned: str) -> tuple[float, str]:
+    """Match a queried entity name against what Tianyancha returned.
+    Returns (score 0.0-1.0, reason). Score >= _CN_NAME_MATCH_THRESHOLD = accept.
+
+    Conservative on purpose: better to return verified=false on a related-but-
+    distinct match (e.g. Alibaba/Ant Group, CNPC/Sinopec, or a sibling sub
+    inside the same group) than to confidently surface the wrong entity."""
+    if not query or not returned:
+        return 0.0, "empty"
+    q = _normalize_cn_name(query)
+    r = _normalize_cn_name(returned)
+    if not q or not r:
+        return 0.0, "empty after normalize"
+    # Strongest: one normalized name is a substring of the other.
+    # Handles "腾讯" → "腾讯计算机系统", "阿里巴巴(中国)" → "阿里巴巴集团控股", etc.
+    if q in r or r in q:
+        return 1.0, "substring"
+    # Otherwise brand-prefix check. The first 2 CJK chars after normalization
+    # are the brand discriminator (阿里 / 蚂蚁 / 腾讯 / 华为). If those don't
+    # match exactly, it's a different company even if the rest looks similar.
+    qb, rb = _cn_brand(q), _cn_brand(r)
+    if not qb or not rb:
+        return 0.0, "no brand"
+    if qb[:2] != rb[:2]:
+        return 0.0, f"brand prefix differs ({qb[:2]} vs {rb[:2]})"
+    # Brand prefix matches — also require strong overlap on the full brand
+    # window to catch SOE-prefix collisions (CNPC 中国石油天然气 vs
+    # Sinopec 中国石油化工 — both start 石油 after stripping 中国, but
+    # the rest diverges).
+    qs, rs = set(qb), set(rb)
+    overlap = len(qs & rs)
+    smaller = min(len(qs), len(rs))
+    ratio = overlap / smaller
+    return ratio, f"brand overlap {overlap}/{smaller}"
+
+
+# Threshold below which Tianyancha's first-result match is treated as a wrong
+# entity. Tianyancha sometimes returns related-but-distinct companies
+# (e.g. Alibaba → Ant Group). Better to return verified=false than to
+# confidently surface the wrong entity to a banker. 0.75 means brand-prefix
+# matches AND ≥3 of 4 brand-window chars overlap — strict enough to reject
+# SOE-prefix collisions (CNPC vs Sinopec) and intra-group sibling subs.
+_CN_NAME_MATCH_THRESHOLD = 0.75
 
 
 def _parse_tianyancha_result(entity_name: str, uscc: str, body: str) -> dict:
@@ -255,24 +645,85 @@ def _parse_tianyancha_result(entity_name: str, uscc: str, body: str) -> dict:
         if flag in body:
             flags.append(flag)
 
-    if name or found_uscc or legal_rep:
+    # Name-match gate. Tianyancha can return a related-but-distinct entity as
+    # the first search hit (e.g. searching Alibaba returns Ant Group). If the
+    # query was a Chinese name and the returned legal_name is too different,
+    # reject the match rather than confidently surfacing the wrong entity.
+    # A queried USCC that matches what Tianyancha returned bypasses the gate
+    # (USCC is the unique identifier — trust it over name similarity).
+    name_match_score = None
+    name_match_reason = None
+    name_mismatch = False
+    has_cjk_query = bool(re.search(r"[一-鿿]", entity_name or ""))
+    query_uscc_matches = bool(uscc) and (found_uscc == uscc)
+
+    returned_has_cjk = bool(re.search(r"[一-鿿]", name or ""))
+
+    if name and has_cjk_query and not query_uscc_matches:
+        name_match_score, name_match_reason = _name_match_cn(entity_name, name)
+        if name_match_score < _CN_NAME_MATCH_THRESHOLD:
+            name_mismatch = True
+    elif name and returned_has_cjk and not has_cjk_query and not query_uscc_matches:
+        # Cross-script, unanchored: a non-Chinese query string returned a
+        # Chinese-named entity and we have no USCC to anchor on. The CJK matcher
+        # can't compare a Latin query to a Chinese name, so we CANNOT verify the
+        # two refer to the same company. Do not blind-accept — that would risk
+        # surfacing the wrong entity into a compliance dossier. Flag unresolved
+        # (never guess); the caller should first resolve the Chinese registered
+        # name (identifiers-first / bridge) and re-query with a CJK name or USCC.
+        name_match_score = 0.0
+        name_match_reason = "cross-script unverifiable (non-CJK query vs CJK result, no USCC anchor)"
+        name_mismatch = True
+
+    if (name or found_uscc or legal_rep) and not name_mismatch:
         result["found"] = True
         result["legal_name"] = name
         result["uscc"] = found_uscc
         result["legal_representative"] = legal_rep
         result["status"] = status
         result["registered_capital"] = capital
+        result["registered_capital_parsed"] = _parse_cn_capital(capital)
         result["established_date"] = est_date
         result["phone"] = phone
         result["email"] = email
         result["address"] = address
+        result["address_parts"] = _parse_cn_address(address)
         result["flags"] = flags if flags else None
+        if name_match_score is not None:
+            result["name_match_score"] = round(name_match_score, 2)
         result["validation_source"] = {
             "registry": "State Administration for Market Regulation (SAMR), People's Republic of China",
             "url": "https://www.tianyancha.com",
             "record_id": found_uscc or entity_name,
             "how_to_reproduce": f"Visit tianyancha.com → Search for '{entity_name}'",
             "verified_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        }
+    elif name_mismatch:
+        # Tianyancha had a candidate but we could not confirm it is the searched
+        # entity. Return the candidate so the operator can inspect, verified=false.
+        result["found"] = False
+        result["verified"] = False
+        if not has_cjk_query and returned_has_cjk:
+            result["note"] = (
+                f"Could not resolve '{entity_name}' against the Chinese registry: the "
+                f"query is not in Chinese, so it cannot be name-matched to the returned "
+                f"candidate '{name}'. Resolve the Chinese registered name (中文名) or a "
+                f"USCC first, then re-query — not guessing to avoid a wrong-entity match."
+            )
+        else:
+            result["note"] = (
+                f"Tianyancha returned a candidate that does not match '{entity_name}': "
+                f"'{name}' (similarity={name_match_score:.2f}, threshold={_CN_NAME_MATCH_THRESHOLD}). "
+                "Likely a different entity — Tianyancha's first search hit can be a "
+                "related but distinct company. Re-query with the exact registered "
+                "name or a USCC to confirm."
+            )
+        result["candidate"] = {
+            "legal_name": name,
+            "uscc": found_uscc,
+            "legal_representative": legal_rep,
+            "status": status,
+            "name_match_score": round(name_match_score, 2),
         }
     else:
         result["found"] = False
@@ -298,34 +749,118 @@ def _parse_baidu_result(entity_name: str, uscc: str, body: str) -> dict:
     capital_match = re.search(r"注册资本[：:为]\s*([^\s,，]+)", body)
     capital = capital_match.group(1).strip() if capital_match else None
 
+    # Clean UI artifacts Baidu appends to field values (复制 = "copy" button text)
+    def _clean(v):
+        if not v:
+            return None
+        v = v.strip()
+        for junk in ("复制", "查看更多", "展开", "收起", "更多"):
+            if v.endswith(junk):
+                v = v[:-len(junk)].strip()
+        return v.rstrip("。.，,；;") or None
+
     name = None
-    names = re.findall(r"([\u4e00-\u9fff][\u4e00-\u9fff\w()（）]{4,}(?:有限公司|股份有限公司))", body)
+    names = re.findall(r"([\u4e00-\u9fff][\u4e00-\u9fff\w()（）]{4,}(?:有限公司|股份有限公司|集团有限公司|有限责任公司))", body)
     if names:
         name = names[0]
 
-    scope_match = re.search(r"经营范围[：:为]\s*([^\n]+?)(?:\n|\.\.\.)", body)
-    scope = scope_match.group(1).strip() if scope_match else None
+    # Founding date — multiple format variants seen in Baidu cards
+    est_date = None
+    for pat in (
+        r"成立(?:日期|时间)[：:为]?\s*(\d{4}-\d{1,2}-\d{1,2})",
+        r"成立(?:日期|时间)[：:为]?\s*(\d{4}年\d{1,2}月\d{1,2}日)",
+        r"成立(?:日期|时间)[：:为]?\s*(\d{4}年\d{1,2}月)",
+        r"成立[：:为]?\s*(\d{4}-\d{1,2}-\d{1,2})",
+        r"(\d{4}年\d{1,2}月\d{1,2}日)\s*成立",
+    ):
+        m = re.search(pat, body)
+        if m:
+            est_date = m.group(1).strip()
+            break
 
-    if name or found_uscc or legal_rep:
+    status = None
+    for s_label in ("存续", "在业", "注销", "吊销", "迁出", "停业"):
+        if s_label in body:
+            status = s_label
+            break
+
+    addr_match = re.search(r"(?:注册地址|住所)[：:为]?\s*([^\n]{8,200}?)(?=\n|$|经营|电话|法定)", body)
+    address = _clean(addr_match.group(1)) if addr_match else None
+
+    scope_match = re.search(r"经营范围[：:为]?\s*([^\n]{10,1500}?)(?=\n|\.\.\.|查看更多|$)", body)
+    scope = _clean(scope_match.group(1)) if scope_match else None
+
+    industry_m = re.search(r"行业[：:为]?\s*([^\n]{2,80})", body)
+    industry = _clean(industry_m.group(1)) if industry_m else None
+
+    adverse_flags = {}
+    for label, key in [
+        ("经营异常", "operation_anomaly"),
+        ("严重违法", "severe_violation"),
+        ("失信被执行人", "judgment_debtor"),
+        ("被执行人", "enforcement_target"),
+        ("吊销", "license_revoked"),
+        ("行政处罚", "admin_penalty"),
+    ]:
+        if label in body:
+            adverse_flags[key] = {"flagged": True}
+
+    legal_rep = _clean(legal_rep) if legal_rep else None
+    capital = _clean(capital) if capital else None
+
+    if name or found_uscc or legal_rep or est_date:
         result["found"] = True
         result["legal_name"] = name
         result["uscc"] = found_uscc
         result["legal_representative"] = legal_rep
         result["registered_capital"] = capital
+        result["registered_capital_parsed"] = _parse_cn_capital(capital)
+        result["established_date"] = est_date
+        result["status"] = status
+        result["address"] = address
+        result["address_parts"] = _parse_cn_address(address)
         result["business_scope"] = scope
+        result["industry"] = industry
+        if adverse_flags:
+            result["adverse_flags"] = adverse_flags
         result["validation_source"] = {
-            "registry": "SAMR (via Baidu aggregated data)",
-            "url": "https://www.baidu.com",
+            "registry": "国家市场监督管理总局 (SAMR), retrieved via Baidu aggregator "
+                        "(fallback path — Tianyancha session currently unavailable)",
+            "url": f"https://www.baidu.com/s?wd={entity_name}",
             "record_id": found_uscc or entity_name,
-            "how_to_reproduce": f"Search baidu.com for '{entity_name}'",
+            "how_to_reproduce": (f"Search baidu.com for '{entity_name}' — look for the SAMR "
+                                 "business knowledge card. For higher-confidence direct "
+                                 "registry record, query Tianyancha when available."),
             "verified_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "confidence": "medium",
+            "fallback_path": True,
         }
     else:
         result["found"] = False
-        result["note"] = f"'{entity_name}' not found via Baidu search"
+        result["note"] = f"'{entity_name}' not found via Baidu aggregator card"
         result["raw_snippet"] = body[:500]
 
     return result
+
+def _clear_stale_mlx_lock() -> bool:
+    """Remove a stale GLOBAL MLX profiles.lock. MLX leaves this file behind when
+    a session dies without releasing it (browser crash / idle-stop race / the
+    VM move), after which EVERY profile launch fails 'can't lock profile' — the
+    recurring CN-lookup outage that previously needed a manual mlx restart. Only
+    remove it when it is empty (no live holder recorded) and older than 60s, so
+    we never yank a lock a live session is actively holding."""
+    try:
+        st = _MLX_LOCK_FILE.stat()
+        if st.st_size == 0 and (time.time() - st.st_mtime) > 60:
+            _MLX_LOCK_FILE.unlink()
+            log.warning("CN: cleared stale MLX profiles.lock (empty, age %ds)",
+                        int(time.time() - st.st_mtime))
+            return True
+    except FileNotFoundError:
+        return False
+    except Exception as e:
+        log.warning("CN: could not clear stale MLX lock: %s", e)
+    return False
 
 
 def cn_verify(entity_name: str, uscc: str = "", max_retries: int = 2) -> dict:
@@ -334,22 +869,47 @@ def cn_verify(entity_name: str, uscc: str = "", max_retries: int = 2) -> dict:
 
     _init_pool()
 
-    try:
-        profile_id = _pool.get(timeout=120)
-    except queue.Empty:
-        return {"entity_name": entity_name, "found": False, "note": "All profiles busy — try later"}
+    # Rotate through DISTINCT pool profiles instead of hammering one. A stale
+    # per-profile lock ("can't lock profile") on the single profile we happened
+    # to grab used to doom the whole lookup (both retries hit the SAME locked
+    # profile). Now we proactively unlock each profile before launch and, on a
+    # lock failure, move to the next profile. If EVERY profile is lock-jammed we
+    # clear the stale GLOBAL lock once and give it one more pass — self-healing
+    # the outage instead of returning found:false and needing a manual restart.
+    n_profiles = len(_POOL_PROFILE_IDS)
+    max_tries = min(n_profiles, max(max_retries, 3))
+    last_err = None
+    lock_cleared = False
 
-    try:
-        for attempt in range(max_retries):
+    for attempt in range(max_tries + 1):  # final pass runs only after a lock-clear
+        try:
+            profile_id = _pool.get(timeout=120)
+        except queue.Empty:
+            return {"entity_name": entity_name, "found": False, "note": "All profiles busy — try later"}
+        try:
+            _stop_profile(profile_id)  # proactive: release any stale lock on THIS profile
+            token = _get_token()
             try:
-                token = _get_token()
                 port = _launch_profile(token, profile_id)
-                return _do_cn_lookup(port, entity_name, uscc, profile_id)
             except Exception as e:
-                log.warning("CN attempt %d/%d failed ('%s'): %s", attempt + 1, max_retries, entity_name, e)
-                if attempt == max_retries - 1:
-                    return {"entity_name": entity_name, "found": False, "error": str(e)[:200], "note": "CN lookup failed after retries"}
-            finally:
-                _stop_profile(profile_id)
-    finally:
-        _pool.put(profile_id)
+                last_err = str(e)
+                cant_lock = "lock" in last_err.lower()
+                log.warning("CN launch attempt %d/%d profile %s ('%s'): %s%s",
+                            attempt + 1, max_tries + 1, profile_id[:8], entity_name, e,
+                            " — rotating" if cant_lock else "")
+                # Cycled the whole pool and everything is lock-jammed → clear the
+                # stale global lock once, then allow the final retry pass.
+                if cant_lock and not lock_cleared and attempt >= max_tries - 1:
+                    lock_cleared = _clear_stale_mlx_lock()
+                continue  # rotate to the next profile
+            return _do_cn_lookup(port, entity_name, uscc, profile_id)
+        except Exception as e:
+            last_err = str(e)
+            log.warning("CN lookup attempt %d/%d failed ('%s'): %s",
+                        attempt + 1, max_tries + 1, entity_name, e)
+        finally:
+            _stop_profile(profile_id)
+            _pool.put(profile_id)
+
+    return {"entity_name": entity_name, "found": False, "error": (last_err or "")[:200],
+            "note": "CN lookup failed after rotating all pool profiles"}

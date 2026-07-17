@@ -63,7 +63,7 @@ def init(get_secret):
     try:
         result = subprocess.run(
             [str(_CLI_PATH), "proxy-get", "--country-code", "in",
-             "--protocol", "http", "--type", "rotating"],
+             "--protocol", "http", "--type", "sticky"],
             capture_output=True, text=True, timeout=15,
         )
         if result.stdout.strip():

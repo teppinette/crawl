@@ -56,7 +56,7 @@ def init(get_secret):
     try:
         result = subprocess.run(
             [str(_CLI_PATH), "proxy-get", "--country-code", "ae",
-             "--protocol", "http", "--type", "rotating"],
+             "--protocol", "http", "--type", "sticky"],
             capture_output=True, text=True, timeout=15,
         )
         if result.stdout.strip():
@@ -77,6 +77,13 @@ def init(get_secret):
         log.info("AE FTA TRN ready: %d pool profiles, AE proxy configured", len(_POOL_PROFILE_IDS))
     else:
         log.warning("AE FTA TRN not fully configured")
+
+    # Also wire the no-TRN fallback path (GLEIF + OC)
+    try:
+        _ae_init_fallback(get_secret)
+        log.info("AE name-only fallback ready: GLEIF (primary) + OpenCorporates (secondary)")
+    except Exception as _e:
+        log.warning("AE GLEIF/OC fallback init failed: %s", _e)
 
 
 def _init_pool():
@@ -320,3 +327,109 @@ def fta_trn_verify(trn: str, entity_name: str = "", max_retries: int = 2) -> dic
                 _stop_profile(profile_id)
     finally:
         _pool.put(profile_id)
+
+# ---------------------------------------------------------------------------
+# GLEIF + OpenCorporates fallback (added 2026-06-24 for Onboarding's AE entries
+# that don't have TRNs). DMCC/JAFZA/MOEC free-zone registries are paywalled or
+# login-walled, so direct gov access isn't viable from crawl-verify. GLEIF
+# covers AE banks, free-zone listed corps with LEIs (~600 entities);
+# OpenCorporates AE jurisdiction covers the broader free-zone tail.
+# ---------------------------------------------------------------------------
+
+try:
+    from curl_cffi import requests as cffi_requests
+    import source_gleif as _ae_gleif
+    _AE_OC_URL = "https://api.opencorporates.com/v0.4/companies/search"
+    _AE_OC_TOKEN = ""
+
+    def _ae_init_fallback(get_secret):
+        global _AE_OC_TOKEN
+        _AE_OC_TOKEN = get_secret("opencorporates-token") or ""
+        _ae_gleif.init(get_secret)
+
+    def _ae_try_oc(entity_name: str, trn_or_reg: str) -> dict:
+        if not _AE_OC_TOKEN:
+            return {}
+        try:
+            r = cffi_requests.get(
+                _AE_OC_URL,
+                params={
+                    "q": trn_or_reg or entity_name,
+                    "jurisdiction_code": "ae",
+                    "api_token": _AE_OC_TOKEN,
+                    "per_page": 5,
+                },
+                timeout=20, impersonate="chrome120",
+            )
+            if r.status_code != 200:
+                return {}
+            data = r.json()
+            companies = (((data.get("results") or {}).get("companies")) or [])
+            if not companies:
+                return {}
+            best = (companies[0] or {}).get("company") or {}
+            return {
+                "found": True,
+                "verified": True,
+                "legal_name": best.get("name"),
+                "entity_name": best.get("name"),
+                "trn": best.get("company_number") if (best.get("company_number") or "").startswith("100") else None,
+                "registration_number": best.get("company_number"),
+                "status": best.get("current_status"),
+                "incorporation_date": best.get("incorporation_date"),
+                "registered_address": (best.get("registered_address_in_full")
+                                       or (best.get("registered_address") or {}).get("locality")),
+                "company_type": best.get("company_type"),
+                "jurisdiction": (best.get("jurisdiction_code") or "AE").upper(),
+                "validation_source": {
+                    "primary": "OpenCorporates (paid API, AE jurisdiction)",
+                    "primary_url": (best.get("opencorporates_url")
+                                    or "https://opencorporates.com/companies/ae"),
+                    "confidence": "medium",
+                    "tier": "COMMERCIAL_AGGREGATOR",
+                    "how_to_reproduce": f"Visit opencorporates.com → jurisdiction AE → search '{trn_or_reg or entity_name}'",
+                },
+                "summary": f"{best.get('name','')} — OpenCorporates (AE)",
+            }
+        except Exception as e:
+            log.warning("OC fallback for AE failed: %s", e)
+            return {}
+
+    def gleif_oc_verify(entity_name: str = "", trn: str = "") -> dict:
+        """No-TRN path: GLEIF primary, OpenCorporates AE secondary.
+        Called by main.py when Onboarding-style name-only lookup is requested
+        (no TRN). Mirrors verify_eg / verify_ma / verify_ar pattern."""
+        r = _ae_gleif.gleif_verify(
+            "AE", entity_name=entity_name, reg_number=trn,
+        )
+        if r.get("verified") or r.get("found"):
+            return r
+        oc = _ae_try_oc(entity_name, trn)
+        if oc:
+            return oc
+        return {
+            "found": False,
+            "verified": False,
+            "note": (
+                "AE entity verification via GLEIF (primary) + OpenCorporates "
+                "(secondary). DMCC/JAFZA/MOEC free-zone registries paywalled. "
+                "GLEIF covers banks/listed/large-corps with LEIs; OC fills the "
+                "free-zone tail. This entity not found in either."
+            ),
+            "validation_source": {
+                "primary": "GLEIF (api.gleif.org)",
+                "primary_url": "https://api.gleif.org/api/v1/lei-records",
+                "how_to_reproduce": (
+                    f"GET https://api.gleif.org/api/v1/lei-records"
+                    f"?filter[entity.legalName]={entity_name} -> no match; "
+                    f"OpenCorporates AE jurisdiction also no match"
+                ),
+            },
+        }
+except ImportError as _imp:
+    # Fallback module dependencies not available — skip silently
+    def gleif_oc_verify(entity_name: str = "", trn: str = "") -> dict:
+        return {"found": False, "verified": False,
+                "note": "GLEIF/OC fallback not available on this verify-gateway install"}
+    def _ae_init_fallback(get_secret):
+        pass

@@ -1,0 +1,17 @@
+[Unit]
+Description=Verify Gateway — Gov registry verification service
+After=network.target mlx.service
+Wants=mlx.service
+
+[Service]
+Type=simple
+User=copapadmin
+WorkingDirectory=/home/copapadmin/verify-gateway
+EnvironmentFile=/home/copapadmin/verify-gateway/.env
+Environment=DISPLAY=:99
+ExecStart=/home/copapadmin/verify-env/bin/uvicorn main:app --host 0.0.0.0 --port 8460 --workers 2
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
