@@ -54,11 +54,11 @@ import sandbox_india
 from evidence_routes import router as evidence_router
 from source_routes import router as source_router
 from cir_orchestrator import router as cir_orch_router
-# Multilogin modules now run on crawl-verify VM (180.20.0.4:8460)
+# Multilogin modules now run on crawl-verify VM (172.20.0.26:8460)
 # import multilogin_fbr
 # import multilogin_dgft
 # import multilogin_bizfile
-VERIFY_VM_URL = os.environ.get("VERIFY_VM_URL", "http://180.20.0.4:8460")
+VERIFY_VM_URL = os.environ.get("VERIFY_VM_URL", "http://172.20.0.26:8460")
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger("crawl-gateway")
@@ -546,7 +546,7 @@ app = FastAPI(
     openapi_url=None,
 )
 
-# Multilogin modules run on crawl-verify VM (180.20.0.4:8460)
+# Multilogin modules run on crawl-verify VM (172.20.0.26:8460)
 # No local initialization needed — gateway proxies to verify VM
 log.info("Verify VM configured at %s", VERIFY_VM_URL)
 
@@ -3010,7 +3010,7 @@ def _india_tofler_lookup(entity_name: str, cin: str = "") -> dict:
 # ---------------------------------------------------------------------------
 
 def _verify_vm_call(payload: dict) -> dict:
-    """Proxy verification request to crawl-verify VM (180.20.0.4:8460)."""
+    """Proxy verification request to crawl-verify VM (172.20.0.26:8460)."""
     import requests as _req
     try:
         resp = _req.post(
