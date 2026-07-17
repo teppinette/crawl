@@ -124,6 +124,23 @@ def _run_agent_sync(client, agent_id: str, instruction: str, timeout: int = 300)
     return "TIMEOUT", f"agent {agent_id} did not finish within {timeout}s"
 
 
+# Evidence source_ids written by the best-effort SIDE collectors (darkweb / web),
+# not the country collector. Used to verify the COUNTRY collector actually
+# persisted something (P2) rather than reporting COMPLETED and writing nothing.
+_BEST_EFFORT_SOURCES = {"darkweb_screen", "web_profile"}
+
+
+def _country_evidence_count(run_id: str) -> Optional[int]:
+    """Count evidence rows attributable to the COUNTRY collector (excludes the
+    best-effort darkweb/web rows). None if it can't be determined — callers must
+    treat None as 'unknown, don't block'."""
+    try:
+        ev = evidence_db.list_evidence(run_id)
+    except Exception:
+        return None
+    return sum(1 for e in ev if e.get("source_id") not in _BEST_EFFORT_SOURCES)
+
+
 def _darkweb_fallback_persist(run_id: str, entity_name: str, country: str):
     """Call /sources/darkweb/scan from inside the container and persist
     one darkweb_screen evidence row via evidence_db.add_evidence. Used when
@@ -181,6 +198,180 @@ def _darkweb_fallback_persist(run_id: str, entity_name: str, country: str):
                  run_id[:8])
     except Exception as e:
         log.warning("orchestrator: darkweb fallback persist failed: %s", e)
+
+
+# --------------------------------------------------------------------------
+# 5-angle mandatory investigation gate
+#
+# Every CIR must investigate a counterparty from FIVE independent angles. If the
+# collector phase left an angle with no evidence, fill it server-side via the
+# gateway's own /sources/* endpoints, then record a coverage render so the CIR
+# always documents which angles were covered (no silent skip). Best-effort per
+# angle — the gate never raises and never fails the run.
+# --------------------------------------------------------------------------
+_FIVE_ANGLES = ("registry", "ownership", "sanctions", "adverse_media", "darkweb")
+_ANGLE_OF_SOURCE = {
+    "gb_companies_house": "registry",
+    "cn_tianyancha": "ownership", "cn_affiliates": "ownership",
+    "parent_chain_sanctions": "ownership", "opencorporates": "ownership",
+    "gb_companies_house_psc": "ownership",
+    "csl_screening": "sanctions", "opensanctions": "sanctions",
+    "ofsi_consolidated": "sanctions", "un_sanctions": "sanctions",
+    "eu_sanctions": "sanctions",
+    "web_profile": "adverse_media",
+    "darkweb_screen": "darkweb",
+}
+
+
+def _angle_of(source_id: str) -> Optional[str]:
+    s = (source_id or "").lower()
+    if s in _ANGLE_OF_SOURCE:
+        return _ANGLE_OF_SOURCE[s]
+    if s.endswith("_registry"):
+        return "registry"
+    return None
+
+
+def _covered_angles(run_id: str) -> dict:
+    cov = {a: 0 for a in _FIVE_ANGLES}
+    try:
+        ev = evidence_db.list_evidence(run_id)
+    except Exception:
+        return cov
+    for e in ev:
+        a = _angle_of(e.get("source_id"))
+        if a in cov:
+            cov[a] += 1
+    return cov
+
+
+def _call_internal_source(path: str, body: dict, params: dict = None,
+                          timeout: int = 180):
+    """POST to one of THIS gateway's own /api/v1/sources/* endpoints in-process
+    (loopback), reusing the CIR API key — same pattern as the darkweb fallback.
+    Returns parsed JSON or None on any failure."""
+    import os
+    import requests as _r
+    base = os.environ.get("CRAWL_GATEWAY_INTERNAL_URL", "http://127.0.0.1:8400")
+    api_key = os.environ.get("CIR_API_KEY", "")
+    if not api_key:
+        try:
+            from keyvault import get_secret
+            api_key = get_secret("cir-api-key") or ""
+        except Exception:
+            api_key = ""
+    if not api_key:
+        log.warning("orchestrator: internal source call skipped — no cir-api-key")
+        return None
+    try:
+        r = _r.post(f"{base}/api/v1/{path.lstrip('/')}",
+                    headers={"X-API-Key": api_key, "Content-Type": "application/json"},
+                    params=params or {}, json=body, timeout=timeout)
+        if r.status_code != 200:
+            log.warning("orchestrator: internal source %s HTTP %d", path, r.status_code)
+            return None
+        return r.json()
+    except Exception as e:
+        log.warning("orchestrator: internal source %s failed: %s", path, e)
+        return None
+
+
+def _registry_fallback_persist(run_id, cc, entity_name, registration_id=""):
+    data = _call_internal_source(
+        "sources/country_registry/lookup",
+        {"entity_name": entity_name, "registration_number": registration_id or None},
+        params={"country": cc}, timeout=240)
+    if not data:
+        return
+    primary = data.get("primary") or {}
+    try:
+        evidence_db.add_evidence(
+            run_id, source_id=f"{cc.lower()}_registry",
+            source_url=primary.get("source_url", ""), source_query=entity_name,
+            status_code=200, extracted=primary, language_original="en",
+            parser_version="registry_gate_fallback")
+        # commercial / aggregator blocks are ownership signal — persist if present
+        for key, sid in (("aggregator", "opencorporates"), ("commercial", "cn_tianyancha")):
+            block = data.get(key)
+            if block:
+                evidence_db.add_evidence(
+                    run_id, source_id=sid, source_url=block.get("source_url", ""),
+                    source_query=entity_name, status_code=200, extracted=block,
+                    language_original="en", parser_version="registry_gate_fallback")
+    except Exception as e:
+        log.warning("orchestrator: registry gate fallback persist failed: %s", e)
+
+
+def _sanctions_fallback_persist(run_id, cc, entity_name):
+    data = _call_internal_source(
+        "sources/opensanctions/search",
+        {"entity_name": entity_name, "country": cc.lower()}, timeout=120)
+    if not data:
+        return
+    try:
+        evidence_db.add_evidence(
+            run_id, source_id="csl_screening", source_url=data.get("source_url", ""),
+            source_query=entity_name, status_code=200,
+            extracted={"total": data.get("total", 0), "results": data.get("results") or []},
+            language_original="en", parser_version="sanctions_gate_fallback",
+            error=data.get("error"))
+    except Exception as e:
+        log.warning("orchestrator: sanctions gate fallback persist failed: %s", e)
+
+
+def _web_fallback_persist(run_id, cc, entity_name):
+    data = _call_internal_source(
+        "sources/web/profile",
+        {"entity_name": entity_name, "country": cc.lower()}, timeout=120)
+    if not data:
+        return
+    try:
+        evidence_db.add_evidence(
+            run_id, source_id="web_profile", source_url=data.get("source_url", ""),
+            source_query=entity_name, status_code=200, extracted=data,
+            language_original="en", parser_version="web_gate_fallback",
+            error=data.get("error"))
+    except Exception as e:
+        log.warning("orchestrator: web gate fallback persist failed: %s", e)
+
+
+def _enforce_five_angle_coverage(run_id, cc, entity_name, registration_id=""):
+    """MANDATORY 5-angle gate. Fill any angle the collector phase left empty via a
+    server-side source call, then persist a `coverage_summary` render documenting
+    which of the five angles were investigated. Never raises."""
+    cov = _covered_angles(run_id)
+    fillers = {
+        "registry": lambda: _registry_fallback_persist(run_id, cc, entity_name, registration_id),
+        "sanctions": lambda: _sanctions_fallback_persist(run_id, cc, entity_name),
+        "adverse_media": lambda: _web_fallback_persist(run_id, cc, entity_name),
+        "darkweb": lambda: _darkweb_fallback_persist(run_id, entity_name, cc),
+    }
+    # 'ownership' has no generic filler — it derives from the registry commercial
+    # block + affiliate expansion (already run). It is recorded, not fabricated.
+    for angle, fill in fillers.items():
+        if cov.get(angle, 0) == 0:
+            log.info("orchestrator: 5-angle gate — '%s' empty, running fallback", angle)
+            try:
+                fill()
+            except Exception:
+                log.exception("orchestrator: 5-angle fallback for '%s' failed", angle)
+    cov = _covered_angles(run_id)
+    covered_n = sum(1 for a in _FIVE_ANGLES if cov.get(a, 0) > 0)
+    try:
+        evidence_db.save_render(
+            run_id, render_type="coverage_summary",
+            payload={
+                "angles": {a: {"covered": cov.get(a, 0) > 0, "evidence_rows": cov.get(a, 0)}
+                           for a in _FIVE_ANGLES},
+                "covered": covered_n, "required": len(_FIVE_ANGLES),
+                "note": "5-angle investigation coverage: registry, ownership, "
+                        "sanctions, adverse_media, darkweb",
+            })
+    except Exception as e:
+        log.warning("orchestrator: coverage_summary render failed: %s", e)
+    log.info("orchestrator: 5-angle coverage for %s = %d/5 [%s]", run_id[:8], covered_n,
+             ",".join(a for a in _FIVE_ANGLES if cov.get(a, 0) > 0))
+    return cov
 
 
 _CN_CORP_MARKERS = ("公司", "有限", "集团", "厂", "中心", "合伙", "企业")
@@ -496,19 +687,36 @@ async def _orchestrate(run_id: str, country_code: str, entity_name: str,
     )
 
     async def _run_country():
-        # The country collector is the only phase that can kill the run, and
-        # gpt-4.1-mini intermittently returns "incomplete" before firing a
-        # single tool call (the agent itself is sound — verified in isolation).
-        # Retry up to 3x on any non-COMPLETED terminal status; each attempt is
-        # a fresh thread/run so a transient incomplete doesn't fail the CIR.
-        local_client = _agents_client()
+        # The country collector is the only phase that can kill the run. Three
+        # failure classes must ALL be retried (P1+P2), each on a fresh thread/run:
+        #   (a) a non-COMPLETED terminal status (gpt-4.1-mini intermittently
+        #       returns "incomplete" before firing a single tool call);
+        #   (b) an EXCEPTION from the Foundry call itself — a transport 4xx/timeout
+        #       on threads/runs.create. This class used to escape the retry loop
+        #       and hard-fail the run (the exact shape of today's GR 400); and
+        #   (c) COMPLETED but persisted ZERO evidence — a silent empty CIR, which
+        #       must be treated as a failure, never as success.
         last = ("UNKNOWN", None)
         for attempt in range(3):
-            last = await loop.run_in_executor(
-                None, _run_agent_sync, local_client, collector_id, instr_collect, 300,
-            )
+            try:
+                local_client = _agents_client()
+                last = await loop.run_in_executor(
+                    None, _run_agent_sync, local_client, collector_id, instr_collect, 300,
+                )
+            except Exception as e:  # (b)
+                last = ("EXCEPTION", str(e)[:200])
+                log.warning("orchestrator: country collector attempt %d/3 raised: %s; retrying",
+                            attempt + 1, last[1])
+                continue
             if str(last[0]).upper().endswith("COMPLETED"):
-                return last
+                cnt = _country_evidence_count(run_id)  # (c) verify it actually wrote something
+                if cnt is None or cnt > 0:
+                    return last
+                log.warning("orchestrator: country collector COMPLETED but persisted 0 evidence "
+                            "rows (attempt %d/3); retrying", attempt + 1)
+                last = ("COMPLETED_EMPTY",
+                        "collector reported COMPLETED but persisted no evidence")
+                continue
             log.warning("orchestrator: country collector attempt %d/3 -> %s (%s); retrying",
                         attempt + 1, last[0], last[1])
         return last
@@ -604,6 +812,17 @@ async def _orchestrate(run_id: str, country_code: str, entity_name: str,
     except Exception:
         log.exception("orchestrator: parent-chain imputation failed (non-fatal)")
 
+    # PHASE 1f: 5-angle mandatory coverage gate. Fill any of the five independent
+    # investigation angles the collector left empty (registry / sanctions /
+    # adverse-media / darkweb have server-side fillers; ownership is recorded, not
+    # fabricated), then persist a coverage_summary render. Runs BEFORE the extractor
+    # so filled evidence becomes claims and flows into every synthesizer. Best-effort.
+    try:
+        await loop.run_in_executor(None, _enforce_five_angle_coverage,
+                                   run_id, cc, entity_name, registration_id or "")
+    except Exception:
+        log.exception("orchestrator: 5-angle coverage gate failed (non-fatal)")
+
     # PHASE 2: claim extractor
     extractor_id = _load_agent_id("claim_extractor")
     if not extractor_id:
@@ -614,7 +833,29 @@ async def _orchestrate(run_id: str, country_code: str, entity_name: str,
         f"list_run_evidence(run_id='{run_id}'), persist each typed claim via "
         f"add_claim(run_id='{run_id}'), then call extractor_complete(run_id='{run_id}')."
     )
-    status, err = await loop.run_in_executor(None, _run_agent_sync, client, extractor_id, instr_extract, 300)
+    async def _run_extractor():
+        # P1: the extractor had NO retries — a single transient incomplete/4xx
+        # killed the whole run after the collector had already done its work.
+        # Retry on non-COMPLETED terminal status AND on exceptions, fresh each time.
+        last = ("UNKNOWN", None)
+        for attempt in range(3):
+            try:
+                local_client = _agents_client()
+                last = await loop.run_in_executor(
+                    None, _run_agent_sync, local_client, extractor_id, instr_extract, 300,
+                )
+            except Exception as e:
+                last = ("EXCEPTION", str(e)[:200])
+                log.warning("orchestrator: extractor attempt %d/3 raised: %s; retrying",
+                            attempt + 1, last[1])
+                continue
+            if str(last[0]).upper().endswith("COMPLETED"):
+                return last
+            log.warning("orchestrator: extractor attempt %d/3 -> %s (%s); retrying",
+                        attempt + 1, last[0], last[1])
+        return last
+
+    status, err = await _run_extractor()
     if not status.endswith("COMPLETED"):
         evidence_db.update_run_status(run_id, "failed",
                                       error=f"extractor {status}: {err or ''}")
@@ -681,23 +922,40 @@ async def _orchestrate(run_id: str, country_code: str, entity_name: str,
 
     results = await asyncio.gather(*[_run_one(rt, aid, instr)
                                      for rt, aid, instr in synth_tasks])
-    failed = [(rt, s, e) for rt, s, e in results if not s.endswith("COMPLETED")]
-    if len(failed) == len(results):
-        # All synthesizers failed — mark whole run failed
+    # P2: a synthesizer reporting COMPLETED is NOT proof it saved its render —
+    # gpt-4.1-mini can end a run without ever firing save_render, producing a
+    # run marked 'complete' with an empty /renders. Judge success by the renders
+    # ACTUALLY persisted, not by the reported status.
+    try:
+        saved = {r.get("render_type") for r in evidence_db.list_renders(run_id)}
+    except Exception:
+        saved = None
+    if saved is not None:
+        produced = [rt for rt, s, e in results if rt in saved]
+        silent = [rt for rt, s, e in results
+                  if s.endswith("COMPLETED") and rt not in saved]
+        if silent:
+            log.warning("orchestrator: %d synthesizer(s) reported COMPLETED but saved "
+                        "no render: %s", len(silent), silent)
+        failed = [(rt, s, e) for rt, s, e in results if rt not in saved]
+    else:
+        produced = [rt for rt, s, e in results if s.endswith("COMPLETED")]
+        failed = [(rt, s, e) for rt, s, e in results if not s.endswith("COMPLETED")]
+
+    if not produced:
+        # No render actually persisted — the CIR would be empty. Fail loud so the
+        # run is retryable, rather than marking an empty run 'complete'.
         evidence_db.update_run_status(run_id, "failed",
-            error=f"all synthesizers failed: {failed}")
+            error=f"no synthesizer produced a render: {failed}")
         return
     if failed:
-        # Partial failure — log but don't fail the run; cir_markdown completing
-        # is enough for the banker-facing output
-        log.warning("orchestrator: %d synthesizer(s) failed: %s",
+        # Partial — cir_markdown persisting is enough for the banker-facing output.
+        log.warning("orchestrator: %d synthesizer(s) produced no render: %s",
                     len(failed), failed)
 
-    # synthesizer_complete (called by each successful synthesizer) already
-    # transitioned run to 'complete'. Belt-and-suspenders:
     evidence_db.update_run_status(run_id, "complete")
-    log.info("orchestrator: run %s complete, %d of %d synthesizers succeeded",
-             run_id[:8], len(results) - len(failed), len(results))
+    log.info("orchestrator: run %s complete, %d of %d renders produced",
+             run_id[:8], len(produced), len(results))
 
 
 class CIRRunRequest(BaseModel):
