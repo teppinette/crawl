@@ -269,6 +269,135 @@ def _affiliate_expansion(run_id: str, cc: str, entity_name: str,
              len(seeds), run_id[:8])
 
 
+def _parent_chain_imputation(run_id: str, cc: str, entity_name: str,
+                             max_parents: int = 5):
+    """Walk UP the ownership chain and screen each corporate parent/controller
+    for sanctions, recording IMPUTED exposure.
+
+    A per-entity sanctions screen misses the case where the SUBJECT is clean but
+    a PARENT is OFAC/CSL-listed — control imputes that exposure downward (the
+    parent→branch nexus a flat screen never surfaces). For each corporate
+    shareholder / actual-controller already collected, we screen it against CSL
+    (OFAC SDN / BIS / etc.) and persist a `parent_chain_sanctions` evidence row
+    plus a `relationship` claim so the UBO map + narrative show the chain.
+
+    Hits are recorded as INDIRECT/IMPUTED (direct_listing=False), clearly
+    separated from a direct listing of the subject, and NEVER auto-block — an
+    imputed parent hit is an analyst-review flag, not a determination. CN-only
+    for now (only collector exposing owners). Best-effort / non-fatal."""
+    if cc != "CN":
+        return
+    import os
+    import requests as _r
+    try:
+        rows = evidence_db.list_evidence(run_id)
+    except Exception as e:
+        log.warning("orchestrator: parent-chain could not load evidence: %s", e)
+        return
+
+    parents: list[tuple[str, str, object]] = []  # (name, relation, pct)
+    seen = {entity_name.strip()}
+
+    def _add_parent(name, relation, pct=None):
+        n = (name or "").strip()
+        if not n or n in seen or not any(m in n for m in _CN_CORP_MARKERS):
+            return
+        seen.add(n)
+        parents.append((n, relation, pct))
+
+    for row in rows:
+        if row.get("source_id") not in ("cn_tianyancha", "cn_registry", "cn_affiliates"):
+            continue
+        ex = row.get("extracted") or {}
+        for s in (ex.get("shareholders") or []):
+            if isinstance(s, dict):
+                _add_parent(s.get("name"), "corporate_shareholder", s.get("percent"))
+            else:
+                _add_parent(s, "corporate_shareholder")
+        ac = ex.get("actual_controller")
+        if isinstance(ac, str):
+            _add_parent(ac, "actual_controller")
+
+    if not parents:
+        log.info("orchestrator: parent-chain — no corporate parents for %s", run_id[:8])
+        return
+    parents = parents[:max_parents]
+
+    base = os.environ.get("CRAWL_GATEWAY_INTERNAL_URL", "http://127.0.0.1:8400")
+    api_key = os.environ.get("CIR_API_KEY", "")
+    if not api_key:
+        try:
+            from keyvault import get_secret
+            api_key = get_secret("cir-api-key") or ""
+        except Exception:
+            api_key = ""
+
+    imputed = 0
+    for name, relation, pct in parents:
+        hits, err = [], None
+        try:
+            r = _r.post(
+                f"{base}/api/v1/sources/opensanctions/search",
+                headers={"X-API-Key": api_key, "Content-Type": "application/json"},
+                json={"entity_name": name, "country": "CN"}, timeout=60,
+            )
+            data = r.json() if r.status_code < 500 else {}
+            hits = data.get("results") or []
+            err = data.get("error")
+        except Exception as e:
+            err = str(e)[:200]
+            log.warning("orchestrator: parent-chain screen failed for %s: %s", name[:30], e)
+
+        pct_txt = str(pct) if pct is not None else "undisclosed"
+        if hits:
+            extracted = {
+                "subject": entity_name, "parent": name,
+                "relation_to_subject": relation, "ownership_pct": pct,
+                "imputed": True, "direct_listing": False,
+                "sanctions_hits": hits[:5], "hit_count": len(hits),
+                "nexus": (f"INDIRECT/IMPUTED: parent '{name}' ({relation}, {pct_txt}% of "
+                          f"subject) matches a CSL/sanctions record — exposure imputes to "
+                          f"'{entity_name}' via ownership/control. NOT a direct listing of "
+                          f"the subject; analyst review required, no auto-block."),
+            }
+            ev = evidence_db.add_evidence(
+                run_id, source_id="parent_chain_sanctions",
+                source_url="https://data.trade.gov/consolidated_screening_list/v1/search",
+                source_query=name, status_code=200, extracted=extracted,
+                language_original="zh", parser_version="parent_chain_imputation_v1")
+            imputed += 1
+            impute_obj = {"parent": name, "relation": relation, "ownership_pct": pct,
+                          "imputed_sanctions_exposure": True, "hit_count": len(hits)}
+            rat = (f"Parent '{name}' screened with {len(hits)} CSL/sanctions hit(s); "
+                   f"exposure imputed to subject via {relation}.")
+        else:
+            extracted = {
+                "subject": entity_name, "parent": name,
+                "relation_to_subject": relation, "ownership_pct": pct,
+                "imputed": True, "direct_listing": False, "sanctions_hits": [],
+                "nexus": f"Parent '{name}' ({relation}, {pct_txt}%) screened clean on CSL.",
+            }
+            ev = evidence_db.add_evidence(
+                run_id, source_id="parent_chain_sanctions",
+                source_url="https://data.trade.gov/consolidated_screening_list/v1/search",
+                source_query=name, status_code=200, extracted=extracted,
+                language_original="zh", parser_version="parent_chain_imputation_v1",
+                error=err or None)
+            impute_obj = {"parent": name, "relation": relation, "ownership_pct": pct,
+                          "imputed_sanctions_exposure": False}
+            rat = f"Ownership relationship: {relation} '{name}' (screened clean)."
+        try:
+            evidence_db.add_claim(
+                run_id, claim_type="relationship", subject=entity_name,
+                predicate="controlled_by", object_=impute_obj,
+                evidence_ids=[ev], confidence="medium", rationale=rat)
+        except Exception as e:
+            log.warning("orchestrator: parent-chain claim persist failed for %s: %s", name[:30], e)
+
+    log.info("orchestrator: parent-chain imputation screened %d parent(s) for %s (%d imputed hit rows)",
+             len(parents), run_id[:8], imputed)
+
+
 async def _orchestrate(run_id: str, country_code: str, entity_name: str,
                        registration_id: str = "", cn_name: str = ""):
     """Background orchestration — collector → extractor → synthesizer."""
@@ -433,6 +562,17 @@ async def _orchestrate(run_id: str, country_code: str, entity_name: str,
         await loop.run_in_executor(None, _affiliate_expansion, run_id, cc, entity_name)
     except Exception:
         log.exception("orchestrator: affiliate expansion failed (non-fatal)")
+
+    # PHASE 1e: parent-chain sanctions imputation (best-effort, non-fatal). Walks
+    # UP the ownership chain and screens each corporate parent/controller against
+    # CSL/OFAC — a clean subject with a sanctioned PARENT inherits that exposure
+    # via control. Runs after affiliate expansion (which may add parent rows) and
+    # BEFORE the extractor so imputed-exposure evidence + relationship claims flow
+    # into the sanctions screen, UBO map, and narrative.
+    try:
+        await loop.run_in_executor(None, _parent_chain_imputation, run_id, cc, entity_name)
+    except Exception:
+        log.exception("orchestrator: parent-chain imputation failed (non-fatal)")
 
     # PHASE 2: claim extractor
     extractor_id = _load_agent_id("claim_extractor")

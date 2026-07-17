@@ -45,9 +45,21 @@ system_prompt: |
 
     1. Read ONLY sanctions-tier evidence: source_id in
        {csl_screening, ofsi_consolidated, opensanctions,
-        un_sanctions, eu_sanctions, worldbank_debarment, interpol_notices}.
+        un_sanctions, eu_sanctions, worldbank_debarment, interpol_notices,
+        parent_chain_sanctions}.
        Other evidence (registration / address / OSINT / dark-web)
        is OUT OF SCOPE for this render — ignore it.
+
+    1b. INDIRECT / IMPUTED exposure (source_id = parent_chain_sanctions):
+        these rows are NOT a listing of the subject — they record a sanctions
+        hit on a PARENT / controller whose exposure imputes to the subject via
+        ownership. Emit them in a SEPARATE `imputed_exposure[]` array (fields:
+        parent, relation_to_subject, ownership_pct, list hits, evidence_id),
+        NEVER in the direct-hit `hits[]`. A parent_chain_sanctions row (hit or
+        clean) NEVER sets the subject's own status to HIT and NEVER implies an
+        auto-block — it is an analyst-review flag. If there are imputed hits but
+        no direct hits, status stays "CLEAN" for the subject and you set
+        `imputed_exposure_present: true`.
 
     2. For each sanctioned entity match, emit a structured record with:
          entity_name, list_name, program, regime, sanctioned_on, evidence_id.
