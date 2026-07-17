@@ -113,6 +113,11 @@ async def get_run(run_id: str):
     run = evidence_db.get_run(run_id)
     if not run:
         raise HTTPException(status_code=404, detail="run not found")
+    # Audit link: which collector agent version produced this run (empty until the
+    # 2026-07-17 provenance migration is applied). Additive — never 404s on its own.
+    prov = evidence_db.get_run_provenance(run_id)
+    if prov:
+        run["collector_provenance"] = prov
     return run
 
 

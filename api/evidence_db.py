@@ -82,6 +82,43 @@ def create_run(entity_name: str, country: str, *, job_id: str = None,
     return run_id
 
 
+def set_run_collector_version(run_id: str, *, agent_id: str = None,
+                              version: str = None, content_hash: str = None):
+    """Record which collector agent version produced this run — the run->version
+    audit link. Best-effort + backward-compatible: if the provenance columns are
+    not present yet (migration 2026-07-17_collector_agent_version.sql not applied),
+    log and continue. Evidence flow is never blocked by this."""
+    try:
+        _exec(
+            """UPDATE cir_runs SET collector_agent_id=%s,
+                                   collector_agent_version=%s,
+                                   collector_content_hash=%s
+               WHERE id=%s""",
+            (agent_id, version, content_hash, run_id),
+        )
+    except Exception as e:
+        log.warning("evidence_db: collector version not recorded "
+                    "(migration applied?): %s", e)
+
+
+def get_run_provenance(run_id: str) -> dict:
+    """Audit view: which collector agent id/version/content_hash produced this run.
+    Returns {} if the provenance columns aren't present yet (kept separate from
+    get_run so the core read never depends on the migration)."""
+    try:
+        row = _fetchone(
+            """SELECT collector_agent_id, collector_agent_version,
+                      collector_content_hash FROM cir_runs WHERE id=%s""",
+            (run_id,),
+        )
+    except Exception:
+        return {}
+    if not row:
+        return {}
+    return {"collector_agent_id": row[0], "collector_agent_version": row[1],
+            "collector_content_hash": row[2]}
+
+
 def update_run_status(run_id: str, status: str, *, error: str = None):
     if status in ("complete", "failed"):
         _exec(

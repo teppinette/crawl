@@ -56,6 +56,29 @@ def _load_agent_id(agent_name: str) -> Optional[str]:
     return None
 
 
+_AGENT_AUDIT_BY_NAME: dict = {}
+
+
+def _load_agent_audit(agent_name: str) -> tuple[Optional[str], Optional[str]]:
+    """(version, content_hash) from the agent overlay's `audit` block — the
+    stamped version that ran. Cached. Returns (None, None) for an unstamped agent
+    (e.g. a container image built before the versioning backbone)."""
+    if agent_name in _AGENT_AUDIT_BY_NAME:
+        return _AGENT_AUDIT_BY_NAME[agent_name]
+    ver = chash = None
+    for p in _AGENTS_DIR.rglob("*.yaml"):
+        try:
+            y = yaml.safe_load(p.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        if (y or {}).get("name") == agent_name:
+            a = (y or {}).get("audit") or {}
+            ver, chash = a.get("version"), a.get("content_hash")
+            break
+    _AGENT_AUDIT_BY_NAME[agent_name] = (ver, chash)
+    return ver, chash
+
+
 def _agents_client():
     """Lazy import + construct Foundry Agents client."""
     import os
@@ -432,6 +455,13 @@ async def _orchestrate(run_id: str, country_code: str, entity_name: str,
         evidence_db.update_run_status(run_id, "failed",
                                       error=f"no deployed collector for country {cc} (looked for {collector_name})")
         return
+
+    # Audit link: stamp the run with the collector version that produced it, so a
+    # lender can later be shown exactly which agent (id + version + content_hash)
+    # verified this entity. Best-effort — never blocks the run.
+    _cv, _ch = _load_agent_audit(collector_name)
+    evidence_db.set_run_collector_version(run_id, agent_id=collector_id,
+                                          version=_cv, content_hash=_ch)
 
     client = _agents_client()
     # NB: keep this instruction PLAIN. The previous assertive phrasing
