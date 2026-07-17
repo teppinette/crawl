@@ -43,6 +43,9 @@ from pathlib import Path
 
 import yaml
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from agent_resolve import resolve  # noqa: E402
+
 ROOT = Path(__file__).resolve().parents[1]
 AGENTS = ROOT / "agents"
 DEPLOY_DIRS = ["collectors", "synthesizers", "extractors", "screening"]
@@ -50,9 +53,12 @@ MANIFEST = AGENTS / "MANIFEST.yaml"
 
 
 def agent_files() -> list[Path]:
+    """Every deployable agent. Excludes _base.yaml and other _-prefixed
+    partials — those are inherited-from, not deployed."""
     out: list[Path] = []
     for d in DEPLOY_DIRS:
-        out.extend(sorted((AGENTS / d).glob("*.yaml")))
+        out.extend(sorted(p for p in (AGENTS / d).glob("*.yaml")
+                          if not p.name.startswith("_")))
     return out
 
 
@@ -110,7 +116,7 @@ def cmd_stamp(check: bool) -> int:
     problems: list[str] = []
     stamped = 0
     for path in agent_files():
-        agent = yaml.safe_load(path.read_text(encoding="utf-8"))
+        agent = resolve(path)  # merge base+overlay -> effective deployed agent
         audit = agent.get("audit") or {}
         want = content_hash(agent)
         have = audit.get("content_hash")
@@ -152,7 +158,7 @@ def cmd_stamp(check: bool) -> int:
 def cmd_manifest() -> int:
     rows = []
     for path in agent_files():
-        agent = yaml.safe_load(path.read_text(encoding="utf-8"))
+        agent = resolve(path)  # effective (base+overlay) view
         meta = agent.get("metadata") or {}
         audit = agent.get("audit") or {}
         deployed = agent.get("deployed") or {}
@@ -194,6 +200,13 @@ def main() -> int:
         return cmd_stamp(check="--check" in args)
     if args[0] == "manifest":
         return cmd_manifest()
+    if args[0] == "render":
+        if len(args) < 2:
+            print("usage: agent_version.py render <agent.yaml>")
+            return 1
+        # full effective (base+overlay) agent — the 'what actually ran' view for audit
+        print(yaml.safe_dump(resolve(args[1]), sort_keys=False, allow_unicode=True, width=100))
+        return 0
     print(__doc__)
     return 1
 

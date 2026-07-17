@@ -9,13 +9,28 @@ scrape directly, they call reusable `$ref` tools in `tools/`.
 ## Layout
 ```
 agents/
-  collectors/verify_<cc>.yaml   per-country evidence collectors (Foundry)
+  collectors/_base.yaml         SHARED collector skeleton — edit here to enhance ALL countries
+  collectors/verify_<cc>.yaml   thin overlays: `extends: _base.yaml` + only what varies
   synthesizers/*.yaml           cir_markdown, ubo_map, banker_audit_pack, sanctions_screening
   extractors/, screening/       claim_extractor, darkweb_collector
   tools/*.openapi.yaml          reusable tool specs ($ref'd by agents)
   MANIFEST.yaml                 GENERATED registry: every agent + version + hash + live agent_id
   DEPLOY_LOG.md                 GENERATED append-only trail: what was deployed, when
 ```
+
+## Build upon a base (collectors)
+A collector overlay carries only what differs from `_base.yaml`: `name`, `metadata.country`,
+`sources`, and template `vars` (`country_name`, `registry_detail`). 40 of 42 countries inherit
+the base prompt verbatim — so improving the collection instructions is a **one-file edit to
+`_base.yaml`** that every inheriting country picks up. Countries that genuinely differ (CN
+Tianyancha, UK Companies House) override `system_prompt`/`tools` in their overlay.
+
+- Templated fields use `{{cc_upper}} {{cc_lower}} {{country_name}} {{registry_detail}} {{registry_source_id}}`.
+- `scripts/agent_resolve.py::resolve(path)` merges base+overlay → the full effective agent.
+  content_hash / stamp / manifest / deploy all operate on the RESOLVED agent, so a base edit
+  correctly re-hashes every inheriting collector (and `stamp --check` flags them to re-stamp).
+- `python3 scripts/agent_version.py render agents/collectors/verify_de.yaml` prints the full
+  effective agent — the "what actually ran" view for an auditor.
 
 ## Versioning + audit trail — "in case a bank asks"
 Every deployable agent carries a machine-managed `audit:` block:
@@ -48,7 +63,7 @@ its `foundry_agent_id` in DEPLOY_LOG.md → the row gives version + content_hash
 the previous row is the diff of what changed.
 
 ## Roadmap (see project_crawl_verify_yaml_agent_platform_northstar)
-- P1 ✅ versioning + audit backbone (this).
-- P2 shared `collectors/_base.yaml` + thin per-country overlays (kill the 42-duplicate drift).
+- P1 ✅ versioning + audit backbone.
+- P2 ✅ shared `collectors/_base.yaml` + thin overlays (42 collectors: 4067 → 981 lines).
 - P3 close coverage drift (GR collector; reconcile IN/SG) + lockstep check yaml↔python;
   stamp each CIR run's evidence rows with the producing agent_version.

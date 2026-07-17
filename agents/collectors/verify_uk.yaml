@@ -1,50 +1,17 @@
+extends: _base.yaml
 name: verify_uk_collector
-description: >
-  Collects evidence for a UK entity from Companies House (PRIMARY_GOVERNMENT),
-  OpenSanctions, OFSI Consolidated, and GLEIF LEI. Writes raw responses +
-  extracted fields to the evidence table. Does not synthesize narrative or
-  emit claims — that is the extractor / synthesizer's job.
-
+vars:
+  registry_source_id: gb_companies_house
 metadata:
-  tier: collector
   country: GB
-  schema_version: 1
   sources:
-    - gb_companies_house     # PRIMARY_GOVERNMENT, free API key
-    - opensanctions          # OFFICIAL_LIST, aggregates 350+ lists
-    - ofsi_consolidated      # PRIMARY_GOVERNMENT, UK Treasury sanctions
-    - gleif_lei              # OFFICIAL_LIST, corporate hierarchy
-  auditable_for_banks: true
-  cost_tier: free
+  - gb_companies_house
+  - opensanctions
+  - ofsi_consolidated
+  - gleif_lei
   est_latency_seconds: 8
-
-runtime:
-  service: azure_ai_foundry_agents
-  resource: copapfoundry-resource
-  region: eastus2
-
-model:
-  # Collectors are cheap — they orchestrate tool calls, no synthesis.
-  # Synthesizer agents (cir_markdown.yaml etc.) use claude-opus-4-8.
-  deployment: gpt-4.1-mini-778742
-  resource: copapfoundry-resource
-  region: eastus2
-  temperature: 0.0
-  max_tokens: 4096
-
-inputs:
-  - name: run_id
-    type: uuid
-    required: true
-    description: cir_runs.id — every evidence row written must reference this.
-  - name: entity_name
-    type: string
-    required: true
-  - name: registration_number
-    type: string
-    required: false
-    description: UK company number if already known (skip search step).
-
+description: |
+  Collects evidence for a UK entity from Companies House (PRIMARY_GOVERNMENT), OpenSanctions, OFSI Consolidated, and GLEIF LEI. Writes raw responses + extracted fields to the evidence table. Does not synthesize narrative or emit claims — that is the extractor / synthesizer's job.
 system_prompt: |
   You are the UK evidence collector. Your only job is to query sources and
   persist what they return. You do not write narrative. You do not synthesize.
@@ -74,27 +41,34 @@ system_prompt: |
   paraphrase raw responses — store them verbatim via raw_blob_path.
 
   When all five steps are done, call collector_complete(run_id) and stop.
-
+inputs:
+- name: run_id
+  type: uuid
+  required: true
+  description: cir_runs.id — every evidence row written must reference this.
+- name: entity_name
+  type: string
+  required: true
+- name: registration_number
+  type: string
+  required: false
+  description: UK company number if already known (skip search step).
 tools:
-  - $ref: ../tools/gb_companies_house_search.openapi.yaml
-  - $ref: ../tools/gb_companies_house_profile.openapi.yaml
-  - $ref: ../tools/gb_companies_house_psc.openapi.yaml
-  - $ref: ../tools/opensanctions_search.openapi.yaml
-  - $ref: ../tools/ofsi_consolidated_search.openapi.yaml
-  - $ref: ../tools/gleif_lei_lookup.openapi.yaml
-  - $ref: ../tools/evidence_add.openapi.yaml
-  - $ref: ../tools/collector_complete.openapi.yaml
-
+- $ref: ../tools/gb_companies_house_search.openapi.yaml
+- $ref: ../tools/gb_companies_house_profile.openapi.yaml
+- $ref: ../tools/gb_companies_house_psc.openapi.yaml
+- $ref: ../tools/opensanctions_search.openapi.yaml
+- $ref: ../tools/ofsi_consolidated_search.openapi.yaml
+- $ref: ../tools/gleif_lei_lookup.openapi.yaml
+- $ref: ../tools/evidence_add.openapi.yaml
+- $ref: ../tools/collector_complete.openapi.yaml
 output:
-  description: >
-    Side effect only — N evidence rows written to crawl_reports.evidence,
-    one per source step. No structured return payload.
-
-deployed:
-  foundry_agent_id: asst_2jqDH1z2ePpMt6WfLI5aE3zY
-  project_endpoint: https://copapfoundry-resource.services.ai.azure.com/api/projects/copapfoundry
-
+  description: |
+    Side effect only — N evidence rows written to crawl_reports.evidence, one per source step. No structured return payload.
 audit:
   version: 1.0.0
   content_hash: sha256:f98692fafd72cd20128db3d4b4ba2b37381563e321b6956128c1ddafbc2d3f83
   stamped_git_sha: ab89bad
+deployed:
+  foundry_agent_id: asst_2jqDH1z2ePpMt6WfLI5aE3zY
+  project_endpoint: https://copapfoundry-resource.services.ai.azure.com/api/projects/copapfoundry

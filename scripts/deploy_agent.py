@@ -33,6 +33,7 @@ sys.path.insert(0, str(ROOT / "api"))
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from agent_version import content_hash, _git_sha  # noqa: E402
+from agent_resolve import resolve  # noqa: E402
 
 try:
     from azure.ai.agents import AgentsClient
@@ -168,7 +169,7 @@ def deploy(agent_yaml_path: str):
         sys.exit(1)
 
     print(f"--- loading {agent_path.relative_to(ROOT)} ---")
-    agent = _load_yaml(agent_path)
+    agent = resolve(agent_path)  # merge _base.yaml overlay -> full effective agent
     audit = _preflight_audit(agent_path, agent)
     print(f"  audit: v{audit.get('version')} {audit.get('content_hash')}")
 
