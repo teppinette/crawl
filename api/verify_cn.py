@@ -33,6 +33,7 @@ _MLX_PROXY_USER_CN = None
 _MLX_PROXY_PASS_CN = None
 _POOL_PROFILE_IDS = []
 _CLI_PATH = Path("/home/copapadmin/mlx/deps/cli/xcli")
+_MLX_LOCK_FILE = Path("/home/copapadmin/mlx/profiles.lock")
 
 _token_lock = threading.Lock()
 _cached_token = None
@@ -841,28 +842,74 @@ def _parse_baidu_result(entity_name: str, uscc: str, body: str) -> dict:
 
     return result
 
+def _clear_stale_mlx_lock() -> bool:
+    """Remove a stale GLOBAL MLX profiles.lock. MLX leaves this file behind when
+    a session dies without releasing it (browser crash / idle-stop race / the
+    VM move), after which EVERY profile launch fails 'can't lock profile' — the
+    recurring CN-lookup outage that previously needed a manual mlx restart. Only
+    remove it when it is empty (no live holder recorded) and older than 60s, so
+    we never yank a lock a live session is actively holding."""
+    try:
+        st = _MLX_LOCK_FILE.stat()
+        if st.st_size == 0 and (time.time() - st.st_mtime) > 60:
+            _MLX_LOCK_FILE.unlink()
+            log.warning("CN: cleared stale MLX profiles.lock (empty, age %ds)",
+                        int(time.time() - st.st_mtime))
+            return True
+    except FileNotFoundError:
+        return False
+    except Exception as e:
+        log.warning("CN: could not clear stale MLX lock: %s", e)
+    return False
+
+
 def cn_verify(entity_name: str, uscc: str = "", max_retries: int = 2) -> dict:
     if not _MLX_PASSWORD or not _POOL_PROFILE_IDS or not _MLX_PROXY_USER_CN:
         return {"entity_name": entity_name, "found": False, "note": "Multilogin/CN proxy not configured"}
 
     _init_pool()
 
-    try:
-        profile_id = _pool.get(timeout=120)
-    except queue.Empty:
-        return {"entity_name": entity_name, "found": False, "note": "All profiles busy — try later"}
+    # Rotate through DISTINCT pool profiles instead of hammering one. A stale
+    # per-profile lock ("can't lock profile") on the single profile we happened
+    # to grab used to doom the whole lookup (both retries hit the SAME locked
+    # profile). Now we proactively unlock each profile before launch and, on a
+    # lock failure, move to the next profile. If EVERY profile is lock-jammed we
+    # clear the stale GLOBAL lock once and give it one more pass — self-healing
+    # the outage instead of returning found:false and needing a manual restart.
+    n_profiles = len(_POOL_PROFILE_IDS)
+    max_tries = min(n_profiles, max(max_retries, 3))
+    last_err = None
+    lock_cleared = False
 
-    try:
-        for attempt in range(max_retries):
+    for attempt in range(max_tries + 1):  # final pass runs only after a lock-clear
+        try:
+            profile_id = _pool.get(timeout=120)
+        except queue.Empty:
+            return {"entity_name": entity_name, "found": False, "note": "All profiles busy — try later"}
+        try:
+            _stop_profile(profile_id)  # proactive: release any stale lock on THIS profile
+            token = _get_token()
             try:
-                token = _get_token()
                 port = _launch_profile(token, profile_id)
-                return _do_cn_lookup(port, entity_name, uscc, profile_id)
             except Exception as e:
-                log.warning("CN attempt %d/%d failed ('%s'): %s", attempt + 1, max_retries, entity_name, e)
-                if attempt == max_retries - 1:
-                    return {"entity_name": entity_name, "found": False, "error": str(e)[:200], "note": "CN lookup failed after retries"}
-            finally:
-                _stop_profile(profile_id)
-    finally:
-        _pool.put(profile_id)
+                last_err = str(e)
+                cant_lock = "lock" in last_err.lower()
+                log.warning("CN launch attempt %d/%d profile %s ('%s'): %s%s",
+                            attempt + 1, max_tries + 1, profile_id[:8], entity_name, e,
+                            " — rotating" if cant_lock else "")
+                # Cycled the whole pool and everything is lock-jammed → clear the
+                # stale global lock once, then allow the final retry pass.
+                if cant_lock and not lock_cleared and attempt >= max_tries - 1:
+                    lock_cleared = _clear_stale_mlx_lock()
+                continue  # rotate to the next profile
+            return _do_cn_lookup(port, entity_name, uscc, profile_id)
+        except Exception as e:
+            last_err = str(e)
+            log.warning("CN lookup attempt %d/%d failed ('%s'): %s",
+                        attempt + 1, max_tries + 1, entity_name, e)
+        finally:
+            _stop_profile(profile_id)
+            _pool.put(profile_id)
+
+    return {"entity_name": entity_name, "found": False, "error": (last_err or "")[:200],
+            "note": "CN lookup failed after rotating all pool profiles"}
