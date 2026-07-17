@@ -106,3 +106,8 @@ output:
 deployed:
   foundry_agent_id: asst_suJ1uL5Sq8EQSLxueKhBta2b
   project_endpoint: https://copapfoundry-resource.services.ai.azure.com/api/projects/copapfoundry
+
+audit:
+  version: 1.0.0
+  content_hash: sha256:23b4c835a8f4c95da9ddd8f2eec0523ead63bb377c4ebab8d47bdd7e2e97fe2c
+  stamped_git_sha: ab89bad

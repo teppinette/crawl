@@ -19,8 +19,10 @@ Auth: DefaultAzureCredential — managed identity on crawldevvm. The MI needs
 the 'Azure AI Developer' role assignment on the Foundry resource.
 """
 
+import datetime
 import json
 import os
+import subprocess
 import sys
 from pathlib import Path
 
@@ -28,6 +30,9 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "api"))
+sys.path.insert(0, str(ROOT / "scripts"))
+
+from agent_version import content_hash, _git_sha  # noqa: E402
 
 try:
     from azure.ai.agents import AgentsClient
@@ -108,6 +113,54 @@ def _persist_agent_id(agent_path: Path, agent_id: str, project_endpoint: str):
     agent_path.write_text(raw, encoding="utf-8")
 
 
+def _preflight_audit(agent_path: Path, agent: dict) -> dict:
+    """Refuse to deploy anything that isn't a committed, stamped version — so
+    every live Foundry agent maps to a real git SHA + content hash a lender can
+    be shown. Returns the agent's audit block."""
+    dirty = subprocess.check_output(
+        ["git", "status", "--porcelain", str(agent_path)], cwd=ROOT, text=True
+    ).strip()
+    if dirty:
+        print(f"FATAL: {agent_path.name} has uncommitted changes.\n"
+              f"  Commit first so the deployed agent maps to a real git SHA "
+              f"(audit requirement). Then re-run.")
+        sys.exit(5)
+
+    audit = agent.get("audit") or {}
+    want = content_hash(agent)
+    if not audit.get("version"):
+        print("FATAL: agent has no audit.version. Run:\n"
+              "  python3 scripts/agent_version.py stamp   (then commit)")
+        sys.exit(6)
+    if audit.get("content_hash") != want:
+        print("FATAL: agent content_hash is stale/unstamped — the file changed "
+              "since it was last stamped.\n"
+              "  If this is a behaviour change, bump audit.version, then:\n"
+              "  python3 scripts/agent_version.py stamp && git commit, then deploy.")
+        sys.exit(6)
+    return audit
+
+
+def _append_deploy_log(agent: dict, audit: dict, agent_id: str):
+    """Append-only bank-auditable record of exactly what was deployed, when."""
+    ts = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    log = ROOT / "agents" / "DEPLOY_LOG.md"
+    if not log.exists():
+        log.write_text(
+            "# Agent deploy log — bank-auditable trail of what ran, and when\n\n"
+            "Append-only. Each row is one deploy of a verification agent to Azure "
+            "AI Foundry. `content_hash` + `git_sha` pin the exact agent definition; "
+            "`foundry_agent_id` is the live agent that produced evidence from that "
+            "point until the next row for the same agent.\n\n"
+            "| deployed_at (UTC) | agent | version | content_hash | git_sha | foundry_agent_id |\n"
+            "|---|---|---|---|---|---|\n",
+            encoding="utf-8")
+    with open(log, "a", encoding="utf-8") as f:
+        f.write(f"| {ts} | {agent['name']} | {audit.get('version')} | "
+                f"{audit.get('content_hash')} | {_git_sha()} | {agent_id} |\n")
+    print(f"  audit: appended DEPLOY_LOG.md ({agent['name']} v{audit.get('version')})")
+
+
 def deploy(agent_yaml_path: str):
     agent_path = Path(agent_yaml_path).resolve()
     if not agent_path.exists():
@@ -116,6 +169,8 @@ def deploy(agent_yaml_path: str):
 
     print(f"--- loading {agent_path.relative_to(ROOT)} ---")
     agent = _load_yaml(agent_path)
+    audit = _preflight_audit(agent_path, agent)
+    print(f"  audit: v{audit.get('version')} {audit.get('content_hash')}")
 
     name = agent["name"]
     description = agent.get("description", "").strip()
@@ -169,7 +224,8 @@ def deploy(agent_yaml_path: str):
 
     _persist_agent_id(agent_path, agent_id, project_endpoint)
     print(f"  persisted agent_id back into {agent_path.relative_to(ROOT)}")
-    print("\nDEPLOYED.")
+    _append_deploy_log(agent, audit, agent_id)
+    print("\nDEPLOYED. Commit the updated YAML (agent_id) + agents/DEPLOY_LOG.md.")
 
 
 if __name__ == "__main__":
