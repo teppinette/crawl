@@ -29,12 +29,13 @@ runtime:
   region: eastus2
 
 model:
-  # claude-opus-4-8 — CounterpartyLLM grounded brain. Foundry Agents now DOES
-  # support Claude as the agent model (verified 2026-07-17: create_agent on
-  # claude-opus-4-8 succeeds; the old "invalid_deployment" note is stale).
-  # NB: opus-4-8 rejects `temperature` at the API — deploy_agent does not send
-  # the model block's temperature, so it's documentation only here.
-  deployment: claude-opus-4-8
+  # gpt-4.1 (full size, not mini) — strong reasoning for banker prose.
+  # Foundry Agents service does NOT currently support Claude models as
+  # the agent's underlying model — "invalid_deployment: Requested API is
+  # currently not supported" if you try claude-opus-4-8 here. Claude
+  # remains usable for direct chat-completion calls but not via Agents.
+  # If/when Foundry adds Claude-via-Agents support, switch back here.
+  deployment: gpt-4.1-746118
   resource: copapfoundry-resource
   region: eastus2
   temperature: 0.2
@@ -141,7 +142,7 @@ system_prompt: |
             every sentence that asserts a fact.
 
     Step 4: Call save_render(run_id, render_type="cir_markdown",
-            payload={"markdown": <text>, "model": "claude-opus-4-8",
+            payload={"markdown": <text>, "model": "gpt-4.1-746118",
             "evidence_ids_cited": [<list>]}).
 
     Step 5: Call synthesizer_complete(run_id) to transition the run to
@@ -168,6 +169,6 @@ deployed:
   project_endpoint: https://copapfoundry-resource.services.ai.azure.com/api/projects/copapfoundry
 
 audit:
-  version: 1.1.0
-  content_hash: sha256:14b5f0d6ab2d3f43f90ce635b37bb4068cad5c78adb2b538f6a39f6279296b59
-  stamped_git_sha: cf363ef
+  version: 1.0.0
+  content_hash: sha256:73abbd8bd3e818e5831cfc17fcbbcd1e037652fb72f8d587985027fb9ea0cd30
+  stamped_git_sha: ab89bad

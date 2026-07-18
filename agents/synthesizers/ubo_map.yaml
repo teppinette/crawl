@@ -24,7 +24,7 @@ runtime:
   region: eastus2
 
 model:
-  deployment: claude-opus-4-8
+  deployment: gpt-4.1-746118
   resource: copapfoundry-resource
   region: eastus2
   temperature: 0.0
@@ -108,6 +108,6 @@ deployed:
   project_endpoint: https://copapfoundry-resource.services.ai.azure.com/api/projects/copapfoundry
 
 audit:
-  version: 1.1.0
-  content_hash: sha256:50b1fcbae82e741b2dd4f44d42cbe25f30ac2b237657991b2daefc9b43fea003
-  stamped_git_sha: cf363ef
+  version: 1.0.0
+  content_hash: sha256:23b4c835a8f4c95da9ddd8f2eec0523ead63bb377c4ebab8d47bdd7e2e97fe2c
+  stamped_git_sha: ab89bad
