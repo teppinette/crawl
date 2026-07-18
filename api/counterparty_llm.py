@@ -169,7 +169,7 @@ _CIR_MD_SYSTEM = (
 )
 
 
-def _grounding_rating(md: str, ev: list) -> dict:
+def _grounding_rating(md: str, ev: list, claims: list = None) -> dict:
     """Deterministic hallucination/grounding audit of an Opus-authored report.
 
     Computed in CODE (never self-assessed by the LLM) so it can actually catch the
@@ -183,7 +183,11 @@ def _grounding_rating(md: str, ev: list) -> dict:
     Returns a dict + a rendered markdown block appended to the report.
     """
     import re as _re
+    # A citation is valid if it points to a real EVIDENCE id OR a real CLAIM id —
+    # Opus cites both (the synthesis input carries evidence + extracted claims).
+    # Only ids matching neither are fabricated (phantom).
     valid = {(e.get("id") or "")[:8].lower() for e in ev if e.get("id")}
+    valid |= {(c.get("id") or "")[:8].lower() for c in (claims or []) if c.get("id")}
     tier_by_e = {(e.get("id") or "")[:8].lower(): ((e.get("extracted") or {}) if isinstance(
         e.get("extracted"), dict) else {}).get("source_tier")
         or e.get("source_tier") or "" for e in ev if e.get("id")}
@@ -277,7 +281,7 @@ def synthesize_cir_markdown(run_id: str, *, persist: bool = True) -> dict:
               max_tokens=8192, timeout=300)
     cited = [e.get("id") for e in ev]
     # Deterministic grounding/hallucination audit, appended to the report.
-    grade = _grounding_rating(md, ev)
+    grade = _grounding_rating(md, ev, claims)
     md = md + grade["block"]
     rating = grade["rating"]
     out = {"markdown": md, "evidence_ids_cited": cited, "render_id": None,
