@@ -441,6 +441,79 @@ def _screen_principals(run_id, cc, entity_name):
         log.warning("orchestrator: principal screening persist failed: %s", e)
 
 
+def _directors_web_fallback(run_id, cc, entity_name):
+    """When the registry/aggregator returned NO named directors, find them on the
+    open web (FREE: SearXNG + Crawl4AI) and grounded-extract with Opus — only
+    people the fetched page actually names as directors/officers. Persists a
+    `web_directors` evidence row so principal screening + photos can run. This is
+    the general director-coverage unlock for jurisdictions whose registry is thin
+    (e.g. BE) or whose aggregator lacks officers. Never raises."""
+    # Skip if any source already produced directors — registry wins.
+    try:
+        for e in evidence_db.list_evidence(run_id):
+            ex = e.get("extracted") or {}
+            if isinstance(ex, dict) and (ex.get("directors")):
+                return
+    except Exception:
+        return
+    try:
+        import source_web
+        import counterparty_llm as cllm
+    except Exception:
+        return
+    q = f'"{entity_name}" (board of directors OR directors OR leadership OR "management team")'
+    try:
+        results = source_web._searxng(q, max_results=6) or []
+    except Exception:
+        results = []
+    text, srcs = "", []
+    for res in results[:4]:
+        url = res.get("url") or ""
+        if not url:
+            continue
+        try:
+            md = source_web._crawl(url)
+        except Exception:
+            md = None
+        if md:
+            text += f"\n\n=== SOURCE: {url} ===\n{md[:8000]}"
+            srcs.append(url)
+        if len(text) > 24000:
+            break
+    if len(text.strip()) < 200:
+        return
+    sysmsg = (
+        "You extract corporate officers from web text for a compliance dossier. "
+        "Return ONLY people the text EXPLICITLY names as a director, board member, "
+        "chairman, CEO/MD, or senior officer OF THE SUBJECT COMPANY. If the text "
+        "names none for this company, return an empty list. NEVER invent a name.")
+    user = (f"SUBJECT COMPANY: {entity_name} ({cc})\n\nWEB TEXT:\n{text[:24000]}\n\n"
+            'Return JSON only: {"directors":[{"name":"","role":""}]} — names exactly '
+            "as written in the text.")
+    try:
+        out = cllm.opus_json([{"role": "user", "content": user}], system=sysmsg,
+                             max_tokens=1500, timeout=120)
+    except Exception:
+        return
+    dirs = [d for d in (out or {}).get("directors", [])
+            if isinstance(d, dict) and (d.get("name") or "").strip()]
+    if not dirs:
+        return
+    try:
+        evidence_db.add_evidence(
+            run_id, source_id="web_directors", source_url=(srcs[0] if srcs else "searxng://web"),
+            source_query=entity_name, status_code=200,
+            extracted={"directors": dirs, "count": len(dirs), "sources": srcs,
+                       "note": "Named directors/officers extracted (grounded) from open-web "
+                               "leadership pages — OSINT tier, corroborate against primary "
+                               "records. Used because the registry/aggregator named none."},
+            language_original="en", parser_version="web_directors_v1")
+        log.info("orchestrator: web director fallback — %s: %d directors from web",
+                 run_id[:8], len(dirs))
+    except Exception as e:
+        log.warning("orchestrator: web director persist failed: %s", e)
+
+
 def _collect_exec_photos(run_id, cc, entity_name):
     """For each named principal, find a photo via FREE SearXNG image search and
     persist it source-cited. NEVER asserts verified identity — an image-search
@@ -469,6 +542,24 @@ def _collect_exec_photos(run_id, cc, entity_name):
         return
     photos = []
     for name, role in list(people.items())[:8]:
+        # PRIMARY: name-matched LinkedIn headshot via BrightData (approved paid
+        # tool). Hard name+company gate — won't return a wrong face. Returns
+        # base64 so we persist a self-contained data: URL (no CSP/hotlink issue).
+        pp = _call_internal_source("person-photo",
+                                   {"person_name": name, "company_name": entity_name,
+                                    "country_code": cc}, timeout=150) or {}
+        if pp.get("found") and pp.get("photo_b64"):
+            photos.append({
+                "name": name, "role": role or pp.get("title"),
+                "photo_url": "data:image/jpeg;base64," + pp["photo_b64"],
+                "source_url": pp.get("linkedin_url"),
+                "match_confidence": pp.get("match_confidence"),
+                "current_company": pp.get("current_company"),
+                "corroborated": True, "verified": True,
+                "source": pp.get("source") or "LinkedIn via BrightData",
+            })
+            continue
+        # FALLBACK: free SearXNG image (source-cited, UNVERIFIED identity).
         try:
             imgs = source_web.searxng_images(f'"{name}" {entity_name}', max_results=6)
         except Exception:
@@ -480,8 +571,6 @@ def _collect_exec_photos(run_id, cc, entity_name):
         for im in imgs:
             src = (im.get("source_url") or "").lower()
             title = (im.get("title") or "").lower()
-            # Corroborated = the source page names the person, or is the company's
-            # own site / a page mentioning the entity.
             name_hit = all(p in (src + " " + title) for p in name.lower().split()[:2])
             ent_hit = any(t in src for t in ent_tokens)
             im["corroborated"] = bool(name_hit or ent_hit)
@@ -492,7 +581,7 @@ def _collect_exec_photos(run_id, cc, entity_name):
             "name": name, "role": role,
             "photo_url": chosen.get("img_src"),
             "source_url": chosen.get("source_url"),
-            "corroborated": chosen.get("corroborated", False),
+            "corroborated": chosen.get("corroborated", False), "verified": False,
         })
     if not photos:
         return
