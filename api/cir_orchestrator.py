@@ -887,32 +887,34 @@ async def _orchestrate(run_id: str, country_code: str, entity_name: str,
         f"add_claim(run_id='{run_id}'), then call extractor_complete(run_id='{run_id}')."
     )
     async def _run_extractor():
-        # P1: the extractor had NO retries — a single transient incomplete/4xx
-        # killed the whole run after the collector had already done its work.
-        # Retry on non-COMPLETED terminal status AND on exceptions, fresh each time.
+        # Fail FAST (2x180s, not 3x300s) so a choking gpt-4.1-mini extractor can't
+        # stall the run for 15 minutes. Retry on non-COMPLETED status AND exceptions.
         last = ("UNKNOWN", None)
-        for attempt in range(3):
+        for attempt in range(2):
             try:
                 local_client = _agents_client()
                 last = await loop.run_in_executor(
-                    None, _run_agent_sync, local_client, extractor_id, instr_extract, 300,
+                    None, _run_agent_sync, local_client, extractor_id, instr_extract, 180,
                 )
             except Exception as e:
                 last = ("EXCEPTION", str(e)[:200])
-                log.warning("orchestrator: extractor attempt %d/3 raised: %s; retrying",
+                log.warning("orchestrator: extractor attempt %d/2 raised: %s; retrying",
                             attempt + 1, last[1])
                 continue
             if str(last[0]).upper().endswith("COMPLETED"):
                 return last
-            log.warning("orchestrator: extractor attempt %d/3 -> %s (%s); retrying",
+            log.warning("orchestrator: extractor attempt %d/2 -> %s (%s); retrying",
                         attempt + 1, last[0], last[1])
         return last
 
     status, err = await _run_extractor()
     if not status.endswith("COMPLETED"):
-        evidence_db.update_run_status(run_id, "failed",
-                                      error=f"extractor {status}: {err or ''}")
-        return
+        # BEST-EFFORT: the extractor produces structured claims, but the Opus
+        # cir_markdown synthesizer reads the EVIDENCE directly and is grounded from
+        # it — so a failed/slow extractor must NOT kill the run. Log and proceed to
+        # synthesis with whatever claims exist (possibly zero).
+        log.warning("orchestrator: extractor %s (%s) — proceeding to synthesis "
+                    "(Opus reads evidence directly)", status, err or "")
 
     # PHASE 3: synthesizers, in parallel over the same evidence pool.
     # cir_markdown (the primary banker narrative) is authored by the CounterpartyLLM
