@@ -138,9 +138,78 @@ def extract_principals(run_id: str) -> dict:
     return result
 
 
+# ---------------------------------------------------------------------------
+# Capability 2: Opus-authored CIR markdown synthesis (the grounded brain, via the
+# DIRECT Anthropic API — no Foundry Agent needed. We load evidence in code, Opus
+# writes the grounded report, we persist the render in code.)
+# ---------------------------------------------------------------------------
+_CIR_MD_SYSTEM = (
+    "You write Counterparty Intelligence Reports (CIR) for compliance officers at a "
+    "global commodity trader who decide whether to clear or block trades worth "
+    "millions. Be precise, be cited, be honest about what the evidence does and does "
+    "not say.\n\n"
+    "HARD RULES:\n"
+    "1. EVERY factual assertion MUST cite at least one evidence id as [E<8-char>] — "
+    "the `E` field on each evidence item. If you cannot cite it, you cannot say it.\n"
+    "2. NEVER invent facts. If the evidence is silent (e.g. UBO not disclosed), say so "
+    "explicitly. An evidence item with extracted={} or found=false means the source was "
+    "queried but returned NOTHING — it is proof of an attempt, NOT corroboration; never "
+    "write 'the registry confirms…' from such a row. The legal_name on a row often just "
+    "echoes the query input — treat it as input-echo unless a source returned real data.\n"
+    "3. WEIGHT by source_tier: PRIMARY_GOVERNMENT > OFFICIAL_LIST > COMMERCIAL_AGGREGATOR "
+    "> OSINT > DARKWEB. Flag conflicts and say which tier you trust.\n"
+    "4. DARKWEB/OSINT are INFORMATIONAL ONLY — put them under 'OSINT signals', never under "
+    "Registry facts or Sanctions.\n"
+    "5. Sections: Executive Summary; Registry Facts (identity/registration/status/address/"
+    "directors/UBO); Ownership & Control (parent chain, shareholders, actual controller); "
+    "Corporate Network (affiliates/subsidiaries); Named Executives & Directors; Sanctions "
+    "Screening; Adverse Media; OSINT signals; Risk Assessment; Source Coverage Matrix "
+    "(source | tier | found_data y/n). Omit any sub-item with no cited evidence — never pad.\n"
+    "Output ONLY the markdown report. No preamble."
+)
+
+
+def synthesize_cir_markdown(run_id: str, *, persist: bool = True) -> dict:
+    """Opus writes the grounded CIR markdown from a run's evidence+claims and (by
+    default) persists it as a cir_markdown render. Returns {markdown, render_id,
+    evidence_ids_cited}. Runs on claude-opus-4-8 via the direct Messages API — the
+    working path (Foundry Agents can't run Claude)."""
+    import sys
+    sys.path.insert(0, os.path.dirname(__file__))
+    import evidence_db
+
+    ev = evidence_db.list_evidence(run_id)
+    claims = evidence_db.list_claims(run_id)
+    packed_ev = [{"E": (e.get("id") or "")[:8], "evidence_id": e.get("id"),
+                  "source_id": e.get("source_id"), "extracted": e.get("extracted")}
+                 for e in ev]
+    user = (
+        "EVIDENCE (cite the `E` value as [E<value>]):\n"
+        + json.dumps(packed_ev, ensure_ascii=False, default=str)[:150000]
+        + "\n\nEXTRACTED CLAIMS:\n"
+        + json.dumps(claims, ensure_ascii=False, default=str)[:40000]
+        + "\n\nWrite the grounded CIR markdown now."
+    )
+    md = opus([{"role": "user", "content": user}], system=_CIR_MD_SYSTEM,
+              max_tokens=8192, timeout=300)
+    cited = [e.get("id") for e in ev]
+    out = {"markdown": md, "evidence_ids_cited": cited, "render_id": None}
+    if persist:
+        out["render_id"] = evidence_db.save_render(
+            run_id, render_type="cir_markdown",
+            payload={"markdown": md, "model": _MODEL,
+                     "synthesizer": "counterparty_llm_direct_opus",
+                     "evidence_ids_cited": cited})
+    log.info("counterparty_llm: run %s — Opus cir_markdown %d chars, render %s",
+             run_id[:8], len(md), out["render_id"])
+    return out
+
+
 if __name__ == "__main__":
     import sys
-    if len(sys.argv) == 2 and sys.argv[1] == "ping":
+    if len(sys.argv) == 3 and sys.argv[1] == "synth":
+        print(synthesize_cir_markdown(sys.argv[2], persist=True)["markdown"])
+    elif len(sys.argv) == 2 and sys.argv[1] == "ping":
         print(opus([{"role": "user", "content": "Reply with the single word READY."}],
                    max_tokens=20))
     elif len(sys.argv) == 3 and sys.argv[1] == "principals":
