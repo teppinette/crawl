@@ -183,11 +183,17 @@ def _grounding_rating(md: str, ev: list) -> dict:
     Returns a dict + a rendered markdown block appended to the report.
     """
     import re as _re
-    valid = {(e.get("id") or "")[:8] for e in ev if e.get("id")}
-    tier_by_e = {(e.get("id") or "")[:8]: ((e.get("extracted") or {}) if isinstance(
+    valid = {(e.get("id") or "")[:8].lower() for e in ev if e.get("id")}
+    tier_by_e = {(e.get("id") or "")[:8].lower(): ((e.get("extracted") or {}) if isinstance(
         e.get("extracted"), dict) else {}).get("source_tier")
         or e.get("source_tier") or "" for e in ev if e.get("id")}
-    cite_re = _re.compile(r"\[E([0-9a-fA-F]{6,8})\]")
+    # Opus cites the evidence id in brackets — accept BOTH [E<id8>] and the bare
+    # [<id8>] it actually emits. A line only counts as GROUNDED if it cites an id
+    # that really exists in the evidence store.
+    cite_re = _re.compile(r"\[E?([0-9a-fA-F]{6,8})\]")
+
+    def _toks(text):
+        return [m.lower()[:8] for m in cite_re.findall(text)]
 
     # Factual lines = bullet points and table data rows (skip separators/headers/blank).
     fact_lines, grounded_lines = 0, 0
@@ -201,12 +207,14 @@ def _grounding_rating(md: str, ev: list) -> dict:
             continue
         # A table header row (tier | found | ...) with no evidence isn't an assertion.
         fact_lines += 1
-        if cite_re.search(s):
+        if any(t in valid for t in _toks(s)):
             grounded_lines += 1
 
-    all_cites = cite_re.findall(md)
-    phantom = sorted({c[:8] for c in all_cites if c[:8] not in valid})
-    cited_e = {c[:8] for c in all_cites if c[:8] in valid}
+    all_cites = _toks(md)
+    # Phantom = a full-length (8-char) bracketed id that matches NO real evidence
+    # item — a fabricated reference. Shorter tokens are ignored (not id-shaped).
+    phantom = sorted({c for c in all_cites if c not in valid and len(c) == 8})
+    cited_e = {c for c in all_cites if c in valid}
     primary = sum(1 for e in cited_e if tier_by_e.get(e, "").upper() in
                   ("PRIMARY_GOVERNMENT", "OFFICIAL_LIST"))
     osint = sum(1 for e in cited_e if tier_by_e.get(e, "").upper() in
