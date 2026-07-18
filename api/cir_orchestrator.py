@@ -861,17 +861,12 @@ async def _orchestrate(run_id: str, country_code: str, entity_name: str,
                                       error=f"extractor {status}: {err or ''}")
         return
 
-    # PHASE 3: Run all 4 synthesizers in parallel. Same evidence pool, 4
-    # different render_types. Each call is fully independent — synthesizer
-    # threads don't share state. Parallel execution because Foundry's
-    # synthesis is the slowest phase (~30-60s each); serial would be
-    # ~2-4 min for 4 synthesizers vs ~30-60s for parallel.
+    # PHASE 3: synthesizers, in parallel over the same evidence pool.
+    # cir_markdown (the primary banker narrative) is authored by the CounterpartyLLM
+    # Opus brain via the DIRECT Anthropic Messages API (Foundry Agents cannot RUN
+    # Claude — invalid_deployment on every api-version; verified 2026-07-18). The
+    # other 3 render_types stay gpt-4.1 Foundry agents.
     synth_specs = [
-        ("cir_markdown_synthesizer", "cir_markdown",
-         f"Generate the CIR markdown for run_id='{run_id}'. Load evidence + "
-         f"claims, write the banker narrative with [E<id>] citations, then "
-         f"call save_render(run_id='{run_id}', render_type='cir_markdown', ...) "
-         f"and synthesizer_complete(run_id='{run_id}')."),
         ("sanctions_screening_synthesizer", "sanctions_screening",
          f"Produce sanctions screening for run_id='{run_id}'. Filter the "
          f"evidence pool to sanctions-tier sources only; emit HIT|CLEAN|ERROR "
@@ -905,10 +900,8 @@ async def _orchestrate(run_id: str, country_code: str, entity_name: str,
         # known to be thread-safe; cheap to construct)
         synth_tasks.append((rtype, aid, instr))
 
-    if not synth_tasks:
-        evidence_db.update_run_status(run_id, "failed",
-                                      error="no deployed synthesizers")
-        return
+    # (cir_markdown runs on Opus regardless of the 3 Foundry synth agents below,
+    # so an empty synth_tasks does not by itself fail the run.)
 
     # Each synthesizer RETRIES until its render actually persists — a COMPLETED
     # status is not proof (gpt-4.1-mini can end a run without ever firing
@@ -916,6 +909,13 @@ async def _orchestrate(run_id: str, country_code: str, entity_name: str,
     # Success = the render row is present. cir_markdown is the primary banker
     # narrative, so it is REQUIRED and gets an extra attempt.
     REQUIRED_RENDER = "cir_markdown"
+
+    def _render_saved(rtype: str) -> bool:
+        try:
+            return any(r.get("render_type") == rtype
+                       for r in evidence_db.list_renders(run_id))
+        except Exception:
+            return False
 
     async def _run_synth(rtype: str, aid: str, instr: str, attempts: int):
         last = ("UNKNOWN", None)
@@ -930,29 +930,43 @@ async def _orchestrate(run_id: str, country_code: str, entity_name: str,
                 log.warning("orchestrator: synth %s attempt %d/%d raised: %s; retrying",
                             rtype, attempt + 1, attempts, last[1])
                 continue
-            try:
-                saved_now = any(r.get("render_type") == rtype
-                                for r in evidence_db.list_renders(run_id))
-            except Exception:
-                saved_now = str(last[0]).upper().endswith("COMPLETED")  # can't verify; trust once
-            if saved_now:
+            if _render_saved(rtype):
                 return (rtype, "SAVED", None)
             log.warning("orchestrator: synth %s attempt %d/%d -> %s (%s), no render "
                         "saved; retrying", rtype, attempt + 1, attempts, last[0], last[1])
         return (rtype, "NO_RENDER", last[1])
 
-    results = await asyncio.gather(*[
-        _run_synth(rt, aid, instr, 3 if rt == REQUIRED_RENDER else 2)
-        for rt, aid, instr in synth_tasks])
+    async def _run_opus_cir_markdown(attempts: int = 3):
+        # cir_markdown authored by claude-opus-4-8 via the direct Anthropic API
+        # (counterparty_llm). Grounded/cited synthesis; we persist the render in
+        # code, so success == the render row exists. Retry on transport error.
+        import counterparty_llm
+        last_err = None
+        for attempt in range(attempts):
+            try:
+                await loop.run_in_executor(
+                    None, counterparty_llm.synthesize_cir_markdown, run_id)
+            except Exception as e:
+                last_err = str(e)[:200]
+                log.warning("orchestrator: opus cir_markdown attempt %d/%d raised: %s; retrying",
+                            attempt + 1, attempts, last_err)
+                continue
+            if _render_saved("cir_markdown"):
+                return ("cir_markdown", "SAVED", None)
+            log.warning("orchestrator: opus cir_markdown attempt %d/%d saved no render; retrying",
+                        attempt + 1, attempts)
+        return ("cir_markdown", "NO_RENDER", last_err)
 
-    dispatched = {rt for rt, _, _ in synth_tasks}
+    results = await asyncio.gather(
+        _run_opus_cir_markdown(3),
+        *[_run_synth(rt, aid, instr, 2) for rt, aid, instr in synth_tasks])
+
     saved_types = {rt for rt, s, e in results if s == "SAVED"}
     failed = [(rt, s, e) for rt, s, e in results if s != "SAVED"]
 
-    # REQUIRE cir_markdown: if it was dispatched but never persisted after retries,
-    # fail the run (retryable at the CIR level) rather than complete without the
-    # primary narrative.
-    if REQUIRED_RENDER in dispatched and REQUIRED_RENDER not in saved_types:
+    # REQUIRE cir_markdown (now Opus-authored): if it did not persist after retries,
+    # fail the run (retryable) rather than complete without the primary narrative.
+    if REQUIRED_RENDER not in saved_types:
         evidence_db.update_run_status(run_id, "failed",
             error=f"required render '{REQUIRED_RENDER}' not produced after retries: {failed}")
         return
