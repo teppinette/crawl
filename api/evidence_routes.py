@@ -251,13 +251,16 @@ async def extractor_complete(run_id: str):
 
 @router.post("/evidence/runs/{run_id}/synthesizer_complete")
 async def synthesizer_complete(run_id: str):
-    """Mark synthesizer done — transitions cir_runs.status to 'complete'."""
+    """A synthesizer agent signalling it finished. This does NOT transition the run
+    to 'complete' — the ORCHESTRATOR is the sole authority on completion, and only
+    marks the run complete after ALL required renders (incl. the slower Opus-authored
+    cir_markdown) have actually persisted. Flipping to 'complete' here caused a race:
+    a fast gpt-4.1 synth would mark the run done ~30s before the Opus narrative landed,
+    so a consumer polling 'complete' + fetching renders would miss cir_markdown."""
     run = evidence_db.get_run(run_id)
     if not run:
         raise HTTPException(status_code=404, detail="run not found")
-    evidence_db.update_run_status(run_id, "complete")
-    run_after = evidence_db.get_run(run_id)
-    return {"run_id": run_id, "status": run_after["status"] if run_after else "complete"}
+    return {"run_id": run_id, "status": run["status"], "ack": True}
 
 
 @router.get("/evidence/runs/{run_id}/renders")
