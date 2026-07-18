@@ -2850,6 +2850,43 @@ def _in_name_match_words(s: str) -> set:
     return {w for w in words if w not in stop}
 
 
+def _india_resolve_cin_via_searxng(entity_name: str) -> Optional[str]:
+    """Free name->CIN resolution for India. Searches SearXNG and returns the CIN
+    that appears across the most India-registry results (thecompanycheck / zaubacorp
+    / tofler / corporatedir / indiafilings) whose text matches the queried name.
+    Consensus + name-match + registry-domain weighting guard against grabbing a
+    different company's CIN. The CIN is re-verified by the Tofler name-match gate
+    downstream, so a wrong CIN cannot be silently accepted."""
+    from collections import Counter
+    cin_re = re.compile(r'([UL]\d{5}[A-Z]{2}\d{4}[A-Z]{3}\d{6})')
+    q_words = _in_name_match_words(entity_name)
+    reg_domains = ("thecompanycheck", "zaubacorp", "tofler", "indiafilings",
+                   "corporatedir", "instafinancials", "mca.gov")
+    try:
+        import source_web
+        results = source_web._searxng(f"{entity_name} CIN India company", max_results=15)
+    except Exception as e:
+        log.info("India CIN resolve: searxng failed: %s", e)
+        return None
+    votes = Counter()
+    for r in results or []:
+        u = str(r.get("url") or "")
+        blob = " ".join(str(r.get(k) or "") for k in ("title", "url", "content"))
+        m = cin_re.search(blob)
+        if not m:
+            continue
+        if q_words and not (q_words & _in_name_match_words(blob)):
+            continue  # result doesn't mention the queried entity
+        votes[m.group(1)] += 2 if any(d in u for d in reg_domains) else 1
+    if not votes:
+        return None
+    best, score = votes.most_common(1)[0]
+    if score >= 2:  # at least one registry hit, or two corroborating mentions
+        log.info("India CIN resolve: '%s' -> %s (score %d)", entity_name, best, score)
+        return best
+    return None
+
+
 def _india_tofler_lookup(entity_name: str, cin: str = "") -> dict:
     """Look up Indian company on Tofler (MCA21 republished data) via crawl-verify
     using Multilogin + IN residential exit. Replaced the dead Bright Data
@@ -2862,6 +2899,12 @@ def _india_tofler_lookup(entity_name: str, cin: str = "") -> dict:
     different entity than the supplied name (e.g. CIN was wrong in their
     source data, or Tofler 302s unknown CINs to a default page).
     """
+    # No CIN supplied → resolve it from the name via SearXNG (free). The resolved
+    # CIN then flows through the real Tofler lookup + name-match gate below, so a
+    # wrong CIN is caught rather than silently accepted. Makes a name-only India
+    # lookup (e.g. JAGATI PUBLICATIONS LTD) actually resolve.
+    if not cin:
+        cin = _india_resolve_cin_via_searxng(entity_name) or ""
     if cin:
         try:
             vm_resp = _verify_vm_call({
