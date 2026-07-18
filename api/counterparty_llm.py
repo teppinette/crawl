@@ -169,6 +169,81 @@ _CIR_MD_SYSTEM = (
 )
 
 
+def _grounding_rating(md: str, ev: list) -> dict:
+    """Deterministic hallucination/grounding audit of an Opus-authored report.
+
+    Computed in CODE (never self-assessed by the LLM) so it can actually catch the
+    model. Three signals:
+      - coverage_pct : share of factual lines (bullets + table data rows) carrying a
+        valid [E<8char>] citation.
+      - phantom_citations : [E..] refs that map to NO real evidence id — a fabricated
+        reference; the strongest hallucination signal. MUST be 0 for a clean report.
+      - tier_mix : how many cited evidence rows are PRIMARY_GOVERNMENT/OFFICIAL_LIST vs
+        OSINT/DARKWEB.
+    Returns a dict + a rendered markdown block appended to the report.
+    """
+    import re as _re
+    valid = {(e.get("id") or "")[:8] for e in ev if e.get("id")}
+    tier_by_e = {(e.get("id") or "")[:8]: ((e.get("extracted") or {}) if isinstance(
+        e.get("extracted"), dict) else {}).get("source_tier")
+        or e.get("source_tier") or "" for e in ev if e.get("id")}
+    cite_re = _re.compile(r"\[E([0-9a-fA-F]{6,8})\]")
+
+    # Factual lines = bullet points and table data rows (skip separators/headers/blank).
+    fact_lines, grounded_lines = 0, 0
+    for ln in md.splitlines():
+        s = ln.strip()
+        if not s:
+            continue
+        is_bullet = s.startswith(("- ", "* ", "• "))
+        is_table = s.startswith("|") and not _re.match(r"^\|[\s:|-]+\|?$", s)
+        if not (is_bullet or is_table):
+            continue
+        # A table header row (tier | found | ...) with no evidence isn't an assertion.
+        fact_lines += 1
+        if cite_re.search(s):
+            grounded_lines += 1
+
+    all_cites = cite_re.findall(md)
+    phantom = sorted({c[:8] for c in all_cites if c[:8] not in valid})
+    cited_e = {c[:8] for c in all_cites if c[:8] in valid}
+    primary = sum(1 for e in cited_e if tier_by_e.get(e, "").upper() in
+                  ("PRIMARY_GOVERNMENT", "OFFICIAL_LIST"))
+    osint = sum(1 for e in cited_e if tier_by_e.get(e, "").upper() in
+                ("OSINT", "DARKWEB"))
+
+    coverage = round(100.0 * grounded_lines / fact_lines, 1) if fact_lines else 100.0
+    # Overall grounding score: coverage, hard-penalised by any phantom citation.
+    score = coverage
+    if phantom:
+        score = round(min(score, 100.0 - 100.0 * len(phantom) / max(len(all_cites), 1)), 1)
+    verdict = ("CLEAN — grounded" if not phantom and coverage >= 99
+               else "PASS — grounded" if not phantom and coverage >= 90
+               else "REVIEW — uncited assertions" if not phantom
+               else "FAIL — fabricated citation(s)")
+    rating = {
+        "grounding_score": score, "coverage_pct": coverage,
+        "factual_lines": fact_lines, "grounded_lines": grounded_lines,
+        "distinct_evidence_cited": len(cited_e),
+        "phantom_citations": phantom, "phantom_count": len(phantom),
+        "primary_tier_cites": primary, "osint_tier_cites": osint,
+        "verdict": verdict,
+    }
+    block = (
+        "\n\n---\n\n## Grounding & Hallucination Rating\n\n"
+        "_Computed deterministically from the report against the evidence store — "
+        "not self-assessed by the model._\n\n"
+        f"- **Grounding score: {score}%** — {verdict}\n"
+        f"- Cited factual lines: {grounded_lines}/{fact_lines} ({coverage}%)\n"
+        f"- Distinct evidence items cited: {len(cited_e)} "
+        f"(primary/official: {primary} · OSINT/darkweb: {osint})\n"
+        f"- Fabricated (phantom) citations: **{len(phantom)}**"
+        + (f" ⚠ {', '.join('[E'+p+']' for p in phantom)}" if phantom else " ✓")
+        + "\n"
+    )
+    return {"rating": rating, "block": block}
+
+
 def synthesize_cir_markdown(run_id: str, *, persist: bool = True) -> dict:
     """Opus writes the grounded CIR markdown from a run's evidence+claims and (by
     default) persists it as a cir_markdown render. Returns {markdown, render_id,
@@ -193,15 +268,22 @@ def synthesize_cir_markdown(run_id: str, *, persist: bool = True) -> dict:
     md = opus([{"role": "user", "content": user}], system=_CIR_MD_SYSTEM,
               max_tokens=8192, timeout=300)
     cited = [e.get("id") for e in ev]
-    out = {"markdown": md, "evidence_ids_cited": cited, "render_id": None}
+    # Deterministic grounding/hallucination audit, appended to the report.
+    grade = _grounding_rating(md, ev)
+    md = md + grade["block"]
+    rating = grade["rating"]
+    out = {"markdown": md, "evidence_ids_cited": cited, "render_id": None,
+           "grounding": rating}
     if persist:
         out["render_id"] = evidence_db.save_render(
             run_id, render_type="cir_markdown",
             payload={"markdown": md, "model": _MODEL,
                      "synthesizer": "counterparty_llm_direct_opus",
-                     "evidence_ids_cited": cited})
-    log.info("counterparty_llm: run %s — Opus cir_markdown %d chars, render %s",
-             run_id[:8], len(md), out["render_id"])
+                     "evidence_ids_cited": cited, "grounding": rating})
+    log.info("counterparty_llm: run %s — Opus cir_markdown %d chars, render %s, "
+             "grounding %s%% (%s, phantom=%d)",
+             run_id[:8], len(md), out["render_id"], rating["grounding_score"],
+             rating["verdict"], rating["phantom_count"])
     return out
 
 
