@@ -90,6 +90,36 @@ def _searxng(query: str, max_results: int = 10) -> list[dict]:
         return []
 
 
+def searxng_images(query: str, max_results: int = 8) -> list[dict]:
+    """Free image search via SearXNG (categories=images). Returns
+    [{img_src, source_url, title}] — the direct image URL plus the page it was
+    found on, so a photo can ALWAYS be shown with a citation and never asserted
+    as verified identity. [] on any failure; never raises."""
+    try:
+        r = requests.get(
+            f"{_SEARXNG}/search",
+            params={"q": query, "format": "json", "safesearch": 1,
+                    "categories": "images"},
+            headers={"User-Agent": _UA, "Accept": "application/json"},
+            timeout=_SEARCH_TIMEOUT,
+        )
+        if r.status_code >= 400:
+            log.info("searxng images %s for %r", r.status_code, query[:60])
+            return []
+        out = []
+        for res in (r.json() or {}).get("results", [])[:max_results]:
+            img = res.get("img_src") or res.get("thumbnail_src") or ""
+            if not img:
+                continue
+            out.append({"img_src": img,
+                        "source_url": res.get("url") or "",
+                        "title": (res.get("title") or "")[:200]})
+        return out
+    except Exception as e:
+        log.info("searxng images failed for %r: %s", query[:60], e)
+        return []
+
+
 def _discover_domain(entity_name: str, country: str | None,
                      domain_hint: str | None) -> tuple[str | None, dict]:
     """Resolve the official domain. Prefer an explicit hint; else SearXNG."""

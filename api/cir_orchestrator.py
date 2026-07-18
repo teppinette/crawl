@@ -441,6 +441,77 @@ def _screen_principals(run_id, cc, entity_name):
         log.warning("orchestrator: principal screening persist failed: %s", e)
 
 
+def _collect_exec_photos(run_id, cc, entity_name):
+    """For each named principal, find a photo via FREE SearXNG image search and
+    persist it source-cited. NEVER asserts verified identity — an image-search
+    result is a candidate, cited to the page it came from, flagged unverified;
+    a photo whose source page is the company's own domain or a page that names
+    the person is marked corroborated. Never raises."""
+    try:
+        import source_web
+    except Exception:
+        return
+    # Reuse the same named-director set the principal screen builds from.
+    people = {}
+    try:
+        for e in evidence_db.list_evidence(run_id):
+            ex = e.get("extracted") or {}
+            if not isinstance(ex, dict):
+                continue
+            for d in (ex.get("directors") or []):
+                if isinstance(d, str) and len(d.strip()) > 3:
+                    people.setdefault(d.strip(), "")
+                elif isinstance(d, dict) and d.get("name"):
+                    people.setdefault(d["name"].strip(), d.get("role") or "")
+    except Exception:
+        return
+    if not people:
+        return
+    photos = []
+    for name, role in list(people.items())[:8]:
+        try:
+            imgs = source_web.searxng_images(f'"{name}" {entity_name}', max_results=6)
+        except Exception:
+            imgs = []
+        if not imgs:
+            continue
+        ent_tokens = {t for t in entity_name.lower().split() if len(t) > 3}
+        best = None
+        for im in imgs:
+            src = (im.get("source_url") or "").lower()
+            title = (im.get("title") or "").lower()
+            # Corroborated = the source page names the person, or is the company's
+            # own site / a page mentioning the entity.
+            name_hit = all(p in (src + " " + title) for p in name.lower().split()[:2])
+            ent_hit = any(t in src for t in ent_tokens)
+            im["corroborated"] = bool(name_hit or ent_hit)
+            if im["corroborated"] and best is None:
+                best = im
+        chosen = best or imgs[0]
+        photos.append({
+            "name": name, "role": role,
+            "photo_url": chosen.get("img_src"),
+            "source_url": chosen.get("source_url"),
+            "corroborated": chosen.get("corroborated", False),
+        })
+    if not photos:
+        return
+    try:
+        evidence_db.add_evidence(
+            run_id, source_id="exec_photo", source_url="searxng://images",
+            source_query=entity_name, status_code=200,
+            extracted={"exec_photos": photos, "count": len(photos),
+                       "note": "Executive photos via FREE image search — each is a "
+                               "candidate cited to its source page and is NOT "
+                               "identity-verified. 'corroborated' means the source "
+                               "page names the person or the company. Do not treat "
+                               "an uncorroborated image as confirmed identity."},
+            language_original="en", parser_version="exec_photo_searxng_v1")
+        log.info("orchestrator: exec photos — %s: %d candidate photos", run_id[:8], len(photos))
+    except Exception as e:
+        log.warning("orchestrator: exec photo persist failed: %s", e)
+
+
 def _enforce_five_angle_coverage(run_id, cc, entity_name, registration_id=""):
     """MANDATORY 5-angle gate. Fill any angle the collector phase left empty via a
     server-side source call, then persist a `coverage_summary` render documenting
@@ -457,6 +528,12 @@ def _enforce_five_angle_coverage(run_id, cc, entity_name, registration_id=""):
         _screen_principals(run_id, cc, entity_name)
     except Exception:
         log.exception("orchestrator: principal screening failed (non-fatal)")
+    # Executive photos (FREE image search, source-cited, unverified) for each
+    # named principal — the depth-parity "pictures of the executives" bar.
+    try:
+        _collect_exec_photos(run_id, cc, entity_name)
+    except Exception:
+        log.exception("orchestrator: exec photo collection failed (non-fatal)")
     cov = _covered_angles(run_id)
     fillers = {
         "registry": lambda: _registry_fallback_persist(run_id, cc, entity_name, registration_id),
