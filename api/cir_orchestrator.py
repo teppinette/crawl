@@ -382,6 +382,65 @@ def _adverse_deep_persist(run_id, cc, entity_name):
         log.warning("orchestrator: deep adverse persist failed: %s", e)
 
 
+def _screen_principals(run_id, cc, entity_name):
+    """BFR-parity: screen each named PRINCIPAL (director/officer from the registry)
+    against sanctions/PEP (CSL) + adverse media — not just the subject entity. This
+    is the gap that let BFR catch upstream risk (a clean company with a sanctioned/
+    charged director). Free — reuses the CSL tool + SearXNG. Persists a principal
+    matrix. Never raises."""
+    people = set()
+    try:
+        for e in evidence_db.list_evidence(run_id):
+            ex = e.get("extracted") or {}
+            if not isinstance(ex, dict):
+                continue
+            for d in (ex.get("directors") or []):
+                nm = d if isinstance(d, str) else (d.get("name") if isinstance(d, dict) else None)
+                if nm and len(nm.strip()) > 3:
+                    people.add(nm.strip())
+    except Exception:
+        return
+    if not people:
+        return
+    try:
+        import source_web
+    except Exception:
+        source_web = None
+    matrix = []
+    for name in sorted(people)[:12]:
+        rec = {"name": name, "sanctions": None, "adverse": []}
+        data = _call_internal_source("sources/opensanctions/search",
+                                     {"entity_name": name, "country": cc.lower()}, timeout=60)
+        if data is not None:
+            rec["sanctions"] = {"total": data.get("total", 0),
+                                "hits": (data.get("results") or [])[:3]}
+        if source_web:
+            try:
+                res = source_web._searxng(
+                    f'"{name}" fraud OR investigation OR arrested OR sanctions OR court',
+                    max_results=5)
+                rec["adverse"] = [{"title": r.get("title"), "url": r.get("url")}
+                                  for r in (res or [])[:4] if r.get("url")]
+            except Exception:
+                pass
+        matrix.append(rec)
+    if not matrix:
+        return
+    try:
+        evidence_db.add_evidence(
+            run_id, source_id="csl_screening", source_url="principal-matrix",
+            source_query=entity_name, status_code=200,
+            extracted={"principal_screening": matrix, "count": len(matrix),
+                       "note": "Sanctions/PEP + adverse-media screening of EACH named "
+                               "director/officer (BFR-parity individual screening). "
+                               "Corroborate any hit against primary records."},
+            language_original="en", parser_version="principal_screen_v1")
+        log.info("orchestrator: principal screening — %s: %d principals screened",
+                 run_id[:8], len(matrix))
+    except Exception as e:
+        log.warning("orchestrator: principal screening persist failed: %s", e)
+
+
 def _enforce_five_angle_coverage(run_id, cc, entity_name, registration_id=""):
     """MANDATORY 5-angle gate. Fill any angle the collector phase left empty via a
     server-side source call, then persist a `coverage_summary` render documenting
@@ -392,6 +451,12 @@ def _enforce_five_angle_coverage(run_id, cc, entity_name, registration_id=""):
         _adverse_deep_persist(run_id, cc, entity_name)
     except Exception:
         log.exception("orchestrator: deep adverse search failed (non-fatal)")
+    # Screen each named director/officer (sanctions/PEP + adverse) — BFR-parity
+    # individual screening, generalizes to every counterparty with named principals.
+    try:
+        _screen_principals(run_id, cc, entity_name)
+    except Exception:
+        log.exception("orchestrator: principal screening failed (non-fatal)")
     cov = _covered_angles(run_id)
     fillers = {
         "registry": lambda: _registry_fallback_persist(run_id, cc, entity_name, registration_id),
