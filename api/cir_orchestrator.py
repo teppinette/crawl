@@ -335,10 +335,63 @@ def _web_fallback_persist(run_id, cc, entity_name):
         log.warning("orchestrator: web gate fallback persist failed: %s", e)
 
 
+def _adverse_deep_persist(run_id, cc, entity_name):
+    """DEEP adverse-media search via SearXNG (risk-focused queries) — surfaces
+    litigation / fraud / enforcement (CBI/ED/OFAC) / PEP / sanctions hits that the
+    thin website-oriented web_profile misses. This is the decision-driver: e.g.
+    JAGATI PUBLICATIONS -> the Jagan Reddy CBI/ED money-laundering case. Persists an
+    adverse_media evidence row with the findings. Best-effort; never raises."""
+    import os
+    try:
+        import source_web
+    except Exception:
+        return
+    risk_terms = [
+        "fraud OR investigation OR enforcement OR CBI OR ED OR money laundering",
+        "court case OR litigation OR conviction OR charge sheet OR arrested",
+        "sanctions OR OFAC OR blacklist OR debarred OR default OR insolvency",
+        "director OR promoter OR owner controversy OR scam OR probe",
+    ]
+    findings, seen = [], set()
+    for term in risk_terms:
+        try:
+            res = source_web._searxng(f"{entity_name} {term}", max_results=8)
+        except Exception:
+            continue
+        for r in res or []:
+            u = r.get("url") or ""
+            if not u or u in seen:
+                continue
+            seen.add(u)
+            findings.append({"title": r.get("title"), "url": u,
+                             "snippet": (r.get("content") or "")[:300], "query_terms": term})
+    if not findings:
+        return
+    try:
+        evidence_db.add_evidence(
+            run_id, source_id="web_profile", source_url="searxng://adverse",
+            source_query=entity_name, status_code=200,
+            extracted={"adverse_findings": findings[:30], "count": len(findings),
+                       "method": "searxng_risk_queries",
+                       "note": "risk-focused adverse-media search (litigation/enforcement/"
+                               "sanctions/PEP). OSINT tier — corroborate before action."},
+            language_original="en", parser_version="adverse_deep_v1")
+        log.info("orchestrator: deep adverse — %s: %d findings persisted",
+                 run_id[:8], len(findings))
+    except Exception as e:
+        log.warning("orchestrator: deep adverse persist failed: %s", e)
+
+
 def _enforce_five_angle_coverage(run_id, cc, entity_name, registration_id=""):
     """MANDATORY 5-angle gate. Fill any angle the collector phase left empty via a
     server-side source call, then persist a `coverage_summary` render documenting
     which of the five angles were investigated. Never raises."""
+    # Deep adverse-media search FIRST — the decision-driver (litigation/enforcement/
+    # sanctions/PEP). Runs every CIR, not just when the angle is empty.
+    try:
+        _adverse_deep_persist(run_id, cc, entity_name)
+    except Exception:
+        log.exception("orchestrator: deep adverse search failed (non-fatal)")
     cov = _covered_angles(run_id)
     fillers = {
         "registry": lambda: _registry_fallback_persist(run_id, cc, entity_name, registration_id),
