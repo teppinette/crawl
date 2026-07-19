@@ -1,0 +1,27 @@
+{
+  "_doc": "Golden-set eval for the CIR engine. Labeled known cases used to measure screening precision/recall (esp. FALSE NEGATIVES — a missed true sanctions hit is a regulatory incident) plus adverse-media recall, identity resolution, and groundedness. Keep small + curated; expand as real cases are learned. `expect.sanctions`: hit|clear. `expect.adverse`: true|false. `expect.identity`: substring the registry evidence must contain (CIN/LEI), or null.",
+  "cases": [
+    {"name": "Bank Rossiya", "country": "RU",
+     "expect": {"sanctions": "hit", "adverse": true, "identity": null,
+                "note": "OFAC SDN (2014). Missing this = critical false negative."}},
+    {"name": "Rosoboronexport", "country": "RU",
+     "expect": {"sanctions": "hit", "adverse": true, "identity": null,
+                "note": "OFAC SDN Russian state arms exporter."}},
+    {"name": "Public Joint Stock Company Rosneft Oil Company", "country": "RU",
+     "expect": {"sanctions": "hit", "adverse": true, "identity": null,
+                "note": "OFAC-listed (sectoral/SSI + later). Screening should surface it."}},
+    {"name": "JAGATI PUBLICATIONS LIMITED", "country": "IN",
+     "expect": {"sanctions": "clear", "adverse": true,
+                "identity": "U22212TG2006PLC051651",
+                "note": "Not sanctioned, but ED/CBI money-laundering adverse must surface; CIN must resolve."}},
+    {"name": "PetroChina Lanzhou Petrochemical Company", "country": "CN",
+     "expect": {"sanctions": "clear", "adverse": true, "identity": null,
+                "note": "Large SOE, not SDN; safety-incident adverse history should surface."}},
+    {"name": "INTERTEK BELGIUM NV", "country": "BE",
+     "expect": {"sanctions": "clear", "adverse": false, "identity": null,
+                "note": "Clean investment-grade control — must NOT false-positive on sanctions."}},
+    {"name": "Nestle SA", "country": "CH",
+     "expect": {"sanctions": "clear", "adverse": false, "identity": null,
+                "note": "Clean blue-chip control — no false sanctions positive."}}
+  ]
+}
