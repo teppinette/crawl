@@ -185,6 +185,36 @@ class OSSearchRequest(BaseModel):
         populate_by_name = True
 
 
+import re as _re_lf
+# Multi-word legal-form phrases (Rosneft case: "Public Joint Stock Company …").
+_LEGAL_PHRASES = _re_lf.compile(
+    r"\b(public|open|closed)?\s*joint[-\s]stock\s+company\b"
+    r"|\blimited\s+liability\s+(company|partnership)\b"
+    r"|\bprivate\s+limited\b", _re_lf.IGNORECASE)
+# Single legal-form tokens stripped anywhere in the name.
+_LEGAL_TOKENS = {
+    "pjsc", "ojsc", "cjsc", "jsc", "oao", "zao", "pao", "llc", "llp", "lp",
+    "ltd", "ltda", "limited", "pvt", "plc", "inc", "incorporated", "corp",
+    "corporation", "co", "company", "gmbh", "ag", "sa", "se", "nv", "bv", "oy",
+    "ab", "asa", "spa", "srl", "sarl", "fze", "fzco", "fzllc", "pte", "sdn",
+    "bhd", "kg", "kft", "doo", "aps", "tic", "san", "cia",
+}
+
+
+def _strip_legal_form(name: str) -> str:
+    """Return `name` with legal-form phrases/tokens removed, for a second
+    sanctions-screening pass. Guards against wrongly clearing a sanctioned
+    entity submitted under its full legal name. Falls back to the original if
+    stripping leaves too little to match on."""
+    if not name:
+        return name
+    s = _LEGAL_PHRASES.sub(" ", name)
+    toks = [t for t in _re_lf.split(r"[\s,\.]+", s)
+            if t and t.lower() not in _LEGAL_TOKENS]
+    out = " ".join(toks).strip(" ,.-&")
+    return out if len(out) >= 3 else name
+
+
 @router.post("/sources/opensanctions/search")
 async def opensanctions_search(req: OSSearchRequest):
     """Sanctions screening via US Consolidated Screening List (CSL) — the
@@ -207,45 +237,64 @@ async def opensanctions_search(req: OSSearchRequest):
             "total": 0, "results": [],
             "error": "csl-subscription-key missing from crawlkeyvault",
         }
-    params = {"name": req.entity_name, "size": req.limit}
-    if req.country:
-        params["countries"] = req.country.upper()
     headers = {"User-Agent": _UA, "Accept": "application/json",
                "subscription-key": key}
-    try:
-        r = requests.get(url, params=params, headers=headers, timeout=20)
-        r.raise_for_status()
-        data = r.json()
-    except Exception as e:
-        log.warning("csl search failed: %s", e)
-        return {
-            "source_id": "csl_screening",
-            "source_url": url,
-            "fetched_at": _now_iso(),
-            "total": 0, "results": [],
-            "error": str(e)[:200],
-        }
 
-    hits = data.get("results") or []
-    results = []
-    for h in hits:
-        results.append({
-            "id": h.get("id") or h.get("source_id"),
-            "caption": h.get("name"),
-            "schema": h.get("type"),  # Individual / Entity / Vessel / Aircraft
-            "datasets": [h.get("source")] if h.get("source") else [],
-            "topics": h.get("federal_register_notice") and ["sanction"] or [],
-            "programs": h.get("programs") or [],
-            "addresses": h.get("addresses") or [],
-            "score": h.get("score"),
-        })
-    return {
+    def _csl_one(name):
+        """One CSL query → (hits, error). Never raises."""
+        params = {"name": name, "size": req.limit}
+        if req.country:
+            params["countries"] = req.country.upper()
+        try:
+            r = requests.get(url, params=params, headers=headers, timeout=20)
+            r.raise_for_status()
+            return (r.json().get("results") or []), None
+        except Exception as e:
+            log.warning("csl search failed for %r: %s", name, e)
+            return [], str(e)[:200]
+
+    # Screen the name AS GIVEN and a LEGAL-FORM-STRIPPED variant, then union.
+    # A sanctioned entity submitted under its full legal name (e.g. "Public Joint
+    # Stock Company Rosneft Oil Company" or "PJSC Rosneft") must not clear just
+    # because the legal-form prefix throws off the CSL fuzzy match — 'Rosneft'
+    # hits, the full form does not. Recall is what matters here; the analyst
+    # adjudicates the union.
+    names = [req.entity_name]
+    stripped = _strip_legal_form(req.entity_name)
+    if stripped and stripped.lower() != req.entity_name.lower():
+        names.append(stripped)
+
+    merged, seen, err = [], set(), None
+    for nm in names:
+        hits, e = _csl_one(nm)
+        if e and err is None:
+            err = e
+        for h in hits:
+            k = h.get("id") or h.get("source_id") or (h.get("name"), h.get("source"))
+            if k in seen:
+                continue
+            seen.add(k)
+            merged.append({
+                "id": h.get("id") or h.get("source_id"),
+                "caption": h.get("name"),
+                "schema": h.get("type"),
+                "datasets": [h.get("source")] if h.get("source") else [],
+                "topics": h.get("federal_register_notice") and ["sanction"] or [],
+                "programs": h.get("programs") or [],
+                "addresses": h.get("addresses") or [],
+                "score": h.get("score"),
+                "matched_query": nm,
+            })
+    out = {
         "source_id": "csl_screening",
         "source_url": f"https://search.api.trade.gov/consolidated_screening_list?name={req.entity_name}",
         "fetched_at": _now_iso(),
-        "total": data.get("total") or len(results),
-        "results": results,
+        "total": len(merged), "results": merged,
+        "queries_screened": names,
     }
+    if err and not merged:
+        out["error"] = err
+    return out
 
 
 # ---------------------------------------------------------------------------
