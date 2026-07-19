@@ -27,3 +27,6 @@ python-multipart==0.0.20
 # the gateway image — adding ~1 MB to keep the build simple.
 fpdf2==2.8.7
 phonenumbers==8.13.55
+# Cosmos DB — accumulating per-entity counterparty intelligence (living-intelligence
+# substrate; api/cosmos_intel.py). Serverless account copap-cir-intel.
+azure-cosmos==4.7.0

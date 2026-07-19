@@ -379,6 +379,15 @@ def synthesize_cir_markdown(run_id: str, *, persist: bool = True,
              run_id[:8], mdl, len(md), out["render_id"], rating["grounding_score"],
              rating["verdict"], rating["phantom_count"],
              usage.get("input"), usage.get("output"))
+    # Accumulate into the SHARED per-entity intelligence record (Cosmos) — the
+    # living-intelligence substrate the exec chat + fraud detector will read too.
+    # Fail-soft: never let a Cosmos hiccup break the CIR.
+    if persist:
+        try:
+            import cosmos_intel
+            cosmos_intel.upsert_from_run(run_id)
+        except Exception as _cx:
+            log.warning("counterparty_llm: cosmos accumulation skipped: %s", _cx)
     return out
 
 
