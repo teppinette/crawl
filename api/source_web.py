@@ -90,6 +90,29 @@ def _searxng(query: str, max_results: int = 10) -> list[dict]:
         return []
 
 
+import re as _re_inj
+_INJECTION_PATTERNS = _re_inj.compile(
+    r"\b(ignore|disregard|forget)\b[^.\n]{0,40}\b(previous|above|prior|earlier|all)\b"
+    r"[^.\n]{0,40}\b(instruction|prompt|rule|context)s?\b"
+    r"|\byou are now\b|\bnew instructions?\b|\bsystem prompt\b"
+    r"|\b(mark|rate|report|classify|treat|consider)\b[^.\n]{0,30}\b(as )?(low[- ]?risk|cleared|safe|no risk|clean|not sanctioned)\b"
+    r"|\bdo not (report|mention|flag|include|disclose)\b",
+    _re_inj.IGNORECASE,
+)
+
+
+def neutralize_injection(text: str) -> str:
+    """Defence-in-depth against prompt injection in UNTRUSTED scraped page text
+    before it is fed to the LLM: redact lines that look like embedded instructions
+    aimed at the model ('ignore previous instructions', 'mark as low risk', 'do not
+    report…'). The subject of an investigation may control pages we crawl. The
+    primary defence is still the system-prompt instruction hierarchy; this trims
+    the obvious attacks. Returns text with matches replaced by a redaction marker."""
+    if not text:
+        return text
+    return _INJECTION_PATTERNS.sub(" [redacted: possible-injection] ", text)
+
+
 def searxng_images(query: str, max_results: int = 8) -> list[dict]:
     """Free image search via SearXNG (categories=images). Returns
     [{img_src, source_url, title}] — the direct image URL plus the page it was
