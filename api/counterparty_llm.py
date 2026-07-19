@@ -51,11 +51,21 @@ def _token() -> str:
     return tok.token
 
 
+# Cheaper tier for low-risk / test synthesis (Tom: "investment-grade company, no
+# need to blow opus coins" + "test functionality on even haiku").
+_HAIKU = os.environ.get("COUNTERPARTY_LLM_HAIKU", "claude-haiku-4-5-20251001")
+# Token accounting — every call records usage here; the orchestrator reads it to
+# persist per-run cost so CIR spend is MEASURABLE, not estimated.
+_last_usage = {"model": None, "input": 0, "output": 0}
+
+
 def opus(messages: list, *, system: str = None, max_tokens: int = 4096,
-         timeout: int = 120) -> str:
-    """One grounded Opus call. Returns the assistant text. Raises on transport error.
+         timeout: int = 120, model: str = None) -> str:
+    """One grounded LLM call (Opus by default; pass model= for Haiku on low-risk/
+    test runs). Returns the assistant text. Records token usage in _last_usage.
     NB: claude-opus-4-8 rejects `temperature` (deprecated for this model)."""
-    body = {"model": _MODEL, "max_tokens": max_tokens, "messages": messages}
+    mdl = model or _MODEL
+    body = {"model": mdl, "max_tokens": max_tokens, "messages": messages}
     if system:
         body["system"] = system
     r = requests.post(
@@ -66,9 +76,51 @@ def opus(messages: list, *, system: str = None, max_tokens: int = 4096,
         json=body, timeout=timeout)
     r.raise_for_status()
     data = r.json()
+    u = data.get("usage") or {}
+    _last_usage.update({"model": mdl, "input": u.get("input_tokens", 0),
+                        "output": u.get("output_tokens", 0)})
+    log.info("counterparty_llm: %s call — in=%s out=%s tokens",
+             mdl, u.get("input_tokens"), u.get("output_tokens"))
     parts = [b.get("text", "") for b in (data.get("content") or [])
              if b.get("type") == "text"]
     return "".join(parts).strip()
+
+
+def _route_model(ev: list, claims: list) -> str:
+    """Deterministic (no meta-LLM) model router — Opus only where it earns its
+    keep. Escalate to Opus on RISK signals (adverse media, sanctions/PEP hits,
+    darkweb findings, opaque ownership). A clean, well-documented / investment-
+    grade company routes to Haiku. Env COUNTERPARTY_LLM_MODEL forces a model."""
+    forced = os.environ.get("COUNTERPARTY_LLM_MODEL")
+    if forced:
+        return forced
+    risky = False          # adverse/sanctions/darkweb → Opus earns its keep
+    investment_grade = False  # comprehension: major/listed/LEI'd = clean, use Haiku
+    for e in ev or []:
+        sid = (e.get("source_id") or "").lower()
+        ex = e.get("extracted") if isinstance(e.get("extracted"), dict) else {}
+        if sid in ("darkweb_screen",) and (ex.get("findings") or ex.get("count")):
+            risky = True
+        if sid == "csl_screening" and ((ex.get("total") or 0) or any(
+                (p.get("sanctions") or {}).get("total") for p in ex.get("principal_screening", []))):
+            risky = True
+        if sid in ("web_profile", "web_directors") and ex.get("adverse_findings"):
+            risky = True
+        if sid == "parent_chain_sanctions":
+            risky = True
+        # COMPREHENSION: signals of an established, investment-grade entity.
+        if sid == "gleif_lei" and (ex.get("lei") or ex.get("legal_name")):
+            investment_grade = True
+        if ex.get("is_public") or ex.get("ticker") or ex.get("exchange") \
+                or (ex.get("scale") in ("GLOBAL_MAJOR", "LARGE")):
+            investment_grade = True
+    # Risk always wins (screen a risky name deeply, even a big one). Otherwise a
+    # comprehended investment-grade company → Haiku; unknown/opaque → Haiku too
+    # (thin evidence doesn't need Opus). Opus is reserved for risk.
+    choice = _MODEL if risky else _HAIKU
+    log.info("counterparty_llm: model route → %s (risky=%s investment_grade=%s)",
+             choice, risky, investment_grade)
+    return choice
 
 
 def opus_json(messages: list, *, system: str = None, max_tokens: int = 4096,
@@ -259,17 +311,32 @@ def _grounding_rating(md: str, ev: list, claims: list = None) -> dict:
     return {"rating": rating, "block": block}
 
 
-def synthesize_cir_markdown(run_id: str, *, persist: bool = True) -> dict:
-    """Opus writes the grounded CIR markdown from a run's evidence+claims and (by
-    default) persists it as a cir_markdown render. Returns {markdown, render_id,
-    evidence_ids_cited}. Runs on claude-opus-4-8 via the direct Messages API — the
-    working path (Foundry Agents can't run Claude)."""
+def synthesize_cir_markdown(run_id: str, *, persist: bool = True,
+                            model: str = None) -> dict:
+    """Write the grounded CIR markdown from a run's evidence+claims and (by
+    default) persist it. SAFEGUARDS: (1) skips the LLM entirely when evidence is
+    too thin — no spend on a run that would only produce an empty report;
+    (2) routes model (Haiku for clean/investment-grade, Opus where risk earns it),
+    unless `model` is forced; (3) records token usage so CIR spend is measured."""
     import sys
     sys.path.insert(0, os.path.dirname(__file__))
     import evidence_db
 
     ev = evidence_db.list_evidence(run_id)
     claims = evidence_db.list_claims(run_id)
+
+    # (1) EVIDENCE GATE — don't spend a single token synthesising near-nothing.
+    real = [e for e in ev if isinstance(e.get("extracted"), dict) and e.get("extracted")]
+    min_ev = int(os.environ.get("CIR_MIN_EVIDENCE", "2"))
+    if len(real) < min_ev:
+        log.warning("counterparty_llm: run %s — only %d real evidence rows (<%d); "
+                    "SKIP synthesis, NO LLM spend", run_id[:8], len(real), min_ev)
+        return {"markdown": None, "render_id": None, "skipped": True,
+                "reason": f"insufficient evidence ({len(real)} rows)"}
+
+    # (2) MODEL ROUTER — Opus only where risk signals warrant it.
+    mdl = model or _route_model(ev, claims)
+
     packed_ev = [{"E": (e.get("id") or "")[:8], "evidence_id": e.get("id"),
                   "source_id": e.get("source_id"), "extracted": e.get("extracted")}
                  for e in ev]
@@ -281,24 +348,28 @@ def synthesize_cir_markdown(run_id: str, *, persist: bool = True) -> dict:
         + "\n\nWrite the grounded CIR markdown now."
     )
     md = opus([{"role": "user", "content": user}], system=_CIR_MD_SYSTEM,
-              max_tokens=8192, timeout=300)
+              max_tokens=8192, timeout=300, model=mdl)
+    usage = dict(_last_usage)  # (3) tokens for THIS synthesis
     cited = [e.get("id") for e in ev]
-    # Deterministic grounding/hallucination audit, appended to the report.
     grade = _grounding_rating(md, ev, claims)
-    md = md + grade["block"]
+    md = md + grade["block"] + (
+        f"- Model used to generate this report: `{mdl}` "
+        f"(in={usage.get('input')}/out={usage.get('output')} tokens)\n")
     rating = grade["rating"]
     out = {"markdown": md, "evidence_ids_cited": cited, "render_id": None,
-           "grounding": rating}
+           "grounding": rating, "model": mdl, "usage": usage}
     if persist:
         out["render_id"] = evidence_db.save_render(
             run_id, render_type="cir_markdown",
-            payload={"markdown": md, "model": _MODEL,
-                     "synthesizer": "counterparty_llm_direct_opus",
-                     "evidence_ids_cited": cited, "grounding": rating})
-    log.info("counterparty_llm: run %s — Opus cir_markdown %d chars, render %s, "
-             "grounding %s%% (%s, phantom=%d)",
-             run_id[:8], len(md), out["render_id"], rating["grounding_score"],
-             rating["verdict"], rating["phantom_count"])
+            payload={"markdown": md, "model": mdl,
+                     "synthesizer": "counterparty_llm_direct",
+                     "evidence_ids_cited": cited, "grounding": rating,
+                     "usage": usage})
+    log.info("counterparty_llm: run %s — %s cir_markdown %d chars, render %s, "
+             "grounding %s%% (%s, phantom=%d), tokens in=%s out=%s",
+             run_id[:8], mdl, len(md), out["render_id"], rating["grounding_score"],
+             rating["verdict"], rating["phantom_count"],
+             usage.get("input"), usage.get("output"))
     return out
 
 

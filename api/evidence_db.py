@@ -129,6 +129,23 @@ def update_run_status(run_id: str, status: str, *, error: str = None):
         _exec("UPDATE cir_runs SET status=%s WHERE id=%s", (status, run_id))
 
 
+def reap_stuck_runs(minutes: int = 15) -> list:
+    """Fail any run wedged in a non-terminal state longer than `minutes` — the
+    safeguard against wedged extractions holding state / masking cost. Returns
+    the reaped run ids. Idempotent."""
+    conn = _get_conn()
+    try:
+        with conn, conn.cursor() as cur:
+            cur.execute(
+                "UPDATE cir_runs SET status='failed', completed_at=NOW(), "
+                "error=%s WHERE status NOT IN ('complete','failed') "
+                "AND started_at < NOW() - (%s * interval '1 minute') RETURNING id",
+                (f"reaped: stuck >{minutes}min", minutes))
+            return [r[0] for r in cur.fetchall()]
+    finally:
+        conn.close()
+
+
 def get_run(run_id: str) -> dict | None:
     row = _fetchone(
         """SELECT id, job_id, entity_name, country, status, started_at,

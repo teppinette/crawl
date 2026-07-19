@@ -5847,6 +5847,17 @@ def _person_photo_lookup(person_name: str, company_name: str,
         return {"found": False, "reason": "not_found", "note": str(e)[:200]}
 
 
+@app.post("/api/v1/admin/reap-stuck")
+async def reap_stuck_endpoint(minutes: int = 15, _key: str = Depends(verify_api_key)):
+    """Fail any CIR run wedged in a non-terminal state past `minutes` (default 15).
+    Safeguard: wedged extractions can't sit forever holding state / masking cost."""
+    import evidence_db as _edb
+    reaped = _edb.reap_stuck_runs(minutes)
+    log.info("reap-stuck: failed %d wedged runs (>%dmin): %s",
+             len(reaped), minutes, reaped)
+    return {"reaped": reaped, "count": len(reaped), "threshold_min": minutes}
+
+
 @app.post("/api/v1/person-photo")
 async def person_photo_endpoint(request: Request, _key: str = Depends(verify_api_key)):
     """Director/owner headshot with hard name-match gate.
