@@ -1142,7 +1142,20 @@ async def _orchestrate(run_id: str, country_code: str, entity_name: str,
                         attempt + 1, last[0], last[1])
         return last
 
-    status, err = await _run_extractor()
+    # HARD wall-clock cap on the whole extractor phase. _run_agent_sync polls in a
+    # loop, but a single blocking Foundry SDK call (no HTTP timeout) can hang past
+    # its own timeout and wedge the run in 'extracting' forever (observed: TATA,
+    # INTERTEK). asyncio.wait_for guarantees we leave extraction and proceed to
+    # synthesis no matter what hangs underneath (the orphaned executor thread is
+    # abandoned, not awaited). Cap = a bit over the 2x180s internal budget.
+    import os as _os
+    _EXTRACTOR_HARD_CAP_S = int(_os.environ.get("CIR_EXTRACTOR_CAP_S", "400"))
+    try:
+        status, err = await asyncio.wait_for(_run_extractor(), timeout=_EXTRACTOR_HARD_CAP_S)
+    except asyncio.TimeoutError:
+        status, err = ("HARD_TIMEOUT", f"extractor exceeded {_EXTRACTOR_HARD_CAP_S}s wall-clock")
+        log.warning("orchestrator: extractor HARD wall-clock timeout (%ds) — abandoning "
+                    "extractor, proceeding to synthesis", _EXTRACTOR_HARD_CAP_S)
     if not status.endswith("COMPLETED"):
         # BEST-EFFORT: the extractor produces structured claims, but the Opus
         # cir_markdown synthesizer reads the EVIDENCE directly and is grounded from
