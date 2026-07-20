@@ -5901,6 +5901,19 @@ async def search_backfill_endpoint(limit: int = 5000, _key: str = Depends(verify
     return search_index.backfill(limit)
 
 
+@app.post("/api/v1/admin/resynthesize")
+async def resynthesize_endpoint(run_id: str, _key: str = Depends(verify_api_key)):
+    """Re-run CIR synthesis on a run's EXISTING evidence (no re-collection) — applies
+    the current prompt + grounding rating and re-promotes to Cosmos. One Opus call.
+    Use to re-grade near-miss runs after a synthesis-prompt change."""
+    import counterparty_llm
+    out = counterparty_llm.synthesize_cir_markdown(run_id, persist=True)
+    g = (out or {}).get("grounding") or {}
+    return {"run_id": run_id, "skipped": out.get("skipped", False),
+            "grounding_score": g.get("grounding_score"), "verdict": g.get("verdict"),
+            "phantom_count": g.get("phantom_count"), "model": out.get("model")}
+
+
 @app.post("/api/v1/admin/cosmos-backfill")
 async def cosmos_backfill_endpoint(limit: int = 2000, _key: str = Depends(verify_api_key)):
     """Rebuild the Cosmos derived per-entity view from Postgres (the source of
