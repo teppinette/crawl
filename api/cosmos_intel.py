@@ -197,3 +197,43 @@ def get_entity(name: str, country: str) -> dict | None:
         return cont.read_item(item=ek, partition_key=ek)
     except Exception:
         return None
+
+
+def find_entity(name: str, country: str = "") -> dict | None:
+    """Fuzzy lookup for CONSUMERS (copapllm, fraud, mobile) that don't know the
+    exact stored country/name. Tries the exact key first; then a normalized-name
+    query across partitions (optionally scoped by country), preferring a record
+    that has a SERVED (quality-gated) CIR and, among those, the most recently
+    updated. Returns the whole doc, or None."""
+    cont = _container()
+    if cont is None:
+        return None
+    # 1) exact hit is cheapest.
+    if country:
+        exact = get_entity(name, country)
+        if exact:
+            return exact
+    # 2) normalized-name contains-query.
+    try:
+        n = unicodedata.normalize("NFKC", (name or "").strip().lower())
+        n = re.sub(r"[^\w\s&.-]", "", n)
+        n = re.sub(r"\s+", " ", n).strip()
+        if not n:
+            return None
+        cc = (country or "").lower()[:2]
+        params = [{"name": "@n", "value": n}]
+        where = "CONTAINS(c.entity_key, @n)"
+        if cc:
+            where = f"STARTSWITH(c.entity_key, @cc) AND {where}"
+            params.append({"name": "@cc", "value": f"{cc}::"})
+        q = (f"SELECT * FROM c WHERE {where} "
+             "ORDER BY c.updated_at DESC")
+        rows = list(cont.query_items(query=q, parameters=params,
+                                     enable_cross_partition_query=True))
+        if not rows:
+            return None
+        # Prefer a served (trustworthy) record; else most-recent.
+        served = [r for r in rows if r.get("served_run_id")]
+        return (served or rows)[0]
+    except Exception:
+        return None

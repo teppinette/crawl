@@ -5855,7 +5855,9 @@ async def entity_intelligence_endpoint(entity: str, country: str = "",
     Returns the served (grounded, quality-gated) CIR + risk + run history from
     Cosmos. 'served_*' is only present when a grounded, phantom-free CIR exists."""
     import cosmos_intel
-    doc = cosmos_intel.get_entity(entity, country)
+    # Fuzzy find: consumers rarely know the exact stored country/name, so match
+    # on the normalized name and prefer a served (quality-gated) record.
+    doc = cosmos_intel.find_entity(entity, country)
     if not doc:
         return {"entity": entity, "country": country, "found": False,
                 "note": "no CIR intelligence on record for this counterparty yet"}
