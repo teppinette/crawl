@@ -5847,6 +5847,38 @@ def _person_photo_lookup(person_name: str, company_name: str,
         return {"found": False, "reason": "not_found", "note": str(e)[:200]}
 
 
+@app.get("/api/v1/intelligence")
+async def entity_intelligence_endpoint(entity: str, country: str = "",
+                                       _key: str = Depends(verify_api_key)):
+    """The SHARED counterparty brain as a service — the ONE read the exec chat
+    (copapllm) + fraud detector consume so all three agree on a counterparty.
+    Returns the served (grounded, quality-gated) CIR + risk + run history from
+    Cosmos. 'served_*' is only present when a grounded, phantom-free CIR exists."""
+    import cosmos_intel
+    doc = cosmos_intel.get_entity(entity, country)
+    if not doc:
+        return {"entity": entity, "country": country, "found": False,
+                "note": "no CIR intelligence on record for this counterparty yet"}
+    # Trim to a consumable summary (don't ship the full markdown by default).
+    g = doc.get("served_grounding") or doc.get("latest_grounding") or {}
+    return {
+        "entity": doc.get("entity_name"), "entity_key": doc.get("entity_key"),
+        "country": doc.get("country"), "found": True,
+        "confidence": doc.get("confidence"),
+        "served_run_id": doc.get("served_run_id"),
+        "served_at": doc.get("served_at"),
+        "grounding_score": g.get("grounding_score"),
+        "verdict": g.get("verdict"),
+        "model": doc.get("served_model") or doc.get("latest_model"),
+        "run_count": doc.get("run_count"),
+        "report_markdown": doc.get("served_markdown") or doc.get("latest_markdown"),
+        "history": [{"run_id": r.get("run_id"), "at": r.get("at"),
+                     "grounding_score": r.get("grounding_score"),
+                     "passed_quality_gate": r.get("passed_quality_gate")}
+                    for r in (doc.get("runs") or [])[:10]],
+    }
+
+
 @app.post("/api/v1/admin/cosmos-backfill")
 async def cosmos_backfill_endpoint(limit: int = 2000, _key: str = Depends(verify_api_key)):
     """Rebuild the Cosmos derived per-entity view from Postgres (the source of
