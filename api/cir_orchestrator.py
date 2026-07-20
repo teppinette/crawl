@@ -31,6 +31,11 @@ import evidence_db
 log = logging.getLogger("crawl-gateway")
 router = APIRouter(prefix="/api/v1", tags=["cir"])
 
+# Hold references to fire-and-forget background enrichment tasks so the event
+# loop doesn't garbage-collect them mid-run (fast-path backgrounds the extractor
+# + structured synthesizers after the report is served).
+_BG_TASKS: set = set()
+
 _ROOT = Path(__file__).resolve().parents[1]
 _AGENTS_DIR = _ROOT / "agents"
 _PROJECT_ENDPOINT = "https://copapfoundry-resource.services.ai.azure.com/api/projects/copapfoundry"
@@ -1192,107 +1197,15 @@ async def _orchestrate(run_id: str, country_code: str, entity_name: str,
     except Exception:
         log.exception("orchestrator: 5-angle coverage gate failed (non-fatal)")
 
-    # PHASE 2: claim extractor
-    extractor_id = _load_agent_id("claim_extractor")
-    if not extractor_id:
-        evidence_db.update_run_status(run_id, "failed", error="no deployed claim_extractor")
-        return
-    instr_extract = (
-        f"Extract claims for run_id='{run_id}'. Load the evidence with "
-        f"list_run_evidence(run_id='{run_id}'), persist each typed claim via "
-        f"add_claim(run_id='{run_id}'), then call extractor_complete(run_id='{run_id}')."
-    )
-    async def _run_extractor():
-        # Fail FAST (2x180s, not 3x300s) so a choking gpt-4.1-mini extractor can't
-        # stall the run for 15 minutes. Retry on non-COMPLETED status AND exceptions.
-        last = ("UNKNOWN", None)
-        for attempt in range(2):
-            try:
-                local_client = _agents_client()
-                last = await loop.run_in_executor(
-                    None, _run_agent_sync, local_client, extractor_id, instr_extract, 180,
-                )
-            except Exception as e:
-                last = ("EXCEPTION", str(e)[:200])
-                log.warning("orchestrator: extractor attempt %d/2 raised: %s; retrying",
-                            attempt + 1, last[1])
-                continue
-            if str(last[0]).upper().endswith("COMPLETED"):
-                return last
-            log.warning("orchestrator: extractor attempt %d/2 -> %s (%s); retrying",
-                        attempt + 1, last[0], last[1])
-        return last
-
-    # HARD wall-clock cap on the whole extractor phase. _run_agent_sync polls in a
-    # loop, but a single blocking Foundry SDK call (no HTTP timeout) can hang past
-    # its own timeout and wedge the run in 'extracting' forever (observed: TATA,
-    # INTERTEK). asyncio.wait_for guarantees we leave extraction and proceed to
-    # synthesis no matter what hangs underneath (the orphaned executor thread is
-    # abandoned, not awaited). Cap = a bit over the 2x180s internal budget.
+    # ── FAST PATH: report first, background the rest ──────────────────────────
+    # The Opus cir_markdown (the report the tab renders) reads the EVIDENCE pool
+    # DIRECTLY — it needs neither the extractor's claims nor the 3 structured
+    # Foundry synthesizers. So synthesise the report + mark the run complete ASAP
+    # (that is the critical path), then run the extractor + structured renders
+    # (banker_audit_pack / ubo_map / sanctions_screening) in the BACKGROUND — they
+    # fill in behind the report. Cuts a normal CIR from ~5.7min to ~2-3min.
     import os as _os
     _EXTRACTOR_HARD_CAP_S = int(_os.environ.get("CIR_EXTRACTOR_CAP_S", "150"))
-    try:
-        status, err = await asyncio.wait_for(_run_extractor(), timeout=_EXTRACTOR_HARD_CAP_S)
-    except asyncio.TimeoutError:
-        status, err = ("HARD_TIMEOUT", f"extractor exceeded {_EXTRACTOR_HARD_CAP_S}s wall-clock")
-        log.warning("orchestrator: extractor HARD wall-clock timeout (%ds) — abandoning "
-                    "extractor, proceeding to synthesis", _EXTRACTOR_HARD_CAP_S)
-    if not status.endswith("COMPLETED"):
-        # BEST-EFFORT: the extractor produces structured claims, but the Opus
-        # cir_markdown synthesizer reads the EVIDENCE directly and is grounded from
-        # it — so a failed/slow extractor must NOT kill the run. Log and proceed to
-        # synthesis with whatever claims exist (possibly zero).
-        log.warning("orchestrator: extractor %s (%s) — proceeding to synthesis "
-                    "(Opus reads evidence directly)", status, err or "")
-
-    # PHASE 3: synthesizers, in parallel over the same evidence pool.
-    # cir_markdown (the primary banker narrative) is authored by the CounterpartyLLM
-    # Opus brain via the DIRECT Anthropic Messages API (Foundry Agents cannot RUN
-    # Claude — invalid_deployment on every api-version; verified 2026-07-18). The
-    # other 3 render_types stay gpt-4.1 Foundry agents.
-    synth_specs = [
-        ("sanctions_screening_synthesizer", "sanctions_screening",
-         f"Produce sanctions screening for run_id='{run_id}'. Filter the "
-         f"evidence pool to sanctions-tier sources only; emit HIT|CLEAN|ERROR "
-         f"structured payload with hits/clean_sources/errors arrays. Call "
-         f"save_render(run_id='{run_id}', render_type='sanctions_screening', ...) "
-         f"then synthesizer_complete(run_id='{run_id}')."),
-        ("ubo_map_synthesizer", "ubo_map",
-         f"Build the UBO map for run_id='{run_id}'. Load evidence + claims, "
-         f"identify nodes (entities + people) and edges (ownership/director "
-         f"relationships) with strength weighted by source tier. Handle "
-         f"ownership_undisclosed cases (e.g. PSC exempt). Call "
-         f"save_render(run_id='{run_id}', render_type='ubo_map', ...) "
-         f"then synthesizer_complete(run_id='{run_id}')."),
-        ("banker_audit_pack_synthesizer", "banker_audit_pack",
-         f"Produce the banker audit pack for run_id='{run_id}'. Filter "
-         f"evidence to PRIMARY_GOVERNMENT and OFFICIAL_LIST tiers ONLY — drop "
-         f"all other tiers. Emit structured pack (identity / ownership / "
-         f"officers / sanctions / source_coverage). Call "
-         f"save_render(run_id='{run_id}', render_type='banker_audit_pack', ...) "
-         f"then synthesizer_complete(run_id='{run_id}')."),
-    ]
-
-    # Resolve agent IDs; skip any not yet deployed
-    synth_tasks = []
-    for name, rtype, instr in synth_specs:
-        aid = _load_agent_id(name)
-        if not aid:
-            log.warning("orchestrator: %s not deployed, skipping its render", name)
-            continue
-        # Each synthesizer needs its own client (the AgentsClient is not
-        # known to be thread-safe; cheap to construct)
-        synth_tasks.append((rtype, aid, instr))
-
-    # (cir_markdown runs on Opus regardless of the 3 Foundry synth agents below,
-    # so an empty synth_tasks does not by itself fail the run.)
-
-    # Each synthesizer RETRIES until its render actually persists — a COMPLETED
-    # status is not proof (gpt-4.1-mini can end a run without ever firing
-    # save_render, which produced runs marked 'complete' with an empty /renders).
-    # Success = the render row is present. cir_markdown is the primary banker
-    # narrative, so it is REQUIRED and gets an extra attempt.
-    REQUIRED_RENDER = "cir_markdown"
 
     def _render_saved(rtype: str) -> bool:
         try:
@@ -1301,29 +1214,10 @@ async def _orchestrate(run_id: str, country_code: str, entity_name: str,
         except Exception:
             return False
 
-    async def _run_synth(rtype: str, aid: str, instr: str, attempts: int):
-        last = ("UNKNOWN", None)
-        for attempt in range(attempts):
-            try:
-                local_client = _agents_client()
-                last = await loop.run_in_executor(
-                    None, _run_agent_sync, local_client, aid, instr, 600,
-                )
-            except Exception as e:
-                last = ("EXCEPTION", str(e)[:200])
-                log.warning("orchestrator: synth %s attempt %d/%d raised: %s; retrying",
-                            rtype, attempt + 1, attempts, last[1])
-                continue
-            if _render_saved(rtype):
-                return (rtype, "SAVED", None)
-            log.warning("orchestrator: synth %s attempt %d/%d -> %s (%s), no render "
-                        "saved; retrying", rtype, attempt + 1, attempts, last[0], last[1])
-        return (rtype, "NO_RENDER", last[1])
-
     async def _run_opus_cir_markdown(attempts: int = 3):
-        # cir_markdown authored by claude-opus-4-8 via the direct Anthropic API
-        # (counterparty_llm). Grounded/cited synthesis; we persist the render in
-        # code, so success == the render row exists. Retry on transport error.
+        # cir_markdown authored by claude-opus-4-8 via the direct Anthropic API.
+        # Grounded/cited synthesis from EVIDENCE directly; persisted in code, so
+        # success == the render row exists. Retry on transport error.
         import counterparty_llm
         last_err = None
         for attempt in range(attempts):
@@ -1341,30 +1235,94 @@ async def _orchestrate(run_id: str, country_code: str, entity_name: str,
                         attempt + 1, attempts)
         return ("cir_markdown", "NO_RENDER", last_err)
 
-    results = await asyncio.gather(
-        _run_opus_cir_markdown(3),
-        *[_run_synth(rt, aid, instr, 2) for rt, aid, instr in synth_tasks])
-
-    saved_types = {rt for rt, s, e in results if s == "SAVED"}
-    failed = [(rt, s, e) for rt, s, e in results if s != "SAVED"]
-
-    # REQUIRE cir_markdown (now Opus-authored): if it did not persist after retries,
-    # fail the run (retryable) rather than complete without the primary narrative.
-    if REQUIRED_RENDER not in saved_types:
+    # 1) THE REPORT — critical path ends here.
+    try:
+        evidence_db.update_run_status(run_id, "synthesizing")
+    except Exception:
+        pass
+    opus_result = await _run_opus_cir_markdown(3)
+    if opus_result[1] != "SAVED":
         evidence_db.update_run_status(run_id, "failed",
-            error=f"required render '{REQUIRED_RENDER}' not produced after retries: {failed}")
+            error=f"required render 'cir_markdown' not produced after retries: {opus_result}")
         return
-    if not saved_types:
-        evidence_db.update_run_status(run_id, "failed",
-            error=f"no synthesizer produced a render: {failed}")
-        return
-    if failed:
-        log.warning("orchestrator: %d synthesizer(s) produced no render: %s",
-                    len(failed), failed)
-
     evidence_db.update_run_status(run_id, "complete")
-    log.info("orchestrator: run %s complete, %d of %d renders produced",
-             run_id[:8], len(saved_types), len(results))
+    # Re-upsert Cosmos now that status is 'complete' so the quality gate can PROMOTE
+    # the report to the served record (the in-synth upsert saw status='synthesizing').
+    try:
+        import cosmos_intel
+        cosmos_intel.upsert_from_run(run_id)
+    except Exception:
+        pass
+    log.info("orchestrator: run %s REPORT COMPLETE (fast path); backgrounding "
+             "extractor + structured renders", run_id[:8])
+
+    # 2) BACKGROUND enrichment: extractor (claims) then the 3 structured Foundry
+    #    synthesizers. The run is already 'complete'; these enrich the render set
+    #    (banker_audit_pack / ubo_map / sanctions_screening) behind the report.
+    async def _background_enrich():
+        try:
+            extractor_id = _load_agent_id("claim_extractor")
+            if extractor_id:
+                instr_extract = (
+                    f"Extract claims for run_id='{run_id}'. Load the evidence with "
+                    f"list_run_evidence(run_id='{run_id}'), persist each typed claim via "
+                    f"add_claim(run_id='{run_id}'), then call extractor_complete(run_id='{run_id}').")
+
+                async def _run_extractor():
+                    last = ("UNKNOWN", None)
+                    for attempt in range(2):
+                        try:
+                            last = await loop.run_in_executor(
+                                None, _run_agent_sync, _agents_client(), extractor_id,
+                                instr_extract, 180)
+                        except Exception as e:
+                            last = ("EXCEPTION", str(e)[:200])
+                            continue
+                        if str(last[0]).upper().endswith("COMPLETED"):
+                            return last
+                    return last
+                try:
+                    await asyncio.wait_for(_run_extractor(), timeout=_EXTRACTOR_HARD_CAP_S)
+                except Exception:
+                    log.warning("orchestrator: bg extractor timed out/failed (non-fatal)")
+
+            synth_specs = [
+                ("sanctions_screening_synthesizer", "sanctions_screening",
+                 f"Produce sanctions screening for run_id='{run_id}'. Filter the "
+                 f"evidence pool to sanctions-tier sources only; emit HIT|CLEAN|ERROR "
+                 f"structured payload. Call save_render(run_id='{run_id}', "
+                 f"render_type='sanctions_screening', ...) then synthesizer_complete(run_id='{run_id}')."),
+                ("ubo_map_synthesizer", "ubo_map",
+                 f"Build the UBO map for run_id='{run_id}'. Load evidence + claims, "
+                 f"identify nodes + edges weighted by source tier. Call save_render("
+                 f"run_id='{run_id}', render_type='ubo_map', ...) then synthesizer_complete(run_id='{run_id}')."),
+                ("banker_audit_pack_synthesizer", "banker_audit_pack",
+                 f"Produce the banker audit pack for run_id='{run_id}'. PRIMARY_GOVERNMENT "
+                 f"and OFFICIAL_LIST tiers ONLY. Call save_render(run_id='{run_id}', "
+                 f"render_type='banker_audit_pack', ...) then synthesizer_complete(run_id='{run_id}')."),
+            ]
+            synth_tasks = [(rt, _load_agent_id(nm), instr)
+                           for nm, rt, instr in synth_specs if _load_agent_id(nm)]
+
+            async def _run_synth(rtype, aid, instr, attempts):
+                for attempt in range(attempts):
+                    try:
+                        await loop.run_in_executor(
+                            None, _run_agent_sync, _agents_client(), aid, instr, 600)
+                    except Exception:
+                        continue
+                    if _render_saved(rtype):
+                        return
+            if synth_tasks:
+                await asyncio.gather(
+                    *[_run_synth(rt, aid, instr, 2) for rt, aid, instr in synth_tasks])
+            log.info("orchestrator: run %s background enrichment done", run_id[:8])
+        except Exception:
+            log.exception("orchestrator: background enrichment failed (non-fatal)")
+
+    _t = asyncio.create_task(_background_enrich())
+    _BG_TASKS.add(_t)
+    _t.add_done_callback(_BG_TASKS.discard)
 
 
 class CIRRunRequest(BaseModel):
