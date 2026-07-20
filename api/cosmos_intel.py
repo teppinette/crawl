@@ -85,13 +85,20 @@ def upsert_from_run(run_id: str) -> bool:
         if not name:
             return False
 
-        # Latest cir_markdown render payload (markdown + grounding + model).
+        # The cir_markdown render that actually holds the grounded REPORT.
+        # NOTE: render_type='cir_markdown' is also used for input-capture shells
+        # ({requested_model, input_payload}, no report text) — so we must NOT grab
+        # the first one; we select the newest render whose payload has real
+        # `markdown` (preferring one that also carries `grounding`).
         payload = {}
         try:
-            for r in (evidence_db.list_renders(run_id) or []):
-                if r.get("render_type") == "cir_markdown":
-                    payload = r.get("payload") or {}
-                    break
+            cands = [r for r in (evidence_db.list_renders(run_id) or [])
+                     if r.get("render_type") == "cir_markdown"
+                     and (r.get("payload") or {}).get("markdown")]
+            cands.sort(key=lambda r: ((r.get("payload") or {}).get("grounding") is not None,
+                                      str(r.get("created_at") or "")))
+            if cands:
+                payload = cands[-1].get("payload") or {}
         except Exception:
             pass
 
