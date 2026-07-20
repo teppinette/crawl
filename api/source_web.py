@@ -113,6 +113,45 @@ def neutralize_injection(text: str) -> str:
     return _INJECTION_PATTERNS.sub(" [redacted: possible-injection] ", text)
 
 
+_CS_EP = (os.environ.get("CONTENT_SAFETY_ENDPOINT") or "").rstrip("/")
+_CS_KEY = os.environ.get("CONTENT_SAFETY_KEY") or ""
+
+
+def shield_prompt(documents: list, timeout: int = 8) -> list:
+    """Azure Content Safety **Prompt Shields** — managed detection of prompt-
+    injection / jailbreak attempts embedded in UNTRUSTED crawled evidence, layered
+    ON TOP of the regex neutraliser above. Returns a list[bool] (attackDetected,
+    one per input document, order-preserved). Fail-OPEN: returns [] when the
+    service isn't configured or is unreachable, so the CIR never depends on it —
+    the regex neutraliser + system-prompt hierarchy remain the floor."""
+    if not (_CS_EP and _CS_KEY and documents):
+        return []
+    import json as _json
+    out: list = []
+    # API caps ~10 docs/call and per-doc length; batch conservatively.
+    for i in range(0, len(documents), 10):
+        chunk = [str(d)[:9000] for d in documents[i:i + 10]]
+        body = {"userPrompt": "Analyze the following counterparty evidence.",
+                "documents": chunk}
+        try:
+            r = requests.post(
+                f"{_CS_EP}/contentsafety/text:shieldPrompt?api-version=2024-09-01",
+                json=body, timeout=timeout,
+                headers={"Ocp-Apim-Subscription-Key": _CS_KEY,
+                         "Content-Type": "application/json"})
+            if r.status_code >= 400:
+                out.extend([False] * len(chunk))
+                continue
+            da = (r.json() or {}).get("documentsAnalysis") or []
+            flags = [bool(a.get("attackDetected")) for a in da]
+            # pad if the service returned fewer analyses than docs
+            flags += [False] * (len(chunk) - len(flags))
+            out.extend(flags[:len(chunk)])
+        except Exception:
+            out.extend([False] * len(chunk))
+    return out
+
+
 def searxng_images(query: str, max_results: int = 8) -> list[dict]:
     """Free image search via SearXNG (categories=images). Returns
     [{img_src, source_url, title}] — the direct image URL plus the page it was
