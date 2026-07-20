@@ -105,30 +105,57 @@ def upsert_from_run(run_id: str) -> bool:
                    "runs": []}
 
         g = payload.get("grounding") or {}
+        gs = g.get("grounding_score")
+        phantom = g.get("phantom_count")
+        min_g = float(os.environ.get("COSMOS_MIN_GROUNDING", "90"))
+        # ── QUALITY GATE ──────────────────────────────────────────────────────
+        # Cosmos is the shared brain the 3 LLMs read — a hallucinated or thin CIR
+        # would poison everything downstream. So ONLY a complete, grounded
+        # (>= min), hallucination-free (0 phantom citations) CIR is PROMOTED to
+        # the SERVED record. Anything else is recorded in history but quarantined
+        # — never served as trustworthy intelligence.
+        passed = bool(run.get("status") == "complete" and gs is not None
+                      and phantom == 0 and float(gs) >= min_g)
         run_entry = {
             "run_id": run_id, "at": now, "status": run.get("status"),
             "model": payload.get("model"),
-            "grounding_score": g.get("grounding_score"),
-            "verdict": g.get("verdict"),
+            "grounding_score": gs, "verdict": g.get("verdict"),
+            "phantom_count": phantom,
             "evidence_count": run.get("evidence_count"),
             "claim_count": run.get("claim_count"),
+            "passed_quality_gate": passed,
         }
-        # De-dupe by run_id, newest first, keep last 20.
         prior = [r for r in doc.get("runs", []) if r.get("run_id") != run_id]
         doc["runs"] = ([run_entry] + prior)[:20]
-        doc.update({
-            "updated_at": now, "run_count": len(doc["runs"]),
-            "latest_run_id": run_id, "latest_status": run.get("status"),
-            "latest_model": payload.get("model"),
-            "latest_grounding": g,
-            "latest_markdown": payload.get("markdown"),
-            "evidence_count": run.get("evidence_count"),
-            "claim_count": run.get("claim_count"),
-            "entity_name": name,
-        })
+        doc.update({"updated_at": now, "run_count": len(doc["runs"]),
+                    "entity_name": name,
+                    # latest_* = most recent attempt (any quality), for reference.
+                    "latest_run_id": run_id, "latest_status": run.get("status"),
+                    "latest_grounding": g})
+        if passed:
+            # PROMOTE — this is what the LLMs actually read.
+            doc.update({
+                "served_run_id": run_id, "served_at": now,
+                "served_markdown": payload.get("markdown"),
+                "served_grounding": g, "served_grounding_score": gs,
+                "served_verdict": g.get("verdict"), "served_model": payload.get("model"),
+                "evidence_count": run.get("evidence_count"),
+                "claim_count": run.get("claim_count"),
+                "confidence": "grounded",
+                # keep latest_markdown in sync only when trustworthy
+                "latest_markdown": payload.get("markdown"),
+                "latest_model": payload.get("model"),
+            })
+        else:
+            # QUARANTINE — do not overwrite the served (trustworthy) record.
+            doc.setdefault("served_run_id", None)
+            doc["confidence"] = ("grounded" if doc.get("served_run_id")
+                                 else ("review" if gs is not None else "ungraded"))
+            doc.setdefault("served_markdown", None)
         cont.upsert_item(doc)
-        log.info("cosmos: accumulated CIR for %s (run %s; %d runs on record)",
-                 ek, run_id[:8], len(doc["runs"]))
+        log.info("cosmos: %s run %s grounding=%s phantom=%s -> %s (confidence=%s)",
+                 ek, run_id[:8], gs, phantom, "PROMOTED" if passed else "quarantined",
+                 doc.get("confidence"))
         return True
     except Exception as e:
         log.warning("cosmos upsert_from_run failed for %s: %s",

@@ -606,14 +606,30 @@ def _collect_exec_photos(run_id, cc, entity_name):
 
 
 def _mdm_governed_persist(run_id, cc, entity_name):
-    """Wire MDM into the CIR: pull OUR governed data about this counterparty
-    (are they our customer/supplier? role, category, trade linkage/history) from
-    the MDM m2m API and persist it as INTERNAL-tier evidence, so the CIR is
-    grounded in OUR relationship, not just the open web. MDM is the source of
-    truth — we CONSUME it, never re-derive. Fail-soft; MDM returns nothing for
-    entities we don't trade with (that's fine)."""
+    """Wire MDM into the CIR: pull OUR governed relationship with this counterparty
+    (role customer/supplier, trade linkage/history) from the MDM m2m API and persist
+    it as INTERNAL-tier evidence, so the CIR is grounded in OUR system of record, not
+    just the open web. Consume MDM, never re-derive. Fail-soft.
+
+    MDM counterparty endpoints are keyed by CpID (NOT name — name→CpID needs CieTrade
+    DB access the gateway doesn't have). So we use the CpID that onboarding passes in
+    the run meta (meta.cpid). No CpID = external entity we don't trade with = skip."""
     import os as _os
     import requests as _rq
+    # CpID from the run's meta (set by /cir/run when onboarding provides it).
+    cpid = ""
+    try:
+        meta = (evidence_db.get_run(run_id) or {}).get("meta") or {}
+        if isinstance(meta, str):
+            import json as _json
+            meta = _json.loads(meta) if meta.strip() else {}
+        cpid = str(meta.get("cpid") or "").strip()
+    except Exception:
+        cpid = ""
+    if not cpid:
+        log.info("orchestrator: no cpid in run meta — MDM grounding skipped "
+                 "(external entity / onboarding didn't pass a CpID)")
+        return
     token = _os.environ.get("MDM_M2M_TOKEN", "")
     if not token:
         try:
@@ -622,13 +638,11 @@ def _mdm_governed_persist(run_id, cc, entity_name):
         except Exception:
             token = ""
     if not token:
-        log.info("orchestrator: no MDM token — skipping MDM grounding")
         return
     base = _os.environ.get("MDM_BASE", "https://copapmasterdata.azurewebsites.net").rstrip("/")
     hdr = {"X-MDM-Token": token, "Content-Type": "application/json"}
-    body = {"name": entity_name, "country": (cc or "").upper()}
 
-    def _post(path):
+    def _post(path, body):
         try:
             r = _rq.post(f"{base}/api/m2m/{path}", headers=hdr, json=body, timeout=20)
             if r.status_code != 200:
@@ -640,23 +654,26 @@ def _mdm_governed_persist(run_id, cc, entity_name):
             return None
 
     governed = {}
-    for key, path in (("resolve", "resolve"), ("counterparty_role", "counterparty-role"),
-                      ("entity_category", "entity-category"), ("trade_linkage", "trade-linkage")):
-        d = _post(path)
-        if d:
-            governed[key] = d
+    # counterparty-role is the counterparty-keyed governed endpoint: returns role
+    # (Customer/Supplier/Both/Freight/Agent) from ACTUAL trade activity + system
+    # presence (in_cietrade/in_intacct) + canonical name + book. Verified contract.
+    role = _post("counterparty-role", {"cpids": [cpid]})
+    row = (role or {}).get(cpid) if isinstance(role, dict) else None
+    if isinstance(row, dict):
+        governed["counterparty_role"] = row
     if not governed:
-        return  # MDM doesn't know this counterparty (external entity) — fine
+        return
     try:
         evidence_db.add_evidence(
             run_id, source_id="mdm_governed",
-            source_url=f"{base}/api/m2m/*", source_query=entity_name, status_code=200,
-            extracted={**governed, "source_tier": "INTERNAL_GOVERNED",
+            source_url=f"{base}/api/m2m/*", source_query=f"cpid={cpid}", status_code=200,
+            extracted={**governed, "cpid": cpid, "source_tier": "INTERNAL_GOVERNED",
                        "note": "OUR governed relationship with this counterparty per MDM "
-                               "(role/category/trade-linkage) — internal system of record, "
-                               "consume don't re-derive. Present ONLY if we transact with them."},
-            language_original="en", parser_version="mdm_governed_v1")
-        log.info("orchestrator: MDM grounding — %s: %s", run_id[:8], list(governed.keys()))
+                               "(role from actual trade activity + trade linkage) — internal "
+                               "system of record, CieTrade-authoritative, consume don't re-derive."},
+            language_original="en", parser_version="mdm_governed_v2")
+        log.info("orchestrator: MDM grounding — %s cpid=%s: %s",
+                 run_id[:8], cpid, list(governed.keys()))
     except Exception as e:
         log.warning("orchestrator: MDM grounding persist failed: %s", e)
 
@@ -1359,6 +1376,10 @@ class CIRRunRequest(BaseModel):
                     "The China registry (Tianyancha) is indexed by Chinese name, so "
                     "a Latin/English entity_name cannot match it — pass this to "
                     "resolve deterministically (identifiers-first).")
+    cpid: Optional[str] = Field(None, max_length=50,
+        description="Optional CieTrade CpID. When onboarding passes it, the CIR "
+                    "grounds on OUR governed relationship via MDM (role, trade "
+                    "linkage) — MDM counterparty data is keyed by CpID, not name.")
 
 
 class CIRRunResponse(BaseModel):
@@ -1381,7 +1402,7 @@ async def cir_run(req: CIRRunRequest):
     run_id = evidence_db.create_run(
         entity_name=req.entity_name, country=cc,
         meta={"source": "cir_orchestrator", "registration_id": req.registration_id or "",
-              "cn_name": req.cn_name or ""},
+              "cn_name": req.cn_name or "", "cpid": (req.cpid or "").strip()},
     )
     # Kick off background orchestration — caller doesn't wait
     asyncio.create_task(_orchestrate(
