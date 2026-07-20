@@ -605,11 +605,74 @@ def _collect_exec_photos(run_id, cc, entity_name):
         log.warning("orchestrator: exec photo persist failed: %s", e)
 
 
+def _mdm_governed_persist(run_id, cc, entity_name):
+    """Wire MDM into the CIR: pull OUR governed data about this counterparty
+    (are they our customer/supplier? role, category, trade linkage/history) from
+    the MDM m2m API and persist it as INTERNAL-tier evidence, so the CIR is
+    grounded in OUR relationship, not just the open web. MDM is the source of
+    truth — we CONSUME it, never re-derive. Fail-soft; MDM returns nothing for
+    entities we don't trade with (that's fine)."""
+    import os as _os
+    import requests as _rq
+    token = _os.environ.get("MDM_M2M_TOKEN", "")
+    if not token:
+        try:
+            from keyvault import get_secret
+            token = get_secret("MdmM2mToken") or ""
+        except Exception:
+            token = ""
+    if not token:
+        log.info("orchestrator: no MDM token — skipping MDM grounding")
+        return
+    base = _os.environ.get("MDM_BASE", "https://copapmasterdata.azurewebsites.net").rstrip("/")
+    hdr = {"X-MDM-Token": token, "Content-Type": "application/json"}
+    body = {"name": entity_name, "country": (cc or "").upper()}
+
+    def _post(path):
+        try:
+            r = _rq.post(f"{base}/api/m2m/{path}", headers=hdr, json=body, timeout=20)
+            if r.status_code != 200:
+                return None
+            j = r.json()
+            data = j.get("data", j) if isinstance(j, dict) else j
+            return data if data else None
+        except Exception:
+            return None
+
+    governed = {}
+    for key, path in (("resolve", "resolve"), ("counterparty_role", "counterparty-role"),
+                      ("entity_category", "entity-category"), ("trade_linkage", "trade-linkage")):
+        d = _post(path)
+        if d:
+            governed[key] = d
+    if not governed:
+        return  # MDM doesn't know this counterparty (external entity) — fine
+    try:
+        evidence_db.add_evidence(
+            run_id, source_id="mdm_governed",
+            source_url=f"{base}/api/m2m/*", source_query=entity_name, status_code=200,
+            extracted={**governed, "source_tier": "INTERNAL_GOVERNED",
+                       "note": "OUR governed relationship with this counterparty per MDM "
+                               "(role/category/trade-linkage) — internal system of record, "
+                               "consume don't re-derive. Present ONLY if we transact with them."},
+            language_original="en", parser_version="mdm_governed_v1")
+        log.info("orchestrator: MDM grounding — %s: %s", run_id[:8], list(governed.keys()))
+    except Exception as e:
+        log.warning("orchestrator: MDM grounding persist failed: %s", e)
+
+
 def _enforce_five_angle_coverage(run_id, cc, entity_name, registration_id=""):
     """MANDATORY 5-angle gate. Fill any angle the collector phase left empty via a
     server-side source call, then persist a `coverage_summary` render documenting
     which of the five angles were investigated. Never raises."""
-    # Deep adverse-media search FIRST — the decision-driver (litigation/enforcement/
+    # MDM grounding FIRST — pull OUR governed relationship (are they our customer/
+    # supplier? exposure? trade history?) so the CIR is grounded in our own system
+    # of record, not just the open web. Consume MDM, never re-derive.
+    try:
+        _mdm_governed_persist(run_id, cc, entity_name)
+    except Exception:
+        log.exception("orchestrator: MDM grounding failed (non-fatal)")
+    # Deep adverse-media search — the decision-driver (litigation/enforcement/
     # sanctions/PEP). Runs every CIR, not just when the angle is empty.
     try:
         _adverse_deep_persist(run_id, cc, entity_name)

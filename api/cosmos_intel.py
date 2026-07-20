@@ -136,6 +136,30 @@ def upsert_from_run(run_id: str) -> bool:
         return False
 
 
+def backfill_all(limit: int = 2000) -> dict:
+    """Rebuild the Cosmos DERIVED view from Postgres (the source of truth): upsert
+    every completed run. This is the whole point of 'Cosmos is derived, not a
+    second truth' — it can always be rebuilt from crawl_reports. Fail-soft."""
+    cont = _container()
+    if cont is None:
+        return {"error": "cosmos not configured"}
+    import sys
+    sys.path.insert(0, os.path.dirname(__file__))
+    import evidence_db
+    conn = evidence_db._get_conn()
+    ids = []
+    try:
+        with conn, conn.cursor() as cur:
+            cur.execute("SELECT id FROM cir_runs WHERE status='complete' "
+                        "ORDER BY started_at DESC LIMIT %s", (int(limit),))
+            ids = [str(r[0]) for r in cur.fetchall()]
+    finally:
+        conn.close()
+    ok = sum(1 for rid in ids if upsert_from_run(rid))
+    log.info("cosmos backfill: %d/%d completed runs upserted", ok, len(ids))
+    return {"completed_runs": len(ids), "upserted": ok}
+
+
 def get_entity(name: str, country: str) -> dict | None:
     """Read the accumulated intelligence record for an entity (or None)."""
     cont = _container()

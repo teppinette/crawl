@@ -5847,6 +5847,14 @@ def _person_photo_lookup(person_name: str, company_name: str,
         return {"found": False, "reason": "not_found", "note": str(e)[:200]}
 
 
+@app.post("/api/v1/admin/cosmos-backfill")
+async def cosmos_backfill_endpoint(limit: int = 2000, _key: str = Depends(verify_api_key)):
+    """Rebuild the Cosmos derived per-entity view from Postgres (the source of
+    truth) — upsert every completed run. Cosmos is derived, so this is safe/idempotent."""
+    import cosmos_intel
+    return cosmos_intel.backfill_all(limit)
+
+
 @app.post("/api/v1/admin/reap-stuck")
 async def reap_stuck_endpoint(minutes: int = 15, _key: str = Depends(verify_api_key)):
     """Fail any CIR run wedged in a non-terminal state past `minutes` (default 15).
