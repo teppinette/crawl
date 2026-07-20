@@ -544,16 +544,15 @@ def _collect_exec_photos(run_id, cc, entity_name):
         return
     if not people:
         return
-    photos = []
-    for name, role in list(people.items())[:8]:
+    def _one_photo(name, role):
         # PRIMARY: name-matched LinkedIn headshot via BrightData (approved paid
-        # tool). Hard name+company gate — won't return a wrong face. Returns
-        # base64 so we persist a self-contained data: URL (no CSP/hotlink issue).
+        # tool). Hard name+company gate — won't return a wrong face. base64 ->
+        # self-contained data: URL (no CSP/hotlink issue).
         pp = _call_internal_source("person-photo",
                                    {"person_name": name, "company_name": entity_name,
-                                    "country_code": cc}, timeout=150) or {}
+                                    "country_code": cc}, timeout=120) or {}
         if pp.get("found") and pp.get("photo_b64"):
-            photos.append({
+            return {
                 "name": name, "role": role or pp.get("title"),
                 "photo_url": "data:image/jpeg;base64," + pp["photo_b64"],
                 "source_url": pp.get("linkedin_url"),
@@ -561,15 +560,14 @@ def _collect_exec_photos(run_id, cc, entity_name):
                 "current_company": pp.get("current_company"),
                 "corroborated": True, "verified": True,
                 "source": pp.get("source") or "LinkedIn via BrightData",
-            })
-            continue
+            }
         # FALLBACK: free SearXNG image (source-cited, UNVERIFIED identity).
         try:
             imgs = source_web.searxng_images(f'"{name}" {entity_name}', max_results=6)
         except Exception:
             imgs = []
         if not imgs:
-            continue
+            return None
         ent_tokens = {t for t in entity_name.lower().split() if len(t) > 3}
         best = None
         for im in imgs:
@@ -581,12 +579,20 @@ def _collect_exec_photos(run_id, cc, entity_name):
             if im["corroborated"] and best is None:
                 best = im
         chosen = best or imgs[0]
-        photos.append({
+        return {
             "name": name, "role": role,
-            "photo_url": chosen.get("img_src"),
-            "source_url": chosen.get("source_url"),
+            "photo_url": chosen.get("img_src"), "source_url": chosen.get("source_url"),
             "corroborated": chosen.get("corroborated", False), "verified": False,
-        })
+        }
+    # PARALLEL: look up all principals' photos concurrently (was sequential — up
+    # to 8 people x ~120s each = the biggest slowdown in the run).
+    import concurrent.futures as _cf
+    people_list = list(people.items())[:8]
+    photos = []
+    with _cf.ThreadPoolExecutor(max_workers=min(8, len(people_list) or 1)) as _ex:
+        for r in _ex.map(lambda p: _one_photo(p[0], p[1]), people_list):
+            if r:
+                photos.append(r)
     if not photos:
         return
     try:
@@ -1229,7 +1235,7 @@ async def _orchestrate(run_id: str, country_code: str, entity_name: str,
     # synthesis no matter what hangs underneath (the orphaned executor thread is
     # abandoned, not awaited). Cap = a bit over the 2x180s internal budget.
     import os as _os
-    _EXTRACTOR_HARD_CAP_S = int(_os.environ.get("CIR_EXTRACTOR_CAP_S", "400"))
+    _EXTRACTOR_HARD_CAP_S = int(_os.environ.get("CIR_EXTRACTOR_CAP_S", "150"))
     try:
         status, err = await asyncio.wait_for(_run_extractor(), timeout=_EXTRACTOR_HARD_CAP_S)
     except asyncio.TimeoutError:
