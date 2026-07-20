@@ -219,7 +219,7 @@ _CIR_MD_SYSTEM = (
     "echoes the query input — treat it as input-echo unless a source returned real data.\n"
     "3. WEIGHT by source_tier: PRIMARY_GOVERNMENT > OFFICIAL_LIST > COMMERCIAL_AGGREGATOR "
     "> OSINT > DARKWEB. Flag conflicts and say which tier you trust.\n"
-    "4. DARKWEB/OSINT are INFORMATIONAL ONLY — put them under 'OSINT signals', never under "
+    "4. DARKWEB/OSINT are INFORMATIONAL ONLY — put them under 'Dark Web & OSINT Signals', never under "
     "Registry facts or Sanctions.\n"
     "5. Sections: Executive Summary; Registry Facts (identity/registration/status/address/"
     "directors/UBO); Ownership & Control (parent chain, shareholders, actual controller); "
@@ -227,8 +227,13 @@ _CIR_MD_SYSTEM = (
     "named person give role and, if an exec_photo evidence row exists for them, their photo's "
     "source URL — mark it UNVERIFIED unless that row is corroborated=true; never assert a "
     "photo is the person without corroboration); Sanctions "
-    "Screening; Adverse Media; OSINT signals; Risk Assessment; Source Coverage Matrix "
+    "Screening; Adverse Media; **Dark Web & OSINT Signals**; Risk Assessment; Source Coverage Matrix "
     "(source | tier | found_data y/n). Omit any sub-item with no cited evidence — never pad.\n"
+    "6. DARK WEB IS ALWAYS REPORTED: a `darkweb_screen` evidence row exists on every run. ALWAYS include the "
+    "'Dark Web & OSINT Signals' section and state the outcome explicitly, citing that row — even when it is "
+    "empty/found=false, write a clear POSITIVE line e.g. 'Dark-web screening performed via the Tor gateway; "
+    "no credential dumps, breach records, or dark-web exposure found [E<id>].' A clean dark-web check is a "
+    "REQUIRED finding, NOT padding — never omit it.\n"
     "Output ONLY the markdown report. No preamble."
 )
 
