@@ -5881,6 +5881,26 @@ async def entity_intelligence_endpoint(entity: str, country: str = "",
     }
 
 
+@app.get("/api/v1/intelligence/search")
+async def intelligence_search_endpoint(q: str, top: int = 8, country: str = "",
+                                       _key: str = Depends(verify_api_key)):
+    """SEMANTIC / cross-entity search over the shared brain — ask by meaning
+    ('counterparties with environmental adverse media', 'entities tied to X') and
+    get a ranked list of entities + CIR excerpts. Backed by the cir_intel AI Search
+    index (hybrid BM25 + vector + semantic rerank) over served, grounded CIRs."""
+    import search_index
+    hits = search_index.search(q, top=top, country=country)
+    return {"query": q, "count": len(hits), "results": hits}
+
+
+@app.post("/api/v1/admin/search-backfill")
+async def search_backfill_endpoint(limit: int = 5000, _key: str = Depends(verify_api_key)):
+    """(Re)build the cir_intel semantic index from Cosmos — index every entity with
+    a served CIR. Idempotent; the index is derived, so this is always safe."""
+    import search_index
+    return search_index.backfill(limit)
+
+
 @app.post("/api/v1/admin/cosmos-backfill")
 async def cosmos_backfill_endpoint(limit: int = 2000, _key: str = Depends(verify_api_key)):
     """Rebuild the Cosmos derived per-entity view from Postgres (the source of

@@ -156,6 +156,15 @@ def upsert_from_run(run_id: str) -> bool:
         log.info("cosmos: %s run %s grounding=%s phantom=%s -> %s (confidence=%s)",
                  ek, run_id[:8], gs, phantom, "PROMOTED" if passed else "quarantined",
                  doc.get("confidence"))
+        # When a CIR is PROMOTED to served, mirror it into the semantic search
+        # index so the brain is searchable by meaning, not just by exact name.
+        # Fail-soft: never let an index hiccup break the Cosmos write.
+        if passed:
+            try:
+                import search_index
+                search_index.upsert_cir(doc)
+            except Exception as _sx:
+                log.warning("cosmos: search_index mirror skipped: %s", _sx)
         return True
     except Exception as e:
         log.warning("cosmos upsert_from_run failed for %s: %s",
