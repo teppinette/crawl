@@ -688,31 +688,26 @@ def _enforce_five_angle_coverage(run_id, cc, entity_name, registration_id=""):
     """MANDATORY 5-angle gate. Fill any angle the collector phase left empty via a
     server-side source call, then persist a `coverage_summary` render documenting
     which of the five angles were investigated. Never raises."""
-    # MDM grounding FIRST — pull OUR governed relationship (are they our customer/
-    # supplier? exposure? trade history?) so the CIR is grounded in our own system
-    # of record, not just the open web. Consume MDM, never re-derive.
-    try:
-        _mdm_governed_persist(run_id, cc, entity_name)
-    except Exception:
-        log.exception("orchestrator: MDM grounding failed (non-fatal)")
-    # Deep adverse-media search — the decision-driver (litigation/enforcement/
-    # sanctions/PEP). Runs every CIR, not just when the angle is empty.
-    try:
-        _adverse_deep_persist(run_id, cc, entity_name)
-    except Exception:
-        log.exception("orchestrator: deep adverse search failed (non-fatal)")
-    # Screen each named director/officer (sanctions/PEP + adverse) — BFR-parity
-    # individual screening, generalizes to every counterparty with named principals.
-    try:
-        _screen_principals(run_id, cc, entity_name)
-    except Exception:
-        log.exception("orchestrator: principal screening failed (non-fatal)")
-    # Executive photos (FREE image search, source-cited, unverified) for each
-    # named principal — the depth-parity "pictures of the executives" bar.
-    try:
-        _collect_exec_photos(run_id, cc, entity_name)
-    except Exception:
-        log.exception("orchestrator: exec photo collection failed (non-fatal)")
+    # Run the independent coverage sub-tasks CONCURRENTLY (was sequential — each of
+    # MDM grounding, deep adverse-media search, per-director sanctions screening,
+    # and exec-photo lookups took seconds-to-minutes; overlapping them is the big
+    # cut to the 'extracting' wall-clock). Each persists its own evidence + is
+    # independent + already fail-soft.
+    import concurrent.futures as _cf
+    _cov_tasks = {
+        "mdm": lambda: _mdm_governed_persist(run_id, cc, entity_name),
+        "adverse": lambda: _adverse_deep_persist(run_id, cc, entity_name),
+        "principals": lambda: _screen_principals(run_id, cc, entity_name),
+        "exec_photos": lambda: _collect_exec_photos(run_id, cc, entity_name),
+    }
+    with _cf.ThreadPoolExecutor(max_workers=4) as _ex:
+        _futs = {_ex.submit(fn): nm for nm, fn in _cov_tasks.items()}
+        for _f in _cf.as_completed(_futs):
+            try:
+                _f.result()
+            except Exception:
+                log.exception("orchestrator: coverage task '%s' failed (non-fatal)",
+                              _futs[_f])
     cov = _covered_angles(run_id)
     fillers = {
         "registry": lambda: _registry_fallback_persist(run_id, cc, entity_name, registration_id),
