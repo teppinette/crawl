@@ -1167,35 +1167,32 @@ async def _orchestrate(run_id: str, country_code: str, entity_name: str,
         except Exception:
             log.exception("orchestrator: darkweb fallback failed (non-fatal)")
 
-    # PHASE 1d: depth-1 affiliate / UBO expansion (best-effort, non-fatal).
-    # Runs BEFORE the extractor so the new cn_affiliates evidence rows are turned
-    # into relationship claims and flow into the UBO map.
-    try:
-        await loop.run_in_executor(None, _affiliate_expansion, run_id, cc, entity_name)
-    except Exception:
-        log.exception("orchestrator: affiliate expansion failed (non-fatal)")
+    # PHASE 1d/1e/1f — evidence enrichment, run CONCURRENTLY (was ~3 min sequential
+    # on the critical path before the report). 1d affiliate → 1e parent-chain keep
+    # their order (1e reads 1d's parent rows); 1f coverage (MDM + adverse + per-
+    # director screening + photos) is independent and overlaps them. Each writes its
+    # own evidence via its own DB connection + is fail-soft.
+    async def _affiliate_then_parent():
+        # 1d: depth-1 affiliate / UBO expansion.
+        try:
+            await loop.run_in_executor(None, _affiliate_expansion, run_id, cc, entity_name)
+        except Exception:
+            log.exception("orchestrator: affiliate expansion failed (non-fatal)")
+        # 1e: parent-chain sanctions imputation (screens each parent CSL/OFAC).
+        try:
+            await loop.run_in_executor(None, _parent_chain_imputation, run_id, cc, entity_name)
+        except Exception:
+            log.exception("orchestrator: parent-chain imputation failed (non-fatal)")
 
-    # PHASE 1e: parent-chain sanctions imputation (best-effort, non-fatal). Walks
-    # UP the ownership chain and screens each corporate parent/controller against
-    # CSL/OFAC — a clean subject with a sanctioned PARENT inherits that exposure
-    # via control. Runs after affiliate expansion (which may add parent rows) and
-    # BEFORE the extractor so imputed-exposure evidence + relationship claims flow
-    # into the sanctions screen, UBO map, and narrative.
-    try:
-        await loop.run_in_executor(None, _parent_chain_imputation, run_id, cc, entity_name)
-    except Exception:
-        log.exception("orchestrator: parent-chain imputation failed (non-fatal)")
+    async def _coverage():
+        # 1f: 5-angle mandatory coverage gate + fillers.
+        try:
+            await loop.run_in_executor(None, _enforce_five_angle_coverage,
+                                       run_id, cc, entity_name, registration_id or "")
+        except Exception:
+            log.exception("orchestrator: 5-angle coverage gate failed (non-fatal)")
 
-    # PHASE 1f: 5-angle mandatory coverage gate. Fill any of the five independent
-    # investigation angles the collector left empty (registry / sanctions /
-    # adverse-media / darkweb have server-side fillers; ownership is recorded, not
-    # fabricated), then persist a coverage_summary render. Runs BEFORE the extractor
-    # so filled evidence becomes claims and flows into every synthesizer. Best-effort.
-    try:
-        await loop.run_in_executor(None, _enforce_five_angle_coverage,
-                                   run_id, cc, entity_name, registration_id or "")
-    except Exception:
-        log.exception("orchestrator: 5-angle coverage gate failed (non-fatal)")
+    await asyncio.gather(_affiliate_then_parent(), _coverage())
 
     # ── FAST PATH: report first, background the rest ──────────────────────────
     # The Opus cir_markdown (the report the tab renders) reads the EVIDENCE pool
