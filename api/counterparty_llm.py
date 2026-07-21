@@ -276,7 +276,10 @@ def _grounding_rating(md: str, ev: list, claims: list = None) -> dict:
     # Opus cites the evidence id in brackets — accept BOTH [E<id8>] and the bare
     # [<id8>] it actually emits. A line only counts as GROUNDED if it cites an id
     # that really exists in the evidence store.
-    cite_re = _re.compile(r"\[E?([0-9a-fA-F]{6,8})\]")
+    # Tolerate an optional 'E' prefix AND optional whitespace before the id — the
+    # model sometimes emits "[E 3fa2d3d0]" (space) instead of "[E3fa2d3d0]"; without
+    # this, every citation in such a report reads as invalid and grounding scores 0%.
+    cite_re = _re.compile(r"\[E?\s*([0-9a-fA-F]{6,8})\]")
 
     def _toks(text):
         return [m.lower()[:8] for m in cite_re.findall(text)]
