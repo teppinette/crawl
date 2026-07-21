@@ -1,13 +1,11 @@
 name: verify_generic_collector
 description: >
-  Generic evidence collector for entities in countries that have NO dedicated
+  Generic evidence collector for entities in countries with NO dedicated
   verify_<cc>_collector. Sources OpenCorporates (paid aggregator, ~140
-  jurisdictions — real government-registry data behind one API), consolidated
-  sanctions (CSL/OpenSanctions), and GLEIF LEI. The orchestrator falls back to
-  this collector when no national-registry collector is deployed; the moment a
-  dedicated verify_<cc>_collector ships for a country, that country supersedes
-  this one automatically (the per-country lookup is checked first). Registry
-  facts here are COMMERCIAL_AGGREGATOR tier, not primary-government.
+  jurisdictions), consolidated sanctions (CSL/OpenSanctions), and GLEIF LEI.
+  The orchestrator falls back here when no national-registry collector is
+  deployed; a dedicated verify_<cc>_collector supersedes it automatically.
+  Registry facts are COMMERCIAL_AGGREGATOR tier, not primary-government.
 
 metadata:
   tier: collector
@@ -98,5 +96,5 @@ output:
 
 audit:
   version: 1.0.0
-  content_hash: sha256:ce92e318af2786d27b162f9f6177e0f90bea3d98c05d00e747ceaa6c97352a99
-  stamped_git_sha: 51e77d7
+  content_hash: sha256:98d18958e8ac97f94688ee2f7dc7d778eaa4cba4a6a2fc5a4e758cbfe3e094c8
+  stamped_git_sha: 7792471
