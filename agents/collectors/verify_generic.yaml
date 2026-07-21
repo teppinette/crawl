@@ -95,3 +95,8 @@ output:
     Side effect only — up to 3 evidence rows written to crawl_reports.evidence
     (opencorporates, csl_screening, gleif_lei), then run status transitioned to
     "extracting" by collector_complete.
+
+audit:
+  version: 1.0.0
+  content_hash: sha256:ce92e318af2786d27b162f9f6177e0f90bea3d98c05d00e747ceaa6c97352a99
+  stamped_git_sha: 51e77d7
