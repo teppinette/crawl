@@ -172,8 +172,8 @@ def _darkweb_fallback_persist(run_id: str, entity_name: str, country: str):
             f"{base}/api/v1/sources/darkweb/scan",
             headers={"X-API-Key": api_key, "Content-Type": "application/json"},
             json={"entity_name": entity_name, "country": country,
-                  "depth": "heavy"},
-            timeout=300,
+                  "depth": "medium"},
+            timeout=90,
         )
     except Exception as e:
         log.warning("orchestrator: darkweb fallback scan failed: %s", e)
@@ -1113,7 +1113,7 @@ async def _orchestrate(run_id: str, country_code: str, entity_name: str,
     darkweb_id = _load_agent_id("darkweb_collector")
     instr_darkweb = (
         f"Screen entity_name='{entity_name}' country='{cc}' for run_id='{run_id}'. "
-        f"Run one darkweb_scan with depth='heavy' and persist one evidence "
+        f"Run one darkweb_scan with depth='medium' and persist one evidence "
         f"row tagged source_id='darkweb_screen'."
     )
 
