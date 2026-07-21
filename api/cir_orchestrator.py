@@ -1015,18 +1015,27 @@ async def _orchestrate(run_id: str, country_code: str, entity_name: str,
     base = _cc_alias.get(cc, cc.lower())
     collector_name = f"verify_{base}_collector"
     collector_id = _load_agent_id(collector_name)
-    if not collector_id:
-        log.warning("orchestrator: no collector for %s (name=%s), aborting", cc, collector_name)
-        evidence_db.update_run_status(run_id, "failed",
-                                      error=f"no deployed collector for country {cc} (looked for {collector_name})")
-        return
+    _no_country_collector = collector_id is None
+    if _no_country_collector:
+        # No bespoke national-registry collector for this country. Do NOT abort —
+        # aborting used to discard the dark-web, web-profile, sanctions and MDM
+        # evidence we can still gather (a hard 0-evidence fail). Proceed without
+        # it: web_profile + dark-web collectors run on EVERY CIR, and the
+        # enrichment/coverage phase adds sanctions/adverse/ownership. Registry
+        # facts will be limited to web/OSINT for this country (a generic
+        # OpenCorporates registry collector is the future upgrade for full
+        # national coverage).
+        log.warning("orchestrator: no country collector for %s (%s) — proceeding on "
+                    "web/OSINT + dark-web + enrichment (no national registry)",
+                    cc, collector_name)
 
     # Audit link: stamp the run with the collector version that produced it, so a
     # lender can later be shown exactly which agent (id + version + content_hash)
     # verified this entity. Best-effort — never blocks the run.
-    _cv, _ch = _load_agent_audit(collector_name)
-    evidence_db.set_run_collector_version(run_id, agent_id=collector_id,
-                                          version=_cv, content_hash=_ch)
+    if collector_id:
+        _cv, _ch = _load_agent_audit(collector_name)
+        evidence_db.set_run_collector_version(run_id, agent_id=collector_id,
+                                              version=_cv, content_hash=_ch)
 
     client = _agents_client()
     # NB: keep this instruction PLAIN. The previous assertive phrasing
@@ -1070,6 +1079,8 @@ async def _orchestrate(run_id: str, country_code: str, entity_name: str,
         #       and hard-fail the run (the exact shape of today's GR 400); and
         #   (c) COMPLETED but persisted ZERO evidence — a silent empty CIR, which
         #       must be treated as a failure, never as success.
+        if _no_country_collector:
+            return ("SKIPPED", f"no national registry collector for {cc}")
         last = ("UNKNOWN", None)
         for attempt in range(3):
             try:
@@ -1128,7 +1139,10 @@ async def _orchestrate(run_id: str, country_code: str, entity_name: str,
                                       error=f"collector exception: {country_res}")
         return
     status, err = country_res
-    if not status.endswith("COMPLETED"):
+    if status == "SKIPPED":
+        log.info("orchestrator: run %s — country collector skipped (%s); continuing "
+                 "on web/OSINT + dark-web + enrichment", run_id[:8], err)
+    elif not status.endswith("COMPLETED"):
         evidence_db.update_run_status(run_id, "failed",
                                       error=f"collector {status}: {err or ''}")
         return
