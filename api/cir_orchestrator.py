@@ -1015,18 +1015,28 @@ async def _orchestrate(run_id: str, country_code: str, entity_name: str,
     base = _cc_alias.get(cc, cc.lower())
     collector_name = f"verify_{base}_collector"
     collector_id = _load_agent_id(collector_name)
+    _using_generic = False
+    if collector_id is None:
+        # No dedicated national-registry collector for this country. Fall back to
+        # the GENERIC OpenCorporates collector (real gov-registry data across ~140
+        # jurisdictions + CSL + GLEIF) before dropping to web/OSINT-only. When a
+        # dedicated verify_<cc>_collector ships for a country it wins automatically
+        # (it is looked up first, above) — no migration step.
+        generic_id = _load_agent_id("verify_generic_collector")
+        if generic_id:
+            log.info("orchestrator: no country collector for %s — using generic "
+                     "OpenCorporates collector (verify_generic_collector)", cc)
+            collector_id = generic_id
+            collector_name = "verify_generic_collector"
+            _using_generic = True
     _no_country_collector = collector_id is None
     if _no_country_collector:
-        # No bespoke national-registry collector for this country. Do NOT abort —
-        # aborting used to discard the dark-web, web-profile, sanctions and MDM
-        # evidence we can still gather (a hard 0-evidence fail). Proceed without
-        # it: web_profile + dark-web collectors run on EVERY CIR, and the
-        # enrichment/coverage phase adds sanctions/adverse/ownership. Registry
-        # facts will be limited to web/OSINT for this country (a generic
-        # OpenCorporates registry collector is the future upgrade for full
-        # national coverage).
-        log.warning("orchestrator: no country collector for %s (%s) — proceeding on "
-                    "web/OSINT + dark-web + enrichment (no national registry)",
+        # No dedicated AND no generic collector — do NOT abort. web_profile +
+        # dark-web collectors run on EVERY CIR and enrichment adds sanctions/
+        # adverse/ownership, so proceed on web/OSINT alone rather than throw the
+        # whole run away with a 0-evidence hard fail.
+        log.warning("orchestrator: no country collector for %s (%s) and no generic "
+                    "fallback — proceeding on web/OSINT + dark-web + enrichment",
                     cc, collector_name)
 
     # Audit link: stamp the run with the collector version that produced it, so a
@@ -1046,6 +1056,7 @@ async def _orchestrate(run_id: str, country_code: str, entity_name: str,
     # prompt already mandates run_id on evidence_add/collector_complete.
     instr_collect = (
         f"Collect evidence for entity_name='{search_name}' with run_id='{run_id}'."
+        + (f" country='{cc}'." if _using_generic else "")
         + (f" Registration number: {registration_id}" if registration_id else "")
     )
 
