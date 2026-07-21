@@ -1,0 +1,97 @@
+name: verify_generic_collector
+description: >
+  Generic evidence collector for entities in countries that have NO dedicated
+  verify_<cc>_collector. Sources OpenCorporates (paid aggregator, ~140
+  jurisdictions — real government-registry data behind one API), consolidated
+  sanctions (CSL/OpenSanctions), and GLEIF LEI. The orchestrator falls back to
+  this collector when no national-registry collector is deployed; the moment a
+  dedicated verify_<cc>_collector ships for a country, that country supersedes
+  this one automatically (the per-country lookup is checked first). Registry
+  facts here are COMMERCIAL_AGGREGATOR tier, not primary-government.
+
+metadata:
+  tier: collector
+  schema_version: 1
+  sources:
+    - opencorporates
+    - csl_screening
+    - gleif_lei
+  auditable_for_banks: false
+  cost_tier: paid_aggregator
+  est_latency_seconds: 20
+
+runtime:
+  service: azure_ai_foundry_agents
+  resource: copapfoundry-resource
+  region: eastus2
+
+model:
+  deployment: gpt-4.1-mini-778742
+  resource: copapfoundry-resource
+  region: eastus2
+  temperature: 0.0
+  max_tokens: 4096
+
+inputs:
+  - name: run_id
+    type: uuid
+    required: true
+  - name: entity_name
+    type: string
+    required: true
+  - name: country
+    type: string
+    required: true
+  - name: registration_number
+    type: string
+    required: false
+
+system_prompt: |
+  You are the GENERIC evidence collector for entities in countries that have NO
+  dedicated national-registry collector. Your only job is to query sources and
+  persist what they return. You do not write narrative, you do not synthesize,
+  you do not invent fields. If a source returns nothing, STILL record an
+  evidence row with extracted={} so the empty-source audit trail is honest.
+
+  You are given entity_name, country (an ISO-2 code), and run_id.
+
+  Execute these steps in order:
+
+    1. Call country_registry_lookup with country=<the country code> and the
+       entity_name (pass registration_number if provided). The response has a
+       "primary" block and an optional "aggregator" block (OpenCorporates).
+       Persist ONLY the aggregator block — this collector serves countries with
+       no government-registry adapter, so the "primary" block carries no
+       registry-tier data and must NOT be persisted:
+         - If response.aggregator is NOT null:
+             evidence_add(source_id="opencorporates",
+                          extracted=<the aggregator block verbatim>)
+         - If response.aggregator IS null:
+             evidence_add(source_id="opencorporates", extracted={})
+
+    2. Call opensanctions_search with the entity name (country=<country
+       lowercased>). Persist via evidence_add with source_id="csl_screening"
+       (extracted = the full response; extracted={} if it returned nothing).
+
+    3. Call gleif_lei_lookup with the entity name (country=<country uppercased>).
+       Persist via evidence_add with source_id="gleif_lei"
+       (extracted={} if no LEI found).
+
+  Always pass run_id to evidence_add (it is a PATH parameter). Always pass the
+  exact source_url the tool returned (use "https://opencorporates.com" when the
+  aggregator was null). Always pass language_original (use "en" if unknown).
+
+  When all three steps are done, call collector_complete(run_id) and stop.
+
+tools:
+  - $ref: ../tools/country_registry_lookup.openapi.yaml
+  - $ref: ../tools/opensanctions_search.openapi.yaml
+  - $ref: ../tools/gleif_lei_lookup.openapi.yaml
+  - $ref: ../tools/evidence_add.openapi.yaml
+  - $ref: ../tools/collector_complete.openapi.yaml
+
+output:
+  description: >
+    Side effect only — up to 3 evidence rows written to crawl_reports.evidence
+    (opencorporates, csl_screening, gleif_lei), then run status transitioned to
+    "extracting" by collector_complete.
