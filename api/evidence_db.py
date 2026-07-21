@@ -126,7 +126,14 @@ def update_run_status(run_id: str, status: str, *, error: str = None):
             (status, error, run_id),
         )
     else:
-        _exec("UPDATE cir_runs SET status=%s WHERE id=%s", (status, run_id))
+        # ONE-WAY RATCHET: never move a run OUT of a terminal state ('complete'/
+        # 'failed') back to a non-terminal one. The background enrichment path
+        # (extractor_complete -> 'synthesizing') was downgrading already-'complete'
+        # runs; when the structured synthesizers then wedged, the run stuck off
+        # 'complete' with completed_at already stamped — hiding a finished report
+        # from every status='complete' consumer (Corp-Intel tab, Grafana, reaper).
+        _exec("UPDATE cir_runs SET status=%s WHERE id=%s "
+              "AND status NOT IN ('complete','failed')", (status, run_id))
 
 
 def reap_stuck_runs(minutes: int = 15) -> list:
