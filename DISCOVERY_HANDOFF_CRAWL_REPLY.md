@@ -23,6 +23,40 @@ Do **not** point the wizard at `/api/v2/enrich` — that is the slow deep-lookup
 
 ---
 
+---
+
+## ⚠️ LIVE-TEST CORRECTION (2026-07-21, supersedes the code-level review below)
+
+The onboarding session **tested the live gateway** — I had reviewed code + docstrings, not the
+running endpoint. Corrections:
+
+1. **`/api/v2/lookup` is NOT the fast lane.** Measured **70 s** (Apple US) — it bundles registry +
+   LEI + **media + enrichment + screening**, and the deep tasks dominate. Do not point the wizard at it.
+2. **The right identity endpoint is `POST /api/v2/verify`** — but its speed depends on the registry
+   backend:
+   - **API-backed registries are fast + rich:** Apple (US, SEC EDGAR) → **2 s**, returns legal name,
+     CIK, status, address, **tickers `[AAPL]` + exchanges `[Nasdaq]`**, former names, `validation_source`.
+     (This also partly covers the EXCHANGE ask — for US SEC filers.)
+   - **Browser-scraped registries are slow / inconsistent:** Reliance (IN, MCA/Tofler via Multilogin)
+     → **27 s**, reg# resolves but **no tickers**; Aarti (IN) → 7 s, **unresolved**; Samsung (KR) →
+     2 s, **unresolved**.
+3. **Net:** the interactive **≤12 s** budget holds only for API-backed countries. Non-US scrape-backed
+   registries (IN, etc.) are 7–27 s and ticker-less, and name-resolution is hit-or-miss.
+
+**Both onboarding blockers stand, refined:**
+- **(A) Latency** — need a true interactive lane ≤12 s. Options: (i) API-first everywhere (retire
+  browser-scrape on the interactive path), or (ii) **two-phase** — return instant identity from fast
+  sources + background-fill the slow registries + defer screening/media entirely.
+- **(B) Registry + exchanges in the composite** — `/api/v2/verify` resolves US richly (incl.
+  tickers/exchanges) but non-US is inconsistent and ticker-less. Point the wizard at `/api/v2/verify`
+  (not `/api/v2/lookup`), and close non-US resolution + ticker coverage.
+
+**This is a genuine crawl-side ball.** Until (A) and (B) close, onboarding correctly keeps
+`DISCOVERY_BACKEND=gc` (the GC kill is coded and one env flip away, held). The revised, honest
+guidance below replaces "nothing blocks starting."
+
+---
+
 ## Endpoint inventory (what to wire the wizard to)
 
 | Endpoint | Purpose | Latency | Notes |
