@@ -314,16 +314,34 @@ def _grounding_rating(md: str, ev: list, claims: list = None) -> dict:
     score = coverage
     if phantom:
         score = round(min(score, 100.0 - 100.0 * len(phantom) / max(len(all_cites), 1)), 1)
-    verdict = ("CLEAN — grounded" if not phantom and coverage >= 99
-               else "PASS — grounded" if not phantom and coverage >= 90
-               else "REVIEW — uncited assertions" if not phantom
-               else "FAIL — fabricated citation(s)")
+    # ── COMPLETENESS (fail-loud) ──────────────────────────────────────────────
+    # Grounding measures HALLUCINATION (are claims cited), NOT whether we actually
+    # COLLECTED the identity. A well-cited "we found nothing" is worthless. If the
+    # PRIMARY national registry (<cc>_registry) returned no data (found:false / no
+    # registration number), the report is NOT decision-grade no matter how high the
+    # citation coverage — it becomes a HOLD, and the served/decision gate rejects it.
+    # This is what stops a gutted China CIR from scoring "92% PASS".
+    def _reg_ok(e):
+        ex = e.get("extracted") if isinstance(e.get("extracted"), dict) else {}
+        return ((e.get("source_id") or "").endswith("_registry")
+                and bool(ex.get("found"))
+                and bool(ex.get("registration_number") or ex.get("uscc")
+                         or ex.get("registration_id") or ex.get("company_number")))
+    primary_collected = any(_reg_ok(e) for e in ev)
+
+    verdict = ("FAIL — fabricated citation(s)" if phantom
+               else "HOLD — primary registry returned no data (identity unverified)"
+               if not primary_collected
+               else "CLEAN — grounded" if coverage >= 99
+               else "PASS — grounded" if coverage >= 90
+               else "REVIEW — uncited assertions")
     rating = {
         "grounding_score": score, "coverage_pct": coverage,
         "factual_lines": fact_lines, "grounded_lines": grounded_lines,
         "distinct_evidence_cited": len(cited_e),
         "phantom_citations": phantom, "phantom_count": len(phantom),
         "primary_tier_cites": primary, "osint_tier_cites": osint,
+        "primary_collected": primary_collected,
         "verdict": verdict,
     }
     block = (
@@ -337,6 +355,9 @@ def _grounding_rating(md: str, ev: list, claims: list = None) -> dict:
         f"- Fabricated (phantom) citations: **{len(phantom)}**"
         + (f" ⚠ {', '.join('[E'+p+']' for p in phantom)}" if phantom else " ✓")
         + "\n"
+        + ("- Primary registry: **data collected** ✓\n" if primary_collected else
+           "- Primary registry: **NO DATA returned** ⚠ — identity unverified; "
+           "not decision-grade regardless of citation coverage.\n")
     )
     return {"rating": rating, "block": block}
 

@@ -116,13 +116,15 @@ def upsert_from_run(run_id: str) -> bool:
         phantom = g.get("phantom_count")
         min_g = float(os.environ.get("COSMOS_MIN_GROUNDING", "90"))
         # ── QUALITY GATE ──────────────────────────────────────────────────────
-        # Cosmos is the shared brain the 3 LLMs read — a hallucinated or thin CIR
-        # would poison everything downstream. So ONLY a complete, grounded
-        # (>= min), hallucination-free (0 phantom citations) CIR is PROMOTED to
-        # the SERVED record. Anything else is recorded in history but quarantined
-        # — never served as trustworthy intelligence.
+        # Cosmos is the shared brain the 3 LLMs read — a hallucinated OR THIN CIR
+        # would poison everything downstream. ONLY a complete, grounded (>= min),
+        # hallucination-free (0 phantom) CIR whose PRIMARY REGISTRY actually
+        # returned data is PROMOTED to served. `primary_collected is False` (empty
+        # national registry — e.g. a Multilogin-failed China run) is quarantined no
+        # matter how high the citation coverage. Everything else stays in history.
         passed = bool(run.get("status") == "complete" and gs is not None
-                      and phantom == 0 and float(gs) >= min_g)
+                      and phantom == 0 and float(gs) >= min_g
+                      and g.get("primary_collected") is not False)
         run_entry = {
             "run_id": run_id, "at": now, "status": run.get("status"),
             "model": payload.get("model"),
