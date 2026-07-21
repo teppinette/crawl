@@ -340,6 +340,35 @@ def _web_fallback_persist(run_id, cc, entity_name):
         log.warning("orchestrator: web gate fallback persist failed: %s", e)
 
 
+import re as _re_adv
+_GENERIC_CO_TOKENS = {"limited", "ltd", "company", "companies", "corp", "corporation",
+                      "inc", "incorporated", "llc", "llp", "pvt", "private", "group",
+                      "holdings", "holding", "co", "sa", "gmbh", "ag", "bv", "nv",
+                      "plc", "public", "joint", "stock", "and", "the", "of"}
+_ADVERSE_SIGNALS = ("fraud", "investigat", "enforcement", "cbi", "launder", "court",
+                    "litigat", "convict", "charge", "arrest", "sanction", "ofac",
+                    "blacklist", "debar", "default", "insolven", "bankrupt", "scam",
+                    "probe", "summons", "attachment", "raid", "briber", "corrupt",
+                    "penalt", "violation", "lawsuit", " fine", "embezzl", "fugitive",
+                    "accused", "allegation", "prosecut", "tribunal", "misappropriat",
+                    "seiz", "freeze", "frozen", "evasion", "smuggl", "counterfeit",
+                    "money-launder", "disproportionate assets", "chargesheet", "charge sheet")
+
+
+def _adverse_relevant(entity_name: str, title: str, snippet: str, url: str) -> bool:
+    """Keep an adverse hit only if it (1) actually names the entity — a distinctive
+    (non-legal-form) token appears in the title/snippet/url — AND (2) carries a real
+    adverse signal. Strips the generic noise (unrelated AML guides, celebrity news,
+    bare directory listings) that a broad risk query otherwise pulls in."""
+    text = f"{title or ''} {snippet or ''}".lower()
+    u = (url or "").lower()
+    toks = [t for t in _re_adv.findall(r"[a-z0-9]{4,}", (entity_name or "").lower())
+            if t not in _GENERIC_CO_TOKENS]
+    if toks and not any(t in text or t in u for t in toks):
+        return False  # doesn't actually mention the entity
+    return any(k in text for k in _ADVERSE_SIGNALS)
+
+
 def _adverse_deep_persist(run_id, cc, entity_name):
     """DEEP adverse-media search via SearXNG (risk-focused queries) — surfaces
     litigation / fraud / enforcement (CBI/ED/OFAC) / PEP / sanctions hits that the
@@ -357,7 +386,7 @@ def _adverse_deep_persist(run_id, cc, entity_name):
         "sanctions OR OFAC OR blacklist OR debarred OR default OR insolvency",
         "director OR promoter OR owner controversy OR scam OR probe",
     ]
-    findings, seen = [], set()
+    findings, seen, dropped = [], set(), 0
     for term in risk_terms:
         try:
             res = source_web._searxng(f"{entity_name} {term}", max_results=8)
@@ -368,19 +397,28 @@ def _adverse_deep_persist(run_id, cc, entity_name):
             if not u or u in seen:
                 continue
             seen.add(u)
-            findings.append({"title": r.get("title"), "url": u,
-                             "snippet": (r.get("content") or "")[:300], "query_terms": term})
+            title, snip = r.get("title"), (r.get("content") or "")[:300]
+            # RELEVANCE FILTER — must name the entity AND carry an adverse signal,
+            # else it is generic noise (unrelated AML/celebrity/directory results).
+            if not _adverse_relevant(entity_name, title, snip, u):
+                dropped += 1
+                continue
+            findings.append({"title": title, "url": u,
+                             "snippet": snip, "query_terms": term})
     if not findings:
+        log.info("orchestrator: deep adverse — %s: 0 relevant (%d noise dropped)",
+                 run_id[:8], dropped)
         return
     try:
         evidence_db.add_evidence(
             run_id, source_id="web_profile", source_url="searxng://adverse",
             source_query=entity_name, status_code=200,
-            extracted={"adverse_findings": findings[:30], "count": len(findings),
-                       "method": "searxng_risk_queries",
-                       "note": "risk-focused adverse-media search (litigation/enforcement/"
-                               "sanctions/PEP). OSINT tier — corroborate before action."},
-            language_original="en", parser_version="adverse_deep_v1")
+            extracted={"adverse_findings": findings[:20], "count": len(findings),
+                       "noise_filtered": dropped, "method": "searxng_risk_queries_filtered",
+                       "note": "risk-focused adverse-media search, relevance-filtered "
+                               "(entity-named + adverse-signal only). OSINT tier — "
+                               "corroborate before action."},
+            language_original="en", parser_version="adverse_deep_v2")
         log.info("orchestrator: deep adverse — %s: %d findings persisted",
                  run_id[:8], len(findings))
     except Exception as e:
@@ -425,9 +463,11 @@ def _screen_principals(run_id, cc, entity_name):
             try:
                 res = source_web._searxng(
                     f'"{name}" fraud OR investigation OR arrested OR sanctions OR court',
-                    max_results=5)
+                    max_results=6)
                 rec["adverse"] = [{"title": r.get("title"), "url": r.get("url")}
-                                  for r in (res or [])[:4] if r.get("url")]
+                                  for r in (res or []) if r.get("url")
+                                  and _adverse_relevant(name, r.get("title"),
+                                                        r.get("content"), r.get("url"))][:4]
             except Exception:
                 pass
         return rec
