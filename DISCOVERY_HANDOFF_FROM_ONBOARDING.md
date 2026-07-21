@@ -115,7 +115,45 @@ replace it.
 
 ---
 
-## After crawl confirms
+---
+
+## ⚠ LIVE VALIDATION (onboarding, 2026-07-21) — two blockers found
+
+We built the onboarding→crawl adapter and tested `POST /api/v2/lookup` against the
+**live** gateway from .11 (with the real `CIR_API_KEY`). Two blockers that the
+code-level parity review did not surface:
+
+**Blocker A — latency.** `/api/v2/lookup` took **61s cold, 33–56s warm** (Apple/US,
+Microsoft/US, Aarti Drugs/IN). The wizard budget is **<12s** (`DISCOVERY_TIMEOUT_SEC`).
+Enrichment returned `{status:"disabled"}` (no Bright Data key), so enrichment is NOT the
+cost — the registry-verify + screening fan-out itself is slow. **The "fast lane" is not
+fast in practice.** We need either a genuinely interactive lane (≤12s) or a way to run
+only the cheap blocks (LEI + registry summary) synchronously and defer screening/media.
+
+**Blocker B — registry doesn't resolve in the composite.** For all three test entities
+the `registry` block came back `{verified:false, legal_name:"", status:null,
+summary:"", validation_source:null}` — **only the `lei` block resolved** (`found:true`).
+So today `/api/v2/lookup` effectively returns **LEI data only**: no `registration_number`,
+no `registered_address`, no `tickers/exchanges`, no `status`. That is far less than GC
+`/api/discover` auto-filled. Those rich fields appear to live in **`/api/v2/verify`**, not
+the `lookup` composite — please confirm the intended path: should onboarding call
+`/api/v2/verify` for identity and `/api/v2/lookup` (or `/api/v2/screening`) for sanctions,
+and what is `verify`'s latency + country coverage?
+
+**Actual `/api/v2/lookup` response keys observed:** top-level `entity_name, country_code,
+lookup_time_ms, registry, lei, media, enrichment, screening, timestamp`;
+`registry{verified, legal_name, status, summary, validation_source}`;
+`lei{found, lei, entity_name, parent, ultimate_parent, jurisdiction}`;
+`screening{status, risk_level, total_hits, sources}`; `enrichment{status}`;
+`media{total_articles, risk_level, error}`. (This is thinner than the code-path review
+implied — no reg_number/address/tickers on `registry`.)
+
+**Onboarding status:** the cutover client is BUILT and backend-switchable
+(`DISCOVERY_BACKEND` env), adapter matched to the observed shape. Default stays **`gc`**
+until A+B are closed; flipping to crawl is then an **env change, no code**. The two asks
+above are now the only things between here and turning GC off.
+
+## After crawl confirms (A + B closed)
 
 1. Onboarding repoints `discovery_client.py` (`app/counterparties/`) from GC
    `/api/discover` → crawl `POST /api/v2/lookup`, with a response adapter (crawl blocks →
