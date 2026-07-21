@@ -1130,7 +1130,7 @@ async def _orchestrate(run_id: str, country_code: str, entity_name: str,
             return ("SKIPPED", "no deployed darkweb_collector")
         local_client = _agents_client()
         return await loop.run_in_executor(
-            None, _run_agent_sync, local_client, darkweb_id, instr_darkweb, 300,
+            None, _run_agent_sync, local_client, darkweb_id, instr_darkweb, 120,
         )
 
     async def _run_web():
@@ -1139,7 +1139,7 @@ async def _orchestrate(run_id: str, country_code: str, entity_name: str,
             return ("SKIPPED", "no deployed web_profile_collector")
         local_client = _agents_client()
         return await loop.run_in_executor(
-            None, _run_agent_sync, local_client, web_id, instr_web, 180,
+            None, _run_agent_sync, local_client, web_id, instr_web, 90,
         )
 
     try:
