@@ -285,7 +285,7 @@ def _registry_fallback_persist(run_id, cc, entity_name, registration_id=""):
     data = _call_internal_source(
         "sources/country_registry/lookup",
         {"entity_name": entity_name, "registration_number": registration_id or None},
-        params={"country": cc}, timeout=240)
+        params={"country": cc}, timeout=45)
     if not data:
         return
     primary = data.get("primary") or {}
@@ -310,7 +310,7 @@ def _registry_fallback_persist(run_id, cc, entity_name, registration_id=""):
 def _sanctions_fallback_persist(run_id, cc, entity_name):
     data = _call_internal_source(
         "sources/opensanctions/search",
-        {"entity_name": entity_name, "country": cc.lower()}, timeout=120)
+        {"entity_name": entity_name, "country": cc.lower()}, timeout=30)
     if not data:
         return
     try:
@@ -327,7 +327,7 @@ def _sanctions_fallback_persist(run_id, cc, entity_name):
 def _web_fallback_persist(run_id, cc, entity_name):
     data = _call_internal_source(
         "sources/web/profile",
-        {"entity_name": entity_name, "country": cc.lower()}, timeout=120)
+        {"entity_name": entity_name, "country": cc.lower()}, timeout=45)
     if not data:
         return
     try:
@@ -411,11 +411,13 @@ def _screen_principals(run_id, cc, entity_name):
         import source_web
     except Exception:
         source_web = None
-    matrix = []
-    for name in sorted(people)[:12]:
+    def _screen_one(name):
+        # Screen ONE principal: sanctions + adverse media. Kept independent so the
+        # matrix can be built concurrently (was a sequential 12-person loop — the
+        # single biggest 'extracting' bottleneck).
         rec = {"name": name, "sanctions": None, "adverse": []}
         data = _call_internal_source("sources/opensanctions/search",
-                                     {"entity_name": name, "country": cc.lower()}, timeout=60)
+                                     {"entity_name": name, "country": cc.lower()}, timeout=20)
         if data is not None:
             rec["sanctions"] = {"total": data.get("total", 0),
                                 "hits": (data.get("results") or [])[:3]}
@@ -428,7 +430,12 @@ def _screen_principals(run_id, cc, entity_name):
                                   for r in (res or [])[:4] if r.get("url")]
             except Exception:
                 pass
-        matrix.append(rec)
+        return rec
+
+    import concurrent.futures as _cf2
+    names = sorted(people)[:12]
+    with _cf2.ThreadPoolExecutor(max_workers=min(6, len(names) or 1)) as _ex:
+        matrix = list(_ex.map(_screen_one, names))
     if not matrix:
         return
     try:
@@ -555,7 +562,7 @@ def _collect_exec_photos(run_id, cc, entity_name):
         # self-contained data: URL (no CSP/hotlink issue).
         pp = _call_internal_source("person-photo",
                                    {"person_name": name, "company_name": entity_name,
-                                    "country_code": cc}, timeout=120) or {}
+                                    "country_code": cc}, timeout=45) or {}
         if pp.get("found") and pp.get("photo_b64"):
             return {
                 "name": name, "role": role or pp.get("title"),
@@ -1217,7 +1224,21 @@ async def _orchestrate(run_id: str, country_code: str, entity_name: str,
         except Exception:
             log.exception("orchestrator: 5-angle coverage gate failed (non-fatal)")
 
-    await asyncio.gather(_affiliate_then_parent(), _coverage())
+    # CAP the enrichment critical path. affiliate/parent-chain/coverage each
+    # persist their evidence as they go and are all fail-soft, so if the bundle
+    # overruns we proceed to synthesis with whatever landed rather than stall the
+    # run in 'extracting' for minutes. Any still-running executor thread finishes
+    # harmlessly in the background (writes to its own DB connection). This is the
+    # single biggest source of 'extractor'/'extracting' slowness.
+    import os as _os
+    _ENRICH_CAP_S = int(_os.environ.get("CIR_ENRICH_CAP_S", "75"))
+    try:
+        await asyncio.wait_for(
+            asyncio.gather(_affiliate_then_parent(), _coverage()),
+            timeout=_ENRICH_CAP_S)
+    except asyncio.TimeoutError:
+        log.warning("orchestrator: run %s — enrichment exceeded %ds cap; proceeding to "
+                    "synthesis with evidence collected so far", run_id[:8], _ENRICH_CAP_S)
 
     # ── FAST PATH: report first, background the rest ──────────────────────────
     # The Opus cir_markdown (the report the tab renders) reads the EVIDENCE pool
