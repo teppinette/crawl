@@ -5,3 +5,4 @@ Append-only. Each row is one deploy of a verification agent to Azure AI Foundry.
 | deployed_at (UTC) | agent | version | content_hash | git_sha | foundry_agent_id |
 |---|---|---|---|---|---|
 | 2026-07-17T14:47:25Z | verify_gr_collector | 1.0.0 | sha256:7233b73e79e115a8483dd9df2075c7ebd2254d66ae796a3e4865ab32ae0b1fd0 | a11301c | asst_Z0Ui3DuYkJnzcEWil4fENpKr |
+| 2026-07-21T11:49:25Z | verify_generic_collector | 1.0.0 | sha256:98d18958e8ac97f94688ee2f7dc7d778eaa4cba4a6a2fc5a4e758cbfe3e094c8 | 39341a5 | asst_rCbnxSVmOmneEV0DVCBGoAYe |
