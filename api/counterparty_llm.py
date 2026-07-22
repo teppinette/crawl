@@ -230,14 +230,39 @@ _CIR_MD_SYSTEM = (
     "> OSINT > DARKWEB. Flag conflicts and say which tier you trust.\n"
     "4. DARKWEB/OSINT are INFORMATIONAL ONLY — put them under 'Dark Web & OSINT Signals', never under "
     "Registry facts or Sanctions.\n"
-    "5. Sections: Executive Summary; Registry Facts (identity/registration/status/address/"
-    "directors/UBO); Ownership & Control (parent chain, shareholders, actual controller); "
-    "Corporate Network (affiliates/subsidiaries); Named Executives & Directors (for each "
-    "named person give role and, if an exec_photo evidence row exists for them, their photo's "
-    "source URL — mark it UNVERIFIED unless that row is corroborated=true; never assert a "
-    "photo is the person without corroboration); Sanctions "
-    "Screening; Adverse Media; **Dark Web & OSINT Signals**; Risk Assessment; Source Coverage Matrix "
-    "(source | tier | found_data y/n). Omit any sub-item with no cited evidence — never pad.\n"
+    "5. STRUCTURE — this is a BANK-GRADE DEEP-DIVE DOSSIER, not a summary. Output ALL of these "
+    "sections, IN ORDER, every one present. An honest gap is REQUIRED content, not padding: if a "
+    "section has no supporting evidence, still output its heading and ONE honest line stating what "
+    "was attempted and that nothing was found/available (cite the found=false / empty row). NEVER "
+    "drop a section; NEVER pad with invention. Name people, quote registry values, state tier conflicts.\n"
+    "   (1) Executive Summary — 500-800 words of FLOWING PROSE (paragraphs; NO tables and NO bullet "
+    "lists in THIS section). Synthesize: who the entity is; our relationship if any (rule 7); "
+    "ownership/control; the single most important risk; what the GOVERNMENT registry confirmed vs. "
+    "what it could not; and EXPLICITLY what remains UNDISCLOSED or unverifiable. It must stand alone "
+    "(do not defer facts to later sections). Every factual sentence still ends with its [E<id>].\n"
+    "   (2) Received vs Government Registry — if a `registry_verify` evidence row exists, render its "
+    "`comparison` as a table: Field | Received (KYC) | Government Registry | Match?; then a "
+    "Discrepancies subsection listing EVERY match=false and flagging it [E<id>]. If no received/KYC "
+    "data was supplied for this run, state that plainly in one line.\n"
+    "   (3) Registry Facts — identity / registration / status / address / directors / UBO.\n"
+    "   (4) Ownership & Control — parent chain, shareholders, actual controller (imputed parent "
+    "sanctions exposure if present — imputed-only, never auto-block).\n"
+    "   (5) Corporate Network — affiliates / subsidiaries / related entities.\n"
+    "   (6) Named Executives & Directors — for EACH named person give: name; role; ownership % and "
+    "DOB IF present in any evidence row; their INDIVIDUAL sanctions/PEP verdict (from the "
+    "csl_screening / opensanctions principal row); adverse-media outcome; and — if an exec_photo row "
+    "names them — the photo SOURCE URL, marked UNVERIFIED unless that row is corroborated=true (never "
+    "assert a photo IS the person without corroboration). If a person appears in received KYC but not "
+    "the registry (or vice-versa), say so.\n"
+    "   (7) The Undisclosed — intelligence we found that is NOT in the counterparty's own KYC: adverse "
+    "media READ (summarize the finding, not a count), ownership contradictions between received and "
+    "registry, imputed parent-chain sanctions exposure, dark-web/breach signals, export-control/end-use "
+    "flags. If nothing beyond the declared picture surfaced, say so honestly.\n"
+    "   (8) Sanctions Screening — entity + each principal, lists checked, result.\n"
+    "   (9) Adverse Media — READ the material hits and state the finding (source + date); dismiss "
+    "name-collision noise explicitly. Not a hit-count.\n"
+    "   (10) Dark Web & OSINT Signals; (11) Risk Assessment; (12) Source Coverage Matrix "
+    "(source | tier | found_data y/n | status: collected / clean / not-run).\n"
     "7. OUR RELATIONSHIP (MDM): if an `mdm_governed` evidence row exists, state in the Executive Summary that "
     "this is a party WE TRANSACT WITH and summarise our governed relationship (role: customer/supplier, "
     "entity category, trade linkage/history) — cite it. That is decision-critical context (exposure to a "
@@ -453,8 +478,12 @@ def synthesize_cir_markdown(run_id: str, *, persist: bool = True,
         return {"markdown": None, "render_id": None, "skipped": True,
                 "reason": f"insufficient evidence ({len(real)} rows)"}
 
-    # (2) MODEL ROUTER — Opus only where risk signals warrant it.
-    mdl = model or _route_model(ev, claims)
+    # (2) MODEL — the CIR markdown is a bank-grade deep-dive NARRATIVE (500-800w
+    # exec summary + named-people + received-vs-registry); Haiku prose is too thin
+    # for that bar, so the report itself is ALWAYS Opus. (_route_model still governs
+    # the cheaper extractor/JSON passes.) Env COUNTERPARTY_LLM_MODEL / an explicit
+    # model= arg still override.
+    mdl = model or _MODEL
 
     # PROMPT SHIELDS — screen untrusted crawled evidence for injection/jailbreak
     # BEFORE it reaches the model (managed Azure guard, on top of the regex
