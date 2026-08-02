@@ -34,7 +34,7 @@ log = logging.getLogger("adverse-media")
 ANTHROPIC_API_KEY = get_secret("anthropic-api-key")
 
 # Bright Data API key (for SERP API + Discover API)
-_BD_API_KEY = get_secret("brightdata-api-key") or "a5327ce4-3832-42a8-86b7-96bf0dd1950c"
+_BD_API_KEY = get_secret("brightdata-api-key") or "32fbef64-3d3f-4205-ba67-dee75fe82620"
 _BD_SERP_ZONE = os.environ.get("BD_SERP_ZONE", "serp_api1")
 
 VERSION = "2.0.0"
