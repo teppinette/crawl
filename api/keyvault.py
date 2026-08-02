@@ -14,7 +14,11 @@ for _name in ("azure.core.pipeline.policies.http_logging_policy",
 
 logger = logging.getLogger(__name__)
 
-VAULT_URL = os.environ.get("CRAWL_KV_URL", "https://crawlkeyvault.vault.azure.net/")
+# crawl-kv is canonical. The default used to be the legacy `crawlkeyvault`, which
+# production never uses -- CRAWL_KV_URL overrides it everywhere. That made the
+# default a silent trap: lose the env var and the code reads a DIFFERENT vault and
+# quietly falls through to env/fallback values instead of failing.
+VAULT_URL = os.environ.get("CRAWL_KV_URL", "https://crawl-kv.vault.azure.net/")
 
 _client = None
 _cache = {}
