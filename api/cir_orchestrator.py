@@ -17,8 +17,12 @@ State transitions on cir_runs.status:
 """
 
 import asyncio
+import hashlib
+import hmac
+import json
 import logging
 import time
+import unicodedata
 import yaml
 from pathlib import Path
 from typing import Optional
@@ -42,6 +46,126 @@ _PROJECT_ENDPOINT = "https://copapfoundry-resource.services.ai.azure.com/api/pro
 
 # Per-phase agent_id lookups. Populated on first use; falls back to YAML scan.
 _AGENT_IDS_BY_NAME: dict[str, str] = {}
+
+_GOVERNED_CONTEXT_CONTRACT = "copap.onboarding.cir-governed-context"
+_GOVERNED_CONTEXT_VERSION = 1
+_GOVERNED_CONTEXT_MAX_BYTES = 96_000
+_GOVERNED_CONTEXT_TOP_LEVEL = {
+    "contract", "generated_at", "subject", "parent", "subsidiaries",
+    "reported_subsidiaries", "relationships", "group_memberships",
+    "directors", "beneficial_owners", "registrations",
+    "stored_intelligence", "quality", "interpretation_policy",
+    "context_fingerprint",
+}
+_GOVERNED_CONTEXT_LIST_LIMITS = {
+    "subsidiaries": 100,
+    "reported_subsidiaries": 100,
+    "relationships": 100,
+    "group_memberships": 50,
+    "directors": 100,
+    "beneficial_owners": 100,
+    "registrations": 50,
+}
+
+
+def _normalise_entity_name(value: str | None) -> str:
+    """Normalize representation only; do not make a fuzzy identity match."""
+    normalized = unicodedata.normalize("NFKC", str(value or ""))
+    return " ".join(normalized.split()).casefold()
+
+
+def _validate_governed_context(
+    context: dict,
+    *,
+    entity_name: str,
+    onboarding_entity_id: str,
+    compliance_entity_id: str = "",
+) -> dict:
+    """Validate the bounded onboarding evidence contract and its content hash.
+
+    This protects against sending the right company's research request with a
+    different company's internal ownership packet, and prevents an unbounded
+    blob from being copied into the evidence store / LLM prompt.
+    """
+    if not isinstance(context, dict):
+        raise ValueError("governed_context must be a JSON object")
+    unknown = set(context) - _GOVERNED_CONTEXT_TOP_LEVEL
+    if unknown:
+        raise ValueError("governed_context contains unsupported fields")
+    try:
+        encoded = json.dumps(
+            context, ensure_ascii=False, separators=(",", ":"),
+        ).encode("utf-8")
+    except (TypeError, ValueError) as exc:
+        raise ValueError("governed_context must be JSON serializable") from exc
+    if len(encoded) > _GOVERNED_CONTEXT_MAX_BYTES:
+        raise ValueError("governed_context exceeds the 96 KB safety limit")
+
+    contract = context.get("contract")
+    if not isinstance(contract, dict) or (
+        contract.get("name") != _GOVERNED_CONTEXT_CONTRACT
+        or contract.get("version") != _GOVERNED_CONTEXT_VERSION
+    ):
+        raise ValueError("unsupported governed_context contract")
+    subject = context.get("subject")
+    if not isinstance(subject, dict):
+        raise ValueError("governed_context subject is required")
+    if _normalise_entity_name(subject.get("legal_name")) != _normalise_entity_name(entity_name):
+        raise ValueError("governed_context legal name does not match the CIR subject")
+    subject_entity_id = str(subject.get("entity_id") or "").strip()
+    if not onboarding_entity_id or subject_entity_id != onboarding_entity_id:
+        raise ValueError("governed_context onboarding entity id does not match")
+    subject_compliance_id = str(subject.get("compliance_entity_id") or "").strip()
+    if (compliance_entity_id and subject_compliance_id
+            and subject_compliance_id != compliance_entity_id):
+        raise ValueError("governed_context compliance entity id does not match")
+
+    for key, limit in _GOVERNED_CONTEXT_LIST_LIMITS.items():
+        value = context.get(key)
+        if value is not None and (not isinstance(value, list) or len(value) > limit):
+            raise ValueError(f"governed_context {key} must contain at most {limit} rows")
+
+    fingerprint = str(context.get("context_fingerprint") or "").strip().lower()
+    if len(fingerprint) != 64 or any(ch not in "0123456789abcdef" for ch in fingerprint):
+        raise ValueError("governed_context fingerprint is invalid")
+    unsigned = dict(context)
+    unsigned.pop("context_fingerprint", None)
+    canonical = json.dumps(
+        unsigned, sort_keys=True, separators=(",", ":"), ensure_ascii=False,
+    ).encode("utf-8")
+    expected = hashlib.sha256(canonical).hexdigest()
+    if not hmac.compare_digest(fingerprint, expected):
+        raise ValueError("governed_context fingerprint does not match its content")
+    return context
+
+
+def _persist_onboarding_governed(run_id: str, context: dict) -> str:
+    """Persist onboarding facts as citation-ready internal governed evidence."""
+    subject = context.get("subject") or {}
+    entity_id = str(subject.get("entity_id") or "").strip()
+    raw = json.dumps(
+        context, sort_keys=True, separators=(",", ":"), ensure_ascii=False,
+    )
+    return evidence_db.add_evidence(
+        run_id,
+        source_id="onboarding_governed",
+        source_url=f"onboarding://counterparty/{entity_id}/cir-governed-context",
+        source_query=f"entity_id={entity_id}",
+        status_code=200,
+        raw_content=raw,
+        extracted={
+            "source_tier": "INTERNAL_GOVERNED",
+            "context": context,
+            "note": (
+                "Governed onboarding records supplied at CIR request time. "
+                "External NOT_FOUND means not externally corroborated; it does "
+                "not erase a declared or stored internal fact."
+            ),
+        },
+        language_original="en",
+        extraction_confidence=1.0,
+        parser_version="onboarding_governed_v1",
+    )
 
 
 def _load_agent_id(agent_name: str) -> Optional[str]:
@@ -244,6 +368,14 @@ def _covered_angles(run_id: str) -> dict:
     except Exception:
         return cov
     for e in ev:
+        if (e.get("source_id") or "").lower() == "onboarding_governed":
+            extracted = e.get("extracted") if isinstance(e.get("extracted"), dict) else {}
+            context = extracted.get("context") if isinstance(extracted.get("context"), dict) else {}
+            if (context.get("parent") or context.get("subsidiaries")
+                    or context.get("reported_subsidiaries")
+                    or context.get("relationships")
+                    or context.get("beneficial_owners")):
+                cov["ownership"] += 1
         a = _angle_of(e.get("source_id"))
         if a in cov:
             cov[a] += 1
@@ -425,8 +557,44 @@ def _adverse_deep_persist(run_id, cc, entity_name):
         log.warning("orchestrator: deep adverse persist failed: %s", e)
 
 
+def _named_people_from_evidence(extracted: dict, *, include_ubos: bool = False):
+    """Return (name, role) pairs from flat collector and governed packet shapes."""
+    if not isinstance(extracted, dict):
+        return []
+    context = extracted.get("context")
+    context = context if isinstance(context, dict) else {}
+    buckets = [extracted.get("directors") or [], context.get("directors") or []]
+    if include_ubos:
+        buckets.extend([
+            extracted.get("beneficial_owners") or [],
+            extracted.get("ubos") or [],
+            context.get("beneficial_owners") or [],
+        ])
+    out = []
+    for bucket in buckets:
+        if not isinstance(bucket, list):
+            continue
+        for item in bucket:
+            if isinstance(item, str):
+                name, role = item.strip(), ""
+            elif isinstance(item, dict):
+                name = str(
+                    item.get("name") or item.get("full_name")
+                    or item.get("UBOName") or ""
+                ).strip()
+                role = str(
+                    item.get("role") or item.get("ubo_type")
+                    or item.get("type") or ""
+                ).strip()
+            else:
+                continue
+            if len(name) > 3:
+                out.append((name, role))
+    return out
+
+
 def _screen_principals(run_id, cc, entity_name):
-    """BFR-parity: screen each named PRINCIPAL (director/officer from the registry)
+    """BFR-parity: screen each named PRINCIPAL (director/officer/UBO from all evidence)
     against sanctions/PEP (CSL) + adverse media — not just the subject entity. This
     is the gap that let BFR catch upstream risk (a clean company with a sanctioned/
     charged director). Free — reuses the CSL tool + SearXNG. Persists a principal
@@ -437,10 +605,8 @@ def _screen_principals(run_id, cc, entity_name):
             ex = e.get("extracted") or {}
             if not isinstance(ex, dict):
                 continue
-            for d in (ex.get("directors") or []):
-                nm = d if isinstance(d, str) else (d.get("name") if isinstance(d, dict) else None)
-                if nm and len(nm.strip()) > 3:
-                    people.add(nm.strip())
+            for name, _role in _named_people_from_evidence(ex, include_ubos=True):
+                people.add(name)
     except Exception:
         return
     if not people:
@@ -484,7 +650,8 @@ def _screen_principals(run_id, cc, entity_name):
             source_query=entity_name, status_code=200,
             extracted={"principal_screening": matrix, "count": len(matrix),
                        "note": "Sanctions/PEP + adverse-media screening of EACH named "
-                               "director/officer (BFR-parity individual screening). "
+                               "director/officer/beneficial owner from registry and "
+                               "governed onboarding evidence (BFR-parity screening). "
                                "Corroborate any hit against primary records."},
             language_original="en", parser_version="principal_screen_v1")
         log.info("orchestrator: principal screening — %s: %d principals screened",
@@ -504,7 +671,7 @@ def _directors_web_fallback(run_id, cc, entity_name):
     try:
         for e in evidence_db.list_evidence(run_id):
             ex = e.get("extracted") or {}
-            if isinstance(ex, dict) and (ex.get("directors")):
+            if _named_people_from_evidence(ex):
                 return
     except Exception:
         return
@@ -587,11 +754,8 @@ def _collect_exec_photos(run_id, cc, entity_name):
             ex = e.get("extracted") or {}
             if not isinstance(ex, dict):
                 continue
-            for d in (ex.get("directors") or []):
-                if isinstance(d, str) and len(d.strip()) > 3:
-                    people.setdefault(d.strip(), "")
-                elif isinstance(d, dict) and d.get("name"):
-                    people.setdefault(d["name"].strip(), d.get("role") or "")
+            for name, role in _named_people_from_evidence(ex):
+                people.setdefault(name, role)
     except Exception:
         return
     if not people:
@@ -669,24 +833,27 @@ def _mdm_governed_persist(run_id, cc, entity_name):
     it as INTERNAL-tier evidence, so the CIR is grounded in OUR system of record, not
     just the open web. Consume MDM, never re-derive. Fail-soft.
 
-    MDM counterparty endpoints are keyed by CpID (NOT name — name→CpID needs CieTrade
-    DB access the gateway doesn't have). So we use the CpID that onboarding passes in
-    the run meta (meta.cpid). No CpID = external entity we don't trade with = skip."""
+    Prefer CpID when present.  For onboarded entities without a CieTrade link,
+    use the governed ComplianceEntityID/GID endpoint instead of incorrectly
+    skipping MDM altogether."""
     import os as _os
     import requests as _rq
     # CpID from the run's meta (set by /cir/run when onboarding provides it).
     cpid = ""
+    compliance_entity_id = ""
     try:
         meta = (evidence_db.get_run(run_id) or {}).get("meta") or {}
         if isinstance(meta, str):
             import json as _json
             meta = _json.loads(meta) if meta.strip() else {}
         cpid = str(meta.get("cpid") or "").strip()
+        compliance_entity_id = str(meta.get("compliance_entity_id") or "").strip()
     except Exception:
         cpid = ""
-    if not cpid:
-        log.info("orchestrator: no cpid in run meta — MDM grounding skipped "
-                 "(external entity / onboarding didn't pass a CpID)")
+        compliance_entity_id = ""
+    if not cpid and not compliance_entity_id:
+        log.info("orchestrator: no cpid or compliance entity id in run meta — "
+                 "MDM relationship grounding skipped")
         return
     token = _os.environ.get("MDM_M2M_TOKEN", "")
     if not token:
@@ -715,8 +882,24 @@ def _mdm_governed_persist(run_id, cc, entity_name):
     # counterparty-role is the counterparty-keyed governed endpoint: returns role
     # (Customer/Supplier/Both/Freight/Agent) from ACTUAL trade activity + system
     # presence (in_cietrade/in_intacct) + canonical name + book. Verified contract.
-    role = _post("counterparty-role", {"cpids": [cpid]})
-    row = (role or {}).get(cpid) if isinstance(role, dict) else None
+    row = None
+    lookup_source = ""
+    lookup_value = ""
+    if cpid:
+        role = _post("counterparty-role", {"cpids": [cpid]})
+        row = (role or {}).get(cpid) if isinstance(role, dict) else None
+        if isinstance(row, dict):
+            lookup_source, lookup_value = "counterparty-role", cpid
+    if not isinstance(row, dict) and compliance_entity_id:
+        role = _post(
+            "counterparty-role-by-entity",
+            {"entity_ids": [compliance_entity_id]},
+        )
+        row = ((role or {}).get(compliance_entity_id)
+               if isinstance(role, dict) else None)
+        if isinstance(row, dict):
+            lookup_source, lookup_value = (
+                "counterparty-role-by-entity", compliance_entity_id)
     if isinstance(row, dict):
         governed["counterparty_role"] = row
     if not governed:
@@ -724,14 +907,17 @@ def _mdm_governed_persist(run_id, cc, entity_name):
     try:
         evidence_db.add_evidence(
             run_id, source_id="mdm_governed",
-            source_url=f"{base}/api/m2m/*", source_query=f"cpid={cpid}", status_code=200,
-            extracted={**governed, "cpid": cpid, "source_tier": "INTERNAL_GOVERNED",
+            source_url=f"{base}/api/m2m/{lookup_source}",
+            source_query=f"{lookup_source}={lookup_value}", status_code=200,
+            extracted={**governed, "cpid": cpid or None,
+                       "compliance_entity_id": compliance_entity_id or None,
+                       "source_tier": "INTERNAL_GOVERNED",
                        "note": "OUR governed relationship with this counterparty per MDM "
                                "(role from actual trade activity + trade linkage) — internal "
                                "system of record, CieTrade-authoritative, consume don't re-derive."},
             language_original="en", parser_version="mdm_governed_v2")
-        log.info("orchestrator: MDM grounding — %s cpid=%s: %s",
-                 run_id[:8], cpid, list(governed.keys()))
+        log.info("orchestrator: MDM grounding — %s via %s: %s",
+                 run_id[:8], lookup_source, list(governed.keys()))
     except Exception as e:
         log.warning("orchestrator: MDM grounding persist failed: %s", e)
 
@@ -1422,6 +1608,16 @@ class CIRRunRequest(BaseModel):
         description="Optional CieTrade CpID. When onboarding passes it, the CIR "
                     "grounds on OUR governed relationship via MDM (role, trade "
                     "linkage) — MDM counterparty data is keyed by CpID, not name.")
+    onboarding_entity_id: Optional[str] = Field(None, max_length=80,
+        description="Immutable onboarding Counterparty.EntityID for governed "
+                    "context identity binding and audit reconciliation.")
+    compliance_entity_id: Optional[str] = Field(None, max_length=80,
+        description="Global Compliance entity ID/GID. Used for MDM grounding "
+                    "when the entity legitimately has no CieTrade CpID.")
+    governed_context: Optional[dict] = Field(None,
+        description="Bounded, versioned onboarding ownership/network/person "
+                    "evidence packet. Its SHA-256 identity binding is validated "
+                    "before the run is created.")
 
 
 class CIRRunResponse(BaseModel):
@@ -1441,11 +1637,54 @@ async def cir_run(req: CIRRunRequest):
     if len(cc) != 2:
         raise HTTPException(status_code=400, detail="country_code must be ISO-2")
 
+    onboarding_entity_id = str(req.onboarding_entity_id or "").strip()
+    compliance_entity_id = str(req.compliance_entity_id or "").strip()
+    governed_context = None
+    governed_fingerprint = ""
+    if req.governed_context is not None:
+        try:
+            governed_context = _validate_governed_context(
+                req.governed_context,
+                entity_name=req.entity_name,
+                onboarding_entity_id=onboarding_entity_id,
+                compliance_entity_id=compliance_entity_id,
+            )
+        except ValueError as exc:
+            raise HTTPException(status_code=422, detail=str(exc)) from exc
+        governed_fingerprint = str(
+            governed_context.get("context_fingerprint") or ""
+        ).strip()
+        if not compliance_entity_id:
+            compliance_entity_id = str(
+                (governed_context.get("subject") or {}).get(
+                    "compliance_entity_id") or ""
+            ).strip()
+
     run_id = evidence_db.create_run(
         entity_name=req.entity_name, country=cc,
         meta={"source": "cir_orchestrator", "registration_id": req.registration_id or "",
-              "cn_name": req.cn_name or "", "cpid": (req.cpid or "").strip()},
+              "cn_name": req.cn_name or "", "cpid": (req.cpid or "").strip(),
+              "onboarding_entity_id": onboarding_entity_id,
+              "compliance_entity_id": compliance_entity_id,
+              "governed_context_fingerprint": governed_fingerprint},
     )
+    if governed_context is not None:
+        try:
+            _persist_onboarding_governed(run_id, governed_context)
+        except Exception as exc:
+            log.exception(
+                "orchestrator: governed onboarding evidence persist failed for %s",
+                run_id[:8],
+            )
+            evidence_db.update_run_status(
+                run_id, "failed",
+                error="governed onboarding evidence could not be persisted",
+            )
+            raise HTTPException(
+                status_code=503,
+                detail="CIR run was stopped before research because governed "
+                       "onboarding evidence could not be persisted",
+            ) from exc
     # Kick off background orchestration — caller doesn't wait
     asyncio.create_task(_orchestrate(
         run_id=run_id, country_code=cc,

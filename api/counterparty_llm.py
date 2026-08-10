@@ -149,7 +149,14 @@ _PRINCIPALS_SYSTEM = (
     "rule: use ONLY the evidence provided. Never invent a person, company, role, "
     "or identifier that is not present in the evidence. If the evidence names no "
     "principals, return an empty list. Every item you return must cite the "
-    "evidence_id it came from. You are identifying WHO and WHICH entities a deep "
+    "evidence_id it came from. `onboarding_governed` is valid INTERNAL_GOVERNED "
+    "evidence: extract every named active director, beneficial owner, declared or "
+    "linked parent, subsidiary, and typed related entity it contains. Also extract "
+    "named parent/subsidiary candidates from its INTERNAL_DERIVED stored_intelligence "
+    "so they can be independently investigated; do not upgrade those candidates to "
+    "registry-confirmed facts. A separate registry row with found=false does not "
+    "erase those internal names. You are "
+    "identifying WHO and WHICH entities a deep "
     "dive should investigate next — you are not judging or scoring them."
 )
 
@@ -221,13 +228,29 @@ _CIR_MD_SYSTEM = (
     "`E` value present in the EVIDENCE block. Never construct, complete, guess, or reuse a "
     "half-remembered id — a citation to an id not in the evidence is a fabrication and fails "
     "the report. If no evidence supports a point, drop the point.\n"
-    "2. NEVER invent facts. If the evidence is silent (e.g. UBO not disclosed), say so "
+    "2. NEVER invent facts. If ALL evidence is silent (e.g. UBO not disclosed), say so "
     "explicitly. An evidence item with extracted={} or found=false means the source was "
     "queried but returned NOTHING — it is proof of an attempt, NOT corroboration; never "
     "write 'the registry confirms…' from such a row. The legal_name on a row often just "
     "echoes the query input — treat it as input-echo unless a source returned real data.\n"
-    "3. WEIGHT by source_tier: PRIMARY_GOVERNMENT > OFFICIAL_LIST > COMMERCIAL_AGGREGATOR "
-    "> OSINT > DARKWEB. Flag conflicts and say which tier you trust.\n"
+    "2a. INTERNAL RECORDS SURVIVE EXTERNAL NOT_FOUND: an `onboarding_governed` row is the "
+    "received/internal record for this subject. If it names a parent, subsidiary, related "
+    "entity, director, beneficial owner, registration, or group membership, include that "
+    "fact in the corresponding report section and cite the row. A government/registry "
+    "found=false or NOT_FOUND row means only 'not externally corroborated by that source'. "
+    "It NEVER means 'no ownership', 'no corporate network', 'no directors', or 'no data' "
+    "when the internal row contains those records. State the distinction plainly, for "
+    "example: 'Onboarding records identify X as the declared parent; the queried registry "
+    "did not independently corroborate that relationship.' Cite both rows.\n"
+    "2b. INTERNAL EVIDENCE CLASSIFICATION: `onboarding_governed` and `mdm_governed` are "
+    "INTERNAL_GOVERNED received records, not government registry facts. A nested "
+    "stored_intelligence item classified INTERNAL_DERIVED is analyst/engine-derived "
+    "intelligence: label it as stored internal intelligence and do not present it as a "
+    "registry-confirmed fact. Disclose genuine conflicts; do not silently pick one source.\n"
+    "3. WEIGHT by source_tier for external corroboration: PRIMARY_GOVERNMENT > OFFICIAL_LIST "
+    "> COMMERCIAL_AGGREGATOR > OSINT > DARKWEB. INTERNAL_GOVERNED is authoritative for what "
+    "COPAP received/stores, but requires external corroboration for independent verification. "
+    "Flag conflicts and state each source's role.\n"
     "4. DARKWEB/OSINT are INFORMATIONAL ONLY — put them under 'Dark Web & OSINT Signals', never under "
     "Registry facts or Sanctions.\n"
     "5. STRUCTURE — this is a BANK-GRADE DEEP-DIVE DOSSIER, not a summary. Output ALL of these "
@@ -240,10 +263,13 @@ _CIR_MD_SYSTEM = (
     "ownership/control; the single most important risk; what the GOVERNMENT registry confirmed vs. "
     "what it could not; and EXPLICITLY what remains UNDISCLOSED or unverifiable. It must stand alone "
     "(do not defer facts to later sections). Every factual sentence still ends with its [E<id>].\n"
-    "   (2) Received vs Government Registry — if a `registry_verify` evidence row exists, render its "
-    "`comparison` as a table: Field | Received (KYC) | Government Registry | Match?; then a "
-    "Discrepancies subsection listing EVERY match=false and flagging it [E<id>]. If no received/KYC "
-    "data was supplied for this run, state that plainly in one line.\n"
+    "   (2) Received vs Government Registry — treat `onboarding_governed` as received/internal "
+    "data. If a `registry_verify` evidence row exists, render its `comparison` as a table: "
+    "Field | Received (KYC) | Government Registry | Match?; then a Discrepancies subsection "
+    "listing EVERY match=false and flagging it [E<id>]. If an internal fact is present but the "
+    "registry returned no data, mark it 'not corroborated', never 'absent'. Only state that no "
+    "received/KYC data was supplied if there is neither a registry_verify input nor an "
+    "onboarding_governed row.\n"
     "   (3) Registry Facts — identity / registration / status / address / directors / UBO.\n"
     "   (4) Ownership & Control — parent chain, shareholders, actual controller (imputed parent "
     "sanctions exposure if present — imputed-only, never auto-block).\n"
@@ -339,13 +365,13 @@ def _grounding_rating(md: str, ev: list, claims: list = None) -> dict:
     score = coverage
     if phantom:
         score = round(min(score, 100.0 - 100.0 * len(phantom) / max(len(all_cites), 1)), 1)
-    # ── COMPLETENESS (fail-loud) ──────────────────────────────────────────────
-    # Grounding measures HALLUCINATION (are claims cited), NOT whether we actually
-    # COLLECTED the identity. A well-cited "we found nothing" is worthless. If the
-    # PRIMARY national registry (<cc>_registry) returned no data (found:false / no
-    # registration number), the report is NOT decision-grade no matter how high the
-    # citation coverage — it becomes a HOLD, and the served/decision gate rejects it.
-    # This is what stops a gutted China CIR from scoring "92% PASS".
+    # ── COMPLETENESS (fail-loud, source-aware) ─────────────────────────────────
+    # Grounding measures HALLUCINATION (are claims cited), not whether we collected
+    # identity evidence. Primary-government identity is strongest, but an external
+    # registry outage/NOT_FOUND must not erase a bounded, hash-bound onboarding
+    # packet containing the subject plus stored registration records. Keep the two
+    # bases distinct so the report can say "internally documented, not externally
+    # corroborated" without quarantining all useful ownership/network intelligence.
     def _reg_ok(e):
         ex = e.get("extracted") if isinstance(e.get("extracted"), dict) else {}
         return ((e.get("source_id") or "").endswith("_registry")
@@ -354,9 +380,29 @@ def _grounding_rating(md: str, ev: list, claims: list = None) -> dict:
                          or ex.get("registration_id") or ex.get("company_number")))
     primary_collected = any(_reg_ok(e) for e in ev)
 
+    def _governed_identity_ok(e):
+        if (e.get("source_id") or "") != "onboarding_governed":
+            return False
+        ex = e.get("extracted") if isinstance(e.get("extracted"), dict) else {}
+        ctx = ex.get("context") if isinstance(ex.get("context"), dict) else {}
+        subject = ctx.get("subject") if isinstance(ctx.get("subject"), dict) else {}
+        registrations = ctx.get("registrations")
+        if not subject.get("legal_name") or not isinstance(registrations, list):
+            return False
+        return any(
+            isinstance(row, dict) and bool(row.get("registration_number"))
+            for row in registrations
+        )
+
+    governed_identity_collected = any(_governed_identity_ok(e) for e in ev)
+    identity_collected = primary_collected or governed_identity_collected
+    identity_basis = ("PRIMARY_GOVERNMENT" if primary_collected
+                      else "GOVERNED_ONBOARDING_REGISTRATION"
+                      if governed_identity_collected else "NONE")
+
     verdict = ("FAIL — fabricated citation(s)" if phantom
-               else "HOLD — primary registry returned no data (identity unverified)"
-               if not primary_collected
+               else "HOLD — no primary or governed registration identity evidence"
+               if not identity_collected
                else "CLEAN — grounded" if coverage >= 99
                else "PASS — grounded" if coverage >= 90
                else "REVIEW — uncited assertions")
@@ -367,6 +413,9 @@ def _grounding_rating(md: str, ev: list, claims: list = None) -> dict:
         "phantom_citations": phantom, "phantom_count": len(phantom),
         "primary_tier_cites": primary, "osint_tier_cites": osint,
         "primary_collected": primary_collected,
+        "governed_identity_collected": governed_identity_collected,
+        "identity_collected": identity_collected,
+        "identity_basis": identity_basis,
         "verdict": verdict,
     }
     block = (
@@ -380,9 +429,12 @@ def _grounding_rating(md: str, ev: list, claims: list = None) -> dict:
         f"- Fabricated (phantom) citations: **{len(phantom)}**"
         + (f" ⚠ {', '.join('[E'+p+']' for p in phantom)}" if phantom else " ✓")
         + "\n"
-        + ("- Primary registry: **data collected** ✓\n" if primary_collected else
-           "- Primary registry: **NO DATA returned** ⚠ — identity unverified; "
-           "not decision-grade regardless of citation coverage.\n")
+        + ("- Identity basis: **primary government registry** ✓\n"
+           if primary_collected else
+           "- Identity basis: **governed onboarding registration**; the primary "
+           "registry did not independently corroborate it.\n"
+           if governed_identity_collected else
+           "- Identity basis: **none collected** ⚠\n")
     )
     return {"rating": rating, "block": block}
 
