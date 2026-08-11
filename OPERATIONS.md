@@ -486,15 +486,28 @@ windows (VM disks 90d, PG 7d post server delete, blob 30d, KV 90d).
   prior noVNC failure was missing private-network routing, not a dead desktop.
 - Immediate delegated-access requirement: approximately three named analysts
   using the existing Multilogin/Pakistan desktop one at a time. Do not share
-  the VNC credential. The additive target is Guacamole 1.6.0 behind HTTPS,
-  named authentication and TOTP, connection history, and a maximum of one
-  concurrent connection. Entra OIDC follows after its separate app registration
-  is available. Three simultaneous analysts require separate desktops and
-  Multilogin profiles.
-- Before installing that gateway, create an Azure managed OS-disk snapshot and
-  a mode-600 configuration backup. Preserve every existing desktop, relay,
-  noVNC, idle-stop, and verification-gateway service. Expose only 80/443 for
-  certificate issuance/redirect and HTTPS; never expose 5900/6080.
+  the VNC credential. The additive Guacamole 1.6.0 gateway is now live at
+  `https://copap-verification-pk-dev.eastus2.cloudapp.azure.com/` with named
+  database authentication, forced password change, TOTP, brute-force
+  protection, connection history, and a one-connection limit. Entra OIDC
+  follows after its separate app registration is available. Three simultaneous
+  analysts require separate desktops and Multilogin profiles.
+- Pre-change recovery points are snapshot
+  `crawl-verify-os-pre-guacamole-20260811T142750Z` and mode-600 backup
+  `/home/copapadmin/verification-backups/pre-guacamole-20260811T142750Z.tar.gz`
+  (SHA-256
+  `688fd8df9f406deb6bda5dd777edc09c7190bb9398be7bd29e89a3db4a8ebf14`).
+  Every existing desktop, relay, noVNC, idle-stop, and verification-gateway
+  service was preserved. Only Caddy 80/443 is public; 5900/6080 remain closed.
+- A private end-to-end test passed login, WebSocket/VNC, `1920x1088`
+  framebuffer, SFTP listing, and browser download. TOTP was restored before
+  public access. `browse-pakistan` is running on SECP LEAP and the final health
+  result is `overall=healthy`. Saved registry files appear in Guacamole as
+  `/downloads`; double-click a file there to download it to the analyst PC.
+- All generated gateway credentials and the NSTBrowser API key are escrowed by
+  name in `copapkeyvault`; values must never enter this runbook. NSTBrowser has
+  not passed the supported interactive Windows/AVD gates, so keep Multilogin
+  and do not deallocate the AVD VM until the controlled comparison succeeds.
 - Pakistan verification proof on 2026-08-11: SECP returned
   `verified=true`, `found=true` for `Chemtech Prochimica Industries (Private)
   Limited`, legal name `CHEMTECH PROCHIMICA INDUSTRIES (PRIVATE) LIMITED`,
