@@ -488,10 +488,11 @@ windows (VM disks 90d, PG 7d post server delete, blob 30d, KV 90d).
   using the existing Multilogin/Pakistan desktop one at a time. Do not share
   the VNC credential. The additive Guacamole 1.6.0 gateway is now live at
   `https://copap-verification-pk-dev.eastus2.cloudapp.azure.com/` with named
-  database authentication, forced password change, TOTP, brute-force
-  protection, connection history, and a one-connection limit. Entra OIDC
-  follows after its separate app registration is available. Three simultaneous
-  analysts require separate desktops and Multilogin profiles.
+  database authentication, TOTP, brute-force protection, connection history,
+  and a one-connection limit. Password changes and MFA enrollment must be
+  validated as separate sessions. Entra OIDC follows after its separate app
+  registration is available. Three simultaneous analysts require separate
+  desktops and Multilogin profiles.
 - Pre-change recovery points are snapshot
   `crawl-verify-os-pre-guacamole-20260811T142750Z` and mode-600 backup
   `/home/copapadmin/verification-backups/pre-guacamole-20260811T142750Z.tar.gz`
@@ -504,6 +505,22 @@ windows (VM disks 90d, PG 7d post server delete, blob 30d, KV 90d).
   public access. `browse-pakistan` is running on SECP LEAP and the final health
   result is `overall=healthy`. Saved registry files appear in Guacamole as
   `/downloads`; double-click a file there to download it to the analyst PC.
+- Final first-account recovery state: `teppinette@copap.com` is enabled,
+  unexpired, has confirmed TOTP, accepts the restored original Key
+  Vault-managed initial credential, and requests only `guac-totp`. Forced
+  password change is disabled. Restarting only the Guacamole container cleared
+  the brute-force lock; the factory administrator remains rejected. No secret
+  value was printed or recorded. For the next analysts, prove the temporary
+  password, enroll and verify TOTP, prove a fresh login, and only then change
+  the password in a separate verified session.
+- The root-only pre-recovery authentication dump is
+  `/etc/copap-verification-guacamole/backups/auth-before-password-rollback-20260811T171733Z.sql`
+  (mode 0600, 3,024 bytes; SHA-256
+  `1a4820396b22b51be53ab93423ad303096172d337c17d25b95b44f62ea0526d0`).
+  It contains authentication material and must not leave the host. The bounded
+  five-minute Key Vault firewall exception automatically closed; final
+  `copapkeyvault` state is `publicNetworkAccess=Enabled` and
+  `defaultAction=Deny`.
 - All generated gateway credentials and the NSTBrowser API key are escrowed by
   name in `copapkeyvault`; values must never enter this runbook. NSTBrowser has
   not passed the supported interactive Windows/AVD gates, so keep Multilogin
