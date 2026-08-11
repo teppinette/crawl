@@ -1,6 +1,6 @@
 # Crawl OSINT Platform — Operations Runbook
 
-**Last updated:** 2026-06-28
+**Last updated:** 2026-08-11
 **Audience:** Anyone running, deploying, or debugging the crawl platform.
 **For project context + architecture:** see `CLAUDE.md`.
 
@@ -468,7 +468,52 @@ windows (VM disks 90d, PG 7d post server delete, blob 30d, KV 90d).
 
 ---
 
-## 16 — Where the source-of-truth lives
+## 16 — 2026-08-11 Verification PC recovery state
+
+- `crawl-verify-new` is the existing Ubuntu verification VM, not a newly built
+  analyst PC. Hostname `crawl-verify`, private IP `172.20.0.26`, existing static
+  public IP `172.177.71.40`. Its NSG does not expose x11vnc `5900` or noVNC
+  `6080` publicly.
+- Management from `copapdevvm` is restored through
+  `~/.ssh/crawl_admin_key.pem` with strict fingerprints in
+  `~/.ssh/crawl_known_hosts`. Never store key contents, VNC credentials, API
+  keys, or analyst passwords in this runbook or source control.
+- A fresh health check confirmed `xvfb`, `fluxbox`, `mlx`, `x11vnc`,
+  `mlx-relay-pk`, `mlx-relay-in`, `mlx-idle-stop`,
+  `copap-verification-novnc`, and `verify-gateway` active; gateway HTTP 200;
+  Pakistan desktop running; SECP HTTP 200; and overall healthy. Authenticated
+  RFB returned framebuffer `1920x1080` for `crawl-verify:99`. The analyst's
+  prior noVNC failure was missing private-network routing, not a dead desktop.
+- Immediate delegated-access requirement: approximately three named analysts
+  using the existing Multilogin/Pakistan desktop one at a time. Do not share
+  the VNC credential. The additive target is Guacamole 1.6.0 behind HTTPS,
+  named authentication and TOTP, connection history, and a maximum of one
+  concurrent connection. Entra OIDC follows after its separate app registration
+  is available. Three simultaneous analysts require separate desktops and
+  Multilogin profiles.
+- Before installing that gateway, create an Azure managed OS-disk snapshot and
+  a mode-600 configuration backup. Preserve every existing desktop, relay,
+  noVNC, idle-stop, and verification-gateway service. Expose only 80/443 for
+  certificate issuance/redirect and HTTPS; never expose 5900/6080.
+- Pakistan verification proof on 2026-08-11: SECP returned
+  `verified=true`, `found=true` for `Chemtech Prochimica Industries (Private)
+  Limited`, legal name `CHEMTECH PROCHIMICA INDUSTRIES (PRIVATE) LIMITED`,
+  registration `0111256`, status `Incorporated`, type `Private Limited Company`,
+  incorporation `29-08-2017 12:50:03`, CRO Faisalabad. Exact mode-600 evidence:
+  `/home/copapadmin/verification-results/chemtech-prochimica-pk-secp-20260811T114147Z.json`;
+  SHA-256 `7ae6a93392f3680cc0d7179e9dc919d8aab667640251f5e75d8b29c2b560590c`.
+  It is not in source control or onboarding production.
+- The separate FBR NTN `7597188` check failed before a registry response with
+  `MLX launch failed: downloading of core already started`. Treat this as a
+  transport failure, never as `NOT_FOUND`; repair Multilogin without deleting
+  browser/profile data and retry.
+- The complete cross-application state and deployment restrictions are in
+  `/opt/internal-apps/onboarding/CURRENT_STATE.md`. The attempted development
+  AVD route did not produce a usable analyst session and is paused.
+
+---
+
+## 17 — Where the source-of-truth lives
 
 | What | Where |
 |---|---|
